@@ -1,7 +1,5 @@
+// sbp_53f67b9dbf4b4b2d4747dd028d571cdec0366d93
 import type { NextRequest } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
-import { codeBlock, oneLine } from 'common-tags'
-import GPT3Tokenizer from 'gpt3-tokenizer'
 import {
   Configuration,
   OpenAIApi,
@@ -13,48 +11,35 @@ import { Dataset} from '../../types/types';
 import { OpenAIStream, StreamingTextResponse } from 'ai'
 import { ApplicationError, UserError } from '@/lib/errors'
 
-const openAiKey = process.env.OPENAI_KEY
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
-
-
 export const config = {
   runtime: 'edge',
 };
 
 const handler = async (req: NextRequest): Promise<Response> => {
+  console.log("In handler function...")
   const requestData: { question:string, dataset:Dataset, apiKey:string } =
       (await req.json()) as AnswerBody;
   const config = new Configuration({
-    apiKey: openAiKey,
+    apiKey: requestData.apiKey,
   })
-  const openai = new OpenAIApi(config)
+  console.log(requestData.dataset)
+  console.log(requestData.question)
+  console.log(requestData.apiKey)
   try {
     if (!requestData.apiKey) {
       throw new ApplicationError('Missing environment variable OPENAI_KEY')
     }
-   
-    if (!supabaseUrl) {
-      throw new ApplicationError('Missing environment variable SUPABASE_URL')
-    }
-
-    if (!supabaseServiceKey) {
-      throw new ApplicationError('Missing environment variable SUPABASE_SERVICE_ROLE_KEY')
-    }
-
+    const openai = new OpenAIApi(config)
 
     if (!requestData) {
       throw new UserError('Missing request data')
     }
 
-
-
     if (!requestData.question) {
       throw new UserError('Missing query in request data')
     }
 
-    const supabaseClient = createClient(supabaseUrl, supabaseServiceKey)
-
+    console.log("Sanitizing user query...")
     // Moderate the content to comply with OpenAI T&C
     const sanitizedQuery = requestData.question.trim()
     const moderationResponse: CreateModerationResponse = await openai
@@ -62,7 +47,7 @@ const handler = async (req: NextRequest): Promise<Response> => {
       .then((res) => res.json())
 
     const [results] = moderationResponse.results
-
+    console.log("Checking if results are flagged...")
     if (results.flagged) {
       throw new UserError('Flagged content', {
         flagged: true,
@@ -70,7 +55,7 @@ const handler = async (req: NextRequest): Promise<Response> => {
       })
     }
 
-   
+    
     // Transform the response into a readable stream
     console.log(sanitizedQuery)
     const { stream, getFinalOutput } = createPythonGeneratorStream(sanitizedQuery, requestData.apiKey);
@@ -110,7 +95,7 @@ const handler = async (req: NextRequest): Promise<Response> => {
     )
   }
 }
-
+export default handler;
 
 import { spawn } from "child_process";
 import { AnswerBody } from '@/types/types'

@@ -1,4 +1,3 @@
-// comment
 import { Dataset } from '@/types/types';
 import { FC } from 'react';
 
@@ -14,7 +13,7 @@ export const DatasetSelect: FC<Props> = ({ dataset, onChange }) => {
 
   return (
     <select
-      className="h-[40px] w-[140px] rounded-md bg-[#1F2937] px-4 py-2 text-neutral-200"
+      className="h-[40px] w-[260px] rounded-md bg-[#1F2937] px-4 py-2 text-neutral-200"
       value={dataset}
       onChange={handleChange}
     >

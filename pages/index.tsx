@@ -6,7 +6,7 @@ import { Dataset, AnswerBody } from '../types/types';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import type { NextRequest } from 'next/server'
-import { QuestionInput } from '../components/QuestionInput';
+import { QuestionInput } from '../components/QuestionInput'
 
 export default function Home() {
 
@@ -108,7 +108,7 @@ export default function Home() {
   };
   
   const handleQuestionChange = (value: string) => {
-    setQuestion(question);
+    setQuestion(value);
   };
 
   useEffect(() => {
@@ -118,10 +118,10 @@ export default function Home() {
   }, [question]);
 
   useEffect(() => {
-    const apiKey = localStorage.getItem('apiKey');
+    const openAiKey = localStorage.getItem('openAiKey');
 
-    if (apiKey) {
-      setApiKey(apiKey);
+    if (openAiKey) {
+      setApiKey(openAiKey);
     }
   }, []);
 
@@ -171,10 +171,18 @@ export default function Home() {
         <div className="mt-6 flex w-full max-w-[1200px] flex-col justify-between sm:flex-row sm:space-x-4">
           <div className="h-100 flex flex-col justify-center space-y-2 sm:w-2/4">
             <div className="text-center text-xl font-bold">Abe's Answer</div>
-          </div>
-
+            <TextBlock
+              text={finalAnswer}
+              editable={!loading}
+              onChange={(value) => {
+                setFinalAnswer(value);
+                setHasAnswered(false);
+              }}
+            />
+            </div>
           <div className="mt-8 flex h-full flex-col justify-center space-y-2 sm:mt-0 sm:w-2/4">
             <div className="text-center text-xl font-bold">Legal Citations</div>
+            <TextBlock text={citations} />
           </div>
         </div>
       </div>

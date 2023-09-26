@@ -38,7 +38,7 @@ export const CodeBlock: FC<Props> = ({
       </button>
 
       <CodeMirror
-        editable={false}
+        editable={editable}
         value={code}
         minHeight="500px"
         extensions={[StreamLanguage.define(go)]}
