@@ -1,6 +1,6 @@
 import { APIKeyInput } from './components/APIKeyInput';
 import { CodeBlock } from './components/CodeBlock';
-import { DatasetSelect } from './components/datasetSelect';
+import { DatasetSelect } from './components/DatasetSelect';
 import { TextBlock } from './components/TextBlock';
 import { Dataset, AnswerBody } from './types/types';
 import Head from 'next/head';
