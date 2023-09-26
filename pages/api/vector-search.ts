@@ -66,91 +66,11 @@ export default async function handler(req: NextRequest) {
       })
     }
 
-    // Create embedding from query
-    const embeddingResponse = await openai.createEmbedding({
-      model: 'text-embedding-ada-002',
-      input: sanitizedQuery.replaceAll('\n', ' '),
-    })
-
-    if (embeddingResponse.status !== 200) {
-      throw new ApplicationError('Failed to create embedding for question', embeddingResponse)
-    }
-
-    const {
-      data: [{ embedding }],
-    }: CreateEmbeddingResponse = await embeddingResponse.json()
-
-    const { error: matchError, data: pageSections } = await supabaseClient.rpc(
-      'match_page_sections',
-      {
-        embedding,
-        match_threshold: 0.78,
-        match_count: 10,
-        min_content_length: 50,
-      }
-    )
-
-    if (matchError) {
-      throw new ApplicationError('Failed to match page sections', matchError)
-    }
-
-    const tokenizer = new GPT3Tokenizer({ type: 'gpt3' })
-    let tokenCount = 0
-    let contextText = ''
-
-    for (let i = 0; i < pageSections.length; i++) {
-      const pageSection = pageSections[i]
-      const content = pageSection.content
-      const encoded = tokenizer.encode(content)
-      tokenCount += encoded.text.length
-
-      if (tokenCount >= 1500) {
-        break
-      }
-
-      contextText += `${content.trim()}\n---\n`
-    }
-
-    const prompt = codeBlock`
-      ${oneLine`
-        You are a very enthusiastic Supabase representative who loves
-        to help people! Given the following sections from the Supabase
-        documentation, answer the question using only that information,
-        outputted in markdown format. If you are unsure and the answer
-        is not explicitly written in the documentation, say
-        "Sorry, I don't know how to help with that."
-      `}
-
-      Context sections:
-      ${contextText}
-
-      Question: """
-      ${sanitizedQuery}
-      """
-
-      Answer as markdown (including related code snippets if available):
-    `
-
-    const chatMessage: ChatCompletionRequestMessage = {
-      role: 'user',
-      content: prompt,
-    }
-
-    const response = await openai.createChatCompletion({
-      model: 'gpt-3.5-turbo',
-      messages: [chatMessage],
-      max_tokens: 512,
-      temperature: 0,
-      stream: true,
-    })
-
-    if (!response.ok) {
-      const error = await response.json()
-      throw new ApplicationError('Failed to generate completion', error)
-    }
-
+   
     // Transform the response into a readable stream
-    const stream = OpenAIStream(response)
+    console.log(sanitizedQuery)
+    const { stream, getFinalOutput } = createPythonGeneratorStream(sanitizedQuery);
+    
 
     // Return a StreamingTextResponse, which can be consumed by the client
     return new StreamingTextResponse(stream)
@@ -186,3 +106,44 @@ export default async function handler(req: NextRequest) {
     )
   }
 }
+
+
+import { spawn } from "child_process";
+
+function createPythonGeneratorStream(question: string): { stream: ReadableStream, getFinalOutput: () => string | null } {
+  let finalOutput: string | null = null;
+  let previousChunk: string | null = null;
+
+  const stream = new ReadableStream({
+      start(controller) {
+          const pythonProcess = spawn("python3", ["./scripts/createAbe.py", question]);
+
+          pythonProcess.stdout.on("data", (chunk) => {
+              if (previousChunk) {
+                  controller.enqueue(new TextEncoder().encode(previousChunk));
+              }
+              previousChunk = chunk.toString();
+          });
+
+          pythonProcess.stderr.on("data", (data) => {
+              console.error(`Python Error: ${data}`);
+          });
+
+          pythonProcess.on("close", (code) => {
+              if (code !== 0) {
+                  controller.error(new Error(`Python process exited with code ${code}`));
+              } else {
+                  finalOutput = previousChunk;  // Assign the final chunk to finalOutput
+                  controller.close();
+              }
+          });
+      }
+  });
+
+  return {
+      stream,
+      getFinalOutput: () => finalOutput
+  };
+}
+
+
