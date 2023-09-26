@@ -7,53 +7,8 @@ from utilityFunctions import supabase_connect
 
 
 def main():
-    user_embedding_search()
+    pass
     
-# Internal tool for testing embedding similarity
-def user_embedding_search(show_explanation=False):
-    if show_explanation:
-        print("=== Welcome to the user embedding search function! ===")
-        print("-This function allows the user to input some user generated text and receive the closest \"match\" found in the California Legal Code.")
-        print("-User generated text is converted into vector embeddings using OpenAI's text-embedding-ada-002 model.")
-        print("-This vector embedding is compared to a database of embedding for the entire legal code using cosine similarity search.")
-        print("-Please try inputting more complex phrases and questions. The more verbiose language you use the better testing I get!.")
-    print()
-
-    user_text = ""
-    while True:
-        print("You will be prompted to enter some parameters. Enter\'q\' any time to exit the function:")
-        
-        user_text = input("  1. A user query to compare to PSQL:\n")
-        if user_text == "q":
-            exit(0)
-        while True:
-            try:
-                user_match_threshold = float(input("  2. A match threshold between [0 to 1.0]. Higher values means a stricter search. Defaults to 0.5.\n"))
-                if user_match_threshold >= 1 or user_match_threshold <= 0:
-                    print("Please put a valid float in the range [0,1] exclusive.")
-                    continue
-                break
-            except:
-                if user_text == "q":
-                    exit(0)
-                print("Please put a valid float from [0,1] exclusive.")
-        while True:
-            try:
-                user_match_count = int(input("  3. The number of maximum match_counts you would like to see (1-20).\n"))
-                if user_match_count > 20 or user_match_count <= 0:
-                    print("Please put a valid int in the range (1, 20) inclusive.")
-                    continue
-                break
-            except:
-                if user_match_count == "q":
-                    exit(0)
-                print("Please put a valid int in the range (1, 20) inclusive.")
-        print()
-        compare_content_embeddings(user_text, True, user_match_threshold, user_match_count)
-        #compare_definition_embeddings(user_text, True, user_match_threshold, user_match_count)
-        #compare_title_path_embeddings(user_text, True, user_match_threshold, user_match_count)
-        print()
-
 # Return most relevant content embeddings
 def compare_content_embeddings(user_query, match_threshold=0.5, match_count=5):
     embedding = get_embedding(user_query)
