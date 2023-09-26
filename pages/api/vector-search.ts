@@ -9,6 +9,7 @@ import {
   CreateEmbeddingResponse,
   ChatCompletionRequestMessage,
 } from 'openai-edge'
+import { Dataset} from '../../types/types';
 import { OpenAIStream, StreamingTextResponse } from 'ai'
 import { ApplicationError, UserError } from '@/lib/errors'
 
@@ -16,19 +17,23 @@ const openAiKey = process.env.OPENAI_KEY
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
 
-const config = new Configuration({
-  apiKey: openAiKey,
-})
-const openai = new OpenAIApi(config)
 
-export const runtime = 'edge'
+export const config = {
+  runtime: 'edge',
+};
 
-export default async function handler(req: NextRequest) {
+const handler = async (req: NextRequest): Promise<Response> => {
+  const requestData: { question:string, dataset:Dataset, apiKey:string } =
+      (await req.json()) as AnswerBody;
+  const config = new Configuration({
+    apiKey: openAiKey,
+  })
+  const openai = new OpenAIApi(config)
   try {
-    if (!openAiKey) {
+    if (!requestData.apiKey) {
       throw new ApplicationError('Missing environment variable OPENAI_KEY')
     }
-
+   
     if (!supabaseUrl) {
       throw new ApplicationError('Missing environment variable SUPABASE_URL')
     }
@@ -37,22 +42,21 @@ export default async function handler(req: NextRequest) {
       throw new ApplicationError('Missing environment variable SUPABASE_SERVICE_ROLE_KEY')
     }
 
-    const requestData = await req.json()
 
     if (!requestData) {
       throw new UserError('Missing request data')
     }
 
-    const { prompt: query } = requestData
 
-    if (!query) {
+
+    if (!requestData.question) {
       throw new UserError('Missing query in request data')
     }
 
     const supabaseClient = createClient(supabaseUrl, supabaseServiceKey)
 
     // Moderate the content to comply with OpenAI T&C
-    const sanitizedQuery = query.trim()
+    const sanitizedQuery = requestData.question.trim()
     const moderationResponse: CreateModerationResponse = await openai
       .createModeration({ input: sanitizedQuery })
       .then((res) => res.json())
@@ -69,7 +73,7 @@ export default async function handler(req: NextRequest) {
    
     // Transform the response into a readable stream
     console.log(sanitizedQuery)
-    const { stream, getFinalOutput } = createPythonGeneratorStream(sanitizedQuery, openAiKey);
+    const { stream, getFinalOutput } = createPythonGeneratorStream(sanitizedQuery, requestData.apiKey);
     
 
     // Return a StreamingTextResponse, which can be consumed by the client
@@ -109,6 +113,8 @@ export default async function handler(req: NextRequest) {
 
 
 import { spawn } from "child_process";
+import { AnswerBody } from '@/types/types'
+import { request } from 'http'
 
 function createPythonGeneratorStream(question: string, openAiKey: string): { stream: ReadableStream, getFinalOutput: () => string | null } {
   let finalOutput: string | null = null;
