@@ -69,7 +69,7 @@ export default async function handler(req: NextRequest) {
    
     // Transform the response into a readable stream
     console.log(sanitizedQuery)
-    const { stream, getFinalOutput } = createPythonGeneratorStream(sanitizedQuery);
+    const { stream, getFinalOutput } = createPythonGeneratorStream(sanitizedQuery, openAiKey);
     
 
     // Return a StreamingTextResponse, which can be consumed by the client
@@ -110,13 +110,13 @@ export default async function handler(req: NextRequest) {
 
 import { spawn } from "child_process";
 
-function createPythonGeneratorStream(question: string): { stream: ReadableStream, getFinalOutput: () => string | null } {
+function createPythonGeneratorStream(question: string, openAiKey: string): { stream: ReadableStream, getFinalOutput: () => string | null } {
   let finalOutput: string | null = null;
   let previousChunk: string | null = null;
 
   const stream = new ReadableStream({
       start(controller) {
-          const pythonProcess = spawn("python3", ["./scripts/createAbe.py", question]);
+          const pythonProcess = spawn("python3", ["./scripts/createAbe.py", question, openAiKey]);
 
           pythonProcess.stdout.on("data", (chunk) => {
               if (previousChunk) {

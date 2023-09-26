@@ -1,5 +1,6 @@
 import os
 import openai
+import config
 import json
 import utilityFunctions as util
 import promptStorage as prompts
@@ -10,11 +11,11 @@ from typing import Union
 import processUserQuery as process
 import searchRelevantSections as search
 import answerUserQuery as answer
+import testWithCurrentBuild as test
 import gui
-import argparse
 
 
-
+openai.api_key = config.spartypkp_openai_key
 
 def main():
     ### Right to Receive Written Notice of Termination
@@ -22,10 +23,9 @@ def main():
     answer = ask_abe("What legal actions do I have if my landlord sells my lease 3 months before my current lease ends and is evicting?", False, False, False)
     
 # Starts one "run" of the project    
-def ask_abe(user_query, openAiKey, print_sections, do_testing, do_stream):
+def ask_abe(user_query, print_sections, do_testing, do_stream):
     
-    print("================================")
-    print("======= Debug Screen :) ========")
+    print()
     print("================================")
     print("Initializing instance of Abe...")
     print(f"User Query:\n    {user_query}")
@@ -41,21 +41,25 @@ def ask_abe(user_query, openAiKey, print_sections, do_testing, do_stream):
     
     
     
-    for message in answer.populate_summary_template(question, legal_documentation, summary_template):
-        if "[FULL]" in message:
-            final_answer = message[6:]
-        yield message
-
-    #with open("debugFinalAnswer.txt","w") as debugFinalAnswer:
-        #debugFinalAnswer.write(final_answer)
-    #debugFinalAnswer.close()
-    #with open("debugCitations.txt","w") as debugCitations:
-        #debugCitations.write(str(citation_list))
-    #debugCitations.close()
-
+    final_answer = answer.populate_summary_template(question, legal_documentation, summary_template)
+    with open("debugFinalAnswer.txt","w") as debugFinalAnswer:
+        debugFinalAnswer.write(final_answer)
+    debugFinalAnswer.close()
+    with open("debugCitations.txt","w") as debugCitations:
+        debugCitations.write(str(citation_list))
+    debugCitations.close()
     cited_sections, final_answer = find_sections_cited(citation_list, final_answer)
     
-    yield cited_sections
+    final_answer = gui.markdown_to_html(final_answer)
+    final_answer = link_answer_to_citations(citation_list, final_answer)
+    print(type(final_answer))
+
+    
+
+    print()
+    print("================================\n")
+    print()
+    return final_answer, cited_sections
     
 def find_sections_cited(citation_list, final_answer):
     cited_sections = ""
@@ -81,13 +85,24 @@ def link_answer_to_citations(citation_list, final_answer):
     return final_answer
 
 
+'''
+<marked-element>
+      <div slot="markdown-html"></div>
+      <script type="text/markdown">
+        Check out my markdown!
+
+        We can even embed elements without fear of the HTML parser mucking up their
+        textual representation:
+
+        ```html
+        <awesome-sauce>
+          <div>Oops, I'm about to forget to close this div.
+        </awesome-sauce>
+        ```
+      </script>
+    </marked-element>
+'''
+
+
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    
-    parser.add_argument("question", help="Question to process in the generator")
-    parser.add_argument("openai_key", help="OpenAI API Key")
-    args = parser.parse_args()
-
-    for data in ask_abe(args.question, args.openai_key, False, False, True):
-        print(data)
-
+    main()
