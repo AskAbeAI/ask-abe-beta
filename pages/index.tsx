@@ -81,14 +81,12 @@ export default function Home() {
       const { value, done: doneReading } = await reader.read();
       done = doneReading;
       const chunkValue = decoder.decode(value);
-      if (chunkValue.includes("[PASSING CITATIONS]")) {
-        setCitations(chunkValue.slice(20));
-      } else {
-        answer += chunkValue;
-      }
+      answer += chunkValue;
+      
+      
       setFinalAnswer((prevCode) => prevCode + chunkValue);
     }
-
+    setCitations(finalAnswer)
     setLoading(false);
     setHasAnswered(true);
     copyToClipboard(finalAnswer);
@@ -130,17 +128,17 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Code Translator</title>
+        <title>Ask Abe</title>
         <meta
           name="description"
-          content="Use AI to translate code from one language to another."
+          content="Ask Abe a legal question and receive an answer with citations"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="flex h-full min-h-screen flex-col items-center bg-[#0E1117] px-4 pb-20 text-neutral-200 sm:px-10">
         <div className="mt-10 flex flex-col items-center justify-center sm:mt-20">
-          <div className="text-4xl font-bold">AI Code Translator</div>
+          <div className="text-4xl font-bold">Legal Question Answering</div>
         </div>
 
         <div className="mt-6 text-center text-sm">
@@ -158,7 +156,7 @@ export default function Home() {
             onClick={() => handleQuestion()}
             disabled={loading}
           >
-            {loading ? 'Answering...' : 'Answer'}
+            {loading ? "Answering..." : "Answer"}
           </button>
         </div>
 
