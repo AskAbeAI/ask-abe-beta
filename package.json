@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "pnpm run embeddings && next build",
+    "build": "pnpm run next build",
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\"",
@@ -72,12 +72,5 @@
     "prettier-plugin-tailwindcss": "^0.2.6",
     "eslint": "8.37.0",
     "eslint-config-next": "13.2.4"
-  },
-  "description": "This starter takes all the `.mdx` files in the `pages` directory and processes them to use as custom context within [OpenAI Text Completion](https://platform.openai.com/docs/guides/completion) prompts.",
-  "main": "next.config.js",
-  "directories": {
-    "lib": "lib"
-  },
-  "author": "Will Diamond",
-  "license": "ISC"
+  }
 }
