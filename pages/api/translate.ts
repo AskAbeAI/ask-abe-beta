@@ -58,7 +58,12 @@ const handler = async (req: NextRequest): Promise<Response> => {
     
     // Transform the response into a readable stream
     console.log(sanitizedQuery)
-    const { stream, getFinalOutput } = createPythonGeneratorStream(sanitizedQuery, requestData.apiKey);
+    const supabase = createClient('https://xyzcompany.supabase.co', 'public-anon-key')
+
+    const { data, error } = await supabase.functions.invoke('ask-abe-a-question', {
+      body: { name: 'Functions' },
+    })
+    console.log(data)
     
 
     // Return a StreamingTextResponse, which can be consumed by the client
@@ -97,44 +102,5 @@ const handler = async (req: NextRequest): Promise<Response> => {
 }
 export default handler;
 
-import { spawn } from "child_process";
-import { AnswerBody } from '@/types/types'
-import { request } from 'http'
-
-function createPythonGeneratorStream(question: string, openAiKey: string): { stream: ReadableStream, getFinalOutput: () => string | null } {
-  let finalOutput: string | null = null;
-  let previousChunk: string | null = null;
-
-  const stream = new ReadableStream({
-      start(controller) {
-          const pythonProcess = spawn("python3", ["./scripts/createAbe.py", question, openAiKey]);
-
-          pythonProcess.stdout.on("data", (chunk) => {
-              if (previousChunk) {
-                  controller.enqueue(new TextEncoder().encode(previousChunk));
-              }
-              previousChunk = chunk.toString();
-          });
-
-          pythonProcess.stderr.on("data", (data) => {
-              console.error(`Python Error: ${data}`);
-          });
-
-          pythonProcess.on("close", (code) => {
-              if (code !== 0) {
-                  controller.error(new Error(`Python process exited with code ${code}`));
-              } else {
-                  finalOutput = previousChunk;  // Assign the final chunk to finalOutput
-                  controller.close();
-              }
-          });
-      }
-  });
-
-  return {
-      stream,
-      getFinalOutput: () => finalOutput
-  };
-}
 
 

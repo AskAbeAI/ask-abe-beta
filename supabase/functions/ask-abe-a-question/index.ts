@@ -2,12 +2,11 @@
 // https://deno.land/manual/getting_started/setup_your_environment
 // This enables autocomplete, go to definition, etc.
 
-import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
-import { createClient } from '@supabase/supabase-js'
-const supabase = createClient('https://xyzcompany.supabase.co', 'public-anon-key')
+import { serve } from 'std/server'
+import { createClient } from "https://esm.sh/@supabase/supabase-js"
+
 
 // Starts one "run" of the project
-const msg = new TextEncoder().encode("data: hello")
 
 serve((_) => {
   let timerId: number | undefined;
@@ -31,7 +30,7 @@ serve((_) => {
 }
 
 )
-async function askAbe(
+async function* askAbe(
   userQuery: string, 
   openAiKey: string | boolean,
   printSections: boolean,
@@ -61,7 +60,7 @@ async function askAbe(
   const [summaryTemplate, legalDocumentation, question] = 
     await answeringStage(questionList, legalTextList, userQuery);
     
-  for (const message of answer.populateSummaryTemplate(question, legalDocumentation, summaryTemplate)) {
+  for (const message of populateSummaryTemplate(question, legalDocumentation, summaryTemplate)) {
     if (message.includes("[FULL]")) {
       const finalAnswer = message.substring(6); 
       yield message; 
@@ -107,19 +106,6 @@ function linkAnswerToCitations(citationList: any[], finalAnswer: string) {
   return finalAnswer;
 }
 
-
-main();
-serve(async (req) => {
-  const { name } = await req.json()
-  const data = {
-    message: `Hello ${name}!`,
-  }
-
-  return new Response(
-    JSON.stringify(data),
-    { headers: { "Content-Type": "application/json" } },
-  )
-})
 
 // To invoke:
 // curl -i --location --request POST 'http://localhost:54321/functions/v1/' \
@@ -174,12 +160,12 @@ async function separateAnswer(
   let totalTokens = 0;
 
   for (const section of legalText) {
-    messageList.push(prompts.getPromptSimpleAnswer(section, question));
+    messageList.push(getPromptSimpleAnswer(section, question));
   }
   
   const begin = time.now();
 
-  const results = await util.getCompletionList(messageList, 100, model);
+  const results = await getCompletionList(messageList, 100, model);
 
   for (const completion of results) {
 
@@ -197,7 +183,7 @@ async function separateAnswer(
   for (const response of responseList) {
     if (response.includes("[IGNORE]")) continue;
 
-    totalTokens += util.numTokensFromString(response);
+    totalTokens += numTokensFromString(response);
     
     responseStr += "====\n" + response + "\n";
   }
@@ -217,7 +203,7 @@ async function createSummaryTemplate(
 
   const promptSummarize = getPromptSummaryTemplate(question, legalDocumentation);
   
-  const chatCompletion = await util.createChatCompletion(
+  const chatCompletion = await createChatCompletion(
     "gpt-4", 
     [promptSummarize],
     1,
@@ -237,7 +223,7 @@ async function* populateSummaryTemplate(
 
   const promptPopulate = getPromptPopulateSummaryTemplate(question, template, legalDocumentation);
 
-  for (const message of util.streamChatCompletion(
+  for (const message of streamChatCompletion(
     "gpt-3.5-turbo-16k",
     promptPopulate,
     0,
@@ -261,7 +247,7 @@ async function answerOneQuestion(
 
   const who = "will";
 
-  const chatCompletion = await util.createChatCompletion(
+  const chatCompletion = await createChatCompletion(
     model,
     promptFinalAnswer,
     0.2,
@@ -278,16 +264,6 @@ async function answerOneQuestion(
   return [resultStr, promptTokens, completionTokens, cost];
 
 }
-
-export {
-  answeringStage,
-  separateAnswer,
-  createSummaryTemplate,
-  populateSummaryTemplate,
-  answerOneQuestion
-};
-
-
 
 async function processingStage(userQuery: string) {
 
@@ -343,22 +319,8 @@ async function getSimilarQueries(questionList: string[], userQuery: string) {
   );
 
   const lawfulResult = lawfulChat.choices[0].message.content;
-
-  //const unlawfulChat = await util.createChatCompletion(
-  //  "gpt-4",
-  //  unlawful,
-  //  0,
-  //  true
-  //);
-
-  //const unlawfulResult = unlawfulChat.choices[0].message.content;
-
   const lawfulDct = JSON.parse(lawfulResult);
   const lawfulQueries = lawfulDct["queries"].join(" ");
-
-  //const unlawfulDct = JSON.parse(unlawfulResult);
-  //const unlawfulQueries = unlawfulDct["queries"].join(" ");
-
   const unlawfulQueries = null;
 
   const similarQueriesList = [
@@ -390,7 +352,7 @@ async function searchingStage(similarQueriesList: string[][]) {
 
   const [legalText, legalTextTokens] = await accumulateLegalTextFromSections(lawful, "gpt-3.5-turbo-16k");
 
-  const [legalTextLawful, citationList] = embeddingSimilarity.formatSqlRows(legalText);
+  const [legalTextLawful, citationList] = formatSqlRows(legalText);
 
   const end = time.now();
 
