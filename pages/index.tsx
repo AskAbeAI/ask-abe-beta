@@ -21,6 +21,8 @@ export default function Home() {
   const [hasAnswered, setHasAnswered] = useState<boolean>(false);
   const [apiKey, setApiKey] = useState<string>('');
 
+  console.log("Setting base variables...")
+  
   const handleQuestion = async () => {
     const maxQuestionLength = 100
     console.log("In handle question!")
@@ -82,7 +84,7 @@ export default function Home() {
       reader.read().then(processText);
   });
   
-
+    console.log(response)
     // RECEIVE RESPONSE HERE
     if (!response.ok) {
       setLoading(false);
