@@ -18,7 +18,7 @@ import { Readable } from 'stream';  // Make sure you have this at the top if usi
 
 export default async function handler(req: NextRequest, res: NextApiResponse) {
   console.log("In handler function...");
-
+  console.log(req)
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
     return res.status(405).end('Method Not Allowed');
