@@ -71,7 +71,7 @@ async function handler(req: NextRequest, res: NextApiResponse) {
     }
 
     res.setHeader('Content-Type', 'text/plain');
-    res.status(200).json({ message: 'Success' });
+    res.status(200);
 
     console.log(sanitizedQuery);
     const client = createClient('https://xyzcompany.supabase.co', 'public-anon-key');
