@@ -58,7 +58,7 @@ export const runAbe = async function* (userQuery: string, openAiKey: string): As
     chatCompletionConvert = chatCompletionConvert.replace(/\?/g, '?\n'); // Replace ? with ?\n
 
 	const questionList: string[] = chatCompletionConvert.split("\n");
-	console.log(questionList)
+	//console.log(questionList)
 
 	console.log(" - Generating similar search queries for questions");
 	// Generate similar search queries for questions:
@@ -73,7 +73,7 @@ export const runAbe = async function* (userQuery: string, openAiKey: string): As
 	
 	const lawfulDct = JSON.parse(lawfulChat);
 	const lawfulQueries = lawfulDct["queries"].join(" ");
-	console.log(lawfulQueries)
+	//console.log(lawfulQueries)
 	const unlawfulQueries = "";
 	const similarQueriesList = [
 		lawfulQueries,
@@ -93,80 +93,83 @@ export const runAbe = async function* (userQuery: string, openAiKey: string): As
 
 	console.log(" - Searching relevant sections for lawful template");
 	// SearchSimilarContentSections
-	console.log(similarQueriesList[0])
+	//console.log(similarQueriesList[0])
 	const embedding = await getEmbedding(similarQueriesList[0]);
 	const embeddingStr = `${embedding}`;
 	console.log("Retrieved embedding")
 	const client = createClient('https://jwscgsmkadanioyopaef.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp3c2Nnc21rYWRhbmlveW9wYWVmIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTU2NzE1MTgsImV4cCI6MjAxMTI0NzUxOH0.1QwW9IV1TrMT72xyq2LQcmDr92tmLOEQg07mOPRLDO0');
-	const { data, error } = await client.rpc('match_embedding', {query_embedding: embedding, match_threshold: 0.5, match_count: 40})
-	console.log(data)
-	console.log(error)
+	const { data, error } = await client.rpc('match_embedding', {query_embedding: embedding, match_threshold: 0.5, match_count: 2})
+	//console.log(typeof data)
+	// console.log(error)
 	if (error) {
 		console.log("Error calling match_embeddings in supabase database");
-	}
-	const sections: any[] = ["Error"]
-	if (data) {
+	} else {
+		// console.log(data)
 		const sections = data;
-	}
-	console.log(sections)
-	
-	let currentTokens = 0;
-	let row = 0;
-	const legalText: any[] = [];
-	let maxTokens = 24000; // override
+		// console.log(sections[0])
+		
+		let currentTokens = 0;
+		let row = 0;
+		const legalText: any[] = [];
+		let maxTokens = 24000; // override
 
-	while (currentTokens < maxTokens && row < sections.length) {
-		currentTokens += sections[row][12];
-		legalText.push(sections[row]);
-		row++;
-	}
-
-	// format sql rows
-	let result = "";
-	const citationList: [string, string, string][] = [];
-
-	for (const row of sections) {
-
-		let content = row.content;
-		const citation = `Cal. ${row.code} § ${row.section}`;
-		const link = row.link;
-		citationList.push([citation, content, link]);
-		result += `\n* ${citation}:\n${content}\n`;
-
-	}
-	
-	let legalTextLawful = result.split("\n*").slice(1);
-	console.log(legalTextLawful)
-
-	
-	console.log("Starting answering stage...");
-	
-	const responsesList: string[] = await getCompletions(
-		legalTextLawful,
-		questionList[2],
-	);
-
-	console.log(" - Creating answer template with GPT 4");
-	let responseTotal = "";
-	for (let response_str of legalTextLawful) {
-		responseTotal = "====" + responseTotal;
-	}
-	const promptSummarize = getPromptSummaryTemplate(userQuery, responseTotal);
-	const summaryTemplate = await createChatCompletion(
-		promptSummarize,
-		"gpt-4",
-		1,
-	);
-	console.log("Finished creating answer template.")
-	let finalAnswer= "";
-	for await (const message of populateSummaryTemplate(userQuery, responseTotal, summaryTemplate)) {
-		if (message) {
-			finalAnswer += message;
-			yield message;
+		while (currentTokens < maxTokens && row < sections.length) {
+			currentTokens += sections[row].contentTokens;
+			legalText.push(sections[row]);
+			row++;
 		}
+
+		// format sql rows
+		let result = "";
+		const citationList: [string, string, string][] = [];
+
+		for (const row of sections) {
+
+			let content = row.content;
+			const citation = `Cal. ${row.code} § ${row.section}`;
+			//console.log(citation)
+			const link = row.link;
+			citationList.push([citation, content, link]);
+			result += `\n* ${citation}:\n${content}\n`;
+
+		}
+		//console.log(result)
+		
+		let legalTextLawful = result.split("\n*").slice(1);
+		//console.log(legalTextLawful)
+
+		
+		console.log("Starting answering stage...");
+		
+		const responsesList: string[] = await getCompletions(
+			legalTextLawful,
+			questionList[2],
+		);
+
+		console.log(" - Creating answer template with GPT 4");
+		let responseTotal = "";
+		for (let response_str of legalTextLawful) {
+			responseTotal = responseTotal + "\n====\n" + response_str;
+		}
+		const promptSummarize = getPromptSummaryTemplate(userQuery, responseTotal);
+		const summaryTemplate = await createChatCompletion(
+			promptSummarize,
+			"gpt-4",
+			1,
+		);
+		console.log("Finished creating answer template.")
+		let finalAnswer= "";
+		for await (const message of populateSummaryTemplate(userQuery, responseTotal, summaryTemplate)) {
+			if (message) {
+				finalAnswer += message;
+				yield message;
+			}
+		}
+		let citedSections = findSectionsCited(citationList, finalAnswer);
+		console.log(citedSections)
+		return citedSections;
 	}
-	let citedSections = findSectionsCited(citationList, finalAnswer);
-	return citedSections;
+	
 
 }
 

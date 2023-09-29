@@ -112,7 +112,7 @@ export default function Home() {
       answer += chunkValue;
       
       
-      setFinalAnswer((prevCode) => prevCode + chunkValue);
+      setFinalAnswer(answer);
     }
     setCitations(finalAnswer)
     setLoading(false);
@@ -204,13 +204,19 @@ export default function Home() {
               editable={false}
               onChange={(value) => {
                 setFinalAnswer(value);
-                setHasAnswered(false);
+                setHasAnswered(true);
               }}
             />
             </div>
           <div className="mt-8 flex h-full flex-col justify-center space-y-2 sm:mt-0 sm:w-2/4">
             <div className="text-center text-xl font-bold">Legal Citations</div>
-            <TextBlock text={citations} />
+            <TextBlock 
+            text={citations} 
+            editable={false}
+            onChange={(value) => {
+              setCitations(value);
+              setHasAnswered(true);
+            }}/>
           </div>
         </div>
       </div>
