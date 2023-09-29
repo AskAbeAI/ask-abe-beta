@@ -74,8 +74,6 @@ def populate_summary_template(question, legal_documentation, template):
     for message in util.stream_chat_completion(used_model="gpt-3.5-turbo-16k", prompt_messages=prompt_populate, temp=0, api_key_choice="will", debug_print=True):
         yield message
     
-
-
 def answer_one_question(prompt_final_answer, use_gpt_4):
     model = "gpt-3.5-turbo-16k"
     if use_gpt_4:

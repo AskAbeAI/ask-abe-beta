@@ -23,7 +23,7 @@ export default function Home() {
 
   const handleQuestion = async () => {
     const maxQuestionLength = 100
-
+    console.log("In handle question!")
     if (!apiKey) {
       alert('Please enter an API key.');
       return;
@@ -48,19 +48,45 @@ export default function Home() {
     };
 
     // CALL CREATE ABE HERE
+    console.log("Trying to call /api/translate")
     const response = await fetch('/api/translate', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+          'Content-Type': 'application/json',
       },
-      signal: controller.signal,
       body: JSON.stringify(body),
-    });
+  });
+  if (!response.body) {
+    throw new Error('No response body available!');
+  }
+  const reader = response.body.getReader();
+  let decoder = new TextDecoder();
+  let finalAnswer = "";
+  
+  reader.read().then(function processText({ done, value }): void {
+      if (done) {
+          return;
+      }
+  
+      // Decode the stream chunks
+      let chunk = decoder.decode(value, { stream: true });
+      
+      if (done) {
+        setCitations(chunk);
+      } else {
+        // Update your variable and DOM element
+        finalAnswer += chunk;
+      }
+  
+      // Continue processing the next chunk
+      reader.read().then(processText);
+  });
+  
 
     // RECEIVE RESPONSE HERE
     if (!response.ok) {
       setLoading(false);
-      alert('Something went wrong.');
+      alert('Something went wrong. No response.');
       return;
     }
 
@@ -68,12 +94,11 @@ export default function Home() {
 
     if (!data) {
       setLoading(false);
-      alert('Something went wrong.');
+      alert('Something went wrong. No data.');
       return;
     }
 
-    const reader = data.getReader();
-    const decoder = new TextDecoder();
+    
     let done = false;
     let answer = '';
 
@@ -173,7 +198,7 @@ export default function Home() {
             <div className="text-center text-xl font-bold">Abe's Answer</div>
             <TextBlock
               text={finalAnswer}
-              editable={!loading}
+              editable={false}
               onChange={(value) => {
                 setFinalAnswer(value);
                 setHasAnswered(false);

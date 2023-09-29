@@ -35,37 +35,6 @@ Return in JSON format: {{\\"queries\\": [\\"query_1\\", \\"query_2\\", \\"query_
     return messages
 
 # Generates hypothetical questions that could be answered by some legal text
-def get_prompt_generate_hypothetical_questions(legal_text):
-    system = '''You are an editor for a law firm that helps explain legal text. 
-
-    You will be given a section of legal code delimitted by triple quotes. 
-
-    Make a list of questions that could be answered by this section of legal code. Questions you make will be used to link a frequently asked section page to this document. 
-
-    Be creative and create as many question as you can from every part of the text.
-
-    '''
-    user = " '''{}''' ".format(legal_text)
-    messages = apply_to_generic(system, user)
-    return messages
-
-def get_prompt_extract_definitions(legal_text):
-    system = '''You are a helpful assistant at a law firm. You help people by trimming unnecessary text off of definitions.
-
-You will be provided with a legal term and a definition in the following format:
- '“TERM” means DEFINITION. Extraneous text'
-
-Follow these steps:
-1. Take your time to read each sentence in order. The first sentence is guaranteed to be part of the definition.
-2. For each sentence, determine if it is strictly defining the term and explain your reasoning.
-3. If at any time the current sentence does not strictly define the meaning of the term, cut the remaining text and print out the text to the user.
-4. If all sentences do strictly define the meaning of the term, return the exact provided input text to the user. 
-
-Before displaying your answer to the user, remove your reasoning.
-'''
-    user = "{}".format(legal_text)
-    messages = apply_to_generic(system, user)
-    return messages
 
 # ANSWER PROMPTS ===============================================
 # Using legal text as input, answer all questions from a specific answer template
@@ -215,23 +184,3 @@ def get_original_universal_answer_template(user_query):
     "Question 4: What are restrictions, caveats, and conditions to TOPICS?\n",
     "Question 5: What are any penalties, punishments, or crimes which apply to violating restrictions of TOPICS?"]
     return template
-
-# Deprecated
-def get_extended_universal_answer_template():
-    extended_template='''
-    1. After reading the entire document, what is the simple answer to the user's query? One positive validation of the user's query overrides any other negatives in the documentation.
-    2. What exact text of the legal documentation shows the simple answer to the user's query?
-    3. What rights and privileges does a user have relating to their query?
-    4. What are restrictions, caveats, and conditions to the user's query?
-    5. What are any penalties, punishments, or crimes which apply to violating restrictions of the user's query?
-    6. What are other relevant sections cited in the document?
-    7. If you can, answer the related questions:
-    - Blah
-    - Blah
-    - Will be formatted
-    8. Related questions that can't be answered:
-    - Blah
-    - Blah
-    - Will be formatted
-    '''
-    return extended_template

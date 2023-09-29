@@ -10,12 +10,6 @@ import asyncio
 def main():
     pass
 
-def find_and_replace_definitions(user_query):
-    pass
-    # Find relevant definition embeddings
-    # Prompt gpt-4 to determine which definitions are most relevant
-    # If there are multiple similar definitions, ask user to define which is most relevant
-    # Reformat user_query with applicable definitions and return
 
 def processing_stage(user_query):
     print("Starting processing stage...")
