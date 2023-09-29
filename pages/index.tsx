@@ -38,8 +38,8 @@ export default function Home() {
     }
 
     setLoading(true);
-    setCitations('Test');
-    setFinalAnswer('Test');
+    setCitations('Loading...');
+    setFinalAnswer('Loading...');
 
     const controller = new AbortController();
 
@@ -109,12 +109,13 @@ export default function Home() {
       const { value, done: doneReading } = await reader.read();
       done = doneReading;
       const chunkValue = decoder.decode(value);
-      answer += chunkValue;
-      
-      
-      setFinalAnswer(answer);
+      if (chunkValue.includes("[SECTIONS]")) {
+        setCitations(chunkValue)
+      } else {
+        answer += chunkValue;
+        setFinalAnswer(answer);
+      }
     }
-    setCitations(finalAnswer)
     setLoading(false);
     setHasAnswered(true);
     copyToClipboard(finalAnswer);

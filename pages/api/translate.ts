@@ -77,9 +77,6 @@ async function handler(req: NextRequest, res: NextApiResponse) {
     
 
     for await (const text of runAbe(requestData.question, requestData.apiKey)) {
-      if (text.includes("[DONE]")) {
-        citations = text;
-      }
       stream.push(text);
     }
   } catch (error) {

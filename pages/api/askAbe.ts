@@ -166,7 +166,7 @@ export const runAbe = async function* (userQuery: string, openAiKey: string): As
 			}
 		}
 		let citedSections = findSectionsCited(citationList, finalAnswer);
-		console.log(citedSections)
+		console.log("Returning cited sections")
 		return citedSections;
 	}
 	
@@ -181,7 +181,7 @@ interface Message {
 // Helper functions
 function findSectionsCited(citationList: any[], finalAnswer: string) {
 
-	let citedSections = "";
+	let citedSections = "[CITATIONS]\n";
 
 	for (const tup of citationList) {
 		const citation = tup[0];
