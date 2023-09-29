@@ -48,13 +48,17 @@ export const runAbe = async function* (client: SupabaseClient, userQuery: string
 
 	const questionListStr: string = getOriginalUniversalAnswerTemplate(userQuery);
 	const promptConvertQuestion = getPromptConvertQuestion(questionListStr);
-	const chatCompletionConvert =  await createChatCompletion(
+
+	let chatCompletionConvert =  await createChatCompletion(
 		promptConvertQuestion,
 		"gpt-4",
 		0,
 	);
-	
+	chatCompletionConvert = chatCompletionConvert.replace(/\?\?/g, '?'); // Replace ?? with ?
+    chatCompletionConvert = chatCompletionConvert.replace(/\?/g, '?\n'); // Replace ? with ?\n
+
 	const questionList: string[] = chatCompletionConvert.split("\n");
+	console.log(questionList)
 
 	console.log(" - Generating similar search queries for questions");
 	// Generate similar search queries for questions:
@@ -69,6 +73,7 @@ export const runAbe = async function* (client: SupabaseClient, userQuery: string
 	
 	const lawfulDct = JSON.parse(lawfulChat);
 	const lawfulQueries = lawfulDct["queries"].join(" ");
+	console.log(lawfulQueries)
 	const unlawfulQueries = "";
 	const similarQueriesList = [
 		lawfulQueries,
@@ -88,20 +93,22 @@ export const runAbe = async function* (client: SupabaseClient, userQuery: string
 
 	console.log(" - Searching relevant sections for lawful template");
 	// SearchSimilarContentSections
-
-	const embedding = getEmbedding(similarQueriesList[0]);
-	const { data, error } = await client.rpc('match_embeddings', [
-		embedding,
-		0.5,
-		40
-	])
-
+	console.log(similarQueriesList[0])
+	const embedding = await getEmbedding(similarQueriesList[0]);
+	const embeddingStr = `${embedding}`;
+	console.log("Retrieved embedding")
 	
+	const { data, error } = await client.rpc('match_embedding', {query_embedding: embedding, match_threshold: 0.5, match_count: 40})
+	console.log(data)
+	console.log(error)
+	if (error) {
+		throw new ApplicationError('Error calling match_embeddings in supabase database');
+	}
 	const sections: any[] = ["Error"]
 	if (data) {
 		const sections = data;
 	}
-	
+	console.log(sections)
 	
 	let currentTokens = 0;
 	let row = 0;
@@ -127,7 +134,10 @@ export const runAbe = async function* (client: SupabaseClient, userQuery: string
 		result += `\n* ${citation}:\n${content}\n`;
 
 	}
+	
 	let legalTextLawful = result.split("\n*").slice(1);
+	console.log(legalTextLawful)
+
 	
 	console.log("Starting answering stage...");
 	
@@ -147,6 +157,7 @@ export const runAbe = async function* (client: SupabaseClient, userQuery: string
 		"gpt-4",
 		1,
 	);
+	console.log("Finished creating answer template.")
 	let finalAnswer= "";
 	for await (const message of populateSummaryTemplate(userQuery, responseTotal, summaryTemplate)) {
 		if (message) {
@@ -460,13 +471,13 @@ async function getEmbeddingAndToken(text: string, model = "text-embedding-ada-00
 }
 
 // Return just the embedding
-async function getEmbedding(text: string, model = "text-embedding-ada-002") {
-	const result = await openai.embeddings.create({
+async function getEmbedding(text: string) {
+	const embedding = await openai.embeddings.create({
+		model: "text-embedding-ada-002",
 		input: text,
-		model
-	});
-
-	return result.data[0].embedding;
+	  });
+	
+	return embedding.data[0].embedding;
 }
 
 
@@ -478,7 +489,7 @@ async function getCompletions(
 ): Promise<any[]> {
     const allPromises = texts.map(async text => {
         const prompt = getPromptSimpleAnswer(text, question);
-        return createChatCompletion(prompt, "gpt-3.5", 0);
+        return createChatCompletion(prompt, "gpt-3.5-turbo", 0);
     });
     return await Promise.all(allPromises);
 }
@@ -486,7 +497,7 @@ async function getCompletions(
 
 async function* streamChatCompletion(prompt: Message[], usedModel: string, temp: number) {
 	const completion = await openai.chat.completions.create({
-	  model: "usedModel",
+	  model: usedModel,
 	  messages: prompt,
 	  stream: true,
 	  temperature: temp,
@@ -508,7 +519,7 @@ async function createChatCompletion(prompt: Message[], usedModel: string, temp: 
 	if (!completion) {
         throw new Error(`OpenAI API call failed with status: ${completion}`);
     }
-	return completion.choices[0];
+	return completion.choices[0].message['content'];
 }
 
 
