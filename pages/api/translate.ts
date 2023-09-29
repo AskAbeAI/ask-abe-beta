@@ -74,9 +74,9 @@ async function handler(req: NextRequest, res: NextApiResponse) {
     res.status(200);
 
     
-    const client = createClient('https://jwscgsmkadanioyopaef.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp3c2Nnc21rYWRhbmlveW9wYWVmIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTU2NzE1MTgsImV4cCI6MjAxMTI0NzUxOH0.1QwW9IV1TrMT72xyq2LQcmDr92tmLOEQg07mOPRLDO0');
+    
 
-    for await (const text of runAbe(client, requestData.question, requestData.apiKey)) {
+    for await (const text of runAbe(requestData.question, requestData.apiKey)) {
       if (text.includes("[DONE]")) {
         citations = text;
       }

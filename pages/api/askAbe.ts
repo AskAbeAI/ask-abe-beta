@@ -12,7 +12,7 @@ const openai = new OpenAI({
 
 
 // Starts one "run" of the project
-export const runAbe = async function* (client: SupabaseClient, userQuery: string, openAiKey: string): AsyncGenerator<string> {
+export const runAbe = async function* (userQuery: string, openAiKey: string): AsyncGenerator<string> {
 	// ... (function implementation)
 	openai.apiKey = openAiKey;
 
@@ -97,7 +97,7 @@ export const runAbe = async function* (client: SupabaseClient, userQuery: string
 	const embedding = await getEmbedding(similarQueriesList[0]);
 	const embeddingStr = `${embedding}`;
 	console.log("Retrieved embedding")
-	
+	const client = createClient('https://jwscgsmkadanioyopaef.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp3c2Nnc21rYWRhbmlveW9wYWVmIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTU2NzE1MTgsImV4cCI6MjAxMTI0NzUxOH0.1QwW9IV1TrMT72xyq2LQcmDr92tmLOEQg07mOPRLDO0');
 	const { data, error } = await client.rpc('match_embedding', {query_embedding: embedding, match_threshold: 0.5, match_count: 40})
 	console.log(data)
 	console.log(error)
