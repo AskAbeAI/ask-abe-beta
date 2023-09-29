@@ -102,7 +102,7 @@ export const runAbe = async function* (client: SupabaseClient, userQuery: string
 	console.log(data)
 	console.log(error)
 	if (error) {
-		throw new ApplicationError('Error calling match_embeddings in supabase database');
+		console.log("Error calling match_embeddings in supabase database");
 	}
 	const sections: any[] = ["Error"]
 	if (data) {
