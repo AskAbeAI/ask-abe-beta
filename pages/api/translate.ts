@@ -23,8 +23,8 @@ async function handler(req: NextRequest, res: NextApiResponse) {
     res.setHeader('Allow', 'POST');
     return res.status(405).end('Method Not Allowed');
   }
-
-  const requestData: { question: string, dataset: Dataset, apiKey: string } = req.body;
+  
+  const requestData:any = req.body;
 
   const stream = new Readable({
     read() {}
