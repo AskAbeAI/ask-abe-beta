@@ -3,7 +3,7 @@
 // This enables autocomplete, go to definition, etc.
 // Project Ref: jwscgsmkadanioyopaef
 import { Dataset, AnswerBody } from '../../types/types';
-import { SupabaseClient } from "@supabase/supabase-js";
+import { createClient } from "@supabase/supabase-js"
 import  OpenAI  from 'openai';
 const openai = new OpenAI({
 	apiKey: "placeholder", // defaults to process.env["OPENAI_API_KEY"]
