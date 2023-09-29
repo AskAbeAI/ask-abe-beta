@@ -53,7 +53,7 @@ export default function Home() {
     // CALL CREATE ABE HERE
     console.log("Trying to call /api/translate")
     const response = await fetch('/api/translate', {
-      method: 'GET',
+      method: 'POST',
       headers: {
           'Content-Type': 'application/json',
       },

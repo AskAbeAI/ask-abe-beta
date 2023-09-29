@@ -17,8 +17,12 @@ import { Readable, Stream } from 'stream'
 
 
 
-const handler = async (req: NextRequest, res: NextApiResponse): Promise<string> => {
+export default async function handler(req: NextRequest, res: NextApiResponse): Promise<string> => {
   console.log("In handler function...")
+  if (req.method !== 'POST') {
+    res.setHeader('Allow', 'POST');
+    return res.status(405).end('Method Not Allowed'); // Only allow POST requests
+  }
   const requestData: { question:string, dataset:Dataset, apiKey:string } =
       (await req.json()) as AnswerBody;
   
