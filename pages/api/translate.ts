@@ -16,7 +16,7 @@ import { runAbe } from "./askAbe"
 import { Readable } from 'stream';  // Make sure you have this at the top if using Readable streams
 // ... other necessary imports ...
 
-export default async function handler(req: NextRequest, res: NextApiResponse) {
+async function handler(req: NextRequest, res: NextApiResponse) {
   console.log("In handler function...");
   console.log(req)
   if (req.method !== 'POST') {
@@ -71,7 +71,7 @@ export default async function handler(req: NextRequest, res: NextApiResponse) {
     }
 
     res.setHeader('Content-Type', 'text/plain');
-    res.status(200);
+    res.status(200).json({ message: 'Success' });
 
     console.log(sanitizedQuery);
     const client = createClient('https://xyzcompany.supabase.co', 'public-anon-key');
@@ -89,3 +89,5 @@ export default async function handler(req: NextRequest, res: NextApiResponse) {
     stream.pipe(res);
   }
 }
+
+export default handler;
