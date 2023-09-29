@@ -22,7 +22,7 @@ export default function Home() {
   const [apiKey, setApiKey] = useState<string>('');
 
   console.log("Setting base variables...")
-  
+
   const handleQuestion = async () => {
     const maxQuestionLength = 100
     console.log("In handle question!")
@@ -38,8 +38,8 @@ export default function Home() {
     }
 
     setLoading(true);
-    setCitations('');
-    setFinalAnswer('');
+    setCitations('Test');
+    setFinalAnswer('Test');
 
     const controller = new AbortController();
 
@@ -48,6 +48,7 @@ export default function Home() {
       dataset,
       apiKey,
     };
+    console.log(body)
 
     // CALL CREATE ABE HERE
     console.log("Trying to call /api/translate")
