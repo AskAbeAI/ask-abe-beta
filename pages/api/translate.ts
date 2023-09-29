@@ -66,7 +66,8 @@ export default async function handler(req: NextRequest, res: NextApiResponse): P
       })
     }
 
-    
+    res.setHeader('Content-Type', 'text/plain');
+    res.status(200);
     // Transform the response into a readable stream
     console.log(sanitizedQuery)
     const client = createClient('https://xyzcompany.supabase.co', 'public-anon-key')
@@ -83,7 +84,6 @@ export default async function handler(req: NextRequest, res: NextApiResponse): P
   } finally {
     stream.push(null);  // Signal the end of data
     // Set the headers (e.g., for plain text data)
-    res.setHeader('Content-Type', 'text/plain');
     // Pipe the stream to the response
     stream.pipe(res);
     return citations;
