@@ -70,55 +70,31 @@ export default function Home() {
       if (done) {
           return;
       }
-  
       // Decode the stream chunks
       let chunk = decoder.decode(value, { stream: true });
-      
+      console.log(done)
+      console.log("CHUNK FOLLOWING")
+      console.log(chunk)
       if (done) {
-        setCitations(chunk);
+        console.log("Finished answering!")
+        setLoading(false);
+        setHasAnswered(true);
+        copyToClipboard(finalAnswer);
       } else {
+        console.log(chunk)
         // Update your variable and DOM element
-        finalAnswer += chunk;
+        if (chunk.includes("[SECTIONS]")) {
+          setCitations(chunk)
+        } else {
+          let answer = finalAnswer;
+          setFinalAnswer(answer+chunk);
+          console.log(finalAnswer)
+        }
       }
   
       // Continue processing the next chunk
       reader.read().then(processText);
-  });
-  
-    console.log(response)
-    // RECEIVE RESPONSE HERE
-    if (!response.ok) {
-      setLoading(false);
-      alert('Something went wrong. No response.');
-      return;
-    }
-
-    const data = response.body;
-
-    if (!data) {
-      setLoading(false);
-      alert('Something went wrong. No data.');
-      return;
-    }
-
-    
-    let done = false;
-    let answer = '';
-
-    while (!done) {
-      const { value, done: doneReading } = await reader.read();
-      done = doneReading;
-      const chunkValue = decoder.decode(value);
-      if (chunkValue.includes("[SECTIONS]")) {
-        setCitations(chunkValue)
-      } else {
-        answer += chunkValue;
-        setFinalAnswer(answer);
-      }
-    }
-    setLoading(false);
-    setHasAnswered(true);
-    copyToClipboard(finalAnswer);
+    });
   };
 
   const copyToClipboard = (text: string) => {

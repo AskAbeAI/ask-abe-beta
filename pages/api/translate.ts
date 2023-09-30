@@ -34,10 +34,6 @@ async function handler(req: NextRequest, res: NextApiResponse) {
     apiKey: requestData.apiKey,
   });
 
-  console.log(requestData.dataset);
-  console.log(requestData.question);
-  console.log(requestData.apiKey);
-
   let citations = "";
   try {
     if (!requestData.apiKey) {
@@ -77,11 +73,17 @@ async function handler(req: NextRequest, res: NextApiResponse) {
     
 
     for await (const text of runAbe(requestData.question, requestData.apiKey)) {
+      console.log(text)
       stream.push(text);
+      if (text.includes("[SECTIONS]")) {
+        stream.push(text)
+        stream.push(null)
+      }
     }
   } catch (error) {
     console.error("An error occurred:", error);
   } finally {
+    console.log("FINALLY")
     stream.push(null);
     stream.pipe(res);
   }

@@ -162,6 +162,7 @@ export const runAbe = async function* (userQuery: string, openAiKey: string): As
 		for await (const message of populateSummaryTemplate(userQuery, responseTotal, summaryTemplate)) {
 			if (message) {
 				finalAnswer += message;
+				console.log("Yielding from askAbe:")
 				yield message;
 			}
 		}
