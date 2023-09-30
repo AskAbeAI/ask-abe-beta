@@ -10,12 +10,13 @@ export const TextBlock: React.FC<Props> = ({
   onChange = () => {},
 }) => {
   return (
-    <textarea
+    <div
       className="min-h-[500px] w-full bg-[#1A1B26] p-4 text-[15px] text-neutral-200 focus:outline-none"
-      style={{ resize: 'none' }}
-      value={text}
-      onChange={(e) => onChange(e.target.value)}
-      disabled={!editable}
-    />
+      contentEditable={editable}
+      onInput={(e) => onChange(e.currentTarget.textContent || "")}
+      suppressContentEditableWarning={true}
+    >
+      {text}
+    </div>
   );
 };

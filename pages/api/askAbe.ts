@@ -166,8 +166,7 @@ export const runAbe = async function* (userQuery: string, openAiKey: string): As
 			}
 		}
 		let citedSections = findSectionsCited(citationList, finalAnswer);
-		console.log("Returning cited sections")
-		console.log(citedSections)
+		console.log("Returning cited sections");
 		yield citedSections;
 	}
 	

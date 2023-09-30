@@ -1,0 +1,9 @@
+/* custom.css */
+.citation-block {
+    @apply min-h-[500px] w-full bg-[#1A1B26] p-4 text-[15px] text-neutral-200 outline-none;
+    resize: none; 
+}
+.citation-block a {
+    color: blue;
+    text-decoration: underline;
+}

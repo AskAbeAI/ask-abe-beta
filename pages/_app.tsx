@@ -1,4 +1,5 @@
 import "@/styles/globals.css";
+import 'app.css';
 import type { AppProps } from "next/app";
 import { Inter } from "next/font/google";
 

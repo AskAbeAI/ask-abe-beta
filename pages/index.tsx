@@ -8,14 +8,6 @@ import { useEffect, useState } from 'react';
 import type { NextRequest } from 'next/server'
 import { QuestionInput } from '../components/QuestionInput'
 
-declare global {
-  namespace JSX {
-      interface IntrinsicElements {
-          'citation-block': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
-      }
-  }
-}
-
 
 export default function Home() {
 
@@ -48,9 +40,9 @@ export default function Home() {
     }
 
     setLoading(true);
-    const citationBlockElement = document.querySelector('citation-block') as CitationBlock;
-    if (citationBlockElement) {
-        citationBlockElement.content = 'Loading...';
+    const element = document.getElementById('citationArea');
+    if (element) {
+      element.innerHTML = '<p>Loading...</p>';
     }
     setFinalAnswer('Loading...');
 
@@ -93,12 +85,13 @@ export default function Home() {
         if (chunk.includes("[CITATIONS]")) {
           console.log("FOUND CITATIONS!")
           let splitAnswer = chunk.split("[CITATIONS]")
-          const citationBlockElement = document.querySelector('citation-block') as CitationBlock;
-          if (citationBlockElement) {
-              citationBlockElement.content = splitAnswer[1];
+
+          const element = document.getElementById('citationArea');
+          if (element) {
+            element.innerHTML = splitAnswer[1];
           }
 
-          setFinalAnswer(finalAnswer[0])
+          setFinalAnswer(splitAnswer[0])
           done = true;
         } else {
           let answer = finalAnswer;
@@ -156,8 +149,8 @@ export default function Home() {
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+
       </Head>
-      <script type="module" src="../components/CitationBlock.tsx"></script>
 
       <div className="flex h-full min-h-screen flex-col items-center bg-[#0E1117] px-4 pb-20 text-neutral-200 sm:px-10">
         <div className="mt-10 flex flex-col items-center justify-center sm:mt-20">
@@ -193,7 +186,7 @@ export default function Home() {
         </div>
 
         <div className="mt-6 flex w-full max-w-[1200px] flex-col justify-between sm:flex-row sm:space-x-4">
-          <div className="h-100 flex flex-col justify-center space-y-2 sm:w-2/4">
+          <div className="mt-8 flex h-full flex-col justify-center space-y-2 sm:mt-0 sm:w-2/4">
             <div className="text-center text-xl font-bold">Abes Answer</div>
             <TextBlock
               text={finalAnswer}
@@ -206,7 +199,7 @@ export default function Home() {
             </div>
           <div className="mt-8 flex h-full flex-col justify-center space-y-2 sm:mt-0 sm:w-2/4">
             <div className="text-center text-xl font-bold">Legal Citations</div>
-            <citation-block></citation-block>
+              <section id="citationArea" className="citation-block"></section>
           </div>
         </div>
       </div>
