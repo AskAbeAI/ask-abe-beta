@@ -73,7 +73,9 @@ async function handler(req: NextRequest, res: NextApiResponse) {
     
 
     for await (const text of runAbe(requestData.question, requestData.apiKey)) {
+      console.log("Middleman:")
       console.log(text)
+      
       stream.push(text);
       if (text.includes("[SECTIONS]")) {
         stream.push(text)

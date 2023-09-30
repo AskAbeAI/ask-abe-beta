@@ -162,13 +162,13 @@ export const runAbe = async function* (userQuery: string, openAiKey: string): As
 		for await (const message of populateSummaryTemplate(userQuery, responseTotal, summaryTemplate)) {
 			if (message) {
 				finalAnswer += message;
-				console.log("Yielding from askAbe:")
 				yield message;
 			}
 		}
 		let citedSections = findSectionsCited(citationList, finalAnswer);
 		console.log("Returning cited sections")
-		return citedSections;
+		console.log(citedSections)
+		yield citedSections;
 	}
 	
 
@@ -192,7 +192,6 @@ function findSectionsCited(citationList: any[], finalAnswer: string) {
 
 		const content = tup[1];
 		const link = tup[2];
-
 		const sectionCitation = `<a href="${link}" target="_blank" id="${citation}">${citation}</a>\n<p>${content}</p>\n`;
 
 		citedSections += sectionCitation;

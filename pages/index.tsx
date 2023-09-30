@@ -8,20 +8,30 @@ import { useEffect, useState } from 'react';
 import type { NextRequest } from 'next/server'
 import { QuestionInput } from '../components/QuestionInput'
 
+declare global {
+  namespace JSX {
+      interface IntrinsicElements {
+          'citation-block': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
+      }
+  }
+}
+
+
 export default function Home() {
 
   // const [inputLanguage, setInputLanguage] = useState<string>('JavaScript');
   // const [outputLanguage, setOutputLanguage] = useState<string>('Python');
   const [question, setQuestion] = useState<string>('');
   const [finalAnswer, setFinalAnswer] = useState<string>('');
-  const [citations, setCitations] = useState<string>('');
   // 'California Code' | 'Federal Regulation' | 'MICA Regulations'
   const [dataset, setDataset] = useState<Dataset>('California Code');
   const [loading, setLoading] = useState<boolean>(false);
   const [hasAnswered, setHasAnswered] = useState<boolean>(false);
   const [apiKey, setApiKey] = useState<string>('');
 
-  console.log("Setting base variables...")
+  
+
+
 
   const handleQuestion = async () => {
     const maxQuestionLength = 100
@@ -38,7 +48,10 @@ export default function Home() {
     }
 
     setLoading(true);
-    setCitations('Loading...');
+    const citationBlockElement = document.querySelector('citation-block') as CitationBlock;
+    if (citationBlockElement) {
+        citationBlockElement.content = 'Loading...';
+    }
     setFinalAnswer('Loading...');
 
     const controller = new AbortController();
@@ -67,29 +80,32 @@ export default function Home() {
   let finalAnswer = "";
   
   reader.read().then(function processText({ done, value }): void {
-      if (done) {
-          return;
-      }
       // Decode the stream chunks
-      let chunk = decoder.decode(value, { stream: true });
-      console.log(done)
-      console.log("CHUNK FOLLOWING")
-      console.log(chunk)
       if (done) {
-        console.log("Finished answering!")
         setLoading(false);
         setHasAnswered(true);
         copyToClipboard(finalAnswer);
+        return;
+        
       } else {
+        let chunk = decoder.decode(value, { stream: true });
         console.log(chunk)
-        // Update your variable and DOM element
-        if (chunk.includes("[SECTIONS]")) {
-          setCitations(chunk)
+        if (chunk.includes("[CITATIONS]")) {
+          console.log("FOUND CITATIONS!")
+          let splitAnswer = chunk.split("[CITATIONS]")
+          const citationBlockElement = document.querySelector('citation-block') as CitationBlock;
+          if (citationBlockElement) {
+              citationBlockElement.content = splitAnswer[1];
+          }
+
+          setFinalAnswer(finalAnswer[0])
+          done = true;
         } else {
           let answer = finalAnswer;
           setFinalAnswer(answer+chunk);
           console.log(finalAnswer)
         }
+        
       }
   
       // Continue processing the next chunk
@@ -141,6 +157,8 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <script type="module" src="../components/CitationBlock.tsx"></script>
+
       <div className="flex h-full min-h-screen flex-col items-center bg-[#0E1117] px-4 pb-20 text-neutral-200 sm:px-10">
         <div className="mt-10 flex flex-col items-center justify-center sm:mt-20">
           <div className="text-4xl font-bold">Legal Question Answering</div>
@@ -157,6 +175,7 @@ export default function Home() {
           <DatasetSelect dataset={dataset} onChange={(value) => setDataset(value)} />
 
           <button
+            id="answerButton"
             className="w-[140px] cursor-pointer rounded-md bg-violet-500 px-4 py-2 font-bold hover:bg-violet-600 active:bg-violet-700"
             onClick={() => handleQuestion()}
             disabled={loading}
@@ -187,13 +206,7 @@ export default function Home() {
             </div>
           <div className="mt-8 flex h-full flex-col justify-center space-y-2 sm:mt-0 sm:w-2/4">
             <div className="text-center text-xl font-bold">Legal Citations</div>
-            <TextBlock 
-            text={citations} 
-            editable={false}
-            onChange={(value) => {
-              setCitations(value);
-              setHasAnswered(true);
-            }}/>
+            <citation-block></citation-block>
           </div>
         </div>
       </div>
