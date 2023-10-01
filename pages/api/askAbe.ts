@@ -11,7 +11,7 @@ const openai = new OpenAI({
 
 
 export const config = {
-	maxDuration: 90,
+	maxDuration: 120,
 };
 // Starts one "run" of the project
 export const runAbe = async function* (userQuery: string, openAiKey: string): AsyncGenerator<string> {
