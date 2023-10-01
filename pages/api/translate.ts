@@ -16,6 +16,9 @@ import { runAbe } from "./askAbe"
 import { Readable } from 'stream';  // Make sure you have this at the top if using Readable streams
 // ... other necessary imports ...
 
+export const config = {
+  maxDuration: 120,
+};
 async function handler(req: NextRequest, res: NextApiResponse) {
   console.log("In handler function...");
   console.log(req.method)
@@ -90,7 +93,5 @@ async function handler(req: NextRequest, res: NextApiResponse) {
     stream.pipe(res);
   }
 }
-export const config = {
-  maxDuration: 120,
-};
+
 export default handler;
