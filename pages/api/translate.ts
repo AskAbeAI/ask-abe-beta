@@ -90,5 +90,7 @@ async function handler(req: NextRequest, res: NextApiResponse) {
     stream.pipe(res);
   }
 }
-
+export const config = {
+  maxDuration: 90,
+};
 export default handler;
