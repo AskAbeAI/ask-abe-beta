@@ -142,7 +142,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Ask Abe</title>
+        <title>Ask Abe Beta</title>
         <meta
           name="description"
           content="Ask Abe a legal question and receive an answer with citations"
