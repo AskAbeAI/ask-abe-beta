@@ -8,9 +8,7 @@ import { useEffect, useState } from 'react';
 import type { NextRequest } from 'next/server'
 import { QuestionInput } from '../components/QuestionInput'
 
-export const config = {
-  maxDuration: 120,
-};
+
 export default function Home() {
 
   // const [inputLanguage, setInputLanguage] = useState<string>('JavaScript');

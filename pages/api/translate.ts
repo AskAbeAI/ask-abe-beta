@@ -17,9 +17,9 @@ import { Readable } from 'stream';  // Make sure you have this at the top if usi
 // ... other necessary imports ...
 
 export const config = {
-  maxDuration: 120,
+  maxDuration: 200,
 };
-async function handler(req: NextRequest, res: NextApiResponse) {
+export default async function handler(req: NextRequest, res: NextApiResponse) {
   console.log("In handler function...");
   console.log(req.method)
   if (req.method !== 'POST') {
@@ -93,5 +93,3 @@ async function handler(req: NextRequest, res: NextApiResponse) {
     stream.pipe(res);
   }
 }
-
-export default handler;
