@@ -19,6 +19,7 @@ export default async function (req: NextRequest, res: NextApiResponse) {
         }
         console.log("Starting answering stage...");
         const requestData:any = req.body;
+        console.log(requestData);
         const userQuery = requestData.userQuery;
         const summaryTemplate = requestData.summaryTemplate;
         const partialAnswers = requestData.partialAnswers;

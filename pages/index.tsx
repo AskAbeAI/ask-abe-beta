@@ -32,6 +32,12 @@ export default function Home() {
       alert('Please enter an API key.');
       return;
     }
+    if (question.length < 10) {
+      alert(
+        `Please enter a valid question!`
+      );
+      return
+    }
     if (question.length > maxQuestionLength) {
       alert(
         `Please enter code less than ${maxQuestionLength} characters. You are currently at ${question.length} characters.`,
@@ -75,12 +81,17 @@ export default function Home() {
 
 
     // Process question in askAbeProcess.ts
+    const processBody: AnswerBody = {
+      question,
+      dataset,
+      apiKey,
+    };
     const processResponse = await fetch('/api/askAbeProcess', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(answerBody),
+      body: JSON.stringify(processBody),
     });
     const processData = await processResponse.json()
     if (processData.errorMessage) {

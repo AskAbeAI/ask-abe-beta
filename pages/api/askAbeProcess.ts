@@ -23,6 +23,7 @@ export default async function (req: NextRequest, res: NextApiResponse) {
 			throw new Error("Process Request Body invalid in askAbeProcess.ts!");
 		}
 		const requestData:any = req.body;
+		console.log(requestData);
 		const userQuery = requestData.question;
 		const dataset = requestData.dataset;
 		const openAiKey = requestData.apiKey;

@@ -30,7 +30,7 @@ export default async function handler(req: NextRequest, res: NextApiResponse) {
   }
   
   const requestData:any = req.body;
-
+  console.log(requestData)
   const config = new Configuration({
     apiKey: requestData.apiKey,
   });
