@@ -12,7 +12,6 @@ import { Dataset, AnswerBody } from '../../types/types';
 import { OpenAIStream, StreamingTextResponse } from 'ai'
 import { ApplicationError, UserError } from '@/lib/errors'
 import { createClient } from "@supabase/supabase-js"
-import { runAbe } from "./askAbe"
 import { Readable } from 'stream';  // Make sure you have this at the top if using Readable streams
 // ... other necessary imports ...
 
@@ -20,8 +19,11 @@ export const config = {
   maxDuration: 200,
 };
 export default async function handler(req: NextRequest, res: NextApiResponse) {
-  console.log("In handler function...");
-  console.log(req.method)
+  
+  console.log("===========================================");
+	console.log("======= Validate - Debug Screen :) ========");
+	console.log("===========================================");
+  
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
     return res.status(405).end('Method Not Allowed');
@@ -29,15 +31,10 @@ export default async function handler(req: NextRequest, res: NextApiResponse) {
   
   const requestData:any = req.body;
 
-  const stream = new Readable({
-    read() {}
-  });
-
   const config = new Configuration({
     apiKey: requestData.apiKey,
   });
 
-  let citations = "";
   try {
     if (!requestData.apiKey) {
       throw new ApplicationError('Missing environment variable OPENAI_KEY');
@@ -69,27 +66,12 @@ export default async function handler(req: NextRequest, res: NextApiResponse) {
     //   });
     // }
 
-    res.setHeader('Content-Type', 'text/plain');
-    res.status(200);
-
-    
-    
-
-    for await (const text of runAbe(requestData.question, requestData.apiKey)) {
-      console.log("Middleman:")
-      console.log(text)
-      
-      stream.push(text);
-      if (text.includes("[SECTIONS]")) {
-        stream.push(text)
-        stream.push(null)
-      }
-    }
+    res.status(200).json({statusMessage: 'Succesfully validated parameters!'})
   } catch (error) {
-    console.error("An error occurred:", error);
+    res.status(400).json({errorMessage: `An error occurred in validation: ${error}`})
   } finally {
-    console.log("FINALLY")
-    stream.push(null);
-    stream.pipe(res);
+    console.log("Exiting askAbeValidate.ts!")
+    res.end()
+    return;
   }
 }

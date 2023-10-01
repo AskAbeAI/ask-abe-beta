@@ -5,107 +5,117 @@
 import { Dataset, AnswerBody } from '../../types/types';
 import { createClient } from "@supabase/supabase-js"
 import  OpenAI  from 'openai';
+import type { NextRequest } from 'next/server'
+import { NextApiResponse } from 'next'
 const openai = new OpenAI({
 	apiKey: "placeholder", // defaults to process.env["OPENAI_API_KEY"]
-  });
+});
 
 
 export const config = {
 	maxDuration: 120,
 };
 // Starts one "run" of the project
-export const runAbe = async function* (userQuery: string, openAiKey: string): AsyncGenerator<string> {
+export default async function (req: NextRequest, res: NextApiResponse) {
 	// ... (function implementation)
-	openai.apiKey = openAiKey;
+	try {
+		if (!req.body) {
+			throw new Error("Process Request Body invalid in askAbeProcess.ts!");
+		}
+		const requestData:any = req.body;
+		const userQuery = requestData.question;
+		const dataset = requestData.dataset;
+		const openAiKey = requestData.apiKey;
 
-	interface Row {
-		id: number;
-		similarity: number;
-		code: string;
-		division: string;
-		title: string;
-		part: string;
-		chapter: string;
-		article: string;
-		section: string;
-		content: string;
-		definitions: string;
-		titlePath: string;
-		contentTokens: number;
-		definitionTokens: number;
-		link: string;
-	}
+		openai.apiKey = openAiKey;
 
-	console.log("================================");
-	console.log("======= Debug Screen :) ========");
-	console.log("================================");
-	console.log("Initializing instance of Abe...");
-	console.log(`User Query:\n ${userQuery}`);
+		interface Row {
+			id: number;
+			similarity: number;
+			code: string;
+			division: string;
+			title: string;
+			part: string;
+			chapter: string;
+			article: string;
+			section: string;
+			content: string;
+			definitions: string;
+			titlePath: string;
+			contentTokens: number;
+			definitionTokens: number;
+			link: string;
+		}
 
+		console.log("==========================================");
+		console.log("======= Process - Debug Screen :) ========");
+		console.log("==========================================");
+		console.log("Initializing instance of Abe...");
+		console.log(`User Query:\n ${userQuery}`);
+		console.log("Starting processing stage...");
+		console.log(" - Converting query to list of questions using template");
+		
 
-	console.log("Starting processing stage...");
-	// Get similar queries by calling GPT 3.5, maybe Google BARD instead
-	console.log(" - Converting query to list of questions using template");
-	// Convert Query To Question List
+		const questionListStr: string = getOriginalUniversalAnswerTemplate(userQuery);
+		const promptConvertQuestion = getPromptConvertQuestion(questionListStr);
 
-	const questionListStr: string = getOriginalUniversalAnswerTemplate(userQuery);
-	const promptConvertQuestion = getPromptConvertQuestion(questionListStr);
+		let chatCompletionConvert =  await createChatCompletion(
+			promptConvertQuestion,
+			"gpt-4",
+			0,
+		);
+		chatCompletionConvert = chatCompletionConvert.replace(/\?\?/g, '?'); // Replace ?? with ?
+		chatCompletionConvert = chatCompletionConvert.replace(/\?/g, '?\n'); // Replace ? with ?\n
 
-	let chatCompletionConvert =  await createChatCompletion(
-		promptConvertQuestion,
-		"gpt-4",
-		0,
-	);
-	chatCompletionConvert = chatCompletionConvert.replace(/\?\?/g, '?'); // Replace ?? with ?
-    chatCompletionConvert = chatCompletionConvert.replace(/\?/g, '?\n'); // Replace ? with ?\n
+		const questionList: string[] = chatCompletionConvert.split("\n");
+		//console.log(questionList)
 
-	const questionList: string[] = chatCompletionConvert.split("\n");
-	//console.log(questionList)
+		console.log(" - Generating similar search queries for questions");
+		// Generate similar search queries for questions:
+		const contentList: string[] = [];
+		const lawful = getPromptSimilarQueriesLawful(userQuery);
+		//const unlawful = prompts.getPromptSimilarQueriesUnlawful(userQuery);
+		const lawfulChat = await createChatCompletion(
+			lawful,
+			"gpt-4",
+			0,
+		);
+		
+		const lawfulDct = JSON.parse(lawfulChat);
+		const lawfulQueries = lawfulDct["queries"].join(" ");
+		//console.log(lawfulQueries)
+		const unlawfulQueries = "";
+		const similarQueriesList = [
+			lawfulQueries,
+			lawfulQueries,
+			lawfulQueries,
+			unlawfulQueries,
+			unlawfulQueries
+		];
+		
 
-	console.log(" - Generating similar search queries for questions");
-	// Generate similar search queries for questions:
-	const contentList: string[] = [];
-	const lawful = getPromptSimilarQueriesLawful(userQuery);
-	//const unlawful = prompts.getPromptSimilarQueriesUnlawful(userQuery);
-	const lawfulChat = await createChatCompletion(
-		lawful,
-		"gpt-4",
-		0,
-	);
-	
-	const lawfulDct = JSON.parse(lawfulChat);
-	const lawfulQueries = lawfulDct["queries"].join(" ");
-	//console.log(lawfulQueries)
-	const unlawfulQueries = "";
-	const similarQueriesList = [
-		lawfulQueries,
-		lawfulQueries,
-		lawfulQueries,
-		unlawfulQueries,
-		unlawfulQueries
-	];
-	
+		// Searching Stage
+		console.log("Starting search stage...");
 
-	// Searching Stage
-	console.log("Starting search stage...");
+		let similarContentRows: any[] = [];
+		let legalTextList: string[] = [];
+		const legalTextTokensList: number[] = [];
 
-	let similarContentRows: any[] = [];
-	let legalTextList: string[] = [];
-	const legalTextTokensList: number[] = [];
-
-	console.log(" - Searching relevant sections for lawful template");
-	// SearchSimilarContentSections
-	//console.log(similarQueriesList[0])
-	const embedding = await getEmbedding(similarQueriesList[0]);
-	const embeddingStr = `${embedding}`;
-	console.log("Retrieved embedding")
-	const client = createClient('https://jwscgsmkadanioyopaef.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp3c2Nnc21rYWRhbmlveW9wYWVmIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTU2NzE1MTgsImV4cCI6MjAxMTI0NzUxOH0.1QwW9IV1TrMT72xyq2LQcmDr92tmLOEQg07mOPRLDO0');
-	const { data, error } = await client.rpc('match_embedding', {query_embedding: embedding, match_threshold: 0.5, match_count: 2})
-	//console.log(typeof data)
-	// console.log(error)
-	if (error) {
-		console.log("Error calling match_embeddings in supabase database");
-	} else {
+		console.log(" - Searching relevant sections for lawful template");
+		// SearchSimilarContentSections
+		//console.log(similarQueriesList[0])
+		const embedding = await getEmbedding(similarQueriesList[0]);
+		const embeddingStr = `${embedding}`;
+		console.log("Retrieved embedding")
+		const client = createClient('https://jwscgsmkadanioyopaef.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp3c2Nnc21rYWRhbmlveW9wYWVmIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTU2NzE1MTgsImV4cCI6MjAxMTI0NzUxOH0.1QwW9IV1TrMT72xyq2LQcmDr92tmLOEQg07mOPRLDO0');
+		const { data, error } = await client.rpc('match_embedding', {query_embedding: embedding, match_threshold: 0.5, match_count: 2})
+		//console.log(typeof data)
+		// console.log(error)
+		if (error) {
+			throw new Error("Error calling match_embeddings in supabase database");
+		}
+			
+		
 		// console.log(data)
 		const sections = data;
 		// console.log(sections[0])
@@ -141,7 +151,8 @@ export const runAbe = async function* (userQuery: string, openAiKey: string): As
 		//console.log(legalTextLawful)
 
 		
-		console.log("Starting answering stage...");
+		
+		console.log(" - Partially answering with GPT 3.5 for all relevant sections");
 		
 		const responsesList: string[] = await getCompletions(
 			legalTextLawful,
@@ -149,30 +160,33 @@ export const runAbe = async function* (userQuery: string, openAiKey: string): As
 		);
 
 		console.log(" - Creating answer template with GPT 4");
-		let responseTotal = "";
+		let partialAnswers = "";
 		for (let response_str of legalTextLawful) {
-			responseTotal = responseTotal + "\n====\n" + response_str;
+			partialAnswers = partialAnswers + "\n====\n" + response_str;
 		}
-		const promptSummarize = getPromptSummaryTemplate(userQuery, responseTotal);
+		const promptSummarize = getPromptSummaryTemplate(userQuery, partialAnswers);
 		const summaryTemplate = await createChatCompletion(
 			promptSummarize,
 			"gpt-4",
 			1,
 		);
-		console.log("Finished creating answer template.")
-		let finalAnswer= "";
-		for await (const message of populateSummaryTemplate(userQuery, responseTotal, summaryTemplate)) {
-			if (message) {
-				finalAnswer += message;
-				yield message;
-			}
+		console.log("Finished creating answer template.");
+		// return summaryTemplate, responseTotal, citationList
+		const processResponseBody = {
+			summaryTemplate,
+			partialAnswers,
+			citationList,
+			statusMessage: 'Succesfully processed question!'
 		}
-		let citedSections = findSectionsCited(citationList, finalAnswer);
-		console.log("Returning cited sections");
-		yield citedSections;
+		res.status(200);
+		res.json(processResponseBody);
+	} catch(error) {
+		res.status(400).json({errorMessage: `An error occurred in processing: ${error}`})
+	} finally {
+		console.log("Exiting askAbeProcess.ts!")
+    	res.end()
+    	return;
 	}
-	
-
 }
 
 interface Message {
@@ -181,40 +195,7 @@ interface Message {
 }
 
 // Helper functions
-function findSectionsCited(citationList: any[], finalAnswer: string) {
 
-	let citedSections = "[CITATIONS]\n";
-
-	for (const tup of citationList) {
-		const citation = tup[0];
-		if (!finalAnswer.includes(citation)) {
-			continue;
-		}
-
-		const content = tup[1];
-		const link = tup[2];
-		const sectionCitation = `<a href="${link}" target="_blank" id="${citation}">${citation}</a>\n<p>${content}</p>\n`;
-
-		citedSections += sectionCitation;
-	}
-
-	return citedSections;
-}
-
-function linkAnswerToCitations(citationList: any[], finalAnswer: string) {
-
-	for (const tup of citationList) {
-		const citation = tup[0];
-		if (!finalAnswer.includes(citation)) {
-			continue;
-		}
-
-		const newCitation = `<a href="#${citation}">${citation}</a>`;
-		finalAnswer = finalAnswer.replace(citation, newCitation);
-	}
-
-	return finalAnswer;
-}
 
 
 async function* populateSummaryTemplate(

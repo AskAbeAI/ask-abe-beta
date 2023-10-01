@@ -2,7 +2,7 @@ import { APIKeyInput } from '../components/APIKeyInput';
 import { CodeBlock } from '../components/CodeBlock';
 import { DatasetSelect } from '../components/DatasetSelect';
 import { TextBlock } from '../components/TextBlock';
-import { Dataset, AnswerBody } from '../types/types';
+import { Dataset, AnswerBody, finalAnswerBody } from '../types/types';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import type { NextRequest } from 'next/server'
@@ -39,6 +39,32 @@ export default function Home() {
       return;
     }
 
+    
+
+    const controller = new AbortController();
+
+    const answerBody: AnswerBody = {
+      question,
+      dataset,
+      apiKey,
+    };
+    console.log(answerBody)
+
+    // Check if everything okay to intialize abe
+    console.log("Trying to call /api/translate")
+    const validateResponse = await fetch('/api/askAbeValidate', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(answerBody),
+    });
+    const validateData = await validateResponse.json()
+    if (validateData.errorMessage) {
+      throw new Error(validateData.errorMessage);
+    }
+    console.log(`Validate Status:${validateResponse.status}, message: ${validateData.statusMessage}`)
+
     setLoading(true);
     const element = document.getElementById('citationArea');
     if (element) {
@@ -46,66 +72,91 @@ export default function Home() {
     }
     setFinalAnswer('Loading...');
 
-    const controller = new AbortController();
 
-    const body: AnswerBody = {
-      question,
-      dataset,
-      apiKey,
-    };
-    console.log(body)
 
-    // CALL CREATE ABE HERE
-    console.log("Trying to call /api/translate")
-    const response = await fetch('/api/translate', {
+    // Process question in askAbeProcess.ts
+    const processResponse = await fetch('/api/askAbeProcess', {
       method: 'POST',
       headers: {
-          'Content-Type': 'application/json',
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(body),
-  });
-  if (!response.body) {
-    throw new Error('No response body available!');
-  }
-  const reader = response.body.getReader();
-  let decoder = new TextDecoder();
-  let finalAnswer = "";
-  
-  reader.read().then(function processText({ done, value }): void {
-      // Decode the stream chunks
-      if (done) {
-        setLoading(false);
-        setHasAnswered(true);
-        copyToClipboard(finalAnswer);
-        return;
-        
-      } else {
-        let chunk = decoder.decode(value, { stream: true });
-        console.log(chunk)
-        if (chunk.includes("[CITATIONS]")) {
-          console.log("FOUND CITATIONS!")
-          let splitAnswer = chunk.split("[CITATIONS]")
-
-          const element = document.getElementById('citationArea');
-          if (element) {
-            element.innerHTML = splitAnswer[1];
-          }
-
-          setFinalAnswer(splitAnswer[0])
-          done = true;
-        } else {
-          let answer = finalAnswer;
-          setFinalAnswer(answer+chunk);
-          console.log(finalAnswer)
-        }
-        
-      }
-  
-      // Continue processing the next chunk
-      reader.read().then(processText);
+      body: JSON.stringify(answerBody),
     });
+    const processData = await processResponse.json()
+    if (processData.errorMessage) {
+      throw new Error(processData.errorMessage);
+    }
+    console.log(`Process Status:${processResponse.status}, message: ${processData.statusMessage}`)
+    
+    const summaryTemplate = processData.summaryTemplate;
+    const partialAnswers = processData.partialAnswers;
+    const citationList = processData.citationList;
+    const finalAnswerBody: finalAnswerBody = {
+      userQuery: question,
+      openAiKey: apiKey,
+      summaryTemplate,
+      partialAnswers
+
+    }
+    
+    const answerResponse = await fetch('/api/askAbeAnswer', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(finalAnswerBody),
+    });
+    const answerData = await answerResponse.json()
+    if (answerData.errorMessage) {
+      throw new Error(answerData.errorMessage);
+    }
+    console.log(`Answer Status:${answerResponse.status}, message: ${answerData.statusMessage}`)
+    
+    const finalAnswer = answerData.finalAnswer;
+    const citations = findSectionsCited(citationList, finalAnswer)
+    setFinalAnswer(finalAnswer);
+    const citationElement = document.getElementById('citationArea');
+    if (citationElement) {
+      citationElement.innerHTML = citations;
+    }
+
+    setLoading(false);
+    setHasAnswered(true);
+    copyToClipboard(finalAnswer);
+    setQuestion("")
+    return;
+    
   };
 
+  function findSectionsCited(citationList: any[], finalAnswer: string) {
+    let citedSections = "<h1>Citations with Source Text:</h1>\n";
+    for (const tup of citationList) {
+      const citation = tup[0];
+      if (!finalAnswer.includes(citation)) {
+        continue;
+      }
+      const content = tup[1];
+      const link = tup[2];
+      const sectionCitation = `<a href="${link}" target="_blank" id="${citation}">${citation}</a>\n<p>${content}</p>\n`;
+      citedSections += sectionCitation;
+    }
+    return citedSections;
+  }
+  
+  function linkAnswerToCitations(citationList: any[], finalAnswer: string) {
+  
+    for (const tup of citationList) {
+      const citation = tup[0];
+      if (!finalAnswer.includes(citation)) {
+        continue;
+      }
+  
+      const newCitation = `<a href="#${citation}">${citation}</a>`;
+      finalAnswer = finalAnswer.replace(citation, newCitation);
+    }
+  
+    return finalAnswer;
+  }
   const copyToClipboard = (text: string) => {
     const el = document.createElement('textarea');
     el.value = text;
