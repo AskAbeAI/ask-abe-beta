@@ -1,6 +1,6 @@
-export type Dataset = 'California Code' | 'Federal Regulation' | 'MICA Regulations';
+export type Dataset = 'California Code'; // | 'Federal Regulation' | 'MICA Regulations';
 
-export interface AnswerBody {
+export interface ProcessBody {
   question: string;
   dataset: Dataset;
   apiKey: string;
@@ -17,8 +17,20 @@ export interface AnswerResponse {
   code: string;
 }
 
-export interface TemplateBody {
+export interface AnswerTemplateBody {
   userQuery: string;
   openAiKey: string;
   partialAnswers: string;
 }
+
+export interface SearchBody {
+  similarQuery: string;
+  openAiKey: string;
+}
+
+export interface PartialAnswerBody {
+  legalText: string;
+  openAiKey: string;
+  templateQuestion: string;
+}
+

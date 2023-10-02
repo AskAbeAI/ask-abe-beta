@@ -1,6 +1,6 @@
-import  OpenAI  from 'openai';
-import type { NextRequest } from 'next/server'
-import { NextApiResponse } from 'next'
+import OpenAI from 'openai';
+import type { NextRequest } from 'next/server';
+import { NextApiResponse } from 'next';
 const openai = new OpenAI({
 	apiKey: "placeholder", // defaults to process.env["OPENAI_API_KEY"]
 });
@@ -8,21 +8,22 @@ const openai = new OpenAI({
 // userQuery, openAIkey, summaryTemplate, responseTotal
 export default async function (req: NextRequest, res: NextApiResponse) {
 
-    console.log("===========================================");
-	console.log("======= Template - Debug Screen :) ========");
-	console.log("===========================================");
-    try {
-        if (!req.body) {
-            throw new Error("Template Request Body invalid in askAbeTemplate.ts!");
-        }
-        console.log("Starting templating stage...");
-		const requestData:any = req.body;
-        console.log(requestData);
-        const userQuery = requestData.userQuery;
-        const partialAnswers = requestData.partialAnswers;
+	console.log("==================================================");
+	console.log("======= Answer Template - Debug Screen :) ========");
+	console.log("==================================================");
+	try {
+		if (!req.body) {
+			throw new Error("Answer Template Request Body invalid in askAbeTemplate.ts!");
+		}
+		console.log("Starting Answer Templating stage...");
+		console.log(" - Creating answer template with GPT 4");
+		const requestData: any = req.body;
+		console.log(requestData);
+		const userQuery = requestData.userQuery;
+		const partialAnswers = requestData.partialAnswers;
 		openai.apiKey = requestData.openAiKey;
 
-        const promptSummarize = getPromptSummaryTemplate(userQuery, partialAnswers);
+		const promptSummarize = getPromptSummaryTemplate(userQuery, partialAnswers);
 		const summaryTemplate = await createChatCompletion(
 			promptSummarize,
 			"gpt-4",
@@ -34,15 +35,15 @@ export default async function (req: NextRequest, res: NextApiResponse) {
 			summaryTemplate,
 			partialAnswers,
 			statusMessage: 'Succesfully created answer template!'
-		}
+		};
 		res.status(200);
 		res.json(templateResponseBody);
-    } catch(error) {
-		res.status(400).json({errorMessage: `An error occurred in templating: ${error}`})
+	} catch (error) {
+		res.status(400).json({ errorMessage: `An error occurred in templating: ${error}` });
 	} finally {
-		console.log("Exiting askAbeTemplate.ts!")
-    	res.end()
-    	return;
+		console.log("Exiting askAbeTemplate.ts!");
+		res.end();
+		return;
 	}
 }
 
@@ -95,13 +96,13 @@ A carefully curated markdown blueprint with clear titles, headers, and succinct 
 	return applyToGeneric(system, user);
 }
 async function createChatCompletion(prompt: Message[], usedModel: string, temp: number): Promise<any> {
-    const completion = await openai.chat.completions.create({
+	const completion = await openai.chat.completions.create({
 		messages: prompt,
 		model: usedModel,
 		temperature: temp,
 	});
 	if (!completion) {
-        throw new Error(`OpenAI API call failed with status: ${completion}`);
-    }
+		throw new Error(`OpenAI API call failed with status: ${completion}`);
+	}
 	return completion.choices[0].message['content'];
 }

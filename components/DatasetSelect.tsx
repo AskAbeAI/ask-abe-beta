@@ -18,8 +18,6 @@ export const DatasetSelect: FC<Props> = ({ dataset, onChange }) => {
       onChange={handleChange}
     >
       <option value="California Code">California Legal Code</option>
-      <option value="Federal Regulation">Federal Regulations</option>
-      <option value="MICA Regulations">MICA Regulations</option>
     </select>
   );
 };
