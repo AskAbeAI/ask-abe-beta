@@ -20,7 +20,7 @@ export default async function (req: NextRequest, res: NextApiResponse) {
         console.log(requestData);
         const userQuery = requestData.userQuery;
         const partialAnswers = requestData.partialAnswers;
-		openai.apiKey = requestData.apiKey;
+		openai.apiKey = requestData.openAiKey;
 
         const promptSummarize = getPromptSummaryTemplate(userQuery, partialAnswers);
 		const summaryTemplate = await createChatCompletion(
