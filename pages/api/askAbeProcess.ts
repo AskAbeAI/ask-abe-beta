@@ -1,8 +1,3 @@
-// Follow this setup guide to integrate the Deno language server with your editor:
-// https://deno.land/manual/getting_started/setup_your_environment
-// This enables autocomplete, go to definition, etc.
-// Project Ref: jwscgsmkadanioyopaef
-import { Dataset, AnswerBody } from '../../types/types';
 import { createClient } from "@supabase/supabase-js"
 import  OpenAI  from 'openai';
 import type { NextRequest } from 'next/server'
@@ -26,9 +21,7 @@ export default async function (req: NextRequest, res: NextApiResponse) {
 		console.log(requestData);
 		const userQuery = requestData.question;
 		const dataset = requestData.dataset;
-		const openAiKey = requestData.apiKey;
-
-		openai.apiKey = openAiKey;
+		openai.apiKey = requestData.apiKey;
 
 		interface Row {
 			id: number;
@@ -165,16 +158,9 @@ export default async function (req: NextRequest, res: NextApiResponse) {
 		for (let response_str of legalTextLawful) {
 			partialAnswers = partialAnswers + "\n====\n" + response_str;
 		}
-		const promptSummarize = getPromptSummaryTemplate(userQuery, partialAnswers);
-		const summaryTemplate = await createChatCompletion(
-			promptSummarize,
-			"gpt-4",
-			1,
-		);
-		console.log("Finished creating answer template.");
-		// return summaryTemplate, responseTotal, citationList
+		
+		//  partialAnswers, , citationList
 		const processResponseBody = {
-			summaryTemplate,
 			partialAnswers,
 			citationList,
 			statusMessage: 'Succesfully processed question!'
@@ -199,22 +185,6 @@ interface Message {
 
 
 
-async function* populateSummaryTemplate(
-	question: string,
-	legalDocumentation: string,
-	template: string
-) {
-
-	const promptPopulate = getPromptPopulateSummaryTemplate(question, template, legalDocumentation);
-	for await (const message of streamChatCompletion(
-		promptPopulate,
-		"gpt-3.5-turbo-16k",
-		0,
-	)) {
-		yield message;
-	}
-
-}
 
 
 
@@ -261,87 +231,6 @@ Return in JSON format: {"queries": ["query_1", "query_2", "query_3"]}`;
 }
 
 // ANSWER PROMPTS ===============================================
-
-// Using legal text as input, answer all questions from a specific answer template
-
-function getPromptSummaryTemplate(
-	question: string,
-	legalDocumentation: string
-): Message[] {
-
-	// 201 tokens in system message
-	const system = `Using the supplied legal question and its corresponding legal documentation, produce a markdown structure that outlines the essential themes and ideas. This structure will guide a legal expert in answering the posed question.
-
-**Input Description:**
-
-- **Question**: A distinct legal query needing expert interpretation.
-- **Legal Documentation**: The reference material that a legal expert will use to formulate an answer.  
-
-**Instructions:**
-
-1. Start by dissecting the question to understand its primary themes and key concerns.
-2. Delve into the legal documentation, extracting the principal ideas and related concepts that will aid in answering the question.
-3. While structuring the markdown:
-- Use "#" for principal ideas taken from the legal documentation.
-- For each main idea, establish secondary points and label them using "##".
-- Beneath each secondary point, highlight any tertiary points with "###".  
-- For each detail or specific concept which applies to an idea, write ">" and guidance to the legal expert on how to answer the legal question, as well as legal citations from where this answer may come from.
-4. Keep the guidance concise, especially for the ">" level. Avoid placeholders or lengthy notes. The emphasis should be on clear headers and brief guidance.  
-
-The first main idea should always be a rephrasing of the question followed by a sub-idea called TLDR, which has guidance on giving a simple and short answer to the user question.
-
-**Output:**
-
-A carefully curated markdown blueprint with clear titles, headers, and succinct guidance. This blueprint should seamlessly guide a legal expert in their endeavor to comprehensively address the posed question using the supplied legal documentation.`;
-
-	const user = JSON.stringify({
-		Question: question,
-		LegalDocumentation: legalDocumentation
-	});
-
-	return applyToGeneric(system, user);
-}
-
-function getPromptPopulateSummaryTemplate(
-	question: string,
-	template: string,
-	legalDocumentation: string
-) {
-
-	const user = JSON.stringify({
-		Template: template,
-		LegalDocumentation: legalDocumentation,
-		Question: question
-	});
-
-	const system = `Using the provided markdown template and the associated legal documentation, improve the initial guidance from the legal expert to become a full answer with pertinent details and in line citations. 
-
-**Input Description:**
-
-- **Template**: A structured markdown outline utilizing various levels of headers (#, ##, ###, ####). The ">" symbol in the template signifies guidance from a legal expert, which should be improved and refined.
-
-- **Legal Documentation**: Your primary reference material containing all necessary information to address the legal inquiry. Use this document to derive content to replace the guidance after the ">" in the template.
-
-- **Question**: The specific legal inquiry that will be answered using the populated template and the legal documentation.
-
-**Instructions:**
-
-1. Thoroughly acquaint yourself with the template. Note areas marked by the ">" symbol; these are pointers from the legal expert that should be improved and refined with content and citations.
-
-2. Delve into the legal documentation, sourcing information that aligns with the ">" pointers and the related headers.
-
-3. In the sections with ">", substitute the expert's guidance with relevant content from the legal documentation, ensuring to include legal citations in line.
-
-4. Emphasize accuracy and integrity, ensuring that the content reflects the essence and specifics of the original legal documentation. 
-
-**Output:**
-
-A refined markdown template where guidance after the ">" symbol has been seamlessly refined with content from the legal documentation, resulting in a well-structured response to the legal inquiry.`;
-
-	return applyToGeneric(system, user);
-}
-
-
 function getPromptSimpleAnswer(
 	legalText: string,
 	question: string
@@ -360,53 +249,7 @@ function getPromptSimpleAnswer(
 
 	return applyToGeneric(system, user);
 }
-
-function getPromptUpdateAnswer(
-	legalText: string,
-	question: string
-): Message[] {
-
-	const system = `As a helpful legal assistant, answer a legal question in a simple and concise manner. You will be provided with a legal question and accompanying legal documentation.
-
-Follow these guidelines:  
-1. Ensure the answer directly addresses the legal question and is easy to understand.
-2. Include a clear citation to the specific legal section that supports the answer. 
-3. Keep the answer concise, and answer the question in 1 topic sentence.
-4. If you can answer yes or no to the question, include yes or no in your answer.`;
-
-	const user = `question: ${question}
-	documentation: ${legalText}`;
-
-	return applyToGeneric(system, user);
-}
-
-
 // SCORING PROMPTS ===============================================
-
-// Score questions on a) relevancy of legal text (sections) to user's question, b) quality of generated answer based on legal text
-function getPromptScoreQuestions(
-	legalText: string,
-	templateQuestions: string[],
-	generatedAnswers: string[]
-): Message[] {
-
-	const system = `You are LawProfessorGPT, a witheringly critical legal scholar who reviews answers to legal questions to ensure that they are comprehensive and grounded entirely in the provided legal text.
-
-	You will be provided pairs of questions and answers to score.
-	For each pair, answer the following questions and output a score in the format [(Relevance_score 1, Answer_score 1), (), (), (), ()].
-		Relevance_score: Based on the provided legal text, how relevant are the given sections of legal text to the user's question (on a scale from 0 to 100)?
-		Answer_score: How well does the provided answer address the user's question based on the legal text (on a scale from 0 to 100)?`;
-
-	const user = `Legal Text: ${legalText}\n\n
-	(Question 1: ${templateQuestions[0]}, Answer 1: ${generatedAnswers[0]})\n  
-	(Question 2: ${templateQuestions[1]}, Answer 2: ${generatedAnswers[1]})\n
-	(Question 3: ${templateQuestions[2]}, Answer 3: ${generatedAnswers[2]})\n
-	(Question 4: ${templateQuestions[3]}, Answer 4: ${generatedAnswers[3]})\n
-	(Question 5: ${templateQuestions[4]}, Answer 5: ${generatedAnswers[4]})\n`;
-
-	return applyToGeneric(system, user);
-}
-
 // Combine and rephrase all template questions to ask about specific topics in a user query
 function getPromptConvertQuestion(OGQuestionList: string): Message[] {
 
@@ -422,19 +265,12 @@ function getPromptConvertQuestion(OGQuestionList: string): Message[] {
 
 	Output should be in a single string with the following format:
 	${systemFormat}`;
-
 	const user = OGQuestionList;
-
 	return applyToGeneric(system, user);
-
 }
-
-
 // UNIVERSAL ANSWER TEMPLATES ===============================================
-
 // USE THIS
 function getOriginalUniversalAnswerTemplate(userQuery: string): string {
-
 	return `
 		User_Query: ${userQuery}\n,
 		QUESTION 1: What is the simple answer to ${userQuery}?\n,
@@ -443,7 +279,6 @@ function getOriginalUniversalAnswerTemplate(userQuery: string): string {
 		Question 4: What are restrictions, caveats, and conditions to TOPICS?\n,
 		Question 5: What are any penalties, punishments, or crimes which apply to violating restrictions of TOPICS?
 		`;
-
 }
 
 
@@ -465,10 +300,6 @@ async function getEmbedding(text: string) {
 	
 	return embedding.data[0].embedding;
 }
-
-
-
-
 async function getCompletions(
     texts: string[],
     question: string,
@@ -479,21 +310,6 @@ async function getCompletions(
     });
     return await Promise.all(allPromises);
 }
-
-
-async function* streamChatCompletion(prompt: Message[], usedModel: string, temp: number) {
-	const completion = await openai.chat.completions.create({
-	  model: usedModel,
-	  messages: prompt,
-	  stream: true,
-	  temperature: temp,
-	});
-  
-	for await (const chunk of completion) {
-	  yield chunk.choices[0].delta.content;
-	}
-  }
-
 
 // single completion
 async function createChatCompletion(prompt: Message[], usedModel: string, temp: number): Promise<any> {
@@ -507,10 +323,3 @@ async function createChatCompletion(prompt: Message[], usedModel: string, temp: 
     }
 	return completion.choices[0].message['content'];
 }
-
-
-	
-
-
-
-

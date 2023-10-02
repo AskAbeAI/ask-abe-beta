@@ -2,7 +2,7 @@ import { APIKeyInput } from '../components/APIKeyInput';
 import { CodeBlock } from '../components/CodeBlock';
 import { DatasetSelect } from '../components/DatasetSelect';
 import { TextBlock } from '../components/TextBlock';
-import { Dataset, AnswerBody, finalAnswerBody } from '../types/types';
+import { Dataset, AnswerBody, FinalAnswerBody, TemplateBody } from '../types/types';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import type { NextRequest } from 'next/server'
@@ -45,10 +45,6 @@ export default function Home() {
       return;
     }
 
-    
-
-    const controller = new AbortController();
-
     const answerBody: AnswerBody = {
       question,
       dataset,
@@ -57,7 +53,7 @@ export default function Home() {
     console.log(answerBody)
 
     // Check if everything okay to intialize abe
-    console.log("Trying to call /api/translate")
+    console.log("Validation Stage: fetch /api/askAbeValidate")
     const validateResponse = await fetch('/api/askAbeValidate', {
       method: 'POST',
       headers: {
@@ -78,14 +74,13 @@ export default function Home() {
     }
     setFinalAnswer('Loading...');
 
-
-
     // Process question in askAbeProcess.ts
     const processBody: AnswerBody = {
       question,
       dataset,
       apiKey,
     };
+    console.log("Processing Stage: fetch /api/askAbeProcess")
     const processResponse = await fetch('/api/askAbeProcess', {
       method: 'POST',
       headers: {
@@ -98,18 +93,38 @@ export default function Home() {
       throw new Error(processData.errorMessage);
     }
     console.log(`Process Status:${processResponse.status}, message: ${processData.statusMessage}`)
-    
-    const summaryTemplate = processData.summaryTemplate;
+
     const partialAnswers = processData.partialAnswers;
     const citationList = processData.citationList;
-    const finalAnswerBody: finalAnswerBody = {
+    // Create ideal answer template from partial answers
+    const templateBody: TemplateBody = {
+      userQuery: question,
+      openAiKey: apiKey,
+      partialAnswers: partialAnswers
+    }
+    console.log("Templating Stage: fetch /api/askAbeTemplate")
+    const templateResponse = await fetch('/api/askAbeTemplate', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(templateBody)
+    })
+    const templateData = await templateResponse.json();
+    if (templateData.errorMessage) {
+      throw new Error(templateData.errorMessage)
+    }
+    console.log(`Template Status:${templateResponse.status}, message: ${templateData.statusMessage}`)
+    const summaryTemplate = templateData.summaryTemplate;
+    // Populate answer template and return final answer
+    const finalAnswerBody: FinalAnswerBody = {
       userQuery: question,
       openAiKey: apiKey,
       summaryTemplate,
       partialAnswers
 
     }
-    
+    console.log("Answering Stage: fetch /api/askAbeAnswer")
     const answerResponse = await fetch('/api/askAbeAnswer', {
       method: 'POST',
       headers: {
@@ -122,8 +137,9 @@ export default function Home() {
       throw new Error(answerData.errorMessage);
     }
     console.log(`Answer Status:${answerResponse.status}, message: ${answerData.statusMessage}`)
-    
     const finalAnswer = answerData.finalAnswer;
+
+    // Update citations and set all fields :)
     const citations = findSectionsCited(citationList, finalAnswer)
     setFinalAnswer(finalAnswer);
     const citationElement = document.getElementById('citationArea');

@@ -6,7 +6,7 @@ export interface AnswerBody {
   apiKey: string;
 }
 
-export interface finalAnswerBody {
+export interface FinalAnswerBody {
   userQuery: string;
   openAiKey: string;
   summaryTemplate: string;
@@ -15,4 +15,10 @@ export interface finalAnswerBody {
 
 export interface AnswerResponse {
   code: string;
+}
+
+export interface TemplateBody {
+  userQuery: string;
+  openAiKey: string;
+  partialAnswers: string;
 }
