@@ -150,7 +150,6 @@ export default function Home() {
     setLoading(false);
     setHasAnswered(true);
     copyToClipboard(finalAnswer);
-    setQuestion("")
     return;
     
   };
