@@ -512,6 +512,12 @@ export default function Home() {
 					<APIKeyInput apiKey={apiKey} onChange={handleApiKeyChange} />
 				</div>
 				<div className="mt-6 text-center text-sm">
+					<details>
+						<summary>How to Use Ask Abe</summary>
+						<a href="#how-to"className="underline text-blue-500 hover:text-blue-700">Instructions</a><br/>
+						<a href="#question-optimization"className="underline text-blue-500 hover:text-blue-700">Question Optimization</a><br/>
+						<a href="#security"className="underline text-blue-500 hover:text-blue-700">Security Policy</a><br/>
+					</details>
 					<QuestionInput question={question} onChange={handleQuestionChange} />
 				</div>
 
@@ -559,7 +565,7 @@ export default function Home() {
 
 
 
-				
+
 				<CustomFooter/>
 			</div>
 		</>
