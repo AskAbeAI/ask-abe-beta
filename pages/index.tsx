@@ -5,6 +5,7 @@ import { Dataset, ProcessBody, FinalAnswerBody, AnswerTemplateBody, SearchBody, 
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import { QuestionInput } from '../components/QuestionInput';
+import {CustomFooter } from '../components/CustomFooter';
 import Image from 'next/image';
 import { createClient } from "@supabase/supabase-js";
 
@@ -555,16 +556,11 @@ export default function Home() {
 						<section id="citationArea" className="citation-block"></section>
 					</div>
 				</div>
-				<footer className="mt-auto p-6 text-center">
-					<p>We appreciate any and all feedback! Please fill out our 
-						<a href="https://docs.google.com/forms/d/e/1FAIpQLSf3d_18c8ABLBTRJTFYMLflMgSCCFjarlK_gRn6ulNCBn_DUw/viewform"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="underline text-blue-500 hover:text-blue-700">
-							 feedback form
-						</a>. Thank you.
-					</p>
-				</footer>
+
+
+
+				
+				<CustomFooter/>
 			</div>
 		</>
 	);
