@@ -4,9 +4,7 @@ import { NextApiResponse } from 'next';
 import { ApplicationError, UserError } from '@/lib/errors';
 
 
-export const config = {
-    maxDuration: 200,
-};
+
 const openai = new OpenAI({
 	apiKey: "placeholder", // defaults to process.env["OPENAI_API_KEY"]
 });

@@ -7,9 +7,7 @@ import {
 import { ApplicationError, UserError } from '@/lib/errors';
 
 
-export const config = {
-	maxDuration: 200,
-};
+
 export default async function handler(req: NextRequest, res: NextApiResponse) {
 
 

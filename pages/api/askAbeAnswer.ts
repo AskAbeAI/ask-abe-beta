@@ -6,9 +6,7 @@ const openai = new OpenAI({
 });
 
 // userQuery, openAIkey, summaryTemplate, responseTotal
-export const config = {
-	maxDuration: 200,
-};
+
 export default async function (req: NextRequest, res: NextApiResponse) {
 
     try {

@@ -7,9 +7,7 @@ const openai = new OpenAI({
 });
 
 
-export const config = {
-	maxDuration: 120,
-};
+
 // Starts one "run" of the project
 export default async function (req: NextRequest, res: NextApiResponse) {
 	// ... (function implementation)

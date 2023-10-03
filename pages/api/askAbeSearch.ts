@@ -11,9 +11,7 @@ import { ApplicationError, UserError } from '@/lib/errors';
 const openai = new OpenAI({
 	apiKey: "placeholder", // defaults to process.env["OPENAI_API_KEY"]
 });
-export const config = {
-	maxDuration: 200,
-};
+
 export default async function handler(req: NextRequest, res: NextApiResponse) {
 
 	console.log("===========================================");
