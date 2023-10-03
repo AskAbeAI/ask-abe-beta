@@ -14,7 +14,7 @@ export const CustomFooter: React.FC<Props> = () => {
                         </ul>
                         <h3 className="text-xl font-medium">Step 2: Pose Your Legal Question</h3>
                         <ul className="list-disc pl-5">
-                            <li>Ensure your question is <a href="#question-optimization"className="underline text-blue-500 hover:text-blue-700">"well-formed"</a> and <strong>has at least some legal basis</strong> in the California Legal Code <a href="https://leginfo.legislature.ca.gov/faces/codes.xhtml"
+                            <li>Ensure your question is <a href="#question-optimization"className="underline text-blue-500 hover:text-blue-700">&quot;well-formed&quot;</a> and <strong>has at least some legal basis</strong> in the California Legal Code <a href="https://leginfo.legislature.ca.gov/faces/codes.xhtml"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="underline text-blue-500 hover:text-blue-700">
@@ -50,7 +50,7 @@ export const CustomFooter: React.FC<Props> = () => {
                     <h2 className="text-3xl font-semibold text-center">Project Limitations</h2>
                     <div className="bg-[#1A1B26] p-5 rounded-lg">
                         <ol className="list-decimal pl-5">
-                            <li><strong>Accuracy Depends On Your Input</strong>: The precision of Abes responses hinges substantially on the quality and specificity of the posed question. Broad questions that lack specific details will perform much worse than an ideal "well-formed" question.</li>
+                            <li><strong>Accuracy Depends On Your Input</strong>: The precision of Abes responses hinges substantially on the quality and specificity of the posed question. Broad questions that lack specific details will perform much worse than an ideal &quot;well-formed&quot; question.</li>
                             <li><strong>Response Time</strong>: Engaging multiple APIs in the process, Abe can take up to 180 seconds to generate a response. Patience is appreciated.</li>
                             <li><strong>Limited Legal Scope</strong>: Currently, only California Legal Statutes are understood by Abe. I will add more jurisdictions, but have been really focused on improving the basic functionality on a specific dataset first.</li>
                             <li><strong>LLM Formatting Issues</strong>: The process chains multiple OpenAI chat completions, and occasionally, formatting errors might propagate throughout the response.</li>
