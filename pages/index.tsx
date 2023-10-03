@@ -53,6 +53,7 @@ export default function Home() {
 			}
 
 			// Enter Validation stage: make sure question, dataset, openAIKey are all valid
+			console.log(`Initial user query: ${question}`)
 			const validateBody: ProcessBody = {
 				question,
 				dataset,
@@ -325,15 +326,18 @@ export default function Home() {
 				}
 
 			});
+			console.log(`Final Answer: ${finalAnswer}`)
+			console.log(`Cited Sections: ${citationList}`)
 			setFinalAnswer(finalAnswer);
 
 			let totalEnd = performance.now();
 			let totalElapsedTime = (totalEnd - totalStart) / 1000;
 			insertData({user_query: question, final_answer: finalAnswer, dataset: dataset, did_finish: true, similar_queries: similarQueries, partial_answers: partialAnswers, summary_template: summaryTemplate, raw_legal_text: legalText, runTime: totalElapsedTime, })
 			
-
+			console.log(`Total Time Elapsed: ${totalElapsedTime}`)
+			console.log(`Full debug log: ${debugLog}`)
 			setLoading(false);
-			setHasAnswered(true);
+			setHasAnswered(false);
 			copyToClipboard(finalAnswer);
 			if (progressContainer) {
 				progressContainer.innerHTML = ``;
@@ -342,8 +346,10 @@ export default function Home() {
 		} catch(error) {
 
 			insertData({user_query: question, final_answer: finalAnswer, dataset: dataset})
-			alert(`A critical error occured! My bad G. Error: ${error}`);
+			
 			console.log(`A critical error occured! My bad G. Error: ${error}`)
+			alert(`A critical error occured! My bad G. Error: ${error}`);
+
 			setHasAnswered(false);
 			setFinalAnswer('');
 			const citationElement = document.getElementById('citationArea');
