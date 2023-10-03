@@ -62,7 +62,7 @@ export const CustomFooter: React.FC<Props> = () => {
                 <div id="security">
                     <h2 className="text-3xl font-semibold text-center">Security and Privacy Policy</h2>
                     <div  className="bg-[#1A1B26] p-5 rounded-lg">
-                        <p>We prioritize your privacy and security. Therefore, we consciously chose not to store API keys to prevent any misuse or unauthorized access. Each session requires a fresh API key input, ensuring that your usage of OpenAI's API is always secure and under your control.</p>
+                        <p>We prioritize your privacy and security. Therefore, we consciously chose not to store API keys to prevent any misuse or unauthorized access. Each session requires a fresh API key input, ensuring that your usage of OpenAIs API is always secure and under your control.</p>
                         <ol className="list-decimal pl-5">
                             <li>We do <strong>NOT store your API Key</strong> in our database or backend. There are plans to introduce user authentication but as of now we believe its best to require key inputs for every session.</li>
                             <li>Please do not include personally identifiable and private information in your question. We do store user questions and Abes answers for debugging purposes.</li>
