@@ -9,7 +9,7 @@ const openai = new OpenAI({
 
 
 // Starts one "run" of the project
-export default async function (req: NextRequest, res: NextApiResponse) {
+export default async function process(req: NextRequest, res: NextApiResponse) {
 	// ... (function implementation)
 	try {
 		if (!req.body) {

@@ -8,7 +8,7 @@ import { ApplicationError, UserError } from '@/lib/errors';
 
 
 
-export default async function handler(req: NextRequest, res: NextApiResponse) {
+export default async function validate(req: NextRequest, res: NextApiResponse) {
 
 
 	if (req.method !== 'POST') {

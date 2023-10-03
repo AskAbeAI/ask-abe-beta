@@ -12,7 +12,7 @@ const openai = new OpenAI({
 	apiKey: "placeholder", // defaults to process.env["OPENAI_API_KEY"]
 });
 
-export default async function handler(req: NextRequest, res: NextApiResponse) {
+export default async function search(req: NextRequest, res: NextApiResponse) {
 
 	console.log("===========================================");
 	console.log("======= Searching- Debug Screen :) ========");

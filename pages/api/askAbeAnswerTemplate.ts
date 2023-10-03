@@ -6,7 +6,7 @@ const openai = new OpenAI({
 });
 
 // userQuery, openAIkey, summaryTemplate, responseTotal
-export default async function (req: NextRequest, res: NextApiResponse) {
+export default async function answerTemplate(req: NextRequest, res: NextApiResponse) {
 
 	
 	try {
