@@ -8,32 +8,26 @@ const openai = new OpenAI({
 // userQuery, openAIkey, summaryTemplate, responseTotal
 export default async function (req: NextRequest, res: NextApiResponse) {
 
-	console.log("==================================================");
-	console.log("======= Answer Template - Debug Screen :) ========");
-	console.log("==================================================");
+	
 	try {
 		if (!req.body) {
 			throw new Error("Answer Template Request Body invalid in askAbeTemplate.ts!");
 		}
-		console.log("Starting Answer Templating stage...");
-		console.log(" - Creating answer template with GPT 4");
 		const requestData: any = req.body;
-		console.log(requestData);
 		const userQuery = requestData.userQuery;
 		const partialAnswers = requestData.partialAnswers;
 		openai.apiKey = requestData.openAiKey;
 
 		const promptSummarize = getPromptSummaryTemplate(userQuery, partialAnswers);
-		const summaryTemplate = await createChatCompletion(
+		let summaryTemplate = await createChatCompletion(
 			promptSummarize,
 			"gpt-4",
 			1,
 		);
-		console.log("Finished creating answer template.");
+		summaryTemplate = summaryTemplate.replace(/\n- /g, "> ");
 		// return summaryTemplate, partialAnswers
 		const templateResponseBody = {
 			summaryTemplate,
-			partialAnswers,
 			statusMessage: 'Succesfully created answer template!'
 		};
 		res.status(200);

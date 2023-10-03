@@ -4,6 +4,14 @@
     resize: none; 
 }
 .citation-block a {
-    color: blue;
+    color: rgb(0, 204, 255);
     text-decoration: underline;
 }
+
+.imageContainer {
+    width: 75%;  /* Set width to 75% of the original */
+    padding-top: 20px;  /* Increase vertical padding */
+    display: flex;
+    justify-content: center;  /* Center the image horizontally */
+    align-items: center;  /* Center the image vertically */
+  }

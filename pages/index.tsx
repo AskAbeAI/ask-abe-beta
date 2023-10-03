@@ -7,6 +7,16 @@ import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import type { NextRequest } from 'next/server';
 import { QuestionInput } from '../components/QuestionInput';
+import Image from 'next/image';
+
+
+
+interface CitationBlock {
+	citation: string;
+	source: string;
+	sectionContent: string;
+	answerCitation: string;
+}
 
 
 export default function Home() {
@@ -74,6 +84,7 @@ export default function Home() {
 		
 		// Start Processing Stage: Expand user query and generate similar queries
 		let start = performance.now()
+		let totalStart = performance.now()
 		const processBody: ProcessBody = {
 			question,
 			dataset,
@@ -164,7 +175,7 @@ export default function Home() {
 
 		const partialAnswers = partialAnswerData.partialAnswers;
 		debugLog += ` - Time spent in partial answering stage: ${elapsedTime.toFixed(2)} seconds\n`;
-		debugLog += "Starting answer template stage..."
+		debugLog += "Starting answer template stage...\n"
 		debugLog += " - Creating structured answer template from partial answers using GPT 4\n"
 		
 		setFinalAnswer(debugLog)
@@ -195,7 +206,7 @@ export default function Home() {
 
 		const summaryTemplate = answerTemplateData.summaryTemplate;
 		debugLog += ` - Time spent in answer template stage: ${elapsedTime.toFixed(2)} seconds\n`;
-		debugLog += "Starting final answering stage (ALMOST DONE!)..."
+		debugLog += "Starting final answering stage (ALMOST DONE!)...\n"
 		debugLog += " - Filling in answer template with exact source text and citations with GPT 3.5\n"
 		debugLog += " - Formatting final answer and citations\n"
 		setFinalAnswer(debugLog)
@@ -230,14 +241,66 @@ export default function Home() {
 		let finalAnswer = answerData.finalAnswer;
 		console.log(debugLog)
 		// Update citations and set all fields :)
-		const citations = findSectionsCited(citationList, finalAnswer);
-		let index = finalAnswer.indexOf("\n");
-		finalAnswer = `# Abes Answer For: ${question}\n` + finalAnswer.slice(index+1);
-		setFinalAnswer(finalAnswer);
+		const {citations, finalAnswerFormatted }= findSectionsCited(citationList, finalAnswer);
+
+		
+		let index = finalAnswerFormatted.indexOf("\n");
+		finalAnswer = `# Abes Answer For: ${question}\n` + finalAnswerFormatted.slice(index+1);
 		const citationElement = document.getElementById('citationArea');
-		if (citationElement) {
-			citationElement.innerHTML = citations;
-		}
+		citations.forEach(({ citation, source, sectionContent, answerCitation }) => {
+			const sectionCitation = `<details id="${citation}" style="white-space: pre-wrap;"><summary>${citation}</summary>${source}${sectionContent}</details>`;
+			//const answerCitation = `<a href="#${citation}" style="color: rgb(0, 204, 255);text-decoration: underline;">${citation}</a>`;
+			
+			// Append to the contentElement
+			console.log(citationElement)
+			
+			if (citationElement) {
+				console.log(citationElement.innerHTML)
+				citationElement.innerHTML += sectionCitation;
+			}
+			
+		});
+
+
+		setFinalAnswer(finalAnswer);
+
+
+		document.addEventListener("DOMContentLoaded", function() {
+			// Your citation variables here...
+			
+			
+			// Inject your HTML into your content div or wherever it needs to be
+			const finalAnswerElement = document.getElementById("finalAnswerContainer")
+			
+			if (!finalAnswerElement) {
+				throw new Error("Error linking citations from answer to citations section!")
+			}
+			finalAnswerElement.addEventListener('click', (e) => {
+				const target = e.target as HTMLElement;
+				
+				// Check if the clicked element is an 'a' tag and has href attribute
+				if (target.tagName === 'A' && 'href' in target) {
+					const citationId = (target as HTMLAnchorElement).href.split('#')[1];
+					
+					const detailsElement = document.getElementById(citationId) as HTMLDetailsElement;
+					const summaryElement = detailsElement?.querySelector('summary');
+					
+					// Check if both elements are found, and if so, toggle the 'open' state and 'highlight' class
+					if (detailsElement && summaryElement) {
+						detailsElement.open = true;
+						summaryElement.classList.toggle('highlight', detailsElement.open);
+					}
+				}
+			});
+		});
+		
+		
+
+
+
+		let totalEnd = performance.now();
+		let totalElapsedTime = (totalEnd - totalStart) / 1000;
+		console.log(`Total elapsed time: ${totalElapsedTime} seconds.`)
 
 		setLoading(false);
 		setHasAnswered(true);
@@ -247,7 +310,8 @@ export default function Home() {
 	};
 
 	function findSectionsCited(citationList: any[], finalAnswer: string) {
-		let citedSections = "<h1>Citations with Source Text:</h1>\n";
+		let citedSections: CitationBlock[] = [];
+		//{ citation: "Citation1", summaryTag: "Summary1", source: "<p>Source1</p>", sectionContent: "<p>Content1</p>" },
 		for (const tup of citationList) {
 			const citation = tup[0];
 			if (!finalAnswer.includes(citation)) {
@@ -255,26 +319,19 @@ export default function Home() {
 			}
 			const content = tup[1];
 			const link = tup[2];
-			const sectionCitation = `<a href="${link}" target="_blank" id="${citation}">${citation}</a>\n<p>${content}</p>\n`;
-			citedSections += sectionCitation;
+			const sourceLink = `<a href="${link}"style=" color: rgb(0, 204, 255);text-decoration: underline;">${citation}</a>`;
+			const answerCitation = `<a href="#${citation}"style=" color: rgb(0, 204, 255);text-decoration: underline;">${citation}</a>`;
+			citedSections.push({citation: citation, source: sourceLink, sectionContent: content, answerCitation:answerCitation})
+			// const sectionCitation = `<details id="${citation}" style="white-space: pre-wrap;"><summary>${summaryTag}</summary>${source}${sectionContent}</details>`;
+			
+			finalAnswer = finalAnswer.replace(citation, answerCitation)
 		}
-		return citedSections;
+		return {citations:citedSections, finalAnswerFormatted:finalAnswer};
 	}
 
-	function linkAnswerToCitations(citationList: any[], finalAnswer: string) {
-
-		for (const tup of citationList) {
-			const citation = tup[0];
-			if (!finalAnswer.includes(citation)) {
-				continue;
-			}
-
-			const newCitation = `<a href="#${citation}">${citation}</a>`;
-			finalAnswer = finalAnswer.replace(citation, newCitation);
-		}
-
-		return finalAnswer;
-	}
+	
+	
+	
 	const copyToClipboard = (text: string) => {
 		const el = document.createElement('textarea');
 		el.value = text;
@@ -320,10 +377,17 @@ export default function Home() {
 				<link rel="icon" href="/favicon.ico" />
 
 			</Head>
-
 			<div className="flex h-full min-h-screen flex-col items-center bg-[#0E1117] px-4 pb-20 text-neutral-200 sm:px-10">
 				<div className="mt-10 flex flex-col items-center justify-center sm:mt-20">
-					<div className="text-4xl font-bold">Legal Question Answering</div>
+					<div className="text-4xl font-bold">Trustworthy Legal Question Answering</div>
+					<div className="imageContainer">
+					<Image 
+						src="/abeLogo.png" 
+						alt="Ask Abe Banner" 
+						width={746}  // Original width
+						height={224}  // Original height
+					/>
+					</div>
 				</div>
 
 				<div className="mt-6 text-center text-sm">
@@ -371,6 +435,16 @@ export default function Home() {
 						<section id="citationArea" className="citation-block"></section>
 					</div>
 				</div>
+				<footer className="mt-auto p-6 text-center">
+					<p>We appreciate your feedback! Please fill out our 
+					<a href="https://docs.google.com/forms/d/e/1FAIpQLSf3d_18c8ABLBTRJTFYMLflMgSCCFjarlK_gRn6ulNCBn_DUw/viewform" 
+						target="_blank" 
+						rel="noopener noreferrer" 
+						className="underline text-blue-500 hover:text-blue-700">
+						feedback form
+					</a>.
+					</p>
+				</footer>
 			</div>
 		</>
 	);

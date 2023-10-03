@@ -9,24 +9,17 @@ export const TextBlock: React.FC<Props> = ({
   editable = false,
   onChange = () => {},
 }) => {
-
-  const renderTextWithNewLines = (inputText: string) => {
-    return inputText.split('\n').map((line, index) => (
-      <span key={index}>
-        {line}
-        <br />
-      </span>
-    ));
-  };
-
   return (
     <div
+      style={{ whiteSpace: 'pre-wrap' }} // Added the style here
       className="min-h-[500px] w-full bg-[#1A1B26] p-4 text-[15px] text-neutral-200 focus:outline-none"
       contentEditable={editable}
       onInput={(e) => onChange(e.currentTarget.textContent || "")}
       suppressContentEditableWarning={true}
+      id="finalAnswerContainer"
+      dangerouslySetInnerHTML={{ __html: text }}
     >
-      {renderTextWithNewLines(text)}
+      
     </div>
   );
 };

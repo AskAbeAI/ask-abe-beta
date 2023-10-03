@@ -8,15 +8,11 @@ const openai = new OpenAI({
 // userQuery, openAIkey, summaryTemplate, responseTotal
 export default async function (req: NextRequest, res: NextApiResponse) {
 
-    console.log("=========================================");
-    console.log("======= Answer - Debug Screen :) ========");
-    console.log("=========================================");
     try {
 
         if (!req.body) {
             throw new Error("Answer Request Body invalid in askAbeAnswer.ts!");
         }
-        console.log("Starting answering stage...");
         const requestData: any = req.body;
         const userQuery = requestData.userQuery;
         const summaryTemplate = requestData.summaryTemplate;
@@ -25,14 +21,13 @@ export default async function (req: NextRequest, res: NextApiResponse) {
         openai.apiKey = requestData.openAiKey;
 
         let finalAnswer = "";
-        console.log("  - Populating summary template with GPT 4");
+        
         for await (const message of populateSummaryTemplate(userQuery, partialAnswers, summaryTemplate)) {
             if (message) {
                 finalAnswer += message;
                 //yield message;
             }
         }
-        console.log("  - Finished populating summary template.");
         const answerResponseBody = {
             finalAnswer,
             statusMessage: 'Succesfully answered question!'

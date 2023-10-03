@@ -12,9 +12,6 @@ export const config = {
 };
 export default async function handler(req: NextRequest, res: NextApiResponse) {
 
-	console.log("===========================================");
-	console.log("======= Validate - Debug Screen :) ========");
-	console.log("===========================================");
 
 	if (req.method !== 'POST') {
 		res.setHeader('Allow', 'POST');
@@ -22,7 +19,6 @@ export default async function handler(req: NextRequest, res: NextApiResponse) {
 	}
 
 	const requestData: any = req.body;
-	console.log(requestData);
 	const config = new Configuration({
 		apiKey: requestData.apiKey,
 	});

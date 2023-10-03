@@ -18,7 +18,6 @@ export default async function (req: NextRequest, res: NextApiResponse) {
 			throw new Error("Process Request Body invalid in askAbeProcess.ts!");
 		}
 		const requestData: any = req.body;
-		console.log(requestData);
 		const userQuery = requestData.question;
 		const dataset = requestData.dataset;
 		openai.apiKey = requestData.apiKey;
@@ -41,14 +40,6 @@ export default async function (req: NextRequest, res: NextApiResponse) {
 			link: string;
 		}
 
-		console.log("==========================================");
-		console.log("======= Process - Debug Screen :) ========");
-		console.log("==========================================");
-		console.log("Initializing instance of Abe...");
-		console.log(`User Query:\n ${userQuery}`);
-		console.log("Starting processing stage...");
-		console.log(" - Converting query to list of questions using template");
-
 
 		const questionListStr: string = getOriginalUniversalAnswerTemplate(userQuery);
 		const promptConvertQuestion = getPromptConvertQuestion(questionListStr);
@@ -64,7 +55,7 @@ export default async function (req: NextRequest, res: NextApiResponse) {
 		const questionList: string[] = chatCompletionConvert.split("\n");
 		//console.log(questionList)
 
-		console.log(" - Generating similar search queries for questions");
+		
 		// Generate similar search queries for questions:
 		const lawful = getPromptSimilarQueriesLawful(userQuery);
 		//const unlawful = prompts.getPromptSimilarQueriesUnlawful(userQuery);
