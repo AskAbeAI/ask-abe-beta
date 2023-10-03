@@ -98,6 +98,10 @@ export const CustomFooter: React.FC<Props> = () => {
                                     Discord
                                 </a>
                             </li>
+                            <li>
+                                <a href="https://theresanaiforthat.com/ai/ask-abe/?ref=featured&v=500804" target="_blank"><img width="300" src="https://media.theresanaiforthat.com/featured3.png"/></a>
+                            </li>
+
                         </ul>
                     </div>
                 </div>
