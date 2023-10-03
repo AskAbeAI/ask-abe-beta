@@ -76,7 +76,7 @@ function getPromptSummaryTemplate(
 - For each detail or specific concept which applies to an idea, write ">" and guidance to the legal expert on how to answer the legal question, as well as legal citations from where this answer may come from.
 4. Keep the guidance concise, especially for the ">" level. Avoid placeholders or lengthy notes. The emphasis should be on clear headers and brief guidance.  
 
-The first main idea should always be a rephrasing of the question followed by a sub-idea called TLDR, which has guidance on giving a simple and short answer to the user question.
+The first main idea should always be a rephrasing of the question followed by a sub-idea called TLDR, where you should write ">" and guidance on giving a simple and short answer to the user question.
 
 **Output:**
 

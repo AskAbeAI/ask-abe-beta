@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@keyframes movingStripes {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 100% 100%;
+    }
+}
+
+.striped-gradient {
+    background-size: 50% 50%;
+    animation: movingStripes 20s linear infinite;
+    background-image: linear-gradient(95deg, #1d4ed8 25%, #4c1d95 25%, #4c1d95 50%, #1d4ed8 50%, #1d4ed8 75%, #4c1d95 75%, #4c1d95 100%);
+}
+#progressDiv {
+    transition-property: all;
+    transition-duration: 2000ms;
+}
+

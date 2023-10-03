@@ -9,6 +9,42 @@ export const TextBlock: React.FC<Props> = ({
   editable = false,
   onChange = () => {},
 }) => {
+  
+  // Handle the click event within the React component
+  const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const target = e.target as HTMLElement;
+
+    // Check if the clicked element is an 'a' tag and has href attribute
+    if (target.tagName === 'A' && target.getAttribute('href')) {
+      const citationId = target.innerText;
+
+      const detailsElement = document.getElementById(citationId) as HTMLDetailsElement;
+      const summaryElement = detailsElement?.querySelector('summary');
+
+      // Check if both elements are found, and if so, toggle the 'open' state and 'highlight' class
+      if (detailsElement && summaryElement) {
+        // const pingEffect = document.getElementById(`ping-${citationId}`);
+        // if (!pingEffect) {
+        //   throw new Error ("Error attempting to access ping effect!")
+        // }
+        detailsElement.open = true;
+        // pingEffect.classList.remove('opacity-0');
+        // setTimeout(() => {
+        //   pingEffect.classList.remove('opacity-0');
+        // }, 2000);
+
+        // // Optional: Add an event listener for the 'toggle' event to handle removal of the highlight
+        // detailsElement.addEventListener('toggle', () => {
+        //   if (!detailsElement.open) {
+        //     // When details are opened, add the animation class.
+        //     pingEffect.classList.remove('opacity-0');
+            
+        //   }
+        // });
+      }
+    }
+  };
+
   return (
     <div
       style={{ whiteSpace: 'pre-wrap' }} // Added the style here
@@ -18,6 +54,7 @@ export const TextBlock: React.FC<Props> = ({
       suppressContentEditableWarning={true}
       id="finalAnswerContainer"
       dangerouslySetInnerHTML={{ __html: text }}
+      onClick={handleClick} 
     >
       
     </div>

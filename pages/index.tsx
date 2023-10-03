@@ -73,18 +73,45 @@ export default function Home() {
 		if (element) {
 			element.innerHTML = '<p>Loading...</p>';
 		}
-		let debugLog = "==============================================\n========= Answer Progress - Debugging Log :) ==========\n========== -Full answers can take up to 120s ===========\n==============================================\n\n"
-		setFinalAnswer(debugLog);
+		const progressContainer = document.getElementById('progressContainer');
+		if (progressContainer) {
+			const progressBarHTML = `<div class="mb-8 absolute h-6 w-full max-w-[1200px] rounded-full bg-white border-2 border-white">
+			<div 
+				id="progressDiv" 
+				class="striped-gradient absolute top-0 left-0 h-full rounded-full transition-all duration-2000"
+				style="width: 0%;"
+			>
+			</div>
+			<span id="progressLabel" class="absolute inset-0 flex items-center justify-center text-lg font-medium text-white">
+				0%
+			</span>
+		</div>`;
+			progressContainer.innerHTML = progressBarHTML;
+		}
+		const progressDiv = document.getElementById('progressDiv');
+		const progressText = document.getElementById('progressLabel');
+		if (progressDiv && progressText) {
+			progressDiv.style.width = `0%`;
+			progressText.innerText = `0%`;
+		}
+
+
+
+		let debugLog = "==============================================\n========= Answer Progress - Debugging Log :) ==========\n========== -Full answers can take up to 180s ===========\n========== Temporary Logs - Beta only ===========\n==============================================\n\n";
 		debugLog += "Initializing instance of Abe...\n";
 		debugLog += "Starting user query processing stage...\n";
 		debugLog += " - Generating user query expansion with GPT-4\n";
 		debugLog += " - Generating similar queries for similarity search with GPT-3.5-turbo\n";
 		setFinalAnswer(debugLog);
+		if (progressDiv && progressText) {
+			progressDiv.style.width = `15%`;
+			progressText.innerText = `15%`;
+		}
 
-		
+
 		// Start Processing Stage: Expand user query and generate similar queries
-		let start = performance.now()
-		let totalStart = performance.now()
+		let start = performance.now();
+		let totalStart = performance.now();
 		const processBody: ProcessBody = {
 			question,
 			dataset,
@@ -111,14 +138,18 @@ export default function Home() {
 		const templateQuestionList = processData.questionList;
 		const similarQueries = processData.similarQueries;
 		const templateQuestion = templateQuestionList[2];
-		
+
 		debugLog += "Starting embedding similarity search phase...\n";
-		debugLog += " - Embedding of expanded similar queries created before search\n"
+		debugLog += " - Embedding of expanded similar queries created before search\n";
 		debugLog += " - Conducting embedding similarity search on entire CA Legal Code\n";
-		setFinalAnswer(debugLog)
+		setFinalAnswer(debugLog);
+		if (progressDiv && progressText) {
+			progressDiv.style.width = `25%`;
+			progressText.innerText = `25%`;
+		}
 
 		// Start Searching Stage: Conduct embedding similarity search for similar queries
-		start = performance.now()
+		start = performance.now();
 		const searchBody: SearchBody = {
 			similarQuery: similarQueries,
 			openAiKey: apiKey
@@ -146,15 +177,19 @@ export default function Home() {
 		debugLog += " - Tracking well formatted section citations and source links\n";
 		debugLog += ` - Time spent in searching stage: ${elapsedTime.toFixed(2)} seconds\n`;
 		debugLog += "Starting partial answering stage...\n";
-		debugLog += " - Partially answering user query for all 40 sections, concurrently\n"
-		setFinalAnswer(debugLog)
+		debugLog += " - Partially answering user query for all 40 sections, concurrently\n";
+		setFinalAnswer(debugLog);
+		if (progressDiv && progressText) {
+			progressDiv.style.width = `50%`;
+			progressText.innerText = `50%`;
+		}
 
 		// Start Partial Answer Stage: For each section of legal text, create a partial answer
-		start = performance.now()
+		start = performance.now();
 		const partialAnswerBody: PartialAnswerBody = {
 			legalText: legalText,
-  			openAiKey: apiKey,
-  			templateQuestion: templateQuestion
+			openAiKey: apiKey,
+			templateQuestion: templateQuestion
 		};
 		console.log("Partial Answering Stage: fetch /api/askAbePartialAnswer");
 		const partialAnswerResponse = await fetch('/api/askAbePartialAnswer', {
@@ -175,13 +210,17 @@ export default function Home() {
 
 		const partialAnswers = partialAnswerData.partialAnswers;
 		debugLog += ` - Time spent in partial answering stage: ${elapsedTime.toFixed(2)} seconds\n`;
-		debugLog += "Starting answer template stage...\n"
-		debugLog += " - Creating structured answer template from partial answers using GPT 4\n"
-		
-		setFinalAnswer(debugLog)
+		debugLog += "Starting answer template stage...\n";
+		debugLog += " - Creating structured answer template from partial answers using GPT 4\n";
+
+		setFinalAnswer(debugLog);
+		if (progressDiv && progressText) {
+			progressDiv.style.width = `65%`;
+			progressText.innerText = `65%`;
+		}
 
 		// Enter Answer Template Stage: Create ideal answer template from partial answers of legal text
-		start = performance.now()
+		start = performance.now();
 		const answerTemplateBody: AnswerTemplateBody = {
 			userQuery: question,
 			openAiKey: apiKey,
@@ -206,13 +245,17 @@ export default function Home() {
 
 		const summaryTemplate = answerTemplateData.summaryTemplate;
 		debugLog += ` - Time spent in answer template stage: ${elapsedTime.toFixed(2)} seconds\n`;
-		debugLog += "Starting final answering stage (ALMOST DONE!)...\n"
-		debugLog += " - Filling in answer template with exact source text and citations with GPT 3.5\n"
-		debugLog += " - Formatting final answer and citations\n"
-		setFinalAnswer(debugLog)
+		debugLog += "Starting final answering stage (ALMOST DONE!)...\n";
+		debugLog += " - Filling in answer template with exact source text and citations with GPT 3.5\n";
+		debugLog += " - Formatting final answer and citations\n";
+		setFinalAnswer(debugLog);
+		if (progressDiv && progressText) {
+			progressDiv.style.width = `85%`;
+			progressText.innerText = `85%`;
+		}
 
 		// Enter Answering Stage: Populate answer template and return final answer
-		start = performance.now()
+		start = performance.now();
 		const finalAnswerBody: FinalAnswerBody = {
 			userQuery: question,
 			openAiKey: apiKey,
@@ -237,74 +280,58 @@ export default function Home() {
 		elapsedTime = (end - start) / 1000;
 		debugLog += ` - Time spent in final answering stage: ${elapsedTime.toFixed(2)} seconds\n`;
 		// Exit Answer Stage
-		setFinalAnswer("Loading Final Answer...")
+		setFinalAnswer("Loading Final Answer...");
+		if (progressDiv && progressText) {
+			progressDiv.style.width = `100%`;
+			progressText.innerText = `100%`;
+		}
 		let finalAnswer = answerData.finalAnswer;
-		console.log(debugLog)
+		console.log(debugLog);
 		// Update citations and set all fields :)
-		const {citations, finalAnswerFormatted }= findSectionsCited(citationList, finalAnswer);
+		const { citations, finalAnswerFormatted } = findSectionsCited(citationList, finalAnswer);
 
-		
+		console.log(finalAnswerFormatted);
 		let index = finalAnswerFormatted.indexOf("\n");
-		finalAnswer = `# Abes Answer For: ${question}\n` + finalAnswerFormatted.slice(index+1);
+		finalAnswer = `# Abes Answer For: ${question}\n` + finalAnswerFormatted.slice(index + 1);
 		const citationElement = document.getElementById('citationArea');
+		if (citationElement) {
+			citationElement.innerHTML = "";
+		}
 		citations.forEach(({ citation, source, sectionContent, answerCitation }) => {
-			const sectionCitation = `<details id="${citation}" style="white-space: pre-wrap;"><summary>${citation}</summary>${source}${sectionContent}</details>`;
+			const sectionCitation = `<details id="${citation}" style="white-space: pre-wrap;"><summary>${citation}</summary>${source}\n${sectionContent}</details>`;
+			// const sectionCitation = `
+			// <details id="${citation}" style="white-space: pre-wrap;">
+			// 	<summary>
+			// 		${citation}
+			// 		<span class="ml-2 relative h-3 w-3 inline-block opacity-0" id="ping-${citation}">
+			// 			<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+			// 			<span class="relative inline-flex rounded-full h-3 w-3 bg-blue-500"></span>
+			// 		</span>
+			// 	</summary>
+			// 	${source}\n${sectionContent}
+			// </details>`;
+
+
 			//const answerCitation = `<a href="#${citation}" style="color: rgb(0, 204, 255);text-decoration: underline;">${citation}</a>`;
-			
+
 			// Append to the contentElement
-			console.log(citationElement)
-			
 			if (citationElement) {
-				console.log(citationElement.innerHTML)
 				citationElement.innerHTML += sectionCitation;
 			}
-			
+
 		});
-
-
 		setFinalAnswer(finalAnswer);
-
-
-		document.addEventListener("DOMContentLoaded", function() {
-			// Your citation variables here...
-			
-			
-			// Inject your HTML into your content div or wherever it needs to be
-			const finalAnswerElement = document.getElementById("finalAnswerContainer")
-			
-			if (!finalAnswerElement) {
-				throw new Error("Error linking citations from answer to citations section!")
-			}
-			finalAnswerElement.addEventListener('click', (e) => {
-				const target = e.target as HTMLElement;
-				
-				// Check if the clicked element is an 'a' tag and has href attribute
-				if (target.tagName === 'A' && 'href' in target) {
-					const citationId = (target as HTMLAnchorElement).href.split('#')[1];
-					
-					const detailsElement = document.getElementById(citationId) as HTMLDetailsElement;
-					const summaryElement = detailsElement?.querySelector('summary');
-					
-					// Check if both elements are found, and if so, toggle the 'open' state and 'highlight' class
-					if (detailsElement && summaryElement) {
-						detailsElement.open = true;
-						summaryElement.classList.toggle('highlight', detailsElement.open);
-					}
-				}
-			});
-		});
-		
-		
-
-
 
 		let totalEnd = performance.now();
 		let totalElapsedTime = (totalEnd - totalStart) / 1000;
-		console.log(`Total elapsed time: ${totalElapsedTime} seconds.`)
+		console.log(`Total elapsed time: ${totalElapsedTime} seconds.`);
 
 		setLoading(false);
 		setHasAnswered(true);
 		copyToClipboard(finalAnswer);
+		if (progressContainer) {
+			progressContainer.innerHTML = ``;
+		}
 		return;
 
 	};
@@ -319,19 +346,23 @@ export default function Home() {
 			}
 			const content = tup[1];
 			const link = tup[2];
-			const sourceLink = `<a href="${link}"style=" color: rgb(0, 204, 255);text-decoration: underline;">${citation}</a>`;
+			const sourceLink = `<a href="${link}"target="_blank"style=" color: rgb(0, 204, 255);text-decoration: underline;">${citation}</a>`;
 			const answerCitation = `<a href="#${citation}"style=" color: rgb(0, 204, 255);text-decoration: underline;">${citation}</a>`;
-			citedSections.push({citation: citation, source: sourceLink, sectionContent: content, answerCitation:answerCitation})
+			const safeCitation = citation.replace(/[.*+?^=!:${}()|\[\]\/\\]/g, "\\$&");
+
+			// Replacing all instances of citation in finalAnswer
+			finalAnswer = finalAnswer.replace(new RegExp(safeCitation, 'g'), answerCitation);
+			citedSections.push({ citation: citation, source: sourceLink, sectionContent: content, answerCitation: answerCitation });
 			// const sectionCitation = `<details id="${citation}" style="white-space: pre-wrap;"><summary>${summaryTag}</summary>${source}${sectionContent}</details>`;
-			
-			finalAnswer = finalAnswer.replace(citation, answerCitation)
+
+
 		}
-		return {citations:citedSections, finalAnswerFormatted:finalAnswer};
+		return { citations: citedSections, finalAnswerFormatted: finalAnswer };
 	}
 
-	
-	
-	
+
+
+
 	const copyToClipboard = (text: string) => {
 		const el = document.createElement('textarea');
 		el.value = text;
@@ -365,6 +396,9 @@ export default function Home() {
 		}
 	}, []);
 
+
+
+
 	return (
 		<>
 			<Head>
@@ -381,12 +415,12 @@ export default function Home() {
 				<div className="mt-10 flex flex-col items-center justify-center sm:mt-20">
 					<div className="text-4xl font-bold">Trustworthy Legal Question Answering</div>
 					<div className="imageContainer">
-					<Image 
-						src="/abeLogo.png" 
-						alt="Ask Abe Banner" 
-						width={746}  // Original width
-						height={224}  // Original height
-					/>
+						<Image
+							src="/abeLogo.png"
+							alt="Ask Abe Banner"
+							width={746}  // Original width
+							height={224}  // Original height
+						/>
 					</div>
 				</div>
 
@@ -410,13 +444,16 @@ export default function Home() {
 					</button>
 				</div>
 
-				<div className="mt-2 text-center text-xs">
+				<div className="mb-8 mt-2 text-center text-m">
 					{loading
 						? 'Answering...'
 						: hasAnswered
 							? 'Output copied to clipboard!'
 							: 'Enter a legal question and click "Answer"'}
 				</div>
+				<div id="progressContainer"className="mb-8 relative h-6 w-full max-w-[1200px]"></div>
+					
+
 
 				<div className="mt-6 flex w-full max-w-[1200px] flex-col justify-between sm:flex-row sm:space-x-4">
 					<div className="mt-8 flex h-full flex-col justify-center space-y-2 sm:mt-0 sm:w-2/4">
@@ -426,7 +463,7 @@ export default function Home() {
 							editable={false}
 							onChange={(value) => {
 								setFinalAnswer(value);
-	
+
 							}}
 						/>
 					</div>
@@ -436,13 +473,13 @@ export default function Home() {
 					</div>
 				</div>
 				<footer className="mt-auto p-6 text-center">
-					<p>We appreciate your feedback! Please fill out our 
-					<a href="https://docs.google.com/forms/d/e/1FAIpQLSf3d_18c8ABLBTRJTFYMLflMgSCCFjarlK_gRn6ulNCBn_DUw/viewform" 
-						target="_blank" 
-						rel="noopener noreferrer" 
-						className="underline text-blue-500 hover:text-blue-700">
-						feedback form
-					</a>.
+					<p>We appreciate any and all feedback! Please fill out our 
+						<a href="https://docs.google.com/forms/d/e/1FAIpQLSf3d_18c8ABLBTRJTFYMLflMgSCCFjarlK_gRn6ulNCBn_DUw/viewform"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="underline text-blue-500 hover:text-blue-700">
+							feedback form
+						</a>. Thank you.
 					</p>
 				</footer>
 			</div>
