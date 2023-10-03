@@ -41,7 +41,7 @@ export default async function handler(req: NextRequest, res: NextApiResponse) {
 		let currentTokens = 0;
 		let row = 0;
 		const legalText: any[] = [];
-		let maxTokens = 24000; // override
+		let maxTokens = 50000; // override
 
 		while (currentTokens < maxTokens && row < sections.length) {
 			currentTokens += sections[row].contentTokens;

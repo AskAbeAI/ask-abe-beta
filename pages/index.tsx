@@ -6,6 +6,8 @@ import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import { QuestionInput } from '../components/QuestionInput';
 import Image from 'next/image';
+import { createClient } from "@supabase/supabase-js";
+
 
 
 
@@ -18,6 +20,7 @@ interface CitationBlock {
 
 
 export default function Home() {
+	
 	const [question, setQuestion] = useState<string>('');
 	const [finalAnswer, setFinalAnswer] = useState<string>('');
 	const [dataset, setDataset] = useState<Dataset>('California Code');
@@ -25,7 +28,10 @@ export default function Home() {
 	const [hasAnswered, setHasAnswered] = useState<boolean>(false);
 	const [apiKey, setApiKey] = useState<string>('');
 	
+	
+	
 	const handleQuestion = async () => {
+		//require('dotenv').config()
 		try {
 			const maxQuestionLength = 100;
 			console.log("In handle question!");
@@ -323,7 +329,8 @@ export default function Home() {
 
 			let totalEnd = performance.now();
 			let totalElapsedTime = (totalEnd - totalStart) / 1000;
-			console.log(`Total elapsed time: ${totalElapsedTime} seconds.`);
+			insertData({user_query: question, final_answer: finalAnswer, dataset: dataset, did_finish: true, similar_queries: similarQueries, partial_answers: partialAnswers, summary_template: summaryTemplate, raw_legal_text: legalText, runTime: totalElapsedTime, })
+			
 
 			setLoading(false);
 			setHasAnswered(true);
@@ -333,6 +340,8 @@ export default function Home() {
 			}
 			return;
 		} catch(error) {
+
+			insertData({user_query: question, final_answer: finalAnswer, dataset: dataset})
 			alert(`A critical error occured! My bad G. Error: ${error}`);
 			console.log(`A critical error occured! My bad G. Error: ${error}`)
 			setHasAnswered(false);
@@ -347,6 +356,61 @@ export default function Home() {
 		}
 
 	};
+	
+
+	interface Data {
+		user_query?: string;
+		dataset?: string;
+		runTime?: number;
+		did_finish?: boolean;
+		similar_queries?: string;
+		raw_legal_text?: string;
+		partial_answers?: string;
+		summary_template?: string;
+		final_answer?: string;
+	}
+	
+	  
+	
+	const insertData = async (data: Data) => {
+		// Define defaults and overwrite them with provided data
+		// const SUPABASE_URL = process.env.SUPABASE_URL;  // Get from environment variable
+		// const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;  // Get from environment variable
+		
+		// // Always check your environment variables before using them
+		// if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+		// 	console.error('Missing Supabase credentials');
+		// 	throw new Error('Missing Supabase credentials');
+		// }
+	
+		const supabase = createClient('https://jwscgsmkadanioyopaef.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp3c2Nnc21rYWRhbmlveW9wYWVmIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTU2NzE1MTgsImV4cCI6MjAxMTI0NzUxOH0.1QwW9IV1TrMT72xyq2LQcmDr92tmLOEQg07mOPRLDO0');
+
+		const defaults: Data = {
+			user_query: 'NULL',
+			dataset: 'NULL',
+			runTime: -1,
+			did_finish: false,
+			similar_queries: 'NULL',
+			raw_legal_text: 'NULL',
+			partial_answers: 'NULL',
+			summary_template: 'NULL',
+			final_answer: 'NULL',
+		};
+	
+		const rowData = { ...defaults, ...data };
+	
+		const { error } = await supabase
+			.from('betaLogs')
+			.insert([rowData]);
+	
+		if (error) {
+			console.error('Error inserting data: ', error);
+			throw error;  // propagate the error to the caller function
+		}
+	
+		console.log('Data inserted successfully!');
+	};
+	
 	
 
 	function findSectionsCited(citationList: any[], finalAnswer: string) {
@@ -491,7 +555,7 @@ export default function Home() {
 							target="_blank"
 							rel="noopener noreferrer"
 							className="underline text-blue-500 hover:text-blue-700">
-							feedback form
+							 feedback form
 						</a>. Thank you.
 					</p>
 				</footer>
