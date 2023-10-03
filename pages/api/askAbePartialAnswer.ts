@@ -63,7 +63,7 @@ async function getCompletions(
 ): Promise<any[]> {
 	const allPromises = texts.map(async text => {
 		const prompt = getPromptSimpleAnswer(text, question);
-		return createChatCompletion(prompt, "gpt-3.5-turbo", 0);
+		return createChatCompletion(prompt, "gpt-3.5-turbo-16k", 0);
 	});
 	return await Promise.all(allPromises);
 }

@@ -56,7 +56,7 @@ export default async function (req: NextRequest, res: NextApiResponse) {
         for await (const message of streamChatCompletion(
             promptPopulate,
             "gpt-3.5-turbo-16k",
-            0,
+            0.4,
         )) {
             yield message;
         }
@@ -96,17 +96,17 @@ export default async function (req: NextRequest, res: NextApiResponse) {
             LegalDocumentation: legalDocumentation,
             Question: question
         });
-        const system = `Using the provided markdown template and the associated legal documentation, improve the initial guidance from the legal expert to become a full answer with pertinent details and in line citations. 
+        const system = `Using the provided markdown template and the associated legal documentation, improve the partial answer or guidance from the legal expert to become a full answer with all pertinent details and in line citations. 
 
     **Input Description:**
-    - **Template**: A structured markdown outline utilizing various levels of headers (#, ##, ###, ####). The ">" symbol in the template signifies guidance from a legal expert, which should be improved and refined.
+    - **Template**: A structured markdown outline utilizing various levels of headers (#, ##, ###, ####). The ">" symbol in the template signifies guidance or partial answers from a legal expert, which should be refined and expanded.
     - **Legal Documentation**: Your primary reference material containing all necessary information to address the legal inquiry. Use this document to derive content to replace the guidance after the ">" in the template.
     - **Question**: The specific legal inquiry that will be answered using the populated template and the legal documentation.
 
     **Instructions:**
     1. Thoroughly acquaint yourself with the template. Note areas marked by the ">" symbol; these are pointers from the legal expert that should be improved and refined with content and citations.
     2. Delve into the legal documentation, sourcing information that aligns with the ">" pointers and the related headers.
-    3. In the sections with ">", follow the expert's guidance in order to replace the guidance with improved and refined content directly from the legal text, ensuring to include legal citations in line.
+    3. In the sections with ">", follow the expert's initial work in order to replace the partial answer with improved and refined content directly from the legal text, ensuring to include legal citations in line.
     4. Emphasize accuracy and completeness, ensuring that the content reflects the essence and specifics of the original legal documentation. 
     **Output:**
     A refined markdown template where guidance after the ">" symbol has been seamlessly refined with content from the legal documentation, resulting in a well-structured response to the legal inquiry.`;

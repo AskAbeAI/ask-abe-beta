@@ -22,7 +22,7 @@ export default async function (req: NextRequest, res: NextApiResponse) {
 		let summaryTemplate = await createChatCompletion(
 			promptSummarize,
 			"gpt-4",
-			1,
+			0.6,
 		);
 		summaryTemplate = summaryTemplate.replace(/\n- /g, "> ");
 		// return summaryTemplate, partialAnswers
