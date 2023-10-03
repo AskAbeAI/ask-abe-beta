@@ -39,8 +39,8 @@ export const CustomFooter: React.FC<Props> = () => {
                     <div  className="bg-[#1A1B26] p-5 rounded-lg">
                         <p>While not necessary, refining a basic question to be more specific and targeted has been shown in our testing to greatly improve Abes responses.</p>
                         <ul className="list-disc pl-5">
-                            <li><strong>Direct & Specific</strong>: Clearly articulate what youre seeking. For instance, instead of "What do I do if someone owes me money?", opt for "What are the small claims court processes in California for recovering debts?"</li>
-                            <li><strong>Include Legal Terms</strong>: If youre aware of specific legal terminology related to your query, include it. For instance, "What is the statute of limitations for personal injury claims in California?"</li>
+                            <li><strong>Direct & Specific</strong>: Clearly articulate what youre seeking. For instance, instead of &quot;What do I do if someone owes me money?&quot;, opt for &quot;What are the small claims court processes in California for recovering debts?&quot;</li>
+                            <li><strong>Include Legal Terms</strong>: If youre aware of specific legal terminology related to your query, include it. For instance, &quot;What is the statute of limitations for personal injury claims in California?&quot;</li>
                             <li><strong>Grounded in CA Legal Code</strong>: Ensure your question pertains to laws and statutes within the jurisdiction of Californias legal code.</li>
                             <li><strong>Pose as a Singular Question</strong>: Refrain from asking multiple consecutive simple questions in one ask. A <strong>detailed, multi-layered, and expressive single question</strong> is much better.</li>
                         </ul>
