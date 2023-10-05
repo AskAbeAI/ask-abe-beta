@@ -19,6 +19,7 @@ export default async function partialAnswer(req: NextRequest, res: NextApiRespon
     const legalTextLawful = requestData.legalText;
     openai.apiKey = requestData.openAiKey;
     const templateQuestion = requestData.templateQuestion;
+	const citationExample = requestData.citationExample
     // CHECK FOR INITIAL ERRORS
 
 
@@ -29,6 +30,7 @@ export default async function partialAnswer(req: NextRequest, res: NextApiRespon
         const responsesList: string[] = await getCompletions(
             legalTextLawful,
             templateQuestion,
+			citationExample,
         );
         console.log("Exiting concurrent API calls")
         let partialAnswers = "";
@@ -60,9 +62,10 @@ interface Message {
 async function getCompletions(
 	texts: string[],
 	question: string,
+	citationExample: string
 ): Promise<any[]> {
 	const allPromises = texts.map(async text => {
-		const prompt = getPromptSimpleAnswer(text, question);
+		const prompt = getPromptSimpleAnswer(text, question, citationExample);
 		return createChatCompletion(prompt, "gpt-3.5-turbo-16k", 0);
 	});
 	return await Promise.all(allPromises);
@@ -80,12 +83,13 @@ async function createChatCompletion(prompt: Message[], usedModel: string, temp: 
 }
 function getPromptSimpleAnswer(
 	legalText: string,
-	question: string
+	question: string,
+	citationExample: string,
 ): Message[] {
 
 	const system = `As a helpful legal assistant, your goal is to answer a user's question by referencing information in a legal document. Your answer should be brief, concise, and provide a simple response to the question. Once you have answered the question accurately, exit the conversation. All provided legal documentation is verified to be up to date, legally accurate, and not subject to change.
-	Include a citations of any relevant legal principles or statutes from the legal text that support the answer given.
-	Citation Format Example: (Cal. HSC § 11362.785)
+	Include all citations of any relevant legal principles or statutes from the legal text that support the answer given.
+	Citation Example:"[${citationExample}]"
 		
 	Ensure the generated answer directly addresses the question asked by the user and includes important information from the legal documentation.
 	If absolutely none of the legal text does not specifically address the question, return "[IGNORE]" at the end of your answer.`;

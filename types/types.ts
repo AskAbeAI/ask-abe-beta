@@ -1,4 +1,4 @@
-export type Dataset = 'California Code'; // | 'Federal Regulation' | 'MICA Regulations';
+export type Dataset = 'California Code' | 'EU MICA Regulations'; // | 'Federal Regulation' | 'MICA Regulations';
 
 export interface ProcessBody {
   question: string;
@@ -26,11 +26,13 @@ export interface AnswerTemplateBody {
 export interface SearchBody {
   similarQuery: string;
   openAiKey: string;
+  jurisdiction: string;
 }
 
 export interface PartialAnswerBody {
   legalText: string;
   openAiKey: string;
   templateQuestion: string;
+  citationExample: string
 }
 

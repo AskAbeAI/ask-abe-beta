@@ -33,8 +33,11 @@ export default function Home() {
 	
 	const handleQuestion = async () => {
 		//require('dotenv').config()
+		
+		console.log(dataset)
+		
 		try {
-			const maxQuestionLength = 100;
+			const maxQuestionLength = 300;
 			console.log("In handle question!");
 			if (!apiKey) {
 				alert('Please enter an API key.');
@@ -106,6 +109,7 @@ export default function Home() {
 
 			let debugLog = "==============================================\n========= Answer Progress - Debugging Log :) ==========\n========== -Full answers can take up to 180s ===========\n========== Temporary Logs - Beta only ===========\n==============================================\n\n";
 			debugLog += "Initializing instance of Abe...\n";
+			debugLog += ` - Scope of search: ${dataset}\n`;
 			debugLog += "Starting user query processing stage...\n";
 			debugLog += " - Generating user query expansion with GPT-4\n";
 			debugLog += " - Generating similar queries for similarity search with GPT-3.5-turbo\n";
@@ -159,7 +163,8 @@ export default function Home() {
 			start = performance.now();
 			const searchBody: SearchBody = {
 				similarQuery: similarQueries,
-				openAiKey: apiKey
+				openAiKey: apiKey,
+				jurisdiction: dataset,
 			};
 			console.log("Searching Stage: fetch /api/askAbeSearch");
 			const searchResponse = await fetch('/api/askAbeSearch', {
@@ -179,6 +184,8 @@ export default function Home() {
 			// Exit Searching Stage
 			const legalText = searchData.legalText;
 			const citationList = searchData.citationList;
+			const citationExample = citationList[0][0];
+			console.log(`Example Citation: ${citationExample}`)
 
 			debugLog += " - Retrieved source text for 40 most similar sections\n";
 			debugLog += " - Tracking well formatted section citations and source links\n";
@@ -196,7 +203,8 @@ export default function Home() {
 			const partialAnswerBody: PartialAnswerBody = {
 				legalText: legalText,
 				openAiKey: apiKey,
-				templateQuestion: templateQuestion
+				templateQuestion: templateQuestion,
+				citationExample: citationExample
 			};
 			console.log("Partial Answering Stage: fetch /api/askAbePartialAnswer");
 			const partialAnswerResponse = await fetch('/api/askAbePartialAnswer', {
@@ -251,6 +259,8 @@ export default function Home() {
 			// Exit Answer Template Stage
 
 			const summaryTemplate = answerTemplateData.summaryTemplate;
+			console.log(`Summary template: ${summaryTemplate}`);
+
 			debugLog += ` - Time spent in answer template stage: ${elapsedTime.toFixed(2)} seconds\n`;
 			debugLog += "Starting final answering stage (ALMOST DONE!)...\n";
 			debugLog += " - Filling in answer template with exact source text and citations with GPT 3.5\n";
@@ -293,47 +303,37 @@ export default function Home() {
 				progressText.innerText = `100%`;
 			}
 			let finalAnswer = answerData.finalAnswer;
-			console.log(debugLog);
+			
 			// Update citations and set all fields :)
+			console.log(citationList.length)
 			const { citations, finalAnswerFormatted } = findSectionsCited(citationList, finalAnswer);
-
-			console.log(finalAnswerFormatted);
+			console.log(citations.length)
+			//console.log(finalAnswerFormatted);
 			let index = finalAnswerFormatted.indexOf("\n");
+			
 			finalAnswer = `# Abes Answer For: ${question}\n` + finalAnswerFormatted.slice(index + 1);
+			setFinalAnswer(finalAnswer);
+			//console.log(finalAnswer)
+
 			const citationElement = document.getElementById('citationArea');
-			if (citationElement) {
-				citationElement.innerHTML = "";
-			}
+			console.log(citationElement)
 			citations.forEach(({ citation, source, sectionContent, answerCitation }) => {
 				const sectionCitation = `<details id="${citation}" style="white-space: pre-wrap;"><summary>${citation}</summary>${source}\n${sectionContent}</details>`;
-				// const sectionCitation = `
-				// <details id="${citation}" style="white-space: pre-wrap;">
-				// 	<summary>
-				// 		${citation}
-				// 		<span class="ml-2 relative h-3 w-3 inline-block opacity-0" id="ping-${citation}">
-				// 			<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-				// 			<span class="relative inline-flex rounded-full h-3 w-3 bg-blue-500"></span>
-				// 		</span>
-				// 	</summary>
-				// 	${source}\n${sectionContent}
-				// </details>`;
-
-
-				//const answerCitation = `<a href="#${citation}" style="color: rgb(0, 204, 255);text-decoration: underline;">${citation}</a>`;
-
-				// Append to the contentElement
-				if (citationElement) {
-					citationElement.innerHTML += sectionCitation;
+				if (!citationElement) {
+					throw new Error("Couldn't find citation element!")
 				}
+				
+				citationElement.innerHTML += sectionCitation;
+				console.log(citationElement.innerHTML)
+				
 
 			});
-			console.log(`Final Answer: ${finalAnswer}`)
-			console.log(`Cited Sections: ${citationList}`)
 			setFinalAnswer(finalAnswer);
+			
 
 			let totalEnd = performance.now();
 			let totalElapsedTime = (totalEnd - totalStart) / 1000;
-			insertData({user_query: question, final_answer: finalAnswer, dataset: dataset, did_finish: true, similar_queries: similarQueries, partial_answers: partialAnswers, summary_template: summaryTemplate, raw_legal_text: legalText, runTime: totalElapsedTime, })
+			insertData({user_query: question, final_answer: finalAnswer, dataset: dataset, did_finish: true, similar_queries: similarQueries, partial_answers: partialAnswers, summary_template: summaryTemplate, runTime: totalElapsedTime})
 			
 			console.log(`Total Time Elapsed: ${totalElapsedTime}`)
 			console.log(`Full debug log: ${debugLog}`)
@@ -350,6 +350,12 @@ export default function Home() {
 			
 			console.log(`A critical error occured! My bad G. Error: ${error}`)
 			alert(`A critical error occured! My bad G. Error: ${error}`);
+			const progressDiv = document.getElementById('progressDiv');
+			const progressText = document.getElementById('progressLabel');
+			if (progressDiv && progressText) {
+				progressDiv.style.width = `0%`;
+				progressText.innerText = `0%`;
+			}
 
 			setHasAnswered(false);
 			setFinalAnswer('');
@@ -432,11 +438,11 @@ export default function Home() {
 			const link = tup[2];
 			const sourceLink = `<a href="${link}"target="_blank"style=" color: rgb(0, 204, 255);text-decoration: underline;">${citation}</a>`;
 			const answerCitation = `<a href="#${citation}"style=" color: rgb(0, 204, 255);text-decoration: underline;">${citation}</a>`;
-			const safeCitation = citation.replace(/[.*+?^=!:${}()|\[\]\/\\]/g, "\\$&");
+			
 
 			// Replacing all instances of citation in finalAnswer
-			finalAnswer = finalAnswer.replace(new RegExp(safeCitation, 'g'), answerCitation);
-			citedSections.push({ citation: citation, source: sourceLink, sectionContent: content, answerCitation: answerCitation });
+			finalAnswer = finalAnswer.replace(citation, answerCitation);
+			citedSections.push({ citation: citation, source: sourceLink, sectionContent: content, answerCitation: answerCitation});
 			// const sectionCitation = `<details id="${citation}" style="white-space: pre-wrap;"><summary>${summaryTag}</summary>${source}${sectionContent}</details>`;
 
 
