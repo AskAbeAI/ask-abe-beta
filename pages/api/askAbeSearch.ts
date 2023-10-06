@@ -79,14 +79,16 @@ export default async function search(req: NextRequest, res: NextApiResponse) {
 		for (const row of sections) {
 			if (jurisdiction === 'EU MICA Regulations') {
 				let content = row.section_text;
-				let citation = "[" + row.citation + "]";
+				let citation = "@" + row.citation + "@";
 				let link = row.link
 				citationList.push([citation, content, link])
 				result += `\n* ${citation}:\n${content}\n`;
 				continue;
 			}
 			let content = row.content;
-			const citation = `[Cal. ${row.code} § ${row.section}]`;
+			let citation = `@Cal. ${row.code} § ${row.section}@`;
+			citation = citation.toLowerCase();
+			//console.log(citation)
 			const link = row.link;
 			citationList.push([citation, content, link]);
 			result += `\n* ${citation}:\n${content}\n`;

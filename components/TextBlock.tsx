@@ -13,10 +13,11 @@ export const TextBlock: React.FC<Props> = ({
   // Handle the click event within the React component
   const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const target = e.target as HTMLElement;
+    console.log("Handling click!")
 
     // Check if the clicked element is an 'a' tag and has href attribute
     if (target.tagName === 'A' && target.getAttribute('href')) {
-      const citationId = target.innerText;
+      const citationId = target.innerText.slice(1, target.innerText.length-1);
 
       const detailsElement = document.getElementById(citationId) as HTMLDetailsElement;
       const summaryElement = detailsElement?.querySelector('summary');

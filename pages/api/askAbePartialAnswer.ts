@@ -89,7 +89,7 @@ function getPromptSimpleAnswer(
 
 	const system = `As a helpful legal assistant, your goal is to answer a user's question by referencing information in a legal document. Your answer should be brief, concise, and provide a simple response to the question. Once you have answered the question accurately, exit the conversation. All provided legal documentation is verified to be up to date, legally accurate, and not subject to change.
 	Include all citations of any relevant legal principles or statutes from the legal text that support the answer given.
-	Citation Example:"[${citationExample}]"
+	Citation Example:${citationExample}
 		
 	Ensure the generated answer directly addresses the question asked by the user and includes important information from the legal documentation.
 	If absolutely none of the legal text does not specifically address the question, return "[IGNORE]" at the end of your answer.`;
@@ -97,6 +97,7 @@ function getPromptSimpleAnswer(
 	const user = `Read the entire legal documentation and answer the following question from the documentation:
 	Question: ${question}
 	Legal documentation:${legalText}`;
+	
 
 	return applyToGeneric(system, user);
 }

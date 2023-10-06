@@ -74,10 +74,10 @@ function getPromptSummaryTemplate(
 - For each main idea, establish secondary points and label them using "##".
 - Beneath each secondary point, highlight any tertiary points with "###".  
 - For each detail or specific concept which applies to an idea, write ">" and guidance to the legal expert on how to answer the legal question.
-- For each detail or sepcific concept, include the legal citations from where this answer may come from, keeping the legal citation enclosed with "[]".
+- For each detail or sepcific concept, include the legal citations from where this answer may come from, keeping the legal citation in this format: "@citation@".
 4. Keep the guidance concise, especially for the ">" level. Avoid placeholders or lengthy notes. The emphasis should be on clear headers and brief guidance.  
 
-Legal Citations are found in the legal documentation encapsulated by "[]".
+Legal Citations are found in the legal documentation foud in this format: "@citation@".
 The first main idea should always be a rephrasing of the question followed by a sub-idea called TLDR, where you should write ">" and guidance on giving a simple and short answer to the user question.
 
 **Output:**

@@ -224,6 +224,7 @@ export default function Home() {
 			// Exit Partial Answer Stage
 
 			const partialAnswers = partialAnswerData.partialAnswers;
+			console.log(partialAnswers)
 			debugLog += ` - Time spent in partial answering stage: ${elapsedTime.toFixed(2)} seconds\n`;
 			debugLog += "Starting answer template stage...\n";
 			debugLog += " - Creating structured answer template from partial answers using GPT 4\n";
@@ -259,8 +260,8 @@ export default function Home() {
 			// Exit Answer Template Stage
 
 			const summaryTemplate = answerTemplateData.summaryTemplate;
-			console.log(`Summary template: ${summaryTemplate}`);
-
+			console.log(summaryTemplate)
+			//console.log(`Summary template: ${summaryTemplate}`);
 			debugLog += ` - Time spent in answer template stage: ${elapsedTime.toFixed(2)} seconds\n`;
 			debugLog += "Starting final answering stage (ALMOST DONE!)...\n";
 			debugLog += " - Filling in answer template with exact source text and citations with GPT 3.5\n";
@@ -302,33 +303,34 @@ export default function Home() {
 				progressDiv.style.width = `100%`;
 				progressText.innerText = `100%`;
 			}
-			let finalAnswer = answerData.finalAnswer;
+			
 			
 			// Update citations and set all fields :)
-			console.log(citationList.length)
-			const { citations, finalAnswerFormatted } = findSectionsCited(citationList, finalAnswer);
+			let { citations, finalAnswerFormatted } = findSectionsCited(citationList, answerData.finalAnswer);
 			console.log(citations.length)
 			//console.log(finalAnswerFormatted);
 			let index = finalAnswerFormatted.indexOf("\n");
 			
-			finalAnswer = `# Abes Answer For: ${question}\n` + finalAnswerFormatted.slice(index + 1);
-			setFinalAnswer(finalAnswer);
-			//console.log(finalAnswer)
+			finalAnswerFormatted = `# Abes Answer For: ${question}\n` + finalAnswerFormatted.slice(index + 1);
+			setFinalAnswer(finalAnswerFormatted);
+			console.log(finalAnswerFormatted)
 
 			const citationElement = document.getElementById('citationArea');
-			console.log(citationElement)
+			if (citationElement) {
+				citationElement.innerHTML = "";
+			}
+			
 			citations.forEach(({ citation, source, sectionContent, answerCitation }) => {
-				const sectionCitation = `<details id="${citation}" style="white-space: pre-wrap;"><summary>${citation}</summary>${source}\n${sectionContent}</details>`;
+				const sectionCitation = `<details id="${citation}" style="white-space: pre-wrap;"><summary><strong>${citation}</strong></summary>Official Government Source:${source}\n${sectionContent}</details>`;
 				if (!citationElement) {
 					throw new Error("Couldn't find citation element!")
 				}
-				
+				console.log(`Adding citation to citationArea: ${citation}`)
 				citationElement.innerHTML += sectionCitation;
-				console.log(citationElement.innerHTML)
+				//console.log(citationElement.innerHTML)
 				
 
 			});
-			setFinalAnswer(finalAnswer);
 			
 
 			let totalEnd = performance.now();
@@ -336,7 +338,7 @@ export default function Home() {
 			insertData({user_query: question, final_answer: finalAnswer, dataset: dataset, did_finish: true, similar_queries: similarQueries, partial_answers: partialAnswers, summary_template: summaryTemplate, runTime: totalElapsedTime})
 			
 			console.log(`Total Time Elapsed: ${totalElapsedTime}`)
-			console.log(`Full debug log: ${debugLog}`)
+			//console.log(`Full debug log: ${debugLog}`)
 			setLoading(false);
 			setHasAnswered(false);
 			copyToClipboard(finalAnswer);
@@ -365,11 +367,37 @@ export default function Home() {
 			}
 			setLoading(false)
 			return;
-			
 		}
-
 	};
 	
+	
+
+	function findSectionsCited(citationList: any[], finalAnswerFormatted: string) {
+		let citedSections: CitationBlock[] = [];
+		for (const tup of citationList) {
+			const citation = tup[0].replace(/@/g, "");
+			const answerCitation = `<a href="#${citation}"style=" color: rgb(0, 204, 255);text-decoration: underline;">[${citation}]</a>`;
+			finalAnswerFormatted = replaceAllOccurrences(finalAnswerFormatted, citation, answerCitation);
+			if (!finalAnswerFormatted.includes(citation)) {
+				continue;
+			}
+			const content = tup[1];
+			const link = tup[2];
+			const sourceLink = `<a href="${link}"target="_blank"style=" color: rgb(0, 204, 255);text-decoration: underline;">[${citation}]</a>`;
+			citedSections.push({ citation: citation, source: sourceLink, sectionContent: content, answerCitation: answerCitation});
+		}
+		return { citations: citedSections, finalAnswerFormatted: finalAnswerFormatted };
+	}
+
+	function replaceAllOccurrences(inputStr: string, search: string, replacement: string): string {
+		// Escape any special characters in the search string
+		let safeSearch = search.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+		
+		// Create a regex with the global flag to replace all occurrences
+		let regex = new RegExp(safeSearch, 'g');
+	
+		return inputStr.replace(regex, replacement);
+	}
 
 	interface Data {
 		user_query?: string;
@@ -382,20 +410,8 @@ export default function Home() {
 		summary_template?: string;
 		final_answer?: string;
 	}
-	
-	  
-	
 	const insertData = async (data: Data) => {
 		// Define defaults and overwrite them with provided data
-		// const SUPABASE_URL = process.env.SUPABASE_URL;  // Get from environment variable
-		// const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;  // Get from environment variable
-		
-		// // Always check your environment variables before using them
-		// if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
-		// 	console.error('Missing Supabase credentials');
-		// 	throw new Error('Missing Supabase credentials');
-		// }
-	
 		const supabase = createClient('https://jwscgsmkadanioyopaef.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp3c2Nnc21rYWRhbmlveW9wYWVmIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTU2NzE1MTgsImV4cCI6MjAxMTI0NzUxOH0.1QwW9IV1TrMT72xyq2LQcmDr92tmLOEQg07mOPRLDO0');
 
 		const defaults: Data = {
@@ -423,34 +439,6 @@ export default function Home() {
 	
 		console.log('Data inserted successfully!');
 	};
-	
-	
-
-	function findSectionsCited(citationList: any[], finalAnswer: string) {
-		let citedSections: CitationBlock[] = [];
-		//{ citation: "Citation1", summaryTag: "Summary1", source: "<p>Source1</p>", sectionContent: "<p>Content1</p>" },
-		for (const tup of citationList) {
-			const citation = tup[0];
-			if (!finalAnswer.includes(citation)) {
-				continue;
-			}
-			const content = tup[1];
-			const link = tup[2];
-			const sourceLink = `<a href="${link}"target="_blank"style=" color: rgb(0, 204, 255);text-decoration: underline;">${citation}</a>`;
-			const answerCitation = `<a href="#${citation}"style=" color: rgb(0, 204, 255);text-decoration: underline;">${citation}</a>`;
-			
-
-			// Replacing all instances of citation in finalAnswer
-			finalAnswer = finalAnswer.replace(citation, answerCitation);
-			citedSections.push({ citation: citation, source: sourceLink, sectionContent: content, answerCitation: answerCitation});
-			// const sectionCitation = `<details id="${citation}" style="white-space: pre-wrap;"><summary>${summaryTag}</summary>${source}${sectionContent}</details>`;
-
-
-		}
-		return { citations: citedSections, finalAnswerFormatted: finalAnswer };
-	}
-
-
 
 
 	const copyToClipboard = (text: string) => {
