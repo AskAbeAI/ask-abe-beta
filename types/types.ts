@@ -11,6 +11,7 @@ export interface FinalAnswerBody {
   openAiKey: string;
   summaryTemplate: string;
   partialAnswers: string;
+  exampleCitation: string;
 }
 
 export interface AnswerResponse {
@@ -21,6 +22,7 @@ export interface AnswerTemplateBody {
   userQuery: string;
   openAiKey: string;
   partialAnswers: string;
+  exampleCitation: string;
 }
 
 export interface SearchBody {

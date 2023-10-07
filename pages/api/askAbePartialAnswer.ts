@@ -35,7 +35,7 @@ export default async function partialAnswer(req: NextRequest, res: NextApiRespon
         console.log("Exiting concurrent API calls")
         let partialAnswers = "";
         for (let response_str of responsesList) {
-            partialAnswers = partialAnswers + "\n====\n" + response_str;
+            partialAnswers = partialAnswers  + response_str;
         }
         //  return partialAnswers
 		const partialAnswerResponseBody = {

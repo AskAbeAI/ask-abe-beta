@@ -18,12 +18,13 @@ export default async function answer(req: NextRequest, res: NextApiResponse) {
         const userQuery = requestData.userQuery;
         const summaryTemplate = requestData.summaryTemplate;
         const partialAnswers = requestData.partialAnswers;
+        const exampleCitation = requestData.exampleCitation;
 
         openai.apiKey = requestData.openAiKey;
 
         let finalAnswer = "";
         
-        for await (const message of populateSummaryTemplate(userQuery, partialAnswers, summaryTemplate)) {
+        for await (const message of populateSummaryTemplate(userQuery, partialAnswers, summaryTemplate, exampleCitation)) {
             if (message) {
                 finalAnswer += message;
                 //yield message;
@@ -49,10 +50,11 @@ export default async function answer(req: NextRequest, res: NextApiResponse) {
     async function* populateSummaryTemplate(
         question: string,
         legalDocumentation: string,
-        template: string
+        template: string,
+        exampleCitation: string
     ) {
 
-        const promptPopulate = getPromptPopulateSummaryTemplate(question, template, legalDocumentation);
+        const promptPopulate = getPromptPopulateSummaryTemplate(question, template, legalDocumentation, exampleCitation);
         for await (const message of streamChatCompletion(
             promptPopulate,
             "gpt-3.5-turbo-16k",
@@ -89,7 +91,8 @@ export default async function answer(req: NextRequest, res: NextApiResponse) {
     function getPromptPopulateSummaryTemplate(
         question: string,
         template: string,
-        legalDocumentation: string
+        legalDocumentation: string,
+        exampleCitation: string
     ) {
         const user = JSON.stringify({
             Template: template,
@@ -108,6 +111,7 @@ export default async function answer(req: NextRequest, res: NextApiResponse) {
     2. Delve into the legal documentation, sourcing information that aligns with the ">" pointers and the related headers.
     3. In the sections with ">", follow the expert's initial work in order to replace the partial answer with improved and refined content directly from the legal text, ensuring to include legal citations in line.
     4. Emphasize accuracy and completeness, ensuring that the content reflects the essence and specifics of the original legal documentation. 
+    Example Citation: ${exampleCitation}
     **Output:**
     A refined markdown template where guidance after the ">" symbol has been seamlessly refined with content from the legal documentation, resulting in a well-structured response to the legal inquiry.`;
 

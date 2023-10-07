@@ -15,10 +15,6 @@ const openai = new OpenAI({
 
 export default async function search(req: NextRequest, res: NextApiResponse) {
 
-	console.log("===========================================");
-	console.log("======= Searching- Debug Screen :) ========");
-	console.log("===========================================");
-
 
 	const requestData: any = req.body;
 	const similarQuery = requestData.similarQuery;
@@ -86,8 +82,7 @@ export default async function search(req: NextRequest, res: NextApiResponse) {
 				continue;
 			}
 			let content = row.content;
-			let citation = `@Cal. ${row.code} § ${row.section}@`;
-			citation = citation.toLowerCase();
+			let citation = `<Cal. ${row.code} § ${row.section}>`;
 			//console.log(citation)
 			const link = row.link;
 			citationList.push([citation, content, link]);

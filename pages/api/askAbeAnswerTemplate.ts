@@ -16,9 +16,10 @@ export default async function answerTemplate(req: NextRequest, res: NextApiRespo
 		const requestData: any = req.body;
 		const userQuery = requestData.userQuery;
 		const partialAnswers = requestData.partialAnswers;
+		const exampleCitation = requestData.exampleCitation;
 		openai.apiKey = requestData.openAiKey;
 
-		const promptSummarize = getPromptSummaryTemplate(userQuery, partialAnswers);
+		const promptSummarize = getPromptSummaryTemplate(userQuery, partialAnswers, exampleCitation);
 		let summaryTemplate = await createChatCompletion(
 			promptSummarize,
 			"gpt-4",
@@ -54,7 +55,8 @@ interface Message {
 }
 function getPromptSummaryTemplate(
 	question: string,
-	legalDocumentation: string
+	legalDocumentation: string,
+	exampleCitation: string
 ): Message[] {
 
 	// 201 tokens in system message
@@ -74,10 +76,10 @@ function getPromptSummaryTemplate(
 - For each main idea, establish secondary points and label them using "##".
 - Beneath each secondary point, highlight any tertiary points with "###".  
 - For each detail or specific concept which applies to an idea, write ">" and guidance to the legal expert on how to answer the legal question.
-- For each detail or sepcific concept, include the legal citations from where this answer may come from, keeping the legal citation in this format: "@citation@".
+- For each detail or sepcific concept, include the legal citations from where this answer may come from, keeping the legal citation in its original format.
 4. Keep the guidance concise, especially for the ">" level. Avoid placeholders or lengthy notes. The emphasis should be on clear headers and brief guidance.  
 
-Legal Citations are found in the legal documentation foud in this format: "@citation@".
+Legal Citations Example: ${exampleCitation}
 The first main idea should always be a rephrasing of the question followed by a sub-idea called TLDR, where you should write ">" and guidance on giving a simple and short answer to the user question.
 
 **Output:**

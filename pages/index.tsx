@@ -61,7 +61,7 @@ export default function Home() {
 			const validateBody: ProcessBody = {
 				question,
 				dataset,
-				apiKey,
+				apiKey			
 			};
 			console.log("Validation Stage: fetch /api/askAbeValidate");
 			const validateResponse = await fetch('/api/askAbeValidate', {
@@ -240,7 +240,8 @@ export default function Home() {
 			const answerTemplateBody: AnswerTemplateBody = {
 				userQuery: question,
 				openAiKey: apiKey,
-				partialAnswers: partialAnswers
+				partialAnswers: partialAnswers,
+				exampleCitation: citationExample
 			};
 			console.log("Templating Stage: fetch /api/askAbeAnswerTemplate");
 			const answerTemplateResponse = await fetch('/api/askAbeAnswerTemplate', {
@@ -278,7 +279,8 @@ export default function Home() {
 				userQuery: question,
 				openAiKey: apiKey,
 				summaryTemplate,
-				partialAnswers
+				partialAnswers,
+				exampleCitation: citationExample
 
 			};
 			console.log("Answering Stage: fetch /api/askAbeAnswer");
@@ -375,7 +377,8 @@ export default function Home() {
 	function findSectionsCited(citationList: any[], finalAnswerFormatted: string) {
 		let citedSections: CitationBlock[] = [];
 		for (const tup of citationList) {
-			const citation = tup[0].replace(/@/g, "");
+			let citation = tup[0].replace(/</g, "");
+			citation = citation.replace(/>/g, "");
 			const answerCitation = `<a href="#${citation}"style=" color: rgb(0, 204, 255);text-decoration: underline;">[${citation}]</a>`;
 			finalAnswerFormatted = replaceAllOccurrences(finalAnswerFormatted, citation, answerCitation);
 			if (!finalAnswerFormatted.includes(citation)) {
