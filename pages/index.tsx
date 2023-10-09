@@ -544,7 +544,7 @@ export default function Home() {
 
 				<div className="mt-6 flex w-full max-w-[1200px] flex-col justify-between sm:flex-row sm:space-x-4">
 					<div className="mt-8 flex h-full flex-col justify-center space-y-2 sm:mt-0 sm:w-2/4">
-						<div className="text-center text-xl font-bold">Abes Answer</div>
+						<div className="text-center text-xl font-bold">Abes Answer is...</div>
 						<TextBlock
 							text={finalAnswer}
 							editable={false}
