@@ -39,8 +39,9 @@ export default async function process(req: NextRequest, res: NextApiResponse) {
 			link: string;
 		}
 
-
+		console.log("HERE")
 		const questionListStr: string = getOriginalUniversalAnswerTemplate(userQuery);
+		console.log("HERE")
 		const promptConvertQuestion = getPromptConvertQuestion(questionListStr);
 
 		let chatCompletionConvert = await createChatCompletion(
@@ -48,31 +49,13 @@ export default async function process(req: NextRequest, res: NextApiResponse) {
 			"gpt-4",
 			0,
 		);
+		console.log("HERE")
 		chatCompletionConvert = chatCompletionConvert.replace(/\?\?/g, '?'); // Replace ?? with ?
 		chatCompletionConvert = chatCompletionConvert.replace(/\?/g, '?\n'); // Replace ? with ?\n
 
 		const questionList: string[] = chatCompletionConvert.split("\n");
 		//console.log(questionList)
-		let data_final;
-		let error_final;
 		
-		const embedding = await getEmbedding(userQuery);
-		const client = createClient('https://jwscgsmkadanioyopaef.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp3c2Nnc21rYWRhbmlveW9wYWVmIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTU2NzE1MTgsImV4cCI6MjAxMTI0NzUxOH0.1QwW9IV1TrMT72xyq2LQcmDr92tmLOEQg07mOPRLDO0');
-		if (jurisdiction === 'EU MICA Regulations') {
-			const { data, error } = await client.rpc('match_embedding_mica', { query_embedding: embedding, match_threshold: 0.5, match_count: 1 });
-			data_final = data;
-			error_final = error;
-		} else {
-			const { data, error } = await client.rpc('match_embedding', { query_embedding: embedding, match_threshold: 0.5, match_count: 1 });
-			data_final = data;
-			error_final = error;
-		}
-		
-		if (!data_final) {
-			throw new Error("type error for data_final!")
-		}
-		const first_legal_text = data_final[0].content
-		console.log(first_legal_text)
 		
 		// Generate similar search queries for questions:
 		const lawful = getPromptSimilarQueriesLawful(userQuery);
