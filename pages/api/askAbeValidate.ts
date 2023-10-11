@@ -7,7 +7,9 @@ import {
 import { ApplicationError, UserError } from '@/lib/errors';
 
 
-
+export const config = {
+    maxDuration: 120,
+  };
 export default async function validate(req: NextRequest, res: NextApiResponse) {
 
 

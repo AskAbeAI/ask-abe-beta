@@ -12,7 +12,9 @@ import { ApplicationError, UserError } from '@/lib/errors';
 const openai = new OpenAI({
 	apiKey: "placeholder", // defaults to process.env["OPENAI_API_KEY"]
 });
-
+export const config = {
+    maxDuration: 120,
+  };
 export default async function search(req: NextRequest, res: NextApiResponse) {
 
 

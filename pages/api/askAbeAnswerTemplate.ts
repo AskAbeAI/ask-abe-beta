@@ -5,6 +5,9 @@ const openai = new OpenAI({
 	apiKey: "placeholder", // defaults to process.env["OPENAI_API_KEY"]
 });
 
+export const config = {
+    maxDuration: 120,
+  };
 // userQuery, openAIkey, summaryTemplate, responseTotal
 export default async function answerTemplate(req: NextRequest, res: NextApiResponse) {
 

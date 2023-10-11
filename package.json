@@ -23,10 +23,10 @@
     "endent": "^2.1.0",
     "eventsource-parser": "^1.0.0",
     "lib": "^5.1.0",
-    "next": "^13.2.4",
+    "next": "^13.5.4",
     "openai-edge": "^1.2.2",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "supabase": "^1.99.5"
   },
   "devDependencies": {
@@ -36,7 +36,7 @@
     "@types/react-dom": "18.0.11",
     "autoprefixer": "^10.4.14",
     "eslint": "8.37.0",
-    "eslint-config-next": "13.2.4",
+    "eslint-config-next": "^13.5.4",
     "postcss": "^8.4.21",
     "prettier-plugin-tailwindcss": "^0.2.6",
     "tailwindcss": "^3.3.1",
