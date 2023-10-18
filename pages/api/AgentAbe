@@ -1,9 +1,10 @@
+import { asyncQueryDatabase } from '../../utils/node_utility';
 class AgentAbeManager {
     agents: AgentAbe[] = [];
     globalHeatmap: { [key: string]: number } = {};
 
-    createAgent(dropPoint: string, embeddingTarget: any, maxSteps: number): AgentAbe {
-        const newAgent = new AgentAbe(dropPoint, embeddingTarget, 0, maxSteps, {});
+    createAgent(dropPoint: string, embeddingTarget: any, maxSteps: number, jurisdiction): AgentAbe {
+        const newAgent = new AgentAbe(dropPoint, embeddingTarget, 0, maxSteps, {}, jurisdiction);
         this.agents.push(newAgent);
         return newAgent;
     }
@@ -36,8 +37,9 @@ class AgentAbe {
     maxSteps: number;
     embeddingTarget: any;
     killMe: boolean;
+    jurisdiction: string;
 
-    constructor(dropPoint: string, stepsTaken: number, maxSteps: number, embeddingTarget: any, previousHeatmap: { [key: string]: number }) {
+    constructor(dropPoint: string, stepsTaken: number, maxSteps: number, embeddingTarget: any, previousHeatmap: { [key: string]: number }, jurisdiction: string) {
         // ... (other initializations)
         this.localHeatmap = previousHeatmap;
         this.killMe = false;
@@ -46,6 +48,7 @@ class AgentAbe {
         this.stepsTaken = stepsTaken;
         this.embeddingTarget = embeddingTarget;
         this.maxSteps = maxSteps;
+        this.jurisdiction = jurisdiction;
     }
 
     mapNode(node_id: string): boolean {
@@ -62,7 +65,7 @@ class AgentAbe {
         let nextNodes = await this.possibleNodesFromCurrent();
         const explorations: Promise<void>[] = [];
         for (let node_id of nextNodes) {
-            let cloneAbe = new AgentAbe(node_id, this.embeddingTarget, this.stepsTaken+1, this.maxSteps, this.localHeatmap);
+            let cloneAbe = new AgentAbe(node_id, this.embeddingTarget, this.stepsTaken+1, this.maxSteps, this.localHeatmap, this.jurisdiction);
             explorations.push(cloneAbe.explore());
         }
         await Promise.all(explorations);
@@ -73,7 +76,7 @@ class AgentAbe {
 
     async possibleNodesFromCurrent(): Promise<string[]> {
         // Asynchronous call to the database
-        let nextNodes = await asyncQueryDatabase(this.dropPoint);
+        let nextNodes = await asyncQueryDatabase(this.dropPoint, this.jurisdiction);
         return nextNodes;
     }
 
@@ -91,7 +94,7 @@ class AgentAbe {
 
 // Example usage:
 const manager = new AgentAbeManager();
-const agent1 = manager.createAgent("initialDropPoint", "yourEmbeddingTarget", 10); // Assuming maxSteps is 10
+const agent1 = manager.createAgent("initialDropPoint", "yourEmbeddingTarget", 10, "ca"); // Assuming maxSteps is 10
 agent1.explore();
 
 console.log(manager.finalize()); // This will print the final heatmap

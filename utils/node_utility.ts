@@ -115,7 +115,7 @@ async function get_all_sibling_nodes(tableName: string, node_id: string): Promis
 
 
 
-async function asyncQueryDatabase(dropPoint: string, jurisdiction:string): Promise<string[]> {
+export async function asyncQueryDatabase(dropPoint: string, jurisdiction:string): Promise<string[]> {
     const supabase = createClient('https://jwscgsmkadanioyopaef.supabase.co', 'YOUR_SECRET_KEY');
     
     // Simultaneously execute both database queries
