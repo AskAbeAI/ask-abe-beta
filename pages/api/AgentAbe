@@ -1,0 +1,98 @@
+class AgentAbeManager {
+    agents: AgentAbe[] = [];
+    globalHeatmap: { [key: string]: number } = {};
+
+    createAgent(dropPoint: string, embeddingTarget: any, maxSteps: number): AgentAbe {
+        const newAgent = new AgentAbe(dropPoint, embeddingTarget, 0, maxSteps, {});
+        this.agents.push(newAgent);
+        return newAgent;
+    }
+
+    aggregateHeatmap(localHeatmap: { [key: string]: number }) {
+        for (let [key, value] of Object.entries(localHeatmap)) {
+            if (this.globalHeatmap[key]) {
+                this.globalHeatmap[key] += value;
+            } else {
+                this.globalHeatmap[key] = value;
+            }
+        }
+    }
+
+    async finalize() {
+        await Promise.all(this.agents.map(agent => agent.explore()));
+        for (let agent of this.agents) {
+            this.aggregateHeatmap(agent.finalize());
+        }
+        return this.globalHeatmap;
+    }
+}
+
+class AgentAbe {
+    // ... (other properties, without manager property)
+    
+    localHeatmap: { [key: string]: number };
+    dropPoint: string;
+    stepsTaken: number;
+    maxSteps: number;
+    embeddingTarget: any;
+    killMe: boolean;
+
+    constructor(dropPoint: string, stepsTaken: number, maxSteps: number, embeddingTarget: any, previousHeatmap: { [key: string]: number }) {
+        // ... (other initializations)
+        this.localHeatmap = previousHeatmap;
+        this.killMe = false;
+        if(!this.mapNode(dropPoint) || this.stepsTaken >= this.maxSteps) {this.killMe = true;}
+        this.dropPoint = dropPoint;
+        this.stepsTaken = stepsTaken;
+        this.embeddingTarget = embeddingTarget;
+        this.maxSteps = maxSteps;
+    }
+
+    mapNode(node_id: string): boolean {
+        if (node_id in this.localHeatmap) {
+            return false;
+        } else {
+            this.localHeatmap[node_id] = 1;
+            return true;
+        }
+    }
+
+    async explore() {
+        if(this.killMe) {return;}
+        let nextNodes = await this.possibleNodesFromCurrent();
+        const explorations: Promise<void>[] = [];
+        for (let node_id of nextNodes) {
+            let cloneAbe = new AgentAbe(node_id, this.embeddingTarget, this.stepsTaken+1, this.maxSteps, this.localHeatmap);
+            explorations.push(cloneAbe.explore());
+        }
+        await Promise.all(explorations);
+    }
+    
+     // ... (other methods as before)
+    // In AgentAbe class:
+
+    async possibleNodesFromCurrent(): Promise<string[]> {
+        // Asynchronous call to the database
+        let nextNodes = await asyncQueryDatabase(this.dropPoint);
+        return nextNodes;
+    }
+
+
+    compareWithTarget(node_id: string): boolean {
+        // Logic to compare with this.embeddingTarget and return true or false
+        return false; // Placeholder
+    }
+
+    finalize() {
+        return this.localHeatmap;
+    }
+}
+
+
+// Example usage:
+const manager = new AgentAbeManager();
+const agent1 = manager.createAgent("initialDropPoint", "yourEmbeddingTarget", 10); // Assuming maxSteps is 10
+agent1.explore();
+
+console.log(manager.finalize()); // This will print the final heatmap
+
