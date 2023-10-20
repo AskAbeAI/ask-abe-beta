@@ -20,7 +20,13 @@ interface node {
     
 }
 
+interface agent_node {
+    id: string;
+    title: string;
+    parent_node_id: string;
+    title_classifier: string;
 
+}
 
 // General functions
 async function getEmbedding(text: string) {
@@ -109,28 +115,30 @@ async function get_parent_node(tableName: string, node_id: string) {
 }
 
 async function get_all_sibling_nodes(tableName: string, node_id: string): Promise<string[]> {
+
     return [];
 }
 
 
 
 
-export async function asyncQueryDatabase(dropPoint: string, jurisdiction:string): Promise<string[]> {
+export async function asyncQueryDatabase(dropPoint: string, jurisdiction:string): Promise<[string[],string[]]> {
     const supabase = createClient('https://jwscgsmkadanioyopaef.supabase.co', 'YOUR_SECRET_KEY');
     
     // Simultaneously execute both database queries
-    let [attributesFromNestedChildren, allSiblingNodes] = await Promise.all([
+    let [attributesFromNestedChildren, sibling_nodes] = await Promise.all([
         get_attributes_from_nested_children(dropPoint, jurisdiction,["internal_references"]),
         get_all_sibling_nodes(dropPoint, jurisdiction)
     ]);
     let internal_references: attributes[] = attributesFromNestedChildren[0];
 
-    let nodeIDsFromAttributes: string[] = []; // Define here
+    let internal_reference_nodes: string[] = []; // Define here
+    let external_reference_nodes: string[] = []; // Define here
 
     if (!attributesFromNestedChildren[0]) {
         attributesFromNestedChildren = [];
     } else {
-        nodeIDsFromAttributes = internal_references.flatMap(attribute => {
+        internal_reference_nodes = internal_references.flatMap(attribute => {
             // Parse the 'values' string to get the actual array of strings
             const parsedValues = JSON.parse(attribute.value);
             return parsedValues;
@@ -138,9 +146,8 @@ export async function asyncQueryDatabase(dropPoint: string, jurisdiction:string)
     }
 
     // Combine the results into a single list of node IDs
-    const combinedNodeIDs = [...nodeIDsFromAttributes, ...allSiblingNodes];
-
-    return combinedNodeIDs;
+    let local_nodes: string[] = [...new Set([...sibling_nodes, ...internal_reference_nodes])];
+    return [local_nodes, external_reference_nodes];
 }
 
 
