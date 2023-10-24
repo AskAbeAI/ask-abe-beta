@@ -21,3 +21,25 @@
     transition-duration: 2000ms;
 }
 
+
+
+
+.maintenanceBanner {
+    background-color: #1C1F28;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+}
+
+.maintenanceBanner p {
+    margin: 10px 0;
+}
+
+.maintenanceBanner ul {
+    padding-left: 20px;
+}
+
+.maintenanceBanner li {
+    margin-bottom: 5px;
+}

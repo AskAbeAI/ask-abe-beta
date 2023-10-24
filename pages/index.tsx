@@ -503,9 +503,19 @@ export default function Home() {
 							height={224}  // Original height
 						/>
 					</div>
+					<div className="maintenanceBanner">
+						<p><strong>Notice:</strong> Ask Abe is currently down in preparation for Version 0.2 Release.</p>
+						<p>We are rolling out exciting new features:</p>
+						<ul>
+							<li>Conversational legal question answering</li>
+							<li>Streaming results with reduced latency</li>
+							<li>A free version that doesn't require an OpenAI API key</li>
+						</ul>
+						<p>We apologize for any inconvenience and appreciate your patience. We're launching this Sunday!</p>
+					</div>
 				</div>
 
-				<div className="mt-6 text-center text-sm">
+				{/* <div className="mt-6 text-center text-sm">
 					<APIKeyInput apiKey={apiKey} onChange={handleApiKeyChange} />
 				</div>
 				<div className="mt-6 text-center text-sm">
@@ -558,12 +568,12 @@ export default function Home() {
 						<div className="text-center text-xl font-bold">Legal Citations</div>
 						<section id="citationArea" className="citation-block"></section>
 					</div>
-				</div>
+				</div> 
 
 
 
 
-				<CustomFooter/>
+				<CustomFooter/>*/}
 			</div>
 		</>
 	);
