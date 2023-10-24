@@ -509,9 +509,9 @@ export default function Home() {
 						<ul>
 							<li>Conversational legal question answering</li>
 							<li>Streaming results with reduced latency</li>
-							<li>A free version that doesn't require an OpenAI API key</li>
+							<li>A free version that doesn&apos;t require an OpenAI API key</li>
 						</ul>
-						<p>We apologize for any inconvenience and appreciate your patience. We're launching this Sunday!</p>
+						<p>We apologize for any inconvenience and appreciate your patience. We&apos;re launching this Sunday!</p>
 					</div>
 				</div>
 
