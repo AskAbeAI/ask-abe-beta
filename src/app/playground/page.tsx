@@ -4,16 +4,13 @@ import React, { useState, FormEvent, useEffect } from 'react';
 // Import UI components
 import BottomBar from '@/components/bottomBar';
 import ChatContainer from '@/components/chatContainer';
-import Modal from '@/components/playModal';
+
 
 // Import data types
 import { ContentType, ContentBlock, ContentBlockParams, CitationBlockProps, GroupedRows, Clarification } from "@/lib/types";
 import { node_as_row, node_key, SubTopic, GeneralTopic, TopicResponses, ClarificationChoices, PartialAnswer } from '@/lib/types';
 import { aggregateSiblingRows } from '@/lib/database';
 import CitationBar from '@/components/citationBar';
-import OptionsBar from '@/components/optionBar';
-import ChatOptionToggle from '@/components/ui/chatOptionToggle';
-import { WelcomeBlock } from '@/components/ui/chatBlocks';
 import OptionsList from '@/components/optionsFilter';
 import { Option, OptionsListProps } from '@/lib/types';
 
