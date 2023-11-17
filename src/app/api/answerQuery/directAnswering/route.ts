@@ -67,6 +67,7 @@ export async function POST(req: Request) {
     console.log("  - Exiting directAnswering API endpoint");
     return NextResponse.json(directAnsweringResponseBody);
   } catch (error) {
+    console.error(error);
     return NextResponse.json({ errorMessage: `An error occurred in directAnswering: ${error}` });
   }
 }
