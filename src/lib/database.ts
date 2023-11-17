@@ -122,7 +122,8 @@ export async function insert_completion_cost(
     .from('completionCosts')
     .insert({ phase, prompt_tokens, completion_tokens, total_cost, model });
   if (error) {
-    console.error("Error inserting completion cost into database!");
+    console.error("Error inserting completion cost into database!" + error);
+    
     throw error;
   }
 }
