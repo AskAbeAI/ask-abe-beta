@@ -6,7 +6,7 @@ import Image from 'next/image';
 import LegalResearchComponent from '@/components/homepage/homeSection1'
 import LandingSection from '@/components/homepage/landingSection';
 import PageFooter from '@/components/pageFooter';
-import FeaturesSection from '@/components/homepage/features';
+
 
 
 
@@ -44,7 +44,7 @@ export default function HomePage() {
       {/* </div> */}
       <LandingSection />
       <LegalResearchComponent />
-      <FeaturesSection />
+     
 
 
       <PageFooter />

@@ -34,8 +34,7 @@ const DevLanding: React.FC = () => {
                     Website Redesign and Conversation AI Integration
                   </Link>
                   <div className="text-black text-base leading-6 mt-2">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Suspendisse varius enim in eros.
+                    
                   </div>
                   <div className="items-stretch flex justify-between gap-4 mt-6">
 
