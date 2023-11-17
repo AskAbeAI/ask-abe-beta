@@ -12,7 +12,7 @@ const FeaturesSection: React.FC = () => {
       </header>
       <section className="items-stretch self-center flex w-[768px] max-w-full flex-col mt-4">
         <h1 className="text-black text-center text-5xl font-bold leading-[58px] max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
-          Ask Abe's Features
+          Ask Abe&apos;s Features
         </h1>
         <p className="text-black text-center text-lg leading-7 mt-6 max-md:max-w-full">
 
@@ -37,7 +37,7 @@ const FeaturesSection: React.FC = () => {
                   Clarification Question Answer Options
                 </h2>
                 <p className="text-black text-center text-base leading-6 mt-4">
-                  With multiple choice options, you can focus more on getting the answer fast. If the clarifying question doesn't apply, click 'not applicable', or if none of the answers suit your needs -- write your own custom response.
+                  With multiple choice options, you can focus more on getting the answer fast. If the clarifying question doesn&apos;t apply, click &apos;not applicable&apos;, or if none of the answers suit your needs -- write your own custom response.
                 </p>
               </div>
             </div>
@@ -56,7 +56,7 @@ const FeaturesSection: React.FC = () => {
                   Chat Options & Jurisdictions
                 </h2>
                 <p className="text-black text-center text-base leading-6 mt-4">
-                  Don't feel like getting asked clarifying questions, check skip clarifications to turn this off.
+                  Don&apos;t feel like getting asked clarifying questions, check skip clarifications to turn this off.
                   Also, select from which jurisdiction you would like Abe to focus his answer. (More jurisdictions coming soon)
                 </p>
               </div>
@@ -66,7 +66,7 @@ const FeaturesSection: React.FC = () => {
                   Ask a follow-up question
                 </h2>
                 <p className="text-black text-center text-base leading-6 mt-4">
-                  When Abe gives you an answer to your original query, but you're left with more questions, ask a follow-up question.
+                  When Abe gives you an answer to your original query, but you&apos;re left with more questions, ask a follow-up question.
                 </p>
               </div>
             </div>
