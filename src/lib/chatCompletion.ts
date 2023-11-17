@@ -42,7 +42,7 @@ export async function createChatCompletion(params: ChatCompletionParams, openai:
   }
   const prompt_tokens = completion.usage?.prompt_tokens || 0;
   const completion_tokens = completion.usage?.completion_tokens || 0;
-  let cost = 0;
+  let cost = 0; 
   if (prompt_tokens === 0 || completion_tokens === 0) {
     console.log(`WARNING: prompt_tokens or completion_tokens is 0!`);
   } else {
