@@ -60,7 +60,7 @@ export async function POST(req: Request) {
           const row_texts = result[0];
           const section_citations = result[1];
 
-          const params = getPromptPartialAnswering(legal_question, general_topic.general_topic, sub_topic.sub_topic, section_citations, row_texts);
+          const params = getPromptPartialAnswering(legal_question, general_topic.general_topic, sub_topic.sub_topic, section_citations, row_texts, true);
           batchPromises.push(createChatCompletionParallel(params, openai));
 
           if (batchPromises.length === BATCH_SIZE) {
