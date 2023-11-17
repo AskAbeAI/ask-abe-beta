@@ -90,7 +90,7 @@ export default function HowToPage() {
               </h2>
               <p className="font-josefinsans text-gray-600">
                 Abe&apos;s first responce provides follow up questions which will include multiple different answers or suggestions. Review these answers to see if any of them fit your question.
-                If one of the provided answers fits your query, click on it. If none of the answers are suitable but you have a different answer in mind, click on the "Other" option and type your response to Abe&apos;s question. You may also select "Not Applicable" if the follow up question does not fit your original query.
+                If one of the provided answers fits your query, click on it. If none of the answers are suitable but you have a different answer in mind, click on the &apos;Other&apos; option and type your response to Abe&apos;s question. You may also select &apos;Not Applicable&apos; if the follow up question does not fit your original query.
 
               </p>
             </div>
