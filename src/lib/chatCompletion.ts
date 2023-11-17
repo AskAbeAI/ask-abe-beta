@@ -48,7 +48,7 @@ export async function createChatCompletion(params: ChatCompletionParams, openai:
   } else {
     cost = calculateChatCompletionCost(model, prompt_tokens, completion_tokens);
   }
-  insert_completion_cost(phase, prompt_tokens, completion_tokens, cost, model, process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
+  await insert_completion_cost(phase, prompt_tokens, completion_tokens, cost, model, process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
   console.log(`Prompt Tokens: ${prompt_tokens}, Completion Tokens: ${completion_tokens}\nCost of calling ${model} chat completion: $${cost}`);
   return completion.choices[0].message['content'];
 }
