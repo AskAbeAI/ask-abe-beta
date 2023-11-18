@@ -27,7 +27,7 @@ const LegalResearchComponent: React.FC = () => {
                   Our legal research conversational AI revolutionizes the way our users interact with the law with access to direct legal citations. With our advanced technology, you can quickly and accurately retrieve the information you need, saving you time and effort. Our conversational AI platform revolutionizes legal research by providing direct legal citations in a user-friendly manner. Say goodbye to tedious searches and let our AI do the work for you.
                 </p>
               </div>
-              <div className="items-stretch flex  max-w-full gap-4 mt-10 self-start">
+              <div className="items-stretch flex max-w-full gap-4 mt-10 self-start">
 
                 <a href="/how" className="text-black text-base leading-6 whitespace-nowrap justify-center items-center border grow px-5 py-3 border-solid border-black">
                   How to Use
@@ -41,7 +41,7 @@ const LegalResearchComponent: React.FC = () => {
                 {/* <div className="justify-center items-stretch self-center flex gap-2 my-auto">
                   <div className="text-black text-base leading-6">Sign Up</div>
                 </div> */}
-              {/* </div>  */}
+              {/* </div> */}
             </div>
           </div>
         </div>

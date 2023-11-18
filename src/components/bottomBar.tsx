@@ -65,7 +65,7 @@ const BottomBar: React.FC<BottomBarProps> = ({
             onChange={handleChange}
             placeholder={inputMessage}
             maxLength={maxLimit}
-            className="w-full pl-4 pr-16 py-2 font-montserrat rounded border-2 border-[#4A4643] focus:outline-none  bg-white"
+            className="w-full pl-4 pr-16 py-2 font-montserrat rounded border-2 border-[#4A4643] focus:outline-none bg-white"
           />
           <button
             type="submit"

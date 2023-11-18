@@ -740,7 +740,7 @@ export default function Playground() {
       {/* Hide ChatContainer when citationsOpen */}
 
       <div className={`flex flex-grow ${citationsOpen ? 'hidden' : ''}`}>
-        <div className="overflow-y-auto w-full  justify-center" style={{ minHeight: '90vh', maxHeight: '90vh' }}>
+        <div className="overflow-y-auto w-full justify-center" style={{ minHeight: '90vh', maxHeight: '90vh' }}>
           <ChatContainer
             contentBlocks={contentBlocks}
             onSubmitClarificationAnswers={handleClarificationAnswer}
