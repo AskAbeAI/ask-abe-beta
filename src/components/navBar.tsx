@@ -5,7 +5,7 @@ import Image from 'next/image';
 const NavBar: React.FC = () => {
   return (
    
-      <nav className="justify-center items-center bg-[#FAF5E6] flex flex-col px-3  border-b border-solid">
+      <nav className="justify-center items-center bg-[#FAF5E6] flex flex-col px-3 border-b border-solid">
       <div className="justify-between items-stretch flex w-full max-w-full gap-5 my-3 max-md:max-w-full max-md:flex-wrap max-md:justify-center">
         <div className="flex justify-left items-center font-imfell font-bold text-2xl">ASK ABE AI</div>
         <ul className="items-stretch self-center flex justify-between gap-10 my-auto">

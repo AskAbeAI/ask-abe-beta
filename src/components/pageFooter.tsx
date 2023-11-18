@@ -36,13 +36,13 @@ const PageFooter: React.FC = () => {
                     </Link>
                     <Link
                       href="#"
-                      className="text-black text-base font-quicksand  leading-6 mt-3"
+                      className="text-black text-base font-quicksand leading-6 mt-3"
                     >
                       Legal
                     </Link>
                     {/* <Link>
                 href="#"
-                className="text-black text-base font-quicksand  leading-6 mt-3"
+                className="text-black text-base font-quicksand leading-6 mt-3"
               >
                 Link Ten
               </Link> */}
@@ -51,7 +51,7 @@ const PageFooter: React.FC = () => {
               </div>
             </div>
           </div>
-          {/* <div className="text-black text-sm font-quicksand  leading-5 max-md:max-w-full">
+          {/* <div className="text-black text-sm font-quicksand leading-5 max-md:max-w-full">
                   Address:
                 </div>
                 <div className="text-black text-sm leading-5 mt-1 max-md:max-w-full">
@@ -106,34 +106,34 @@ const PageFooter: React.FC = () => {
         </div>
       </div>
       {/* <div className="flex flex-col ">
-            <div className="items-stretch flex  grow  flex-col">
+            <div className="items-stretch flex grow flex-col">
               <Link
                 href="#"
-                className="text-black text-base font-quicksand  leading-6"
+                className="text-black text-base font-quicksand leading-6"
               >
                 About
               </Link>
               <Link
                 href="#"
-                className="text-black text-base font-quicksand  leading-6 mt-3"
+                className="text-black text-base font-quicksand leading-6 mt-3"
               >
                 How to Use
               </Link>
               <Link
                 href="#"
-                className="text-black text-base font-quicksand  leading-6 mt-3"
+                className="text-black text-base font-quicksand leading-6 mt-3"
               >
                 Devlog
               </Link>
               <Link
                 href="#"
-                className="text-black text-base font-quicksand  leading-6 mt-3"
+                className="text-black text-base font-quicksand leading-6 mt-3"
               >
                 Legal
               </Link>
               {/* <Link>
                 href="#"
-                className="text-black text-base font-quicksand  leading-6 mt-3"
+                className="text-black text-base font-quicksand leading-6 mt-3"
               >
                 Link Ten
               </Link> */}
