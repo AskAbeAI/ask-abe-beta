@@ -40,6 +40,7 @@ const PageFooter: React.FC = () => {
                     >
                       Legal
                     </Link>
+                    <a href="https://theresanaiforthat.com/ai/ask-abe/?ref=embed" target="_blank"><img width="300" src="https://media.theresanaiforthat.com/featured3.png"/></a>
                     {/* <Link>
                 href="#"
                 className="text-black text-base font-quicksand  leading-6 mt-3"
