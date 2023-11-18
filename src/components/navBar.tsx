@@ -4,9 +4,10 @@ import Image from 'next/image';
 
 const NavBar: React.FC = () => {
   return (
-    <header className="justify-center items-center bg-[#FAF5E6] flex flex-col px-5 border-b border-solid">
-      <nav className="justify-between items-stretch flex w-full my-2">
-        <div className="flex items-center font-imfell font-bold text-2xl">ASK ABE AI</div>
+   
+      <nav className="justify-center items-center bg-[#FAF5E6] flex flex-col px-3  border-b border-solid">
+      <div className="justify-between items-stretch flex w-full max-w-full gap-5 my-3 max-md:max-w-full max-md:flex-wrap max-md:justify-center">
+        <div className="flex justify-left items-center font-imfell font-bold text-2xl">ASK ABE AI</div>
         <ul className="items-stretch self-center flex justify-between gap-10 my-auto">
           <li className="text-black text-base font-dmsans leading-6">
             <Link href="/" aria-label="Link One">
@@ -43,14 +44,16 @@ const NavBar: React.FC = () => {
           <span className="absolute inset-0 w-full h-full duration-300 delay-300 bg-gray-900 opacity-0 group-hover:opacity-100"></span>
           <span className="relative transition-colors duration-300 delay-200 group-hover:text-white ease">Sign In</span>
         </Link>
+        
         {/* <button
           className="text-white text-base leading-6 whitespace-nowrap justify-center items-stretch border bg-zinc-500 rounded-full px-5 py-2 border-solid border-black"
           type="button"
         >
           Sign In
         </button> */}
+        </div>
       </nav>
-    </header>
+ 
   );
 }
 
