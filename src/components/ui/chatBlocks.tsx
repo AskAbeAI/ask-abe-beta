@@ -644,9 +644,14 @@ export const AbeIconLabel: React.FC<AbeIconProps> = ({
 
     <div className="flex flex-col items-start">
       <div className="flex items-center mb-2">
-        <div className="h-8 w-8 rounded-full bg-gray-300 flex items-center justify-center mr-2">
+        <div className="h-8 w-8 rounded-full  flex items-center justify-center mr-2">
           {/* Placeholder for icon */}
-          <span>A</span>
+          <span><Image
+              src="/abeIconPlay.png" 
+              alt="Legal Research Image"
+              width={50}
+              height={50}
+            /></span>
         </div>
         <p className="text-sm">Abe</p>
         {(!neverLoadAgain && showCurrentLoading) && (
