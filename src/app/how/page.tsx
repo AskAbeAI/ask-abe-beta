@@ -52,7 +52,7 @@ export default function HowToPage() {
           </div>
           <div className=" pl-4 pt-4 pb-4">
             <Image
-              src="/HowTo.png"
+              src="/howto/ask.png"
               alt="Legal Research Image"
               width={599.5}
               height={477.64}
@@ -74,7 +74,7 @@ export default function HowToPage() {
           </div>
           <div className=" pl-4 pt-4 pb-4">
             <Image
-              src="/HowTo.png"
+              src="/howto/wait.png"
               alt="Legal Research Image"
               width={599.5}
               height={477.64}
@@ -97,7 +97,7 @@ export default function HowToPage() {
           </div>
           <div className=" pl-4 pt-4 pb-4">
             <Image
-              src="/HowTo.png"
+              src="/howto/answerquest.png"
               alt="Legal Research Image"
               width={599.5}
               height={477.64}
@@ -119,7 +119,7 @@ export default function HowToPage() {
           </div>
           <div className=" pl-4 pt-4 pb-4">
             <Image
-              src="/HowTo.png"
+              src="/howto/citation.png"
               alt="Legal Research Image"
               width={599.5}
               height={477.64}
