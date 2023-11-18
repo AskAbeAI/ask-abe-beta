@@ -47,7 +47,7 @@ export default function HowToPage() {
         <div className="bg-[#FEFDF9] rounded shadow-lg grid grid-cols-2 content-center">
           <div className="flex justify-center items-center p-6">
             <div className="text-center">
-              <h2 className="text-xl font-montserrat font-bold mb-2 ">Step 2: Abe's Clarifying Questions:
+              <h2 className="text-xl font-montserrat font-bold mb-2 ">Step 2: Abe&apos;s Clarifying Questions:
               </h2>
               <p className="font-montserrat text-gray-600">
               Abe&apos;s first response provides follow up questions which will include multiple different answers or suggestions. Review these answers to see if any of them fit your question.
