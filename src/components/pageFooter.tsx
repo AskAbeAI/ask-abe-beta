@@ -15,22 +15,22 @@ const PageFooter: React.FC = () => {
               <div className="flex items-center font-imfell font-bold text-3xl">ASK ABE AI</div>
               <div className="items-stretch self-stretch flex flex-col mt-5 max-md:max-w-full">
                 <div className="flex flex-col ">
-                  <div className="items-stretch flex  grow  flex-col">
+                  <div className="items-stretch flex grow flex-col">
                     <Link
                       href="#"
-                      className="text-black text-base font-quicksand  leading-6"
+                      className="text-black text-base font-quicksand leading-6"
                     >
                       About
                     </Link>
                     <Link
                       href="#"
-                      className="text-black text-base font-quicksand  leading-6 mt-3"
+                      className="text-black text-base font-quicksand leading-6 mt-3"
                     >
                       How to Use
                     </Link>
                     <Link
                       href="#"
-                      className="text-black text-base font-quicksand  leading-6 mt-3"
+                      className="text-black text-base font-quicksand leading-6 mt-3"
                     >
                       Devlog
                     </Link>
@@ -59,7 +59,7 @@ const PageFooter: React.FC = () => {
                 </div>
               </div>
               <div className="items-stretch self-stretch flex flex-col mt-6 max-md:max-w-full">
-                <div className="text-black text-sm font-quicksand  leading-5 max-md:max-w-full">
+                <div className="text-black text-sm font-quicksand leading-5 max-md:max-w-full">
                   Contact:
                 </div> */}
           <a
