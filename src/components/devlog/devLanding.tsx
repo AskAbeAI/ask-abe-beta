@@ -6,11 +6,11 @@ const DevLanding: React.FC = () => {
   return (
     <div className="h-screen w-full bg-[#FEFDF9]">
       <div className="flex-col justify-center px-16">
-        <div className="text-black text-center text-base font-semibold leading-6 self-center whitespace-nowrap mt-16 max-md:mt-10">
+        <div className="text-black text-center text-base font-montserrat font-semibold leading-6 self-center whitespace-nowrap mt-16 max-md:mt-10">
           Ask Abe
         </div>
         <div className="items-center self-center flex  max-w-full flex-col mt-4">
-          <div className="text-black text-center text-6xl font-bold leading-[67px] max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
+          <div className="text-black text-center text-6xl font-imfell font-bold leading-[67px] max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
             DevLog
           </div>
           <div className="text-black text-center text-lg leading-7 mt-6 max-md:max-w-full">
@@ -30,7 +30,7 @@ const DevLanding: React.FC = () => {
                     className="aspect-[1.39] object-contain object-center w-full overflow-hidden"
                   />
 
-                  <Link href="/devlogblog" className="text-black text-2xl font-bold leading-8 mt-2">
+                  <Link href="/devlogblog" className="text-black text-2xl font-montserrat font-bold leading-8 mt-2">
                     Website Redesign and Conversation AI Integration
                   </Link>
                   <div className="text-black text-base leading-6 mt-2">

@@ -24,7 +24,7 @@ const LandingSection: React.FC = () => {
                   width={700}
                   height={500} />
               </div>
-              <p className="text-black text-lg pt-1 font-font-family: 'Fira Sans', sans-serif leading-7 mt-6 max-md:max-w-full">
+              <p className="text-black text-lg pt-1 font-montserrat leading-7 mt-6 max-md:max-w-full">
                 Your Legal Research Assistant
               </p>
             </div>
@@ -32,7 +32,7 @@ const LandingSection: React.FC = () => {
               <a href="/playground" className="box-border relative z-30 inline-flex items-center justify-center w-auto px-10 py-3 overflow-hidden font-bold text-white transition-all duration-300 bg-zinc-600 rounded-md cursor-pointer group ring-offset-2 ring-1 ring-zinc-300 ring-offset-zinc-200 hover:ring-offset-zinc-500 ease focus:outline-none">
                 <div className="absolute bottom-0 right-0 w-8 h-20 -mb-8 -mr-5 transition-all duration-300 ease-out transform rotate-45 translate-x-1 bg-white opacity-10 group-hover:translate-x-0"></div>
                 <div className="absolute top-0 left-0 w-20 h-8 -mt-1 -ml-12 transition-all duration-300 ease-out transform -rotate-45 -translate-x-1 bg-white opacity-10 group-hover:translate-x-0"></div>
-                <div className="relative z-20 flex items-center font-quicksand text-sm">
+                <div className="relative z-20 flex items-center font-montserrat text-sm">
 
                   Enter the Playground
                 </div>
