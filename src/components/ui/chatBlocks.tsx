@@ -341,7 +341,7 @@ export const ClarificationBlock: React.FC<ClarificationBlockProps> = ({
 
     <div className="flex flex-col items-end">
       <UserIconLabel />
-      <div className='flex flex-wrap justify-start text-lg p-4 bg-user-color font-montserrat text-black  rounded-lg'>
+      <div className='flex flex-wrap justify-start text-lg p-4 bg-user-color font-montserrat text-black rounded-lg'>
         {selectedAnswer !== '' ? (
           <p className="text-black">{selectedAnswer}</p>
         ) : (
@@ -643,12 +643,17 @@ export const AbeIconLabel: React.FC<AbeIconProps> = ({
   return (
 
     <div className="flex flex-col items-start">
-      <div className="flex items-center mb-2">
-        <div className="h-8 w-8 rounded-full bg-gray-300 flex items-center justify-center mr-2">
+      <div className="flex mb-0">
+        <div className="h-8 w-8 rounded-full flex mr-2">
           {/* Placeholder for icon */}
-          <span>A</span>
+          <span><Image
+              src="/ASKABELOGO.png" 
+              alt="Legal Research Image"
+              width={40}
+              height={50}
+            /></span>
         </div>
-        <p className="text-sm">Abe</p>
+        <p className="text-xl font-imfell ">Abe</p>
         {(!neverLoadAgain && showCurrentLoading) && (
           <Bouncy />
 
