@@ -341,7 +341,7 @@ export const ClarificationBlock: React.FC<ClarificationBlockProps> = ({
 
     <div className="flex flex-col items-end">
       <UserIconLabel />
-      <div className='flex flex-wrap justify-start text-lg p-4 bg-user-color font-montserrat text-black  rounded-lg'>
+      <div className='flex flex-wrap justify-start text-lg p-4 bg-user-color font-montserrat text-black rounded-lg'>
         {selectedAnswer !== '' ? (
           <p className="text-black">{selectedAnswer}</p>
         ) : (

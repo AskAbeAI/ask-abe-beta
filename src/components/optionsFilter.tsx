@@ -40,9 +40,9 @@ const OptionsList: React.FC<OptionsListProps> = ({ options, onSelectionChange })
   return (
     <div className="pl-2">
       <div className="grid-cols-1 flex-none bg-[#FDFCFD] border-4 border-[#E4E0D2] overflow-y-auto p-2 w-fit shadow-inner rounded-md">
-        <div className="flex justify-center font-dmsans font-bold pb-2">Chat Options</div>
-        <div className="flex justify-center font-dmsans font-bold pb-2">
-          <div className="w-fit mx-auto">
+        <div className="flex justify-center text-[#4A4643] font-bold font-montserrat pb-2">Chat Options</div>
+        <div className="flex justify-center font-montserrat font-bold pb-2">
+          <div className="w-fit mx-auto ">
             <input
 
 

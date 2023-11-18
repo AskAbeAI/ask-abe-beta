@@ -65,11 +65,11 @@ const BottomBar: React.FC<BottomBarProps> = ({
             onChange={handleChange}
             placeholder={inputMessage}
             maxLength={maxLimit}
-            className="w-full pl-4 pr-16 py-2 font-dmsans rounded border-2 border-[#4A4643] focus:outline-none  bg-white"
+            className="w-full pl-4 pr-16 py-2 font-montserrat rounded border-2 border-[#4A4643] focus:outline-none  bg-white"
           />
           <button
             type="submit"
-            className="absolute right-0 bg-[#4A4643] text-white rounded px-6 py-2 font-dmsans text-xl"
+            className="absolute right-0 bg-[#4A4643] text-white rounded px-6 py-2 font-montserrat text-xl"
           >
             Ask
           </button>
@@ -84,7 +84,7 @@ const BottomBar: React.FC<BottomBarProps> = ({
               </svg>
               <span className="sr-only">Warning icon</span>
             </div>
-            <div className="ml-3 text-sm font-normal">You are close to reaching the maximum character limit.</div>
+            <div className="ml-3 text-sm font-montserrat">You are close to reaching the maximum character limit.</div>
             <button type="button" className="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 items-center justify-center dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-warning" aria-label="Close"
               onClick={() => setShowWarning(false)}>
               <span className="sr-only">Close</span>
