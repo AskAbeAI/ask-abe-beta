@@ -21,7 +21,7 @@ const NavBar: React.FC = () => {
           </li>
           <li className="text-black text-base font-montserrat leading-6">
             <Link href="/devlog" aria-label="Link Two">
-              Devlog
+              DevLog
             </Link>
           </li>
           <li className="text-black text-base font-montserrat leading-6">
