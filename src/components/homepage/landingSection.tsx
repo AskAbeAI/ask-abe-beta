@@ -29,16 +29,19 @@ const LandingSection: React.FC = () => {
                 Your Legal Research Assistant
               </p>
             </div>
-            <div className="items-stretch flex w-70 max-w-full justify-between mt-10">
+            <div className="items-fit flex  max-w-full justify-between mt-10">
               <Link href="/playground">
-                <button id="bottone1">
-                  <span className="font-bold font-montserrat text-white">
-                    Enter Abe's Law Library
-                  </span>
-                </button>
+              <button className="button1">
+                <span className="font-montserrat">Enter Abe&apos;s Law Library</span>
+                <div className="top"></div>
+                <div className="left"></div>
+                <div className="bottom"></div>
+                <div className="right"></div>
+              </button>
               </Link>
 
             </div>
+
           </div>
         </div>
       </div>

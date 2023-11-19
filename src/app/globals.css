@@ -8,33 +8,115 @@
 @tailwind utilities;
 
 
-#bottone1 {
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 10px;
-  padding-top: 10px;
-  border-radius: px;
-  background: #585654;
+.button1 {
+  padding: 10px 16px;
+  background-color: #4A4643;
   border: none;
-  font-family: inherit;
-  text-align: center;
-  cursor: pointer;
-  -webkit-transition: 0.4s;
-  transition: 0.2s;
- }
- 
- #bottone1:hover {
-  -webkit-box-shadow: 7px 5px 56px -14px #87EEAB;
-          box-shadow: 7px 5px 56px -14px #87EEAB;
- }
- 
- #bottone1:active {
-  -webkit-transform: scale(0.97);
-      -ms-transform: scale(0.97);
-          transform: scale(0.97);
-  -webkit-box-shadow: 7px 5px 56px -10px #87EEAB;
-          box-shadow: 7px 5px 56px -10px #87EEAB;
- }
+  font-size: 18px;
+  position: relative;
+  /* overflow: hidden; */
+  -webkit-transition: 500ms;
+  transition: 500ms;
+}
+
+.button1 span {
+  color: gray;
+  position: relative;
+  -webkit-transition: 500ms;
+  transition: 500ms;
+  -webkit-transition-delay: 500ms;
+          transition-delay: 500ms;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+.button1:before {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 0%;
+  left: 50%;
+  right: 50%;
+  top: 50%;
+  bottom: 50%;
+  -webkit-transition: 500ms;
+  transition: 500ms;
+  -webkit-transition-delay: 500ms;
+          transition-delay: 500ms;
+  background-color: #87EEAB;
+  -webkit-box-shadow: 0 0 10px #87EEAB,
+   0 0 30px #87EEAB, 
+   0 0 50px #87EEAB;
+          box-shadow: 0 0 10px #87EEAB,
+   0 0 30px #87EEAB, 
+   0 0 50px #87EEAB;
+}
+
+.button1 div {
+  -webkit-transition: 500ms;
+  transition: 500ms;
+  position: absolute;
+  background-color: #87EEAB;
+  -webkit-box-shadow: 0 0 15px #87EEAB, 0 0 30px #87EEAB, 0 0 50px #87EEAB;
+          box-shadow: 0 0 15px #87EEAB, 0 0 30px #87EEAB, 0 0 50px #87EEAB;
+}
+
+.button1 .top {
+  width: 15px;
+  height: 2px;
+  top: 0;
+  left: 0;
+}
+
+.button1 .bottom {
+  width: 15px;
+  height: 2px;
+  bottom: 0;
+  right: 0;
+}
+
+.button1 .left {
+  width: 2px;
+  height: 15px;
+  top: 0;
+  left: 0;
+}
+
+.button1 .right {
+  width: 2px;
+  height: 15px;
+  bottom: 0;
+  right: 0;
+}
+
+.button1:hover {
+  color: #000;
+}
+
+.button1:hover span {
+  color: #000;
+}
+
+.button1:hover:before {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+button:hover .top, 
+button:hover .bottom {
+  width: 100%;
+}
+
+.button1:hover .left,
+.button1:hover .right {
+  height: 100%;
+}
 
 /* @layer base {
   :root {
