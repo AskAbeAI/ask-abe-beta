@@ -11,39 +11,46 @@ const openAiKey = process.env.OPENAI_API_KEY;
 const openai = new OpenAI({
   apiKey: openAiKey,
 });
-
 export const maxDuration = 120;
 
+export const generateQueryExpansion = async (legal_questions: string[]) => {
+  const params = getPromptExpandedQuery(legal_questions, true);
+  const res = JSON.parse(await createChatCompletion(params, openai, "expandedQuery"));
+  const legal_statements: string[] = res.legal_statements;
+  return legal_statements;
+}
+
+export const generateEmbedding = async (legal_statements: string[]) => {
+  const embedded_expansion_query = await getEmbedding(legal_statements.join('\n'), openai);
+  return embedded_expansion_query;
+}
 export async function POST(req: Request) {
 
   const startTime = Date.now();
   console.log("=== QUERY EXPANSION API ENDPOINT ===");
   
-
   if (openAiKey === undefined) { throw new Error("process.env.OPENAI_API_KEY is undefined!"); }
   const requestData: any = await req.json();
   const sessionId: string = req.headers.get('x-session-id')!;
   const refined_question = requestData.refined_question;
   const specific_questions = requestData.specific_questions;
-
-
+  const legal_questions: string[] = [refined_question, ...specific_questions];
 
   try {
-    const legal_questions: string[] = [refined_question, ...specific_questions];
-    const params = getPromptExpandedQuery(legal_questions, true);
-    const refinementJSON = JSON.parse(await createChatCompletion(params, openai, "expandedQuery"));
-    const legal_statements: string[] = refinementJSON.legal_statements;
-    const embedded_expansion_query = await getEmbedding(legal_statements.join('\n'), openai);
-    const queryExpansionResponseBody = {
+    
+    const legal_statements: string[] = await generateQueryExpansion(legal_questions);
+    const embedded_expansion_query: number[] = await generateEmbedding(legal_statements);
+
+    const response = {
       embedded_expansion_query: embedded_expansion_query,
       statusMessage: 'Succesfully expanded query!'
     };
 
     const endTime = Date.now();
     const executionTime = endTime - startTime;
-    await insert_api_debug_log("queryExpansion", executionTime, JSON.stringify(requestData), JSON.stringify(queryExpansionResponseBody), false, "", process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!, sessionId);
+    await insert_api_debug_log("queryExpansion", executionTime, JSON.stringify(requestData), JSON.stringify(response), false, "", process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!, sessionId);
     
-    return NextResponse.json(queryExpansionResponseBody);
+    return NextResponse.json(response);
   } catch (error) {
     const endTime = Date.now();
     let errorMessage = `${error},\n`

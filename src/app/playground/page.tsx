@@ -5,7 +5,6 @@ import React, { useState, FormEvent, useEffect } from 'react';
 import BottomBar from '@/components/bottomBar';
 import ChatContainer from '@/components/chatContainer';
 
-
 // Import data types
 import { ContentType, ContentBlock, ContentBlockParams, CitationBlockProps, GroupedRows, Clarification } from "@/lib/types";
 import { node_as_row, node_key, SubTopic, GeneralTopic, TopicResponses, ClarificationChoices, PartialAnswer } from '@/lib/types';
@@ -14,14 +13,8 @@ import CitationBar from '@/components/citationBar';
 import OptionsList from '@/components/optionsFilter';
 import { Option, OptionsListProps } from '@/lib/types';
 
-
 // Helper functions
 import { constructPromptQuery } from '@/lib/utils';
-
-
-
-
-
 
 // Temporary variables
 const stateJurisdiction = "ca";
@@ -51,7 +44,6 @@ export default function Playground() {
 
   // State variables for prompt logic
   const [question, setQuestion] = useState('');
-
   const [clarificationQueue, setClarificationQueue] = useState<ContentBlockParams[]>([]);
   const [specificQuestions, setSpecificQuestions] = useState<string[]>([]);
   const [finalTopicTemplate, setFinalTopicTemplate] = useState<TopicResponses>();
@@ -61,6 +53,7 @@ export default function Playground() {
   // State variables for session
   const [sessionID, setSessionID] = useState<string>("");
 
+  // Generate Unique Sessiond IDs here
   function generateSessionID() {
     return `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
   }
@@ -93,6 +86,7 @@ export default function Playground() {
     // console.log(currentlyStreaming);
     return;
   };
+
   const addNewLoadingBlock = async (neverLoad: boolean, loadingMessage?: string) => {
     setShowCurrentLoading(true);
     const loadingBlock: ContentBlock = {
@@ -143,7 +137,7 @@ export default function Playground() {
     return;
   };
 
-
+  // Logic for starting question answering process
   const handleNewQuestion = async (question: string) => {
     setIsFormVisible(false); // Hide the form when a question is submitted
 
@@ -740,14 +734,6 @@ export default function Playground() {
 
 
     <div className="flex h-screen w-full px-3 py-3 bg-[#FAF5E6]">
-      {/* <div className="flex justify-center"> */}
-      {/* Adjust CitationBar width based on citationsOpen */}
-      {/* <div className="App h-screen flex flex-col items-center justify-center bg-purple-200">
-          <Modal />
-        </div> */}
-
-
-
       <div className="pr-2" style={{ width: citationsOpen ? '100%' : 'initial' }}>
         <CitationBar
           open={citationsOpen}
@@ -756,10 +742,6 @@ export default function Playground() {
           activeCitationId={activeCitationId}
         />
       </div>
-
-      {/* Main content area */}
-      {/* Hide ChatContainer when citationsOpen */}
-
       <div className={`flex flex-grow ${citationsOpen ? 'hidden' : ''}`}>
         <div className="overflow-y-auto w-full justify-center" style={{ minHeight: '90vh', maxHeight: '90vh' }}>
           <ChatContainer
@@ -773,7 +755,6 @@ export default function Playground() {
           />
 
         </div>
-
         {/* BottomBar */}
         {isFormVisible && (
           <BottomBar
@@ -792,11 +773,6 @@ export default function Playground() {
         {/* Other parts of your application */}
       </div>
     </div>
-
-
-
-
-
   );
 };
 
