@@ -1,7 +1,6 @@
 
 import { NextResponse } from 'next/server';
-import { getEmbedding, createChatCompletion } from "@/lib/chatCompletion";
-import { getPromptExpandedQuery } from '@/lib/prompts';
+import { generateQueryExpansion, generateEmbedding } from '@/lib/helpers';
 import OpenAI from "openai";
 import { insert_api_debug_log } from '@/lib/database';
 
@@ -13,17 +12,7 @@ const openai = new OpenAI({
 });
 export const maxDuration = 120;
 
-export const generateQueryExpansion = async (legal_questions: string[]) => {
-  const params = getPromptExpandedQuery(legal_questions, true);
-  const res = JSON.parse(await createChatCompletion(params, openai, "expandedQuery"));
-  const legal_statements: string[] = res.legal_statements;
-  return legal_statements;
-}
 
-export const generateEmbedding = async (legal_statements: string[]) => {
-  const embedded_expansion_query = await getEmbedding(legal_statements.join('\n'), openai);
-  return embedded_expansion_query;
-}
 export async function POST(req: Request) {
 
   const startTime = Date.now();
@@ -38,8 +27,8 @@ export async function POST(req: Request) {
 
   try {
     
-    const legal_statements: string[] = await generateQueryExpansion(legal_questions);
-    const embedded_expansion_query: number[] = await generateEmbedding(legal_statements);
+    const legal_statements: string[] = await generateQueryExpansion(openai, legal_questions);
+    const embedded_expansion_query: number[] = await generateEmbedding(openai, legal_statements);
 
     const response = {
       embedded_expansion_query: embedded_expansion_query,

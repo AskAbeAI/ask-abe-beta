@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getPromptQueryRefinement } from '@/lib/prompts';
-import { createChatCompletion } from "@/lib/chatCompletion";
+import { generateQueryRefinement } from '@/lib/helpers';
 import OpenAI from "openai";
 import { insert_api_debug_log } from '@/lib/database';
 
@@ -10,12 +9,7 @@ const openai = new OpenAI({
 });
 export const maxDuration = 120;
 
-export const generateQueryRefinement = async (original_question: string, clarifying_questions: string[], customer_clarifying_responses: string[]) => {
-  const params = getPromptQueryRefinement(original_question, clarifying_questions, customer_clarifying_responses, true);
-  const res = JSON.parse(await createChatCompletion(params, openai, "queryRefinement"));
-  
-  return res;
-}
+
 
 export async function POST(req: Request) {
   const startTime = Date.now();
@@ -29,7 +23,7 @@ export async function POST(req: Request) {
   const customer_clarifying_responses: string[] = requestData.clarifyingAnswers;
 
   try {
-    const refinementJSON = await generateQueryRefinement(original_question, clarifying_questions, customer_clarifying_responses);
+    const refinementJSON = await generateQueryRefinement(openai, original_question, clarifying_questions, customer_clarifying_responses);
     const response = {
       customer_messages: refinementJSON.customer_messages,
       refined_question: refinementJSON.refined_question,

@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import OpenAI from "openai";
-import { createChatCompletion } from "@/lib/chatCompletion";
-import { getPromptQueryScoring } from '@/lib/prompts';
+import { calculateQuestionClarityScore } from "@/lib/helpers";
 import { insert_api_debug_log } from '@/lib/database';
 
 const openAiKey = process.env.OPENAI_API_KEY;
@@ -27,13 +26,7 @@ const questionClarityScoreToUserMessage = (quality_score: number) => {
   return message_to_user;
 };
 
-export const calculateQuestionClarityScore = async (user_prompt_query: string) => {
-  const params = getPromptQueryScoring(user_prompt_query, true);
-  const res = JSON.parse(await createChatCompletion(params, openai, "queryScoring"));
 
-  const quality_score: number = res.quality_score;
-  return quality_score;
-};
 
 export async function POST(req: Request) {
   const startTime = Date.now();
@@ -46,7 +39,7 @@ export async function POST(req: Request) {
   const user_prompt_query: string = requestData.user_prompt_query;
 
   try {
-    const quality_score: number = await calculateQuestionClarityScore(user_prompt_query);
+    const quality_score: number = await calculateQuestionClarityScore(openai, user_prompt_query);
     const message_to_user: string = questionClarityScoreToUserMessage(quality_score);
 
     const response = {
