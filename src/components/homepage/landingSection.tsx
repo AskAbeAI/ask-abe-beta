@@ -1,5 +1,6 @@
 import * as React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 
 const LandingSection: React.FC = () => {
@@ -29,12 +30,13 @@ const LandingSection: React.FC = () => {
               </p>
             </div>
             <div className="items-stretch flex w-70 max-w-full justify-between mt-10">
-
-              <button id="bottone1">
-                <span className="font-bold font-montserrat text-white">
-                  Enter Abe's Law Library
-                </span>
-              </button>
+              <Link href="/playground">
+                <button id="bottone1">
+                  <span className="font-bold font-montserrat text-white">
+                    Enter Abe's Law Library
+                  </span>
+                </button>
+              </Link>
 
             </div>
           </div>
