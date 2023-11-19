@@ -3,7 +3,7 @@ import OpenAI from "openai";
 import { createChatCompletion } from "@/lib/chatCompletion";
 import { getPromptClarificationQuestion, getPromptClarificationQuestionMultiple, getPromptCondenseClarifications } from '@/lib/prompts';
 import { ClarificationChoices, Clarification } from '@/lib/types';
-
+import { insert_api_debug_log } from '@/lib/database';
 
 const openAiKey = process.env.OPENAI_API_KEY;
 const openai = new OpenAI({
@@ -14,14 +14,13 @@ export const maxDuration = 120;
 
 export async function POST(req: Request) {
 
-  console.log("==========================================");
+  const startTime = Date.now();
   console.log("=== queryClarification API ENDPOINT ===");
-  console.log("==========================================");
+  
 
   if (openAiKey === undefined) { throw new Error("process.env.OPENAI_API_KEY is undefined!"); }
 
   const requestData: any = await req.json();
-  console.log(requestData);
   const user_prompt_query: string = requestData.user_prompt_query;
   const mode: string = requestData.mode;
   const previous_clarifications_raw = requestData.previous_clarifications;
@@ -33,13 +32,10 @@ export async function POST(req: Request) {
     let message_to_customer;
     if (mode === "single") {
       // Condense previous clarifications.
-      console.log("single clarification mode");
 
       const previous_clarifications: Clarification[] = previous_clarifications_raw;
-      console.log(previous_clarifications);
       const params_condensed = getPromptCondenseClarifications(user_prompt_query, previous_clarifications, [], "single", true);
       const response_condensed = JSON.parse(await createChatCompletion(params_condensed, openai, "condenseClarifications"));
-      console.log(response_condensed.instructions);
 
       const params_choices = getPromptClarificationQuestion(user_prompt_query, response_condensed.instructions, true);
       const response = JSON.parse(await createChatCompletion(params_choices, openai, "queryClarificationQuestion"));
@@ -54,10 +50,8 @@ export async function POST(req: Request) {
         response: ""
       };
     } else {
-      console.log("multiple clarification mode");
       const params_choices = getPromptClarificationQuestionMultiple(user_prompt_query, true);
       const response = JSON.parse(await createChatCompletion(params_choices, openai, "queryClarificationMultiple"));
-      console.log(response);
       result = [];
       message_to_customer = [];
       for (const clarification of response.new_clarifications) {
@@ -79,13 +73,21 @@ export async function POST(req: Request) {
       clarification: result,
       statusMessage: 'Asked new clarification question!'
     };
-    console.log(`- Exiting queryClarification API endpoint`);
+    const endTime = Date.now();
+    const executionTime = endTime - startTime;
+    await insert_api_debug_log("queryClarification", executionTime, JSON.stringify(requestData), JSON.stringify(queryClarificationResponseBody), false, "", process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
+    
     return NextResponse.json(queryClarificationResponseBody);
 
 
 
   } catch (error) {
-    console.error(`An error occurred in queryClarification: ${error}`);
+    const endTime = Date.now();
+    let errorMessage = `${error},\n`
+    if (error instanceof Error) {
+      errorMessage += error.stack;
+    }
+    const executionTime = endTime - startTime;
     return NextResponse.json({ errorMessage: `An error occurred in queryClarification: ${error}` });
   }
 }

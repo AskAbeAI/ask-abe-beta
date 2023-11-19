@@ -127,3 +127,32 @@ export async function insert_completion_cost(
     throw error;
   }
 }
+
+export async function insert_api_debug_log(
+  api_phase: string,
+  execution_time: number,
+  input_json_str: string,
+  output_json_str: string,
+  did_error: boolean,
+  error_message: string,
+  supabaseUrl: string,
+  supabaseKey: string
+): Promise<void> {
+  const supabase = createClient(supabaseUrl!, supabaseKey!);
+  let input_json;
+  let output_json;
+  try {
+    input_json = JSON.parse(input_json_str);
+    output_json = JSON.parse(output_json_str);
+  } catch (error) {
+    console.error("Error parsing input or output JSON in insert_api_debug_log!");
+    throw error;
+  }
+  const { error } = await supabase
+    .from('completionCosts')
+    .insert({ api_phase, execution_time, input_json, output_json, did_error, error_message });
+  if (error) {
+    console.error("Error inserting api_debug_log into database!" + error);
+    throw error;
+  }
+}

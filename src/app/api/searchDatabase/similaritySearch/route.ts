@@ -1,15 +1,15 @@
 
 import { NextResponse } from 'next/server';
 import { node_as_row } from "@/lib/types";
-import { jurisdiction_similarity_search_all_partitions } from "@/lib/database";
+import { jurisdiction_similarity_search_all_partitions, insert_api_debug_log } from "@/lib/database";
 
 export const maxDuration = 120;
 
 export async function POST(req: Request) {
 
-	console.log("=====================================");
+	const startTime = Date.now();
 	console.log("=== similaritySearch API ENDPOINT ===");
-	console.log("=====================================");
+	
 
 	const supabaseUrl = process.env.SUPABASE_URL;
 	const supabaseKey = process.env.SUPABASE_KEY;
@@ -33,8 +33,20 @@ export async function POST(req: Request) {
 			federal_rows: "",
 			statusMessage: 'Succesfully searched database for state and federal jurisdiction rows!'
 		};
+
+		const endTime = Date.now();
+   		const executionTime = endTime - startTime;
+    	await insert_api_debug_log("similaritySearch", executionTime, JSON.stringify(requestData), JSON.stringify(searchResponseBody), false, "", process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
 		return NextResponse.json(searchResponseBody);
+		
 	} catch (error) {
+		const endTime = Date.now();
+		let errorMessage = `${error},\n`
+		if (error instanceof Error) {
+		errorMessage += error.stack;
+		}
+		const executionTime = endTime - startTime;
+		await insert_api_debug_log("similaritySearch", executionTime, JSON.stringify(requestData), "{}", true, errorMessage, process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
 		return NextResponse.json({ errorMessage: `An error occurred in similarity searching: ${error}` });
 	}
 }

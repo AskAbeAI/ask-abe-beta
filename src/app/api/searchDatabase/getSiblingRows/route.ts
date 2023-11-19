@@ -4,18 +4,15 @@ import { NextResponse } from 'next/server';
 import { NextApiResponse } from 'next';
 import { node_as_row, node_key } from "@/lib/types";
 import { get_sibling_rows } from "@/lib/database";
-
-
-
+import { insert_api_debug_log } from "@/lib/database";
 
 
 export const maxDuration = 120;
 
 export async function POST(req: Request) {
 
-  console.log("=====================================");
+  const startTime = Date.now();
   console.log("==== getSiblingRows API ENDPOINT ====");
-  console.log("=====================================");
 
   const supabaseUrl = process.env.SUPABASE_URL;
   const supabaseKey = process.env.SUPABASE_KEY;
@@ -28,7 +25,7 @@ export async function POST(req: Request) {
   const node_keys: node_key[] = requestData.node_keys;
   const federalJurisdiction = jurisdictions["federal"];
   const stateJurisdiction = jurisdictions["state"];
-  console.log("HERE");
+  
   try {
 
     const all_rows: node_as_row[] = await get_sibling_rows(stateJurisdiction, node_keys, supabaseUrl, supabaseKey);
@@ -39,10 +36,18 @@ export async function POST(req: Request) {
       statusMessage: 'Succesfully got parent rows!'
     };
 
-
+    const endTime = Date.now();
+   	const executionTime = endTime - startTime;
+    await insert_api_debug_log("getSiblingRows", executionTime, JSON.stringify(requestData), JSON.stringify(searchResponseBody), false, "", process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
     return NextResponse.json(searchResponseBody);
   } catch (error) {
-    console.error("ERROR!", error);
+    const endTime = Date.now();
+		let errorMessage = `${error},\n`
+		if (error instanceof Error) {
+		errorMessage += error.stack;
+		}
+		const executionTime = endTime - startTime;
+		await insert_api_debug_log("getSiblingRows", executionTime, JSON.stringify(requestData), "{}", true, errorMessage, process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
     return NextResponse.json({ errorMessage: `An error occurred in getSiblingRows: ${error}` });
   }
 }

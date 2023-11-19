@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import OpenAI from "openai";
 import { createChatCompletion } from "@/lib/chatCompletion";
 import { getPromptQueryScoring } from '@/lib/prompts';
-import { ClarificationChoices } from '@/lib/types';
+import { insert_api_debug_log } from '@/lib/database';
 
 
 const openAiKey = process.env.OPENAI_API_KEY;
@@ -13,10 +13,8 @@ const openai = new OpenAI({
 export const maxDuration = 120;
 
 export async function POST(req: Request) {
-
-  console.log("=================================");
+  const startTime = Date.now();
   console.log("=== queryScoring API ENDPOINT ===");
-  console.log("=================================");
 
   if (openAiKey === undefined) { throw new Error("process.env.OPENAI_API_KEY is undefined!"); }
 
@@ -49,13 +47,19 @@ export async function POST(req: Request) {
       quality_score: quality_score,
       statusMessage: 'Finished scoring query!'
     };
-    console.log(`- Exiting queryClarification API endpoint`);
+    const endTime = Date.now();
+    const executionTime = endTime - startTime;
+    await insert_api_debug_log("queryScoring", executionTime, JSON.stringify(requestData), JSON.stringify(queryScoringResponseBody), false, "", process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
     return NextResponse.json(queryScoringResponseBody);
-
-
-
+    
   } catch (error) {
-    console.error(`An error occurred in queryScoring: ${error}`);
+    const endTime = Date.now();
+    let errorMessage = `${error},\n`
+    if (error instanceof Error) {
+      errorMessage += error.stack;
+    }
+    const executionTime = endTime - startTime;
+    await insert_api_debug_log("queryScoring", executionTime, JSON.stringify(requestData), "{}", true, errorMessage, process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
     return NextResponse.json({ errorMessage: `An error occurred in queryScoring: ${error}` });
   }
 }

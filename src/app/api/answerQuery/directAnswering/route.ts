@@ -5,6 +5,7 @@ import { NextResponse } from 'next/server';
 import { getPromptDirectAnswering, getPromptPartialAnswering, getPromptDirectAnsweringSeparate, getPromptCondenseClarifications } from '@/lib/prompts';
 import { createChatCompletion } from '@/lib/chatCompletion';
 import { dir } from 'console';
+import { insert_api_debug_log } from '@/lib/database';
 
 
 const openAiKey = process.env.OPENAI_API_KEY;
@@ -15,9 +16,9 @@ export const maxDuration = 120;
 
 export async function POST(req: Request) {
 
-  console.log("=====================================");
+  const startTime = Date.now();
   console.log("=== directAnswering API ENDPOINT ===");
-  console.log("=====================================");
+  
 
   const requestData: any = await req.json();
   const legal_question = requestData.legal_question;
@@ -48,15 +49,15 @@ export async function POST(req: Request) {
       const params = getPromptDirectAnsweringSeparate(all_questions, clarifications, all_text_citation_pairs, false);
       const result = JSON.parse(await createChatCompletion(params, openai, "directAnsweringSeparate"));
       direct_answer = result.all_instructions;
-      console.log(direct_answer);
+      
     } else {
       const params_condensed = getPromptCondenseClarifications(legal_question, clarifications.clarifications, already_answered, "answering", true);
       const response_condensed = JSON.parse(await createChatCompletion(params_condensed, openai, "condenseClarifications"));
-      console.log(response_condensed.instructions);
+      
       const params = getPromptDirectAnswering(legal_question, response_condensed.instructions, all_text_citation_pairs, false);
       const result = JSON.parse(await createChatCompletion(params, openai, "directAnswering"));
       direct_answer = result.direct_answer;
-      console.log(direct_answer);
+
     }
 
     const directAnsweringResponseBody = {
@@ -64,10 +65,20 @@ export async function POST(req: Request) {
       statusMessage: 'Successfully generated partial answers!'
     };
 
-    console.log("  - Exiting directAnswering API endpoint");
+    const endTime = Date.now();
+    const executionTime = endTime - startTime;
+    await insert_api_debug_log("directAnswering", executionTime, JSON.stringify(requestData), JSON.stringify(directAnsweringResponseBody), false, "", process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
+
     return NextResponse.json(directAnsweringResponseBody);
+    
   } catch (error) {
-    console.error(error);
+    const endTime = Date.now();
+		let errorMessage = `${error},\n`
+		if (error instanceof Error) {
+		errorMessage += error.stack;
+		}
+		const executionTime = endTime - startTime;
+		await insert_api_debug_log("directAnswering", executionTime, JSON.stringify(requestData), "{}", true, errorMessage, process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
     return NextResponse.json({ errorMessage: `An error occurred in directAnswering: ${error}` });
   }
 }

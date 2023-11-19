@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { getPromptQueryRefinement } from '@/lib/prompts';
 import { createChatCompletion } from "@/lib/chatCompletion";
 import OpenAI from "openai";
-
+import { insert_api_debug_log } from '@/lib/database';
 
 const openAiKey = process.env.OPENAI_API_KEY;
 const openai = new OpenAI({
@@ -12,10 +12,9 @@ const openai = new OpenAI({
 export const maxDuration = 120;
 
 export async function POST(req: Request) {
-
-  console.log("=====================================");
+  const startTime = Date.now();
+  
   console.log("=== QUERY REFINEMENT API ENDPOINT ===");
-  console.log("=====================================");
 
   const requestData: any = await req.json();
   const original_question = requestData.original_question;
@@ -29,7 +28,6 @@ export async function POST(req: Request) {
     const params = getPromptQueryRefinement(original_question, clarifying_questions, customer_clarifying_responses, true);
     //console.log(params);
     const refinementJSON = JSON.parse(await createChatCompletion(params, openai, "queryRefinement"));
-    console.log(refinementJSON.customer_messages);
 
     const queryRefinementResponseBody = {
       customer_messages: refinementJSON.customer_messages,
@@ -37,10 +35,21 @@ export async function POST(req: Request) {
       specific_questions: refinementJSON.specific_questions,
       statusMessage: 'Succesfully refined query!'
     };
-    console.log("Query Refinement Response: ", queryRefinementResponseBody);
+    
+
+    const endTime = Date.now();
+    const executionTime = endTime - startTime;
+    await insert_api_debug_log("queryRefinement", executionTime, JSON.stringify(requestData), JSON.stringify(queryRefinementResponseBody), false, "", process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
 
     return NextResponse.json(queryRefinementResponseBody);
   } catch (error) {
+    const endTime = Date.now();
+    let errorMessage = `${error},\n`
+    if (error instanceof Error) {
+      errorMessage += error.stack;
+    }
+    const executionTime = endTime - startTime;
+    await insert_api_debug_log("queryRefinement", executionTime, JSON.stringify(requestData), "{}", true, errorMessage, process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
     return NextResponse.json({ errorMessage: `An error occurred in queryRefinement: ${error}` });
   }
 }
