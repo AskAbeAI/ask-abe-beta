@@ -38,13 +38,21 @@ const BottomBar: React.FC<BottomBarProps> = ({
 
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const length = e.target.value.length;
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const value = e.target.value;
+    const length = value.length;
     if (length <= maxLimit) {
-      setQuestion(e.target.value);
+      setQuestion(value);
       setInputLength(length);
+  
+      // Logic to resize the textarea
+      const textarea = e.target;
+      textarea.style.height = 'auto'; // Reset the height
+      textarea.style.height = `${textarea.scrollHeight}px`; // Set to scrollHeight
     }
   };
+
+  
 
   useEffect(() => {
     if (inputMode === 'followup') {
@@ -54,19 +62,21 @@ const BottomBar: React.FC<BottomBarProps> = ({
 
   return (
     <div className="fixed inset-x-0 bottom-0 shadow-md">
-      <div className="container mx-auto p-4 flex justify-center items-center">
+      <div className="container resize-y mx-auto p-4 flex justify-center items-center">
 
 
         {/* Form and input group with transparent background */}
-        <form className="flex justify-center items-center relative w-full max-w-2xl" onSubmit={handleFormSubmit}>
-          <input
-            type="text"
+        <form className="flex flex-grow justify-center items-center relative w-full max-w-2xl" onSubmit={handleFormSubmit}>
+          <textarea
             value={question}
             onChange={handleChange}
             placeholder={inputMessage}
             maxLength={maxLimit}
-            className="w-full pl-4 pr-16 py-2 font-montserrat rounded border-2 border-[#4A4643] focus:outline-none bg-white"
-          />
+            className="w-full h-auto pl-4 pr-24 py-2 whitespace-normal font-montserrat rounded border-2 border-[#4A4643] focus:outline-none bg-white"
+            rows={1}
+            style={{ overflowY: 'hidden' }}
+            ></textarea>
+            
           <button
             type="submit"
             className="absolute right-0 bg-[#4A4643] text-white rounded px-6 py-2 font-montserrat text-xl"

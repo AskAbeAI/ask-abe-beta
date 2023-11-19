@@ -5,33 +5,33 @@ import Image from 'next/image';
 const NavBar: React.FC = () => {
   return (
    
-      <nav className="justify-center items-center bg-[#FAF5E6] flex flex-col px-3 border-b border-solid">
+      <nav className="justify-center items-center bg-[#FAF5E6] flex flex-col px-10 border-b border-solid">
       <div className="justify-between items-stretch flex w-full max-w-full gap-5 my-3 max-md:max-w-full max-md:flex-wrap max-md:justify-center">
-        <div className="flex justify-left items-center font-imfell font-bold text-2xl">ASK ABE AI</div>
+        <div className="flex justify-left items-center font-imfell font-bold text-[#4A4643] text-2xl">ASK ABE AI</div>
         <ul className="items-stretch self-center flex justify-between gap-10 my-auto">
-          <li className="text-black text-base font-montserrat leading-6">
+          <li className="text-[#4A4643] text-base font-montserrat leading-6">
             <Link href="/" aria-label="Link One">
               Home
             </Link>
           </li>
-          <li className="text-black text-base font-montserrat leading-6">
+          <li className="text-[#4A4643] text-base font-montserrat leading-6">
             <Link href="/how" aria-label="Link One">
               How To Use
             </Link>
           </li>
-          <li className="text-black text-base font-montserrat leading-6">
+          <li className="text-[#4A4643] text-base font-montserrat leading-6">
             <Link href="/devlog" aria-label="Link Two">
-              Devlog
+              DevLog
             </Link>
           </li>
-          <li className="text-black text-base font-montserrat leading-6">
+          <li className="text-[#4A4643] text-base font-montserrat leading-6">
             <Link href="/legal" aria-label="Link Three">
               Legal
             </Link>
           </li>
           <li className="justify-between items-stretch font-montserrat flex gap-1">
             <Link href="/playground" aria-label="Link Four">
-              <div className="text-black text-base leading-6">Playground</div>
+              <div className="text-[#4A4643] text-base leading-6">Playground</div>
             </Link>
 
           </li>
