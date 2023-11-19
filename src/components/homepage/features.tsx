@@ -30,7 +30,7 @@ const FeaturesSection: React.FC = () => {
         <div className="flex flex-col items-stretch w-[56%] ml-5 max-md:w-full max-md:ml-0">
           <img
             loading="lazy"
-            srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/92af1210-1dcf-4ec1-bc1e-2c5ac388ddac?apiKey=0444d2d78e064e0ba018ac2a58ee83fe&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/92af1210-1dcf-4ec1-bc1e-2c5ac388ddac?apiKey=0444d2d78e064e0ba018ac2a58ee83fe&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/92af1210-1dcf-4ec1-bc1e-2c5ac388ddac?apiKey=0444d2d78e064e0ba018ac2a58ee83fe&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/92af1210-1dcf-4ec1-bc1e-2c5ac388ddac?apiKey=0444d2d78e064e0ba018ac2a58ee83fe&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/92af1210-1dcf-4ec1-bc1e-2c5ac388ddac?apiKey=0444d2d78e064e0ba018ac2a58ee83fe&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/92af1210-1dcf-4ec1-bc1e-2c5ac388ddac?apiKey=0444d2d78e064e0ba018ac2a58ee83fe&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/92af1210-1dcf-4ec1-bc1e-2c5ac388ddac?apiKey=0444d2d78e064e0ba018ac2a58ee83fe&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/92af1210-1dcf-4ec1-bc1e-2c5ac388ddac?apiKey=0444d2d78e064e0ba018ac2a58ee83fe&"className="aspect-[1.13] object-contain object-center w-full overflow-hidden grow max-md:max-w-full max-md:mt-10"
+            srcSet="/features.png"
             alt="Feature Image"
           />
         </div>
@@ -43,7 +43,7 @@ const FeaturesSection: React.FC = () => {
             Don&apos;t feel like getting asked clarifying questions, check skip clarifications to turn this off.
                   Also, select from which jurisdiction you would like Abe to focus his answer. (More jurisdictions coming soon)
             </p>
-            <h2 className="text-black text-center font-imfell text-2xl font-bold leading-9 mt-56 max-md:mt-10">
+            <h2 className="text-black text-center font-imfell text-2xl font-bold leading-9 mt-32 max-md:mt-10">
             Ask a follow-up question
             </h2>
             <p className="text-black text-center font-montserrat text-base leading-6 mt-4">

@@ -6,7 +6,8 @@ import Image from 'next/image';
 import LegalResearchComponent from '@/components/homepage/homeSection1'
 import LandingSection from '@/components/homepage/landingSection';
 import PageFooter from '@/components/pageFooter';
-
+import OurTeam from '@/components/homepage/team';
+import FeaturesSection from '@/components/homepage/features';
 
 
 
@@ -45,8 +46,8 @@ export default function HomePage() {
       {/* </div> */}
       <LandingSection />
       <LegalResearchComponent />
-      {/* <FeaturesSection/>
-     <OurTeam/> */}
+      <FeaturesSection/>
+     {/* <OurTeam/> */}
 
 
       <PageFooter />
