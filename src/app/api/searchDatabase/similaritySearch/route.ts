@@ -18,6 +18,7 @@ export async function POST(req: Request) {
 	if (supabaseKey === undefined) { throw new Error("process.env.SUPABASE_KEY is undefined!"); }
 
 	const requestData: any = await req.json();
+	const sessionId: string = req.headers.get('x-session-id')!;
 	const jurisdictions = requestData.jurisdictions;
 	const query_expansion_embedding = requestData.query_expansion_embedding;
 	const federalJurisdiction = jurisdictions["federal"];
@@ -36,7 +37,7 @@ export async function POST(req: Request) {
 
 		const endTime = Date.now();
    		const executionTime = endTime - startTime;
-    	await insert_api_debug_log("similaritySearch", executionTime, JSON.stringify(requestData), JSON.stringify(searchResponseBody), false, "", process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
+    	await insert_api_debug_log("similaritySearch", executionTime, JSON.stringify(requestData), JSON.stringify(searchResponseBody), false, "", process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!, sessionId);
 		return NextResponse.json(searchResponseBody);
 		
 	} catch (error) {
@@ -46,7 +47,7 @@ export async function POST(req: Request) {
 		errorMessage += error.stack;
 		}
 		const executionTime = endTime - startTime;
-		await insert_api_debug_log("similaritySearch", executionTime, JSON.stringify(requestData), "{}", true, errorMessage, process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
+		await insert_api_debug_log("similaritySearch", executionTime, JSON.stringify(requestData), "{}", true, errorMessage, process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!, sessionId);
 		return NextResponse.json({ errorMessage: `An error occurred in similarity searching: ${error}` });
 	}
 }

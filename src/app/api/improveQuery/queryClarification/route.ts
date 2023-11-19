@@ -25,6 +25,7 @@ export async function POST(req: Request) {
   const mode: string = requestData.mode;
   const previous_clarifications_raw = requestData.previous_clarifications;
   const already_answered: string[] = requestData.already_answered;
+  const sessionId: string = req.headers.get('x-session-id')!;
 
   try {
 
@@ -75,7 +76,7 @@ export async function POST(req: Request) {
     };
     const endTime = Date.now();
     const executionTime = endTime - startTime;
-    await insert_api_debug_log("queryClarification", executionTime, JSON.stringify(requestData), JSON.stringify(queryClarificationResponseBody), false, "", process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
+    await insert_api_debug_log("queryClarification", executionTime, JSON.stringify(requestData), JSON.stringify(queryClarificationResponseBody), false, "", process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!, sessionId);
     
     return NextResponse.json(queryClarificationResponseBody);
 
@@ -88,6 +89,7 @@ export async function POST(req: Request) {
       errorMessage += error.stack;
     }
     const executionTime = endTime - startTime;
+    await insert_api_debug_log("queryClarification", executionTime, JSON.stringify(requestData), "{}", true, errorMessage, process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!, sessionId);
     return NextResponse.json({ errorMessage: `An error occurred in queryClarification: ${error}` });
   }
 }

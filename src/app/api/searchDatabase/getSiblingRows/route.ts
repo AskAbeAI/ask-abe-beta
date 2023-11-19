@@ -25,6 +25,7 @@ export async function POST(req: Request) {
   const node_keys: node_key[] = requestData.node_keys;
   const federalJurisdiction = jurisdictions["federal"];
   const stateJurisdiction = jurisdictions["state"];
+  const sessionId: string = req.headers.get('x-session-id')!;
   
   try {
 
@@ -33,12 +34,12 @@ export async function POST(req: Request) {
     // const federal_rows: node_as_row[] = await jurisdiction_similarity_search_all_partitions(federalJurisdiction, query_expansion_embedding, 0.8, 40, "40");
     const searchResponseBody = {
       all_rows: all_rows,
-      statusMessage: 'Succesfully got parent rows!'
+      statusMessage: 'Succesfully got sibling rows!'
     };
 
     const endTime = Date.now();
    	const executionTime = endTime - startTime;
-    await insert_api_debug_log("getSiblingRows", executionTime, JSON.stringify(requestData), JSON.stringify(searchResponseBody), false, "", process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
+    await insert_api_debug_log("getSiblingRows", executionTime, JSON.stringify(requestData), JSON.stringify(searchResponseBody), false, "", process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!, sessionId);
     return NextResponse.json(searchResponseBody);
   } catch (error) {
     const endTime = Date.now();
@@ -47,7 +48,7 @@ export async function POST(req: Request) {
 		errorMessage += error.stack;
 		}
 		const executionTime = endTime - startTime;
-		await insert_api_debug_log("getSiblingRows", executionTime, JSON.stringify(requestData), "{}", true, errorMessage, process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
+		await insert_api_debug_log("getSiblingRows", executionTime, JSON.stringify(requestData), "{}", true, errorMessage, process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!, sessionId);
     return NextResponse.json({ errorMessage: `An error occurred in getSiblingRows: ${error}` });
   }
 }

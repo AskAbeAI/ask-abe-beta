@@ -16,14 +16,14 @@ export const maxDuration = 120;
 
 export async function POST(req: Request) {
 
-  console.log("=======================================");
+  
   console.log("==== topicCombination API ENDPOINT ====");
-  console.log("=======================================");
+  
 
   if (openAiKey === undefined) { throw new Error("process.env.OPENAI_API_KEY is undefined!"); }
 
   const requestData = await req.json();
-
+  const sessionId: string = req.headers.get('x-session-id')!;
   const main_question: string = requestData.main_question;
   const state_jurisdiction: string = requestData.state_jurisdiction;
   const federal_jurisdiction: string = requestData.federal_jurisdiction;
@@ -32,10 +32,8 @@ export async function POST(req: Request) {
   try {
     // Process the results in completions
     const params = getPromptTopicCombination(legal_question, combinedResponse);
-    console.log(params);
     const final_topics: TopicResponses = JSON.parse(await createChatCompletion(params, openai, "topicCombination"));
-    console.log("Here!");
-    console.log(final_topics);
+    
 
 
     const topicCombinationResponseBody = {

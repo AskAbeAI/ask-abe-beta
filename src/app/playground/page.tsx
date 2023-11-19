@@ -58,6 +58,17 @@ export default function Playground() {
   const [clarificationResponses, setClarificationResponses] = useState<Clarification[]>([]);
   const [alreadyAnswered, setAlreadyAnswered] = useState(['']);
 
+  // State variables for session
+  const [sessionID, setSessionID] = useState<string>("");
+
+  function generateSessionID() {
+    return `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+  }
+  useEffect(() => {
+    const sessionID = generateSessionID();
+    console.log(`Generated new session ID: ${sessionID}`)
+    setSessionID(sessionID);
+  }, []);
 
   // UI Component Block Functions
   const addContentBlock = async (newBlock: ContentBlock): Promise<string> => {
@@ -181,6 +192,7 @@ export default function Playground() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'X-Session-ID': sessionID,
       },
       body: JSON.stringify(requestBody),
 
@@ -220,6 +232,7 @@ export default function Playground() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'X-Session-ID': sessionID,
       },
       body: JSON.stringify(requestBody),
     });
@@ -325,6 +338,7 @@ export default function Playground() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'X-Session-ID': sessionID,
       },
       body: JSON.stringify(requestBody),
     });
@@ -382,6 +396,7 @@ export default function Playground() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'X-Session-ID': sessionID,
       },
       body: JSON.stringify(requestBody),
     });
@@ -404,6 +419,7 @@ export default function Playground() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'X-Session-ID': sessionID,
       },
       body: JSON.stringify(requestBody),
     });
@@ -494,6 +510,7 @@ export default function Playground() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'X-Session-ID': sessionID,
       },
       body: JSON.stringify(requestBody),
     });
@@ -525,6 +542,7 @@ export default function Playground() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'X-Session-ID': sessionID,
       },
       body: JSON.stringify(requestBody),
     });
@@ -551,6 +569,7 @@ export default function Playground() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'X-Session-ID': sessionID,
       },
       body: JSON.stringify(requestBody),
     });
@@ -601,6 +620,7 @@ export default function Playground() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'X-Session-ID': sessionID,
       },
       body: JSON.stringify(requestBody),
     });
@@ -651,6 +671,7 @@ export default function Playground() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'X-Session-ID': sessionID,
       },
       body: JSON.stringify(requestBody),
 

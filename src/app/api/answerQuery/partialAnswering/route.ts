@@ -14,29 +14,16 @@ export const maxDuration = 120;
 
 export async function POST(req: Request) {
 
-  console.log("=====================================");
+  
   console.log("=== partialAnswering API ENDPOINT ===");
-  console.log("=====================================");
+  
 
   const requestData: any = await req.json();
+  const sessionId: string = req.headers.get('x-session-id')!;
   const topics: TopicResponses = requestData.topics;
   const legal_question = requestData.legal_question;
   const rows: GroupedRows = requestData.groupedRows;
 
-
-  // export interface SubTopic {
-  //   sub_topic: string;
-  //   section_citations: string[];
-  // }
-
-  // export interface GeneralTopic {
-  //   general_topic: string;
-  //   sub_topics: SubTopic[];
-  // }
-
-  // export interface TopicResponses {
-  //   general_topics: GeneralTopic[];
-  // }
   const BATCH_SIZE = 10;
   try {
     const allResponses: any = [];

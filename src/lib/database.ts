@@ -136,7 +136,8 @@ export async function insert_api_debug_log(
   did_error: boolean,
   error_message: string,
   supabaseUrl: string,
-  supabaseKey: string
+  supabaseKey: string,
+  session_id: string
 ): Promise<void> {
   const supabase = createClient(supabaseUrl!, supabaseKey!);
   let input_json;
@@ -150,7 +151,7 @@ export async function insert_api_debug_log(
   }
   const { error } = await supabase
     .from('production_api_debug')
-    .insert({ api_phase, execution_time, input_json, output_json, did_error, error_message });
+    .insert({ api_phase, execution_time, input_json, output_json, did_error, error_message, session_id });
   if (error) {
     console.error("Error inserting api_debug_log into database!" + error);
     throw error;

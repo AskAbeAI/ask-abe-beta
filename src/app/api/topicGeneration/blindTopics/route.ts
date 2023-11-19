@@ -16,14 +16,14 @@ export const maxDuration = 120;
 
 export async function POST(req: Request) {
 
-  console.log("=====================================");
+  
   console.log("==== blindTopics API ENDPOINT ====");
-  console.log("=====================================");
+  
 
   if (openAiKey === undefined) { throw new Error("process.env.OPENAI_API_KEY is undefined!"); }
 
   const requestData = await req.json();
-  console.log(requestData);
+  const sessionId: string = req.headers.get('x-session-id')!;
   const main_question: string = requestData.main_question;
   const specific_questions: string[] = requestData.specific_questions;
   const state_jurisdiction: string = requestData.state_legal_document;

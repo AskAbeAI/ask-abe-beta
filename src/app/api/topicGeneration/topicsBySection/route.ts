@@ -16,14 +16,14 @@ export const maxDuration = 120;
 const BATCH_SIZE = 10;
 export async function POST(req: Request) {
 
-  console.log("=====================================");
+  
   console.log("==== topicsBySection API ENDPOINT ====");
-  console.log("=====================================");
+  
 
   if (openAiKey === undefined) { throw new Error("process.env.OPENAI_API_KEY is undefined!"); }
 
   const requestData = await req.json();
-
+  const sessionId: string = req.headers.get('x-session-id')!;
   const legal_question: string = requestData.legal_question;
   const state_jurisdiction: string = requestData.state_jurisdiction;
   const federal_jurisdiction: string = requestData.federal_jurisdiction;
@@ -52,8 +52,7 @@ export async function POST(req: Request) {
         rows_with_similarity_score = [rows[0]];
       }
       for (const row of rows_with_similarity_score) {
-        console.log(row.citation);
-        console.log(row.node_text);
+        
         const params = getPromptFirstTopics(legal_question, general_topics, mapJurisdictionFullname(state_jurisdiction), `{section_citation: ${row.citation}, legal_text: ${row.node_text}}`);
         //console.log(`  - Generating topics for row ${index}`);
         index++;

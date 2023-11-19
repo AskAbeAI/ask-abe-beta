@@ -21,6 +21,7 @@ export async function POST(req: Request) {
   
 
   const requestData: any = await req.json();
+  const sessionId: string = req.headers.get('x-session-id')!;
   const legal_question = requestData.legal_question;
   const groupedRows: GroupedRows = requestData.legal_texts;
   const clarifications: ClarificationChoices = requestData.clarifications;
@@ -62,12 +63,12 @@ export async function POST(req: Request) {
 
     const directAnsweringResponseBody = {
       directAnswer: direct_answer,
-      statusMessage: 'Successfully generated partial answers!'
+      statusMessage: 'Successfully generated directAnswer!'
     };
 
     const endTime = Date.now();
     const executionTime = endTime - startTime;
-    await insert_api_debug_log("directAnswering", executionTime, JSON.stringify(requestData), JSON.stringify(directAnsweringResponseBody), false, "", process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
+    await insert_api_debug_log("directAnswering", executionTime, JSON.stringify(requestData), JSON.stringify(directAnsweringResponseBody), false, "", process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!, sessionId);
 
     return NextResponse.json(directAnsweringResponseBody);
     
@@ -78,7 +79,7 @@ export async function POST(req: Request) {
 		errorMessage += error.stack;
 		}
 		const executionTime = endTime - startTime;
-		await insert_api_debug_log("directAnswering", executionTime, JSON.stringify(requestData), "{}", true, errorMessage, process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
+		await insert_api_debug_log("directAnswering", executionTime, JSON.stringify(requestData), "{}", true, errorMessage, process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!, sessionId);
     return NextResponse.json({ errorMessage: `An error occurred in directAnswering: ${error}` });
   }
 }

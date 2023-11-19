@@ -22,6 +22,7 @@ export async function POST(req: Request) {
 
   if (openAiKey === undefined) { throw new Error("process.env.OPENAI_API_KEY is undefined!"); }
   const requestData: any = await req.json();
+  const sessionId: string = req.headers.get('x-session-id')!;
   const refined_question = requestData.refined_question;
   const specific_questions = requestData.specific_questions;
 
@@ -40,7 +41,7 @@ export async function POST(req: Request) {
 
     const endTime = Date.now();
     const executionTime = endTime - startTime;
-    await insert_api_debug_log("queryExpansion", executionTime, JSON.stringify(requestData), JSON.stringify(queryExpansionResponseBody), false, "", process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
+    await insert_api_debug_log("queryExpansion", executionTime, JSON.stringify(requestData), JSON.stringify(queryExpansionResponseBody), false, "", process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!, sessionId);
     
     return NextResponse.json(queryExpansionResponseBody);
   } catch (error) {
@@ -50,7 +51,7 @@ export async function POST(req: Request) {
       errorMessage += error.stack;
     }
     const executionTime = endTime - startTime;
-    await insert_api_debug_log("queryExpansion", executionTime, JSON.stringify(requestData), "{}", true, errorMessage, process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
+    await insert_api_debug_log("queryExpansion", executionTime, JSON.stringify(requestData), "{}", true, errorMessage, process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!, sessionId);
     return NextResponse.json({ errorMessage: `An error occurred in queryExpansion: ${error}` });
   }
 }
