@@ -31,7 +31,7 @@ const NavBar: React.FC = () => {
           </li>
           <li className="justify-between items-stretch font-montserrat flex gap-1">
             <Link href="/playground" aria-label="Link Four">
-              <div className="text-[#4A4643] text-base leading-6">Abe's Law Library</div>
+              <div className="text-[#4A4643] text-base leading-6">Abe&apos;s Law Library</div>
             </Link>
 
           </li>
