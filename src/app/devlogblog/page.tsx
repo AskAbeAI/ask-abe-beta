@@ -2,6 +2,7 @@ import React from "react";
 
 export default function Blog() {
   return (
+    
     <div className="bg-[#FEFDF9] flex w-full flex-col px-20 py-12 max-md:max-w-full max-md:px-5">
       <div className="items-stretch self-center flex w-[768px] max-w-full flex-col mt-16 pt-6 max-md:mt-10">
         <div className="text-black text-4xl font-imfell font-bold leading-10 max-md:max-w-full">
