@@ -149,7 +149,7 @@ export async function insert_api_debug_log(
     throw error;
   }
   const { error } = await supabase
-    .from('completionCosts')
+    .from('production_api_debug')
     .insert({ api_phase, execution_time, input_json, output_json, did_error, error_message });
   if (error) {
     console.error("Error inserting api_debug_log into database!" + error);
