@@ -28,15 +28,13 @@ const LandingSection: React.FC = () => {
                 Your Legal Research Assistant
               </p>
             </div>
-            <div className="items-stretch flex w-60 max-w-full justify-between mt-10">
-              <a href="/playground" className="box-border relative z-30 inline-flex items-center justify-center w-auto px-10 py-3 overflow-hidden font-bold text-white transition-all duration-300 bg-zinc-600 rounded-md cursor-pointer group ring-offset-2 ring-1 ring-zinc-300 ring-offset-zinc-200 hover:ring-offset-zinc-500 ease focus:outline-none">
-                <div className="absolute bottom-0 right-0 w-8 h-20 -mb-8 -mr-5 transition-all duration-300 ease-out transform rotate-45 translate-x-1 bg-white opacity-10 group-hover:translate-x-0"></div>
-                <div className="absolute top-0 left-0 w-20 h-8 -mt-1 -ml-12 transition-all duration-300 ease-out transform -rotate-45 -translate-x-1 bg-white opacity-10 group-hover:translate-x-0"></div>
-                <div className="relative z-20 flex items-center font-montserrat text-sm">
+            <div className="items-stretch flex w-70 max-w-full justify-between mt-10">
 
-                  Enter the Playground
-                </div>
-              </a>
+              <button id="bottone1">
+                <span className="font-bold font-montserrat text-white">
+                  Enter Abe's Law Library
+                </span>
+              </button>
 
             </div>
           </div>

@@ -7,11 +7,9 @@ export default function DevPage() {
 
     <div className="h-screen w-full bg-[#FEFDF9]">
     <div className="flex-col justify-center px-16">
-      <div className="text-black text-center text-base font-montserrat font-semibold leading-6 self-center whitespace-nowrap mt-16 max-md:mt-10">
-        Ask Abe
-      </div>
-      <div className="items-center self-center flex max-w-full flex-col mt-4">
-        <div className="text-black text-center text-6xl font-imfell font-bold leading-[67px] max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
+      
+      <div className="items-center self-center flex max-w-full flex-col ">
+        <div className="text-black text-center text-6xl font-imfell font-bold leading-[67px] mt-12 max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
           DevLog
         </div>
         <div className="text-black text-center text-lg leading-7 mt-6 max-md:max-w-full">

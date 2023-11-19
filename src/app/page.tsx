@@ -10,6 +10,7 @@ import PageFooter from '@/components/pageFooter';
 
 
 
+
 export default function HomePage() {
   return (
     <div className="h-screen w-full bg-[#FAF5E6]">
@@ -44,7 +45,8 @@ export default function HomePage() {
       {/* </div> */}
       <LandingSection />
       <LegalResearchComponent />
-     
+      {/* <FeaturesSection/>
+     <OurTeam/> */}
 
 
       <PageFooter />
