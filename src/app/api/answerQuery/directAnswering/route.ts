@@ -6,6 +6,7 @@ import { getPromptDirectAnswering, getPromptPartialAnswering, getPromptDirectAns
 import { createChatCompletion } from '@/lib/chatCompletion';
 import { dir } from 'console';
 import { insert_api_debug_log } from '@/lib/database';
+import { condenseClarificationsIntoInstructions, convertGroupedRowsToTextCitationPairs, generateDirectAnswer } from '@/lib/helpers';
 
 
 const openAiKey = process.env.OPENAI_API_KEY;
@@ -29,14 +30,8 @@ export async function POST(req: Request) {
   const mode: string = requestData.mode;
   const already_answered: string[] = requestData.already_answered;
 
-  const all_text_citation_pairs: text_citation_pair[] = [];
-  for (const key in groupedRows) {
-    const pair: text_citation_pair = {
-      section_citation: groupedRows[key].citation,
-      text: groupedRows[key].section_text.join("\n")
-    };
-    all_text_citation_pairs.push(pair);
-  }
+  const all_text_citation_pairs: text_citation_pair[] = convertGroupedRowsToTextCitationPairs(groupedRows);
+  
   const all_questions: string[] = [];
   all_questions.push(legal_question);
   for (const question of specific_questions) {
@@ -52,12 +47,8 @@ export async function POST(req: Request) {
       direct_answer = result.all_instructions;
       
     } else {
-      const params_condensed = getPromptCondenseClarifications(legal_question, clarifications.clarifications, already_answered, "answering", true);
-      const response_condensed = JSON.parse(await createChatCompletion(params_condensed, openai, "condenseClarifications"));
-      
-      const params = getPromptDirectAnswering(legal_question, response_condensed.instructions, all_text_citation_pairs, false);
-      const result = JSON.parse(await createChatCompletion(params, openai, "directAnswering"));
-      direct_answer = result.direct_answer;
+      const instructions = await condenseClarificationsIntoInstructions(openai, legal_question, clarifications.clarifications, already_answered, "answering");
+      direct_answer = await generateDirectAnswer(openai, legal_question, instructions, all_text_citation_pairs);
 
     }
 
