@@ -1,4 +1,4 @@
-import { getPromptQueryScoring, getPromptExpandedQuery, getPromptQueryRefinement, getPromptCondenseClarifications, getPromptClarificationQuestion, getPromptClarificationQuestionMultiple, getPromptDirectAnswering } from "./prompts";
+import { getPromptQueryScoring, getPromptExpandedQuery, getPromptQueryRefinement, getPromptCondenseClarifications, getPromptClarificationQuestion, getPromptClarificationQuestionMultiple, getPromptDirectAnswering, getPromptBasicQueryRefinement } from "./prompts";
 import { createChatCompletion, getEmbedding } from "./chatCompletion";
 import { Clarification, text_citation_pair, GroupedRows } from "./types";
 import { OpenAI } from "openai";
@@ -28,10 +28,15 @@ return embedded_expansion_query;
 // Query Refinement
 
 export const generateQueryRefinement = async (openai: OpenAI, original_question: string, clarifying_questions: string[], customer_clarifying_responses: string[]) => {
-const params = getPromptQueryRefinement(original_question, clarifying_questions, customer_clarifying_responses, true);
-const res = JSON.parse(await createChatCompletion(params, openai, "queryRefinement"));
+    const params = getPromptQueryRefinement(original_question, clarifying_questions, customer_clarifying_responses, true);
+    const res = JSON.parse(await createChatCompletion(params, openai, "queryRefinement"));
 
-return res;
+    return res;
+}
+export const generateBasicQueryRefinement = async (openai: OpenAI, original_question: string) => {
+    const params = getPromptBasicQueryRefinement(original_question, true);
+    const res = JSON.parse(await createChatCompletion(params, openai, "basicQueryRefinement"));
+    return res;
 }
 
 // Query Clarification

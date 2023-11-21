@@ -191,6 +191,24 @@ export function getPromptQueryRefinement(
   const params: ChatCompletionParams = getChatCompletionParams(model, messages, 0.5, 1000);
   return params;
 }
+
+export function getPromptBasicQueryRefinement(
+  last_question: string,
+  useRegularGPT4: boolean
+): ChatCompletionParams {
+  const system = `You are a well-educated intern at a Law Firm who helps screen potential customers before sending them to a legal professional.\nAs an intern, you will help communicate with a customer on behalf of a legal professional. A customer has asked an original legal question (\"original_question\" variable), which they are looking for a legal professional to answer. Generate some specific questions (output \"specific_questions\"). These specific questions should be created to pass on to the legal professional. Specific questions should be based on the question, as well as your expertiese in the area of law. Specific questions should be requests for specific legal research. Separate out all separate themes relating to a legal topic. For example, if a question is "Can I smoke cannabis recreationally in private spaces?", you could generate a resulting list of specific_questions: ["Is it lawful to smoke cannabis?", "What are the recreational cannabis regulations?", "What are the age requirements for recreational cannabis?", "What are the laws for personal cannabis consumption in private spaces?", "What are regulations for recreational cannabis smoking?", "What are penalties for unlawful recreational cannabis usage?"]. When creating these specific questions, incorporate the same language of the question, but extend it by including other relevant legal themese. Each question should try and only incorporate one extra unique element, and it's best to create many questions that combine unique elements. These questions should be specific, and the whole list may be a little long and repeat some topics, which is okay.
+  Return this in json format: {specific_questions: [\"\"]}`;
+  let user = `{\"original_question\": \"${last_question}\"}`;
+  const messages = convertToMessages(system, user);
+  let model = "gpt-4-1106-preview";
+  if (useRegularGPT4) {
+    model = "gpt-4";
+  }
+  const params: ChatCompletionParams = getChatCompletionParams(model, messages, 0.5, 1000);
+  return params;
+}
+
+
 export function getPromptExpandedQuery(
   legal_questions: string[],
   useRegularGPT4: boolean

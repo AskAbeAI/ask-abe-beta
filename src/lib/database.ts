@@ -127,6 +127,26 @@ export async function insert_completion_cost(
     throw error;
   }
 }
+export function generate_node_keys(rows: node_as_row[]) {
+  const sibling_node_keys: node_key[] = [];
+
+  for (const row of rows) {
+    const original_node: node_key = { "id": row.id, "top_level_title": row.top_level_title };
+    if (sibling_node_keys.includes(original_node)) {
+      continue;
+    }
+    sibling_node_keys.push(original_node);
+
+    for (const sibling_id of row.sibling_nodes) {
+      const sibling_node: node_key = { "id": sibling_id, "top_level_title": row.top_level_title };
+      if (sibling_node_keys.includes(sibling_node)) {
+        continue;
+      }
+      sibling_node_keys.push(sibling_node);
+    }
+  }
+  return sibling_node_keys;
+}
 
 export async function insert_api_debug_log(
   api_phase: string,
@@ -154,6 +174,24 @@ export async function insert_api_debug_log(
     .insert({ api_phase, execution_time, input_json, output_json, did_error, error_message, session_id });
   if (error) {
     console.error("Error inserting api_debug_log into database!" + error);
+    throw error;
+  }
+}
+
+export async function insert_testing_suite_question_results(
+  question: string,
+  quality_score: number,
+  specific_questions: string,
+  direct_answer: string,
+  supabaseUrl: string,
+  supabaseKey: string,
+): Promise<void> {
+  const supabase = createClient(supabaseUrl!, supabaseKey!);
+  const { error } = await supabase
+    .from('testing_suite_question_results')
+    .insert({ question, quality_score, specific_questions, direct_answer});
+  if (error) {
+    console.error("Error inserting testing_suite_question_results into database!" + error);
     throw error;
   }
 }

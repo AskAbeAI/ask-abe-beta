@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "testSuite": "bun ./src/lib/testingSuite.ts"
   },
   "dependencies": {
     "@clerk/backend": "^0.34.1",

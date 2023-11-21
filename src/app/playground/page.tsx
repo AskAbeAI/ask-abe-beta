@@ -8,7 +8,7 @@ import ChatContainer from '@/components/chatContainer';
 // Import data types
 import { ContentType, ContentBlock, ContentBlockParams, CitationBlockProps, GroupedRows, Clarification } from "@/lib/types";
 import { node_as_row, node_key, SubTopic, GeneralTopic, TopicResponses, ClarificationChoices, PartialAnswer } from '@/lib/types';
-import { aggregateSiblingRows } from '@/lib/database';
+import { aggregateSiblingRows, generate_node_keys } from '@/lib/database';
 import CitationBar from '@/components/citationBar';
 import OptionsList from '@/components/optionsFilter';
 import { Option, OptionsListProps } from '@/lib/types';
@@ -44,6 +44,7 @@ export default function Playground() {
 
   // State variables for prompt logic
   const [question, setQuestion] = useState('');
+
   const [clarificationQueue, setClarificationQueue] = useState<ContentBlockParams[]>([]);
   const [specificQuestions, setSpecificQuestions] = useState<string[]>([]);
   const [finalTopicTemplate, setFinalTopicTemplate] = useState<TopicResponses>();
@@ -52,7 +53,7 @@ export default function Playground() {
 
   // State variables for session
   const [sessionID, setSessionID] = useState<string>("");
-
+  
   // Generate Unique Sessiond IDs here
   function generateSessionID() {
     return `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
@@ -234,8 +235,8 @@ export default function Playground() {
     const result = await response.json();
 
     if (mode === "single") {
-      const clarification_content: string = result.message_to_customer;
-      const clarification: Clarification = result.clarification;
+      const clarification_content: string = result.messages_to_customers[0];
+      const clarification: Clarification = result.clarifications[0];
 
       const clarifyingQuestion: string = clarification.question;
       const clarifyingAnswers: string[] = clarification.multiple_choice_answers;
@@ -251,8 +252,8 @@ export default function Playground() {
       };
       await addContentBlock(createNewBlock(params));
     } else {
-      const clarification_content: string[] = result.message_to_customer;
-      const clarifications: Clarification[] = result.clarification;
+      const clarification_content: string[] = result.messages_to_customer;
+      const clarifications: Clarification[] = result.clarifications;
 
       let firstResult: ContentBlockParams;
       const results: ContentBlockParams[] = [];
@@ -427,23 +428,7 @@ export default function Playground() {
     //console.log(rows);
 
     // Get a set of all sibling nodes in rows (including original)
-    const sibling_node_keys: node_key[] = [];
-
-    for (const row of rows) {
-      const original_node: node_key = { "id": row.id, "top_level_title": row.top_level_title };
-      if (sibling_node_keys.includes(original_node)) {
-        continue;
-      }
-      sibling_node_keys.push(original_node);
-
-      for (const sibling_id of row.sibling_nodes) {
-        const sibling_node: node_key = { "id": sibling_id, "top_level_title": row.top_level_title };
-        if (sibling_node_keys.includes(sibling_node)) {
-          continue;
-        }
-        sibling_node_keys.push(sibling_node);
-      }
-    }
+    const sibling_node_keys: node_key[] = generate_node_keys(rows);
 
 
     // Given a list of sibling_node keys, retrieve all actual rows from the database
