@@ -17,7 +17,7 @@ const questionClarityScoreToUserMessage = (quality_score: number) => {
     message_to_user = "I'm sorry, I don't quite understand how your query is relevant to the law. Can you restate your query in a different way or ask a different question?";
   } else if (quality_score == 7) {
     // Question is already excellent, scored 7.
-    message_to_user = "Great question! I will now begin my legal research.";
+    message_to_user = "Great question! I would still like to ask a few clarifying questions to better understand your query.";
   } else {
     // If query needs more work or is bad, scored 2-6.
     message_to_user = "I'd like to ask a few clarifying questions to better understand your query. Please answer the following questions to the best of your ability.";
