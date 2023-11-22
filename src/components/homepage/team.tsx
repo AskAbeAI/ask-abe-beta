@@ -27,7 +27,7 @@ const OurTeam: React.FC = () => {
                                 </p>
                                 <div className="items-stretch flex w-[100px] max-w-full gap-3.5 mt-6 max-md:justify-center">
                                     <a
-                                        href="https://cdn.builder.io/api/v1/image/assets/TEMP/cf93d501-0830-449b-998a-72afe9cc177d?apiKey=0444d2d78e064e0ba018ac2a58ee83fe&"
+                                        href="https://github.com/spartypkp"
                                         className="aspect-square object-contain object-center w-full overflow-hidden shrink-0 flex-1"
                                     >
                                         <svg viewBox="0 0 17 16" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -75,7 +75,7 @@ const OurTeam: React.FC = () => {
                                 </p>
                                 <div className="items-stretch flex w-[100px] max-w-full gap-3.5 mt-6 max-md:justify-center">
                                     <a
-                                        href=""
+                                        href="https://github.com/datbihmad"
                                         className="aspect-square object-contain object-center w-full overflow-hidden shrink-0 flex-1"
                                     >
                                         <svg viewBox="0 0 17 16" version="1.1" xmlns="http://www.w3.org/2000/svg">
