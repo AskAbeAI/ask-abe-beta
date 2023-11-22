@@ -88,7 +88,7 @@ const OurTeam: React.FC = () => {
                                         </svg>
                                     </a>
                                     <a
-                                        href="https://twitter.com/photonMadeline"
+                                        href="https://twitter.com/datbihmad"
                                         className="aspect-square object-contain object-center w-full overflow-hidden shrink-0 flex-1"
                                     >
                                         <img
