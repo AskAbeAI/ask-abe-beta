@@ -47,7 +47,7 @@ export default function HomePage() {
       <LandingSection />
       <LegalResearchComponent />
       <FeaturesSection/>
-     {/* <OurTeam/> */}
+     <OurTeam/>
 
 
       <PageFooter />
