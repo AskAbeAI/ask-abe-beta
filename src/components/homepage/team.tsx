@@ -50,7 +50,7 @@ const OurTeam: React.FC = () => {
                                         />
                                     </a>
                                     <a
-                                        href="https://cdn.builder.io/api/v1/image/assets/TEMP/8084d9e5-da8c-4f1d-86d8-703829d4ec87?apiKey=0444d2d78e064e0ba018ac2a58ee83fe&"
+                                        href="https://www.linkedin.com/in/will-diamond-b1724520b/"
                                         className="aspect-square object-contain object-center w-full overflow-hidden shrink-0 flex-1"
                                     >
                                         <svg viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -98,7 +98,7 @@ const OurTeam: React.FC = () => {
                                         />
                                     </a>
                                     <a
-                                        href="https://cdn.builder.io/api/v1/image/assets/TEMP/216ccec6-abe4-4f7c-a045-223c3478a829?apiKey=0444d2d78e064e0ba018ac2a58ee83fe&"
+                                        href="https://www.linkedin.com/in/madeline-kaufman-309644195"
                                         className="aspect-square object-contain object-center w-full overflow-hidden shrink-0 flex-1"
                                     >
                                         <svg viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg">
