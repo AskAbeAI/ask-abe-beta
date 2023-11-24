@@ -15,26 +15,29 @@ const NavBar: React.FC = () => {
             </Link>
           </li>
           <li className="text-[#4A4643] text-base font-montserrat leading-6">
-            <Link href="/how" aria-label="Link One">
-              How To Use
+            <Link href="/mission" aria-label="Link Three">
+              Our Mission
             </Link>
           </li>
+          
           <li className="text-[#4A4643] text-base font-montserrat leading-6">
             <Link href="/devlog" aria-label="Link Two">
               DevLog
             </Link>
           </li>
           <li className="text-[#4A4643] text-base font-montserrat leading-6">
-            <Link href="/legal" aria-label="Link Three">
-              Legal
+            <Link href="/how" aria-label="Link One">
+              How To Use
             </Link>
           </li>
+        
           <li className="justify-between items-stretch font-montserrat flex gap-1">
             <Link href="/playground" aria-label="Link Four">
               <div className="text-[#4A4643] text-base leading-6">Abe&apos;s Law Library</div>
             </Link>
 
           </li>
+          
         </ul>
         <Link href="/sign-in" className="relative px-5 py-3 overflow-hidden font-medium text-gray-600 bg-[#FAF5E6] border border-gray-100 rounded-lg shadow-inner group">
           <span className="absolute top-0 left-0 w-0 h-0 transition-all duration-200 border-t-2 border-gray-600 group-hover:w-full ease"></span>
