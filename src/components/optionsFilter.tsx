@@ -42,7 +42,7 @@ const OptionsList: React.FC<OptionsListProps> = ({ options, onSelectionChange })
       <div className="grid-cols-1 flex-none bg-[#FDFCFD] border-4 border-[#E4E0D2] overflow-y-auto p-2 w-fit shadow-inner rounded-md">
         <div className="flex justify-center text-[#4A4643] font-bold font-montserrat pb-2">Chat Options</div>
         <div className="flex justify-center font-montserrat font-bold pb-2">
-          <div className="w-fit mx-auto ">
+          <div className="h-auto max-h-full overflow-y-auto bg-[#FDFCFD] border-4 border-[#E4E0D2] p-2 w-full shadow-inner rounded-md">
             <input
 
 
@@ -52,6 +52,7 @@ const OptionsList: React.FC<OptionsListProps> = ({ options, onSelectionChange })
             />
           </div>
         </div>
+        <div className="h-auto max-h-full overflow-y-auto">
         <ul className="list-none pt-2">
 
           {filteredOptions.map(option => (
@@ -73,6 +74,7 @@ const OptionsList: React.FC<OptionsListProps> = ({ options, onSelectionChange })
         {/* <button onClick={handleSelectAll}>Select All</button>
       <button onClick={handleClearSelection}>Clear</button> */}
       </div >
+    </div>
     </div>
   );
 };
