@@ -21,10 +21,13 @@ const LegalResearchComponent: React.FC = () => {
               </h2> */}
               <div className="items-stretch self-stretch flex flex-col mt-4 max-md:max-w-full">
                 <h1 className="text-black text-5xl font-imfell font-bold leading-[57.6px] max-md:max-w-full max-md:text-4xl">
-                  Transforming Legal Research with Conversational AI
+                  Transforming Legal Education with Conversational AI
                 </h1>
                 <p className="text-black text-xl font-montserrat font-light leading-7 mt-6 max-md:max-w-full">
-                  Our legal research conversational AI revolutionizes the way our users interact with the law with access to direct legal citations. With our advanced technology, you can quickly and accurately retrieve the information you need, saving you time and effort. Our conversational AI platform revolutionizes legal research by providing direct legal citations in a user-friendly manner. Say goodbye to tedious searches and let our AI do the work for you.
+                Our conversational AI offers a groundbreaking approach to understanding laws and rights, tailored for everyday citizens. 
+                Designed for education and simplification, it allows for quick, accurate retrieval of necessary information, bypassing complex traditional methods. 
+                 Embrace a user-friendly experience that enhances your understanding of the legalities that affect your life. 
+                 Say goodbye to the hassle of navigating intricate legal texts and welcome a new era of informed empowerment.
                 </p>
               </div>
               <div className="items-stretch flex max-w-full gap-4 mt-10 self-start">

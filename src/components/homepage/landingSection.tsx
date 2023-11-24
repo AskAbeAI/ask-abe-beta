@@ -26,7 +26,7 @@ const LandingSection: React.FC = () => {
                   height={500} />
               </div>
               <p className="text-black text-lg pt-1 font-montserrat leading-7 mt-6 max-md:max-w-full">
-                Your Legal Research Assistant
+                Your Legal Education Assistant
               </p>
             </div>
             <div className="items-fit flex  max-w-full justify-between mt-10">
