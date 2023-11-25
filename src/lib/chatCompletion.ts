@@ -48,8 +48,11 @@ export async function createChatCompletion(params: ChatCompletionParams, openai:
   } else {
     cost = calculateChatCompletionCost(model, prompt_tokens, completion_tokens);
   }
-  await insert_completion_cost(phase, prompt_tokens, completion_tokens, cost, model, process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
-  console.log(`Prompt Tokens: ${prompt_tokens}, Completion Tokens: ${completion_tokens}\nCost of calling ${model} chat completion: $${cost}`);
+  try {
+    await insert_completion_cost(phase, prompt_tokens, completion_tokens, cost, model, process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
+  } catch (error) {
+    console.error("Error inserting completion cost into database!" + error);
+  }
   return completion.choices[0].message['content'];
 }
 

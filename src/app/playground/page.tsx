@@ -16,7 +16,7 @@ import { Option, Jurisdiction,  OptionsListProps, questionJurisdictions } from '
 import { StateJurisdictionOptions, FederalJurisdictionOptions, MiscJurisdictionOptions, ChatOptions } from '@/lib/types';
 
 // Helper functions
-import { constructPromptQuery } from '@/lib/utils';
+import { constructPromptQuery, constructPromptQueryMisc } from '@/lib/utils';
 
 
 // Temporary variables
@@ -26,7 +26,6 @@ import { constructPromptQuery } from '@/lib/utils';
 export default function Playground() {
 
   // State variables for jurisdiction, option toggles
-  
 
   // State variables for UI components
   const [isFormVisible, setIsFormVisible] = useState(true);
@@ -58,13 +57,31 @@ export default function Playground() {
 
   // State variables for options and jurisdictions
   const [selectedStateJurisdiction, setSelectedStateJurisdiction] = useState<Jurisdiction | undefined>();
-  const [selectedFederalJurisdiction, setSelectedFederalJurisdiction] = useState<Jurisdiction | undefined>();
-  const [selectedMiscJurisdiction, setSelectedMiscJurisdiction] = useState<Jurisdiction | undefined>();
+  const [selectedFederalJurisdiction, setSelectedFederalJurisdiction] = useState<Jurisdiction | undefined>(undefined);
+  const [selectedMiscJurisdiction, setSelectedMiscJurisdiction] = useState<Jurisdiction | undefined>(undefined);
   const [questionJurisdictions, setQuestionJurisdictions] = useState<questionJurisdictions>();
 
   const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
   const [skipClarifications, setSkipClarifications] = useState(false);
 
+
+  useEffect(() => {
+    let mode = 'state'; // Default mode
+
+    // Determine the mode based on the current jurisdiction selections
+    if (selectedFederalJurisdiction && selectedStateJurisdiction) {
+      mode = 'state_federal';
+    } else if (selectedMiscJurisdiction) {
+      mode = 'misc';
+    }
+
+    setQuestionJurisdictions({
+      mode: mode,
+      state: selectedStateJurisdiction,
+      federal: selectedFederalJurisdiction,
+      misc: selectedMiscJurisdiction
+    });
+  }, [selectedStateJurisdiction, selectedFederalJurisdiction, selectedMiscJurisdiction]);
   // Generate Unique Sessiond IDs here
   function generateSessionID() {
     return `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
@@ -73,6 +90,8 @@ export default function Playground() {
     const sessionID = generateSessionID();
     console.log(`Generated new session ID: ${sessionID}`)
     setSessionID(sessionID);
+    setSelectedStateJurisdiction({ id: '5', name: ' California', abbreviation: 'CA', corpusTitle: 'California Statutes', usesSubContentNodes: true, jurisdictionLevel: 'state' });
+
     // Add welcome block
   }, []);
 
@@ -167,25 +186,10 @@ export default function Playground() {
       concurrentStreaming: false
     };
     await addContentBlock(createNewBlock(newParams));
-
-    console.log(`Selected State Jurisdiction: ${selectedStateJurisdiction}`);
-    console.log(`Selected Federal Jurisdiction: ${selectedFederalJurisdiction}`);
-    console.log(`Selected Misc Jurisdiction: ${selectedMiscJurisdiction}`);
-    const backupJurisdiction = { id: '5', name: ' California', abbreviation: 'CA', corpusTitle: 'California Statutes', usesSubContentNodes: true, jurisdictionLevel: 'state' };
-    const question_jurisdictions = {"mode": "state","state": selectedStateJurisdiction, "federal": selectedFederalJurisdiction, "misc": selectedMiscJurisdiction};
-    if(!selectedStateJurisdiction && !selectedFederalJurisdiction && !selectedMiscJurisdiction) {
-      question_jurisdictions.state = backupJurisdiction;
-      setSelectedStateJurisdiction(backupJurisdiction);
-      console.log("Applying backup jurisdiction!")
-    } 
-    setQuestionJurisdictions(question_jurisdictions);
-    if (selectedFederalJurisdiction && selectedStateJurisdiction) {
-      question_jurisdictions.mode = "state_federal";
-    } else if (selectedMiscJurisdiction) {
-      question_jurisdictions.mode = "misc";
-    }
+    console.log("HERE@")
+    console.log(questionJurisdictions)
     
-    
+    const question_jurisdictions = questionJurisdictions!;
     let score = 7;
     let message_to_user = "";
     // Only score questions if no misc jurisdiction is selected
@@ -566,8 +570,9 @@ export default function Playground() {
     console.log(all_citation_blocks)
     await addManyContentBlock(all_citation_blocks);
     //const general_topics: string[] = await blindTopics(user_query, "CA", "USA", specific_questions);
-
-    directAnswering(user_query, specific_questions, primary_grouped_rows, secondary_grouped_rows, clarificationResponses);
+    setQuestionJurisdictions(question_jurisdiction);
+    console.log(questionJurisdictions)
+    await directAnswering( user_query, specific_questions, primary_grouped_rows, secondary_grouped_rows, clarificationResponses);
     //await topicsBySection(user_query, general_topics, "CA", "USA", combined_parent_nodes, []);
 
   };
@@ -678,16 +683,23 @@ export default function Playground() {
     secondary_grouped_rows: GroupedRows,
     combinedClarifications: Clarification[],
   ) => {
-
-
+    console.log(questionJurisdictions)
+    let user_prompt_query: string = constructPromptQuery(user_query, questionJurisdictions?.state?.abbreviation || 'The Country Of ' , questionJurisdictions!.federal?.abbreviation || "USA");
+    if (questionJurisdictions?.mode === "misc") {
+      user_prompt_query = constructPromptQueryMisc(user_query, questionJurisdictions?.misc?.corpusTitle || 'This Legal Documentation');
+    }
     const requestBody = {
-      legal_question: user_query,
+      legal_question: user_prompt_query,
       specific_questions: specific_questions,
       primary_grouped_rows: primary_grouped_rows,
       secondary_grouped_rows: secondary_grouped_rows,
       already_answered: alreadyAnswered,
       clarifications: { clarifications: combinedClarifications } as ClarificationChoices,
+      mode: "clarifications"
     };
+    if(skipClarifications || selectedMiscJurisdiction !== undefined) {
+      requestBody.mode = "single";
+    }
 
     setAlreadyAnswered(alreadyAnswered => [...alreadyAnswered, user_query]);
     console.log("  - Sending request to directAnswering API!");
@@ -701,8 +713,9 @@ export default function Playground() {
     });
     const result = await response.json();
     console.log("Received response from directAnswering API!");
+
     const direct_answer: string = result.directAnswer;
-    console.log(direct_answer);
+    console.log(direct_answer)
     const params: ContentBlockParams = {
       type: ContentType.Answer,
       content: direct_answer,
@@ -761,13 +774,14 @@ export default function Playground() {
     } 
     let message_to_user;
     if (score < 2) {
-      message_to_user = "I am not confident in my ability to answer this question with my current research, as well as ask some more clarifying questions. I apologize for the inconvenience, but I am committed to providing you with only the most relevant legal research.";
+      message_to_user = "I am not confident in my ability to answer this question with my current research. Please give me a moment to retrieve more relevant information. I apologize for the inconvenience, but I am committed to providing you with only the most relevant legal information.";
     } else {
       message_to_user = "";
     }
     return [score, message_to_user];
   };
   const handleNewFollowupQuestion = async (question: string) => {
+    console.log("NEW QUESTION: " + question);
     setIsFormVisible(false);
     const questionText = question.trim();
     const [score, message_to_user] = await scoreNewFollowupQuestion(questionText);
@@ -784,7 +798,7 @@ export default function Playground() {
       setCitationBlocks([]);
       setSpecificQuestions([]);
       setClarificationResponses([]);
-      setAlreadyAnswered(['']);
+      setAlreadyAnswered([]);
       setActiveCitationId('');
       setPrimaryGroupedRows({});
       setSecondaryGroupedRows({});
@@ -807,14 +821,15 @@ export default function Playground() {
 
 
     if (skipClarifications) {
-      followUpQuestionAnswer(clarificationResponses);
+      followUpQuestionAnswer(clarificationResponses, questionText);
     } else {
       askNewClarification(questionJurisdictions, questionText, "single", { clarifications: clarificationResponses });
     }
   };
-  const followUpQuestionAnswer = async (clarifications: Clarification[]) => {
-    addNewLoadingBlock(true);
-    directAnswering(question, specificQuestions, primaryGroupedRows, secondaryGroupedRows, clarifications);
+  const followUpQuestionAnswer = async (clarifications: Clarification[], newQuestion?: string) => {
+    addNewLoadingBlock(false);
+    const input = newQuestion || question;
+    await directAnswering(input, specificQuestions, primaryGroupedRows, secondaryGroupedRows, clarifications);
   };
 
   return (

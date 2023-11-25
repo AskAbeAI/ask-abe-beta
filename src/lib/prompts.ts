@@ -94,22 +94,18 @@ multiple_choice_answers: ["", ""], message_to_customer: ""};
 export function getPromptCondenseClarifications(
   question_string: string,
   clarifyingResponses: Clarification[],
-  already_answered: string[],
-  mode: string,
   useRegularGPT4: boolean
 ): ChatCompletionParams {
   let part1;
   let part2;
-  console.log(mode);
-  if (mode === "single") {
+  
+ 
     part1 = "This message should be a summary of the clarifications, and how they help refine the original question. Your summary and instructions should be worded as a message to the legal professional, which gives instructions on asking a fruther clarification question. Given the previous clarifications, what would be the most useful clarification question to ask next? You are only generating instructions for a single new clarificationq uestion.";
     part2 = "This message should be explicit instructions to the legal professional on how to best create a follow up clarification question and possible answers, given the customer's needs and circumstances outlined in the clarifications. *** ONLY GIVE INSTRUCTIONS FOR THE MOST IMPORTANT CLARIFICATION QUESTION. ***";
 
-  } else if (mode === "answering") {
-    part1 = `This message should be a summary of the clarifications, and how the clarifications will play a role in answering the original question. Your summary and instructions should be worded as a message to the legal professional, which gives instructions on creating a comprehensive answer to the legal professional. These instructions should include relevant context on the customer's specific circumstances, as well as information on how to best incorporate the customer's personal information and context into the answer. The legal professional has already answered these questions from the customer: ${already_answered}. Make sure to tailor your instructions to not directly include these questions. The legal professional will be angry if he has to re-answer a part of a question that he already covered.`;
-    part2 = "This message should be explicit instructions to the legal professional on how to best answer the original question, given the customer's needs and circumstances outlined in the clarifications.";
+  
 
-  }
+  
   const system = `You are a highly critical intern at a Law Firm who helps screen potential customers before sending them to a legal professional.
   As an intern, you will act as an assistant and intermediary between a customer and a legal professional. You will be provided some data:
   1. A customer's original question, which is a legal question that they are seeking information for themselves. This question is not well formed, and so the legal professional would like for the company to ask some clarifying questions to the customer.
@@ -135,7 +131,35 @@ export function getPromptCondenseClarifications(
   return params;
 
 }
+export function getPromptAnsweringInstructions(
+  question_string: string,
+  already_answered: string[],
+  customer_information: string,
+  useRegularGPT4: boolean
+): ChatCompletionParams {
+  
+  const system = `You are a highly critical intern at a Law Firm who helps screen potential customers before sending them to a legal professional.
+  As an intern, you will act as an assistant and intermediary between a customer and a legal professional. You will be provided some data:
+  1. A customer's original question, which is a legal question that they are seeking information for themselves. This question is not well formed, and so the legal professional would like for the company to ask some clarifying questions to the customer.
+  2. A list of questions already answered by the legal professional.
+  3. Some basic customer information provided here: ${customer_information}
 
+  Before sending the customer's information to the legal professional for legal research, you will need to create some instructions to the legal professional. Create these instructions by following these instructions:
+  1. Read the original question, and the list of previously asked questions. Take time to understand how the previously answered questions relate to the new question, and how you should specifically answer the new question.
+  2. Summarize this into a concise message to the legal professional.
+  3. Make sure to include all relevant customer information provided.
+  Return your response in json format: {instructions: "Your instructions here"};
+  `;
+  const user = `question: ${question_string}, already_answered_questions: {${JSON.stringify(already_answered)}}`;
+  const messages = convertToMessages(system, user);
+  let model = "gpt-4-1106-preview";
+  if (useRegularGPT4) {
+    model = "gpt-4";
+  }
+  const params: ChatCompletionParams = getChatCompletionParams(model, messages, 0.5, 2000);
+  return params;
+
+}
 export function getPromptClarificationQuestionMultiple(
   question_string: string,
   useRegularGPT4: boolean
@@ -355,6 +379,7 @@ export function getPromptDirectAnswering(
   text_citation_pairs: text_citation_pair[],
   useRegularGPT4: boolean
 ): ChatCompletionParams {
+  console.log(text_citation_pairs)
   const system = `You are a well-educated intern at a Law Firm who helps assist a licensed legal professional in answering legal questions. You will be given:
   1. A legal_question provided by a customer.
   2. Instructions for answering the question provided by the legal professional, which includes necessary context and personal information about the customer.
@@ -367,12 +392,12 @@ export function getPromptDirectAnswering(
   1. First, read the legal question and instructions. Take time to understand the needs and personal circumstances of the customer, and how a good answer to the original legal question must include this information.
   2. Read the answer document, iterating over each section, which includes some text and a section citation. You will be creating your answer by incorporating information and citations from each section in the answer_document into your answer.
   3. Start creating a direct answer to the legal_question using information found in each section. You will have to include many different sections in the answer_document into a comprehensive answer to the legal_question. Only use information from the answer_document to create your answer, and only create citations from section_citations that are found in the answer_document.
-  4. Whenever you include information from a specific section's text in the answer_document, include the section_citation inline with the text. Use the following format for in-line citations: Answer from the legal text ###section_citation###. Ensure that these section_citations are inline and directly included in the text of your answer.
+  4. Whenever you include information from a specific section's text in the answer_document, include the section_citation inline with the text. Use the following format for in-line citations: Answer from the legal text ### section_citation ###. Ensure that these section_citations are inline and directly included in the text of your answer.
   5. As you are reading the answer document, and crafting an answer to the legal_question, a section's text may not be useful in creating an answer. If it is useful in any way, include the section_citation inline in your answer.
 
   The legal expert will be very angry and I will likely lose my job if you do not cite your sources carefully and comprehensively. Make sure that your answer follows the legal professionals instructions.
 
-  Return your direct_answer in json format: {direct_answer: ""}.
+  **Return your answer only in json (JSON) format***: {direct_answer: "Your answer here"}.
   
   `;
   let user = `{legal_question: ${legal_question}, instructions: ${instructions}, answer_document: ${JSON.stringify(text_citation_pairs)}}`;

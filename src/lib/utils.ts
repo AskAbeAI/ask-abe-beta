@@ -70,3 +70,10 @@ export function constructPromptQuery(
 ): string {
   return `According to the law in ${state_jurisdiction}, ${federal_jurisdiction}: ${user_query}`;
 }
+
+export function constructPromptQueryMisc(
+  user_query: string,
+  legal_document: string
+): string {
+  return `According to the regulations in ${legal_document}: ${user_query}`;
+}

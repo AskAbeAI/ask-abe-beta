@@ -94,7 +94,8 @@ const OptionsList: React.FC<OptionsListProps> = ({
           : [...prevSelected]
       );
     }
-    onMiscJurisdictionChange(selectedMisc)
+    onMiscJurisdictionChange(selectedMisc);
+    onStateJurisdictionChange(undefined);
     
   }, [selectedMisc]);
 
