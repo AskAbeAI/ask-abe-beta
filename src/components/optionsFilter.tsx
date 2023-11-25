@@ -1,20 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { Option, OptionsListProps } from '@/lib/types';
+import { Jurisdiction, Option, OptionsListProps } from '@/lib/types';
 // Define the structure of your options
 
 
-const OptionsList: React.FC<OptionsListProps> = ({ options, onSelectionChange }) => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filteredOptions, setFilteredOptions] = useState(options);
-  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+const OptionsList: React.FC<OptionsListProps> = ({ 
+  stateJurisdictions, 
+  federalJurisdictions, 
+  miscJurisdictions,
+  options, 
+  onOptionChange,
+  onJurisdictionChange,
+}) => {
+  // const [searchTerm, setSearchTerm] = useState('');
+  // const [filteredJurisdictions, setFilteredJurisdictions] = useState();
+  const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
+  const [selectedJurisdictions, setSelectedJurisdictions] = useState<Jurisdiction[]>([]);
 
-  useEffect(() => {
-    // Filter options based on the search term
-    const filtered = options.filter(option =>
-      option.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredOptions(filtered);
-  }, [searchTerm, options]);
+  // useEffect(() => {
+  //   // Filter options based on the search term
+  //   const filtered = options.filter(option =>
+  //     option.name.toLowerCase().includes(searchTerm.toLowerCase())
+  //   );
+  //   setFilteredOptions(filtered);
+  // }, [searchTerm, options]);
 
   // const handleSelectAll = () => {
   //   setSelectedOptions(filteredOptions.map(option => option.id));
@@ -24,18 +32,18 @@ const OptionsList: React.FC<OptionsListProps> = ({ options, onSelectionChange })
   //   setSelectedOptions([]);
   // };
 
-  const toggleSelection = (optionId: string) => {
-    setSelectedOptions(prevSelected =>
-      prevSelected.includes(optionId)
-        ? prevSelected.filter(id => id !== optionId)
-        : [...prevSelected, optionId]
-    );
-  };
+  // const toggleSelection = (optionId: string) => {
+  //   setSelectedOptions(prevSelected =>
+  //     prevSelected.includes(optionId)
+  //       ? prevSelected.filter(id => id !== optionId)
+  //       : [...prevSelected, optionId]
+  //   );
+  // };
 
   // Communicate the selected options to the parent component
-  useEffect(() => {
-    onSelectionChange(selectedOptions);
-  }, [selectedOptions, onSelectionChange]);
+  // useEffect(() => {
+  //   onSelectionChange(selectedOptions);
+  // }, [selectedOptions, onSelectionChange]);
 
   return (
     <div className="pl-2">
@@ -43,19 +51,13 @@ const OptionsList: React.FC<OptionsListProps> = ({ options, onSelectionChange })
         <div className="flex justify-center text-[#4A4643] font-bold font-montserrat pb-2">Chat Options</div>
         <div className="flex justify-center font-montserrat font-bold pb-2">
           <div className="h-auto max-h-full overflow-y-auto bg-[#FDFCFD] p-2 w-full shadow-inner rounded-md">
-            <input
-
-
-              type="text"
-              placeholder="Search"
-              onChange={e => setSearchTerm(e.target.value)}
-            />
+            
           </div>
         </div>
         <div className="h-auto max-h-full overflow-y-auto">
         <ul className="list-none pt-2">
 
-          {filteredOptions.map(option => (
+          {/* {filteredOptions.map(option => (
             <li key={option.id}>
               <label className="flex items-center space-x-2">
                 <input
@@ -65,9 +67,9 @@ const OptionsList: React.FC<OptionsListProps> = ({ options, onSelectionChange })
                 />
                 <span>{option.name}</span>
               </label>
-            </li>
+            </li> */}
 
-          ))}
+          {/* ))} */}
 
 
         </ul>
