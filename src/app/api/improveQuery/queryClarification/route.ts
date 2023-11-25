@@ -33,7 +33,7 @@ export async function POST(req: Request) {
       // Condense previous clarifications.
 
       const previous_clarifications: Clarification[] = previous_clarifications_raw;
-      const instructions: string = await condenseClarificationsIntoInstructions(openai, user_prompt_query, previous_clarifications, already_answered, mode);
+      const instructions: string = await condenseClarificationsIntoInstructions(openai, user_prompt_query, previous_clarifications);
       const [new_clarification, message_to_customer] = await generateNewClarificationQuestion(openai, user_prompt_query, instructions);
       response = {
         messages_to_customer: [message_to_customer],
