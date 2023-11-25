@@ -357,7 +357,10 @@ export function getPromptDirectAnswering(
   const system = `You are a well-educated intern at a Law Firm who helps assist a licensed legal professional in answering legal questions. You will be given:
   1. A legal_question provided by a customer.
   2. Instructions for answering the question provided by the legal professional, which includes necessary context and personal information about the customer.
-  3. An answer_document which contains a list of sections (legal text and section_citations) that the legal professional has found to be useful in answering the legal_question.
+  3. An answer_document which contains a list of sections that the legal professional has found to be useful in answering the legal_question.
+  - Each section has a section_citation, which is a unique identifier for that section.
+  - Each section has some legal text, which is the actual text of the section.
+  - Each section has the name of the legal_document that the section is from. You will get sections from only 1 to 2 legal_documents.
 
   Your job is to read through all the sections in the answer document, and create a direct answer to the legal_question. ** Ensure that each individual part of an answer from a section also includes citations in line **. Follow these instructions to create a direct answer with citations to the legal_question:
   1. First, read the legal question and instructions. Take time to understand the needs and personal circumstances of the customer, and how a good answer to the original legal question must include this information.

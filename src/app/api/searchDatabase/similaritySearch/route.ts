@@ -1,6 +1,6 @@
 
 import { NextResponse } from 'next/server';
-import { node_as_row } from "@/lib/types";
+import { node_as_row, questionJurisdictions } from "@/lib/types";
 import { jurisdiction_similarity_search_all_partitions, insert_api_debug_log } from "@/lib/database";
 
 export const maxDuration = 120;
@@ -19,21 +19,39 @@ export async function POST(req: Request) {
 
 	const requestData: any = await req.json();
 	const sessionId: string = req.headers.get('x-session-id')!;
-	const jurisdictions = requestData.jurisdictions;
+	const jurisdictions: questionJurisdictions = requestData.jurisdictions;
 	const query_expansion_embedding = requestData.query_expansion_embedding;
-	const federalJurisdiction = jurisdictions["federal"] || null ;
-	const stateJurisdiction = jurisdictions["state"];
-	const miscJurisdiction = jurisdictions["misc"] || null ;
+	const federalJurisdiction = jurisdictions.federal;
+	const stateJurisdiction = jurisdictions.state;
+	const miscJurisdiction = jurisdictions.misc;
+	const mode:string = jurisdictions.mode;
 
 	// CHECK FOR INITIAL ERRORS
 
 	try {
-		const state_rows: node_as_row[] = await jurisdiction_similarity_search_all_partitions(stateJurisdiction, query_expansion_embedding, 0.8, 20, 60, supabaseUrl, supabaseKey);
-		// const federal_rows: node_as_row[] = await jurisdiction_similarity_search_all_partitions(federalJurisdiction, query_expansion_embedding, 0.8, 40, "40");
+		let jurisdiction:string = "";
+		let maxRows = 30;
+
+		if (mode === "misc") {
+			jurisdiction = miscJurisdiction?.abbreviation!;
+		} else if (mode === "state" || mode === "state_federal") {
+			if (stateJurisdiction?.usesSubContentNodes) {
+				maxRows = 60;
+			}
+			jurisdiction = stateJurisdiction?.abbreviation!;
+		} else {
+			jurisdiction = federalJurisdiction?.abbreviation!;
+		}
+		const primary_rows: node_as_row[] = await jurisdiction_similarity_search_all_partitions(jurisdiction, query_expansion_embedding, 0.8, maxRows/2, maxRows, supabaseUrl, supabaseKey);
+		let secondary_rows: node_as_row[] = [];
+		if (mode === "state_federal") {
+			secondary_rows = await jurisdiction_similarity_search_all_partitions(federalJurisdiction?.abbreviation!, query_expansion_embedding, 0.8, 15, 30, supabaseUrl, supabaseKey);
+		}
+
 		const searchResponseBody = {
-			state_rows: state_rows,
-			federal_rows: "",
-			statusMessage: 'Succesfully searched database for state and federal jurisdiction rows!'
+			primary_rows: primary_rows,
+			secondary_rows: secondary_rows,
+			statusMessage: 'Succesfully searched database for primary and secondary rows!'
 		};
 
 		const endTime = Date.now();

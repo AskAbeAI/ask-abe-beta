@@ -38,7 +38,8 @@ export default function Playground() {
   const [inputMode, setInputMode] = useState<string>('Initial');
 
   // State variables for legal text, database search
-  const [groupedRows, setGroupedRows] = useState<GroupedRows>({});
+  const [primaryGroupedRows, setPrimaryGroupedRows] = useState<GroupedRows>({});
+  const [secondaryGroupedRows, setSecondaryGroupedRows] = useState<GroupedRows>({});
 
   // State variables for contentBlocks
   const [contentBlocks, setContentBlocks] = useState<ContentBlock[]>([]);
@@ -442,41 +443,60 @@ export default function Playground() {
       body: JSON.stringify(requestBody),
     });
 
-
-
     const result = await response.json();
 
-    const rows: node_as_row[] = result.state_rows;
-    // Returns many rows from the database, 
-    //console.log(rows);
+    const primary_rows: node_as_row[] = result.primary_rows;
+    const secondary_rows: node_as_row[] = result.secondary_rows;
+    
+    let combined_rows: node_as_row[] = [];
+    let usesSubContentNodes: boolean = false;
+    if (question_jurisdiction.mode.includes("state")) {
+      if (question_jurisdiction.state?.usesSubContentNodes) {
+        usesSubContentNodes = true;
+        // Get a set of all sibling nodes in rows (including original)
+        const sibling_node_keys: node_key[] = generate_node_keys(primary_rows);
+        // Given a list of sibling_node keys, retrieve all actual rows from the database
+        combined_rows = await getSiblingRows(sibling_node_keys);
 
-    // Get a set of all sibling nodes in rows (including original)
-    const sibling_node_keys: node_key[] = generate_node_keys(rows);
+      } else {
+        combined_rows = primary_rows;
+      }
+    }
+    
+    let primaryJurisdiction;
+    let secondaryJurisdiction;
+    if (question_jurisdiction.mode === "misc") {
+      primaryJurisdiction = question_jurisdiction.misc! as Jurisdiction;
+    } else if (question_jurisdiction.mode === "state" || question_jurisdiction.mode === "state_federal") {
 
-
-    // Given a list of sibling_node keys, retrieve all actual rows from the database
-    const combined_rows: node_as_row[] = await getSiblingRows(sibling_node_keys);
-
+      primaryJurisdiction = question_jurisdiction.state! as Jurisdiction;
+      if (question_jurisdiction.mode === "state_federal") {
+        secondaryJurisdiction = question_jurisdiction.federal! as Jurisdiction;
+      }
+    } else {
+      primaryJurisdiction = question_jurisdiction.federal! as Jurisdiction;
+    }
     // Get a set of all unique parent_nodes in combinedRows variable
-    const combined_parent_nodes: GroupedRows = await aggregateSiblingRows(combined_rows);
-    setGroupedRows(combined_parent_nodes);
+    const primary_grouped_rows: GroupedRows = await aggregateSiblingRows(combined_rows, usesSubContentNodes, primaryJurisdiction);
+    let secondary_grouped_rows: GroupedRows = {};
+    if(secondary_rows.length > 0) {
+      secondary_grouped_rows = await aggregateSiblingRows(secondary_rows, false, secondaryJurisdiction!);
+    }
 
-    // TOPIC GENERATION CUT OFF POINT
-
-
-    //console.log(combined_parent_nodes);
     const all_citation_blocks: ContentBlock[] = [];
-
+    
     // Create citation blocks for each parent node
-    for (const parent_node in combined_parent_nodes) {
-      const section_text: string[] = combined_parent_nodes[parent_node].section_text;
-      const citation: string = combined_parent_nodes[parent_node].citation;
-      const link: string = combined_parent_nodes[parent_node].link;
+    const primary_citation_blocks: ContentBlock[] = [];
+    for (const parent_node in primary_grouped_rows) {
+      const section_text: string[] = primary_grouped_rows[parent_node].section_text;
+      const citation: string = primary_grouped_rows[parent_node].citation;
+      const link: string = primary_grouped_rows[parent_node].link;
       //console.log(citation);
 
 
       const citationProps: CitationBlockProps = {
         citation: citation,
+        jurisdictionName: primaryJurisdiction.corpusTitle,
         link: link,
         section_text: section_text,
         setOpen: setCitationsOpen,
@@ -491,12 +511,45 @@ export default function Playground() {
         citationProps: citationProps
       };
       const block = createNewBlock(newParams);
-      all_citation_blocks.push(block);
+      primary_citation_blocks.push(block);
     }
+    all_citation_blocks.push(...primary_citation_blocks);
+
+    if (secondary_rows.length > 0) {
+      let jurisdictionName = secondaryJurisdiction!.corpusTitle;
+      const secondary_citation_blocks: ContentBlock[] = [];
+      for (const parent_node in secondary_grouped_rows) {
+        const section_text: string[] = secondary_grouped_rows[parent_node].section_text;
+        const citation: string = secondary_grouped_rows[parent_node].citation;
+        const link: string = secondary_grouped_rows[parent_node].link;
+        const citationProps: CitationBlockProps = {
+          citation: citation,
+          jurisdictionName: jurisdictionName,
+          link: link,
+          section_text: section_text,
+          setOpen: setCitationsOpen,
+          open: citationsOpen
+        };
+        const newParams: ContentBlockParams = {
+          type: ContentType.Citation,
+          content: jurisdictionName,
+          fake_stream: false,
+          concurrentStreaming: false,
+          citationProps: citationProps
+        };
+        const block = createNewBlock(newParams);
+        secondary_citation_blocks.push(block);
+      }
+      all_citation_blocks.push(...secondary_citation_blocks);
+    }
+    
+    setPrimaryGroupedRows(primary_grouped_rows);
+    setSecondaryGroupedRows(secondary_grouped_rows);
+
     await addManyContentBlock(all_citation_blocks);
     //const general_topics: string[] = await blindTopics(user_query, "CA", "USA", specific_questions);
 
-    directAnswering(user_query, specific_questions, combined_parent_nodes, clarificationResponses);
+    directAnswering(user_query, specific_questions, primary_grouped_rows, secondary_grouped_rows, clarificationResponses);
     //await topicsBySection(user_query, general_topics, "CA", "USA", combined_parent_nodes, []);
 
   };
@@ -603,7 +656,8 @@ export default function Playground() {
   const directAnswering = async (
     user_query: string,
     specific_questions: string[],
-    legal_texts: GroupedRows,
+    primary_grouped_rows: GroupedRows,
+    secondary_grouped_rows: GroupedRows,
     combinedClarifications: Clarification[],
   ) => {
 
@@ -611,7 +665,8 @@ export default function Playground() {
     const requestBody = {
       legal_question: user_query,
       specific_questions: specific_questions,
-      legal_texts: legal_texts,
+      primary_grouped_rows: primary_grouped_rows,
+      secondary_grouped_rows: secondary_grouped_rows,
       already_answered: alreadyAnswered,
       clarifications: { clarifications: combinedClarifications } as ClarificationChoices,
     };
@@ -711,7 +766,8 @@ export default function Playground() {
       setClarificationResponses([]);
       setAlreadyAnswered(['']);
       setActiveCitationId('');
-      setGroupedRows({});
+      setPrimaryGroupedRows({});
+      setSecondaryGroupedRows({});
       setInputMode("Initial");
       handleNewQuestion(questionText);
       return;
@@ -738,7 +794,7 @@ export default function Playground() {
   };
   const followUpQuestionAnswer = async (clarifications: Clarification[]) => {
     addNewLoadingBlock(true);
-    directAnswering(question, specificQuestions, groupedRows, clarifications);
+    directAnswering(question, specificQuestions, primaryGroupedRows, secondaryGroupedRows, clarifications);
   };
 
   return (

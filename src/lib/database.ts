@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
-import { node_as_row, node_key, GroupedRows } from "@/lib/types";
+import { node_as_row, node_key, GroupedRows, Jurisdiction } from "@/lib/types";
 
 
 
@@ -45,8 +45,8 @@ export async function get_sibling_rows(
 }
 
 
-export async function aggregateSiblingRows(rows: node_as_row[]): Promise<GroupedRows> {
-
+export async function aggregateSiblingRows(rows: node_as_row[], usesSubContentNodes: boolean, jurisdiction: Jurisdiction): Promise<GroupedRows> {
+ 
   const extractSortKey = (id: string): string => {
     const parts = id.split('/');
     const lastPart = parts[parts.length - 1];
@@ -62,10 +62,23 @@ export async function aggregateSiblingRows(rows: node_as_row[]): Promise<Grouped
 
 
   const groupedRows: GroupedRows = {};
+  if (usesSubContentNodes=== false) {
+    for (const row of rows) {
+  
+      groupedRows[row.parent_node] = {
+        rows: [row],
+        section_text: [row.node_text],
+        citation: row.citation,
+        link: "Placeholder!",
+        jurisdiction: jurisdiction
+      };
+    }
+    return groupedRows;
+  }
 
   for (const row of rows) {
     if (!groupedRows[row.parent_node]) {
-      groupedRows[row.parent_node] = { rows: [], section_text: [], citation: '', link: '' };
+      groupedRows[row.parent_node] = { rows: [], section_text: [], citation: '', link: '', jurisdiction: jurisdiction };
     }
     if (!groupedRows[row.parent_node].rows.some(existingRow => existingRow.id === row.id)) {
       groupedRows[row.parent_node].rows.push(row);
@@ -77,32 +90,37 @@ export async function aggregateSiblingRows(rows: node_as_row[]): Promise<Grouped
     const siblingRows = groupedRows[parent_node].rows;
 
     // Sorting logic
-    siblingRows.sort((a, b) => {
-      const keyA = extractSortKey(a.id);
-      const keyB = extractSortKey(b.id);
-      if (keyA.trim() === "" && keyB.trim() !== "") return -1;
-      if (keyB.trim() === "" && keyA.trim() !== "") return 1;
-      return keyA.localeCompare(keyB);
-    });
+    if(usesSubContentNodes) {
+      siblingRows.sort((a, b) => {
+        const keyA = extractSortKey(a.id);
+        const keyB = extractSortKey(b.id);
+        if (keyA.trim() === "" && keyB.trim() !== "") return -1;
+        if (keyB.trim() === "" && keyA.trim() !== "") return 1;
+        return keyA.localeCompare(keyB);
+      });
+    
 
-    let section_text: string[] = [];
-    let citation = "";
-    let link = "";
+      let section_text: string[] = [];
+      let citation = "";
+      let link = "";
 
-    for (const row of siblingRows) {
-      section_text.push(row.node_text);
-      if (row.citation.includes("Addendum")) {
-        citation = row.citation.replace("Addendum", "");
-        link = "https://leginfo.legislature.ca.gov/faces/codes.xhtml";
+      for (const row of siblingRows) {
+        section_text.push(row.node_text);
+        if (row.citation.includes("Addendum")) {
+          citation = row.citation.replace("Addendum", "");
+          link = "https://leginfo.legislature.ca.gov/faces/codes.xhtml";
+        }
       }
+      groupedRows[parent_node] = {
+        rows: siblingRows,
+        section_text: section_text,
+        citation: citation,
+        link: link,
+        jurisdiction: jurisdiction
+      };
     }
 
-    groupedRows[parent_node] = {
-      rows: siblingRows,
-      section_text: section_text,
-      citation: citation,
-      link: link
-    };
+    
   }
 
   return groupedRows;

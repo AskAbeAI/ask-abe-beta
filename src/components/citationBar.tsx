@@ -23,6 +23,7 @@ const CitationBar: React.FC<CitationProps> = ({ open, setOpen, citationItems, ac
       return (
         <CitationBlock
           citation={item.citationProps.citation}
+          jurisdictionName={item.citationProps.jurisdictionName}
           link={item.citationProps.link}
           section_text={item.citationProps.section_text}
           setOpen={setOpen}
@@ -45,6 +46,22 @@ const CitationBar: React.FC<CitationProps> = ({ open, setOpen, citationItems, ac
       }
     }
   }, [activeCitationId]);
+
+  type GroupedCitations = { [jurisdiction: string]: ContentBlock[] };
+
+  const groupByJurisdiction = (items: ContentBlock[]): GroupedCitations => {
+    return items.reduce((groups, item) => {
+      const jurisdiction = item.citationProps!.jurisdictionName;
+      if (!groups[jurisdiction]) {
+        groups[jurisdiction] = [];
+      }
+      groups[jurisdiction].push(item);
+      return groups;
+    }, {} as GroupedCitations);
+  };
+
+  // Grouping citation items
+  const groupedCitations = groupByJurisdiction(citationItems);
 
   return (
     <div className="h-auto max-h-full overflow-y-auto bg-[#FDFCFD] border-4 border-[#E4E0D2] p-2 w-full shadow-inner rounded-md">
@@ -84,15 +101,17 @@ const CitationBar: React.FC<CitationProps> = ({ open, setOpen, citationItems, ac
 
       {/* Citation sidebar content */}
       <div className="overflow-y-auto scrollbar h-full w-25 max-h-full">
-        {citationItems.map((item) => (
-
-          // The key should be here, on the first element inside the map
-          <div key={item.blockId} className="pt-2">
-            {renderContentBlock(item)}
-
-          </div>
-        ))}
-      </div>
+      {Object.keys(groupedCitations).map((jurisdiction) => (
+        <div key={jurisdiction}>
+          <div className="pt-2 font-bold">{jurisdiction}</div>
+          {groupedCitations[jurisdiction].map((item) => (
+            <div key={item.blockId} className="pt-2">
+              {renderContentBlock(item)}
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
     </div >
 
 

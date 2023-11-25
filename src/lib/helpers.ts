@@ -92,7 +92,8 @@ export const convertGroupedRowsToTextCitationPairs = (groupedRows: GroupedRows):
     for (const key in groupedRows) {
         const pair: text_citation_pair = {
         section_citation: groupedRows[key].citation,
-        text: groupedRows[key].section_text.join("\n")
+        text: groupedRows[key].section_text.join("\n"),
+        document: groupedRows[key].jurisdiction.corpusTitle
         };
         all_text_citation_pairs.push(pair);
     }

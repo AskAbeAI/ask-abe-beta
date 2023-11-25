@@ -123,6 +123,7 @@ export interface StreamingAnswerBlockProps {
 }
 export interface CitationBlockProps {
   citation: string;
+  jurisdictionName: string;
   link: string;
   section_text: string[];
   setOpen: (open: boolean) => void;
@@ -314,12 +315,14 @@ export interface GroupedRows {
     section_text: string[];
     citation: string;
     link: string;
+    jurisdiction: Jurisdiction;
   };
 }
 // Citation Types
 export type text_citation_pair = {
   section_citation: string;
   text: string;
+  document: string;
 };
 
 export type questionJurisdictions = {
