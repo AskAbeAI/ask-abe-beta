@@ -7,7 +7,7 @@ const OurTeam: React.FC = () => {
     return (
         <section className="items-center bg-[#FAF5E6] flex flex-col px-5 shadow-inner ">
             <div className="flex w-[768px] max-w-full flex-col items-stretch mt-16 mb-16 max-md:my-10">
-                <h1 className="text-black text-center font-cinzel text-5xl font-semibold leading-[58px] max-md:max-w-full max-md:text-5xl max-md:leading-[54px]">
+                <h1 className="text-[#2F3F3D] text-center font-cinzel text-5xl font-semibold leading-[58px] max-md:max-w-full max-md:text-5xl max-md:leading-[54px]">
                     Our Team
                 </h1>
                 <div className="self-center w-[640px] max-w-full mt-20 max-md:mt-10">

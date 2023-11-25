@@ -6,14 +6,31 @@ export default function DevPage() {
   return (
 
     <div className="h-screen w-full bg-[#FEFDF9]">
-    <div className="flex-col justify-center px-16">
-      
-      <div className="items-center self-center flex max-w-full flex-col ">
-        <div className="text-[#2F3F3D] text-center text-6xl font-cinzel font-bold leading-[67px] mt-12 max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
-          DevLog
+    <div className="items-center flex flex-col px-16 max-md:px-5">
+      <div className="text-black text-center text-base font-cinzel font-semibold leading-6 self-center whitespace-nowrap mt-28 max-md:mt-10">
+        Ask Abe
+      </div>
+      <div className="self-center text-black text-center font-cinzel text-6xl font-bold leading-[67px] max-w-screen-md mt-4 max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
+        DevLog
+      </div>
+      <div className="self-center text-black text-center text-lg leading-7 max-w-screen-md mt-6 max-md:max-w-full">
+      Ask Abe&apos;s Journey in Development Unfolded.{" "}
+      </div>
+      <div className="items-start self-center flex w-[592px] max-w-full justify-between gap-4 mt-20 max-md:flex-wrap max-md:justify-center max-md:mt-10">
+        <div className="text-black text-base leading-6 whitespace-nowrap justify-center border self-stretch grow px-4 py-2 border-solid border-black">
+          View all
         </div>
-        <div className="text-black text-center text-lg leading-7 mt-6 max-md:max-w-full">
-
+        <div className="text-black text-base leading-6 self-center my-auto">
+          Category one
+        </div>
+        <div className="text-black text-base leading-6 self-center my-auto">
+          Category two
+        </div>
+        <div className="text-black text-base leading-6 flex-1 my-auto">
+          Category three
+        </div>
+        <div className="text-black text-base leading-6 self-center whitespace-nowrap my-auto">
+          Category four
         </div>
       </div>
 
