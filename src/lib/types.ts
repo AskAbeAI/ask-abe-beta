@@ -235,9 +235,8 @@ export interface OptionsListProps {
   miscJurisdictions: Jurisdiction[];
   options: Option[];
   onOptionChange: (options: Option[]) => void;
-  onJurisdictionChange: (jurisdictions: Jurisdiction[]) => void;
+  onJurisdictionChange: (jurisdictions: Jurisdiction) => void;
 }
-
 
 // Types for UI Logic
 // Clarification types

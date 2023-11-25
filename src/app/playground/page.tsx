@@ -1,6 +1,6 @@
 "use client";
 // Import React dependencies
-import React, { useState, FormEvent, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 // Import UI components
 import BottomBar from '@/components/bottomBar';
 import ChatContainer from '@/components/chatContainer';
@@ -17,6 +17,7 @@ import { StateJurisdictionOptions, FederalJurisdictionOptions, MiscJurisdictionO
 
 // Helper functions
 import { constructPromptQuery } from '@/lib/utils';
+
 
 // Temporary variables
 
@@ -650,15 +651,16 @@ export default function Playground() {
       }
     }
   };
-  const handleJurisdictionChange = (jurisdictions: Jurisdiction[]) => {
-    for (const jurisdiction of jurisdictions) {
-      if (jurisdiction.jurisdictionLevel === "state") {
-        setSelectedStateJurisdiction(jurisdiction);
-      } else if (jurisdiction.jurisdictionLevel === "federal") {
-        setSelectedFederalJurisdiction(jurisdiction);
-      } else {
-        setSelectedMiscJurisdiction(jurisdiction);
-      }
+
+  const handleJurisdictionChange = (jurisdiction: Jurisdiction) => {
+    
+    if (jurisdiction.jurisdictionLevel === "state") {
+      setSelectedStateJurisdiction(jurisdiction);
+    } else if (jurisdiction.jurisdictionLevel === "federal") {
+      setSelectedFederalJurisdiction(jurisdiction);
+    } else {
+      setSelectedMiscJurisdiction(jurisdiction);
+
     }
   };
 
@@ -778,7 +780,7 @@ export default function Playground() {
         )}
       </div>
       <div>
-        <div className="overflow-y-auto scrollbar h-full w-25 max-h-full">
+        <div className="pl-2 overflow-y-auto scrollbar h-full w-25 ">
         <OptionsList 
           stateJurisdictions={StateJurisdictionOptions}
           federalJurisdictions={FederalJurisdictionOptions}
