@@ -235,7 +235,10 @@ export interface OptionsListProps {
   miscJurisdictions: Jurisdiction[];
   options: Option[];
   onOptionChange: (options: Option[]) => void;
-  onJurisdictionChange: (jurisdictions: Jurisdiction) => void;
+  
+  onStateJurisdictionChange: (jurisdictions: Jurisdiction | undefined) => void;
+  onFederalJurisdictionChange: (jurisdictions: Jurisdiction | undefined) => void;
+  onMiscJurisdictionChange: (jurisdictions: Jurisdiction | undefined) => void;
 }
 
 // Types for UI Logic
@@ -319,3 +322,9 @@ export type text_citation_pair = {
   text: string;
 };
 
+export type questionJurisdictions = {
+  mode: string;
+  state: Jurisdiction | undefined;
+  federal: Jurisdiction | undefined;
+  misc: Jurisdiction | undefined;
+};

@@ -11,7 +11,7 @@ import { node_as_row, node_key, SubTopic, GeneralTopic, TopicResponses, Clarific
 import { aggregateSiblingRows, generate_node_keys } from '@/lib/database';
 import CitationBar from '@/components/citationBar';
 import OptionsList from '@/components/optionsFilter';
-import { Option, Jurisdiction,  OptionsListProps } from '@/lib/types';
+import { Option, Jurisdiction,  OptionsListProps, questionJurisdictions } from '@/lib/types';
 
 import { StateJurisdictionOptions, FederalJurisdictionOptions, MiscJurisdictionOptions, ChatOptions } from '@/lib/types';
 
@@ -26,8 +26,7 @@ import { constructPromptQuery } from '@/lib/utils';
 export default function Playground() {
 
   // State variables for jurisdiction, option toggles
-  const [skipClarifications, setSkipClarifications] = useState(false);
-  const [generateSuggestions, setGenerateSuggestions] = useState(true);
+  
 
   // State variables for UI components
   const [isFormVisible, setIsFormVisible] = useState(true);
@@ -50,7 +49,6 @@ export default function Playground() {
 
   const [clarificationQueue, setClarificationQueue] = useState<ContentBlockParams[]>([]);
   const [specificQuestions, setSpecificQuestions] = useState<string[]>([]);
-  const [finalTopicTemplate, setFinalTopicTemplate] = useState<TopicResponses>();
   const [clarificationResponses, setClarificationResponses] = useState<Clarification[]>([]);
   const [alreadyAnswered, setAlreadyAnswered] = useState(['']);
 
@@ -58,11 +56,13 @@ export default function Playground() {
   const [sessionID, setSessionID] = useState<string>("");
 
   // State variables for options and jurisdictions
-  const [selectedStateJurisdiction, setSelectedStateJurisdiction] = useState<Jurisdiction>({ id: '5', name: ' California', abbreviation: 'CA', corpusTitle: 'California Statutes', usesSubContentNodes: true, jurisdictionLevel: 'state' });
-  const [selectedFederalJurisdiction, setSelectedFederalJurisdiction] = useState<Jurisdiction>();
-  const [selectedMiscJurisdiction, setSelectedMiscJurisdiction] = useState<Jurisdiction>();
+  const [selectedStateJurisdiction, setSelectedStateJurisdiction] = useState<Jurisdiction | undefined>({ id: '5', name: ' California', abbreviation: 'CA', corpusTitle: 'California Statutes', usesSubContentNodes: true, jurisdictionLevel: 'state' });
+  const [selectedFederalJurisdiction, setSelectedFederalJurisdiction] = useState<Jurisdiction | undefined>();
+  const [selectedMiscJurisdiction, setSelectedMiscJurisdiction] = useState<Jurisdiction | undefined>();
+  const [questionJurisdictions, setQuestionJurisdictions] = useState<questionJurisdictions>();
 
   const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
+  const [skipClarifications, setSkipClarifications] = useState(false);
 
   // Generate Unique Sessiond IDs here
   function generateSessionID() {
@@ -72,6 +72,7 @@ export default function Playground() {
     const sessionID = generateSessionID();
     console.log(`Generated new session ID: ${sessionID}`)
     setSessionID(sessionID);
+    // Add welcome block
   }, []);
 
   // UI Component Block Functions
@@ -150,8 +151,15 @@ export default function Playground() {
 
   // Logic for starting question answering process
   const handleNewQuestion = async (question: string) => {
+    
     setIsFormVisible(false); // Hide the form when a question is submitted
-
+    const question_jurisdictions = {"mode": "state","state": selectedStateJurisdiction, "federal": selectedFederalJurisdiction, "misc": selectedMiscJurisdiction};
+    setQuestionJurisdictions(question_jurisdictions);
+    if (selectedFederalJurisdiction && selectedStateJurisdiction) {
+      question_jurisdictions.mode = "state_federal";
+    } else if (selectedMiscJurisdiction) {
+      question_jurisdictions.mode = "misc";
+    }
     const questionText = question.trim();
     setQuestion(questionText);
     if (!questionText) return;
@@ -164,11 +172,15 @@ export default function Playground() {
       concurrentStreaming: false
     };
     await addContentBlock(createNewBlock(newParams));
-    //addNewLoadingBlock();
-
-    const [score, message_to_user] = await scoreQuestion(questionText);
+    
+    let score = 7;
+    let message_to_user = "";
+    // Only score questions if no misc jurisdiction is selected
+    if(selectedMiscJurisdiction === undefined) {
+       [score, message_to_user] = await scoreQuestion(questionText);
+    } 
     setIsFormVisible(false);
-
+    
     newParams = {
       type: ContentType.Answer,
       content: message_to_user,
@@ -177,19 +189,20 @@ export default function Playground() {
     };
     addNewLoadingBlock(true);
     await addContentBlock(createNewBlock(newParams));
-
-    if (skipClarifications) {
-      similaritySearch(questionText, []);
+    
+    // Do not ask clarifying questions if skipClarifications is true or if a misc jurisdiction is selected
+    if (skipClarifications || selectedMiscJurisdiction !== undefined) {
+      similaritySearch(question_jurisdictions, questionText, []);
     } else if (score <= 1) {
       setIsFormVisible(true);
       return;
     } else {
-      askNewClarification(questionText, "multiple");
+      askNewClarification(question_jurisdictions, questionText, "multiple");
     }
   };
 
   const scoreQuestion = async (question: string): Promise<[number, string]> => {
-    const user_prompt_query: string = constructPromptQuery(question, selectedStateJurisdiction.abbreviation, selectedFederalJurisdiction?.abbreviation || "USA");
+    const user_prompt_query: string = constructPromptQuery(question, selectedStateJurisdiction!.abbreviation, selectedFederalJurisdiction?.abbreviation || "USA");
     const requestBody = {
       user_prompt_query: user_prompt_query,
     };
@@ -209,8 +222,10 @@ export default function Playground() {
   };
 
   // queryClarification API handlers
-  const askNewClarification = async (questionText: string, mode: string, previous_clarifications?: ClarificationChoices) => {
-    const user_prompt_query: string = constructPromptQuery(questionText, selectedStateJurisdiction.abbreviation, selectedFederalJurisdiction?.abbreviation || "USA");
+  const askNewClarification = async (question_jurisdictions: any, questionText: string, mode: string, previous_clarifications?: ClarificationChoices) => {
+    const state_jurisdiction: string = question_jurisdictions.state?.abbreviation || "";
+    const federal_jurisdiction: string = question_jurisdictions.state?.abbreviation || "USA";
+    const user_prompt_query: string = constructPromptQuery(questionText, state_jurisdiction, federal_jurisdiction);
     addNewLoadingBlock(false);
     if (clarificationQueue.length > 0) {
       const newClarificationBlock = clarificationQueue[0];
@@ -366,7 +381,7 @@ export default function Playground() {
     };
     await addContentBlock(createNewBlock(newParams));
     addNewLoadingBlock(false);
-    similaritySearch(refined_question, specific_questions);
+    similaritySearch(questionJurisdictions!, refined_question, specific_questions);
   };
 
   const handleClarificationAnswer = (response: Clarification, mode: string) => {
@@ -378,7 +393,7 @@ export default function Playground() {
 
     // Move to the next clarification or proceed if done
     if (clarificationQueue.length > 0) {
-      askNewClarification(question, "multiple");
+      askNewClarification(questionJurisdictions, question, "multiple");
     } else {
       if (mode === "multiple") {
         handleQuestionRefinement(clarifications);
@@ -410,12 +425,12 @@ export default function Playground() {
   };
 
   // similaritySearch API handler
-  const similaritySearch = async (user_query: string, specific_questions: string[]) => {
+  const similaritySearch = async (question_jurisdiction: questionJurisdictions, user_query: string, specific_questions: string[]) => {
 
     const query_expansion_embedding = await queryExpansion(user_query, specific_questions);
 
     const requestBody = {
-      jurisdictions: { "state": selectedStateJurisdiction, "federal": selectedFederalJurisdiction, "misc": selectedMiscJurisdiction },
+      jurisdictions: question_jurisdiction,
       query_expansion_embedding: query_expansion_embedding,
     };
     const response = await fetch('/api/searchDatabase/similaritySearch', {
@@ -629,19 +644,11 @@ export default function Playground() {
 
 
 
-  const handleTopicChoice = async (topicChoices: TopicResponses) => {
-    console.log("Handling topic choice!");
-    console.log(topicChoices);
-    setFinalTopicTemplate(topicChoices);
-    partialAnswering(topicChoices, groupedRows);
-  };
 
   const handleOptionChange = (options: Option[]) => {
     for (const option of options) {
       if (option.name === "Skip Clarifying Questions") {
         setSkipClarifications(option.selected);
-      } else if (option.name === "Generate Suggestions") {
-        setGenerateSuggestions(option.selected);
       } else if (option.name === "Include US Federal Jurisdiction") {
         if (option.selected) {
           setSelectedFederalJurisdiction({ id: '1', name: 'US Federal Regulations', abbreviation: 'ecfr', corpusTitle: 'United States Code of Federal Regulations', usesSubContentNodes: false, jurisdictionLevel: 'federal' });
@@ -652,37 +659,31 @@ export default function Playground() {
     }
   };
 
-  const handleJurisdictionChange = (jurisdiction: Jurisdiction) => {
-    
-    if (jurisdiction.jurisdictionLevel === "state") {
-      setSelectedStateJurisdiction(jurisdiction);
-    } else if (jurisdiction.jurisdictionLevel === "federal") {
-      setSelectedFederalJurisdiction(jurisdiction);
-    } else {
-      setSelectedMiscJurisdiction(jurisdiction);
-
-    }
-  };
+  
 
   const scoreNewFollowupQuestion = async (question: string): Promise<[number, string]> => {
-    const user_prompt_query: string = constructPromptQuery(question, selectedStateJurisdiction.abbreviation,  "USA");
-    const requestBody = {
-      user_prompt_query: user_prompt_query,
-      previous_clarifications: clarificationResponses,
-      already_answered: alreadyAnswered
+    let score: number = 7;
+    if (questionJurisdictions!.mode !== "misc") {
 
-    };
-    const response = await fetch('/api/answerQuery/scoreFollowup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Session-ID': sessionID,
-      },
-      body: JSON.stringify(requestBody),
+      const user_prompt_query: string = constructPromptQuery(question, selectedStateJurisdiction?.abbreviation || "",  selectedFederalJurisdiction?.abbreviation || "USA");
+      const requestBody = {
+        user_prompt_query: user_prompt_query,
+        previous_clarifications: clarificationResponses,
+        already_answered: alreadyAnswered
 
-    });
-    const result = await response.json();
-    const score: number = result.do_new_research_score;
+      };
+      const response = await fetch('/api/answerQuery/scoreFollowup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Session-ID': sessionID,
+        },
+        body: JSON.stringify(requestBody),
+
+      });
+      const result = await response.json();
+      score = result.do_new_research_score;
+    } 
     let message_to_user;
     if (score < 2) {
       message_to_user = "I am not confident in my ability to answer this question with my current research, as well as ask some more clarifying questions. I apologize for the inconvenience, but I am committed to providing you with only the most relevant legal research.";
@@ -732,7 +733,7 @@ export default function Playground() {
     if (skipClarifications) {
       followUpQuestionAnswer(clarificationResponses);
     } else {
-      askNewClarification(questionText, "single", { clarifications: clarificationResponses });
+      askNewClarification(questionJurisdictions, questionText, "single", { clarifications: clarificationResponses });
     }
   };
   const followUpQuestionAnswer = async (clarifications: Clarification[]) => {
@@ -758,7 +759,7 @@ export default function Playground() {
           <ChatContainer
             contentBlocks={contentBlocks}
             onSubmitClarificationAnswers={handleClarificationAnswer}
-            onSubmitTopicChoices={handleTopicChoice}
+            onSubmitTopicChoices={console.log}
             onClarificationStreamEnd={handleClarificationQuestionDone}
             onStreamEnd={onStreamEnd}
             showCurrentLoading={showCurrentLoading}
@@ -772,10 +773,6 @@ export default function Playground() {
             inputMode={inputMode}
             handleSubmit={handleNewQuestion}
             handleSubmitFollowup={handleNewFollowupQuestion}
-            skipClarifications={skipClarifications}
-            setSkipClarifications={setSkipClarifications}
-            generateSuggestions={generateSuggestions}
-            setGenerateSuggestions={setGenerateSuggestions}
           />
         )}
       </div>
@@ -787,7 +784,9 @@ export default function Playground() {
           miscJurisdictions={MiscJurisdictionOptions}
           options={ChatOptions}
           onOptionChange={handleOptionChange}
-          onJurisdictionChange={handleJurisdictionChange}
+          onStateJurisdictionChange={setSelectedStateJurisdiction}
+          onFederalJurisdictionChange={setSelectedFederalJurisdiction}
+          onMiscJurisdictionChange={setSelectedMiscJurisdiction}
            />
         {/* Other parts of your application */}
         </div>
