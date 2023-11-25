@@ -32,18 +32,18 @@ const OptionsList: React.FC<OptionsListProps> = ({
   //   setSelectedOptions([]);
   // };
 
-  const toggleSelection = (optionId: string) => {
-    setSelectedOptions(prevSelected =>
-      prevSelected.includes(optionId)
-        ? prevSelected.filter(id => id !== optionId)
-        : [...prevSelected, optionId]
-    );
-  };
+  // const toggleSelection = (optionId: string) => {
+  //   setSelectedOptions(prevSelected =>
+  //     prevSelected.includes(optionId)
+  //       ? prevSelected.filter(id => id !== optionId)
+  //       : [...prevSelected, optionId]
+  //   );
+  // };
 
   // Communicate the selected options to the parent component
-  useEffect(() => {
-    onSelectionChange(selectedOptions);
-  }, [selectedOptions, onSelectionChange]);
+  // useEffect(() => {
+  //   onSelectionChange(selectedOptions);
+  // }, [selectedOptions, onSelectionChange]);
 
   return (
     <div className="pl-2">
@@ -57,7 +57,7 @@ const OptionsList: React.FC<OptionsListProps> = ({
         <div className="h-auto max-h-full overflow-y-auto">
         <ul className="list-none pt-2">
 
-          {filteredOptions.map(option => (
+          {/* {filteredOptions.map(option => (
             <li key={option.id}>
               <label className="flex items-center space-x-2">
                 <input
@@ -67,9 +67,9 @@ const OptionsList: React.FC<OptionsListProps> = ({
                 />
                 <span>{option.name}</span>
               </label>
-            </li>
+            </li> */}
 
-          ))}
+          {/* ))} */}
 
 
         </ul>
