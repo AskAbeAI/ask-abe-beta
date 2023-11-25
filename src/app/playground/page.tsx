@@ -152,25 +152,9 @@ export default function Playground() {
 
   // Logic for starting question answering process
   const handleNewQuestion = async (question: string) => {
-    console.log(`Selected State Jurisdiction: ${selectedStateJurisdiction}`);
-    console.log(`Selected Federal Jurisdiction: ${selectedFederalJurisdiction}`);
-    console.log(`Selected Misc Jurisdiction: ${selectedMiscJurisdiction}`);
-    const backupJurisdiction = { id: '5', name: ' California', abbreviation: 'CA', corpusTitle: 'California Statutes', usesSubContentNodes: true, jurisdictionLevel: 'state' };
+    
     
     setIsFormVisible(false); // Hide the form when a question is submitted
-    const question_jurisdictions = {"mode": "state","state": selectedStateJurisdiction, "federal": selectedFederalJurisdiction, "misc": selectedMiscJurisdiction};
-    if(!selectedStateJurisdiction && !selectedFederalJurisdiction && !selectedMiscJurisdiction) {
-      question_jurisdictions.state = backupJurisdiction;
-      setSelectedStateJurisdiction(backupJurisdiction);
-      console.log("Applying backup jurisdiction!")
-      
-    }
-    setQuestionJurisdictions(question_jurisdictions);
-    if (selectedFederalJurisdiction && selectedStateJurisdiction) {
-      question_jurisdictions.mode = "state_federal";
-    } else if (selectedMiscJurisdiction) {
-      question_jurisdictions.mode = "misc";
-    }
     const questionText = question.trim();
     setQuestion(questionText);
     if (!questionText) return;
@@ -183,17 +167,36 @@ export default function Playground() {
       concurrentStreaming: false
     };
     await addContentBlock(createNewBlock(newParams));
+
+    console.log(`Selected State Jurisdiction: ${selectedStateJurisdiction}`);
+    console.log(`Selected Federal Jurisdiction: ${selectedFederalJurisdiction}`);
+    console.log(`Selected Misc Jurisdiction: ${selectedMiscJurisdiction}`);
+    const backupJurisdiction = { id: '5', name: ' California', abbreviation: 'CA', corpusTitle: 'California Statutes', usesSubContentNodes: true, jurisdictionLevel: 'state' };
+    const question_jurisdictions = {"mode": "state","state": selectedStateJurisdiction, "federal": selectedFederalJurisdiction, "misc": selectedMiscJurisdiction};
+    if(!selectedStateJurisdiction && !selectedFederalJurisdiction && !selectedMiscJurisdiction) {
+      question_jurisdictions.state = backupJurisdiction;
+      setSelectedStateJurisdiction(backupJurisdiction);
+      console.log("Applying backup jurisdiction!")
+    } 
+    setQuestionJurisdictions(question_jurisdictions);
+    if (selectedFederalJurisdiction && selectedStateJurisdiction) {
+      question_jurisdictions.mode = "state_federal";
+    } else if (selectedMiscJurisdiction) {
+      question_jurisdictions.mode = "misc";
+    }
+    
     
     let score = 7;
     let message_to_user = "";
     // Only score questions if no misc jurisdiction is selected
-    if(selectedMiscJurisdiction === undefined) {
-       [score, message_to_user] = await scoreQuestion(questionText);
+    if(selectedMiscJurisdiction === undefined && !skipClarifications) {
+       [score, message_to_user] = await scoreQuestion(question_jurisdictions,questionText);
     } 
     
     
     // Do not ask clarifying questions if skipClarifications is true or if a misc jurisdiction is selected
     if (skipClarifications || selectedMiscJurisdiction !== undefined) {
+      addNewLoadingBlock(false);
       similaritySearch(question_jurisdictions, questionText, []);
     } else if (score <= 1) {
       setIsFormVisible(true);
@@ -211,8 +214,9 @@ export default function Playground() {
     }
   };
 
-  const scoreQuestion = async (question: string): Promise<[number, string]> => {
-    const user_prompt_query: string = constructPromptQuery(question, selectedStateJurisdiction!.abbreviation, selectedFederalJurisdiction?.abbreviation || "USA");
+  const scoreQuestion = async (question_jurisdictions: questionJurisdictions, question: string): Promise<[number, string]> => {
+    const user_prompt_query: string = constructPromptQuery(question, question_jurisdictions.state?.abbreviation || 'The Country Of ' , question_jurisdictions.federal?.abbreviation || "USA");
+    console.log(user_prompt_query)
     const requestBody = {
       user_prompt_query: user_prompt_query,
     };
@@ -455,6 +459,8 @@ export default function Playground() {
     const result = await response.json();
 
     const primary_rows: node_as_row[] = result.primary_rows;
+    console.log(primary_rows);
+    console.log(question_jurisdiction)
     const secondary_rows: node_as_row[] = result.secondary_rows;
     
     let combined_rows: node_as_row[] = [];
@@ -475,6 +481,7 @@ export default function Playground() {
     let primaryJurisdiction;
     let secondaryJurisdiction;
     if (question_jurisdiction.mode === "misc") {
+      combined_rows = primary_rows;
       primaryJurisdiction = question_jurisdiction.misc! as Jurisdiction;
     } else if (question_jurisdiction.mode === "state" || question_jurisdiction.mode === "state_federal") {
 
@@ -486,7 +493,9 @@ export default function Playground() {
       primaryJurisdiction = question_jurisdiction.federal! as Jurisdiction;
     }
     // Get a set of all unique parent_nodes in combinedRows variable
+    console.log(combined_rows)
     const primary_grouped_rows: GroupedRows = await aggregateSiblingRows(combined_rows, usesSubContentNodes, primaryJurisdiction);
+    console.log(primary_grouped_rows);
     let secondary_grouped_rows: GroupedRows = {};
     if(secondary_rows.length > 0) {
       secondary_grouped_rows = await aggregateSiblingRows(secondary_rows, false, secondaryJurisdiction!);
@@ -554,7 +563,7 @@ export default function Playground() {
     
     setPrimaryGroupedRows(primary_grouped_rows);
     setSecondaryGroupedRows(secondary_grouped_rows);
-
+    console.log(all_citation_blocks)
     await addManyContentBlock(all_citation_blocks);
     //const general_topics: string[] = await blindTopics(user_query, "CA", "USA", specific_questions);
 

@@ -100,6 +100,7 @@ export function getPromptCondenseClarifications(
 ): ChatCompletionParams {
   let part1;
   let part2;
+  console.log(mode);
   if (mode === "single") {
     part1 = "This message should be a summary of the clarifications, and how they help refine the original question. Your summary and instructions should be worded as a message to the legal professional, which gives instructions on asking a fruther clarification question. Given the previous clarifications, what would be the most useful clarification question to ask next? You are only generating instructions for a single new clarificationq uestion.";
     part2 = "This message should be explicit instructions to the legal professional on how to best create a follow up clarification question and possible answers, given the customer's needs and circumstances outlined in the clarifications. *** ONLY GIVE INSTRUCTIONS FOR THE MOST IMPORTANT CLARIFICATION QUESTION. ***";

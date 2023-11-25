@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { node_as_row, node_key, GroupedRows, Jurisdiction } from "@/lib/types";
+import { match } from 'assert';
 
 
 
@@ -14,6 +15,7 @@ export async function jurisdiction_similarity_search_all_partitions(
 ): Promise<node_as_row[]> {
 
   const supabase = createClient(supabaseUrl!, supabaseKey!);
+  console.log(match_threshold, match_count, max_rows)
   const { data, error } = await supabase
     .rpc(`${jurisdiction}_similarity_search`, {
       query_embedding: query_embedding,
@@ -25,6 +27,7 @@ export async function jurisdiction_similarity_search_all_partitions(
     console.log(error);
     throw error;
   }
+  console.log(data);
   return data;
 }
 
@@ -64,8 +67,9 @@ export async function aggregateSiblingRows(rows: node_as_row[], usesSubContentNo
   const groupedRows: GroupedRows = {};
   if (usesSubContentNodes=== false) {
     for (const row of rows) {
-  
-      groupedRows[row.parent_node] = {
+      
+    
+      groupedRows[row.citation] = {
         rows: [row],
         section_text: [row.node_text],
         citation: row.citation,

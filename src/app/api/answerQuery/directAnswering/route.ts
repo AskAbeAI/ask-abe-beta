@@ -51,11 +51,15 @@ export async function POST(req: Request) {
     if (mode === "separate") {
       const params = getPromptDirectAnsweringSeparate(all_questions, clarifications, all_text_citation_pairs, false);
       const result = JSON.parse(await createChatCompletion(params, openai, "directAnsweringSeparate"));
+      
       direct_answer = result.all_instructions;
+      
       
     } else {
       const instructions = await condenseClarificationsIntoInstructions(openai, legal_question, clarifications.clarifications, already_answered, "answering");
+      console.log(instructions);
       direct_answer = await generateDirectAnswer(openai, legal_question, instructions, all_text_citation_pairs);
+      console.log(direct_answer)
 
     }
 

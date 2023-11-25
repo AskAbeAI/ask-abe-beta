@@ -42,7 +42,7 @@ export const generateBasicQueryRefinement = async (openai: OpenAI, original_ques
 // Query Clarification
 
 export const condenseClarificationsIntoInstructions = async (openai: OpenAI, user_prompt_query:string, previous_clarifications: Clarification[], already_answered: string[], mode:string): Promise<string> => {
-    const params = getPromptCondenseClarifications(user_prompt_query, previous_clarifications, already_answered, "single", true);
+    const params = getPromptCondenseClarifications(user_prompt_query, previous_clarifications, already_answered, mode, true);
     const response = JSON.parse(await createChatCompletion(params, openai, "condenseClarifications"));
     return response.instructions;
   }
