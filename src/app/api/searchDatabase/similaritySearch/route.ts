@@ -21,8 +21,9 @@ export async function POST(req: Request) {
 	const sessionId: string = req.headers.get('x-session-id')!;
 	const jurisdictions = requestData.jurisdictions;
 	const query_expansion_embedding = requestData.query_expansion_embedding;
-	const federalJurisdiction = jurisdictions["federal"];
+	const federalJurisdiction = jurisdictions["federal"] || null ;
 	const stateJurisdiction = jurisdictions["state"];
+	const miscJurisdiction = jurisdictions["misc"] || null ;
 
 	// CHECK FOR INITIAL ERRORS
 

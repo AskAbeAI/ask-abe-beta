@@ -21,8 +21,7 @@ import { constructPromptQuery } from '@/lib/utils';
 
 // Temporary variables
 
-const stateJurisdiction = "ca";
-const federalJurisdiction = "USA";
+
 
 export default function Playground() {
 
@@ -190,7 +189,7 @@ export default function Playground() {
   };
 
   const scoreQuestion = async (question: string): Promise<[number, string]> => {
-    const user_prompt_query: string = constructPromptQuery(question, stateJurisdiction, federalJurisdiction);
+    const user_prompt_query: string = constructPromptQuery(question, selectedStateJurisdiction.abbreviation, selectedFederalJurisdiction?.abbreviation || "USA");
     const requestBody = {
       user_prompt_query: user_prompt_query,
     };
@@ -211,7 +210,7 @@ export default function Playground() {
 
   // queryClarification API handlers
   const askNewClarification = async (questionText: string, mode: string, previous_clarifications?: ClarificationChoices) => {
-    const user_prompt_query: string = constructPromptQuery(questionText, stateJurisdiction, federalJurisdiction);
+    const user_prompt_query: string = constructPromptQuery(questionText, selectedStateJurisdiction.abbreviation, selectedFederalJurisdiction?.abbreviation || "USA");
     addNewLoadingBlock(false);
     if (clarificationQueue.length > 0) {
       const newClarificationBlock = clarificationQueue[0];
@@ -290,8 +289,6 @@ export default function Playground() {
         }
 
       }
-      console.log(firstResult!);
-      console.log(results);
       await addContentBlock(createNewBlock(firstResult!));
       setClarificationQueue(results);
     }
@@ -418,7 +415,7 @@ export default function Playground() {
     const query_expansion_embedding = await queryExpansion(user_query, specific_questions);
 
     const requestBody = {
-      jurisdictions: { "state": "ca", "federal": "USA" },
+      jurisdictions: { "state": selectedStateJurisdiction, "federal": selectedFederalJurisdiction, "misc": selectedMiscJurisdiction },
       query_expansion_embedding: query_expansion_embedding,
     };
     const response = await fetch('/api/searchDatabase/similaritySearch', {
@@ -654,6 +651,7 @@ export default function Playground() {
       }
     }
   };
+
   const handleJurisdictionChange = (jurisdiction: Jurisdiction) => {
     
     if (jurisdiction.jurisdictionLevel === "state") {
@@ -662,11 +660,12 @@ export default function Playground() {
       setSelectedFederalJurisdiction(jurisdiction);
     } else {
       setSelectedMiscJurisdiction(jurisdiction);
+
     }
   };
 
   const scoreNewFollowupQuestion = async (question: string): Promise<[number, string]> => {
-    const user_prompt_query: string = constructPromptQuery(question, stateJurisdiction, federalJurisdiction);
+    const user_prompt_query: string = constructPromptQuery(question, selectedStateJurisdiction.abbreviation,  "USA");
     const requestBody = {
       user_prompt_query: user_prompt_query,
       previous_clarifications: clarificationResponses,
