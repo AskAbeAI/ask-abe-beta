@@ -7,20 +7,14 @@ interface BottomBarProps {
   inputMode: string;
   handleSubmit: (question: string) => void;
   handleSubmitFollowup: (question: string) => void;
-  skipClarifications: boolean;
-  setSkipClarifications: (skip: boolean) => void;
-  generateSuggestions: boolean;
-  setGenerateSuggestions: (generate: boolean) => void;
+  
 }
 
 const BottomBar: React.FC<BottomBarProps> = ({
   inputMode,
   handleSubmit,
   handleSubmitFollowup,
-  skipClarifications,
-  setSkipClarifications,
-  generateSuggestions,
-  setGenerateSuggestions,
+  
 }) => {
   const [question, setQuestion] = useState('');
   const [inputLength, setInputLength] = useState(0);

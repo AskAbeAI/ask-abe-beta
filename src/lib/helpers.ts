@@ -42,7 +42,7 @@ export const generateBasicQueryRefinement = async (openai: OpenAI, original_ques
 // Query Clarification
 
 export const condenseClarificationsIntoInstructions = async (openai: OpenAI, user_prompt_query:string, previous_clarifications: Clarification[], already_answered: string[], mode:string): Promise<string> => {
-    const params = getPromptCondenseClarifications(user_prompt_query, previous_clarifications, already_answered, "single", true);
+    const params = getPromptCondenseClarifications(user_prompt_query, previous_clarifications, already_answered, mode, true);
     const response = JSON.parse(await createChatCompletion(params, openai, "condenseClarifications"));
     return response.instructions;
   }
@@ -92,7 +92,8 @@ export const convertGroupedRowsToTextCitationPairs = (groupedRows: GroupedRows):
     for (const key in groupedRows) {
         const pair: text_citation_pair = {
         section_citation: groupedRows[key].citation,
-        text: groupedRows[key].section_text.join("\n")
+        text: groupedRows[key].section_text.join("\n"),
+        document: groupedRows[key].jurisdiction.corpusTitle
         };
         all_text_citation_pairs.push(pair);
     }

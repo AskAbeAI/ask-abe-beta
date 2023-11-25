@@ -24,13 +24,20 @@ export async function POST(req: Request) {
   const requestData: any = await req.json();
   const sessionId: string = req.headers.get('x-session-id')!;
   const legal_question = requestData.legal_question;
-  const groupedRows: GroupedRows = requestData.legal_texts;
+  const primaryGroupedRows: GroupedRows = requestData.primary_grouped_rows;
+  const secondaryGroupedRows: GroupedRows = requestData.secondary_grouped_rows;
   const clarifications: ClarificationChoices = requestData.clarifications;
   const specific_questions: string[] = requestData.specific_questions;
   const mode: string = requestData.mode;
   const already_answered: string[] = requestData.already_answered;
 
-  const all_text_citation_pairs: text_citation_pair[] = convertGroupedRowsToTextCitationPairs(groupedRows);
+  const primary_text_citation_pairs: text_citation_pair[] = convertGroupedRowsToTextCitationPairs(primaryGroupedRows);
+  let secondary_text_citation_pairs: text_citation_pair[] = [];
+  if(secondaryGroupedRows) {
+    secondary_text_citation_pairs = convertGroupedRowsToTextCitationPairs(secondaryGroupedRows);
+  }
+  const all_text_citation_pairs: text_citation_pair[] = primary_text_citation_pairs.concat(secondary_text_citation_pairs);
+  
   
   const all_questions: string[] = [];
   all_questions.push(legal_question);
@@ -44,11 +51,15 @@ export async function POST(req: Request) {
     if (mode === "separate") {
       const params = getPromptDirectAnsweringSeparate(all_questions, clarifications, all_text_citation_pairs, false);
       const result = JSON.parse(await createChatCompletion(params, openai, "directAnsweringSeparate"));
+      
       direct_answer = result.all_instructions;
+      
       
     } else {
       const instructions = await condenseClarificationsIntoInstructions(openai, legal_question, clarifications.clarifications, already_answered, "answering");
+      console.log(instructions);
       direct_answer = await generateDirectAnswer(openai, legal_question, instructions, all_text_citation_pairs);
+      console.log(direct_answer)
 
     }
 
