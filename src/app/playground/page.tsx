@@ -1,6 +1,6 @@
 "use client";
 // Import React dependencies
-import React, { useState, FormEvent, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 // Import UI components
 import BottomBar from '@/components/bottomBar';
 import ChatContainer from '@/components/chatContainer';
@@ -17,6 +17,7 @@ import { StateJurisdictionOptions, FederalJurisdictionOptions, MiscJurisdictionO
 
 // Helper functions
 import { constructPromptQuery } from '@/lib/utils';
+
 
 // Temporary variables
 
@@ -58,7 +59,10 @@ export default function Playground() {
   const [sessionID, setSessionID] = useState<string>("");
 
   // State variables for options and jurisdictions
-  const [selectedJurisdictions, setSelectedJurisdictions] = useState<Jurisdiction[]>([]);
+  const [selectedStateJurisdiction, setSelectedStateJurisdiction] = useState<Jurisdiction>({ id: '5', name: ' California', abbreviation: 'CA', corpusTitle: 'California Statutes', usesSubContentNodes: true, jurisdictionLevel: 'state' });
+  const [selectedFederalJurisdiction, setSelectedFederalJurisdiction] = useState<Jurisdiction>();
+  const [selectedMiscJurisdiction, setSelectedMiscJurisdiction] = useState<Jurisdiction>();
+
   const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
 
   // Generate Unique Sessiond IDs here
@@ -636,10 +640,29 @@ export default function Playground() {
   };
 
   const handleOptionChange = (options: Option[]) => {
-    
+    for (const option of options) {
+      if (option.name === "Skip Clarifying Questions") {
+        setSkipClarifications(option.selected);
+      } else if (option.name === "Generate Suggestions") {
+        setGenerateSuggestions(option.selected);
+      } else if (option.name === "Include US Federal Jurisdiction") {
+        if (option.selected) {
+          setSelectedFederalJurisdiction({ id: '1', name: 'US Federal Regulations', abbreviation: 'ecfr', corpusTitle: 'United States Code of Federal Regulations', usesSubContentNodes: false, jurisdictionLevel: 'federal' });
+        } else {
+          setSelectedFederalJurisdiction(undefined);
+        }
+      }
+    }
   };
-  const handleJurisdictionChange = (jurisdictions: Jurisdiction[]) => {
-
+  const handleJurisdictionChange = (jurisdiction: Jurisdiction) => {
+    
+    if (jurisdiction.jurisdictionLevel === "state") {
+      setSelectedStateJurisdiction(jurisdiction);
+    } else if (jurisdiction.jurisdictionLevel === "federal") {
+      setSelectedFederalJurisdiction(jurisdiction);
+    } else {
+      setSelectedMiscJurisdiction(jurisdiction);
+    }
   };
 
   const scoreNewFollowupQuestion = async (question: string): Promise<[number, string]> => {
@@ -758,7 +781,7 @@ export default function Playground() {
         )}
       </div>
       <div>
-        <div className="overflow-y-auto scrollbar h-full w-25 max-h-full">
+        <div className="pl-2 overflow-y-auto scrollbar h-full w-25 ">
         <OptionsList 
           stateJurisdictions={StateJurisdictionOptions}
           federalJurisdictions={FederalJurisdictionOptions}
