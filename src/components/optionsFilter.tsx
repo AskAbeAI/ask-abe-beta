@@ -1,20 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { Option, OptionsListProps } from '@/lib/types';
+import { Jurisdiction, Option, OptionsListProps } from '@/lib/types';
 // Define the structure of your options
 
 
-const OptionsList: React.FC<OptionsListProps> = ({ options, onSelectionChange }) => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filteredOptions, setFilteredOptions] = useState(options);
-  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+const OptionsList: React.FC<OptionsListProps> = ({ 
+  stateJurisdictions, 
+  federalJurisdictions, 
+  miscJurisdictions,
+  options, 
+  onOptionChange,
+  onJurisdictionChange,
+}) => {
+  // const [searchTerm, setSearchTerm] = useState('');
+  // const [filteredJurisdictions, setFilteredJurisdictions] = useState();
+  const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
+  const [selectedJurisdictions, setSelectedJurisdictions] = useState<Jurisdiction[]>([]);
 
-  useEffect(() => {
-    // Filter options based on the search term
-    const filtered = options.filter(option =>
-      option.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredOptions(filtered);
-  }, [searchTerm, options]);
+  // useEffect(() => {
+  //   // Filter options based on the search term
+  //   const filtered = options.filter(option =>
+  //     option.name.toLowerCase().includes(searchTerm.toLowerCase())
+  //   );
+  //   setFilteredOptions(filtered);
+  // }, [searchTerm, options]);
 
   // const handleSelectAll = () => {
   //   setSelectedOptions(filteredOptions.map(option => option.id));
@@ -43,13 +51,7 @@ const OptionsList: React.FC<OptionsListProps> = ({ options, onSelectionChange })
         <div className="flex justify-center text-[#4A4643] font-bold font-montserrat pb-2">Chat Options</div>
         <div className="flex justify-center font-montserrat font-bold pb-2">
           <div className="h-auto max-h-full overflow-y-auto bg-[#FDFCFD] p-2 w-full shadow-inner rounded-md">
-            <input
-
-
-              type="text"
-              placeholder="Search"
-              onChange={e => setSearchTerm(e.target.value)}
-            />
+            
           </div>
         </div>
         <div className="h-auto max-h-full overflow-y-auto">

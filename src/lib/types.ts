@@ -153,10 +153,87 @@ export interface Option {
   id: string;
   name: string;
 }
+export interface Jurisdiction {
+  id: string;
+  name: string;
+  abbreviation: string;
+  corpusTitle: string;
+  usesSubContentNodes: boolean;
+}
+export const StateJurisdictionOptions: Jurisdiction[] = [
+  
+    { id: '1', name: ' Alabama', abbreviation: 'AL', corpusTitle: 'Alabama Statutes', usesSubContentNodes: false },
+    { id: '2', name: ' Alaska', abbreviation: 'AK', corpusTitle: 'Alaska Statutes', usesSubContentNodes: false },
+    { id: '3', name: ' Arizona', abbreviation: 'AZ', corpusTitle: 'Arizona Statutes', usesSubContentNodes: false },
+    { id: '4', name: ' Arkansas', abbreviation: 'AR', corpusTitle: 'Arkansas Statutes', usesSubContentNodes: false },
+    { id: '5', name: ' California', abbreviation: 'CA', corpusTitle: 'California Statutes', usesSubContentNodes: true },
+    { id: '6', name: ' Colorado', abbreviation: 'CO', corpusTitle: 'Colorado Statutes', usesSubContentNodes: false },
+    { id: '7', name: ' Connecticut', abbreviation: 'CT', corpusTitle: 'Connecticut Statutes', usesSubContentNodes: false },
+    { id: '8', name: ' Delaware', abbreviation: 'DE', corpusTitle: 'Delaware Statutes', usesSubContentNodes: false },
+    { id: '9', name: ' Florida', abbreviation: 'FL', corpusTitle: 'Florida Statutes', usesSubContentNodes: false },
+    { id: '10', name: ' Georgia', abbreviation: 'GA', corpusTitle: 'Georgia Statutes', usesSubContentNodes: false },
+    { id: '11', name: ' Hawaii', abbreviation: 'HI', corpusTitle: 'Hawaii Statutes', usesSubContentNodes: false },
+    { id: '12', name: ' Idaho', abbreviation: 'ID', corpusTitle: 'Idaho Statutes', usesSubContentNodes: false },
+    { id: '13', name: ' Illinois', abbreviation: 'IL', corpusTitle: 'Illinois Statutes', usesSubContentNodes: false },
+    { id: '14', name: ' Indiana', abbreviation: 'IN', corpusTitle: 'Indiana Statutes', usesSubContentNodes: false },
+    { id: '15', name: ' Iowa', abbreviation: 'IA', corpusTitle: 'Iowa Statutes', usesSubContentNodes: false },
+    { id: '16', name: 'Kansas', abbreviation: 'KS', corpusTitle: 'Kansas Statutes', usesSubContentNodes: false },
+    { id: '17', name: 'Kentucky', abbreviation: 'KY', corpusTitle: 'Kentucky Statutes', usesSubContentNodes: false },
+    { id: '18', name: 'Louisiana', abbreviation: 'LA', corpusTitle: 'Louisiana Statutes', usesSubContentNodes: false },
+    { id: '19', name: 'Maine', abbreviation: 'ME', corpusTitle: 'Maine Statutes', usesSubContentNodes: false },
+    { id: '20', name: 'Maryland', abbreviation: 'MD', corpusTitle: 'Maryland Statutes', usesSubContentNodes: false },
+    { id: '21', name: 'Massachusetts', abbreviation: 'MA', corpusTitle: 'Massachusetts Statutes', usesSubContentNodes: false },
+    { id: '22', name: 'Michigan', abbreviation: 'MI', corpusTitle: 'Michigan Statutes', usesSubContentNodes: false },
+    { id: '23', name: 'Minnesota', abbreviation: 'MN', corpusTitle: 'Minnesota Statutes', usesSubContentNodes: false },
+    { id: '24', name: 'Mississippi', abbreviation: 'MS', corpusTitle: 'Mississippi Statutes', usesSubContentNodes: false },
+    { id: '25', name: 'Missouri', abbreviation: 'MO', corpusTitle: 'Missouri Statutes', usesSubContentNodes: false },
+    { id: '26', name: 'Montana', abbreviation: 'MT', corpusTitle: 'Montana Statutes', usesSubContentNodes: false },
+    { id: '27', name: 'Nebraska', abbreviation: 'NE', corpusTitle: 'Nebraska Statutes', usesSubContentNodes: false },
+    { id: '28', name: 'Nevada', abbreviation: 'NV', corpusTitle: 'Nevada Statutes', usesSubContentNodes: false },
+    { id: '29', name: 'New Hampshire', abbreviation: 'NH', corpusTitle: 'New Hampshire Statutes', usesSubContentNodes: false },
+    { id: '30', name: 'New Jersey', abbreviation: 'NJ', corpusTitle: 'New Jersey Statutes', usesSubContentNodes: false },
+    { id: '31', name: 'New Mexico', abbreviation: 'NM', corpusTitle: 'New Mexico Statutes', usesSubContentNodes: false },
+    { id: '32', name: 'New York', abbreviation: 'NY', corpusTitle: 'New York Statutes', usesSubContentNodes: false },
+    { id: '33', name: 'North Carolina', abbreviation: 'NC', corpusTitle: 'North Carolina Statutes', usesSubContentNodes: false },
+    { id: '34', name: 'North Dakota', abbreviation: 'ND', corpusTitle: 'North Dakota Statutes', usesSubContentNodes: false },
+    { id: '35', name: 'Ohio', abbreviation: 'OH', corpusTitle: 'Ohio Statutes', usesSubContentNodes: false },
+    { id: '36', name: 'Oklahoma', abbreviation: 'OK', corpusTitle: 'Oklahoma Statutes', usesSubContentNodes: false },
+    { id: '37', name: 'Oregon', abbreviation: 'OR', corpusTitle: 'Oregon Statutes', usesSubContentNodes: false },
+    { id: '38', name: 'Pennsylvania', abbreviation: 'PA', corpusTitle: 'Pennsylvania Statutes', usesSubContentNodes: false },
+    { id: '39', name: 'Rhode Island', abbreviation: 'RI', corpusTitle: 'Rhode Island Statutes', usesSubContentNodes: false },
+    { id: '40', name: 'South Carolina', abbreviation: 'SC', corpusTitle: 'South Carolina Statutes', usesSubContentNodes: false },
+    { id: '41', name: 'South Dakota', abbreviation: 'SD', corpusTitle: 'South Dakota Statutes', usesSubContentNodes: false },
+    { id: '42', name: 'Tennessee', abbreviation: 'TN', corpusTitle: 'Tennessee Statutes', usesSubContentNodes: false },
+    { id: '43', name: 'Texas', abbreviation: 'TX', corpusTitle: 'Texas Statutes', usesSubContentNodes: false },
+    { id: '44', name: 'Utah', abbreviation: 'UT', corpusTitle: 'Utah Statutes', usesSubContentNodes: false },
+    { id: '45', name: 'Vermont', abbreviation: 'VT', corpusTitle: 'Vermont Statutes', usesSubContentNodes: false },
+    { id: '46', name: 'Virginia', abbreviation: 'VA', corpusTitle: 'Virginia Statutes', usesSubContentNodes: false },
+    { id: '47', name: 'Washington', abbreviation: 'WA', corpusTitle: 'Washington Statutes', usesSubContentNodes: false },
+    { id: '48', name: 'West Virginia', abbreviation: 'WV', corpusTitle: 'West Virginia Statutes', usesSubContentNodes: false },
+    { id: '49', name: 'Wisconsin', abbreviation: 'WI', corpusTitle: 'Wisconsin Statutes', usesSubContentNodes: false },
+    { id: '50', name: 'Wyoming', abbreviation: 'WY', corpusTitle: 'Wyoming Statutes', usesSubContentNodes: false },
+  ];
+
+export const FederalJurisdictionOptions: Jurisdiction[] = [
+  { id: '1', name: 'US Federal Regulations', abbreviation: 'ecfr', corpusTitle: 'United States Code of Federal Regulations', usesSubContentNodes: false },
+];
+
+export const MiscJurisdictionOptions: Jurisdiction[] = [
+  {id: '1', name: 'Vitalia Wiki', abbreviation: 'vitalia', corpusTitle: 'Vitalia Wiki Documentation', usesSubContentNodes: false },
+];
+
+export const ChatOptions: Option[] = [
+  { id: '1', name: 'Include US Federal Jurisdiction' },
+  { id: '2', name: 'Skip Clarifying Questions' },
+];
 
 export interface OptionsListProps {
+  stateJurisdictions: Jurisdiction[];
+  federalJurisdictions: Jurisdiction[];
+  miscJurisdictions: Jurisdiction[];
   options: Option[];
-  onSelectionChange: (selectedIds: string[]) => void;
+  onOptionChange: (options: Option[]) => void;
+  onJurisdictionChange: (jurisdictions: Jurisdiction[]) => void;
 }
 
 

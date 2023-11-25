@@ -11,12 +11,15 @@ import { node_as_row, node_key, SubTopic, GeneralTopic, TopicResponses, Clarific
 import { aggregateSiblingRows, generate_node_keys } from '@/lib/database';
 import CitationBar from '@/components/citationBar';
 import OptionsList from '@/components/optionsFilter';
-import { Option, OptionsListProps } from '@/lib/types';
+import { Option, Jurisdiction,  OptionsListProps } from '@/lib/types';
+
+import { StateJurisdictionOptions, FederalJurisdictionOptions, MiscJurisdictionOptions, ChatOptions } from '@/lib/types';
 
 // Helper functions
 import { constructPromptQuery } from '@/lib/utils';
 
 // Temporary variables
+
 const stateJurisdiction = "ca";
 const federalJurisdiction = "USA";
 
@@ -53,6 +56,10 @@ export default function Playground() {
 
   // State variables for session
   const [sessionID, setSessionID] = useState<string>("");
+
+  // State variables for options and jurisdictions
+  const [selectedJurisdictions, setSelectedJurisdictions] = useState<Jurisdiction[]>([]);
+  const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
 
   // Generate Unique Sessiond IDs here
   function generateSessionID() {
@@ -619,62 +626,7 @@ export default function Playground() {
     return direct_answer;
   };
 
-  const [options] = useState<Option[]>([
-    { id: '1', name: ' Alabama' },
-    { id: '2', name: ' Alaska' },
-    { id: '3', name: ' Arizona' },
-    { id: '4', name: ' Arkansas' },
-    { id: '5', name: ' California' },
-    { id: '6', name: ' Colorado' },
-    { id: '7', name: ' Connecticut' },
-    { id: '8', name: ' Delaware' },
-    { id: '9', name: ' Florida' },
-    { id: '10', name: ' Georgia' },
-    { id: '11', name: ' Hawaii' },
-    { id: '12', name: ' Idaho' },
-    { id: '13', name: ' Illinois' },
-    { id: '14', name: ' Indiana' },
-    { id: '15', name: ' Iowa' },
-    { id: '16', name: 'Kansas' },
-    { id: '17', name: 'Kentucky' },
-    { id: '18', name: 'Louisiana' },
-    { id: '19', name: 'Maine' },
-    { id: '20', name: 'Maryland' },
-    { id: '21', name: 'Massachusetts' },
-    { id: '22', name: 'Michigan' },
-    { id: '23', name: 'Minnesota' },
-    { id: '24', name: 'Mississippi' },
-    { id: '25', name: 'Missouri' },
-    { id: '26', name: 'Montana' },
-    { id: '27', name: 'Nebraska' },
-    { id: '28', name: 'Nevada' },
-    { id: '29', name: 'New Hampshire' },
-    { id: '30', name: 'New Jersey' },
-    { id: '31', name: 'New Mexico' },
-    { id: '32', name: 'New York' },
-    { id: '33', name: 'North Carolina' },
-    { id: '34', name: 'North Dakota' },
-    { id: '35', name: 'Ohio' },
-    { id: '36', name: 'Oklahoma' },
-    { id: '37', name: 'Oregon' },
-    { id: '38', name: 'Pennsylvania' },
-    { id: '39', name: 'Rhode Island' },
-    { id: '40', name: 'South Carolina' },
-    { id: '41', name: 'South Dakota' },
-    { id: '42', name: 'Tennessee' },
-    { id: '43', name: 'Texas' },
-    { id: '44', name: 'Utah' },
-    { id: '45', name: 'Vermont' },
-    { id: '46', name: 'Virginia' },
-    { id: '47', name: 'Washington' },
-    { id: '48', name: 'West Virginia' },
-    { id: '49', name: 'Wisconsin' },
-    { id: '50', name: 'Wyoming' },
-    { id: '51', name: 'Skip Clarifications' },
-    // ... other options
-  ]);
 
-  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
   const handleTopicChoice = async (topicChoices: TopicResponses) => {
     console.log("Handling topic choice!");
@@ -683,8 +635,11 @@ export default function Playground() {
     partialAnswering(topicChoices, groupedRows);
   };
 
-  const handleSelectionChange = (selectedIds: string[]) => {
-    setSelectedOptions(selectedIds);
+  const handleOptionChange = (options: Option[]) => {
+    
+  };
+  const handleJurisdictionChange = (jurisdictions: Jurisdiction[]) => {
+
   };
 
   const scoreNewFollowupQuestion = async (question: string): Promise<[number, string]> => {
@@ -804,7 +759,14 @@ export default function Playground() {
       </div>
       <div>
         <div className="overflow-y-auto scrollbar h-full w-25 max-h-full">
-        <OptionsList options={options} onSelectionChange={handleSelectionChange} />
+        <OptionsList 
+          stateJurisdictions={StateJurisdictionOptions}
+          federalJurisdictions={FederalJurisdictionOptions}
+          miscJurisdictions={MiscJurisdictionOptions}
+          options={ChatOptions}
+          onOptionChange={handleOptionChange}
+          onJurisdictionChange={handleJurisdictionChange}
+           />
         {/* Other parts of your application */}
         </div>
       </div>
