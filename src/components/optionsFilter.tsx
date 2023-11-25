@@ -40,11 +40,16 @@ const OptionsList: React.FC<OptionsListProps> = ({
     setIsStateDropdownOpen(false);
     setSelectedState(undefined);
     setSelectedMisc(undefined);
-    setSelectedOptions([]);
+    // Set all options "selected" to false
+    setSelectedOptions(prevSelected =>
+      prevSelected.map(prevOption => ({ ...prevOption, selected: false }))
+    );
 
   };
 
   const toggleSelection = (index: number) => {
+    console.log(selectedOptions)
+    console.log(index)
     const option = selectedOptions[index]
     if (option.name === 'Include US Federal Jurisdiction') {
       setIsFederalIncluded(!isFederalIncluded);
@@ -59,9 +64,19 @@ const OptionsList: React.FC<OptionsListProps> = ({
   };
 
   useEffect(() => {
+    if (isFederalIncluded && selectedMisc) {
+      setPopupMessage('Currently, miscellaneous jurisdictions cannot be selected at the same time as federal or state jurisdictions. Plans to implement this feature are in the works. Please select only one jurisdiction type at a time. I will de-select the miscellaneous jurisdiction for you.');
+      setSelectedMisc(undefined);
+      setShowBadJurisdictionsPopup(true);
+    } else {
+      onFederalJurisdictionChange(federalJurisdictions[0])
+    }
+  }, [isFederalIncluded]);
+  useEffect(() => {
     if (isFederalIncluded && !selectedState) {
       setIsFederalIncluded(false); // Deselect federal if no state is selected
     }
+
   }, [selectedState, isFederalIncluded]);
 
   useEffect(() => {
@@ -205,8 +220,8 @@ const OptionsList: React.FC<OptionsListProps> = ({
                   <label className="flex items-center space-x-2">
                     <input
                       type="checkbox"
-                      checked={selectedOptions.includes(option)}
-                      onChange={() => toggleSelection(Number(option.id))}
+                      checked={selectedOptions[option.id].selected}
+                      onChange={() => toggleSelection(option.id)}
                     />
                     <span>{option.name}</span>
                   </label>

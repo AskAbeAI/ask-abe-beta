@@ -57,7 +57,7 @@ export default function Playground() {
   const [sessionID, setSessionID] = useState<string>("");
 
   // State variables for options and jurisdictions
-  const [selectedStateJurisdiction, setSelectedStateJurisdiction] = useState<Jurisdiction | undefined>({ id: '5', name: ' California', abbreviation: 'CA', corpusTitle: 'California Statutes', usesSubContentNodes: true, jurisdictionLevel: 'state' });
+  const [selectedStateJurisdiction, setSelectedStateJurisdiction] = useState<Jurisdiction | undefined>();
   const [selectedFederalJurisdiction, setSelectedFederalJurisdiction] = useState<Jurisdiction | undefined>();
   const [selectedMiscJurisdiction, setSelectedMiscJurisdiction] = useState<Jurisdiction | undefined>();
   const [questionJurisdictions, setQuestionJurisdictions] = useState<questionJurisdictions>();
@@ -152,9 +152,19 @@ export default function Playground() {
 
   // Logic for starting question answering process
   const handleNewQuestion = async (question: string) => {
+    console.log(`Selected State Jurisdiction: ${selectedStateJurisdiction}`);
+    console.log(`Selected Federal Jurisdiction: ${selectedFederalJurisdiction}`);
+    console.log(`Selected Misc Jurisdiction: ${selectedMiscJurisdiction}`);
+    const backupJurisdiction = { id: '5', name: ' California', abbreviation: 'CA', corpusTitle: 'California Statutes', usesSubContentNodes: true, jurisdictionLevel: 'state' };
     
     setIsFormVisible(false); // Hide the form when a question is submitted
     const question_jurisdictions = {"mode": "state","state": selectedStateJurisdiction, "federal": selectedFederalJurisdiction, "misc": selectedMiscJurisdiction};
+    if(!selectedStateJurisdiction && !selectedFederalJurisdiction && !selectedMiscJurisdiction) {
+      question_jurisdictions.state = backupJurisdiction;
+      setSelectedStateJurisdiction(backupJurisdiction);
+      console.log("Applying backup jurisdiction!")
+      
+    }
     setQuestionJurisdictions(question_jurisdictions);
     if (selectedFederalJurisdiction && selectedStateJurisdiction) {
       question_jurisdictions.mode = "state_federal";
@@ -180,16 +190,7 @@ export default function Playground() {
     if(selectedMiscJurisdiction === undefined) {
        [score, message_to_user] = await scoreQuestion(questionText);
     } 
-    setIsFormVisible(false);
     
-    newParams = {
-      type: ContentType.Answer,
-      content: message_to_user,
-      fake_stream: true,
-      concurrentStreaming: false
-    };
-    addNewLoadingBlock(true);
-    await addContentBlock(createNewBlock(newParams));
     
     // Do not ask clarifying questions if skipClarifications is true or if a misc jurisdiction is selected
     if (skipClarifications || selectedMiscJurisdiction !== undefined) {
@@ -198,6 +199,14 @@ export default function Playground() {
       setIsFormVisible(true);
       return;
     } else {
+      newParams = {
+        type: ContentType.Answer,
+        content: message_to_user,
+        fake_stream: true,
+        concurrentStreaming: false
+      };
+      addNewLoadingBlock(true);
+      await addContentBlock(createNewBlock(newParams));
       askNewClarification(question_jurisdictions, questionText, "multiple");
     }
   };
@@ -702,7 +711,9 @@ export default function Playground() {
 
   const handleOptionChange = (options: Option[]) => {
     for (const option of options) {
+      console.log(option)
       if (option.name === "Skip Clarifying Questions") {
+        console.log(`Setting skip clarifications to ${option.selected}`)
         setSkipClarifications(option.selected);
       } else if (option.name === "Include US Federal Jurisdiction") {
         if (option.selected) {

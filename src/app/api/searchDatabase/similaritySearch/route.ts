@@ -2,6 +2,7 @@
 import { NextResponse } from 'next/server';
 import { node_as_row, questionJurisdictions } from "@/lib/types";
 import { jurisdiction_similarity_search_all_partitions, insert_api_debug_log } from "@/lib/database";
+import { request } from 'http';
 
 export const maxDuration = 120;
 
@@ -25,27 +26,28 @@ export async function POST(req: Request) {
 	const stateJurisdiction = jurisdictions.state;
 	const miscJurisdiction = jurisdictions.misc;
 	const mode:string = jurisdictions.mode;
-
+	
 	// CHECK FOR INITIAL ERRORS
 
 	try {
-		let jurisdiction:string = "";
+		let jurisdiction: string;
 		let maxRows = 30;
 
 		if (mode === "misc") {
-			jurisdiction = miscJurisdiction?.abbreviation!;
+			jurisdiction = miscJurisdiction!.abbreviation;
 		} else if (mode === "state" || mode === "state_federal") {
 			if (stateJurisdiction?.usesSubContentNodes) {
 				maxRows = 60;
 			}
-			jurisdiction = stateJurisdiction?.abbreviation!;
+			jurisdiction = stateJurisdiction!.abbreviation;
 		} else {
-			jurisdiction = federalJurisdiction?.abbreviation!;
+			jurisdiction = federalJurisdiction!.abbreviation;
 		}
+		jurisdiction = jurisdiction.toLowerCase();
 		const primary_rows: node_as_row[] = await jurisdiction_similarity_search_all_partitions(jurisdiction, query_expansion_embedding, 0.8, maxRows/2, maxRows, supabaseUrl, supabaseKey);
 		let secondary_rows: node_as_row[] = [];
 		if (mode === "state_federal") {
-			secondary_rows = await jurisdiction_similarity_search_all_partitions(federalJurisdiction?.abbreviation!, query_expansion_embedding, 0.8, 15, 30, supabaseUrl, supabaseKey);
+			secondary_rows = await jurisdiction_similarity_search_all_partitions(federalJurisdiction!.abbreviation, query_expansion_embedding, 0.8, 15, 30, supabaseUrl, supabaseKey);
 		}
 
 		const searchResponseBody = {
@@ -53,6 +55,7 @@ export async function POST(req: Request) {
 			secondary_rows: secondary_rows,
 			statusMessage: 'Succesfully searched database for primary and secondary rows!'
 		};
+		console.log(primary_rows)
 
 		const endTime = Date.now();
    		const executionTime = endTime - startTime;

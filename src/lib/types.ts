@@ -151,7 +151,7 @@ export interface popOutProps {
 };
 
 export interface Option {
-  id: string;
+  id: number;
   name: string;
   selected: boolean;
 }
@@ -226,8 +226,8 @@ export const MiscJurisdictionOptions: Jurisdiction[] = [
 ];
 
 export const ChatOptions: Option[] = [
-  { id: '1', name: 'Include US Federal Jurisdiction', selected: false },
-  { id: '2', name: 'Skip Clarifying Questions', selected: false },
+  { id: 0, name: 'Include US Federal Jurisdiction', selected: false },
+  { id: 1, name: 'Skip Clarifying Questions', selected: false },
 ];
 
 export interface OptionsListProps {
