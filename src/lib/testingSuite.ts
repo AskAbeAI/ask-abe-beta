@@ -44,30 +44,30 @@ export async function testingSuite() {
     ""
   ];
   const all_question_results = [];
-  for(const question of testing_question_list) {
-    console.log(question);
-    const quality_score = await calculateQuestionClarityScore(openai, question);
+  // for(const question of testing_question_list) {
+  //   console.log(question);
+  //   const quality_score = await calculateQuestionClarityScore(openai, question);
 
-    const res_0 = await generateBasicQueryRefinement(openai, question);
-    const specific_questions = res_0.specific_questions;
+  //   const res_0 = await generateBasicQueryRefinement(openai, question);
+  //   const specific_questions = res_0.specific_questions;
 
-    const legal_statements = await generateQueryExpansion(openai, specific_questions);
-    const embedded_expansion_query = JSON.stringify(await generateEmbedding(openai, legal_statements));
+  //   const legal_statements = await generateQueryExpansion(openai, specific_questions);
+  //   const embedded_expansion_query = JSON.stringify(await generateEmbedding(openai, legal_statements));
 
-    const rows = await jurisdiction_similarity_search_all_partitions("ca", embedded_expansion_query, 0.8, 20, 60, process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
-    const sibling_node_keys: node_key[] = generate_node_keys(rows);
+  //   const rows = await jurisdiction_similarity_search_all_partitions("ca", embedded_expansion_query, 0.8, 20, 60, process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
+  //   const sibling_node_keys: node_key[] = generate_node_keys(rows);
 
-    // Given a list of sibling_node keys, retrieve all actual rows from the database
-    const combined_rows: node_as_row[] = await get_sibling_rows("ca", sibling_node_keys, process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
+  //   // Given a list of sibling_node keys, retrieve all actual rows from the database
+  //   const combined_rows: node_as_row[] = await get_sibling_rows("ca", sibling_node_keys, process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
 
-    // Get a set of all unique parent_nodes in combinedRows variable
-    const combined_parent_nodes: GroupedRows = await aggregateSiblingRows(combined_rows);
+  //   // Get a set of all unique parent_nodes in combinedRows variable
+  //   const combined_parent_nodes: GroupedRows = await aggregateSiblingRows(combined_rows);
 
-    const text_citation_pairs = convertGroupedRowsToTextCitationPairs(combined_parent_nodes);
+  //   const text_citation_pairs = convertGroupedRowsToTextCitationPairs(combined_parent_nodes);
 
-    const direct_answer = await generateDirectAnswer(openai, question, "The user is a resident of California, and asking the legal question for themselves. They're looking for a general overview. Include general regulations, penalties, lawful use cases, and unlawful use cases.", text_citation_pairs);
-    await insert_testing_suite_question_results(question, quality_score, specific_questions, direct_answer, process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!)
-    console.log(direct_answer);
-  }
+  //   const direct_answer = await generateDirectAnswer(openai, question, "The user is a resident of California, and asking the legal question for themselves. They're looking for a general overview. Include general regulations, penalties, lawful use cases, and unlawful use cases.", text_citation_pairs);
+  //   await insert_testing_suite_question_results(question, quality_score, specific_questions, direct_answer, process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!)
+  //   console.log(direct_answer);
+  // }
 };
 testingSuite();
