@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow&family=Barlow:wght@400;500;600;700&family=Cardo:wght@400;700&family=Courier+Prime:wght@400;700&family=Cutive+Mono&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Gotu&family=IM+Fell+Great+Primer+SC&family=Josefin+Sans:wght@300;400;500;600;700&family=Montserrat:wght@100;200;300;400;500;600;700&family=Open+Sans:wght@400;500;600;700;800&family=Oswald:wght@300;500;700&family=Quicksand:wght@300;400;500;600;700&family=Roboto+Slab:wght@300;400;500;600;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow&family=Barlow:wght@400;500;600;700&family=Cardo:wght@400;700&family=Cinzel:wght@400;500;600;700;800;900&family=Courier+Prime:wght@400;700&family=Cutive+Mono&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Fauna+One&family=Gotu&family=IM+Fell+Great+Primer+SC&family=Italiana&family=Josefin+Sans:wght@300;400;500;600;700&family=Montserrat:wght@100;200;300;400;500;600;700&family=Open+Sans:wght@400;500;600;700;800&family=Oswald:wght@300;500;700&family=Quicksand:wght@300;400;500;600;700&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Slab:wght@300;400;500;600;700&display=swap');
 
 
 
@@ -25,7 +24,7 @@
   -webkit-transition: 500ms;
   transition: 500ms;
   -webkit-transition-delay: 500ms;
-          transition-delay: 500ms;
+  transition-delay: 500ms;
   font-size: 16px;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -44,14 +43,14 @@
   -webkit-transition: 500ms;
   transition: 500ms;
   -webkit-transition-delay: 500ms;
-          transition-delay: 500ms;
+  transition-delay: 500ms;
   background-color: #87EEAB;
   -webkit-box-shadow: 0 0 10px #87EEAB,
-   0 0 30px #87EEAB, 
-   0 0 50px #87EEAB;
-          box-shadow: 0 0 10px #87EEAB,
-   0 0 30px #87EEAB, 
-   0 0 50px #87EEAB;
+    0 0 30px #87EEAB,
+    0 0 50px #87EEAB;
+  box-shadow: 0 0 10px #87EEAB,
+    0 0 30px #87EEAB,
+    0 0 50px #87EEAB;
 }
 
 .button1 div {
@@ -60,7 +59,7 @@
   position: absolute;
   background-color: #87EEAB;
   -webkit-box-shadow: 0 0 15px #87EEAB, 0 0 30px #87EEAB, 0 0 50px #87EEAB;
-          box-shadow: 0 0 15px #87EEAB, 0 0 30px #87EEAB, 0 0 50px #87EEAB;
+  box-shadow: 0 0 15px #87EEAB, 0 0 30px #87EEAB, 0 0 50px #87EEAB;
 }
 
 .button1 .top {
@@ -108,7 +107,7 @@
   bottom: 0;
 }
 
-button:hover .top, 
+button:hover .top,
 button:hover .bottom {
   width: 100%;
 }

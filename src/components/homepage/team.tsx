@@ -7,7 +7,7 @@ const OurTeam: React.FC = () => {
     return (
         <section className="items-center bg-[#FAF5E6] flex flex-col px-5 shadow-inner ">
             <div className="flex w-[768px] max-w-full flex-col items-stretch mt-16 mb-16 max-md:my-10">
-                <h1 className="text-black text-center font-imfell text-5xl font-bold leading-[58px] max-md:max-w-full max-md:text-5xl max-md:leading-[54px]">
+                <h1 className="text-black text-center font-cinzel text-5xl font-semibold leading-[58px] max-md:max-w-full max-md:text-5xl max-md:leading-[54px]">
                     Our Team
                 </h1>
                 <div className="self-center w-[640px] max-w-full mt-20 max-md:mt-10">
@@ -19,10 +19,10 @@ const OurTeam: React.FC = () => {
                                     srcSet="/will.jpg" className="rounded-full w-32 h-32 object-cover"
                                     alt="Will Diamond"
                                 />
-                                <h2 className="self-stretch text-black text-center text-xl font-montserrat font-semibold leading-8 mt-6">
+                                <h2 className="self-stretch text-black text-center text-xl font-raleway font-semibold leading-8 mt-6">
                                     Will Diamond
                                 </h2>
-                                <p className="self-stretch text-black text-center font-montserrat text-lg leading-7">
+                                <p className="self-stretch text-black text-center font-raleway text-lg leading-7">
                                     Co-Founder
                                 </p>
                                 <div className="items-stretch flex w-[100px] max-w-full gap-3.5 mt-6 max-md:justify-center">
@@ -67,10 +67,10 @@ const OurTeam: React.FC = () => {
                                     srcSet="/madeline.jpg" className="rounded-full w-32 h-32 object-cover"
                                     alt="Will Diamond"
                                 />
-                                <h2 className="self-stretch text-black text-center text-xl font-montserrat font-semibold leading-8 mt-6">
+                                <h2 className="self-stretch text-black text-center text-xl font-raleway font-semibold leading-8 mt-6">
                                     Madeline Kaufman
                                 </h2>
-                                <p className="self-stretch text-black text-center font-montserrat text-lg leading-7">
+                                <p className="self-stretch text-black text-center font-raleway text-lg leading-7">
                                     Co-Founder
                                 </p>
                                 <div className="items-stretch flex w-[100px] max-w-full gap-3.5 mt-6 max-md:justify-center">
