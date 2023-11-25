@@ -20,8 +20,7 @@ import { constructPromptQuery } from '@/lib/utils';
 
 // Temporary variables
 
-const stateJurisdiction = "ca";
-const federalJurisdiction = "USA";
+
 
 export default function Playground() {
 
@@ -58,7 +57,10 @@ export default function Playground() {
   const [sessionID, setSessionID] = useState<string>("");
 
   // State variables for options and jurisdictions
-  const [selectedJurisdictions, setSelectedJurisdictions] = useState<Jurisdiction[]>([]);
+  const [selectedStateJurisdiction, setSelectedStateJurisdiction] = useState<Jurisdiction>({ id: '5', name: ' California', abbreviation: 'CA', corpusTitle: 'California Statutes', usesSubContentNodes: true, jurisdictionLevel: 'state' });
+  const [selectedFederalJurisdiction, setSelectedFederalJurisdiction] = useState<Jurisdiction>();
+  const [selectedMiscJurisdiction, setSelectedMiscJurisdiction] = useState<Jurisdiction>();
+
   const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
 
   // Generate Unique Sessiond IDs here
@@ -186,7 +188,7 @@ export default function Playground() {
   };
 
   const scoreQuestion = async (question: string): Promise<[number, string]> => {
-    const user_prompt_query: string = constructPromptQuery(question, stateJurisdiction, federalJurisdiction);
+    const user_prompt_query: string = constructPromptQuery(question, selectedStateJurisdiction.abbreviation, selectedFederalJurisdiction?.abbreviation || "USA");
     const requestBody = {
       user_prompt_query: user_prompt_query,
     };
@@ -207,7 +209,7 @@ export default function Playground() {
 
   // queryClarification API handlers
   const askNewClarification = async (questionText: string, mode: string, previous_clarifications?: ClarificationChoices) => {
-    const user_prompt_query: string = constructPromptQuery(questionText, stateJurisdiction, federalJurisdiction);
+    const user_prompt_query: string = constructPromptQuery(questionText, selectedStateJurisdiction.abbreviation, selectedFederalJurisdiction?.abbreviation || "USA");
     addNewLoadingBlock(false);
     if (clarificationQueue.length > 0) {
       const newClarificationBlock = clarificationQueue[0];
@@ -286,8 +288,6 @@ export default function Playground() {
         }
 
       }
-      console.log(firstResult!);
-      console.log(results);
       await addContentBlock(createNewBlock(firstResult!));
       setClarificationQueue(results);
     }
@@ -414,7 +414,7 @@ export default function Playground() {
     const query_expansion_embedding = await queryExpansion(user_query, specific_questions);
 
     const requestBody = {
-      jurisdictions: { "state": "ca", "federal": "USA" },
+      jurisdictions: { "state": selectedStateJurisdiction, "federal": selectedFederalJurisdiction, "misc": selectedMiscJurisdiction },
       query_expansion_embedding: query_expansion_embedding,
     };
     const response = await fetch('/api/searchDatabase/similaritySearch', {
@@ -636,14 +636,34 @@ export default function Playground() {
   };
 
   const handleOptionChange = (options: Option[]) => {
-    
+    for (const option of options) {
+      if (option.name === "Skip Clarifying Questions") {
+        setSkipClarifications(option.selected);
+      } else if (option.name === "Generate Suggestions") {
+        setGenerateSuggestions(option.selected);
+      } else if (option.name === "Include US Federal Jurisdiction") {
+        if (option.selected) {
+          setSelectedFederalJurisdiction({ id: '1', name: 'US Federal Regulations', abbreviation: 'ecfr', corpusTitle: 'United States Code of Federal Regulations', usesSubContentNodes: false, jurisdictionLevel: 'federal' });
+        } else {
+          setSelectedFederalJurisdiction(undefined);
+        }
+      }
+    }
   };
   const handleJurisdictionChange = (jurisdictions: Jurisdiction[]) => {
-
+    for (const jurisdiction of jurisdictions) {
+      if (jurisdiction.jurisdictionLevel === "state") {
+        setSelectedStateJurisdiction(jurisdiction);
+      } else if (jurisdiction.jurisdictionLevel === "federal") {
+        setSelectedFederalJurisdiction(jurisdiction);
+      } else {
+        setSelectedMiscJurisdiction(jurisdiction);
+      }
+    }
   };
 
   const scoreNewFollowupQuestion = async (question: string): Promise<[number, string]> => {
-    const user_prompt_query: string = constructPromptQuery(question, stateJurisdiction, federalJurisdiction);
+    const user_prompt_query: string = constructPromptQuery(question, selectedStateJurisdiction.abbreviation,  "USA");
     const requestBody = {
       user_prompt_query: user_prompt_query,
       previous_clarifications: clarificationResponses,
