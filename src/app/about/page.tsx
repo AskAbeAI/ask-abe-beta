@@ -20,8 +20,8 @@ export default function aboutPage() {
     <div className="items-stretch bg-[#FAF5E6] flex flex-col px-16 max-md:px-5">
     <Image
         
-        width={5953}
-        height={3969}
+        width={2000}
+        height={1500}
         src="/about1.jpg"
         alt="Company Story"
         className="aspect-[1.78] object-contain object-center w-full overflow-hidden mt-28 max-md:max-w-full max-md:my-10"
