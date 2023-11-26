@@ -132,11 +132,11 @@ const OptionsList: React.FC<OptionsListProps> = ({
   const closePopup = () => setShowBadJurisdictionsPopup(false);
 
   return (
-    <div className="overflow-y-auto bg-[#FDFCFD] border-4 border-[#E4E0D2] p-2 w-full shadow-inner rounded-md">
+    <div className="overflow-y-auto bg-[#FDFCFD] border-4 border-[#E4E0D2] p-2 w-25 shadow-inner rounded-md">
       <div className="flex justify-center text-[#4A4643] font-bold font-montserrat pb-2">Chat Options</div>
       <div className="flex justify-center font-montserrat pb-2">
-        <div className="overflow-y-auto bg-[#FDFCFD] p-2 w-full shadow-inner rounded-md">
-          <div className="overflow-y-auto w-full" style={{ maxHeight: '45vh' }}>
+        <div className="overflow-y-auto bg-[#FDFCFD] p-2 w-25 shadow-inner rounded-md">
+          <div className="flex items-end overflow-y-auto w-fit" style={{ maxHeight: '45vh' }}>
 
 
             {/* State Jurisdiction Button */}
@@ -156,7 +156,7 @@ const OptionsList: React.FC<OptionsListProps> = ({
 
             {/* State Jurisdiction Dropdown Content */}
             {isStateDropdownOpen && (
-              <div className="z-10 w-48 bg-white rounded-lg shadow">
+              <div className="z-10 w-25 bg-white rounded-lg shadow">
                 <ul className="p-3 space-y-1 text-sm text-gray-700">
                   {/* Loop through options */}
                   {stateJurisdictions.map((jurisdiction: Jurisdiction) => (
@@ -170,7 +170,7 @@ const OptionsList: React.FC<OptionsListProps> = ({
                           checked={selectedState === jurisdiction}
                           className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
                         />
-                        <label htmlFor={jurisdiction.id} className="w-full ml-2 text-sm font-medium text-gray-900">
+                        <label htmlFor={jurisdiction.id} className="w-25 ml-2 text-sm font-medium text-gray-900">
                           {jurisdiction.name}
                         </label>
                       </div>
@@ -183,7 +183,7 @@ const OptionsList: React.FC<OptionsListProps> = ({
             )}
           </div>
 
-          <div className="pt-2">
+          <div className="overflow-y-auto w-5/6 pt-2" style={{ maxHeight: '45vh' }}>
 
 
             {/* Misc Jurisdiction Button */}
@@ -203,7 +203,7 @@ const OptionsList: React.FC<OptionsListProps> = ({
 
             {/* Misc Jurisdiction Content */}
             {isMiscDropdownOpen && (
-              <div className="z-10 w-48 bg-white rounded-lg shadow">
+              <div className="z-10 w-25 bg-white rounded-lg shadow">
                 <ul className="p-3 space-y-1 text-sm text-gray-700">
                   {/* Loop through options */}
                   {miscJurisdictions.map((jurisdiction: Jurisdiction) => (
@@ -217,7 +217,7 @@ const OptionsList: React.FC<OptionsListProps> = ({
                           checked={selectedMisc === jurisdiction}
                           className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
                         />
-                        <label htmlFor={jurisdiction.id} className="w-full ml-2 text-sm font-medium text-gray-900">
+                        <label htmlFor={jurisdiction.id} className="w-25 ml-2 text-sm font-medium text-gray-900">
                           {jurisdiction.name}
                         </label>
                       </div>
@@ -228,11 +228,12 @@ const OptionsList: React.FC<OptionsListProps> = ({
                 </ul>
               </div>
             )}
+            </div>
 
 
             {/* Rest of the OptionsList content */}
-            <div className="h-auto max-h-full">
-              <ul className="list-none pt-2">
+            <div className="h-auto max-h-full ">
+              <ul className="list-none pt-4">
 
                 {options.map(option => (
                   <li key={option.id}>
@@ -257,7 +258,7 @@ const OptionsList: React.FC<OptionsListProps> = ({
               <button
                 className="flex justify-end px-1 py-1 rounded shadow-inner text-[#4A4643] hover:bg-[#4A4643] hover:text-white" onClick={handleClearSelection}>Clear</button>
           </div >
-          </div>
+          
         </div>
       </div>
 
