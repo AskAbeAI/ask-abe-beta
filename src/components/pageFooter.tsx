@@ -16,17 +16,17 @@ const PageFooter: React.FC = () => {
               <div className="items-stretch self-stretch flex flex-col mt-5 max-md:max-w-full">
                 <div className="flex flex-col ">
                   <div className="items-stretch flex grow flex-col">
-                    <Link
-                      href="/about"
+                  <Link
+                      href="/mission"
                       className="text-black text-base font-raleway leading-6"
                     >
-                      About
+                      Our Mission
                     </Link>
                     <Link
-                      href="/mission"
+                      href="/about"
                       className="text-black text-base font-raleway leading-6 mt-3"
                     >
-                      Our Mission
+                      About
                     </Link>
                     <Link
                       href="/devlog"

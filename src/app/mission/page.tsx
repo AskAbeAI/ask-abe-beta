@@ -6,38 +6,67 @@ import PageFooter from '@/components/pageFooter';
 
 export default function MissionPage() {
   return (
-    <div className="bg-[#FAF5E6] flex flex-col items-stretch">
+    <div className="bg-[#FEFDF9] flex flex-col items-stretch">
 
-      <div className="flex-col items-center overflow-hidden relative flex min-h-[382px] px-20 max-md:px-5">
+      <div className="flex-col items-center overflow-hidden relative flex min-h-[300px] px-20 max-md:px-5">
         <Image
-          src="/empowering.jpg"
+          src="/lincolnmem.jpg"
           alt="Empowering Image"
           width={4800}
           height={2812}
           className="absolute inset-0 w-full h-full object-cover"
         />
 
-        <div className="relative top-1/2 text-[#FEFDF9] text-center text-5xl font-raleway font-bold leading-[80px] max-w-screen-md mt-28 max-md:max-w-full max-md:mt-10">
+        <div className="relative top-5/6 text-[#FEFDF9] text-center text-5xl font-raleway font-bold leading-[80px] max-w-screen-md mt-28 max-md:max-w-full max-md:mt-10">
           OUR MISSION
         </div>
 
       </div>
-      <div className="bg-[#FAF5E6] flex w-full flex-col px-16 py-5">
-        <div className="text-[#2F3F3D] text-6xl text-center font-cinzel font-semibold leading-[58px] mt-16 mb-2 max-md:max-w-full max-md:text-4xl max-md:leading-[54px] max-md:mt-10">
+      <div className="items-center bg-[#FCF9F0] shadow-inner w-screen flex flex-col">
+        <div className="text-[#2F3F3D] text-center text-6xl font-imfell font-medium leading-[67px] px-20 mt-28 max-md:max-w-full max-md:text-4xl max-md:leading-[54px] max-md:mt-10">
           Empowering regular citizens to better understand primary source legislation
-
         </div>
-        <div className="items-stretch bg-[#FAF5E6] flex flex-col px-44 max-md:px-5">
-
-          <Image
-            src="/lib2.jpg"
-            alt="library2"
-            width={5184}
-            height={3888}
-            className="aspect-[1.78] object-contain object-center w-full overflow-hidden mt-20 max-md:max-w-full max-md:my-10"
-          />
+        <div className="text-black text-center font-raleway text-lg w-5/6 leading-7 max-w-screen-lg mt-6  max-md:max-w-full max-md:mb-10">
+          {" "}
         </div>
       </div>
+      <div className="items-stretch bg-[#FCF9F0] flex flex-col px-44 max-md:px-5">
+        <Image
+
+          width={2000}
+          height={1500}
+          src="/mission.jpg"
+          alt="Company Story"
+          className="aspect-[1.78] object-contain object-center w-full overflow-hidden mt-20 mb-20 max-md:max-w-full max-md:my-10"
+        />
+      </div>
+
+      <div className="items-center bg-[#FAF5E6] flex flex-col px-5">
+        <div className="w-full max-w-[1312px] mt-28 mb-24 max-md:max-w-full max-md:my-10">
+          <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
+            <div className="flex flex-col items-stretch w-6/12 max-md:w-full max-md:ml-0">
+              <div className="items-stretch flex flex-col max-md:max-w-full max-md:mt-10">
+                <div className="text-[#2F3F3D] text-5xl font-cinzel leading-[58px] max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
+                  What is the problem?
+                </div>
+                <div className="text-black text-base font-raleway leading-6 mt-6 max-md:max-w-full">
+                  Insert Here </div>
+
+              </div>
+            </div>
+            {/* <div className="flex flex-col items-stretch w-6/12 ml-5 max-md:w-full max-md:ml-0">
+              <Image
+                src="/lib3.jpg"
+                alt="People Image"
+                width={4373}
+                height={2452}
+                className="aspect-[1.76] object-contain object-center w-full overflow-hidden grow max-md:max-w-full max-md:mt-2"
+              />
+            </div> */}
+          </div>
+        </div>
+      </div>
+
       <div className="items-center bg-[#FCF9F0] flex flex-col px-5 shadow-inner">
         <div className="items-stretch flex w-full max-w-[1312px] justify-between gap-5 mt-28 mb-24 max-md:max-w-full max-md:flex-wrap max-md:my-10">
           <div className="flex justify-center text-[#2F3F3D] text-4xl font-cinzel leading-10 grow shrink basis-auto max-md:max-w-full">

@@ -34,7 +34,7 @@ export default function HomePage() {
                     height={500} />
                 </div>
                 <p className="text-black text-lg pt-1 font-raleway leading-7 mt-6 max-md:max-w-full">
-                  Your Legal Education Assistant
+                  A Conversational AI Legal Education Assistant
                 </p>
               </div>
               <div className="items-fit flex  max-w-full justify-between mt-10">
@@ -71,7 +71,7 @@ export default function HomePage() {
                 Innovative
               </h2> */}
                 <div className="items-stretch self-stretch flex flex-col mt-4 max-md:max-w-full">
-                  <h1 className="text-[#2F3F3D] text-5xl font-cinzel font-semibold leading-[57.6px] max-md:max-w-full max-md:text-4xl">
+                  <h1 className="text-[#2F3F3D] text-5xl font-imfell font-semibold leading-[57.6px] max-md:max-w-full max-md:text-4xl">
                     Transforming Legal Education with Conversational AI
                   </h1>
                   <p className="text-black text-xl font-raleway font-light leading-7 mt-6 max-md:max-w-full">
@@ -99,19 +99,31 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* Feature Section */}
-      <section className="items-center bg-[#FAF5E6] shadow-inner flex flex-col px-56 max-md:px-5">
-        <div className="items-center bg-[#FAF5E6] flex flex-col px-16 max-md:px-5">
-
-          <div className="self-center text-black font-cinzel text-center text-6xl pt-16 leading-[58px] max-w-screen-md mt-4 max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
+      <section>
+        <div className="flex-col items-center overflow-hidden relative flex min-h-[400px] px-20 max-md:px-5">
+          <Image
+            src="/mon2.jpg"
+            alt="Empowering Image"
+            width={4800}
+            height={2812}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="relative top-5/6 text-[#FEFDF9] text-center text-5xl font-raleway font-bold leading-[80px] max-w-screen-md mt-40 max-md:max-w-full max-md:mt-10">
             Ask Abe&apos;s Features
           </div>
+
+
+        </div>
+      </section>
+
+      {/* Feature Section */}
+      <section className="items-center bg-[#FCF8EE] shadow-inner flex flex-col px-56 max-md:px-5">
+        <div className="items-center bg-[#FCF8EE] flex flex-col px-16 max-md:px-5">
           <div className="self-center text-black text-center text-lg leading-7 max-w-screen-md mt-6 max-md:max-w-full">
-            
+
           </div>
 
-          <div className="border bg-[#FEFDF9] self-stretch mt-10 mb-10 pl-8 pr-8 border-solid border-[#2F3F3D] max-md:max-w-full max-md:my-10 max-md:pl-5">
+          <div className="border bg-[#FCF9F3] self-stretch mt-10 mb-10 pl-8 pr-8 border-solid border-8 border-[#FEFDF9] shadow-inner max-md:max-w-full max-md:my-10 max-md:pl-5">
             <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
               <div className="flex flex-col items-stretch w-[46%] max-md:w-full max-md:ml-0">
                 <div className="justify-center items-start self-stretch flex flex-col my-auto max-md:max-w-full max-md:mt-10">
@@ -135,7 +147,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="border bg-[#FEFDF9] self-stretch mt-10 mb-10 pl-8 border-solid border-[#2F3F3D] max-md:max-w-full max-md:my-10">
+          <div className="border bg-[#FCF9F3] self-stretch mt-10 mb-10 pl-8 pr-8 border-solid border-8 border-[#FEFDF9] shadow-inner max-md:max-w-full max-md:my-10 max-md:pl-5">
             <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
               <div className="flex flex-col items-stretch w-[52%] max-md:w-full max-md:ml-0">
                 <Image
@@ -159,7 +171,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="border bg-[#FEFDF9] self-stretch mt-10 mb-10 pl-12 pr-8 border-solid border-[#2F3F3D] max-md:max-w-full max-md:my-10 max-md:pl-5">
+          <div className="border bg-[#FCF9F3] self-stretch mt-10 mb-10 pl-8 pr-8 border-solid border-8 border-[#FEFDF9] shadow-inner max-md:max-w-full max-md:my-10 max-md:pl-5">
             <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
               <div className="flex flex-col items-stretch w-[46%] max-md:w-full max-md:ml-0">
                 <div className="justify-center items-start self-stretch flex flex-col my-auto max-md:max-w-full max-md:mt-10">
@@ -184,7 +196,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="border bg-[#FEFDF9] self-stretch mt-10 mb-10 pl-8 border-solid border-[#2F3F3D] max-md:max-w-full max-md:my-10">
+          <div className="border bg-[#FCF9F3] self-stretch mt-10 mb-10 pl-8 pr-8 border-solid border-8 border-[#FEFDF9] shadow-inner max-md:max-w-full max-md:my-10 max-md:pl-5">
             <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
               <div className="flex flex-col items-stretch w-[52%] max-md:w-full max-md:ml-0">
                 <Image
@@ -209,12 +221,12 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-     
+
 
       {/* Team Section */}
       <section className="items-center bg-[#FAF5E6] flex flex-col px-5 shadow-inner ">
         <div className="flex w-[768px] max-w-full flex-col items-stretch mt-16 mb-16 max-md:my-10">
-          <h1 className="text-[#2F3F3D] text-center font-cinzel text-5xl font-semibold leading-[58px] max-md:max-w-full max-md:text-5xl max-md:leading-[54px]">
+          <h1 className="text-[#2F3F3D] text-center font-imfell text-5xl font-semibold leading-[58px] max-md:max-w-full max-md:text-5xl max-md:leading-[54px]">
             Our Team
           </h1>
           <div className="self-center w-[640px] max-w-full mt-10 max-md:mt-10">
