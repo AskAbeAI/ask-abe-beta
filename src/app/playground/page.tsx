@@ -11,7 +11,7 @@ import { node_as_row, node_key, SubTopic, GeneralTopic, TopicResponses, Clarific
 import { aggregateSiblingRows, generate_node_keys } from '@/lib/database';
 import CitationBar from '@/components/citationBar';
 import OptionsList from '@/components/optionsFilter';
-import { Option, Jurisdiction,  OptionsListProps, questionJurisdictions } from '@/lib/types';
+import { Option, Jurisdiction, OptionsListProps, questionJurisdictions } from '@/lib/types';
 
 import { StateJurisdictionOptions, FederalJurisdictionOptions, MiscJurisdictionOptions, ChatOptions } from '@/lib/types';
 
@@ -180,9 +180,7 @@ export default function Playground() {
 
   // Logic for starting question answering process
   const handleNewQuestion = async (question: string) => {
-    console.log("Handling brand new question!")
-    
-    
+
     setIsFormVisible(false); // Hide the form when a question is submitted
     const questionText = question.trim();
     setQuestion(questionText);
@@ -198,16 +196,16 @@ export default function Playground() {
     await addContentBlock(createNewBlock(newParams));
     console.log("HERE@")
     console.log(questionJurisdictions)
-    
+
     const question_jurisdictions = questionJurisdictions!;
     let score = 7;
     let message_to_user = "";
     // Only score questions if no misc jurisdiction is selected
-    if(selectedMiscJurisdiction === undefined && !skipClarifications) {
-       [score, message_to_user] = await scoreQuestion(question_jurisdictions,questionText);
-    } 
-    
-    
+    if (selectedMiscJurisdiction === undefined && !skipClarifications) {
+      [score, message_to_user] = await scoreQuestion(question_jurisdictions, questionText);
+    }
+
+
     // Do not ask clarifying questions if skipClarifications is true or if a misc jurisdiction is selected
     if (skipClarifications || selectedMiscJurisdiction !== undefined) {
       addNewLoadingBlock(false);
@@ -229,7 +227,9 @@ export default function Playground() {
   };
 
   const scoreQuestion = async (question_jurisdictions: questionJurisdictions, question: string): Promise<[number, string]> => {
+
     const user_prompt_query: string = constructPromptQuery(question, question_jurisdictions.state?.corpusTitle || 'The Country Of ' , question_jurisdictions.federal?.corpusTitle|| "USA");
+
     console.log(user_prompt_query)
     const requestBody = {
       user_prompt_query: user_prompt_query,
@@ -474,8 +474,7 @@ export default function Playground() {
 
     const primary_rows: node_as_row[] = result.primary_rows;
     const secondary_rows: node_as_row[] = result.secondary_rows;
-    //console.log(secondary_rows)
-    
+
     let combined_rows: node_as_row[] = [];
     let usesSubContentNodes: boolean = false;
     if (question_jurisdiction.mode.includes("state")) {
@@ -490,7 +489,7 @@ export default function Playground() {
         combined_rows = primary_rows;
       }
     }
-    
+
     let primaryJurisdiction;
     let secondaryJurisdiction;
     if (question_jurisdiction.mode === "misc") {
@@ -510,12 +509,12 @@ export default function Playground() {
     const primary_grouped_rows: GroupedRows = await aggregateSiblingRows(combined_rows, usesSubContentNodes, primaryJurisdiction);
     //console.log(primary_grouped_rows);
     let secondary_grouped_rows: GroupedRows = {};
-    if(secondary_rows.length > 0) {
+    if (secondary_rows.length > 0) {
       secondary_grouped_rows = await aggregateSiblingRows(secondary_rows, false, secondaryJurisdiction!);
     }
 
     const all_citation_blocks: ContentBlock[] = [];
-    
+
     // Create citation blocks for each parent node
     const primary_citation_blocks: ContentBlock[] = [];
     for (const parent_node in primary_grouped_rows) {
@@ -573,15 +572,16 @@ export default function Playground() {
       }
       all_citation_blocks.push(...secondary_citation_blocks);
     }
-    
+
     setPrimaryGroupedRows(primary_grouped_rows);
     setSecondaryGroupedRows(secondary_grouped_rows);
     //console.log(all_citation_blocks)
     await addManyContentBlock(all_citation_blocks);
     //const general_topics: string[] = await blindTopics(user_query, "CA", "USA", specific_questions);
     setQuestionJurisdictions(question_jurisdiction);
-    //console.log(questionJurisdictions)
-    await directAnswering( user_query, specific_questions, primary_grouped_rows, secondary_grouped_rows, clarificationResponses);
+
+    await directAnswering(user_query, specific_questions, primary_grouped_rows, secondary_grouped_rows, clarificationResponses);
+
     //await topicsBySection(user_query, general_topics, "CA", "USA", combined_parent_nodes, []);
 
   };
@@ -693,7 +693,9 @@ export default function Playground() {
     combinedClarifications: Clarification[],
   ) => {
     console.log(questionJurisdictions)
+
     let user_prompt_query: string = constructPromptQuery(user_query, questionJurisdictions?.state?.corpusTitle|| 'The Country Of ' , questionJurisdictions!.federal?.corpusTitle || "USA");
+
     if (questionJurisdictions?.mode === "misc") {
       user_prompt_query = constructPromptQueryMisc(user_query, questionJurisdictions?.misc?.corpusTitle || 'This Legal Documentation');
     }
@@ -706,7 +708,7 @@ export default function Playground() {
       clarifications: { clarifications: combinedClarifications } as ClarificationChoices,
       mode: "clarifications"
     };
-    if(skipClarifications || selectedMiscJurisdiction !== undefined) {
+    if (skipClarifications || selectedMiscJurisdiction !== undefined) {
       requestBody.mode = "single";
     }
 
@@ -756,13 +758,15 @@ export default function Playground() {
     }
   };
 
-  
+
 
   const scoreNewFollowupQuestion = async (question: string): Promise<[number, string]> => {
     let score: number = 7;
     if (questionJurisdictions!.mode !== "misc") {
 
+
       const user_prompt_query: string = constructPromptQuery(question, selectedStateJurisdiction?.corpusTitle || "",  selectedFederalJurisdiction?.corpusTitle || "USA");
+
       const requestBody = {
         user_prompt_query: user_prompt_query,
         previous_clarifications: clarificationResponses,
@@ -780,7 +784,7 @@ export default function Playground() {
       });
       const result = await response.json();
       score = result.do_new_research_score;
-    } 
+    }
     let message_to_user;
     if (score < 2) {
       message_to_user = "I am not confident in my ability to answer this question with my current research. Please give me a moment to retrieve more relevant information. I apologize for the inconvenience, but I am committed to providing you with only the most relevant legal information.";
@@ -877,18 +881,18 @@ export default function Playground() {
         )}
       </div>
       <div>
-        <div className="pl-2 overflow-y-auto scrollbar h-full w-25 ">
-        <OptionsList 
-          stateJurisdictions={StateJurisdictionOptions}
-          federalJurisdictions={FederalJurisdictionOptions}
-          miscJurisdictions={MiscJurisdictionOptions}
-          options={ChatOptions}
-          onOptionChange={handleOptionChange}
-          onStateJurisdictionChange={setSelectedStateJurisdiction}
-          onFederalJurisdictionChange={setSelectedFederalJurisdiction}
-          onMiscJurisdictionChange={setSelectedMiscJurisdiction}
-           />
-        {/* Other parts of your application */}
+        <div className="pl-2 overflow-y-auto scrollbar h-full" >
+          <OptionsList
+            stateJurisdictions={StateJurisdictionOptions}
+            federalJurisdictions={FederalJurisdictionOptions}
+            miscJurisdictions={MiscJurisdictionOptions}
+            options={ChatOptions}
+            onOptionChange={handleOptionChange}
+            onStateJurisdictionChange={setSelectedStateJurisdiction}
+            onFederalJurisdictionChange={setSelectedFederalJurisdiction}
+            onMiscJurisdictionChange={setSelectedMiscJurisdiction}
+          />
+          {/* Other parts of your application */}
         </div>
       </div>
     </div>
