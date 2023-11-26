@@ -130,8 +130,6 @@ const OptionsList: React.FC<OptionsListProps> = ({
         <div className="overflow-y-auto bg-[#FDFCFD] p-2 w-full shadow-inner rounded-md">
           <div className="overflow-y-auto w-full" style={{ maxHeight: '45vh' }}>
 
-
-
             {/* Dropdown Button */}
             <button
               id="dropdownRadioBgHoverButton"
@@ -146,8 +144,6 @@ const OptionsList: React.FC<OptionsListProps> = ({
                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
               </svg>
             </button>
-
-            
 
           {/* State Jurisdiction Dropdown Content */}
           {isStateDropdownOpen && (
@@ -180,9 +176,7 @@ const OptionsList: React.FC<OptionsListProps> = ({
           </div>
 
           <div className="pt-2">
-
-
-            {/* Existing Code ... */}
+            
 
             {/* Dropdown Button */}
             <button
@@ -217,36 +211,33 @@ const OptionsList: React.FC<OptionsListProps> = ({
                       <span>{option.name}</span>
                     </label>
                   </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
+          <div className="h-auto max-h-full">
+              <ul className="list-none pt-2">
 
-              {options.map(option => (
-                <li key={option.id}>
-                  <label className="flex items-center space-x-2">
-                    <input
-                      type="checkbox"
-                      checked={selectedOptions[option.id].selected}
-                      onChange={() => toggleSelection(option.id)}
-                    />
-                    <span>{option.name}</span>
-                  </label>
-                </li>
-
-              ))}
-
-
-
+                {options.map(option => (
+                  <li key={option.id}>
+                    <label className="flex items-center space-x-2">
+                      <input
+                        type="checkbox"
+                        checked={selectedOptions[option.id].selected}
+                        onChange={() => toggleSelection(option.id)}
+                      />
+                      <span>{option.name}</span>
+                    </label>
+                  </li>
+                ))}
               </ul>
             </div>
             {/* <button onClick={handleSelectAll}>Select All</button> */}
-            <div className="flex justify-center pt-4">
-              <button
-                className="flex justify-end px-1 py-1 rounded shadow-inner text-[#4A4643] hover:bg-[#4A4643] hover:text-white"
-                onClick={handleClearSelection}>Clear Options</button>
-            </div>
-          </div>
+            <button onClick={handleClearSelection}>Clear</button>
+          </div >
         </div>
       </div>
-
 
       {/* Popup Modal */}
       {showBadJurisdictionsPopup && (
