@@ -29,14 +29,14 @@ export default function MissionPage() {
         </div>
         <div className="items-stretch bg-[#FAF5E6] flex flex-col px-44 max-md:px-5">
 
-        <Image
-          src="/lib2.jpg"
-          alt="library2"
-          width={5184}
-          height={3888}
-          className="aspect-[1.78] object-contain object-center w-full overflow-hidden mt-20 max-md:max-w-full max-md:my-10"
-        />
-      </div>
+          <Image
+            src="/lib2.jpg"
+            alt="library2"
+            width={5184}
+            height={3888}
+            className="aspect-[1.78] object-contain object-center w-full overflow-hidden mt-20 max-md:max-w-full max-md:my-10"
+          />
+        </div>
       </div>
       <div className="items-center bg-[#FCF9F0] flex flex-col px-5 shadow-inner">
         <div className="items-stretch flex w-full max-w-[1312px] justify-between gap-5 mt-28 mb-24 max-md:max-w-full max-md:flex-wrap max-md:my-10">

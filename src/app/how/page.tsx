@@ -21,7 +21,7 @@ export default function HowToPage() {
       </div>
       <div className="flex flex-col items-center gap-8 p-12 pl-56 pr-56 bg-[#FAF5E6]">
         {/* Step 1 */}
-        
+
 
         {/* Step 2 */}
         <div className="bg-[#FEFDF9] rounded shadow-lg grid grid-cols-2 content-center">
@@ -50,7 +50,7 @@ export default function HowToPage() {
               <h2 className="text-xl font-raleway font-bold mb-2 ">Step 2: Abe&apos;s Clarifying Questions:
               </h2>
               <p className="font-raleway text-gray-600">
-              Abe&apos;s first response provides follow up questions which will include multiple different answers or suggestions. Review these answers to see if any of them fit your question.
+                Abe&apos;s first response provides follow up questions which will include multiple different answers or suggestions. Review these answers to see if any of them fit your question.
                 If one of the provided answers fits your query, click on it. If none of the answers are suitable but you have a different answer in mind, click on the &apos;Other&apos; option and type your response to Abe&apos;s question. You may also select &apos;Not Applicable&apos; if the follow up question does not fit your original query.
 
               </p>
@@ -66,7 +66,7 @@ export default function HowToPage() {
           </div>
         </div>
 
-    
+
 
 
         {/* Step 4 */}
