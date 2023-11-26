@@ -9,15 +9,15 @@ export default function aboutPage() {
   
   return (
     <div>
-    <div className="items-center bg-[#FEFDF9] w-screen flex flex-col">
-      <div className="text-black text-center text-6xl font-cinzel font-medium leading-[67px] px-20 mt-28 max-md:max-w-full max-md:text-4xl max-md:leading-[54px] max-md:mt-10">
+    <div className="items-center bg-[#FAF5E6] w-screen flex flex-col">
+      <div className="text-[#2F3F3D] text-center text-6xl font-cinzel font-medium leading-[67px] px-20 mt-28 max-md:max-w-full max-md:text-4xl max-md:leading-[54px] max-md:mt-10">
       Dedicated to make the complexities of law accessible and comprehensible for everyone, at no cost, by utilizing cutting-edge artificial intelligence.
       </div>
       <div className="text-black text-center font-raleway text-lg w-5/6 leading-7 max-w-screen-lg mt-6  max-md:max-w-full max-md:mb-10">
         {" "}
       </div>
     </div>
-    <div className="items-stretch bg-[#FEFDF9] flex flex-col px-16 max-md:px-5">
+    <div className="items-stretch bg-[#FAF5E6] flex flex-col px-16 max-md:px-5">
     <Image
         
         width={5953}
@@ -43,7 +43,7 @@ export default function aboutPage() {
    
   </div>
 
-  <div className="items-center bg-[#FEFDF9] flex flex-col px-44 max-md:px-5">
+  <div className="items-center bg-[#FAF5E6] flex flex-col px-44 max-md:px-5">
       <div className="text-black text-5xl font-raleway font-bold leading-[58px] w-[616px] max-w-full mt-28 max-md:text-4xl max-md:leading-[54px] max-md:mt-10">
         Short heading goes here
       </div>

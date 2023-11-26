@@ -9,23 +9,34 @@ export default function MissionPage() {
     <div className="bg-[#FAF5E6] flex flex-col items-stretch">
 
       <div className="flex-col items-center overflow-hidden relative flex min-h-[382px] px-20 max-md:px-5">
-        <img loading="lazy" src="/empowering.jpg" className="absolute inset-0 w-full h-full object-cover" alt="Empowering Image" />
+        <Image
+          src="/empowering.jpg"
+          alt="Empowering Image"
+          width={4800}
+          height={2812}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
 
         <div className="relative top-1/2 text-[#FEFDF9] text-center text-5xl font-raleway font-bold leading-[80px] max-w-screen-md mt-28 max-md:max-w-full max-md:mt-10">
           OUR MISSION
         </div>
 
       </div>
-      <div className="bg-[#FAF5E6] flex w-full flex-col  px-16 py-6 ">
-        <div className="text-[#2F3F3D] text-5xl font-cinzel leading-[58px] mt-16 max-md:max-w-full max-md:text-4xl max-md:leading-[54px] max-md:mt-10">
-            Empowering regular citizens to better understand primary source legislation
-       
+      <div className="bg-[#FAF5E6] flex w-full flex-col px-16 py-5">
+        <div className="text-[#2F3F3D] text-6xl text-center font-cinzel font-semibold leading-[58px] mt-16 max-md:max-w-full max-md:text-4xl max-md:leading-[54px] max-md:mt-10">
+          Empowering regular citizens to better understand primary source legislation
+
         </div>
-        
-        <img
-          loading="lazy"
-          srcSet="/lib2.jpg" className="aspect-[1.28] object-contain object-center w-8/12 overflow-hidden mt-20 mb-10 max-md:max-w-full max-md:mt-10"
+        <div className="items-stretch bg-[#FAF5E6] flex flex-col px-44 max-md:px-5">
+
+        <Image
+          src="/lib2.jpg"
+          alt="library2"
+          width={5184}
+          height={3888}
+          className="aspect-[1.78] object-contain object-center w-full overflow-hidden mt-20 max-md:max-w-full max-md:my-10"
         />
+      </div>
       </div>
       <div className="items-center bg-[#FCF9F0] flex flex-col px-5 shadow-inner">
         <div className="items-stretch flex w-full max-w-[1312px] justify-between gap-5 mt-28 mb-24 max-md:max-w-full max-md:flex-wrap max-md:my-10">
@@ -33,9 +44,9 @@ export default function MissionPage() {
             How can AI help?
           </div>
           <div className="text-black text-lg font-raleway leading-7 grow shrink basis-auto self-start w-7/12 max-md:max-w-full">
-          By using AI, we can effectively cut out time-consuming traditional methods of accessing legal information. 
-          Ask Abe is specifically crafted to enable users to swiftly and accurately access the information they need. 
-          This AI tool not only delivers facts from cited legal code, but it transforms them into easily digestible, relevant knowledge, tailored for everyday citizens.
+            By using AI, we can effectively cut out time-consuming traditional methods of accessing legal information.
+            Ask Abe is specifically crafted to enable users to swiftly and accurately access the information they need.
+            This AI tool not only delivers facts from cited legal code, but it transforms them into easily digestible, relevant knowledge, tailored for everyday citizens.
           </div>
         </div>
       </div>
@@ -49,23 +60,26 @@ export default function MissionPage() {
                   Who does this benefit?
                 </div>
                 <div className="text-black text-base font-raleway leading-6 mt-6 max-md:max-w-full">
-                In short, everyone. </div>
+                  In short, everyone. </div>
                 <div className="text-black text-base font-raleway leading-6 mt-4 max-md:max-w-full">
-                Understanding the laws that shape our society is empowering for every individual. 
-                It enables people to navigate daily life with greater confidence, knowing their rights and responsibilities. 
-                This knowledge can transform ordinary citizens into informed members of their community, capable of making better decisions and contributing positively to society.
-                
+                  Understanding the laws that shape our society is empowering for every individual.
+                  It enables people to navigate daily life with greater confidence, knowing their rights and responsibilities.
+                  This knowledge can transform ordinary citizens into informed members of their community, capable of making better decisions and contributing positively to society.
+
                 </div>
                 <div className="text-black text-base font-raleway leading-6 mt-4 max-md:max-w-full">
-                Providing legal education to every citizen benefits not only the individuals but also the society at large. 
-                It creates a more informed, engaged, and just community, where the rule of law is understood, respected, and upheld by all.
+                  Providing legal education to every citizen benefits not only the individuals but also the society at large.
+                  It creates a more informed, engaged, and just community, where the rule of law is understood, respected, and upheld by all.
                 </div>
               </div>
             </div>
             <div className="flex flex-col items-stretch w-6/12 ml-5 max-md:w-full max-md:ml-0">
-              <img
-                loading="lazy"
-                srcSet="/people2.jpg" className="aspect-[1.76] object-contain object-center w-full overflow-hidden grow max-md:max-w-full max-md:mt-2"
+              <Image
+                src="/people2.jpg"
+                alt="People Image"
+                width={4373}
+                height={2452}
+                className="aspect-[1.76] object-contain object-center w-full overflow-hidden grow max-md:max-w-full max-md:mt-2"
               />
             </div>
           </div>
@@ -76,7 +90,7 @@ export default function MissionPage() {
           THE DREAM
         </div>
         <div className="text-black text-center text-lg font-raleway leading-6 max-w-screen-md mt-6 mb-24 max-md:max-w-full max-md:mb-10">
-        To simplify legal jargon, making the legal system more accessible and less intimidating for all.        </div>
+          To simplify legal jargon, making the legal system more accessible and less intimidating for all.        </div>
       </div>
 
       <div className="items-stretch bg-[#FAF5E6] flex flex-col px-16 max-md:px-5">
@@ -100,9 +114,9 @@ export default function MissionPage() {
                 <div className="self-stretch flex grow basis-[0%] flex-col">
                   <div className="self-stretch text-black text-2xl font-raleway font-bold leading-9">Keep Ask Abe free, forever</div>
                   <div className="self-stretch text-black text-base font-raleway leading-6 mt-4">
-                  We believe in creating a level playing field for all individuals to benefit from our service. 
-                    </div>
-                  
+                    We believe in creating a level playing field for all individuals to benefit from our service.
+                  </div>
+
                 </div>
               </div>
             </div>
@@ -112,8 +126,8 @@ export default function MissionPage() {
                   <div className="self-stretch text-black text-2xl font-raleway font-bold leading-9">Expand Globally</div>
                   <div className="self-stretch text-black text-base font-raleway leading-6 mt-4">
                     Our hope is to expand globally and make this service accessible to all.
-                    </div>
-                  
+                  </div>
+
                 </div>
               </div>
             </div>
@@ -123,7 +137,7 @@ export default function MissionPage() {
                   <div className="self-stretch text-black text-2xl font-raleway font-bold leading-9">Fundraising Challenges</div>
                   <div className="self-stretch text-black text-base font-raleway leading-6 mt-4">
                     Fundraising presents significant challenges</div>
-                  
+
                 </div>
               </div>
             </div>
@@ -131,7 +145,7 @@ export default function MissionPage() {
         </div>
       </div>
 
-    {/* Examples of Ask Abe in Use Section */}
+      {/* Examples of Ask Abe in Use Section */}
 
 
       {/* <div className="items-stretch bg-[#FAF5E6] flex flex-col px-16 max-md:px-5">
@@ -166,8 +180,8 @@ export default function MissionPage() {
           </div>
         </div>
       </div> */}
-<PageFooter/>
+      <PageFooter />
     </div>
-    
+
   );
 }
