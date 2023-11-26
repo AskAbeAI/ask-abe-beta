@@ -22,6 +22,7 @@ export const AnswerBlock: React.FC<AnswerBlockProps> = ({ content, content_list,
   const createTextWithEmbeddedLink = (text: string): JSX.Element[] => {
     // Regular expression to match citations
     // Replace all occurnces of "(#" with just "#"
+    text = text.replace(/\n§/g, "§");
     text = text.replace(/\(#/g, '#');
     // Replace all occurrences of "#)" with just "#"
     text = text.replace(/#\)/g, '#');
@@ -41,7 +42,7 @@ export const AnswerBlock: React.FC<AnswerBlockProps> = ({ content, content_list,
       );
       return placeholder;
     });
-    //console.log(citations);
+    console.log(citations);
 
     // Split the text into words
     const words = textWithPlaceholders.split(/\s+/);
@@ -69,7 +70,7 @@ export const AnswerBlock: React.FC<AnswerBlockProps> = ({ content, content_list,
       }
     });
   };
-
+  console.log(content);
   const fullContentElements = createTextWithEmbeddedLink(content);
 
   useEffect(() => {

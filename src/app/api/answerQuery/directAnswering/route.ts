@@ -6,7 +6,7 @@ import { getPromptDirectAnswering, getPromptPartialAnswering, getPromptDirectAns
 import { createChatCompletion } from '@/lib/chatCompletion';
 import { dir } from 'console';
 import { insert_api_debug_log } from '@/lib/database';
-import { condenseClarificationsIntoInstructions, convertGroupedRowsToTextCitationPairs, generateDirectAnswer } from '@/lib/helpers';
+import { condenseClarificationsIntoInstructions, convertGroupedRowsToTextCitationPairs, generateAnsweringInstructions, generateDirectAnswer } from '@/lib/helpers';
 
 
 const openAiKey = process.env.OPENAI_API_KEY;
@@ -24,13 +24,20 @@ export async function POST(req: Request) {
   const requestData: any = await req.json();
   const sessionId: string = req.headers.get('x-session-id')!;
   const legal_question = requestData.legal_question;
-  const groupedRows: GroupedRows = requestData.legal_texts;
+  const primaryGroupedRows: GroupedRows = requestData.primary_grouped_rows;
+  const secondaryGroupedRows: GroupedRows = requestData.secondary_grouped_rows;
   const clarifications: ClarificationChoices = requestData.clarifications;
   const specific_questions: string[] = requestData.specific_questions;
   const mode: string = requestData.mode;
   const already_answered: string[] = requestData.already_answered;
 
-  const all_text_citation_pairs: text_citation_pair[] = convertGroupedRowsToTextCitationPairs(groupedRows);
+  const primary_text_citation_pairs: text_citation_pair[] = convertGroupedRowsToTextCitationPairs(primaryGroupedRows);
+  let secondary_text_citation_pairs: text_citation_pair[] = [];
+  if(secondaryGroupedRows) {
+    secondary_text_citation_pairs = convertGroupedRowsToTextCitationPairs(secondaryGroupedRows);
+  }
+  const all_text_citation_pairs: text_citation_pair[] = primary_text_citation_pairs.concat(secondary_text_citation_pairs);
+  
   
   const all_questions: string[] = [];
   all_questions.push(legal_question);
@@ -40,15 +47,20 @@ export async function POST(req: Request) {
 
   try {
     let direct_answer;
+    console.log(legal_question)
+    console.log(clarifications.clarifications)
+    console.log(already_answered)
+    console.log(mode)
 
-    if (mode === "separate") {
-      const params = getPromptDirectAnsweringSeparate(all_questions, clarifications, all_text_citation_pairs, false);
-      const result = JSON.parse(await createChatCompletion(params, openai, "directAnsweringSeparate"));
-      direct_answer = result.all_instructions;
-      
-    } else {
-      const instructions = await condenseClarificationsIntoInstructions(openai, legal_question, clarifications.clarifications, already_answered, "answering");
+    if (mode === "clarifications") {
+      const instructions = await condenseClarificationsIntoInstructions(openai, legal_question, clarifications.clarifications);
       direct_answer = await generateDirectAnswer(openai, legal_question, instructions, all_text_citation_pairs);
+    } else {
+      const customer_information = "The customer is interested in getting accurate legal information about their question. They are a resident of the applicable jurisdiction. They are looking for a general answer to their question, not specific legal advice. They only want to understand current legislation, not any future or upcoming changes.";
+      const instructions = await generateAnsweringInstructions(openai, legal_question, customer_information, already_answered);
+      console.log(instructions);
+      direct_answer = await generateDirectAnswer(openai, legal_question, instructions, all_text_citation_pairs);
+      console.log(direct_answer)
 
     }
 

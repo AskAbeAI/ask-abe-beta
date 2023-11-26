@@ -9,18 +9,22 @@ const OptionsList: React.FC<OptionsListProps> = ({
   miscJurisdictions,
   options,
   onOptionChange,
-  onJurisdictionChange,
+  onStateJurisdictionChange,
+  onFederalJurisdictionChange,
+  onMiscJurisdictionChange,
 }) => {
   // const [searchTerm, setSearchTerm] = useState('');
   // const [filteredJurisdictions, setFilteredJurisdictions] = useState();
-  const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
+  const [selectedOptions, setSelectedOptions] = useState<Option[]>(options);
   const [selectedState, setSelectedState] = useState<Jurisdiction>();
   const [selectedMisc, setSelectedMisc] = useState<Jurisdiction>();
+  const [isFederalIncluded, setIsFederalIncluded] = useState(false);
 
   // const [isFederalDropdownOpen, setIsFederalDropdownOpen] = useState(false);
   const [isStateDropdownOpen, setIsStateDropdownOpen] = useState(false);
   const [isMiscDropdownOpen, setIsMiscDropdownOpen] = useState(false);
-
+  const [showBadJurisdictionsPopup, setShowBadJurisdictionsPopup] = useState(false);
+  const [popupMessage, setPopupMessage] = useState('');
 
   const toggleStateDropdown = () => {
     setIsStateDropdownOpen(!isStateDropdownOpen);
@@ -37,46 +41,87 @@ const OptionsList: React.FC<OptionsListProps> = ({
     setIsHovered(hoverState);
   };
 
-
-
-
-
   const handleClearSelection = () => {
     setIsMiscDropdownOpen(false);
     setIsStateDropdownOpen(false);
     setSelectedState(undefined);
     setSelectedMisc(undefined);
-    setSelectedOptions([]);
+    // Set all options "selected" to false
+    setSelectedOptions(prevSelected =>
+      prevSelected.map(prevOption => ({ ...prevOption, selected: false }))
+    );
 
   };
 
-  const toggleSelection = (option: Option) => {
+  const toggleSelection = (index: number) => {
+    console.log(selectedOptions)
+    console.log(index)
+    const option = selectedOptions[index]
+    if (option.name === 'Include US Federal Jurisdiction') {
+      setIsFederalIncluded(!isFederalIncluded);
+    }
+    option.selected = !option.selected;
 
+    // Replace the modified option in the selectedOptions array
     setSelectedOptions(prevSelected =>
-      prevSelected.includes(option)
-        ? prevSelected.filter(lastOption => lastOption != option)
-        : [...prevSelected, option]
+      prevSelected.map((prevOption, i) => (i === index ? option : prevOption))
     );
+
   };
 
   useEffect(() => {
-    if (selectedMisc) {
-      onJurisdictionChange(selectedMisc)
+    if (isFederalIncluded && selectedMisc) {
+      setPopupMessage('Currently, miscellaneous jurisdictions cannot be selected at the same time as federal or state jurisdictions. Plans to implement this feature are in the works. Please select only one jurisdiction type at a time. I will de-select the miscellaneous jurisdiction for you.');
+      setSelectedMisc(undefined);
+      setShowBadJurisdictionsPopup(true);
+    } else {
+      onFederalJurisdictionChange(federalJurisdictions[0])
     }
-  }, [selectedMisc]);
+  }, [isFederalIncluded]);
+  useEffect(() => {
+    if (isFederalIncluded && !selectedState) {
+      setIsFederalIncluded(false); // Deselect federal if no state is selected
+    }
+
+  }, [selectedState, isFederalIncluded]);
 
   useEffect(() => {
     if (selectedState) {
-      onJurisdictionChange(selectedState)
+      setPopupMessage('Currently, miscellaneous jurisdictions cannot be selected at the same time as federal or state jurisdictions. Plans to implement this feature are in the works. Please select only one jurisdiction type at a time. I will de-select the state jurisdiction for you.');
+      setSelectedState(undefined);
+      setShowBadJurisdictionsPopup(true);
     }
+    if (isFederalIncluded) {
+      // Remove the option 'Include US Federal Jurisdiction' from selectedOptions if it is there
+      setIsFederalIncluded(false);
+      setSelectedOptions(prevSelected =>
+        prevSelected.includes(options[0])
+          ? prevSelected.filter(lastOption => lastOption != options[0])
+          : [...prevSelected]
+      );
+    }
+    onMiscJurisdictionChange(selectedMisc);
+    onStateJurisdictionChange(undefined);
+    
+  }, [selectedMisc]);
+
+  useEffect(() => {
+    if (selectedMisc) {
+      setPopupMessage('Currently, miscellaneous jurisdictions cannot be selected at the same time as federal or state jurisdictions. Plans to implement this feature are in the works. Please select only one jurisdiction type at a time. I will de-select the miscellaneous jurisdiction for you.');
+      setSelectedMisc(undefined);
+      setShowBadJurisdictionsPopup(true);
+    } else {
+      onStateJurisdictionChange(selectedState)
+    }
+    
   }, [selectedState]);
 
 
   useEffect(() => {
-    if (selectedOptions) {
-      onOptionChange(selectedOptions)
-    }
+    onOptionChange(selectedOptions) 
   }, [selectedOptions]);
+
+  const closePopup = () => setShowBadJurisdictionsPopup(false);
 
   return (
     <div className="overflow-y-auto bg-[#FDFCFD] border-4 border-[#E4E0D2] p-2 w-full shadow-inner rounded-md">
@@ -84,6 +129,7 @@ const OptionsList: React.FC<OptionsListProps> = ({
      
         <div className="overflow-y-auto bg-[#FDFCFD] p-2 w-full shadow-inner rounded-md">
           <div className="overflow-y-auto w-full" style={{ maxHeight: '45vh' }}>
+
 
 
             {/* Dropdown Button */}
@@ -101,36 +147,40 @@ const OptionsList: React.FC<OptionsListProps> = ({
               </svg>
             </button>
 
-            {/* Dropdown Content */}
-            {isStateDropdownOpen && (
-              <div className="z-10 w-48 bg-white rounded-lg shadow">
-                <ul className="p-3 space-y-1 text-sm text-gray-700">
-                  {/* Loop through options */}
-                  {stateJurisdictions.map((jurisdiction: Jurisdiction) => (
-                    <li key={jurisdiction.id}>
-                      <div className="flex items-center p-2 rounded hover:bg-gray-100">
-                        <input
-                          type="radio"
-                          value={jurisdiction.id}
-                          name="options-radio"
-                          onChange={() => setSelectedState(jurisdiction)}
-                          checked={selectedState === jurisdiction}
-                          className="w-4 h-4 checked-green-300 bg-gray-100 border-gray-300 focus:ring-green-300"
-                        />
-                        <label htmlFor={jurisdiction.id} className="w-full ml-2 text-sm font-medium text-gray-900">
-                          {jurisdiction.name}
-                        </label>
-                      </div>
-                    </li>
-                  ))}
-                  {/* Loop through jurisdictions */}
-                  {/* Similar loop for stateJurisdictions, federalJurisdictions, miscJurisdictions */}
-                </ul>
-              </div>
-            )}
+            
+
+          {/* State Jurisdiction Dropdown Content */}
+          {isStateDropdownOpen && (
+            <div className="z-10 w-48 bg-white rounded-lg shadow">
+              <ul className="p-3 space-y-1 text-sm text-gray-700">
+                {/* Loop through options */}
+                {stateJurisdictions.map((jurisdiction: Jurisdiction) => (
+                  <li key={jurisdiction.id}>
+                    <div className="flex items-center p-2 rounded hover:bg-gray-100">
+                      <input
+                        type="radio"
+                        value={jurisdiction.id}
+                        name="options-radio"
+                        onChange={() => setSelectedState(jurisdiction)}
+                        checked={selectedState === jurisdiction}
+                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
+                      />
+                      <label htmlFor={jurisdiction.id} className="w-full ml-2 text-sm font-medium text-gray-900">
+                        {jurisdiction.name}
+                      </label>
+                    </div>
+                  </li>
+                ))}
+                {/* Loop through jurisdictions */}
+                {/* Similar loop for stateJurisdictions, federalJurisdictions, miscJurisdictions */}
+              </ul>
+            </div>
+          )}
+
           </div>
 
           <div className="pt-2">
+
 
             {/* Existing Code ... */}
 
@@ -149,42 +199,16 @@ const OptionsList: React.FC<OptionsListProps> = ({
               </svg>
             </button>
 
-            {/* Dropdown Content */}
-            {isMiscDropdownOpen && (
-              <div className="z-10 w-48 bg-white rounded-lg shadow">
-                <ul className="p-3 space-y-1 text-sm text-gray-700">
-                  {/* Loop through options */}
-                  {miscJurisdictions.map((jurisdiction: Jurisdiction) => (
-                    <li key={jurisdiction.id}>
-                      <div className="flex items-center p-2 rounded hover:bg-gray-100">
-                        <input
-                          type="radio"
-                          value={jurisdiction.id}
-                          name="options-radio"
-                          onChange={() => setSelectedMisc(jurisdiction)}
-                          checked={selectedMisc === jurisdiction}
-                          className="w-4 h-4 text-green-300 bg-gray-100 border-gray-300 focus:ring-green-300"
-                        />
-                        <label htmlFor={jurisdiction.id} className="w-full ml-2 text-sm font-medium text-gray-900">
-                          {jurisdiction.name}
-                        </label>
-                      </div>
-                    </li>
-                  ))}
-                  {/* Loop through jurisdictions */}
-                  {/* Similar loop for stateJurisdictions, federalJurisdictions, miscJurisdictions */}
-                </ul>
-              </div>
-            )}
 
+          {/* Misc Jurisdiction Content */}
+          {isMiscDropdownOpen && (
+            <div className="z-10 w-48 bg-white rounded-lg shadow">
+              <ul className="p-3 space-y-1 text-sm text-gray-700">
+                {/* Loop through options */}
+                {miscJurisdictions.map((jurisdiction: Jurisdiction) => (
+                  <li key={jurisdiction.id}>
+                    <div className="flex items-center p-2 rounded hover:bg-gray-100">
 
-            {/* Rest of the OptionsList content */}
-            <div className="h-auto max-h-full">
-              <ul className="list-none pt-2">
-
-                {options.map(option => (
-                  <li key={option.id}>
-                    <label className="flex items-center space-x-2">
                       <input
                         type="checkbox"
                         checked={selectedOptions.includes(option)}
@@ -194,7 +218,20 @@ const OptionsList: React.FC<OptionsListProps> = ({
                     </label>
                   </li>
 
-                ))}
+
+              {options.map(option => (
+                <li key={option.id}>
+                  <label className="flex items-center space-x-2">
+                    <input
+                      type="checkbox"
+                      checked={selectedOptions[option.id].selected}
+                      onChange={() => toggleSelection(option.id)}
+                    />
+                    <span>{option.name}</span>
+                  </label>
+                </li>
+
+              ))}
 
 
 
@@ -209,7 +246,33 @@ const OptionsList: React.FC<OptionsListProps> = ({
           </div>
         </div>
       </div>
- 
+
+
+      {/* Popup Modal */}
+      {showBadJurisdictionsPopup && (
+        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
+          <div className="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+            <div className="mt-3 text-center">
+              <h3 className="text-lg leading-6 font-medium text-gray-900">Attention</h3>
+              <div className="mt-2 px-7 py-3">
+                <p className="text-sm text-gray-500">
+                  {popupMessage}
+                </p>
+              </div>
+              <div className="items-center px-4 py-3">
+                <button
+                  id="okButton"
+                  className="px-4 py-2 bg-green-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-300"
+                  onClick={closePopup}
+                >
+                  OK
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
 
   );
 };
