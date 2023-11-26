@@ -23,10 +23,10 @@ const PageFooter: React.FC = () => {
                       About
                     </Link>
                     <Link
-                      href="/howto"
+                      href="/mission"
                       className="text-black text-base font-raleway leading-6 mt-3"
                     >
-                      How to Use
+                      Our Mission
                     </Link>
                     <Link
                       href="/devlog"
@@ -35,10 +35,16 @@ const PageFooter: React.FC = () => {
                       DevLog
                     </Link>
                     <Link
-                      href="/legal"
+                      href="/howto"
                       className="text-black text-base font-raleway leading-6 mt-3"
                     >
-                      Legal
+                      How to Use
+                    </Link>
+                    <Link
+                      href="/playground"
+                      className="text-black text-base font-raleway leading-6 mt-3"
+                    >
+                      Abe&apos;s Law Library
                     </Link>
                   </div>
                 </div>
@@ -115,7 +121,7 @@ const PageFooter: React.FC = () => {
       < hr className="bg-black flex shrink-0 h-px flex-col mt-7 max-md:max-w-full max-md:mt-10" />
       <div className="justify-between items-stretch flex w-full gap-5 mt-1 max-md:max-w-full max-md:flex-wrap">
         <div className="text-black text-sm leading-5">
-          © 2023 Ask Abe. All rights reserved.
+          © 2023 Ask Abe AI. All rights reserved.
         </div>
         <div className="items-stretch flex justify-between gap-5 max-md:justify-center">
           <Link
