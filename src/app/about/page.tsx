@@ -43,7 +43,7 @@ export default function aboutPage() {
 
       </div>
 
-      <div className="items-center bg-[#FAF5E6] flex flex-col px-44 max-md:px-5">
+      {/* <div className="items-center bg-[#FAF5E6] flex flex-col px-44 max-md:px-5">
         <div className="text-black text-5xl font-raleway font-bold leading-[58px] w-[616px] max-w-full mt-28 max-md:text-4xl max-md:leading-[54px] max-md:mt-10">
           Short heading goes here
         </div>
@@ -67,7 +67,7 @@ export default function aboutPage() {
           adipiscing erat a erat. Condimentum lorem posuere gravida enim posuere
           cursus diam.
         </div>
-      </div>
+      </div> */}
       <PageFooter />
 
     </div>
