@@ -55,7 +55,7 @@ export async function POST(req: Request) {
 			secondary_rows: secondary_rows,
 			statusMessage: 'Succesfully searched database for primary and secondary rows!'
 		};
-		console.log(primary_rows)
+		//console.log(primary_rows)
 
 		const endTime = Date.now();
    		const executionTime = endTime - startTime;

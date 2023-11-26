@@ -42,7 +42,7 @@ export const AnswerBlock: React.FC<AnswerBlockProps> = ({ content, content_list,
       );
       return placeholder;
     });
-    console.log(citations);
+    //console.log(citations);
 
     // Split the text into words
     const words = textWithPlaceholders.split(/\s+/);
@@ -70,7 +70,7 @@ export const AnswerBlock: React.FC<AnswerBlockProps> = ({ content, content_list,
       }
     });
   };
-  console.log(content);
+  
   const fullContentElements = createTextWithEmbeddedLink(content);
 
   useEffect(() => {

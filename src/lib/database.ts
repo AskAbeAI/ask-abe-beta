@@ -62,17 +62,33 @@ export async function aggregateSiblingRows(rows: node_as_row[], usesSubContentNo
     const match = lastPart.match(/\(([^)]+)\)/);
     return match ? match[1] : lastPart; // Extract the identifier within parentheses or the whole part if no parentheses are found
   };
-
+  const convertToCitationFormat = (id: string): string => {
+    const titleMatch = id.match(/TITLE=(\d+)/);
+    const sectionMatch = id.match(/SECTION=([\d.]+)/);
+  
+    if (!titleMatch || !sectionMatch) {
+      throw new Error("Invalid format");
+    }
+  
+    const title = titleMatch[1];
+    const section = sectionMatch[1];
+  
+    return `${title} C.F.R. § ${section}`;
+  };
+  
 
   const groupedRows: GroupedRows = {};
   if (usesSubContentNodes=== false) {
     for (const row of rows) {
-      
+      let citation;
+      if(row.citation === undefined) {
+        citation = convertToCitationFormat(row.id);
+      }
     
       groupedRows[row.citation] = {
         rows: [row],
         section_text: [row.node_text],
-        citation: row.citation,
+        citation: citation!,
         link: "Placeholder!",
         jurisdiction: jurisdiction
       };

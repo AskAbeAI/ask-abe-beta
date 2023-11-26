@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Jurisdiction, Option, OptionsListProps } from '@/lib/types';
+import { on } from 'events';
 // Define the structure of your options
 
 
@@ -44,6 +45,11 @@ const OptionsList: React.FC<OptionsListProps> = ({
     setSelectedOptions(prevSelected =>
       prevSelected.map(prevOption => ({ ...prevOption, selected: false }))
     );
+    setIsFederalIncluded(false);
+    onFederalJurisdictionChange(undefined)
+    onMiscJurisdictionChange(undefined);
+    // DEFAULT Selection
+    onStateJurisdictionChange({ id: '5', name: ' California', abbreviation: 'CA', corpusTitle: 'California Statutes', usesSubContentNodes: true, jurisdictionLevel: 'state' });
 
   };
 

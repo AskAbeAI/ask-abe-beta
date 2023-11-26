@@ -74,6 +74,15 @@ export default function Playground() {
     } else if (selectedMiscJurisdiction) {
       mode = 'misc';
     }
+    console.log("CLEARING EVERYTHING!")
+    setCitationBlocks([]);
+    setSpecificQuestions([]);
+    setClarificationResponses([]);
+    setAlreadyAnswered([]);
+    setActiveCitationId('');
+    setPrimaryGroupedRows({});
+    setSecondaryGroupedRows({});
+    setInputMode("Initial");
 
     setQuestionJurisdictions({
       mode: mode,
@@ -171,6 +180,7 @@ export default function Playground() {
 
   // Logic for starting question answering process
   const handleNewQuestion = async (question: string) => {
+    console.log("Handling brand new question!")
     
     
     setIsFormVisible(false); // Hide the form when a question is submitted
@@ -219,7 +229,7 @@ export default function Playground() {
   };
 
   const scoreQuestion = async (question_jurisdictions: questionJurisdictions, question: string): Promise<[number, string]> => {
-    const user_prompt_query: string = constructPromptQuery(question, question_jurisdictions.state?.abbreviation || 'The Country Of ' , question_jurisdictions.federal?.abbreviation || "USA");
+    const user_prompt_query: string = constructPromptQuery(question, question_jurisdictions.state?.corpusTitle || 'The Country Of ' , question_jurisdictions.federal?.corpusTitle|| "USA");
     console.log(user_prompt_query)
     const requestBody = {
       user_prompt_query: user_prompt_query,
@@ -241,8 +251,8 @@ export default function Playground() {
 
   // queryClarification API handlers
   const askNewClarification = async (question_jurisdictions: any, questionText: string, mode: string, previous_clarifications?: ClarificationChoices) => {
-    const state_jurisdiction: string = question_jurisdictions.state?.abbreviation || "";
-    const federal_jurisdiction: string = question_jurisdictions.state?.abbreviation || "USA";
+    const state_jurisdiction: string = question_jurisdictions.state?.corpusTitle || "";
+    const federal_jurisdiction: string = question_jurisdictions.federal?.corpusTitle || "USA";
     const user_prompt_query: string = constructPromptQuery(questionText, state_jurisdiction, federal_jurisdiction);
     addNewLoadingBlock(false);
     if (clarificationQueue.length > 0) {
@@ -463,9 +473,8 @@ export default function Playground() {
     const result = await response.json();
 
     const primary_rows: node_as_row[] = result.primary_rows;
-    console.log(primary_rows);
-    console.log(question_jurisdiction)
     const secondary_rows: node_as_row[] = result.secondary_rows;
+    console.log(secondary_rows)
     
     let combined_rows: node_as_row[] = [];
     let usesSubContentNodes: boolean = false;
@@ -684,7 +693,7 @@ export default function Playground() {
     combinedClarifications: Clarification[],
   ) => {
     console.log(questionJurisdictions)
-    let user_prompt_query: string = constructPromptQuery(user_query, questionJurisdictions?.state?.abbreviation || 'The Country Of ' , questionJurisdictions!.federal?.abbreviation || "USA");
+    let user_prompt_query: string = constructPromptQuery(user_query, questionJurisdictions?.state?.corpusTitle|| 'The Country Of ' , questionJurisdictions!.federal?.corpusTitle || "USA");
     if (questionJurisdictions?.mode === "misc") {
       user_prompt_query = constructPromptQueryMisc(user_query, questionJurisdictions?.misc?.corpusTitle || 'This Legal Documentation');
     }
@@ -753,7 +762,7 @@ export default function Playground() {
     let score: number = 7;
     if (questionJurisdictions!.mode !== "misc") {
 
-      const user_prompt_query: string = constructPromptQuery(question, selectedStateJurisdiction?.abbreviation || "",  selectedFederalJurisdiction?.abbreviation || "USA");
+      const user_prompt_query: string = constructPromptQuery(question, selectedStateJurisdiction?.corpusTitle || "",  selectedFederalJurisdiction?.corpusTitle || "USA");
       const requestBody = {
         user_prompt_query: user_prompt_query,
         previous_clarifications: clarificationResponses,
@@ -820,7 +829,7 @@ export default function Playground() {
 
 
 
-    if (skipClarifications) {
+    if (skipClarifications || selectedMiscJurisdiction !== undefined) {
       followUpQuestionAnswer(clarificationResponses, questionText);
     } else {
       askNewClarification(questionJurisdictions, questionText, "single", { clarifications: clarificationResponses });
