@@ -256,7 +256,7 @@ const OptionsList: React.FC<OptionsListProps> = ({
             {/* <button onClick={handleSelectAll}>Select All</button> */}
             <div className="flex justify-center pt-4">
               <button
-                className="flex justify-end px-1 py-1 rounded shadow-inner text-[#4A4643] hover:bg-[#4A4643] hover:text-white" onClick={handleClearSelection}>Clear</button>
+                className="flex justify-end px-4 py-1 rounded bg-gray-100 shadow-inner text-[#4A4643] hover:bg-[#4A4643] hover:text-white" onClick={handleClearSelection}>Clear</button>
           </div >
           
         </div>
