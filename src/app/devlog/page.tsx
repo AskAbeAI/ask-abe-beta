@@ -14,9 +14,9 @@ export default function DevPage() {
         DevLog
       </div>
       <div className="self-center text-black text-center text-lg leading-7 max-w-screen-md mt-6 max-md:max-w-full">
-      Ask Abe&apos;s Journey in Development Unfolded.{" "}
+      
       </div>
-      <div className="items-start self-center flex w-[592px] max-w-full justify-between gap-4 mt-20 max-md:flex-wrap max-md:justify-center max-md:mt-10">
+      {/* <div className="items-start self-center flex w-[592px] max-w-full justify-between gap-4 mt-20 max-md:flex-wrap max-md:justify-center max-md:mt-10">
         <div className="text-black text-base leading-6 whitespace-nowrap justify-center border self-stretch grow px-4 py-2 border-solid border-black">
           View all
         </div>
@@ -32,7 +32,7 @@ export default function DevPage() {
         <div className="text-black text-base leading-6 self-center whitespace-nowrap my-auto">
           Category four
         </div>
-      </div>
+      </div> */}
 
 
       <div className="flex flex-col mt-16 mb-10 ">
