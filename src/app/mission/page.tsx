@@ -23,7 +23,7 @@ export default function MissionPage() {
 
       </div>
       <div className="bg-[#FAF5E6] flex w-full flex-col px-16 py-5">
-        <div className="text-[#2F3F3D] text-6xl text-center font-cinzel font-semibold leading-[58px] mt-16 max-md:max-w-full max-md:text-4xl max-md:leading-[54px] max-md:mt-10">
+        <div className="text-[#2F3F3D] text-6xl text-center font-cinzel font-semibold leading-[58px] mt-16 mb-2 max-md:max-w-full max-md:text-4xl max-md:leading-[54px] max-md:mt-10">
           Empowering regular citizens to better understand primary source legislation
 
         </div>
