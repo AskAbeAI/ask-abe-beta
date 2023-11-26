@@ -136,7 +136,7 @@ const OptionsList: React.FC<OptionsListProps> = ({
       <div className="flex justify-center text-[#4A4643] font-bold font-montserrat pb-2">Chat Options</div>
       <div className="flex justify-center font-montserrat pb-2">
         <div className="overflow-y-auto bg-[#FDFCFD] p-2 w-25 shadow-inner rounded-md">
-          <div className="flex items-end overflow-y-auto w-fit" style={{ maxHeight: '45vh' }}>
+          <div className="overflow-y-auto w-full" style={{ maxHeight: '45vh' }}>
 
 
             {/* State Jurisdiction Button */}
