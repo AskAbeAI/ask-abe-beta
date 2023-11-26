@@ -24,8 +24,13 @@ export default function MissionPage() {
       </div>
       <div className="items-center bg-[#FCF9F0] shadow-inner w-screen flex flex-col">
         <div className="text-[#2F3F3D] text-center text-6xl font-imfell font-medium leading-[67px] px-20 mt-28 max-md:max-w-full max-md:text-4xl max-md:leading-[54px] max-md:mt-10">
-          Empowering regular citizens to better understand primary source legislation
+          Democratizing Legal Knowledge For All, One Question At a Time
         </div>
+        <div className="items-center bg-[#FCF9F0] flex flex-col px-20 max-md:px-5 shadow-inner">
+        <div className="text-black text-center text-lg font-raleway leading-6 max-w-screen-md mt-6 mb-24 max-md:max-w-full max-md:mb-10">
+        Our dream is to revolutionize the legal landscape, making legal literacy a common asset, not a privilege. This dream is rooted in our mission to empower every individual with accessible, comprehensible legal knowledge through Ask Abe. This includes our commitment to keeping this invaluable tool free forever, and our ambition to expand its benefits globally. We envision a future where every citizen, regardless of background or location, is equipped with the tools to navigate the legal world confidently, contributing to a more just, informed, and equitable society.
+        </div>
+      </div>
         <div className="text-black text-center font-raleway text-lg w-5/6 leading-7 max-w-screen-lg mt-6  max-md:max-w-full max-md:mb-10">
           {" "}
         </div>
@@ -47,10 +52,11 @@ export default function MissionPage() {
             <div className="flex flex-col items-stretch w-6/12 max-md:w-full max-md:ml-0">
               <div className="items-stretch flex flex-col max-md:max-w-full max-md:mt-10">
                 <div className="text-[#2F3F3D] text-5xl font-cinzel leading-[58px] max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
-                  What is the problem?
+                  Confronting the Challenges of Accessibility
                 </div>
                 <div className="text-black text-base font-raleway leading-6 mt-6 max-md:max-w-full">
-                  Insert Here </div>
+                  In today&apos;s complex legal landscape, a significant challenge lies in the widespread lack of understanding of laws and regulations. This issue disproportionately affects individuals, especially those from historically undereducated, resource-limited, and marginalized communities. For them, the absence of basic legal knowledge often leads to greater vulnerability and injustice, as they lack the means to access legal assistance. On a societal level, the problem runs deeper. The legal system is riddled with artificial and longstanding barriers that hinder the democratization of legal knowledge. A society where citizens are forced to rely on paid legal services for even basic legal understanding is fundamentally flawed. It stifles informed citizenship and perpetuates inequities. Providing every citizen with the tools and capability to grasp essential laws and regulations is not just a matter of individual empowerment, but a cornerstone for a more just, informed, and equitable society.
+                </div>
 
               </div>
             </div>
@@ -73,9 +79,13 @@ export default function MissionPage() {
             How can AI help?
           </div>
           <div className="text-black text-lg font-raleway leading-7 grow shrink basis-auto self-start w-7/12 max-md:max-w-full">
-            By using AI, we can effectively cut out time-consuming traditional methods of accessing legal information.
-            Ask Abe is specifically crafted to enable users to swiftly and accurately access the information they need.
-            This AI tool not only delivers facts from cited legal code, but it transforms them into easily digestible, relevant knowledge, tailored for everyday citizens.
+            In the intricate realm of legal knowledge, traditional methods of accessing information have often been time-consuming and fraught with complexities. This is where the transformative power of AI comes into play, and our tool, Ask Abe, is at the forefront of this revolution.
+
+            Ask Abe is not just a passive repository of legal information; it is an interactive guide. It goes beyond merely retrieving legal facts; it engages users in a dynamic conversation. By asking targeted, intuitive questions, Ask Abe helps users clarify and refine their legal queries. This interactive dialogue ensures that the information provided is not only accurate but also precisely tailored to the unique needs of each user.
+
+            This feature of Ask Abe is crucial in simplifying the legal research process. Often, individuals may not fully understand what specific legal information they need. Ask Abe&apos;s ability to ask pertinent questions and interpret responses enables it to guide users through the often complex web of legal terminology and concepts. This not only aids in pinpointing the exact legal information required but also enhances the user&apos;s understanding of their own legal situation.
+
+            In essence, Ask Abe democratizes legal understanding. By making legal knowledge accessible, comprehensible, and personalized, we are not only empowering individuals but also fostering a more legally informed society. This is how AI can not only assist but revolutionize the way we interact with the legal world, breaking down barriers and opening new avenues for legal empowerment and education.
           </div>
         </div>
       </div>
@@ -91,15 +101,16 @@ export default function MissionPage() {
                 <div className="text-black text-base font-raleway leading-6 mt-6 max-md:max-w-full">
                   In short, everyone. </div>
                 <div className="text-black text-base font-raleway leading-6 mt-4 max-md:max-w-full">
-                  Understanding the laws that shape our society is empowering for every individual.
-                  It enables people to navigate daily life with greater confidence, knowing their rights and responsibilities.
-                  This knowledge can transform ordinary citizens into informed members of their community, capable of making better decisions and contributing positively to society.
+                  The profound impact of understanding the laws that govern our society cannot be overstated. It is a powerful tool that benefits everyone, cutting across various strata of society. Our AI tool, Ask Abe, plays a pivotal role in this process of empowerment.
+
+                  For the individual, the knowledge of laws and regulations provided by Ask Abe is more than just information; it&apos;s a means to navigate daily life with newfound confidence. Knowing one’s rights and responsibilities demystifies the legal aspects of everyday scenarios, from signing a lease to understanding workplace rights. This clarity not only fosters a sense of security but also encourages proactive engagement in legal matters.
+
+                  This benefit extends to marginalized and underrepresented communities as well. Often, these groups are the most impacted by the lack of accessible legal information. Ask Abe serves as a bridge, reducing the knowledge gap and providing these communities with the tools they need to assert their rights and protect their interests. By democratizing legal knowledge, Ask Abe is instrumental in leveling the playing field and promoting social justice.
+
+                  On a broader scale, a society where citizens are informed about their legal environment is a society with a stronger foundation. Knowledgeable citizens are more likely to make informed decisions, contribute positively to their communities, and participate actively in the democratic process. They become advocates not just for themselves but for their community, fostering a culture of legal awareness and civic responsibility.
 
                 </div>
-                <div className="text-black text-base font-raleway leading-6 mt-4 max-md:max-w-full">
-                  Providing legal education to every citizen benefits not only the individuals but also the society at large.
-                  It creates a more informed, engaged, and just community, where the rule of law is understood, respected, and upheld by all.
-                </div>
+
               </div>
             </div>
             <div className="flex flex-col items-stretch w-6/12 ml-5 max-md:w-full max-md:ml-0">
@@ -114,13 +125,7 @@ export default function MissionPage() {
           </div>
         </div>
       </div>
-      <div className="items-center bg-[#FCF9F0] flex flex-col px-20 max-md:px-5 shadow-inner">
-        <div className="text-[#2F3F3D] text-center text-4xl font-cinzel leading-10 max-w-screen-md mt-28 max-md:max-w-full max-md:mt-10">
-          THE DREAM
-        </div>
-        <div className="text-black text-center text-lg font-raleway leading-6 max-w-screen-md mt-6 mb-24 max-md:max-w-full max-md:mb-10">
-          To simplify legal jargon, making the legal system more accessible and less intimidating for all.        </div>
-      </div>
+      
 
       <div className="items-stretch bg-[#FAF5E6] flex flex-col px-16 max-md:px-5">
         <div className="mt-28 max-md:max-w-full max-md:mt-10">
@@ -143,7 +148,7 @@ export default function MissionPage() {
                 <div className="self-stretch flex grow basis-[0%] flex-col">
                   <div className="self-stretch text-black text-2xl font-raleway font-bold leading-9">Keep Ask Abe free, forever</div>
                   <div className="self-stretch text-black text-base font-raleway leading-6 mt-4">
-                    We believe in creating a level playing field for all individuals to benefit from our service.
+                  In our vision for a just and equitable future, keeping Ask Abe free forever stands as a cornerstone of our commitment. We believe that access to quality legal information is a fundamental right, not a luxury, and this principle guides our long-term goals and impact strategy. By ensuring that Ask Abe remains a free resource, we are dedicated to upholding the ideal that every individual, regardless of their economic status, has the right to legal knowledge and empowerment. This unwavering dedication to free access is not just about providing a service; it&apos;s about nurturing a more legally informed and fair society where justice and knowledge are universally accessible.
                   </div>
 
                 </div>
@@ -154,7 +159,7 @@ export default function MissionPage() {
                 <div className="self-stretch flex grow basis-[0%] flex-col">
                   <div className="self-stretch text-black text-2xl font-raleway font-bold leading-9">Expand Globally</div>
                   <div className="self-stretch text-black text-base font-raleway leading-6 mt-4">
-                    Our hope is to expand globally and make this service accessible to all.
+                  Our vision for Ask Abe transcends borders, envisioning a future where this powerful tool serves citizens across the globe. In our long-term goals, we are committed to expanding Ask Abe&apos;s reach, adapting and customizing it to align with the diverse legal systems and languages of different countries. We understand that the need for accessible legal information is a global one, and our aim is to meet this need by providing a universally accessible platform. By expanding globally, we aspire not only to widen our impact but also to foster a worldwide community where legal understanding is a shared and common resource, bringing the power of informed legal knowledge to every corner of the world.
                   </div>
 
                 </div>
@@ -165,7 +170,8 @@ export default function MissionPage() {
                 <div className="self-stretch flex grow basis-[0%] flex-col">
                   <div className="self-stretch text-black text-2xl font-raleway font-bold leading-9">Fundraising Challenges</div>
                   <div className="self-stretch text-black text-base font-raleway leading-6 mt-4">
-                    Fundraising presents significant challenges</div>
+                  As we steadfastly commit to keeping Ask Abe free forever, we face the inevitable challenges of funding and resources, especially in our quest to scale this tool globally. Balancing our dedication to free access with the realities of expanding our reach presents a unique set of financial hurdles. We are actively seeking supporters and partners who share our vision of universal legal empowerment and are willing to join us in this journey. Your support is not just a contribution to a project; it&apos;s an investment in a global movement towards making legal knowledge accessible to every individual, regardless of their location or financial status.
+                  </div>
 
                 </div>
               </div>
