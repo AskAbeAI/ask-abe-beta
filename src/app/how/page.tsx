@@ -19,7 +19,25 @@ export default function HowToPage() {
       </div>
       <div className="flex flex-col items-center gap-8 p-12 pl-56 pr-56 bg-[#FAF5E6]">
         {/* Step 1 */}
-
+        
+        <div className="bg-[#FEFDF9] rounded shadow-lg grid grid-cols-2 content-center">
+          <div className="flex justify-center items-center p-6">
+            <div className="text-center">
+              <h2 className="text-xl font-raleway font-bold mb-2 ">Step 1: Choose a Legal Jurisdiction:</h2>
+              <p className="font-raleway text-gray-600">
+                Navigate to the playground page and choose a state, federal, or miscellaneous jurisdiction from the dropdown menus on the right hand side. Mix and match compatible federal, state, and local jurisdictions to tailor legal information to your geography.
+              </p>
+            </div>
+          </div>
+          <div className=" pl-4 pt-4 pb-4">
+            <Image
+              src="/howto/selectJurisdiction.png"
+              alt="Select Jurisdiction Image"
+              width={599.5}
+              height={477.64}
+            />
+          </div>
+        </div>
 
         {/* Step 2 */}
         <div className="bg-[#FEFDF9] rounded shadow-lg grid grid-cols-2 content-center">
