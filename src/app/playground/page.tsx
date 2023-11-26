@@ -474,7 +474,7 @@ export default function Playground() {
 
     const primary_rows: node_as_row[] = result.primary_rows;
     const secondary_rows: node_as_row[] = result.secondary_rows;
-    console.log(secondary_rows)
+    //console.log(secondary_rows)
     
     let combined_rows: node_as_row[] = [];
     let usesSubContentNodes: boolean = false;
@@ -506,9 +506,9 @@ export default function Playground() {
       primaryJurisdiction = question_jurisdiction.federal! as Jurisdiction;
     }
     // Get a set of all unique parent_nodes in combinedRows variable
-    console.log(combined_rows)
+    //console.log(combined_rows)
     const primary_grouped_rows: GroupedRows = await aggregateSiblingRows(combined_rows, usesSubContentNodes, primaryJurisdiction);
-    console.log(primary_grouped_rows);
+    //console.log(primary_grouped_rows);
     let secondary_grouped_rows: GroupedRows = {};
     if(secondary_rows.length > 0) {
       secondary_grouped_rows = await aggregateSiblingRows(secondary_rows, false, secondaryJurisdiction!);
@@ -576,11 +576,11 @@ export default function Playground() {
     
     setPrimaryGroupedRows(primary_grouped_rows);
     setSecondaryGroupedRows(secondary_grouped_rows);
-    console.log(all_citation_blocks)
+    //console.log(all_citation_blocks)
     await addManyContentBlock(all_citation_blocks);
     //const general_topics: string[] = await blindTopics(user_query, "CA", "USA", specific_questions);
     setQuestionJurisdictions(question_jurisdiction);
-    console.log(questionJurisdictions)
+    //console.log(questionJurisdictions)
     await directAnswering( user_query, specific_questions, primary_grouped_rows, secondary_grouped_rows, clarificationResponses);
     //await topicsBySection(user_query, general_topics, "CA", "USA", combined_parent_nodes, []);
 

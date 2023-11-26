@@ -43,11 +43,21 @@ export async function POST(req: Request) {
 		} else {
 			jurisdiction = federalJurisdiction!.abbreviation;
 		}
+		
 		jurisdiction = jurisdiction.toLowerCase();
-		const primary_rows: node_as_row[] = await jurisdiction_similarity_search_all_partitions(jurisdiction, query_expansion_embedding, 0.8, maxRows/2, maxRows, supabaseUrl, supabaseKey);
+		const maxRetries = 2;
+
+		const primary_rows: node_as_row[] = await callWithRetries(
+		() => jurisdiction_similarity_search_all_partitions(jurisdiction, query_expansion_embedding, 0.8, maxRows / 2, maxRows, supabaseUrl, supabaseKey),
+		maxRetries
+		);
+
 		let secondary_rows: node_as_row[] = [];
 		if (mode === "state_federal") {
-			secondary_rows = await jurisdiction_similarity_search_all_partitions(federalJurisdiction!.abbreviation, query_expansion_embedding, 0.8, 15, 30, supabaseUrl, supabaseKey);
+		secondary_rows = await callWithRetries(
+			() => jurisdiction_similarity_search_all_partitions(federalJurisdiction!.abbreviation, query_expansion_embedding, 0.8, 15, 45, supabaseUrl, supabaseKey),
+			maxRetries
+		);
 		}
 
 		const searchResponseBody = {
@@ -76,3 +86,20 @@ export async function POST(req: Request) {
 
 
 
+async function callWithRetries<T>(
+	fn: () => Promise<T>, 
+	maxRetries: number
+  ): Promise<T> {
+	let attempts = 0;
+	while (true) {
+	  try {
+		return await fn();
+	  } catch (error) {
+		attempts++;
+		if (attempts > maxRetries) {
+		  throw error;
+		}
+		console.log(`Attempt ${attempts} failed, retrying...`);
+	  }
+	}
+  }
