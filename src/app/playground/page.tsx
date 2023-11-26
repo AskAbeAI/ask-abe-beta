@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 // Import UI components
 import BottomBar from '@/components/bottomBar';
 import ChatContainer from '@/components/chatContainer';
-
+import DisclaimerModal from '@/components/disclaimermodal';
 // Import data types
 import { ContentType, ContentBlock, ContentBlockParams, CitationBlockProps, GroupedRows, Clarification } from "@/lib/types";
 import { node_as_row, node_key, SubTopic, GeneralTopic, TopicResponses, ClarificationChoices, PartialAnswer } from '@/lib/types';
@@ -850,6 +850,7 @@ export default function Playground() {
 
 
     <div className="flex h-screen w-full px-3 py-3 bg-[#FAF5E6]">
+      <DisclaimerModal />
       <div className="pr-2" style={{ width: citationsOpen ? '100%' : 'initial' }}>
         <CitationBar
           open={citationsOpen}
