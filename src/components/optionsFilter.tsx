@@ -27,6 +27,9 @@ const OptionsList: React.FC<OptionsListProps> = ({
   const [showBadJurisdictionsPopup, setShowBadJurisdictionsPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState('');
 
+  const [isHovered, setIsHovered] = useState(false);
+
+
   const toggleStateDropdown = () => {
     setIsStateDropdownOpen(!isStateDropdownOpen);
   };
@@ -67,6 +70,11 @@ const OptionsList: React.FC<OptionsListProps> = ({
       prevSelected.map((prevOption, i) => (i === index ? option : prevOption))
     );
 
+  };
+
+  // Function to toggle the hover state
+  const toggleHover = (hoverState: boolean) => {
+    setIsHovered(hoverState);
   };
 
   useEffect(() => {
@@ -134,12 +142,14 @@ const OptionsList: React.FC<OptionsListProps> = ({
             {/* State Jurisdiction Button */}
             <button
               id="dropdownRadioBgHoverButton"
+              onMouseEnter={() => toggleHover(true)}
+              onMouseLeave={() => toggleHover(false)}
               onClick={toggleStateDropdown}
-              className="text-white bg-[#4A4643] hover:bg-green-300 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="text-white bg-[#4A4643] hover:bg-green-300 hover:text-[#4A4643] focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               type="button"
             >
               State Jurisdictions
-              <svg className="w-2.5 h-2.5 ml-3 text-green-300" aria-hidden="true" fill="none" viewBox="0 0 10 6">
+              <svg className={`w-2.5 h-2.5 ml-3 ${isHovered ? 'text-[#4A4643]' : 'text-green-300'}`}  aria-hidden="true" fill="none" viewBox="0 0 10 6">
                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
               </svg>
             </button>
@@ -179,12 +189,14 @@ const OptionsList: React.FC<OptionsListProps> = ({
             {/* Misc Jurisdiction Button */}
             <button
               id="dropdownRadioBgHoverButton"
+              onMouseEnter={() => toggleHover(true)}
+              onMouseLeave={() => toggleHover(false)}
               onClick={toggleMiscDropdown}
               className="text-white bg-[#4A4643] hover:bg-green-300 hover:text-[#4A4643] focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               type="button"
             >
               Miscellaneous Jurisdictions
-              <svg className="w-2.5 h-2.5 ml-3 text-green-300" aria-hidden="true" fill="none" viewBox="0 0 10 6">
+              <svg className={`w-2.5 h-2.5 ml-3 ${isHovered ? 'text-[#4A4643]' : 'text-green-300'}`}  aria-hidden="true" fill="none" viewBox="0 0 10 6">
                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
               </svg>
             </button>
@@ -241,8 +253,11 @@ const OptionsList: React.FC<OptionsListProps> = ({
               </ul>
             </div>
             {/* <button onClick={handleSelectAll}>Select All</button> */}
-            <button onClick={handleClearSelection}>Clear</button>
+            <div className="flex justify-center pt-4">
+              <button
+                className="flex justify-end px-1 py-1 rounded shadow-inner text-[#4A4643] hover:bg-[#4A4643] hover:text-white" onClick={handleClearSelection}>Clear</button>
           </div >
+          </div>
         </div>
       </div>
 
