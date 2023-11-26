@@ -20,10 +20,10 @@ const LegalResearchComponent: React.FC = () => {
                 Innovative
               </h2> */}
               <div className="items-stretch self-stretch flex flex-col mt-4 max-md:max-w-full">
-                <h1 className="text-black text-5xl font-imfell font-bold leading-[57.6px] max-md:max-w-full max-md:text-4xl">
+                <h1 className="text-[#2F3F3D] text-5xl font-cinzel font-semibold leading-[57.6px] max-md:max-w-full max-md:text-4xl">
                   Transforming Legal Education with Conversational AI
                 </h1>
-                <p className="text-black text-xl font-montserrat font-light leading-7 mt-6 max-md:max-w-full">
+                <p className="text-black text-xl font-raleway font-light leading-7 mt-6 max-md:max-w-full">
                 Our conversational AI offers a groundbreaking approach to understanding laws and rights, tailored for everyday citizens. 
                 Designed for education and simplification, it allows for quick, accurate retrieval of necessary information, bypassing complex traditional methods. 
                  Embrace a user-friendly experience that enhances your understanding of the legalities that affect your life. 
@@ -32,7 +32,7 @@ const LegalResearchComponent: React.FC = () => {
               </div>
               <div className="items-stretch flex max-w-full gap-4 mt-10 self-start">
 
-                <a href="/how" className="text-black text-base leading-6 whitespace-nowrap justify-center items-center border grow px-5 py-3 border-solid border-black">
+                <a href="/how" className="text-black font-raleway text-base leading-6 whitespace-nowrap justify-center items-center border grow px-5 py-3 border-solid border-black">
                   How to Use
                 </a>
               </div>

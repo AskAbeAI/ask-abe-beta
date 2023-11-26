@@ -19,20 +19,20 @@ const LandingSection: React.FC = () => {
         <div className="flex flex-col container items-stretch w-8/12 ">
           <div className="flex flex-col my-auto max-md:max-w-full max-md:mt-10">
             <div className="items-stretch self-stretch flex flex-col mt-4 max-md:max-w-full">
-              <div className="text-black text-9xl font-quicksand leading- max-md:max-w-full max-md:text-9xl">
+              <div className="text-black text-9xl font-raleway leading- max-md:max-w-full max-md:text-9xl">
                 <Image src="/title1.png"
                   alt="Legal Research Image"
                   width={700}
                   height={500} />
               </div>
-              <p className="text-black text-lg pt-1 font-montserrat leading-7 mt-6 max-md:max-w-full">
+              <p className="text-black text-lg pt-1 font-raleway leading-7 mt-6 max-md:max-w-full">
                 Your Legal Education Assistant
               </p>
             </div>
             <div className="items-fit flex  max-w-full justify-between mt-10">
               <Link href="/playground">
               <button className="button1">
-                <span className="font-montserrat">Enter Abe&apos;s Law Library</span>
+                <span className="font-raleway">Enter Abe&apos;s Law Library</span>
                 <div className="top"></div>
                 <div className="left"></div>
                 <div className="bottom"></div>

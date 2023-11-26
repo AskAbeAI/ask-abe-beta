@@ -9,29 +9,29 @@ const NavBar: React.FC = () => {
       <div className="justify-between items-stretch flex w-full max-w-full gap-5 my-3 max-md:max-w-full max-md:flex-wrap max-md:justify-center">
         <div className="flex justify-left items-center font-imfell font-bold text-[#4A4643] text-2xl">ASK ABE AI</div>
         <ul className="items-stretch self-center flex justify-between gap-10 my-auto">
-          <li className="text-[#4A4643] text-base font-montserrat leading-6">
+          <li className="text-[#4A4643] text-base font-raleway leading-6">
             <Link href="/" aria-label="Link One">
               Home
             </Link>
           </li>
-          <li className="text-[#4A4643] text-base font-montserrat leading-6">
+          <li className="text-[#4A4643] text-base font-raleway leading-6">
             <Link href="/mission" aria-label="Link Three">
               Our Mission
             </Link>
           </li>
           
-          <li className="text-[#4A4643] text-base font-montserrat leading-6">
+          <li className="text-[#4A4643] text-base font-raleway leading-6">
             <Link href="/devlog" aria-label="Link Two">
               DevLog
             </Link>
           </li>
-          <li className="text-[#4A4643] text-base font-montserrat leading-6">
+          <li className="text-[#4A4643] text-base font-raleway leading-6">
             <Link href="/how" aria-label="Link One">
               How To Use
             </Link>
           </li>
         
-          <li className="justify-between items-stretch font-montserrat flex gap-1">
+          <li className="justify-between items-stretch font-raleway flex gap-1">
             <Link href="/playground" aria-label="Link Four">
               <div className="text-[#4A4643] text-base leading-6">Abe&apos;s Law Library</div>
             </Link>
