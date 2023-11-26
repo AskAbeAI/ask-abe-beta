@@ -34,7 +34,7 @@ export default function HomePage() {
                     height={500} />
                 </div>
                 <p className="text-black text-lg pt-1 font-raleway leading-7 mt-6 max-md:max-w-full">
-                  Your Legal Education Assistant
+                  A Conversational AI Legal Education Assistant
                 </p>
               </div>
               <div className="items-fit flex  max-w-full justify-between mt-10">
@@ -67,11 +67,11 @@ export default function HomePage() {
             </div>
             <div className="flex flex-col items-stretch w-6/12 ml-5 max-md:w-full max-md:ml-0">
               <div className="flex flex-col my-auto max-md:max-w-full max-md:mt-10">
-                {/* <h2 className="text-black text-center text-base font-semibold leading-6 self-stretch whitespace-nowrap max-md:max-w-full">
+                {/* <h2 className="text-black text-center font-raleway text-base font-semibold leading-6 self-stretch whitespace-nowrap max-md:max-w-full">
                 Innovative
               </h2> */}
                 <div className="items-stretch self-stretch flex flex-col mt-4 max-md:max-w-full">
-                  <h1 className="text-[#2F3F3D] text-5xl font-cinzel font-semibold leading-[57.6px] max-md:max-w-full max-md:text-4xl">
+                  <h1 className="text-[#2F3F3D] text-5xl font-imfell font-semibold leading-[57.6px] max-md:max-w-full max-md:text-4xl">
                     Transforming Legal Education with Conversational AI
                   </h1>
                   <p className="text-black text-xl font-raleway font-light leading-7 mt-6 max-md:max-w-full">
@@ -82,16 +82,16 @@ export default function HomePage() {
                   </p>
                 </div>
                 <div className="items-stretch flex max-w-full gap-4 mt-10 self-start">
-                  <a href="/mission" className="text-black font-raleway text-base leading-6 whitespace-nowrap justify-center items-center border grow px-5 py-3 border-solid border-black">
+                  <a href="/mission" className="text-black font-raleway font-raleway text-base leading-6 whitespace-nowrap justify-center items-center border grow px-5 py-3 border-solid border-[#2F3F3D]">
                     Our Mission
                   </a>
                 </div>
                 {/* <div className="items-stretch flex w-60 max-w-full justify-between gap-5 mt-10">
-                <a href="#" className="text-black text-base leading-6 whitespace-nowrap justify-center items-center border grow px-5 py-3 border-solid border-black">
+                <a href="#" className="text-black font-raleway text-base leading-6 whitespace-nowrap justify-center items-center border grow px-5 py-3 border-solid border-[#2F3F3D]">
                   Learn More
                 </a>
                 {/* <div className="justify-center items-stretch self-center flex gap-2 my-auto">
-                  <div className="text-black text-base leading-6">Sign Up</div>
+                  <div className="text-black font-raleway text-base leading-6">Sign Up</div>
                 </div> */}
                 {/* </div> */}
               </div>
@@ -99,65 +99,137 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      <section>
+        <div className="flex-col items-center overflow-hidden relative flex min-h-[400px] px-20 max-md:px-5">
+          <Image
+            src="/mon2.jpg"
+            alt="Empowering Image"
+            width={4800}
+            height={2812}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="relative top-5/6 text-[#FEFDF9] text-center text-5xl font-raleway font-bold leading-[80px] max-w-screen-md mt-40 max-md:max-w-full max-md:mt-10">
+            Ask Abe&apos;s Features
+          </div>
+
+
+        </div>
+      </section>
 
       {/* Feature Section */}
-      <section className="items-center bg-[#FAF5E6] shadow-inner flex flex-col px-16 max-md:px-5">
-        <h1 className="text-[#2F3F3D] text-center text-5xl font-cinzel font-bold leading-[58px] max-w-screen-md mt-28 max-md:max-w-full max-md:text-4xl max-md:leading-[54px] max-md:mt-10">
-          Ask Abe&apos;s Features
-        </h1>
-        <div className="self-stretch mt-20 mb-24 pl-8 pr-8 max-md:max-w-full max-md:my-10 max-md:px-5">
-          <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
-            <div className="flex flex-col items-stretch w-[20%] max-md:w-full max-md:ml-0">
-              <div className="items-stretch flex flex-col mt-2.5 max-md:mt-10">
-                <h2 className="text-black text-center font-cinzel text-2xl font-semibold leading-9">
-                  Expandable Citations
-                </h2>
-                <p className="text-black text-center font-raleway text-base leading-6 mt-4">
-                  View citations collapsed or expanded. Whichever suits your preference.
-                </p>
-                <h2 className="text-black text-center font-cinzel text-2xl font-semibold leading-9 mt-52 max-md:mt-10">
-                  Clarification Question Answer Options
-                </h2>
-                <p className="text-black text-center font-raleway text-base leading-6 mt-4">
-                  With multiple choice options, you can focus more on getting the answer fast. If the clarifying question doesn&apos;t apply, click &apos;not applicable&apos;, or if none of the answers suit your needs -- write your own custom response.
-                </p>
+      <section className="items-center bg-[#FCF8EE] shadow-inner flex flex-col px-56 max-md:px-5">
+        <div className="items-center bg-[#FCF8EE] flex flex-col px-16 max-md:px-5">
+          <div className="self-center text-black text-center text-lg leading-7 max-w-screen-md mt-6 max-md:max-w-full">
+
+          </div>
+
+          <div className="border bg-[#FCF9F3] self-stretch mt-10 mb-10 pl-8 pr-8 border-solid border-8 border-[#FEFDF9] shadow-inner max-md:max-w-full max-md:my-10 max-md:pl-5">
+            <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
+              <div className="flex flex-col items-stretch w-[46%] max-md:w-full max-md:ml-0">
+                <div className="justify-center items-start self-stretch flex flex-col my-auto max-md:max-w-full max-md:mt-10">
+                  <div className="self-stretch text-black text-4xl font-raleway font-bold leading-10 mt-2 max-md:max-w-full">
+                    Expandable Citations
+                  </div>
+                  <div className="self-stretch text-black font-raleway text-base leading-6 mt-6 max-md:max-w-full">
+                    View citations collapsed or expanded. Whichever suits your preference.
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-col items-stretch w-[54%] ml-5 max-md:w-full max-md:ml-0">
+                <Image
+                  src="/lib2.jpg"
+                  alt="library2"
+                  width={5184}
+                  height={3888}
+                  className="aspect-[1.03] object-contain object-center w-full self-stretch overflow-hidden grow max-md:max-w-full max-md:mt-10"
+                />
               </div>
             </div>
-            <div className="flex flex-col justify-center items-stretch w-[60%] ml-5 max-md:w-full max-md:ml-0">
-              <img
-                loading="lazy"
-                srcSet="/feature.png"
-                alt="Feature Image"
-              />
+          </div>
+
+          <div className="border bg-[#FCF9F3] self-stretch mt-10 mb-10 pl-8 pr-8 border-solid border-8 border-[#FEFDF9] shadow-inner max-md:max-w-full max-md:my-10 max-md:pl-5">
+            <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
+              <div className="flex flex-col items-stretch w-[52%] max-md:w-full max-md:ml-0">
+                <Image
+                  src="/lib2.jpg"
+                  alt="library2"
+                  width={5184}
+                  height={3888}
+                  className="aspect-[1.03] object-contain object-center w-full self-stretch overflow-hidden grow max-md:max-w-full max-md:mt-10"
+                />
+              </div>
+              <div className="flex flex-col items-stretch w-[48%] ml-5 max-md:w-full max-md:ml-0">
+                <div className="justify-center items-start self-stretch flex flex-col my-auto max-md:max-w-full max-md:mt-10">
+                  <div className="self-stretch text-black text-4xl font-raleway font-bold leading-10 mt-2 max-md:max-w-full">
+                    Clarification Question Answer Options
+                  </div>
+                  <div className="self-stretch text-black font-raleway text-base leading-6 mt-6 max-md:max-w-full">
+                    With multiple choice options, you can focus more on getting the answer fast. If the clarifying question doesn&apos;t apply, click &apos;not applicable&apos;, or if none of the answers suit your needs -- write your own custom response.
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="flex flex-col items-stretch w-[20%] ml-5 max-md:w-full max-md:ml-0">
-              <div className="items-stretch self-stretch flex grow flex-col max-md:mt-10">
-                <h2 className="text-black text-center font-cinzel text-2xl font-semibold leading-9">
-                  Chat Options & Jurisdictions
-                </h2>
-                <p className="text-black text-center font-raleway text-base leading-6 mt-4">
-                  Don&apos;t feel like getting asked clarifying questions, check skip clarifications to turn this off.
-                  Also, select from which jurisdiction you would like Abe to focus his answer. (More jurisdictions coming soon)
-                </p>
-                <h2 className="text-black text-center font-cinzel text-2xl font-semibold leading-9 mt-32 max-md:mt-10">
-                  Ask a follow-up question
-                </h2>
-                <p className="text-black text-center font-raleway text-base leading-6 mt-4">
-                  When Abe gives you an answer to your original query, but you&apos;re left with more questions, ask a follow-up question.
-                </p>
+          </div>
+
+          <div className="border bg-[#FCF9F3] self-stretch mt-10 mb-10 pl-8 pr-8 border-solid border-8 border-[#FEFDF9] shadow-inner max-md:max-w-full max-md:my-10 max-md:pl-5">
+            <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
+              <div className="flex flex-col items-stretch w-[46%] max-md:w-full max-md:ml-0">
+                <div className="justify-center items-start self-stretch flex flex-col my-auto max-md:max-w-full max-md:mt-10">
+                  <div className="self-stretch text-black text-4xl font-raleway font-bold leading-10 mt-2 max-md:max-w-full">
+                    Chat Options & Jurisdictions
+                  </div>
+                  <div className="self-stretch text-black font-raleway text-base leading-6 mt-6 max-md:max-w-full">
+                    Don&apos;t feel like getting asked clarifying questions, check skip clarifications to turn this off.
+                    Also, select from which jurisdiction you would like Abe to focus his answer. (More jurisdictions coming soon)
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-col items-stretch w-[54%] ml-5 max-md:w-full max-md:ml-0">
+                <Image
+                  src="/lib2.jpg"
+                  alt="library2"
+                  width={5184}
+                  height={3888}
+                  className="aspect-[1.03] object-contain object-center w-full self-stretch overflow-hidden grow max-md:max-w-full max-md:mt-10"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="border bg-[#FCF9F3] self-stretch mt-10 mb-10 pl-8 pr-8 border-solid border-8 border-[#FEFDF9] shadow-inner max-md:max-w-full max-md:my-10 max-md:pl-5">
+            <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
+              <div className="flex flex-col items-stretch w-[52%] max-md:w-full max-md:ml-0">
+                <Image
+                  src="/lib2.jpg"
+                  alt="library2"
+                  width={5184}
+                  height={3888}
+                  className="aspect-[1.03] object-contain object-center w-full self-stretch overflow-hidden grow max-md:max-w-full max-md:mt-10"
+                />
+              </div>
+              <div className="flex flex-col items-stretch w-[48%] ml-5 max-md:w-full max-md:ml-0">
+                <div className="justify-center items-start self-stretch flex flex-col my-auto max-md:max-w-full max-md:mt-10">
+                  <div className="self-stretch text-black text-4xl font-raleway font-bold leading-10 mt-2 max-md:max-w-full">
+                    Ask a follow-up question
+                  </div>
+                  <div className="self-stretch text-black font-raleway text-base leading-6 mt-6 max-md:max-w-full">
+                    When Abe gives you an answer to your original query, but you&apos;re left with more questions, ask a follow-up question.
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
+
       {/* Team Section */}
       <section className="items-center bg-[#FAF5E6] flex flex-col px-5 shadow-inner ">
         <div className="flex w-[768px] max-w-full flex-col items-stretch mt-16 mb-16 max-md:my-10">
-          <h1 className="text-[#2F3F3D] text-center font-cinzel text-5xl font-semibold leading-[58px] max-md:max-w-full max-md:text-5xl max-md:leading-[54px]">
+          <h1 className="text-[#2F3F3D] text-center font-imfell text-5xl font-semibold leading-[58px] max-md:max-w-full max-md:text-5xl max-md:leading-[54px]">
             Our Team
           </h1>
-          <div className="self-center w-[640px] max-w-full mt-20 max-md:mt-10">
+          <div className="self-center w-[640px] max-w-full mt-10 max-md:mt-10">
             <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
               <div className="flex flex-col items-stretch w-6/12 max-md:w-full max-md:ml-0">
                 <div className="items-center flex grow flex-col max-md:mt-8">

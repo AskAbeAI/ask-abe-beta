@@ -40,8 +40,9 @@ const NavBar: React.FC = () => {
             onMouseLeave={hideDropdown}>
               <ul>
                 {/* Dropdown menu items */}
-                <li><Link href="/about">About</Link></li>
                 <li className="pt-1"><Link href="/mission">Our Mission</Link></li>
+                <li className="pt-1"><Link href="/about">About</Link></li>
+                
                 {/* ... more options ... */}
               </ul>
             </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-
+import PageFooter from '@/components/pageFooter';
 
 export default function DevPage() {
   return (
@@ -247,6 +247,7 @@ export default function DevPage() {
         </div> */}
         </div >
       </div >
+      <PageFooter/>
     </div >
 
 

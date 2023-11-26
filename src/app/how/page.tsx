@@ -2,8 +2,7 @@
 import React, { useState } from 'react';
 
 import Image from 'next/image';
-
-import Link from 'next/link';
+import PageFooter from '@/components/pageFooter';
 
 
 export default function HowToPage() {
@@ -114,6 +113,7 @@ export default function HowToPage() {
           </div>
         </div>
       </div>
+      <PageFooter/>
     </div>
 
 
