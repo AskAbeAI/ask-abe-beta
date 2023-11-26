@@ -6,7 +6,7 @@ export default function TOSPage() {
         
                 <div className="items-stretch self-center flex w-full max-w-full flex-col mt-4">
                 <div className="text-black text-center text-5xl font-cinzel font-semibold leading-auto max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
-                    Don't use this for bad things!
+                    Don&apos;t use this for bad things! Full TOS coming soon.
                 </div>
                 </div>
         
