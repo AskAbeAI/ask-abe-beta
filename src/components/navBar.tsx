@@ -13,7 +13,7 @@ const NavBar: React.FC = () => {
 
     <nav className="justify-center items-center bg-[#FAF5E6] flex flex-col px-10 border-b border-solid">
       <div className="justify-between items-stretch flex w-full max-w-full gap-5 my-3 max-md:max-w-full max-md:flex-wrap max-md:justify-center">
-        <div className="flex justify-left items-center font-imfell font-bold text-[#4A4643] text-2xl">ASK ABE AI</div>
+        <div className="flex justify-left items-center font-imfell font-bold text-[#4A4643] text-2xl">ASK ABE</div>
         <ul className="items-stretch self-center flex justify-between gap-10 my-auto">
           <li className="text-[#4A4643] text-base font-raleway leading-6">
             <Link href="/" aria-label="Link One">
@@ -55,9 +55,11 @@ const NavBar: React.FC = () => {
                 onMouseLeave={hideDropdown}>
                 <ul>
                   {/* Dropdown menu items */}
-                  <li className="pt-1"><Link href="/about">About</Link></li>
+                  <li className="pt-1"><Link href="/about">About Us</Link></li>
                   <li className="pt-1"><Link href="/devlog">DevLog</Link></li>
-
+                  <li className="pt-1"><Link href="/privacy">Privacy Policy</Link></li>
+                  <li className="pt-1"><Link href="/tos">Terms of Service</Link></li>
+                  <li className="pt-1"><Link href="/support">Support Us</Link></li>
                   {/* ... more options ... */}
                 </ul>
               </div>

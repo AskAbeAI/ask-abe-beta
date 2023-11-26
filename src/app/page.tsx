@@ -3,14 +3,14 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import PageFooter from '@/components/pageFooter';
-import DisclaimerModal from '@/components/disclaimermodal';
+
 
 
 export default function HomePage() {
   return (
     <div className="h-screen w-full bg-[#FAF5E6]">
       <div className="flex justify-center items-center">
-        <DisclaimerModal />
+        
       </div>
 
       {/* Landing Section */}
@@ -72,13 +72,10 @@ export default function HomePage() {
               </h2> */}
                 <div className="items-stretch self-stretch flex flex-col mt-4 max-md:max-w-full">
                   <h1 className="text-[#2F3F3D] text-5xl font-imfell font-semibold leading-[57.6px] max-md:max-w-full max-md:text-4xl">
-                    Transforming Legal Education with Conversational AI
+                    Democratizing Legal Knowledge For All, One Question At a Time
                   </h1>
                   <p className="text-black text-xl font-raleway font-light leading-7 mt-6 max-md:max-w-full">
-                    Our conversational AI offers a groundbreaking approach to understanding laws and rights, tailored for everyday citizens.
-                    Designed for education and simplification, it allows for quick, accurate retrieval of necessary information, bypassing complex traditional methods.
-                    Embrace a user-friendly experience that enhances your understanding of the legalities that affect your life.
-                    Say goodbye to the hassle of navigating intricate legal texts and welcome a new era of informed empowerment.
+                  Our dream is to revolutionize the legal landscape, making legal literacy a common asset, not a privilege. This dream is rooted in our mission to empower every individual with accessible, comprehensible legal knowledge through Ask Abe. This includes our commitment to keeping this invaluable tool free forever, and our ambition to expand its benefits globally. We envision a future where every citizen, regardless of background or location, is equipped with the tools to navigate the legal world confidently, contributing to a more just, informed, and equitable society.
                   </p>
                 </div>
                 <div className="items-stretch flex max-w-full gap-4 mt-10 self-start">
