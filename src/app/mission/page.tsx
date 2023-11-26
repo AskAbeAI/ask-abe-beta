@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import React from 'react';
+import PageFooter from '@/components/pageFooter';
 
 export default function MissionPage() {
   return (
@@ -11,7 +12,7 @@ export default function MissionPage() {
         <img loading="lazy" src="/empowering.jpg" className="absolute inset-0 w-full h-full object-cover" alt="Empowering Image" />
 
         <div className="relative top-1/2 text-[#FEFDF9] text-center text-5xl font-raleway font-bold leading-[80px] max-w-screen-md mt-28 max-md:max-w-full max-md:mt-10">
-          OUR VISION
+          OUR MISSION
         </div>
 
       </div>
@@ -98,7 +99,9 @@ export default function MissionPage() {
               <div className="flex grow justify-between gap-5 max-md:mt-10">
                 <div className="self-stretch flex grow basis-[0%] flex-col">
                   <div className="self-stretch text-black text-2xl font-raleway font-bold leading-9">Keep Ask Abe free, forever</div>
-                  <div className="self-stretch text-black text-base font-raleway leading-6 mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla.</div>
+                  <div className="self-stretch text-black text-base font-raleway leading-6 mt-4">
+                  We believe in creating a level playing field for all individuals to benefit from our service. 
+                    </div>
                   
                 </div>
               </div>
@@ -107,7 +110,9 @@ export default function MissionPage() {
               <div className="flex grow justify-between gap-5 max-md:mt-10">
                 <div className="self-stretch flex grow basis-[0%] flex-col">
                   <div className="self-stretch text-black text-2xl font-raleway font-bold leading-9">Expand Globally</div>
-                  <div className="self-stretch text-black text-base font-raleway leading-6 mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla.</div>
+                  <div className="self-stretch text-black text-base font-raleway leading-6 mt-4">
+                    Our hope is to expand globally and make this service accessible to all.
+                    </div>
                   
                 </div>
               </div>
@@ -116,7 +121,8 @@ export default function MissionPage() {
               <div className="flex grow justify-between gap-5 max-md:mt-10">
                 <div className="self-stretch flex grow basis-[0%] flex-col">
                   <div className="self-stretch text-black text-2xl font-raleway font-bold leading-9">Fundraising Challenges</div>
-                  <div className="self-stretch text-black text-base font-raleway leading-6 mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla.</div>
+                  <div className="self-stretch text-black text-base font-raleway leading-6 mt-4">
+                    Fundraising presents significant challenges</div>
                   
                 </div>
               </div>
@@ -125,7 +131,10 @@ export default function MissionPage() {
         </div>
       </div>
 
-      <div className="items-stretch bg-[#FAF5E6] flex flex-col px-16 max-md:px-5">
+    {/* Examples of Ask Abe in Use Section */}
+
+
+      {/* <div className="items-stretch bg-[#FAF5E6] flex flex-col px-16 max-md:px-5">
         <div className="self-center text-center text-[#2F3F3D] text-5xl font-cinzel leading-[58px] max-w-screen-md mt-28 max-md:max-w-full max-md:text-4xl max-md:leading-[54px] max-md:mt-10">
           Ask Abe in Action
         </div>
@@ -156,8 +165,9 @@ export default function MissionPage() {
             </div>
           </div>
         </div>
-      </div>
-
+      </div> */}
+<PageFooter/>
     </div>
+    
   );
 }
