@@ -10,7 +10,7 @@ export default function HomePage() {
   return (
     <div className="h-screen w-full bg-[#FAF5E6]">
       <div className="flex justify-center items-center">
-      <DisclaimerModal/>
+        <DisclaimerModal />
       </div>
 
       {/* Landing Section */}
