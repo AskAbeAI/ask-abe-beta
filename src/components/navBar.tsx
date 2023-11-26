@@ -20,38 +20,9 @@ const NavBar: React.FC = () => {
               Home
             </Link>
           </li>
-          <li className="relative text-[#4A4643] text-base font-raleway leading-6"
-          onMouseEnter={showDropdown}
-          
-          >
-          <button
-            id="mega-menu-full-dropdown-button"
-            data-collapse-toggle="mega-menu-full-dropdown"
-            className="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded md:w-auto hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
-            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-          >
-            Company
-            {/* SVG for dropdown icon */}
-          </button>
-
-          {isDropdownOpen && (
-            <div className="absolute top-full px-5 py-5 mt-2 w-56 bg-[#FEFDF9] shadow-lg rounded-lg z-10"
-            
-            onMouseLeave={hideDropdown}>
-              <ul>
-                {/* Dropdown menu items */}
-                <li className="pt-1"><Link href="/mission">Our Mission</Link></li>
-                <li className="pt-1"><Link href="/about">About</Link></li>
-                
-                {/* ... more options ... */}
-              </ul>
-            </div>
-          )}
-        </li>
-
-          <li className="text-[#4A4643] text-base font-raleway leading-6">
-            <Link href="/devlog" aria-label="Link Two">
-              DevLog
+          <li className="justify-between items-stretch font-raleway flex gap-1">
+            <Link href="/playground" aria-label="Link Four">
+              <div className="text-[#4A4643] text-base leading-6">Abe&apos;s Law Library</div>
             </Link>
           </li>
           <li className="text-[#4A4643] text-base font-raleway leading-6">
@@ -59,14 +30,44 @@ const NavBar: React.FC = () => {
               How To Use
             </Link>
           </li>
-
-          <li className="justify-between items-stretch font-raleway flex gap-1">
-            <Link href="/playground" aria-label="Link Four">
-              <div className="text-[#4A4643] text-base leading-6">Abe&apos;s Law Library</div>
+          <li className="text-[#4A4643] text-base font-raleway leading-6">
+            <Link href="/mission" aria-label="Link Two">
+              Our Mission
             </Link>
-
           </li>
-          
+          <li className="relative text-[#4A4643] text-base font-raleway leading-6"
+            onMouseEnter={showDropdown}
+
+          >
+            <button
+              id="mega-menu-full-dropdown-button"
+              data-collapse-toggle="mega-menu-full-dropdown"
+              className="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded md:w-auto hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            >
+              Company
+              {/* SVG for dropdown icon */}
+            </button>
+
+            {isDropdownOpen && (
+              <div className="absolute top-full px-5 py-5 mt-2 w-56 bg-[#FEFDF9] shadow-lg rounded-lg z-10"
+
+                onMouseLeave={hideDropdown}>
+                <ul>
+                  {/* Dropdown menu items */}
+                  <li className="pt-1"><Link href="/about">About</Link></li>
+                  <li className="pt-1"><Link href="/devlog">DevLog</Link></li>
+
+                  {/* ... more options ... */}
+                </ul>
+              </div>
+            )}
+          </li>
+
+
+
+
+
 
         </ul>
         <Link href="/sign-in" className="relative px-5 py-3 overflow-hidden font-medium text-gray-600 bg-[#FAF5E6] border border-gray-100 rounded-lg shadow-inner group">

@@ -16,9 +16,21 @@ const PageFooter: React.FC = () => {
               <div className="items-stretch self-stretch flex flex-col mt-5 max-md:max-w-full">
                 <div className="flex flex-col ">
                   <div className="items-stretch flex grow flex-col">
-                  <Link
-                      href="/mission"
+                    <Link
+                      href="/playground"
                       className="text-black text-base font-raleway leading-6"
+                    >
+                      Abe&apos;s Law Library
+                    </Link>
+                    <Link
+                      href="/howto"
+                      className="text-black text-base font-raleway leading-6 mt-3"
+                    >
+                      How to Use
+                    </Link>
+                    <Link
+                      href="/mission"
+                      className="text-black text-base font-raleway leading-6 mt-3"
                     >
                       Our Mission
                     </Link>
@@ -33,18 +45,6 @@ const PageFooter: React.FC = () => {
                       className="text-black text-base font-raleway leading-6 mt-3"
                     >
                       DevLog
-                    </Link>
-                    <Link
-                      href="/howto"
-                      className="text-black text-base font-raleway leading-6 mt-3"
-                    >
-                      How to Use
-                    </Link>
-                    <Link
-                      href="/playground"
-                      className="text-black text-base font-raleway leading-6 mt-3"
-                    >
-                      Abe&apos;s Law Library
                     </Link>
                   </div>
                 </div>
@@ -76,13 +76,13 @@ const PageFooter: React.FC = () => {
           </a>
         </div>
         <div className="flex flex-col w-full max-w-full gap-3 mt-8 ">
-          
+
           <div className="flex justify-start max-w-full max-md:justify-end">
-        <a href="https://theresanaiforthat.com/ai/ask-abe/?ref=embed" target="_blank"><img width="300" src="https://media.theresanaiforthat.com/featured3.png"/></a>
-        </div>
+            <a href="https://theresanaiforthat.com/ai/ask-abe/?ref=embed" target="_blank"><img width="300" src="https://media.theresanaiforthat.com/featured3.png" /></a>
+          </div>
         </div>
       </div>
-   
+
       {/* <div className="flex flex-col ">
             <div className="items-stretch flex grow flex-col">
               <Link
