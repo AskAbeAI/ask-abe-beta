@@ -27,7 +27,7 @@ export async function jurisdiction_similarity_search_all_partitions(
     console.log(error);
     throw error;
   }
-  console.log(data);
+  //console.log(data);
   return data;
 }
 
@@ -49,7 +49,7 @@ export async function get_sibling_rows(
 
 
 export async function aggregateSiblingRows(rows: node_as_row[], usesSubContentNodes: boolean, jurisdiction: Jurisdiction): Promise<GroupedRows> {
- 
+ console.log(rows);
   const extractSortKey = (id: string): string => {
     const parts = id.split('/');
     const lastPart = parts[parts.length - 1];
@@ -62,17 +62,33 @@ export async function aggregateSiblingRows(rows: node_as_row[], usesSubContentNo
     const match = lastPart.match(/\(([^)]+)\)/);
     return match ? match[1] : lastPart; // Extract the identifier within parentheses or the whole part if no parentheses are found
   };
-
+  const convertToCitationFormat = (id: string): string => {
+    const titleMatch = id.match(/TITLE=(\d+)/);
+    const sectionMatch = id.match(/SECTION=([\d.]+)/);
+  
+    if (!titleMatch || !sectionMatch) {
+      throw new Error("Invalid format");
+    }
+  
+    const title = titleMatch[1];
+    const section = sectionMatch[1];
+  
+    return `${title} C.F.R. § ${section}`;
+  };
+  
 
   const groupedRows: GroupedRows = {};
   if (usesSubContentNodes=== false) {
     for (const row of rows) {
+      let citation = row.citation;
+      if(row.citation === undefined) {
+        citation = convertToCitationFormat(row.id);
+      }
       
-    
-      groupedRows[row.citation] = {
+      groupedRows[citation] = {
         rows: [row],
         section_text: [row.node_text],
-        citation: row.citation,
+        citation: citation!,
         link: "Placeholder!",
         jurisdiction: jurisdiction
       };

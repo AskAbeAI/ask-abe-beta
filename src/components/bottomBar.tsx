@@ -24,7 +24,12 @@ const BottomBar: React.FC<BottomBarProps> = ({
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log("Input mode: " + inputMode)
+    console.log("input message: " + inputMessage)
+    console.log("question: " + question)
+    console.log(inputMode === 'followup');
     if (inputMode === 'followup') {
+
       handleSubmitFollowup(question);
     } else {
       handleSubmit(question);

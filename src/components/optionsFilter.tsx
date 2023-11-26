@@ -142,6 +142,7 @@ const OptionsList: React.FC<OptionsListProps> = ({
             {/* State Jurisdiction Button */}
             <button
               id="dropdownRadioBgHoverButton"
+
               onMouseEnter={() => toggleHover(true)}
               onMouseLeave={() => toggleHover(false)}
               onClick={toggleStateDropdown}
@@ -150,13 +151,16 @@ const OptionsList: React.FC<OptionsListProps> = ({
             >
               State Jurisdictions
               <svg className={`w-2.5 h-2.5 ml-3 ${isHovered ? 'text-[#4A4643]' : 'text-green-300'}`}  aria-hidden="true" fill="none" viewBox="0 0 10 6">
+
                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
               </svg>
             </button>
 
             {/* State Jurisdiction Dropdown Content */}
             {isStateDropdownOpen && (
+
               <div className="z-10 w-25 bg-white rounded-lg shadow">
+
                 <ul className="p-3 space-y-1 text-sm text-gray-700">
                   {/* Loop through options */}
                   {stateJurisdictions.map((jurisdiction: Jurisdiction) => (
@@ -170,7 +174,9 @@ const OptionsList: React.FC<OptionsListProps> = ({
                           checked={selectedState === jurisdiction}
                           className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
                         />
+
                         <label htmlFor={jurisdiction.id} className="w-25 ml-2 text-sm font-medium text-gray-900">
+
                           {jurisdiction.name}
                         </label>
                       </div>
@@ -182,6 +188,7 @@ const OptionsList: React.FC<OptionsListProps> = ({
               </div>
             )}
           </div>
+
 
           <div className="overflow-y-auto w-5/6 pt-2" style={{ maxHeight: '45vh' }}>
 
@@ -247,6 +254,7 @@ const OptionsList: React.FC<OptionsListProps> = ({
                     </label>
                   </li>
 
+
                 ))}
 
 
@@ -258,7 +266,6 @@ const OptionsList: React.FC<OptionsListProps> = ({
               <button
                 className="flex justify-end px-4 py-1 rounded bg-gray-100 shadow-inner text-[#4A4643] hover:bg-[#4A4643] hover:text-white" onClick={handleClearSelection}>Clear</button>
           </div >
-          
         </div>
       </div>
 
