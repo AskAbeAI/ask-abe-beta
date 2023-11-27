@@ -24,7 +24,7 @@ export async function POST(req: Request) {
 	const query_expansion_embedding = requestData.query_expansion_embedding;
 	const federalJurisdiction = jurisdictions.federal;
 	const stateJurisdiction = jurisdictions.state;
-	const miscJurisdiction = jurisdictions.misc;
+	const miscJurisdiction = jurisdictions.misc; 
 	const mode:string = jurisdictions.mode;
 	console.log("HERE!")
 	// CHECK FOR INITIAL ERRORS
