@@ -115,7 +115,7 @@ export default function MissionPage() {
             </div>
             <div className="flex flex-col items-stretch w-6/12 ml-5 max-md:w-full max-md:ml-0">
               <Image
-                src="/people2.jpg"
+                src="/people.jpg"
                 alt="People Image"
                 width={4373}
                 height={2452}
