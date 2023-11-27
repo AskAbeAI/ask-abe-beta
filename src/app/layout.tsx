@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    // <ClerkProvider>
+    <ClerkProvider>
 
       <html lang="en">
 
@@ -32,6 +32,6 @@ export default function RootLayout({
         </body>
         <Analytics />
       </html>
-    // </ClerkProvider>
+    </ClerkProvider>
   );
 }
