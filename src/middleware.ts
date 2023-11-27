@@ -9,9 +9,9 @@ import { NextRequest, NextResponse } from "next/server";
 
 export default authMiddleware({
   // "/" will be accessible to all users
-  publicRoutes: ["/", "/about", "/devlog", "/devlogblog", "/how", "/mission", "/privacy", "/support", "/tos"]
+  publicRoutes: ["/", "/:locale/sign-in", "/about", "/devlog", "/devlogblog", "/how", "/mission", "/privacy", "/support", "/tos"]
 });
  
 export const config = {
-      matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/(api|trpc)(.*)'],
+      matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
 };
