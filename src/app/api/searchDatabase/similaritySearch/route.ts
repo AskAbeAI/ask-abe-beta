@@ -59,7 +59,7 @@ export async function POST(req: Request) {
 			maxRetries
 		);
 		}
-
+		console.log("Made it out of the similarity search function!")
 		const searchResponseBody = {
 			primary_rows: primary_rows,
 			secondary_rows: secondary_rows,
