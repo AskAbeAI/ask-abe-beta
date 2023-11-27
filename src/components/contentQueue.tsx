@@ -154,9 +154,7 @@ const ContentQueue: React.FC<ContentQueueProps> = ({
       case ContentType.Welcome: {
         return (
           <div className="flex justify-start w-5/6">
-            <WelcomeBlock
-              content={""}
-            />
+            <WelcomeBlock/>
           </div>
         );
       }

@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useRef } from 'react';
 import { useEffect } from 'react';
 import { CitationBlockProps, AnswerBlockProps, QuestionBlockProps, ApprovalBlockProps, ClarificationBlockProps, ClarificationQuestionBlockProps, StreamingAnswerBlockProps, ClarificationChoices, TopicsBlockProps } from '@/lib/types';
-import { GeneralTopic, SubTopic, TopicResponses, PartialAnswer, FinalAnswerBlockProps, WelcomeBlockProps, Clarification } from '@/lib/types';
+import { GeneralTopic, SubTopic, TopicResponses, PartialAnswer, FinalAnswerBlockProps, Clarification } from '@/lib/types';
 import Image from 'next/image';
 import { AbeIconProps } from '@/lib/types';
 import dynamic from 'next/dynamic';
@@ -619,10 +619,16 @@ export const FinalAnswerBlock: React.FC<FinalAnswerBlockProps> = ({
 };
 
 
-export const WelcomeBlock: React.FC<WelcomeBlockProps> = ({ content }) => {
+export const WelcomeBlock: React.FC = () => {
   return (
     <div className="p-4 bg-gray-200 rounded-md shadow">
-      {content}
+      <p className="text-lg font-semibold">Hello! I'm Abe, welcome to my law library.  </p>
+      <p className="text-lg">
+       Ask me a legal question, and I can guide you through the relevant legislation.
+      </p>
+      <p className="text-lg">
+        To get started, choose a jurisdiction in the top right and then enter a question at the bottom!
+      </p>
     </div>
   );
 };
