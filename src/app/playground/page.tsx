@@ -882,7 +882,7 @@ export default function Playground() {
         )}
       </div>
       <div>
-        <div className="pl-2 overflow-y-auto scrollbar h-full" >
+        <div className="pl-2 overflow-y-auto scrollbar w-full h-full" >
           <OptionsList
             stateJurisdictions={StateJurisdictionOptions}
             federalJurisdictions={FederalJurisdictionOptions}
