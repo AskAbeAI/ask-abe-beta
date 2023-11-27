@@ -62,12 +62,15 @@ export default function HomePage() {
           <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
             <div className="flex flex-col items-stretch w-6/12 max-md:w-full max-md:ml-0">
               <div className="items-stretch flex flex-col max-md:max-w-full max-md:mt-10">
-
-                <div className="text-black text-4xl font-imfell leading-24 mt-6 max-md:max-w-full">
-                  Ask Abe is an educational tool that leverages artificial intelligence to navigate complex legal frameworks.
-                  Abe has many user friendly and interactive elements, including when Abe asks clarifying questions to better understand and accurately respond to user&apos;s legal inquiries.
-                </div>
-
+                
+              <h1 className="text-[#2F3F3D] mt-16 text-5xl font-imfell font-semibold leading-[57.6px] max-md:max-w-full max-md:text-4xl">
+                    What is Ask Abe?
+                  </h1>
+                  <p className="text-black text-xl font-raleway font-light leading-12 mt-6 max-md:max-w-full">
+                    
+                  Ask Abe is an educational tool that helps a user navigate complex legal frameworks and provides detailed legal informatiion.
+                  Abe is a conversational AI that user&apos;s can ask legal questions to and recieve legal information with direct ciations to primary source legislation.
+                  </p>
               </div>
             </div>
             <div className="flex flex-col items-stretch w-6/12 ml-5 max-md:w-full max-md:ml-0">
