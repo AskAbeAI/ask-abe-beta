@@ -26,7 +26,7 @@ export async function POST(req: Request) {
 	const stateJurisdiction = jurisdictions.state;
 	const miscJurisdiction = jurisdictions.misc;
 	const mode:string = jurisdictions.mode;
-	
+	console.log("HERE!")
 	// CHECK FOR INITIAL ERRORS
 
 	try {
