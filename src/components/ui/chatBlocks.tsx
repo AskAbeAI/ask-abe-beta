@@ -622,7 +622,7 @@ export const FinalAnswerBlock: React.FC<FinalAnswerBlockProps> = ({
 export const WelcomeBlock: React.FC = () => {
   return (
     <div className="p-4 bg-gray-200 rounded-md shadow">
-      <p className="text-lg font-semibold">Hello! I'm Abe, welcome to my law library.  </p>
+      <p className="text-lg font-semibold">Hello! I&apos;m Abe, welcome to my law library.  </p>
       <p className="text-lg">
        Ask me a legal question, and I can guide you through the relevant legislation.
       </p>
