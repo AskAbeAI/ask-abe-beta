@@ -11,14 +11,14 @@ export default function HowToPage() {
 <section>
         <div className="flex-col items-center overflow-hidden relative flex min-h-[200px] px-12 max-md:px-5">
           <Image
-            src="/mon2.jpg"
+            src="/home/mon2.jpg"
             alt="Empowering Image"
             width={4800}
             height={2812}
             className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="relative top-2/6 text-[#FEFDF9] text-center text-5xl font-raleway font-bold leading-[80px] max-w-screen-md mt-16 max-md:max-w-full max-md:mt-10">
-          How to Use Ask ABe
+          How to Use Ask Abe
           </div>
 
 
