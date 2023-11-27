@@ -24,6 +24,9 @@ export async function POST(req: Request) {
 
   try {
     const [customer_messages, refined_question, specific_questions] = await generateQueryRefinement(openai, original_question, clarifying_questions, customer_clarifying_responses);
+    console.log("customer_messages: " + customer_messages);
+    console.log("refined_question: " + refined_question);
+    console.log("specific_questions: " + specific_questions)
     const response = {
       customer_messages: customer_messages,
       refined_question: refined_question,

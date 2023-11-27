@@ -33,6 +33,7 @@ export const generateQueryRefinement = async (openai: OpenAI, original_question:
   const customer_messages: string[] = res.customer_messages;
   const refined_question: string = res.refined_question;
   const specific_questions: string[] = res.specific_questions;
+  console.log(refined_question)
   return [customer_messages, refined_question, specific_questions];
 };
 export const generateBasicQueryRefinement = async (openai: OpenAI, original_question: string) => {
