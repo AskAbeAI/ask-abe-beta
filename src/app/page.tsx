@@ -74,8 +74,8 @@ export default function HomePage() {
               <Image
                 src="/lib3.jpg"
                 alt="People Image"
-                width={2000}
-                height={1200}
+                width={550}
+                height={365}
                 className="aspect-[1.76] object-contain object-center w-full overflow-hidden grow max-md:max-w-full max-md:mt-2"
               />
             </div>
