@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 // Import UI components
 import BottomBar from '@/components/bottomBar';
 import ChatContainer from '@/components/chatContainer';
-import DisclaimerModal from '@/components/disclaimermodal';
+import {DisclaimerModal, JurisdictionModal} from '@/components/disclaimermodal';
 // Import data types
 import { ContentType, ContentBlock, ContentBlockParams, CitationBlockProps, GroupedRows, Clarification } from "@/lib/types";
 import { node_as_row, node_key, SubTopic, GeneralTopic, TopicResponses, ClarificationChoices, PartialAnswer } from '@/lib/types';
@@ -56,13 +56,14 @@ export default function Playground() {
   const [sessionID, setSessionID] = useState<string>("");
 
   // State variables for options and jurisdictions
-  const [selectedStateJurisdiction, setSelectedStateJurisdiction] = useState<Jurisdiction | undefined>();
   const [selectedFederalJurisdiction, setSelectedFederalJurisdiction] = useState<Jurisdiction | undefined>(undefined);
+  const [selectedStateJurisdiction, setSelectedStateJurisdiction] = useState<Jurisdiction | undefined>(undefined);
   const [selectedMiscJurisdiction, setSelectedMiscJurisdiction] = useState<Jurisdiction | undefined>(undefined);
   const [questionJurisdictions, setQuestionJurisdictions] = useState<questionJurisdictions>();
 
   const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
   const [skipClarifications, setSkipClarifications] = useState(false);
+  const [showJurisdictionModal, setShowJurisdictionModal] = useState(false);
 
 
   useEffect(() => {
@@ -74,7 +75,7 @@ export default function Playground() {
     } else if (selectedMiscJurisdiction) {
       mode = 'misc';
     }
-    console.log("CLEARING EVERYTHING!")
+    console.log("CLEARING EVERYTHING!");
     setCitationBlocks([]);
     setSpecificQuestions([]);
     setClarificationResponses([]);
@@ -90,6 +91,7 @@ export default function Playground() {
       federal: selectedFederalJurisdiction,
       misc: selectedMiscJurisdiction
     });
+    
   }, [selectedStateJurisdiction, selectedFederalJurisdiction, selectedMiscJurisdiction]);
   // Generate Unique Sessiond IDs here
   function generateSessionID() {
@@ -97,10 +99,8 @@ export default function Playground() {
   }
   useEffect(() => {
     const sessionID = generateSessionID();
-    console.log(`Generated new session ID: ${sessionID}`)
+    console.log(`Generated new session ID: ${sessionID}`);
     setSessionID(sessionID);
-    setSelectedStateJurisdiction({ id: '5', name: ' California', abbreviation: 'CA', corpusTitle: 'California Statutes', usesSubContentNodes: true, jurisdictionLevel: 'state' });
-
     // Add welcome block
   }, []);
 
@@ -180,7 +180,11 @@ export default function Playground() {
 
   // Logic for starting question answering process
   const handleNewQuestion = async (question: string) => {
-
+    
+    if (selectedFederalJurisdiction === undefined && selectedStateJurisdiction === undefined && selectedMiscJurisdiction === undefined) {
+      setShowJurisdictionModal(true);
+      return;
+    }
     setIsFormVisible(false); // Hide the form when a question is submitted
     const questionText = question.trim();
     setQuestion(questionText);
@@ -194,8 +198,8 @@ export default function Playground() {
       concurrentStreaming: false
     };
     await addContentBlock(createNewBlock(newParams));
-    console.log("HERE@")
-    console.log(questionJurisdictions)
+    console.log("HERE@");
+    console.log(questionJurisdictions);
 
     const question_jurisdictions = questionJurisdictions!;
     let score = 7;
@@ -229,9 +233,9 @@ export default function Playground() {
 
   const scoreQuestion = async (question_jurisdictions: questionJurisdictions, question: string): Promise<[number, string]> => {
 
-    const user_prompt_query: string = constructPromptQuery(question, question_jurisdictions.state?.corpusTitle || 'The Country Of ' , question_jurisdictions.federal?.corpusTitle|| "USA");
+    const user_prompt_query: string = constructPromptQuery(question, question_jurisdictions.state?.corpusTitle || 'The Country Of ', question_jurisdictions.federal?.corpusTitle || "USA");
 
-    console.log(user_prompt_query)
+    console.log(user_prompt_query);
     const requestBody = {
       user_prompt_query: user_prompt_query,
     };
@@ -462,7 +466,7 @@ export default function Playground() {
       jurisdictions: question_jurisdiction,
       query_expansion_embedding: query_expansion_embedding,
     };
-    console.log("  - Sending request to similaritySearch API!")
+    console.log("  - Sending request to similaritySearch API!");
     const response = await fetch('/api/searchDatabase/similaritySearch', {
       method: 'POST',
       headers: {
@@ -694,9 +698,9 @@ export default function Playground() {
     secondary_grouped_rows: GroupedRows,
     combinedClarifications: Clarification[],
   ) => {
-    console.log(questionJurisdictions)
+    console.log(questionJurisdictions);
 
-    let user_prompt_query: string = constructPromptQuery(user_query, questionJurisdictions?.state?.corpusTitle|| 'The Country Of ' , questionJurisdictions!.federal?.corpusTitle || "USA");
+    let user_prompt_query: string = constructPromptQuery(user_query, questionJurisdictions?.state?.corpusTitle || 'The Country Of ', questionJurisdictions!.federal?.corpusTitle || "USA");
 
     if (questionJurisdictions?.mode === "misc") {
       user_prompt_query = constructPromptQueryMisc(user_query, questionJurisdictions?.misc?.corpusTitle || 'This Legal Documentation');
@@ -728,7 +732,7 @@ export default function Playground() {
     console.log("Received response from directAnswering API!");
 
     const direct_answer: string = result.directAnswer;
-    console.log(direct_answer)
+    console.log(direct_answer);
     const params: ContentBlockParams = {
       type: ContentType.Answer,
       content: direct_answer,
@@ -746,17 +750,11 @@ export default function Playground() {
 
   const handleOptionChange = (options: Option[]) => {
     for (const option of options) {
-      console.log(option)
+      console.log(option);
       if (option.name === "Skip Clarifying Questions") {
-        console.log(`Setting skip clarifications to ${option.selected}`)
+        console.log(`Setting skip clarifications to ${option.selected}`);
         setSkipClarifications(option.selected);
-      } else if (option.name === "Include US Federal Jurisdiction") {
-        if (option.selected) {
-          setSelectedFederalJurisdiction({ id: '1', name: 'US Federal Regulations', abbreviation: 'ecfr', corpusTitle: 'United States Code of Federal Regulations', usesSubContentNodes: false, jurisdictionLevel: 'federal' });
-        } else {
-          setSelectedFederalJurisdiction(undefined);
-        }
-      }
+      } 
     }
   };
 
@@ -767,7 +765,7 @@ export default function Playground() {
     if (questionJurisdictions!.mode !== "misc") {
 
 
-      const user_prompt_query: string = constructPromptQuery(question, selectedStateJurisdiction?.corpusTitle || "",  selectedFederalJurisdiction?.corpusTitle || "USA");
+      const user_prompt_query: string = constructPromptQuery(question, selectedStateJurisdiction?.corpusTitle || "", selectedFederalJurisdiction?.corpusTitle || "USA");
 
       const requestBody = {
         user_prompt_query: user_prompt_query,
@@ -846,14 +844,23 @@ export default function Playground() {
     const input = newQuestion || question;
     await directAnswering(input, specificQuestions, primaryGroupedRows, secondaryGroupedRows, clarifications);
   };
+  const setShown = () => {
+    setShowJurisdictionModal(false);
+  }
 
   return (
 
 
 
     <div className="flex h-screen w-full px-3 py-3 bg-[#FAF5E6]">
+      
+        <JurisdictionModal 
+        shown={showJurisdictionModal}
+        setShown ={setShown}
+         />
+      
       <DisclaimerModal />
-      <div className="pr-2" style={{ width: citationsOpen ? '100%' : 'initial' }}>
+      <div className="pr-2" style={{ width: citationsOpen ? '100%' : '12%' }}>
         <CitationBar
           open={citationsOpen}
           setOpen={setCitationsOpen}
@@ -861,8 +868,8 @@ export default function Playground() {
           activeCitationId={activeCitationId}
         />
       </div>
-      <div className={`flex flex-grow ${citationsOpen ? 'hidden' : ''}`}>
-        <div className="overflow-y-auto w-full justify-center" style={{ minHeight: '90vh', maxHeight: '90vh' }}>
+      <div className={`flex w-full ${citationsOpen ? 'hidden' : ''} style={(width: '68%')}`}>
+        <div className="overflow-y-auto w-full" style={{ minHeight: '90vh', maxHeight: '90vh' }}>
           <ChatContainer
             contentBlocks={contentBlocks}
             onSubmitClarificationAnswers={handleClarificationAnswer}
@@ -874,6 +881,8 @@ export default function Playground() {
           />
 
         </div>
+      </div>
+      <div>
         {/* BottomBar */}
         {isFormVisible && (
           <BottomBar
@@ -883,21 +892,20 @@ export default function Playground() {
           />
         )}
       </div>
-      <div>
-        <div className="pl-2 overflow-y-auto scrollbar w-full h-full" >
-          <OptionsList
-            stateJurisdictions={StateJurisdictionOptions}
-            federalJurisdictions={FederalJurisdictionOptions}
-            miscJurisdictions={MiscJurisdictionOptions}
-            options={ChatOptions}
-            onOptionChange={handleOptionChange}
-            onStateJurisdictionChange={setSelectedStateJurisdiction}
-            onFederalJurisdictionChange={setSelectedFederalJurisdiction}
-            onMiscJurisdictionChange={setSelectedMiscJurisdiction}
-          />
-          {/* Other parts of your application */}
-        </div>
+      <div className="pl-2 overflow-y-auto scrollbar  h-full" style={({width: '20%'})} >
+        <OptionsList
+          stateJurisdictions={StateJurisdictionOptions}
+          federalJurisdictions={FederalJurisdictionOptions}
+          miscJurisdictions={MiscJurisdictionOptions}
+          options={ChatOptions}
+          onOptionChange={handleOptionChange}
+          onStateJurisdictionChange={setSelectedStateJurisdiction}
+          onFederalJurisdictionChange={setSelectedFederalJurisdiction}
+          onMiscJurisdictionChange={setSelectedMiscJurisdiction}
+        />
+        {/* Other parts of your application */}
       </div>
+
     </div>
   );
 };

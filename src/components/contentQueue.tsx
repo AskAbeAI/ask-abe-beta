@@ -167,7 +167,7 @@ const ContentQueue: React.FC<ContentQueueProps> = ({
   };
 
   return (
-    <div className="space-y-4 pb-4">
+    <div className="w-full space-y-4 pb-4">
       {items.map((item) => (
         // The key should be here, on the first element inside the map
         <div key={item.blockId}>
