@@ -10,7 +10,7 @@ export default function MissionPage() {
 
       <div className="flex-col items-center overflow-hidden relative flex min-h-[300px] px-20 max-md:px-5">
         <Image
-          src="/lincolnmem.jpg"
+          src="/mission/lincolnmem.jpg"
           alt="Empowering Image"
           width={1500}
           height={299}
@@ -40,7 +40,7 @@ export default function MissionPage() {
 
           width={1000}
           height={650}
-          src="/mission.jpg"
+          src="/mission/mission.jpg"
           alt="Company Story"
           className="aspect-[1.78] object-contain object-center w-full overflow-hidden mt-8 mb-20 max-md:max-w-full max-md:my-10"
         />
@@ -62,7 +62,7 @@ export default function MissionPage() {
             </div>
             <div className="flex flex-col items-stretch w-6/12 ml-5 max-md:w-full max-md:ml-0">
               <Image
-                src="/just1.jpg"
+                src="/mission/just1.jpg"
                 alt="People Image"
                 width={634}
                 height={423}
@@ -95,7 +95,7 @@ export default function MissionPage() {
           <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
           <div className="flex flex-col items-stretch w-6/12 mr-5 max-md:w-full max-md:ml-0">
               <Image
-                src="/people.jpg"
+                src="/mission/people.jpg"
                 alt="People Image"
                 width={638}
                 height={432}

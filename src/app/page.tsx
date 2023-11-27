@@ -18,7 +18,7 @@ export default function HomePage() {
         <div className="gap-2 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
           <div className="flex flex-col items-stretch w-8/12 max-md:w-full max-md:ml-0">
             <Image
-              src="/ASKABELOGO.png" className="aspect-[0.96] object-contain object-center w-full overflow-hidden max-md:max-w-full max-md:mt-10"
+              src="/home/ASKABELOGO.png" className="aspect-[0.96] object-contain object-center w-full overflow-hidden max-md:max-w-full max-md:mt-10"
               alt="Legal Research Image"
               width={600}
               height={600}
@@ -28,7 +28,7 @@ export default function HomePage() {
             <div className="flex flex-col my-auto max-md:max-w-full max-md:mt-10">
               <div className="items-stretch self-stretch flex flex-col mt-4 max-md:max-w-full">
                 <div className="text-black text-9xl font-raleway leading- max-md:max-w-full max-md:text-9xl">
-                  <Image src="/title1.png"
+                  <Image src="/home/title1.png"
                     alt="Legal Research Image"
                     width={700}
                     height={500} />
@@ -72,7 +72,7 @@ export default function HomePage() {
             </div>
             <div className="flex flex-col items-stretch w-6/12 ml-5 max-md:w-full max-md:ml-0">
               <Image
-                src="/lib3.jpg"
+                src="/home/lib3.jpg"
                 alt="People Image"
                 width={550}
                 height={365}
@@ -92,7 +92,7 @@ export default function HomePage() {
           <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
             <div className="flex flex-col items-stretch w-6/12 max-md:w-full max-md:ml-0">
               <Image
-                src="/abemem3.jpg" className="aspect-[0.96] object-contain object-center w-full overflow-hidden max-md:max-w-full max-md:mt-10"
+                src="/home/abemem.jpg" className="aspect-[0.96] object-contain object-center w-full overflow-hidden max-md:max-w-full max-md:mt-10"
                 alt="Legal Research Image"
                 width={500}
                 height={500}
@@ -132,7 +132,7 @@ export default function HomePage() {
       <section>
         <div className="flex-col items-center overflow-hidden relative flex min-h-[400px] px-20 max-md:px-5">
           <Image
-            src="/mon2.jpg"
+            src="/home/mon2.jpg"
             alt="Empowering Image"
             width={4800}
             height={2812}
@@ -230,7 +230,7 @@ export default function HomePage() {
             <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
               <div className="flex flex-col items-stretch w-[52%] max-md:w-full max-md:ml-0">
                 <Image
-                  src="/followup.png"
+                  src="/howto/followup.png"
                   alt="library2"
                   width={5184}
                   height={3888}
@@ -265,7 +265,7 @@ export default function HomePage() {
                 <div className="items-center flex grow flex-col max-md:mt-8">
                   <img
                     loading="lazy"
-                    srcSet="/will.jpg" className="rounded-full w-32 h-32 object-cover"
+                    srcSet="/home/will.jpg" className="rounded-full w-32 h-32 object-cover"
                     alt="Will Diamond"
                   />
                   <h2 className="self-stretch text-black text-center text-xl font-raleway font-semibold leading-8 mt-6">
@@ -313,7 +313,7 @@ export default function HomePage() {
                 <div className="items-center flex grow flex-col max-md:mt-8">
                   <img
                     loading="lazy"
-                    srcSet="/madeline.jpg" className="rounded-full w-32 h-32 object-cover"
+                    srcSet="/home/madeline.jpg" className="rounded-full w-32 h-32 object-cover"
                     alt="Will Diamond"
                   />
                   <h2 className="self-stretch text-black text-center text-xl font-raleway font-semibold leading-8 mt-6">
