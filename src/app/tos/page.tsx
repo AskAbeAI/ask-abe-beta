@@ -9,6 +9,7 @@ export default function TOSPage() {
                     Don&apos;t use this for bad things! Full TOS coming soon.
                 </div>
                 </div>
+                
         
             </div>
         </div>

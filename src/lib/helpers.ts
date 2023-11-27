@@ -27,11 +27,13 @@ export const generateEmbedding = async (openai: OpenAI, legal_statements: string
 
 // Query Refinement
 
-export const generateQueryRefinement = async (openai: OpenAI, original_question: string, clarifying_questions: string[], customer_clarifying_responses: string[]) => {
+export const generateQueryRefinement = async (openai: OpenAI, original_question: string, clarifying_questions: string[], customer_clarifying_responses: string[]): Promise<[string[], string, string[]]> => {
   const params = getPromptQueryRefinement(original_question, clarifying_questions, customer_clarifying_responses, true);
   const res = JSON.parse(await createChatCompletion(params, openai, "queryRefinement"));
-
-  return res;
+  const customer_messages: string[] = res.customer_messages;
+  const refined_question: string = res.refined_question;
+  const specific_questions: string[] = res.specific_questions;
+  return [customer_messages, refined_question, specific_questions];
 };
 export const generateBasicQueryRefinement = async (openai: OpenAI, original_question: string) => {
   const params = getPromptBasicQueryRefinement(original_question, true);
@@ -57,6 +59,7 @@ export const generateNewClarificationQuestion = async (openai: OpenAI, user_prom
   const new_question: string = response.new_clarification.question;
   const new_answers: string[] = response.new_clarification.multiple_choice_answers;
   const message_to_customer: string = response.new_clarification.message_to_customer;
+  const refined_question: string = response.refined_question;
   const clarification: Clarification = {
     question: new_question,
     multiple_choice_answers: new_answers,
@@ -69,6 +72,7 @@ export const generateMultipleClarificationQuestions = async (openai: OpenAI, use
   const response = JSON.parse(await createChatCompletion(params_choices, openai, "queryClarificationMultiple"));
   const clarifications: Clarification[] = [];
   const message_to_customer: string[] = [];
+  
   for (const clarification of response.new_clarifications) {
     const new_question: string = clarification.question;
     const new_answers: string[] = clarification.multiple_choice_answers;

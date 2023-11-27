@@ -23,11 +23,11 @@ export async function POST(req: Request) {
   const customer_clarifying_responses: string[] = requestData.clarifyingAnswers;
 
   try {
-    const refinementJSON = await generateQueryRefinement(openai, original_question, clarifying_questions, customer_clarifying_responses);
+    const [customer_messages, refined_question, specific_questions] = await generateQueryRefinement(openai, original_question, clarifying_questions, customer_clarifying_responses);
     const response = {
-      customer_messages: refinementJSON.customer_messages,
-      refined_question: refinementJSON.refined_question,
-      specific_questions: refinementJSON.specific_questions,
+      customer_messages: customer_messages,
+      refined_question: refined_question,
+      specific_questions: specific_questions,
       statusMessage: 'Succesfully refined query!'
     };
     
