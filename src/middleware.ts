@@ -7,13 +7,8 @@ export default authMiddleware({
   publicRoutes: ["/", "/about", "/privacy","/tos", "/support", "/legal", "/how", "/devlog", "/devlogblog", "/playground", "/mission", "/api/(.*)"]
 });
 
-export const config = {
-  matcher: [
-    // Exclude all routes that end with a file extension, are _next, or are listed as public
-    '/((?!\\.\\w+$|_next|about|privacy|tos|support|legal|how|devlog|devlogblog|playground|mission).*)',
-  ],
-};
 
-// export const config = {
-//  matcher: ["/((?!.+\\.[\\w]+$|_next).*)","/","/(api|trpc)(.*)"],
-//};
+
+export const config = {
+ matcher: ["/((?!.+\\.[\\w]+$|_next).*)","/","/(api|trpc)(.*)"],
+};
