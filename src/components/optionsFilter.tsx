@@ -17,11 +17,11 @@ const OptionsList: React.FC<OptionsListProps> = ({
   // const [searchTerm, setSearchTerm] = useState('');
   // const [filteredJurisdictions, setFilteredJurisdictions] = useState();
   const [selectedOptions, setSelectedOptions] = useState<Option[]>(options);
+  const [selectedFederal, setSelectedFederal] = useState<Jurisdiction>();
   const [selectedState, setSelectedState] = useState<Jurisdiction>();
   const [selectedMisc, setSelectedMisc] = useState<Jurisdiction>();
-  const [isFederalIncluded, setIsFederalIncluded] = useState(false);
 
-  // const [isFederalDropdownOpen, setIsFederalDropdownOpen] = useState(false);
+  const [isFederalDropdownOpen, setIsFederalDropdownOpen] = useState(false);
   const [isStateDropdownOpen, setIsStateDropdownOpen] = useState(false);
   const [isMiscDropdownOpen, setIsMiscDropdownOpen] = useState(false);
   const [showBadJurisdictionsPopup, setShowBadJurisdictionsPopup] = useState(false);
@@ -29,6 +29,10 @@ const OptionsList: React.FC<OptionsListProps> = ({
 
   const [isHovered, setIsHovered] = useState(false);
 
+
+  const toggleFederalDropdown = () => {
+    setIsFederalDropdownOpen(!isFederalDropdownOpen);
+  };
 
   const toggleStateDropdown = () => {
     setIsStateDropdownOpen(!isStateDropdownOpen);
@@ -40,29 +44,29 @@ const OptionsList: React.FC<OptionsListProps> = ({
 
 
   const handleClearSelection = () => {
-    setIsMiscDropdownOpen(false);
+    // Close all dropdowns
+    setIsFederalDropdownOpen(false);
     setIsStateDropdownOpen(false);
+    setIsMiscDropdownOpen(false);
+    // Unselect all jurisdictions
+    setSelectedFederal(undefined);
     setSelectedState(undefined);
     setSelectedMisc(undefined);
     // Set all options "selected" to false
     setSelectedOptions(prevSelected =>
       prevSelected.map(prevOption => ({ ...prevOption, selected: false }))
     );
-    setIsFederalIncluded(false);
-    onFederalJurisdictionChange(undefined);
-    onMiscJurisdictionChange(undefined);
-    // DEFAULT Selection
-    onStateJurisdictionChange({ id: '5', name: ' California', abbreviation: 'CA', corpusTitle: 'California Statutes', usesSubContentNodes: true, jurisdictionLevel: 'state' });
 
+    onFederalJurisdictionChange(undefined);
+    onStateJurisdictionChange(undefined);
+    onMiscJurisdictionChange(undefined);
   };
 
   const toggleSelection = (index: number) => {
     console.log(selectedOptions);
     console.log(index);
     const option = selectedOptions[index];
-    if (option.name === 'Include US Federal Jurisdiction') {
-      setIsFederalIncluded(!isFederalIncluded);
-    }
+
     option.selected = !option.selected;
 
     // Replace the modified option in the selectedOptions array
@@ -77,52 +81,24 @@ const OptionsList: React.FC<OptionsListProps> = ({
     setIsHovered(hoverState);
   };
 
+
   useEffect(() => {
-    if (isFederalIncluded && selectedMisc) {
+    if (selectedMisc && (selectedFederal || selectedState)) {
       setPopupMessage('Currently, miscellaneous jurisdictions cannot be selected at the same time as federal or state jurisdictions. Plans to implement this feature are in the works. Please select only one jurisdiction type at a time. I will de-select the miscellaneous jurisdiction for you.');
       setSelectedMisc(undefined);
       setShowBadJurisdictionsPopup(true);
-    } else {
-      onFederalJurisdictionChange(federalJurisdictions[0]);
     }
-  }, [isFederalIncluded]);
-  useEffect(() => {
-    if (isFederalIncluded && !selectedState) {
-      setIsFederalIncluded(false); // Deselect federal if no state is selected
+    if (selectedFederal) {
+      onFederalJurisdictionChange(selectedFederal);
     }
-
-  }, [selectedState, isFederalIncluded]);
-
-  useEffect(() => {
     if (selectedState) {
-      setPopupMessage('Currently, miscellaneous jurisdictions cannot be selected at the same time as federal or state jurisdictions. Plans to implement this feature are in the works. Please select only one jurisdiction type at a time. I will de-select the state jurisdiction for you.');
-      setSelectedState(undefined);
-      setShowBadJurisdictionsPopup(true);
-    }
-    if (isFederalIncluded) {
-      // Remove the option 'Include US Federal Jurisdiction' from selectedOptions if it is there
-      setIsFederalIncluded(false);
-      setSelectedOptions(prevSelected =>
-        prevSelected.includes(options[0])
-          ? prevSelected.filter(lastOption => lastOption != options[0])
-          : [...prevSelected]
-      );
-    }
-    onMiscJurisdictionChange(selectedMisc);
-    onStateJurisdictionChange(undefined);
-
-  }, [selectedMisc]);
-
-  useEffect(() => {
-    if (selectedMisc) {
-      setPopupMessage('Currently, miscellaneous jurisdictions cannot be selected at the same time as federal or state jurisdictions. Plans to implement this feature are in the works. Please select only one jurisdiction type at a time. I will de-select the miscellaneous jurisdiction for you.');
-      setSelectedMisc(undefined);
-      setShowBadJurisdictionsPopup(true);
-    } else {
       onStateJurisdictionChange(selectedState);
     }
+    if (selectedMisc) {
+      onMiscJurisdictionChange(selectedMisc);
+    }
 
-  }, [selectedState]);
+  }, [selectedFederal, selectedState, selectedMisc]);
 
 
   useEffect(() => {
@@ -133,24 +109,72 @@ const OptionsList: React.FC<OptionsListProps> = ({
 
   return (
     <div className="overflow-y-auto bg-[#FDFCFD] border-4 border-[#E4E0D2] p-2 w-full shadow-inner rounded-md">
-      <div className="flex justify-center text-[#4A4643] font-bold font-montserrat pb-2">Chat Options</div>
+      <div className="flex justify-center text-[#4A4643] font-bold font-montserrat pb-2">Jurisdiction Options</div>
       <div className="flex justify-center font-montserrat pb-2">
         <div className="overflow-y-auto bg-[#FDFCFD] p-2 w-25 shadow-inner rounded-md">
           <div className="overflow-y-auto w-full" style={{ maxHeight: '45vh' }}>
 
+            {/* Federal Jurisdiction Button */}
+            <button
+              id="dropdownRadioBgHoverButtonFederal"
 
+              onMouseEnter={() => toggleHover(true)}
+              onMouseLeave={() => toggleHover(false)}
+              onClick={toggleFederalDropdown}
+              className="text-white bg-[#4A4643] hover:bg-green-300 hover:text-[#4A4643] focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center justify-center w-full dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              type="button"
+            >
+              Federal
+              <svg className={`w-2.5 h-2.5 ml-3 ${isHovered ? 'text-[#4A4643]' : 'text-green-300'}`} aria-hidden="true" fill="none" viewBox="0 0 10 6">
+
+                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
+              </svg>
+            </button>
+
+            {/* Federal Jurisdiction Dropdown Content */}
+            {isFederalDropdownOpen && (
+
+              <div className="z-10 w-25 bg-white rounded-lg shadow">
+
+                <ul className="p-3 space-y-1 text-sm text-gray-700">
+                  {/* Loop through options */}
+                  {federalJurisdictions.map((jurisdiction: Jurisdiction) => (
+                    <li key={jurisdiction.id}>
+                      <div className="flex items-center p-2 rounded hover:bg-gray-100">
+                        <input
+                          type="radio"
+                          value={jurisdiction.id}
+                          name="options-radio-federal"
+                          onChange={() => setSelectedFederal(jurisdiction)}
+                          checked={selectedFederal === jurisdiction}
+                          className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
+                        />
+
+                        <label htmlFor={jurisdiction.id} className="w-25 ml-2 text-sm font-medium text-gray-900">
+
+                          {jurisdiction.name}
+                        </label>
+                      </div>
+                    </li>
+                  ))}
+
+                </ul>
+              </div>
+            )}
+          </div>
+          <div className="overflow-y-auto w-full pt-2" style={{ maxHeight: '45vh' }}>
             {/* State Jurisdiction Button */}
             <button
-              id="dropdownRadioBgHoverButton"
+              id="dropdownRadioBgHoverButtonState"
 
               onMouseEnter={() => toggleHover(true)}
               onMouseLeave={() => toggleHover(false)}
               onClick={toggleStateDropdown}
-              className="text-white bg-[#4A4643] hover:bg-green-300 hover:text-[#4A4643] focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="text-white bg-[#4A4643] hover:bg-green-300 hover:text-[#4A4643] focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center justify-center w-full dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               type="button"
             >
-              State Jurisdictions
-              <svg className={`w-2.5 h-2.5 ml-3 ${isHovered ? 'text-[#4A4643]' : 'text-green-300'}`}  aria-hidden="true" fill="none" viewBox="0 0 10 6">
+              State
+              <svg className={`w-2.5 h-2.5 ml-3 ${isHovered ? 'text-[#4A4643]' : 'text-green-300'}`} aria-hidden="true" fill="none" viewBox="0 0 10 6">
 
                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
               </svg>
@@ -169,7 +193,7 @@ const OptionsList: React.FC<OptionsListProps> = ({
                         <input
                           type="radio"
                           value={jurisdiction.id}
-                          name="options-radio"
+                          name="options-radio-state"
                           onChange={() => setSelectedState(jurisdiction)}
                           checked={selectedState === jurisdiction}
                           className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
@@ -190,20 +214,18 @@ const OptionsList: React.FC<OptionsListProps> = ({
           </div>
 
 
-          <div className="overflow-y-auto w-5/6 pt-2" style={{ maxHeight: '45vh' }}>
-
-
+          <div className="overflow-y-auto w-full pt-2" style={{ maxHeight: '45vh' }}>
             {/* Misc Jurisdiction Button */}
             <button
-              id="dropdownRadioBgHoverButton"
+              id="dropdownRadioBgHoverButtonMisc"
               onMouseEnter={() => toggleHover(true)}
               onMouseLeave={() => toggleHover(false)}
               onClick={toggleMiscDropdown}
-              className="text-white bg-[#4A4643] hover:bg-green-300 hover:text-[#4A4643] focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="text-white bg-[#4A4643] hover:bg-green-300 hover:text-[#4A4643] focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center justify-center w-full dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               type="button"
             >
-              Miscellaneous Jurisdictions
-              <svg className={`w-2.5 h-2.5 ml-3 ${isHovered ? 'text-[#4A4643]' : 'text-green-300'}`}  aria-hidden="true" fill="none" viewBox="0 0 10 6">
+              Special
+              <svg className={`w-2.5 h-2.5 ml-3 ${isHovered ? 'text-[#4A4643]' : 'text-green-300'}`} aria-hidden="true" fill="none" viewBox="0 0 10 6">
                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
               </svg>
             </button>
@@ -219,7 +241,7 @@ const OptionsList: React.FC<OptionsListProps> = ({
                         <input
                           type="radio"
                           value={jurisdiction.id}
-                          name="options-radio"
+                          name="options-radio-misc"
                           onChange={() => setSelectedMisc(jurisdiction)}
                           checked={selectedMisc === jurisdiction}
                           className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
@@ -235,36 +257,36 @@ const OptionsList: React.FC<OptionsListProps> = ({
                 </ul>
               </div>
             )}
-            </div>
+          </div>
+
+          <div className="flex justify-center text-[#4A4643] font-bold font-montserrat pt-4">Chat Options</div>
+          {/* Rest of the OptionsList content */}
+          <div className="h-auto max-h-full ">
+            <ul className="list-none pt-4">
+
+              {options.map(option => (
+                <li key={option.id}>
+                  <label className="flex items-center space-x-2">
+                    <input
+                      type="checkbox"
+                      checked={selectedOptions[option.id].selected}
+                      onChange={() => toggleSelection(option.id)}
+                    />
+                    <span>{option.name}</span>
+                  </label>
+                </li>
 
 
-            {/* Rest of the OptionsList content */}
-            <div className="h-auto max-h-full ">
-              <ul className="list-none pt-4">
-
-                {options.map(option => (
-                  <li key={option.id}>
-                    <label className="flex items-center space-x-2">
-                      <input
-                        type="checkbox"
-                        checked={selectedOptions[option.id].selected}
-                        onChange={() => toggleSelection(option.id)}
-                      />
-                      <span>{option.name}</span>
-                    </label>
-                  </li>
-
-
-                ))}
+              ))}
 
 
 
-              </ul>
-            </div>
-            {/* <button onClick={handleSelectAll}>Select All</button> */}
-            <div className="flex justify-center pt-4">
-              <button
-                className="flex justify-end px-4 py-1 rounded bg-gray-100 shadow-inner text-[#4A4643] hover:bg-[#4A4643] hover:text-white" onClick={handleClearSelection}>Clear</button>
+            </ul>
+          </div>
+          {/* <button onClick={handleSelectAll}>Select All</button> */}
+          <div className="flex justify-center pt-4">
+            <button
+              className="flex justify-end px-4 py-1 rounded bg-gray-100 shadow-inner text-[#4A4643] hover:bg-[#4A4643] hover:text-white" onClick={handleClearSelection}>Clear</button>
           </div >
         </div>
       </div>
@@ -293,8 +315,7 @@ const OptionsList: React.FC<OptionsListProps> = ({
           </div>
         </div>
       )}
-
-    </div>
+    </div >
 
   );
 };

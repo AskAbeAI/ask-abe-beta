@@ -226,8 +226,8 @@ export const MiscJurisdictionOptions: Jurisdiction[] = [
 ];
 
 export const ChatOptions: Option[] = [
-  { id: 0, name: 'Include US Federal Jurisdiction', selected: false },
-  { id: 1, name: 'Skip Clarifying Questions', selected: false },
+  // { id: 0, name: 'Include US Federal Jurisdiction', selected: false },
+  { id: 0, name: 'Skip Clarifying Questions', selected: false }
 ];
 
 export interface OptionsListProps {
@@ -240,6 +240,11 @@ export interface OptionsListProps {
   onStateJurisdictionChange: (jurisdictions: Jurisdiction | undefined) => void;
   onFederalJurisdictionChange: (jurisdictions: Jurisdiction | undefined) => void;
   onMiscJurisdictionChange: (jurisdictions: Jurisdiction | undefined) => void;
+}
+
+export interface JurisdictionModalProps {
+  shown: boolean;
+  setShown: () => void;
 }
 
 // Types for UI Logic
