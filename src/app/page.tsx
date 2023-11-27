@@ -10,7 +10,7 @@ export default function HomePage() {
   return (
     <div className="h-screen w-full bg-[#FAF5E6]">
       <div className="flex justify-center items-center">
-        
+
       </div>
 
       {/* Landing Section */}
@@ -53,13 +53,24 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* <div className="items-center bg-[#FCF8EE] shadow-inner flex flex-col px-5">
+        <div className="items-center flex flex-col max-md:max-w-full max-md:mt-10">
+          <div className="flex justify-center mt-6 items-center text-center text-[#2F3F3D] text-5xl font-cinzel leading-[58px] max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
+            Ask Abe is
+          </div>
+          <div className="text-black text-lg text-base font-raleway leading-24 mt-6 max-md:max-w-full">
+          </div>
+        </div>
+      </div> */}
+
+
       {/* Second Section */}
-      <section className="items-center shadow-inner bg-[#FEFDF9] flex w-full flex-col px-2 py-28 max-md:max-w-full max-md:py-24">
+      <section className="items-center shadow-inner bg-[#FCF8EE] flex w-full flex-col px-2 py-28 max-md:max-w-full max-md:py-24">
         <div className="mb-0 w-full max-w-[1312px] max-md:max-w-full max-md:mb-2.5">
           <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
             <div className="flex flex-col items-stretch w-6/12 max-md:w-full max-md:ml-0">
               <Image
-                src="/books.png" className="aspect-[0.96] object-contain object-center w-full overflow-hidden max-md:max-w-full max-md:mt-10"
+                src="/abemem3.jpg" className="aspect-[0.96] object-contain object-center w-full overflow-hidden max-md:max-w-full max-md:mt-10"
                 alt="Legal Research Image"
                 width={500}
                 height={500}
@@ -75,7 +86,7 @@ export default function HomePage() {
                     Democratizing Legal Knowledge For All, One Question At a Time
                   </h1>
                   <p className="text-black text-xl font-raleway font-light leading-7 mt-6 max-md:max-w-full">
-                  Our dream is to revolutionize the legal landscape, making legal literacy a common asset, not a privilege. This dream is rooted in our mission to empower every individual with accessible, comprehensible legal knowledge through Ask Abe. This includes our commitment to keeping this invaluable tool free forever, and our ambition to expand its benefits globally. We envision a future where every citizen, regardless of background or location, is equipped with the tools to navigate the legal world confidently, contributing to a more just, informed, and equitable society.
+                    Our dream is to revolutionize the legal landscape, making legal literacy a common asset, not a privilege. This dream is rooted in our mission to empower every individual with accessible, comprehensible legal knowledge through Ask Abe. This includes our commitment to keeping this invaluable tool free forever, and our ambition to expand its benefits globally. We envision a future where every citizen, regardless of background or location, is equipped with the tools to navigate the legal world confidently, contributing to a more just, informed, and equitable society.
                   </p>
                 </div>
                 <div className="items-stretch flex max-w-full gap-4 mt-10 self-start">
@@ -134,7 +145,7 @@ export default function HomePage() {
               </div>
               <div className="flex flex-col items-stretch w-[54%] ml-5 max-md:w-full max-md:ml-0">
                 <Image
-                  src="/lib2.jpg"
+                  src="/howto/citation.png"
                   alt="library2"
                   width={5184}
                   height={3888}
@@ -148,7 +159,7 @@ export default function HomePage() {
             <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
               <div className="flex flex-col items-stretch w-[52%] max-md:w-full max-md:ml-0">
                 <Image
-                  src="/lib2.jpg"
+                  src="/howto/calrifying.png"
                   alt="library2"
                   width={5184}
                   height={3888}
@@ -183,7 +194,7 @@ export default function HomePage() {
               </div>
               <div className="flex flex-col items-stretch w-[54%] ml-5 max-md:w-full max-md:ml-0">
                 <Image
-                  src="/lib2.jpg"
+                  src="/howto/selectJurisdiction.png"
                   alt="library2"
                   width={5184}
                   height={3888}
@@ -197,7 +208,7 @@ export default function HomePage() {
             <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
               <div className="flex flex-col items-stretch w-[52%] max-md:w-full max-md:ml-0">
                 <Image
-                  src="/lib2.jpg"
+                  src="/followup.png"
                   alt="library2"
                   width={5184}
                   height={3888}
@@ -221,7 +232,7 @@ export default function HomePage() {
 
 
       {/* Team Section */}
-      <section className="items-center bg-[#FAF5E6] flex flex-col px-5 shadow-inner ">
+      <section className="items-center bg-[#FCF8EE] flex flex-col px-5 shadow-inner ">
         <div className="flex w-[768px] max-w-full flex-col items-stretch mt-16 mb-16 max-md:my-10">
           <h1 className="text-[#2F3F3D] text-center font-imfell text-5xl font-semibold leading-[58px] max-md:max-w-full max-md:text-5xl max-md:leading-[54px]">
             Our Team

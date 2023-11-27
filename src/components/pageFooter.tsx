@@ -12,7 +12,7 @@ const PageFooter: React.FC = () => {
         <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
           <div className="flex flex-col items-stretch w-[69%] max-md:w-full max-md:ml-0">
             <div className="flex flex-col ">
-              <div className="flex items-center font-imfell font-bold text-3xl">ASK ABE AI</div>
+              <div className="flex items-center font-imfell font-bold text-3xl">ASK ABE </div>
               <div className="items-stretch self-stretch flex flex-col mt-5 max-md:max-w-full">
                 <div className="flex flex-col ">
                   <div className="items-stretch flex grow flex-col">
