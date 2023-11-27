@@ -209,6 +209,7 @@ export function getPromptQueryRefinement(
     }
   }
   user += `]}`;
+  console.log(user)
   const messages = convertToMessages(system, user);
   let model = "gpt-4-1106-preview";
   if (useRegularGPT4) {
