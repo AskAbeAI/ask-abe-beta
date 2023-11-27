@@ -208,7 +208,7 @@ export default function HomePage() {
             <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
               <div className="flex flex-col items-stretch w-[52%] max-md:w-full max-md:ml-0">
                 <Image
-                  src="/howto/ask.png"
+                  src="/followup.png"
                   alt="library2"
                   width={5184}
                   height={3888}
