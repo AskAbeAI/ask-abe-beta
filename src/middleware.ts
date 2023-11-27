@@ -8,8 +8,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 
 export default authMiddleware({
-  // "/" will be accessible to all users
-  publicRoutes: ["/", "/about", "/devlog", "/devlogblog", "/how", "/mission", "/privacy", "/support", "/tos"]
+  publicRoutes: ["/", "/about", "/privacy","/tos", "/support", "/legal", "/how", "/devlog", "/devlogblog", "/playground", "/mission", "/api/(.*)"]
 });
  
 export const config = {
