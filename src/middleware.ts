@@ -8,7 +8,12 @@ export default authMiddleware({
 });
 
 export const config = {
-  matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
+  matcher: [
+    // Exclude all routes that end with a file extension, are _next, or are listed as public
+    '/((?!\\.\\w+$|_next|about|privacy|tos|support|legal|how|devlog|devlogblog|playground|mission).*)',
+  ],
 };
 
-
+// export const config = {
+//  matcher: ["/((?!.+\\.[\\w]+$|_next).*)","/","/(api|trpc)(.*)"],
+//};
