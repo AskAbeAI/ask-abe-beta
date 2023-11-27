@@ -41,7 +41,22 @@ export default function Playground() {
   const [secondaryGroupedRows, setSecondaryGroupedRows] = useState<GroupedRows>({});
 
   // State variables for contentBlocks
-  const [contentBlocks, setContentBlocks] = useState<ContentBlock[]>([]);
+  const [contentBlocks, setContentBlocks] = useState<ContentBlock[]>([{
+        blockId: `id_${new Date().getTime()}_${Math.random().toString(36).substr(2, 9)}`,
+        type: ContentType.Loading,
+        content: "Loading...",
+        fakeStream: true,
+        concurrentStreaming: false,
+        neverLoad: true
+      },
+      {
+        blockId: `id_${new Date().getTime()}_${Math.random().toString(36).substr(2, 9)}`,
+        type: ContentType.Welcome,
+        content: "",
+        fakeStream: false,
+        concurrentStreaming: false,
+      }
+     ]);
   const [citationBlocks, setCitationBlocks] = useState<ContentBlock[]>([]);
 
   // State variables for prompt logic
@@ -103,6 +118,8 @@ export default function Playground() {
     setSessionID(sessionID);
     // Add welcome block
   }, []);
+
+  
 
   // UI Component Block Functions
   const addContentBlock = async (newBlock: ContentBlock): Promise<string> => {

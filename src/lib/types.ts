@@ -78,9 +78,7 @@ export interface ApprovalBlockProps {
   onStreamEnd: (concurrentStreaming: boolean) => void;
 
 }
-export interface WelcomeBlockProps {
-  content: string;
-}
+
 
 export interface WelcomeMessageProps {
   message: string;
