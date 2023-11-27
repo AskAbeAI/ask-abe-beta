@@ -38,14 +38,18 @@ export default function HomePage() {
                 </p>
               </div>
               <div className="items-fit flex  max-w-full justify-between mt-10">
-                <Link href="/playground">
-                  <button className="button1">
+                <Link href="/playground"
+                      className="text-lg font-raleway rounded-sm font-bold px-6 py-3 leading-none text-white border focus:outline-none focus:shadow-outline bg-gradient-to-b hover:text-[#4A4643] hover:from-green-300 from-[#4A4643] to-[#4A4643]">
+                      Enter Abe&apos;s Law Library
+            
+       
+                  {/* <button className="button1">
                     <span className="font-raleway">Enter Abe&apos;s Law Library</span>
                     <div className="top"></div>
                     <div className="left"></div>
                     <div className="bottom"></div>
                     <div className="right"></div>
-                  </button>
+                  </button> */}
                 </Link>
               </div>
             </div>
@@ -70,8 +74,8 @@ export default function HomePage() {
               <Image
                 src="/lib3.jpg"
                 alt="People Image"
-                width={4373}
-                height={2452}
+                width={550}
+                height={365}
                 className="aspect-[1.76] object-contain object-center w-full overflow-hidden grow max-md:max-w-full max-md:mt-2"
               />
             </div>

@@ -51,7 +51,7 @@ const ChatContainer: React.FC<ChatContainerProps> = ({
 
   return (
 
-    <div className=" bg-[#FDFCFD] p-2 border-8 border-[#FCF9F3] shadow-inner rounded-lg" style={{ minHeight: '90vh' }}>
+    <div className="bg-[#FDFCFD] p-2 border-8 border-[#FCF9F3] shadow-inner rounded-lg" style={{ minHeight: '90vh' }}>
 
 
       {/* <div className="p-4 bg-white rounded-lg shadow-inner overflow-auto max-h-full" style={{ minHeight: '70vh' }}> */}

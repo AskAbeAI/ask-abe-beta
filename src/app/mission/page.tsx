@@ -12,8 +12,8 @@ export default function MissionPage() {
         <Image
           src="/lincolnmem.jpg"
           alt="Empowering Image"
-          width={4800}
-          height={2812}
+          width={1500}
+          height={299}
           className="absolute inset-0 w-full h-full object-cover"
         />
 
@@ -38,8 +38,8 @@ export default function MissionPage() {
       <div className="items-stretch bg-[#FCF9F0] flex flex-col px-44 max-md:px-5">
         <Image
 
-          width={2000}
-          height={1500}
+          width={1000}
+          height={650}
           src="/mission.jpg"
           alt="Company Story"
           className="aspect-[1.78] object-contain object-center w-full overflow-hidden mt-8 mb-20 max-md:max-w-full max-md:my-10"
@@ -64,8 +64,8 @@ export default function MissionPage() {
               <Image
                 src="/just1.jpg"
                 alt="People Image"
-                width={4373}
-                height={2452}
+                width={634}
+                height={423}
                 className="aspect-[1.76] object-contain object-center w-full overflow-hidden grow max-md:max-w-full max-md:mt-2"
               />
             </div>
@@ -97,8 +97,8 @@ export default function MissionPage() {
               <Image
                 src="/people.jpg"
                 alt="People Image"
-                width={4373}
-                height={2452}
+                width={638}
+                height={432}
                 className="aspect-[1.76] object-contain object-center w-full overflow-hidden grow max-md:max-w-full max-md:mt-2"
               />
             </div>
