@@ -24,9 +24,9 @@ export default function aboutPage() {
           height={1500}
           src="/about1.jpg"
           alt="Company Story"
-          className="aspect-[1.78] object-contain object-center w-full overflow-hidden mt-28 max-md:max-w-full max-md:my-10"
+          className="aspect-[1.78] object-contain object-center w-full overflow-hidden mt-28 mb-28 max-md:max-w-full max-md:my-10"
         />
-        <div className="mt-28 max-md:max-w-full max-md:mt-10">
+        {/* <div className="mt-28 max-md:max-w-full max-md:mt-10">
           <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
             <div className="flex flex-col items-stretch w-6/12 max-md:w-full max-md:ml-0">
               <div className="self-stretch text-black text-6xl font-raleway font-bold leading-[67px] max-md:max-w-full max-md:text-4xl max-md:leading-[54px] max-md:mt-10">
@@ -39,7 +39,7 @@ export default function aboutPage() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
       </div>
 
