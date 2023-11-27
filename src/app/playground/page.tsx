@@ -206,6 +206,7 @@ export default function Playground() {
     }
 
 
+
     // Do not ask clarifying questions if skipClarifications is true or if a misc jurisdiction is selected
     if (skipClarifications || selectedMiscJurisdiction !== undefined) {
       addNewLoadingBlock(false);
@@ -461,6 +462,7 @@ export default function Playground() {
       jurisdictions: question_jurisdiction,
       query_expansion_embedding: query_expansion_embedding,
     };
+    console.log("  - Sending request to similaritySearch API!")
     const response = await fetch('/api/searchDatabase/similaritySearch', {
       method: 'POST',
       headers: {
