@@ -22,7 +22,7 @@ export async function POST(req: Request) {
     const original_question: string = requestData.question;
     const api_key: string = requestData.api_key;
 
-    if (api_key !== 'test') {
+    if (api_key !== 'ak_EjMsYGPJpLHcb48r4uCfP2ZYyrjwL') {
         return NextResponse.json({ errorMessage: `Invalid API key: ${api_key}`, status: 401 });
     }
     const supabaseUrl = process.env.SUPABASE_URL;
@@ -76,7 +76,7 @@ export async function POST(req: Request) {
         errorMessage += error.stack;
         }
         const executionTime = endTime - startTime;
-        return NextResponse.json({ errorMessage: `An error occurred in queryRefinement: ${error}` });
+        return NextResponse.json({"answer": undefined, "response_time": executionTime, "status": 500, "errorMessage": errorMessage});
     }
 }
 
