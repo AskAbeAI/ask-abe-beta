@@ -108,11 +108,11 @@ const OptionsList: React.FC<OptionsListProps> = ({
   const closePopup = () => setShowBadJurisdictionsPopup(false);
 
   return (
-    <div className="bg-[#FDFCFD] border-4 border-[#E4E0D2] w-full shadow-inner rounded-md">
-
-      <div className="flex justify-center font-raleway">
-        <div className="overflow-y-auto w-full p-2 shadow-inner">
-          <div className="flex justify-center items-center text-center text-[#4A4643] font-bold font-raleway pt-1 pb-3">Jurisdiction Options</div>
+    <div className="bg-[#FDFCFD] border-4 border-[#E4E0D2] p-2 w-full shadow-inner rounded-md">
+      
+      <div className="flex justify-center font-raleway pb-2">
+        <div className="overflow-y-auto bg-[#FDFCFD] p-2 w-25 shadow-inner rounded-md">
+        <div className="flex justify-center text-[#4A4643] font-bold text-lg font-raleway pb-3">Jurisdiction Options</div>
           <div className="overflow-y-auto w-full" style={{ maxHeight: '45vh' }}>
 
             {/* Federal Jurisdiction Button */}
@@ -260,7 +260,7 @@ const OptionsList: React.FC<OptionsListProps> = ({
             )}
           </div>
 
-          <div className="flex justify-center items-center text-[#4A4643] font-bold font-raleway pt-4">Chat Options</div>
+          <div className="flex justify-center text-[#4A4643] font-bold text-lg font-raleway pt-4">Chat Options</div>
           {/* Rest of the OptionsList content */}
           <div className="h-auto max-h-full ">
             <ul className=" pt-4">
