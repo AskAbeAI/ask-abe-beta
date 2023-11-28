@@ -26,7 +26,8 @@ export async function POST(req: Request) {
 	const stateJurisdiction = jurisdictions.state;
 	const miscJurisdiction = jurisdictions.misc;
 	const mode:string = jurisdictions.mode;
-	console.log("HERE!")
+	//console.log("HERE!")
+	//console.log(requestData)
 	// CHECK FOR INITIAL ERRORS
 
 	try {
@@ -45,17 +46,19 @@ export async function POST(req: Request) {
 		}
 		
 		jurisdiction = jurisdiction.toLowerCase();
+		//console.log(jurisdiction)
 		const maxRetries = 2;
 
 		const primary_rows: node_as_row[] = await callWithRetries(
-		() => jurisdiction_similarity_search_all_partitions(jurisdiction, query_expansion_embedding, 0.8, maxRows / 2, maxRows, supabaseUrl, supabaseKey),
+		() => jurisdiction_similarity_search_all_partitions(jurisdiction, query_expansion_embedding, 0.6, maxRows / 2, maxRows, supabaseUrl, supabaseKey),
 		maxRetries
 		);
+		//console.log(primary_rows)
 
 		let secondary_rows: node_as_row[] = [];
 		if (mode === "state_federal") {
-		secondary_rows = await callWithRetries(
-			() => jurisdiction_similarity_search_all_partitions(federalJurisdiction!.abbreviation, query_expansion_embedding, 0.8, 15, 45, supabaseUrl, supabaseKey),
+			secondary_rows = await callWithRetries(
+			() => jurisdiction_similarity_search_all_partitions(federalJurisdiction!.abbreviation, query_expansion_embedding, 0.6, 15, 45, supabaseUrl, supabaseKey),
 			maxRetries
 		);
 		}
