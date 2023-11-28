@@ -268,6 +268,7 @@ export type node_as_row = {
   node_text: string;
   citation: string;
   similarity: number;
+  link?: string;
 };
 // Type for master partitioned table primary key
 export type node_key = {
