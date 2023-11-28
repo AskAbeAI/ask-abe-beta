@@ -379,7 +379,7 @@ export default function Playground() {
   // queryRefinement API handlers
   const handleQuestionRefinement = async (clarifications: Clarification[]) => {
     // Get clarifying questions as string[] from all (non dismissed) clarification blocks
-    addNewLoadingBlock(true);
+    addNewLoadingBlock(false);
     const clarificationChoices: ClarificationChoices = {
       clarifications: clarifications
     };
@@ -432,7 +432,6 @@ export default function Playground() {
       concurrentStreaming: false
     };
     await addContentBlock(createNewBlock(newParams));
-    addNewLoadingBlock(false);
     similaritySearch(questionJurisdictions!, refined_question, specific_questions);
   };
 
@@ -480,6 +479,7 @@ export default function Playground() {
   const similaritySearch = async (question_jurisdiction: questionJurisdictions, user_query: string, specific_questions: string[]) => {
 
     const query_expansion_embedding = await queryExpansion(user_query, specific_questions);
+    addNewLoadingBlock(false);
     console.log(question_jurisdiction)
     const requestBody = {
       jurisdictions: question_jurisdiction,
