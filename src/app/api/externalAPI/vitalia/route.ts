@@ -19,7 +19,7 @@ export async function POST(req: Request) {
     
     const requestData: any = await req.json();
     
-    const original_question: string = requestData.original_question;
+    const original_question: string = requestData.question;
     const api_key: string = requestData.api_key;
 
     if (api_key !== 'test') {
