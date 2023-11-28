@@ -49,8 +49,17 @@ export async function POST(req: Request) {
         Acceleration of Longevity Innovation: Vitalia, long-term, aims to eliminate bureaucratic roadblocks to speed up clinical trials and lower costs in the longevity field.
         
         Answer the user's more specific question as best you can. For broad or general questions, it's okay to give a general overview.`
+        
         const direct_answer_raw = await generateDirectAnswer(openai, original_question, instructions, text_citation_pairs);
-        const direct_answer = createTextWithEmbeddedLink(direct_answer_raw);
+        let direct_answer = createTextWithEmbeddedLink(direct_answer_raw);
+        for (const row of rows) {
+            if (direct_answer.includes(row.citation)) {
+                // find the index of row.citation in direct_answer
+                const index = direct_answer.indexOf(row.citation);
+                // Replace the citation with the row.link, while also removing the character right before index
+                direct_answer = direct_answer.slice(0, index - 1) + row.link + direct_answer.slice(index + row.citation.length);
+            }
+        }
         const endTime = Date.now();
 
         const response = {

@@ -8,7 +8,6 @@ import { NextRequest, NextResponse } from "next/server";
 
 
 export default authMiddleware({
-  ignoredRoutes: ['/api/externalAPI/vitalia/route'],
   publicRoutes: ["/", "/about", "/privacy","/tos", "/support", "/legal", "/how", "/devlog", "/devlogblog", "/playground", "/mission", "/api/(.*)"]
 });
  
