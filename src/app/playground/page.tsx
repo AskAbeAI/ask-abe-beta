@@ -89,6 +89,8 @@ export default function Playground() {
       mode = 'state_federal';
     } else if (selectedMiscJurisdiction) {
       mode = 'misc';
+    } else if (selectedFederalJurisdiction) {
+      mode = 'federal';
     }
     console.log("CLEARING EVERYTHING!");
     setCitationBlocks([]);
@@ -377,7 +379,7 @@ export default function Playground() {
   // queryRefinement API handlers
   const handleQuestionRefinement = async (clarifications: Clarification[]) => {
     // Get clarifying questions as string[] from all (non dismissed) clarification blocks
-    addNewLoadingBlock(false);
+    addNewLoadingBlock(true);
     const clarificationChoices: ClarificationChoices = {
       clarifications: clarifications
     };
@@ -478,7 +480,7 @@ export default function Playground() {
   const similaritySearch = async (question_jurisdiction: questionJurisdictions, user_query: string, specific_questions: string[]) => {
 
     const query_expansion_embedding = await queryExpansion(user_query, specific_questions);
-
+    console.log(question_jurisdiction)
     const requestBody = {
       jurisdictions: question_jurisdiction,
       query_expansion_embedding: query_expansion_embedding,
@@ -492,31 +494,22 @@ export default function Playground() {
       },
       body: JSON.stringify(requestBody),
     });
+    
 
     const result = await response.json();
 
-    const primary_rows: node_as_row[] = result.primary_rows;
+    let primary_rows: node_as_row[] = result.primary_rows;
+    console.log("Received response from similaritySearch API!")
+    console.log(primary_rows)
     const secondary_rows: node_as_row[] = result.secondary_rows;
 
-    let combined_rows: node_as_row[] = [];
+    
     let usesSubContentNodes: boolean = false;
-    if (question_jurisdiction.mode.includes("state")) {
-      if (question_jurisdiction.state?.usesSubContentNodes) {
-        usesSubContentNodes = true;
-        // Get a set of all sibling nodes in rows (including original)
-        const sibling_node_keys: node_key[] = generate_node_keys(primary_rows);
-        // Given a list of sibling_node keys, retrieve all actual rows from the database
-        combined_rows = await getSiblingRows(sibling_node_keys);
-
-      } else {
-        combined_rows = primary_rows;
-      }
-    }
+    
 
     let primaryJurisdiction;
     let secondaryJurisdiction;
     if (question_jurisdiction.mode === "misc") {
-      combined_rows = primary_rows;
       primaryJurisdiction = question_jurisdiction.misc! as Jurisdiction;
     } else if (question_jurisdiction.mode === "state" || question_jurisdiction.mode === "state_federal") {
 
@@ -527,10 +520,13 @@ export default function Playground() {
     } else {
       primaryJurisdiction = question_jurisdiction.federal! as Jurisdiction;
     }
+
+    if (primaryJurisdiction.usesSubContentNodes) {
+      primary_rows = await getSiblingRows(generate_node_keys(primary_rows));
+    }
     // Get a set of all unique parent_nodes in combinedRows variable
-    //console.log(combined_rows)
-    const primary_grouped_rows: GroupedRows = await aggregateSiblingRows(combined_rows, usesSubContentNodes, primaryJurisdiction);
-    //console.log(primary_grouped_rows);
+    const primary_grouped_rows: GroupedRows = await aggregateSiblingRows(primary_rows, usesSubContentNodes, primaryJurisdiction);
+    
     let secondary_grouped_rows: GroupedRows = {};
     if (secondary_rows.length > 0) {
       secondary_grouped_rows = await aggregateSiblingRows(secondary_rows, false, secondaryJurisdiction!);
@@ -541,6 +537,7 @@ export default function Playground() {
     // Create citation blocks for each parent node
     const primary_citation_blocks: ContentBlock[] = [];
     for (const parent_node in primary_grouped_rows) {
+      console.log(parent_node)
       const section_text: string[] = primary_grouped_rows[parent_node].section_text;
       const citation: string = primary_grouped_rows[parent_node].citation;
       const link: string = primary_grouped_rows[parent_node].link;
@@ -555,7 +552,6 @@ export default function Playground() {
         setOpen: setCitationsOpen,
         open: citationsOpen
       };
-      //console.log(citationProps);
       const newParams: ContentBlockParams = {
         type: ContentType.Citation,
         content: "",
@@ -598,7 +594,7 @@ export default function Playground() {
 
     setPrimaryGroupedRows(primary_grouped_rows);
     setSecondaryGroupedRows(secondary_grouped_rows);
-    //console.log(all_citation_blocks)
+    console.log(all_citation_blocks)
     await addManyContentBlock(all_citation_blocks);
     //const general_topics: string[] = await blindTopics(user_query, "CA", "USA", specific_questions);
     setQuestionJurisdictions(question_jurisdiction);
