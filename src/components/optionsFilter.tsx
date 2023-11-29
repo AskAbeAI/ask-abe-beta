@@ -108,10 +108,11 @@ const OptionsList: React.FC<OptionsListProps> = ({
   const closePopup = () => setShowBadJurisdictionsPopup(false);
 
   return (
-    <div className="overflow-y-auto bg-[#FDFCFD] border-4 border-[#E4E0D2] p-2 w-full shadow-inner rounded-md">
-      <div className="flex justify-center text-[#4A4643] font-bold font-montserrat pb-2">Jurisdiction Options</div>
-      <div className="flex justify-center font-montserrat pb-2">
+    <div className="bg-[#FDFCFD] border-4 border-[#E4E0D2] p-2 w-full shadow-inner rounded-md">
+      
+      <div className="flex justify-center font-raleway pb-2">
         <div className="overflow-y-auto bg-[#FDFCFD] p-2 w-25 shadow-inner rounded-md">
+        <div className="flex justify-center text-[#4A4643] font-bold text-lg font-raleway pb-3">Jurisdiction Options</div>
           <div className="overflow-y-auto w-full" style={{ maxHeight: '45vh' }}>
 
             {/* Federal Jurisdiction Button */}
@@ -121,7 +122,7 @@ const OptionsList: React.FC<OptionsListProps> = ({
               onMouseEnter={() => toggleHover(true)}
               onMouseLeave={() => toggleHover(false)}
               onClick={toggleFederalDropdown}
-              className="text-white bg-[#4A4643] hover:bg-green-300 hover:text-[#4A4643] focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center justify-center w-full dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="text-white bg-[#4A4643] font-raleway hover:bg-green-300 hover:text-[#4A4643] focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-md px-5 py-2.5 text-center inline-flex items-center justify-center w-full dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               type="button"
             >
               Federal
@@ -134,9 +135,9 @@ const OptionsList: React.FC<OptionsListProps> = ({
             {/* Federal Jurisdiction Dropdown Content */}
             {isFederalDropdownOpen && (
 
-              <div className="z-10 w-25 bg-white rounded-lg shadow">
+              <div className="bg-white py-2 rounded-lg shadow">
 
-                <ul className="p-3 space-y-1 text-sm text-gray-700">
+                <ul className="space-y-1 text-md text-gray-700">
                   {/* Loop through options */}
                   {federalJurisdictions.map((jurisdiction: Jurisdiction) => (
                     <li key={jurisdiction.id}>
@@ -150,7 +151,7 @@ const OptionsList: React.FC<OptionsListProps> = ({
                           className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
                         />
 
-                        <label htmlFor={jurisdiction.id} className="w-25 ml-2 text-sm font-medium text-gray-900">
+                        <label htmlFor={jurisdiction.id} className="w-25 ml-2 text-md font-medium text-gray-900">
 
                           {jurisdiction.name}
                         </label>
@@ -170,7 +171,7 @@ const OptionsList: React.FC<OptionsListProps> = ({
               onMouseEnter={() => toggleHover(true)}
               onMouseLeave={() => toggleHover(false)}
               onClick={toggleStateDropdown}
-              className="text-white bg-[#4A4643] hover:bg-green-300 hover:text-[#4A4643] focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center justify-center w-full dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="text-white bg-[#4A4643] hover:bg-green-300 hover:text-[#4A4643] focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-md px-5 py-2.5 text-center inline-flex items-center justify-center w-full dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               type="button"
             >
               State
@@ -183,9 +184,9 @@ const OptionsList: React.FC<OptionsListProps> = ({
             {/* State Jurisdiction Dropdown Content */}
             {isStateDropdownOpen && (
 
-              <div className="z-10 w-25 bg-white rounded-lg shadow">
+              <div className="bg-white py-2 rounded-lg shadow">
 
-                <ul className="p-3 space-y-1 text-sm text-gray-700">
+                <ul className="space-y-1 text-md text-gray-700">
                   {/* Loop through options */}
                   {stateJurisdictions.map((jurisdiction: Jurisdiction) => (
                     <li key={jurisdiction.id}>
@@ -199,7 +200,7 @@ const OptionsList: React.FC<OptionsListProps> = ({
                           className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
                         />
 
-                        <label htmlFor={jurisdiction.id} className="w-25 ml-2 text-sm font-medium text-gray-900">
+                        <label htmlFor={jurisdiction.id} className="w-25 ml-2 text-md font-medium text-gray-900">
 
                           {jurisdiction.name}
                         </label>
@@ -221,7 +222,7 @@ const OptionsList: React.FC<OptionsListProps> = ({
               onMouseEnter={() => toggleHover(true)}
               onMouseLeave={() => toggleHover(false)}
               onClick={toggleMiscDropdown}
-              className="text-white bg-[#4A4643] hover:bg-green-300 hover:text-[#4A4643] focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center justify-center w-full dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="text-white bg-[#4A4643] hover:bg-green-300 hover:text-[#4A4643] focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-md px-5 py-2.5 text-center inline-flex items-center justify-center w-full dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               type="button"
             >
               Special
@@ -232,8 +233,8 @@ const OptionsList: React.FC<OptionsListProps> = ({
 
             {/* Misc Jurisdiction Content */}
             {isMiscDropdownOpen && (
-              <div className="z-10 w-25 bg-white rounded-lg shadow">
-                <ul className="p-3 space-y-1 text-sm text-gray-700">
+              <div className="bg-white py-2 rounded-lg shadow-inner">
+                <ul className="space-y-1 text-md text-gray-700">
                   {/* Loop through options */}
                   {miscJurisdictions.map((jurisdiction: Jurisdiction) => (
                     <li key={jurisdiction.id}>
@@ -246,7 +247,7 @@ const OptionsList: React.FC<OptionsListProps> = ({
                           checked={selectedMisc === jurisdiction}
                           className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
                         />
-                        <label htmlFor={jurisdiction.id} className="w-25 ml-2 text-sm font-medium text-gray-900">
+                        <label htmlFor={jurisdiction.id} className="w-25 ml-2 text-md font-medium text-gray-900">
                           {jurisdiction.name}
                         </label>
                       </div>
@@ -259,27 +260,25 @@ const OptionsList: React.FC<OptionsListProps> = ({
             )}
           </div>
 
-          <div className="flex justify-center text-[#4A4643] font-bold font-montserrat pt-4">Chat Options</div>
+          <div className="flex justify-center text-[#4A4643] font-bold text-lg font-raleway pt-4">Chat Options</div>
           {/* Rest of the OptionsList content */}
           <div className="h-auto max-h-full ">
-            <ul className="list-none pt-4">
+            <ul className=" pt-4">
 
               {options.map(option => (
-                <li key={option.id}>
-                  <label className="flex items-center space-x-2">
-                    <input
-                      type="checkbox"
-                      checked={selectedOptions[option.id].selected}
-                      onChange={() => toggleSelection(option.id)}
-                    />
-                    <span>{option.name}</span>
+                <li key={option.id} className="flex items-center space-x-2">
+
+                  <input
+                    type="checkbox"
+                    className="form-checkbox"
+                    checked={selectedOptions[option.id].selected}
+                    onChange={() => toggleSelection(option.id)}
+                  />
+                  <label htmlFor={`checkbox-${option.id}`} className="text-md">
+                    {option.name}
                   </label>
                 </li>
-
-
               ))}
-
-
 
             </ul>
           </div>
@@ -298,7 +297,7 @@ const OptionsList: React.FC<OptionsListProps> = ({
             <div className="mt-3 text-center">
               <h3 className="text-lg leading-6 font-medium text-gray-900">Attention</h3>
               <div className="mt-2 px-7 py-3">
-                <p className="text-sm text-gray-500">
+                <p className="text-md text-gray-500">
                   {popupMessage}
                 </p>
               </div>

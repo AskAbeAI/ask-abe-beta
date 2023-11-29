@@ -5,6 +5,7 @@ import ContentQueue from './contentQueue'; // Adjust import path as necessary
 
 import { ContentBlock, ClarificationChoices, TopicResponses, Clarification } from '@/lib/types'; // Adjust import path as necessary
 import 'ldrs/hourglass';
+import CitationBar from './citationBar';
 
 
 interface ChatContainerProps {
@@ -51,7 +52,8 @@ const ChatContainer: React.FC<ChatContainerProps> = ({
 
   return (
 
-    <div className="bg-[#FDFCFD] p-2 border-8 border-[#FCF9F3] shadow-inner rounded-lg" style={{ minHeight: '90vh' }}>
+    <div className="bg-[#FDFCFD] p-6 border-4 border-[#E4E0D2] shadow-inner rounded-lg" style={{ minHeight: '90vh' }}>
+     
 
 
       {/* <div className="p-4 bg-white rounded-lg shadow-inner overflow-auto max-h-full" style={{ minHeight: '70vh' }}> */}
@@ -68,7 +70,7 @@ const ChatContainer: React.FC<ChatContainerProps> = ({
         />
       )}
     </div>
-    // </div>
+  
 
 
 
