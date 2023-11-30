@@ -10,27 +10,9 @@ const openai = new OpenAI({
 });
 export const maxDuration = 120;
 
-export async function handler(req: Request) {
-    switch (req.method) {
-        case 'OPTIONS':
-            return handleOptions(req);
-        case 'POST':
-            return await handlePost(req);
-        default:
-            // Method Not Allowed for other methods
-            return new NextResponse(null, { status: 405 });
-    }
-}
-function handleOptions(req: Request) {
-    const headers = {
-        'Access-Control-Allow-Origin': '*', // Modify as needed
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-    };
-    return new NextResponse(null, { status: 204, headers });
-}
 
-async function handlePost(req: Request) {
+
+export async function POST(req: Request) {
     const startTime = Date.now();
     
     console.log("=== EXTERNAL VITALIA API ENDPOINT ===");
@@ -80,17 +62,13 @@ async function handlePost(req: Request) {
         }
         const endTime = Date.now();
 
-        const response = NextResponse.json({
+        const response = {
             "answer": direct_answer,
             "response_time": endTime - startTime,
             "status": 200
-        });
-        
-        response.headers.set('Access-Control-Allow-Origin', '*');
-        response.headers.set('Access-Control-Allow-Methods', 'POST, OPTIONS');
-        response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-
-        return response;
+        }
+    
+        return NextResponse.json(response);
     } catch (error) {
         const endTime = Date.now();
         let errorMessage = `${error},\n`
@@ -119,4 +97,3 @@ const createTextWithEmbeddedLink = (text: string): string => {
 
     return text;
 }
-export default handler;
