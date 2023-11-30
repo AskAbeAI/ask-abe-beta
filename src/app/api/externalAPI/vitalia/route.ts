@@ -75,14 +75,17 @@ export async function POST(req: Request) {
         }
         const endTime = Date.now();
 
-        const response = {
+        const response = NextResponse.json({
             "answer": direct_answer,
             "response_time": endTime - startTime,
             "status": 200
-        }
+        });
         
-    
-        return NextResponse.json(response);
+        response.headers.set('Access-Control-Allow-Origin', '*');
+        response.headers.set('Access-Control-Allow-Methods', 'POST, OPTIONS');
+        response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+        return response;
     } catch (error) {
         const endTime = Date.now();
         let errorMessage = `${error},\n`
