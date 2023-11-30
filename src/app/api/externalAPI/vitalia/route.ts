@@ -62,13 +62,27 @@ export async function POST(req: Request) {
         }
         const endTime = Date.now();
 
-        const response = {
+        const response = NextResponse.json({
             "answer": direct_answer,
             "response_time": endTime - startTime,
             "status": 200
+        });
+
+        // Set CORS headers
+        response.headers.set('Access-Control-Allow-Origin', '*'); // allows requests from any origin
+        response.headers.set('Access-Control-Allow-Methods', 'POST, OPTIONS');
+        response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+        // Check for OPTIONS request (pre-flight request)
+        if (req.method === 'OPTIONS') {
+            // Send response with no body for OPTIONS requests
+            return new NextResponse(null, { status: 204, headers: response.headers });
         }
+
+        // Return response for POST request
+        return response;
     
-        return NextResponse.json(response);
+        
     } catch (error) {
         const endTime = Date.now();
         let errorMessage = `${error},\n`
