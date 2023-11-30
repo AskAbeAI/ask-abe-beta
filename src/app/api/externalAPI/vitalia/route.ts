@@ -15,7 +15,7 @@ export function OPTIONS(req: Request) {
     console.log(req.headers)
     // Set CORS headers
     const headers = {
-        'Access-Control-Allow-Origin': '*', // Modify as needed for your use case
+        'Access-Control-Allow-Origin': 'https://www.strikingly.com', // Modify as needed for your use case
         'Access-Control-Allow-Methods': 'POST, OPTIONS',
         'Access-Control-Allow-Headers': 'Content-Type, Authorization',
         // Include any other headers you might need for your requests
@@ -76,13 +76,18 @@ export async function POST(req: Request) {
         }
         const endTime = Date.now();
 
-        const response = {
+        const response = NextResponse.json({
             "answer": direct_answer,
             "response_time": endTime - startTime,
             "status": 200
-        }
+        })
+        
+        // Set CORS headers for POST response
+        response.headers.set('Access-Control-Allow-Origin', 'https://www.strikingly.com');
+        response.headers.set('Access-Control-Allow-Methods', 'POST, OPTIONS');
+        response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     
-        return NextResponse.json(response);
+        return response;
     } catch (error) {
         const endTime = Date.now();
         let errorMessage = `${error},\n`
