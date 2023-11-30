@@ -13,6 +13,19 @@ export const maxDuration = 120;
 
 
 export async function POST(req: Request) {
+    if (req.method === 'OPTIONS') {
+        const headers = {
+            'Access-Control-Allow-Origin': '*', // Modify as needed
+            'Access-Control-Allow-Methods': 'POST, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        };
+        return new NextResponse(null, { status: 204, headers });
+    }
+
+    // Ensure that the method is POST
+    if (req.method !== 'POST') {
+        return new NextResponse(null, { status: 405 }); // Method Not Allowed
+    }
     const startTime = Date.now();
     
     console.log("=== EXTERNAL VITALIA API ENDPOINT ===");
@@ -62,27 +75,14 @@ export async function POST(req: Request) {
         }
         const endTime = Date.now();
 
-        const response = NextResponse.json({
+        const response = {
             "answer": direct_answer,
             "response_time": endTime - startTime,
             "status": 200
-        });
-
-        // Set CORS headers
-        response.headers.set('Access-Control-Allow-Origin', '*'); // allows requests from any origin
-        response.headers.set('Access-Control-Allow-Methods', 'POST, OPTIONS');
-        response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-
-        // Check for OPTIONS request (pre-flight request)
-        if (req.method === 'OPTIONS') {
-            // Send response with no body for OPTIONS requests
-            return new NextResponse(null, { status: 204, headers: response.headers });
         }
-
-        // Return response for POST request
-        return response;
-    
         
+    
+        return NextResponse.json(response);
     } catch (error) {
         const endTime = Date.now();
         let errorMessage = `${error},\n`
