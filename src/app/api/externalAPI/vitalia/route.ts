@@ -11,6 +11,18 @@ const openai = new OpenAI({
 export const maxDuration = 120;
 
 
+export async function OPTIONS(req: Request) {
+    // Set CORS headers
+    const headers = {
+        'Access-Control-Allow-Origin': '*', // Modify as needed for your use case
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        // Include any other headers you might need for your requests
+    };
+
+    // Return the response with CORS headers and no body
+    return new NextResponse(null, { status: 204, headers });
+}
 
 export async function POST(req: Request) {
     const startTime = Date.now();
