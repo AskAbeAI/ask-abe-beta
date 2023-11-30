@@ -10,22 +10,27 @@ const openai = new OpenAI({
 });
 export const maxDuration = 120;
 
-
-
-export async function POST(req: Request) {
-    if (req.method === 'OPTIONS') {
-        const headers = {
-            'Access-Control-Allow-Origin': '*', // Modify as needed
-            'Access-Control-Allow-Methods': 'POST, OPTIONS',
-            'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-        };
-        return new NextResponse(null, { status: 204, headers });
+export async function handler(req: Request) {
+    switch (req.method) {
+        case 'OPTIONS':
+            return handleOptions(req);
+        case 'POST':
+            return await handlePost(req);
+        default:
+            // Method Not Allowed for other methods
+            return new NextResponse(null, { status: 405 });
     }
+}
+function handleOptions(req: Request) {
+    const headers = {
+        'Access-Control-Allow-Origin': '*', // Modify as needed
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    };
+    return new NextResponse(null, { status: 204, headers });
+}
 
-    // Ensure that the method is POST
-    if (req.method !== 'POST') {
-        return new NextResponse(null, { status: 405 }); // Method Not Allowed
-    }
+async function handlePost(req: Request) {
     const startTime = Date.now();
     
     console.log("=== EXTERNAL VITALIA API ENDPOINT ===");
@@ -114,3 +119,4 @@ const createTextWithEmbeddedLink = (text: string): string => {
 
     return text;
 }
+export default handler;
