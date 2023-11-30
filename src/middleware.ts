@@ -8,7 +8,16 @@ import { NextRequest, NextResponse } from "next/server";
 
 
 export default authMiddleware({
-  publicRoutes: ["/", "/about", "/privacy","/tos", "/support", "/legal", "/how", "/devlog", "/devlogblog", "/playground", "/mission", "/api/(.*)"]
+  publicRoutes: ["/", "/about", "/privacy","/tos", "/support", "/legal", "/how", "/devlog", "/devlogblog", "/playground", "/mission", "/api/(.*)"],
+  afterAuth(auth, req, ev) {
+    const res = NextResponse.next();
+    if (req.nextUrl.pathname === '/api/externalAPI/vitalia') {
+      res.headers.append('Access-Control-Allow-Credentials', "false")
+      res.headers.append('Access-Control-Allow-Origin', '*') 
+      res.headers.append('Access-Control-Allow-Methods', 'POST, OPTIONS')
+      res.headers.append('Access-Control-Allow-Headers', 'Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date')
+    }
+  }
 });
  
 export const config = {
