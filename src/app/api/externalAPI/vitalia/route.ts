@@ -11,7 +11,8 @@ const openai = new OpenAI({
 export const maxDuration = 120;
 
 
-export async function OPTIONS(req: Request) {
+export function OPTIONS(req: Request) {
+    console.log(req.headers)
     // Set CORS headers
     const headers = {
         'Access-Control-Allow-Origin': '*', // Modify as needed for your use case
@@ -25,6 +26,7 @@ export async function OPTIONS(req: Request) {
 }
 
 export async function POST(req: Request) {
+    console.log(req.headers)
     const startTime = Date.now();
     
     console.log("=== EXTERNAL VITALIA API ENDPOINT ===");
