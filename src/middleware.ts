@@ -8,7 +8,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 
 export default authMiddleware({
-  publicRoutes: ["/", "/about", "/privacy","/tos", "/support", "/legal", "/how", "/devlog", "/devlogblog", "/playground", "/mission", "/api/(.*)"]
+  publicRoutes: ["/", "/about", "/privacy","/tos", "/support", "/legal", "/how", "/devlog", "/devlogblog", "/playground", "/mission", "/api/(.*)", "/iFrameContent"]
 });
  
 export const config = {
