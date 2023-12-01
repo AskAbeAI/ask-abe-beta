@@ -172,7 +172,7 @@ export default function EmbedPage() {
   const similaritySearch = async (question_jurisdiction: questionJurisdictions, user_query: string, specific_questions: string[]) => {
 
     const query_expansion_embedding = await queryExpansion(user_query, specific_questions);
-    addNewLoadingBlock(false);
+    
 
     console.log(question_jurisdiction)
     const requestBody = {
@@ -263,16 +263,19 @@ export default function EmbedPage() {
   }
 
   return (
-    <Frame title="Ask Abe Integration" style={{ width: '100%', height: '100%' }}
+    <Frame title="Ask Abe Integration" style={{ width: '100vh', height: '100vh' }}
       head={
         <>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+          
+          
           <script src="https://cdn.tailwindcss.com" async></script>
           
         </>
       }
     
     >
-      <div className="flex h-screen w-full px-3 py-3 bg-[#FAF5E6]">  
+      <div className="flex h-full w-full px-3 py-3 bg-[#FAF5E6]">  
         <div className="flex w-full style={(width: '100%')}">
           <div className="overflow-y-auto w-full" style={{ minHeight: '90vh', maxHeight: '90vh' }}>
             <ChatContainer
