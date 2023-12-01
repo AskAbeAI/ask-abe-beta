@@ -1,17 +1,17 @@
 "use client";
 // Import React dependencies
 import React, { useState, useEffect } from 'react';
+import CustomIFrame from '@/components/CustomIFrame';
 // Import UI components
 import BottomBar from '@/components/bottomBar';
 import ChatContainer from '@/components/chatContainer';
-import {DisclaimerModal, JurisdictionModal} from '@/components/disclaimermodal';
+
 // Import data types
-import { ContentType, ContentBlock, ContentBlockParams, CitationBlockProps, GroupedRows, Clarification } from "@/lib/types";
-import { node_as_row, node_key, SubTopic, GeneralTopic, TopicResponses, ClarificationChoices, PartialAnswer } from '@/lib/types';
-import { aggregateSiblingRows, generate_node_keys } from '@/lib/database';
-import CitationBar from '@/components/citationBar';
-import OptionsList from '@/components/optionsFilter';
-import { Option, Jurisdiction, OptionsListProps, questionJurisdictions } from '@/lib/types';
+import { ContentType, ContentBlock, ContentBlockParams,  GroupedRows, Clarification } from "@/lib/types";
+import { node_as_row,  ClarificationChoices} from '@/lib/types';
+import { aggregateSiblingRows } from '@/lib/database';
+
+import { Jurisdiction, questionJurisdictions } from '@/lib/types';
 // Helper functions
 import { constructPromptQuery, constructPromptQueryMisc } from '@/lib/utils';
 
@@ -262,30 +262,32 @@ export default function Playground() {
   }
 
   return (
-    <div className="flex h-screen w-full px-3 py-3 bg-[#FAF5E6]">  
-      <div className={`flex w-full ${citationsOpen ? 'hidden' : ''} style={(width: '100%')}`}>
-        <div className="overflow-y-auto w-full" style={{ minHeight: '90vh', maxHeight: '90vh' }}>
-          <ChatContainer
-            contentBlocks={contentBlocks}
-            onSubmitClarificationAnswers={dummyFunction}
-            onSubmitTopicChoices={dummyFunction}
-            onClarificationStreamEnd={dummyFunction}
-            onStreamEnd={onStreamEnd}
-            showCurrentLoading={showCurrentLoading}
-            setActiveCitationId={dummyFunction}
-          />
+    <CustomIFrame title="Ask Abe Integration">
+      <div className="flex h-screen w-full px-3 py-3 bg-[#FAF5E6]">  
+        <div className={`flex w-full ${citationsOpen ? 'hidden' : ''} style={(width: '100%')}`}>
+          <div className="overflow-y-auto w-full" style={{ minHeight: '90vh', maxHeight: '90vh' }}>
+            <ChatContainer
+              contentBlocks={contentBlocks}
+              onSubmitClarificationAnswers={dummyFunction}
+              onSubmitTopicChoices={dummyFunction}
+              onClarificationStreamEnd={dummyFunction}
+              onStreamEnd={onStreamEnd}
+              showCurrentLoading={showCurrentLoading}
+              setActiveCitationId={dummyFunction}
+            />
+          </div>
+        </div>
+        <div>
+          {/* BottomBar */}
+          {isFormVisible && (
+            <BottomBar
+              inputMode={inputMode}
+              handleSubmit={handleNewQuestion}
+              handleSubmitFollowup={dummyFunction}
+            />
+          )}
         </div>
       </div>
-      <div>
-        {/* BottomBar */}
-        {isFormVisible && (
-          <BottomBar
-            inputMode={inputMode}
-            handleSubmit={handleNewQuestion}
-            handleSubmitFollowup={dummyFunction}
-          />
-        )}
-      </div>
-    </div>
+    </CustomIFrame>
   );
 };
