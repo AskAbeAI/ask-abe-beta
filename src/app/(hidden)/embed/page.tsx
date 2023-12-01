@@ -106,7 +106,8 @@ export default function EmbedPage() {
       finalAnswer: params.finalAnswer,
       content_list: params.content_list,
       mode: params.mode,
-      neverLoad: params.neverLoad
+      neverLoad: params.neverLoad,
+      citationLinks: params.citationLinks
     };
 
     return newBlock;
@@ -201,6 +202,7 @@ export default function EmbedPage() {
       }
     });
     console.log("Received response from similaritySearch API!")
+    console.log(citationLinks)
     //console.log(primary_rows)
     const primary_jurisdiction: Jurisdiction = question_jurisdiction.misc!;
 
