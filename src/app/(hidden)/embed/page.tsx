@@ -275,9 +275,9 @@ export default function EmbedPage() {
       }
     
     >
-      <div className="flex h-full w-full px-5 py-5 bg-[#FAF5E6]">  
-        <div className="flex w-full" style={{width: '100%'}}>
-          <div className="overflow-y-auto w-full" style={{minHeight: '100vh', minWidth: '100vh'}}>
+      <div className="flex h-full w-full px-5 py-5 bg-[#FAF5E6]" style={{ minHeight: '100vh' }}>  
+        <div className="flex w-full" style={{ minHeight: '100vh' }}>
+          <div className="overflow-y-auto w-full" style={{ minHeight: '100vh' }}>
             <ChatContainer
               contentBlocks={contentBlocks}
               onSubmitClarificationAnswers={dummyFunction}
