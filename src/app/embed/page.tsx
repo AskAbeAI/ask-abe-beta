@@ -15,7 +15,7 @@ import { Jurisdiction, questionJurisdictions } from '@/lib/types';
 // Helper functions
 import { constructPromptQuery, constructPromptQueryMisc } from '@/lib/utils';
 
-export default function Playground() {
+export default function EmbedPage() {
 
   // State variables for UI components
   const [isFormVisible, setIsFormVisible] = useState(true);
