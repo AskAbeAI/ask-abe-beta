@@ -26,6 +26,19 @@ export default function EmbedPage() {
   const [streamingQueue, setStreamingQueue] = useState<ContentBlock[]>([]);
   const [showCurrentLoading, setShowCurrentLoading] = useState(false);
   const [inputMode, setInputMode] = useState<string>('vitalia');
+  useEffect(() => {
+    const handleTailwindLoad = (event: MessageEvent) => {
+      if (event.data.tailwindLoaded) {
+        // Tailwind CSS has loaded, re-render or update state as necessary
+      }
+    };
+  
+    window.addEventListener('message', handleTailwindLoad);
+  
+    return () => {
+      window.removeEventListener('message', handleTailwindLoad);
+    };
+  }, []);
 
   // State variables for contentBlocks
   const [contentBlocks, setContentBlocks] = useState<ContentBlock[]>([{
@@ -274,17 +287,24 @@ export default function EmbedPage() {
   const dummyFunction = async () => {
     return;
   }
+  
 
   return (
     <Frame title="Ask Abe Integration" style={{ width: '100%', minHeight: '100vh' }}
       head={
         <>
           <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-          <Script
-            src="https://cdn.tailwindcss.com"
-            strategy='beforeInteractive'
-          />
-          
+          <script src="https://cdn.tailwindcss.com" async></script>
+          <script dangerouslySetInnerHTML={{ __html: `
+        document.addEventListener('DOMContentLoaded', function() {
+          const tailwindScript = document.createElement('script');
+          tailwindScript.src = 'https://cdn.tailwindcss.com';
+          tailwindScript.onload = function() {
+            window.parent.postMessage({ tailwindLoaded: true }, '*');
+          };
+          document.head.appendChild(tailwindScript);
+        });
+      ` }}></script>
         </>
       }
     
