@@ -9,17 +9,21 @@ import { NextRequest, NextResponse } from "next/server";
 function middleware(request: NextRequest) {
   const nonce = Buffer.from(crypto.randomUUID()).toString('base64')
   const cspHeader = `
-    default-src 'self';
-    script-src 'self' 'nonce-${nonce}' 'strict-dynamic';
-    style-src 'self' 'nonce-${nonce}';
-    img-src 'self' blob: data:;
-    object-src 'none';
-    base-uri 'self';
-    form-action 'self';
-    frame-ancestors 'none';
-    block-all-mixed-content;
-    upgrade-insecure-requests;
+  
+  frame-ancestors 'self' *.strikingly.com;  
+  
 `
+  // style-src 'self' 'nonce-${nonce}';
+  // img-src 'self' blob: data:;
+  // font-src 'self';
+  // object-src 'none';
+  // base-uri 'self';
+  // form-action 'self';
+  // default-src 'self';
+  // script-src 'self' 'nonce-${nonce}' 'strict-dynamic';
+  // block-all-mixed-content;
+  // upgrade-insecure-requests;
+
   // Replace newline characters and spaces
   const contentSecurityPolicyHeaderValue = cspHeader
     .replace(/\s{2,}/g, ' ')
