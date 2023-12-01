@@ -8,7 +8,7 @@ import ChatContainer from '@/components/chatContainer';
 import Frame from 'react-frame-component';
 
 // Import data types
-import { ContentType, ContentBlock, ContentBlockParams,  GroupedRows, Clarification } from "@/lib/types";
+import { ContentType, ContentBlock, ContentBlockParams,  GroupedRows, Clarification, CitationLinks } from "@/lib/types";
 import { node_as_row,  ClarificationChoices} from '@/lib/types';
 import { aggregateSiblingRows } from '@/lib/database';
 
@@ -193,16 +193,24 @@ export default function EmbedPage() {
     const result = await response.json();
 
     let primary_rows: node_as_row[] = result.primary_rows;
+    const citationLinks: CitationLinks = {};
+
+    primary_rows.forEach(row => {
+      if (row.citation && row.link) {
+        citationLinks[row.citation] = row.link;
+      }
+    });
     console.log("Received response from similaritySearch API!")
-    console.log(primary_rows)
+    //console.log(primary_rows)
     const primary_jurisdiction: Jurisdiction = question_jurisdiction.misc!;
+
     
     
     // Get a set of all unique parent_nodes in combinedRows variable
     const primary_grouped_rows: GroupedRows = await aggregateSiblingRows(primary_rows, false, primary_jurisdiction);
     setQuestionJurisdictions(question_jurisdiction);
 
-    await directAnswering(user_query, specific_questions, primary_grouped_rows, {}, clarificationResponses);
+    await directAnswering(user_query, specific_questions, primary_grouped_rows, {}, clarificationResponses, citationLinks);
   };
 
   const directAnswering = async (
@@ -211,6 +219,7 @@ export default function EmbedPage() {
     primary_grouped_rows: GroupedRows,
     secondary_grouped_rows: GroupedRows,
     combinedClarifications: Clarification[],
+    citationLinks: CitationLinks
   ) => {
     console.log(questionJurisdictions);
 
@@ -248,14 +257,15 @@ export default function EmbedPage() {
     const direct_answer: string = result.directAnswer;
     console.log(direct_answer);
     const params: ContentBlockParams = {
-      type: ContentType.Answer,
+      type: ContentType.AnswerVitalia,
       content: direct_answer,
-      fake_stream: true,
+      fake_stream: false,
       concurrentStreaming: false,
+      citationLinks: citationLinks
     };
     await addContentBlock(createNewBlock(params));
     setIsFormVisible(true);
-    setInputMode("followup");
+    setInputMode("initial");
     return direct_answer;
   };
   const dummyFunction = async () => {

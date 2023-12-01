@@ -10,6 +10,7 @@ export enum ContentType {
   Welcome,
   WelcomeVitalia,
   Answer,
+  AnswerVitalia,
   Clarification,
   ClarificationQuestion,
   StreamingAnswer,
@@ -36,6 +37,7 @@ export type ContentBlockParams = {
   mode?: string;
   content_list?: string[];
   neverLoad?: boolean;
+  citationLinks?: CitationLinks;
 
 };
 export interface ContentBlock {
@@ -54,6 +56,7 @@ export interface ContentBlock {
   finalAnswer?: PartialAnswer[];
   optionchoices?: string[];
   neverLoad?: boolean;
+  citationLinks?: CitationLinks;
 }
 
 // Specific UI Block Props
@@ -64,6 +67,10 @@ export interface AnswerBlockProps {
   concurrentStreaming: boolean;
   onStreamEnd: (concurrentStreaming: boolean) => void;
   setActiveCitationId: (citationId: string) => void;
+}
+export interface AnswerVitaliaBlockProps {
+  content: string;
+  citationLinks: CitationLinks
 }
 export interface FinalAnswerBlockProps {
   content: string;
@@ -245,7 +252,7 @@ export interface JurisdictionModalProps {
   shown: boolean;
   setShown: () => void;
 }
-
+export type CitationLinks = Record<string, string>;
 // Types for UI Logic
 // Clarification types
 export type ClarificationChoices = {

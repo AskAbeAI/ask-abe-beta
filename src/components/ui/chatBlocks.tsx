@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useRef } from 'react';
 import { useEffect } from 'react';
-import { CitationBlockProps, AnswerBlockProps, QuestionBlockProps, ApprovalBlockProps, ClarificationBlockProps, ClarificationQuestionBlockProps, StreamingAnswerBlockProps, ClarificationChoices, TopicsBlockProps } from '@/lib/types';
+import { CitationBlockProps, AnswerBlockProps, AnswerVitaliaBlockProps, QuestionBlockProps, ApprovalBlockProps, ClarificationBlockProps, ClarificationQuestionBlockProps, StreamingAnswerBlockProps, ClarificationChoices, TopicsBlockProps } from '@/lib/types';
 import { GeneralTopic, SubTopic, TopicResponses, PartialAnswer, FinalAnswerBlockProps, Clarification } from '@/lib/types';
 import Image from 'next/image';
 import { AbeIconProps } from '@/lib/types';
@@ -120,6 +120,98 @@ export const AnswerBlock: React.FC<AnswerBlockProps> = ({ content, content_list,
             <li key={index} className="text-black">{answer}</li>
           ))}
           <p className=""> {finalText || ""}</p>
+        </div>
+      </div>
+    </div >
+  );
+};
+
+export const AnswerVitaliaBlock: React.FC<AnswerVitaliaBlockProps> = ({ content, citationLinks}) => {
+
+  const [displayedElementsCount, setDisplayedElementsCount] = useState(0);
+
+  const createTextWithEmbeddedLink = (text: string): JSX.Element[] => {
+    // Regular expression to match citations
+    // Replace all occurnces of "(#" with just "#"
+    text = text.replace(/\n§/g, "§");
+    text = text.replace(/\(#/g, '#');
+    // Replace all occurrences of "#)" with just "#"
+    text = text.replace(/#\)/g, '#');
+
+    const citationPattern = /###(.*?)###/g;
+
+    // Object to hold citation JSX elements, keyed by unique placeholders
+    const citations: Record<string, JSX.Element> = {};
+
+    // Replace citations in the text with placeholders and store the citations
+    const textWithPlaceholders = text.replace(citationPattern, (_, citation) => {
+      const placeholder = `CITATION_${Object.keys(citations).length}`;
+      citations[placeholder] = (
+        <a href={`${citationLinks[citation.trim()]}`} className="text-blue-500 hover:text-blue-700">
+          {citation.trim()}
+        </a>
+      );
+      return placeholder;
+    });
+    //console.log(citations);
+
+    // Split the text into words
+    const words = textWithPlaceholders.split(/\s+/);
+
+    // Convert words and placeholders to JSX elements
+    return words.map((word, index) => {
+      //console.log(word);
+
+
+      if (word.includes("CITATION_")) {
+        // temporarily remove a possible period or comma from the word
+        let toAdd = "";
+        if (word.includes(".")) {
+          toAdd = ". ";
+        } else if (word.includes(",")) {
+          toAdd = ", ";
+        }
+        const wordWithoutPunctuation = word.replace(/[.,]/g, '');
+
+        // Replace placeholder with the stored JSX element
+        return <React.Fragment key={`citation-${index}`}>{citations[wordWithoutPunctuation]}{toAdd}</React.Fragment>;
+      } else {
+        // Regular word
+        return <React.Fragment key={`word-${index}`}>{word + ' '}</React.Fragment>;
+      }
+    });
+  };
+  
+  const fullContentElements = createTextWithEmbeddedLink(content);
+
+  useEffect(() => {
+    
+
+      let wordIndex = 0;
+
+
+      const intervalId = setInterval(() => {
+        setDisplayedElementsCount(count => count + 1);
+        wordIndex++;
+
+        if (wordIndex >= fullContentElements.length) {
+          clearInterval(intervalId);
+          
+        }
+      }, 25); // Adjust interval time as needed
+
+      return () => clearInterval(intervalId);
+   
+  }, [content]);
+
+
+
+  return (
+
+    <div className="flex flex-col items-start">
+      <div className={`flex flex-col text-lg p-4 bg-response-color font-montserrat text-black rounded-lg shadow`}>
+        <div className="text-lg text-black font-montserrat">
+          <p>{fullContentElements.slice(0, displayedElementsCount)}</p>
         </div>
       </div>
     </div >
