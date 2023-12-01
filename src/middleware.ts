@@ -8,9 +8,12 @@ import { NextRequest, NextResponse } from "next/server";
 
 
 export default authMiddleware({
-  publicRoutes: ["/", "/about", "/privacy","/tos", "/support", "/legal", "/how", "/devlog", "/devlogblog", "/playground", "/mission", "/api/(.*)", "/iFrameContent"]
+  publicRoutes: ["/", "/about", "/privacy","/tos", "/support", "/legal", "/how", "/devlog", "/devlogblog", "/playground", "/mission", "/api/(.*)", "/iFrameContent/"]
 });
  
 export const config = {
       matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
-}; // sadly this doesn't work
+}; 
+
+
+// <iframe src="https://www.askabeai.com/iFrameContent" width="600" height="400"></iframe>
