@@ -172,7 +172,7 @@ export default function EmbedPage() {
   const similaritySearch = async (question_jurisdiction: questionJurisdictions, user_query: string, specific_questions: string[]) => {
 
     const query_expansion_embedding = await queryExpansion(user_query, specific_questions);
-    addNewLoadingBlock(false);
+    
 
     console.log(question_jurisdiction)
     const requestBody = {
