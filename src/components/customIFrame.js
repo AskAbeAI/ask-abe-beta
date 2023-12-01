@@ -11,7 +11,7 @@ const CustomIframe = ({
     contentRef?.contentWindow?.document?.body
 
   return (
-    <iframe {...props} ref={setContentRef}>
+    <iframe {...props} ref={setContentRef} style={{ width: '100%', height: '100%' }} >
       {mountNode && createPortal(children, mountNode)}
     </iframe>
   )
