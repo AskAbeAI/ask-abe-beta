@@ -8,7 +8,8 @@ import { NextRequest, NextResponse } from "next/server";
 
 
 export default authMiddleware({
-  publicRoutes: ["/", "/embed","/about", "/privacy","/tos", "/support", "/legal", "/how", "/devlog", "/devlogblog", "/playground", "/mission", "/api/(.*)"]
+  publicRoutes: ["/", "/embed","/about", "/privacy","/tos", "/support", "/legal", "/how", "/devlog", "/devlogblog", "/playground", "/mission", "/api/(.*)"],
+  debug: true,
 });
  
 export const config = {
@@ -16,4 +17,4 @@ export const config = {
 }; 
 
 
-// <iframe src="https://www.askabeai.com/iFrameContent" width="600" height="400"></iframe>
+// <iframe src="https://www.askabeai.com/embed" width="600" height="400"></iframe>
