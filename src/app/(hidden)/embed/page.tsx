@@ -24,7 +24,7 @@ export default function EmbedPage() {
   const [currentlyStreaming, setCurrentlyStreaming] = useState(false);
   const [streamingQueue, setStreamingQueue] = useState<ContentBlock[]>([]);
   const [showCurrentLoading, setShowCurrentLoading] = useState(false);
-  const [inputMode, setInputMode] = useState<string>('Initial');
+  const [inputMode, setInputMode] = useState<string>('vitalia');
 
   // State variables for contentBlocks
   const [contentBlocks, setContentBlocks] = useState<ContentBlock[]>([{
