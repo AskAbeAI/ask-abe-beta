@@ -37,7 +37,7 @@ export default function EmbedPage() {
       },
       {
         blockId: `id_${new Date().getTime()}_${Math.random().toString(36).substr(2, 9)}`,
-        type: ContentType.Welcome,
+        type: ContentType.WelcomeVitalia,
         content: "",
         fakeStream: false,
         concurrentStreaming: false,
