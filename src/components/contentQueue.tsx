@@ -1,5 +1,5 @@
 import { ContentBlock, ContentType, ClarificationChoices, TopicResponses, Clarification } from "../lib/types";
-import { QuestionBlock, ClarificationQuestionBlock, WelcomeBlock, TopicsBlock, AnswerBlock, FinalAnswerBlock, ClarificationBlock, StreamingAnswerBlock, ApprovalBlock, AbeIconLabel } from "@/components/ui/chatBlocks";
+import { QuestionBlock, ClarificationQuestionBlock, WelcomeBlock, WelcomeVitaliaBlock, TopicsBlock, AnswerBlock, FinalAnswerBlock, ClarificationBlock, StreamingAnswerBlock, ApprovalBlock, AbeIconLabel } from "@/components/ui/chatBlocks";
 import React from "react";
 
 
@@ -155,6 +155,13 @@ const ContentQueue: React.FC<ContentQueueProps> = ({
         return (
           <div className="flex justify-start w-5/6">
             <WelcomeBlock/>
+          </div>
+        );
+      }
+      case ContentType.WelcomeVitalia: {
+        return (
+          <div className="flex justify-start w-5/6">
+            <WelcomeVitaliaBlock/>
           </div>
         );
       }
