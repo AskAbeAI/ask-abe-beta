@@ -12,16 +12,8 @@ import { aggregateSiblingRows, generate_node_keys } from '@/lib/database';
 import CitationBar from '@/components/citationBar';
 import OptionsList from '@/components/optionsFilter';
 import { Option, Jurisdiction, OptionsListProps, questionJurisdictions } from '@/lib/types';
-
-import { StateJurisdictionOptions, FederalJurisdictionOptions, MiscJurisdictionOptions, ChatOptions } from '@/lib/types';
-
 // Helper functions
 import { constructPromptQuery, constructPromptQueryMisc } from '@/lib/utils';
-
-
-// Temporary variables
-
-
 
 export default function Playground() {
 
@@ -32,9 +24,6 @@ export default function Playground() {
   const [streamingQueue, setStreamingQueue] = useState<ContentBlock[]>([]);
   const [showCurrentLoading, setShowCurrentLoading] = useState(false);
   const [inputMode, setInputMode] = useState<string>('Initial');
-
-  // State variables for legal text, database search
-  
 
   // State variables for contentBlocks
   const [contentBlocks, setContentBlocks] = useState<ContentBlock[]>([{
@@ -56,8 +45,6 @@ export default function Playground() {
 
   // State variables for prompt logic
   const [question, setQuestion] = useState('');
-
- 
   const [clarificationResponses, setClarificationResponses] = useState<Clarification[]>([]);
   const [alreadyAnswered, setAlreadyAnswered] = useState(['']);
 
@@ -65,11 +52,8 @@ export default function Playground() {
   const [sessionID, setSessionID] = useState<string>("");
 
   // State variables for options and jurisdictions
-  const [selectedFederalJurisdiction, setSelectedFederalJurisdiction] = useState<Jurisdiction | undefined>(undefined);
-  const [selectedStateJurisdiction, setSelectedStateJurisdiction] = useState<Jurisdiction | undefined>(undefined);
   const [selectedMiscJurisdiction, setSelectedMiscJurisdiction] = useState<Jurisdiction | undefined>({id: '1', name: 'Vitalia Wiki', abbreviation: 'vitalia', corpusTitle: 'Vitalia Wiki Documentation', usesSubContentNodes: false, jurisdictionLevel: 'misc' });
   const [questionJurisdictions, setQuestionJurisdictions] = useState<questionJurisdictions>({mode: "misc", misc: {id: '1', name: 'Vitalia Wiki', abbreviation: 'vitalia', corpusTitle: 'Vitalia Wiki Documentation', usesSubContentNodes: false, jurisdictionLevel: 'misc' }, federal: undefined, state: undefined});
-
 
   // Generate Unique Sessiond IDs here
   function generateSessionID() {
@@ -82,8 +66,6 @@ export default function Playground() {
     // Add welcome block
   }, []);
 
-  
-
   // UI Component Block Functions
   const addContentBlock = async (newBlock: ContentBlock): Promise<string> => {
     if (newBlock.fakeStream) {
@@ -92,17 +74,6 @@ export default function Playground() {
     setShowCurrentLoading(false);
     setContentBlocks(currentBlocks => [...currentBlocks, newBlock]);
     return newBlock.blockId;
-  };
-
-  const addManyContentBlock = async (newBlocks: ContentBlock[]): Promise<void> => {
-    setCurrentlyStreaming(true);
-    setStreamingQueue(newBlocks);
-    //console.log(newBlocks);
-    setContentBlocks(currentBlocks => [...currentBlocks, ...newBlocks]);
-    
-
-    // console.log(currentlyStreaming);
-    return;
   };
 
   const addNewLoadingBlock = async (neverLoad: boolean, loadingMessage?: string) => {
@@ -171,49 +142,10 @@ export default function Playground() {
       concurrentStreaming: false
     };
     await addContentBlock(createNewBlock(newParams));
-    
-
     const question_jurisdictions = questionJurisdictions!;
-    
-
     addNewLoadingBlock(false);
     similaritySearch(question_jurisdictions, questionText, []);
-   
-      
-    
   };
-
-  const scoreQuestion = async (question_jurisdictions: questionJurisdictions, question: string): Promise<[number, string]> => {
-
-    const user_prompt_query: string = constructPromptQuery(question, question_jurisdictions.state?.corpusTitle || 'The Country Of ', question_jurisdictions.federal?.corpusTitle || "USA");
-
-    console.log(user_prompt_query);
-    const requestBody = {
-      user_prompt_query: user_prompt_query,
-    };
-    const response = await fetch('/api/improveQuery/queryScoring', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Session-ID': sessionID,
-      },
-      body: JSON.stringify(requestBody),
-
-    });
-    const result = await response.json();
-    const score: number = result.quality_score;
-    const message_to_user: string = result.message_to_user;
-    return [score, message_to_user];
-  };
-
-  // queryClarification API handlers
-
-
- 
-
-
-
-
 
   // queryExpansion API handlers
   const queryExpansion = async (user_query: string, specific_questions: string[]): Promise<string> => {
@@ -273,10 +205,6 @@ export default function Playground() {
     await directAnswering(user_query, specific_questions, primary_grouped_rows, {}, clarificationResponses);
   };
 
-
-
-  
-
   const directAnswering = async (
     user_query: string,
     specific_questions: string[],
@@ -330,20 +258,11 @@ export default function Playground() {
     setInputMode("followup");
     return direct_answer;
   };
-
-
   const dummyFunction = async () => {
     return;
   }
 
-  
-
-
-  
-
   return (
-
-
     <div className="flex h-screen w-full px-3 py-3 bg-[#FAF5E6]">  
       <div className={`flex w-full ${citationsOpen ? 'hidden' : ''} style={(width: '100%')}`}>
         <div className="overflow-y-auto w-full" style={{ minHeight: '90vh', maxHeight: '90vh' }}>
@@ -356,7 +275,6 @@ export default function Playground() {
             showCurrentLoading={showCurrentLoading}
             setActiveCitationId={dummyFunction}
           />
-
         </div>
       </div>
       <div>
