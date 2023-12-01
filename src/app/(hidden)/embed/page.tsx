@@ -266,13 +266,16 @@ export default function EmbedPage() {
     <Frame title="Ask Abe Integration" style={{ width: '100%', height: '100%' }}
       head={
         <>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+          
+          
           <script src="https://cdn.tailwindcss.com" async></script>
           
         </>
       }
     
     >
-      <div className="flex h-screen w-full px-3 py-3 bg-[#FAF5E6]">  
+      <div className="flex h-full w-full px-3 py-3 bg-[#FAF5E6]">  
         <div className="flex w-full style={(width: '100%')}">
           <div className="overflow-y-auto w-full" style={{ minHeight: '90vh', maxHeight: '90vh' }}>
             <ChatContainer
