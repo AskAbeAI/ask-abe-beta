@@ -263,7 +263,7 @@ export default function EmbedPage() {
   }
 
   return (
-    <Frame title="Ask Abe Integration" style={{ width: '200vh', height: '100vh' }}
+    <Frame title="Ask Abe Integration" style={{ width: '100%', height: '100%' }}
       head={
         <>
           <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
