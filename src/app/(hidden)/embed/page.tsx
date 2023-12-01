@@ -37,7 +37,7 @@ export default function EmbedPage() {
       },
       {
         blockId: `id_${new Date().getTime()}_${Math.random().toString(36).substr(2, 9)}`,
-        type: ContentType.Welcome,
+        type: ContentType.WelcomeVitalia,
         content: "",
         fakeStream: false,
         concurrentStreaming: false,
@@ -263,7 +263,7 @@ export default function EmbedPage() {
   }
 
   return (
-    <Frame title="Ask Abe Integration" style={{ width: '100vh', height: '100vh' }}
+    <Frame title="Ask Abe Integration" style={{ width: '200vh', height: '100vh' }}
       head={
         <>
           <meta name="viewport" content="width=device-width, initial-scale=1.0"/>

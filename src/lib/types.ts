@@ -8,6 +8,7 @@ export type Dataset = (typeof dataset)[number];
 export enum ContentType {
   Question,
   Welcome,
+  WelcomeVitalia,
   Answer,
   Clarification,
   ClarificationQuestion,
