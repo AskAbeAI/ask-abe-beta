@@ -279,9 +279,7 @@ export default function EmbedPage() {
       head={
         <>
           <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-          
-          
-          <script src="https://cdn.tailwindcss.com" async></script>
+          <script src="https://cdn.tailwindcss.com"></script>
           
         </>
       }
