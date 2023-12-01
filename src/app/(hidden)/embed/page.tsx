@@ -263,7 +263,7 @@ export default function EmbedPage() {
   }
 
   return (
-    <Frame title="Ask Abe Integration"
+    <Frame title="Ask Abe Integration" style={{ width: '100%', height: '100%' }}
       head={
         <>
           <script src="https://cdn.tailwindcss.com" async></script>
