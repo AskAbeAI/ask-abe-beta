@@ -22,7 +22,7 @@ export default function RootLayout({
     // <ClerkProvider>
 
       <html lang="en">
-        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"></link>
+        <link href="https://cdn.tailwindcss.com" rel="stylesheet"/>
         <body className={inter.className}>
          
           {children}
