@@ -1,7 +1,7 @@
 "use client";
 // Import React dependencies
 import React, { useState, useEffect } from 'react';
-import CustomIFrame from '@/components/CustomIFrame';
+import CustomIFrame from '@/components/customIFrame';
 // Import UI components
 import BottomBar from '@/components/bottomBar';
 import ChatContainer from '@/components/chatContainer';
