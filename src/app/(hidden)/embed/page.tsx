@@ -1,6 +1,7 @@
 "use client";
 // Import React dependencies
 import React, { useState, useEffect } from 'react';
+import Script from 'next/script';
 import CustomIFrame from '@/components/customIFrame';
 // Import UI components
 import BottomBar from '@/components/bottomBar';
@@ -279,7 +280,7 @@ export default function EmbedPage() {
       head={
         <>
           <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-          <script src="https://cdn.tailwindcss.com"></script>
+          <Script src="https://cdn.tailwindcss.com"></Script>
           
         </>
       }
