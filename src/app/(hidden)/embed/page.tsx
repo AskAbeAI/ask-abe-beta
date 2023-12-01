@@ -294,17 +294,9 @@ export default function EmbedPage() {
       head={
         <>
           <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-          <script src="https://cdn.tailwindcss.com" async></script>
-          <script dangerouslySetInnerHTML={{ __html: `
-        document.addEventListener('DOMContentLoaded', function() {
-          const tailwindScript = document.createElement('script');
-          tailwindScript.src = 'https://cdn.tailwindcss.com';
-          tailwindScript.onload = function() {
-            window.parent.postMessage({ tailwindLoaded: true }, '*');
-          };
-          document.head.appendChild(tailwindScript);
-        });
-      ` }}></script>
+          <link rel="stylesheet" href="https://askabeai.com/dist/styles.css"></link>
+          
+          
         </>
       }
     
