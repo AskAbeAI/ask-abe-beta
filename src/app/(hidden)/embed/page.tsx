@@ -267,6 +267,7 @@ export default function EmbedPage() {
       head={
         <>
           <script src="https://cdn.tailwindcss.com"></script>
+          
         </>
       }
     

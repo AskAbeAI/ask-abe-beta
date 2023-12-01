@@ -444,7 +444,7 @@ export const QuestionBlock: React.FC<QuestionBlockProps> = ({ content }) => {
   return (
     <div className="flex flex-col items-end">
       <UserIconLabel />
-      <div className={` p-2 bg-user-color rounded-lg shadow`}>
+      <div className="p-2 bg-[#B2d2da] rounded-lg shadow">
         <h3 className="font-montserrat text-lg text-black">{content}</h3>
       </div>
     </div>
