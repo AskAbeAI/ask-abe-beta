@@ -23,7 +23,7 @@ export default function RootLayout({
 
       <html lang="en">
         <link href="https://cdn.tailwindcss.com" rel="stylesheet"/>
-        <body className={inter.className} style={{height: "500", width: "1000"}}>
+        <body className={inter.className} style={{ width: '100%', height: '100%' }}>
          
           {children}
           {/* <PageFooter /> */}
