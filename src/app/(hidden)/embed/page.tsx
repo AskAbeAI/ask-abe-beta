@@ -266,7 +266,7 @@ export default function EmbedPage() {
     <Frame title="Ask Abe Integration"
       head={
         <>
-          <script src="https://cdn.tailwindcss.com"></script>
+          <script src="https://cdn.tailwindcss.com" async></script>
           
         </>
       }
