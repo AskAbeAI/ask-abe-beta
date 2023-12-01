@@ -42,7 +42,6 @@ export default function Playground() {
         concurrentStreaming: false,
       }
      ]);
-
   // State variables for prompt logic
   const [question, setQuestion] = useState('');
   const [clarificationResponses, setClarificationResponses] = useState<Clarification[]>([]);
