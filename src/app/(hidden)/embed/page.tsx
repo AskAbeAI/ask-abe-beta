@@ -263,7 +263,7 @@ export default function EmbedPage() {
   }
 
   return (
-    <Frame title="Ask Abe Integration" style={{ width: '200vh', height: '100vh' }}
+    <Frame title="Ask Abe Integration" style={{ width: '100%', height: '100%' }}
       head={
         <>
           <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -275,9 +275,9 @@ export default function EmbedPage() {
       }
     
     >
-      <div className="flex h-full w-full px-3 py-3 bg-[#FAF5E6]">  
-        <div className="flex w-full style={(width: '100%')}">
-          <div className="overflow-y-auto w-full" style={{ minHeight: '90vh', maxHeight: '90vh' }}>
+      <div className="flex h-full w-full px-5 py-5 bg-[#FAF5E6]">  
+        <div className="flex w-full" style={{width: '100%'}}>
+          <div className="overflow-y-auto w-full" style={{height: '100%'}}>
             <ChatContainer
               contentBlocks={contentBlocks}
               onSubmitClarificationAnswers={dummyFunction}
