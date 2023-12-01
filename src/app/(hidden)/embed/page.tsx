@@ -5,6 +5,7 @@ import CustomIFrame from '@/components/customIFrame';
 // Import UI components
 import BottomBar from '@/components/bottomBar';
 import ChatContainer from '@/components/chatContainer';
+import Frame from 'react-frame-component';
 
 // Import data types
 import { ContentType, ContentBlock, ContentBlockParams,  GroupedRows, Clarification } from "@/lib/types";
@@ -262,9 +263,16 @@ export default function EmbedPage() {
   }
 
   return (
-    <CustomIFrame title="Ask Abe Integration">
+    <Frame title="Ask Abe Integration"
+      head={
+        <>
+          <script src="https://cdn.tailwindcss.com"></script>
+        </>
+      }
+    
+    >
       <div className="flex h-screen w-full px-3 py-3 bg-[#FAF5E6]">  
-        <div className={`flex w-full ${citationsOpen ? 'hidden' : ''} style={(width: '100%')}`}>
+        <div className="flex w-full style={(width: '100%')}">
           <div className="overflow-y-auto w-full" style={{ minHeight: '90vh', maxHeight: '90vh' }}>
             <ChatContainer
               contentBlocks={contentBlocks}
@@ -288,6 +296,6 @@ export default function EmbedPage() {
           )}
         </div>
       </div>
-    </CustomIFrame>
+    </Frame>
   );
 };
