@@ -1,5 +1,5 @@
 import { ContentBlock, ContentType, ClarificationChoices, TopicResponses, Clarification } from "../lib/types";
-import { QuestionBlock, ClarificationQuestionBlock, WelcomeBlock, WelcomeVitaliaBlock, TopicsBlock, AnswerBlock, FinalAnswerBlock, ClarificationBlock, StreamingAnswerBlock, ApprovalBlock, AbeIconLabel } from "@/components/ui/chatBlocks";
+import { QuestionBlock, AnswerVitaliaBlock, ClarificationQuestionBlock, WelcomeBlock, WelcomeVitaliaBlock, TopicsBlock, AnswerBlock, FinalAnswerBlock, ClarificationBlock, StreamingAnswerBlock, ApprovalBlock, AbeIconLabel } from "@/components/ui/chatBlocks";
 import React from "react";
 
 
@@ -60,6 +60,15 @@ const ContentQueue: React.FC<ContentQueueProps> = ({
             />
           </div>
         );
+        case ContentType.AnswerVitalia:
+          return (
+            <div className="flex justify-start w-5/6">
+              <AnswerVitaliaBlock
+                content={item.content}
+                citationLinks={item.citationLinks!}
+              />
+            </div>
+          );
       case ContentType.StreamingAnswer:
         return <StreamingAnswerBlock content={item.content} />;
       case ContentType.Approval:

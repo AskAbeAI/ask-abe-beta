@@ -57,7 +57,6 @@ export default authMiddleware({
   },
   publicRoutes: ["/","/about", "/privacy","/tos", "/support", "/legal", "/how", "/devlog", "/devlogblog", "/playground", "/mission", "/api/(.*)"],
   ignoredRoutes: ["/embed"],
-  debug: true,
 });
  
 export const config = {

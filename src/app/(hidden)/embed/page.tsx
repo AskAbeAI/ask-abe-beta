@@ -1,6 +1,7 @@
 "use client";
 // Import React dependencies
 import React, { useState, useEffect } from 'react';
+import Script from 'next/script';
 import CustomIFrame from '@/components/customIFrame';
 // Import UI components
 import BottomBar from '@/components/bottomBar';
@@ -8,7 +9,7 @@ import ChatContainer from '@/components/chatContainer';
 import Frame from 'react-frame-component';
 
 // Import data types
-import { ContentType, ContentBlock, ContentBlockParams,  GroupedRows, Clarification } from "@/lib/types";
+import { ContentType, ContentBlock, ContentBlockParams,  GroupedRows, Clarification, CitationLinks } from "@/lib/types";
 import { node_as_row,  ClarificationChoices} from '@/lib/types';
 import { aggregateSiblingRows } from '@/lib/database';
 
@@ -24,7 +25,20 @@ export default function EmbedPage() {
   const [currentlyStreaming, setCurrentlyStreaming] = useState(false);
   const [streamingQueue, setStreamingQueue] = useState<ContentBlock[]>([]);
   const [showCurrentLoading, setShowCurrentLoading] = useState(false);
-  const [inputMode, setInputMode] = useState<string>('Initial');
+  const [inputMode, setInputMode] = useState<string>('vitalia');
+  useEffect(() => {
+    const handleTailwindLoad = (event: MessageEvent) => {
+      if (event.data.tailwindLoaded) {
+        // Tailwind CSS has loaded, re-render or update state as necessary
+      }
+    };
+  
+    window.addEventListener('message', handleTailwindLoad);
+  
+    return () => {
+      window.removeEventListener('message', handleTailwindLoad);
+    };
+  }, []);
 
   // State variables for contentBlocks
   const [contentBlocks, setContentBlocks] = useState<ContentBlock[]>([{
@@ -106,7 +120,8 @@ export default function EmbedPage() {
       finalAnswer: params.finalAnswer,
       content_list: params.content_list,
       mode: params.mode,
-      neverLoad: params.neverLoad
+      neverLoad: params.neverLoad,
+      citationLinks: params.citationLinks
     };
 
     return newBlock;
@@ -193,16 +208,25 @@ export default function EmbedPage() {
     const result = await response.json();
 
     let primary_rows: node_as_row[] = result.primary_rows;
+    const citationLinks: CitationLinks = {};
+
+    primary_rows.forEach(row => {
+      if (row.citation && row.link) {
+        citationLinks[row.citation] = row.link;
+      }
+    });
     console.log("Received response from similaritySearch API!")
-    console.log(primary_rows)
+    console.log(citationLinks)
+    //console.log(primary_rows)
     const primary_jurisdiction: Jurisdiction = question_jurisdiction.misc!;
+
     
     
     // Get a set of all unique parent_nodes in combinedRows variable
     const primary_grouped_rows: GroupedRows = await aggregateSiblingRows(primary_rows, false, primary_jurisdiction);
     setQuestionJurisdictions(question_jurisdiction);
 
-    await directAnswering(user_query, specific_questions, primary_grouped_rows, {}, clarificationResponses);
+    await directAnswering(user_query, specific_questions, primary_grouped_rows, {}, clarificationResponses, citationLinks);
   };
 
   const directAnswering = async (
@@ -211,6 +235,7 @@ export default function EmbedPage() {
     primary_grouped_rows: GroupedRows,
     secondary_grouped_rows: GroupedRows,
     combinedClarifications: Clarification[],
+    citationLinks: CitationLinks
   ) => {
     console.log(questionJurisdictions);
 
@@ -248,36 +273,37 @@ export default function EmbedPage() {
     const direct_answer: string = result.directAnswer;
     console.log(direct_answer);
     const params: ContentBlockParams = {
-      type: ContentType.Answer,
+      type: ContentType.AnswerVitalia,
       content: direct_answer,
-      fake_stream: true,
+      fake_stream: false,
       concurrentStreaming: false,
+      citationLinks: citationLinks
     };
     await addContentBlock(createNewBlock(params));
     setIsFormVisible(true);
-    setInputMode("followup");
+    setInputMode("initial");
     return direct_answer;
   };
   const dummyFunction = async () => {
     return;
   }
+  
 
   return (
-    <Frame title="Ask Abe Integration" style={{ width: '100%', height: '100%' }}
+    <Frame title="Ask Abe Integration" style={{ width: '100%', minHeight: '100vh' }}
       head={
         <>
           <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+          <link rel="stylesheet" href="https://askabeai.com/dist/styles.css"></link>
           
-          
-          <script src="https://cdn.tailwindcss.com" async></script>
           
         </>
       }
     
     >
-      <div className="flex h-full w-full px-5 py-5 bg-[#FAF5E6]">  
-        <div className="flex w-full" style={{width: '100%'}}>
-          <div className="overflow-y-auto w-full" style={{minHeight: '100vh', minWidth: '100vh'}}>
+      <div className="flex h-full w-full px-5 py-5 bg-[#FAF5E6]" style={{ minHeight: '100vh' }}>  
+        <div className="flex w-full" style={{ minHeight: '100vh' }}>
+          <div className="overflow-y-auto w-full" style={{ minHeight: '90vh' }}>
             <ChatContainer
               contentBlocks={contentBlocks}
               onSubmitClarificationAnswers={dummyFunction}

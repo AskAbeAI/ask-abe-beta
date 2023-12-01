@@ -24,9 +24,6 @@ const BottomBar: React.FC<BottomBarProps> = ({
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Input mode: " + inputMode)
-    console.log("input message: " + inputMessage)
-    console.log("question: " + question)
     console.log(inputMode === 'followup');
     if (inputMode === 'followup') {
 
@@ -56,6 +53,8 @@ const BottomBar: React.FC<BottomBarProps> = ({
   useEffect(() => {
     if (inputMode === 'followup') {
       setInputMessage('Ask a follow-up question');
+    } else if (inputMode === 'vitalia') {
+      setInputMessage('Ask a question about Vitalia 2024');
     }
   }, [inputMode]);
 
