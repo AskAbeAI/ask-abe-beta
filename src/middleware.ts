@@ -31,6 +31,7 @@ function middleware(request: NextRequest) {
  
   const requestHeaders = new Headers(request.headers)
   requestHeaders.set('x-nonce', nonce)
+  requestHeaders.set("Access-Control-Allow-Credentials", "true")
   requestHeaders.set('Access-Control-Allow-Origin', 'https://www.strikingly.com')
   requestHeaders.set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
   requestHeaders.set('Access-Control-Allow-Headers', 'Content-Type, Authorization')
@@ -51,6 +52,11 @@ function middleware(request: NextRequest) {
     'Content-Security-Policy',
     contentSecurityPolicyHeaderValue
   )
+  response.headers.set('x-nonce', nonce)
+  response.headers.set("Access-Control-Allow-Credentials", "true")
+  response.headers.set('Access-Control-Allow-Origin', 'https://www.strikingly.com')
+  response.headers.set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
+  response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization')
  
   return response
 }
@@ -60,8 +66,8 @@ export default authMiddleware({
     // Execute next-intl middleware before Clerk's auth middleware
     return middleware(req);
   },
-  publicRoutes: ["/","/about", "/privacy","/tos", "/support", "/legal", "/how", "/devlog", "/devlogblog", "/playground", "/mission", "/api/(.*)"],
-  ignoredRoutes: ["/embed"],
+  publicRoutes: ["/","/embed","/about", "/privacy","/tos", "/support", "/legal", "/how", "/devlog", "/devlogblog", "/playground", "/mission", "/api/(.*)"],
+  
   debug: true,
 });
  
