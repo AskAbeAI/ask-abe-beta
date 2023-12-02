@@ -64,8 +64,7 @@ export async function POST(req: Request) {
         
         Answer the user's more specific question as best you can. For broad or general questions, it's okay to give a general overview.`
         
-        const direct_answer_raw = await generateDirectAnswer(openai, original_question, instructions, text_citation_pairs);
-        let direct_answer = createTextWithEmbeddedLink(direct_answer_raw);
+        const direct_answer = await generateDirectAnswer(openai, original_question, instructions, text_citation_pairs);
         const citationLinks: CitationLinks = {};
         for (const row of rows) {
             citationLinks[row.citation] = row.link!
