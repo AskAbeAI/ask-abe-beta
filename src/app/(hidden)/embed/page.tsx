@@ -1,9 +1,6 @@
 "use client";
 // Import React dependencies
 import React, { useState, useEffect } from 'react';
-import Script from 'next/script';
-import CustomIFrame from '@/components/customIFrame';
-import { NextResponse } from 'next/server';
 // Import UI components
 import BottomBar from '@/components/bottomBar';
 import ChatContainer from '@/components/chatContainer';
@@ -11,29 +8,11 @@ import Frame from 'react-frame-component';
 
 // Import data types
 import { ContentType, ContentBlock, ContentBlockParams, Clarification, CitationLinks } from "@/lib/types";
-import { node_as_row,  ClarificationChoices} from '@/lib/types';
-
-
-import { Jurisdiction, GroupedRows, questionJurisdictions } from '@/lib/types';
-// Helper functions
-import { constructPromptQuery, constructPromptQueryMisc } from '@/lib/utils';
-
-
-import { generateDirectAnswer, generateEmbedding, generateQueryRefinement, convertGroupedRowsToTextCitationPairs } from '@/lib/helpers';
-
-import OpenAI from "openai";
-import { insert_api_debug_log, jurisdiction_similarity_search_all_partitions, aggregateSiblingRows } from '@/lib/database';
-
-const openAiKey = process.env.OPENAI_API_KEY;
-const openai = new OpenAI({
-  apiKey: openAiKey,
-});
 
 export default function EmbedPage() {
 
   // State variables for UI components
   const [isFormVisible, setIsFormVisible] = useState(true);
-  
   const [currentlyStreaming, setCurrentlyStreaming] = useState(false);
   const [streamingQueue, setStreamingQueue] = useState<ContentBlock[]>([]);
   const [showCurrentLoading, setShowCurrentLoading] = useState(false);
@@ -72,7 +51,6 @@ export default function EmbedPage() {
      ]);
   // State variables for prompt logic
   const [question, setQuestion] = useState('');
-  const [clarificationResponses, setClarificationResponses] = useState<Clarification[]>([]);
   const [alreadyAnswered, setAlreadyAnswered] = useState(['']);
 
   // State variables for session
@@ -155,9 +133,7 @@ export default function EmbedPage() {
     setQuestion(questionText);
     if (!questionText) return;
     setIsFormVisible(false); // Hide the form when a question is submitted
-    const embedding = JSON.parse(JSON.stringify(await generateEmbedding(openai, [question])));
-     // Create a question block
-     let newParams: ContentBlockParams = {
+    let newParams: ContentBlockParams = {
       type: ContentType.Question,
       content: questionText,
       fake_stream: false,
@@ -165,36 +141,29 @@ export default function EmbedPage() {
     };
     await addContentBlock(createNewBlock(newParams));
     addNewLoadingBlock(false);
-    const rows = await jurisdiction_similarity_search_all_partitions("vitalia", embedding, 0.6, 10, 15, process.env.supabaseUrl!, process.env.supabaseKey!);
-    let primary_rows: node_as_row[] = rows;
-    const citationLinks: CitationLinks = {};
 
-    primary_rows.forEach(row => {
-      if (row.citation && row.link) {
-        citationLinks[row.citation] = row.link;
-      }
+    const vitalia_api_key = "ak_EjMsYGPJpLHcb48r4uCfP2ZYyrjw";
+    const request = {
+      api_key: vitalia_api_key,
+      question: question,
+    }
+    const response = await fetch("/api/externalAPI/vitalia", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(request)
     });
-    const jurisdiction: Jurisdiction = {id: '1', name: 'Vitalia Wiki', abbreviation: 'vitalia', corpusTitle: 'Vitalia Wiki Documentation', usesSubContentNodes: false, jurisdictionLevel: 'misc' };
-    const combined_parent_nodes: GroupedRows = await aggregateSiblingRows(rows, false, jurisdiction);
-    const text_citation_pairs = convertGroupedRowsToTextCitationPairs(combined_parent_nodes);
-    const instructions = `The user is looking to receive information about Vitalia 2024, which is a popup city event in the special economic zone of Prospera, on the island of Roatan Honduras. Here are some general facts that may help with answering: Location: Vitalia 2024 will be hosted in Próspera, a Special Economic Zone on the island of Roatan, Honduras.
-    Duration: The pop-up city experience will take place from Jan 6th to March 1st 2024, and encourages a minimum stay of 1 month, with a focus on participants willing to spend at least 2 months.
-    Cost: Room pricing ranges from $1,000 to $3,000 per month, including accommodation and shared amenities like a gym and shared cars.
-    Who's Coming: The resident profile consists of scientists, entrepreneurs, artists, and thinkers specializing in fields like longevity biotechnology, healthcare, and decentralized governance.
-    Work Compatibility: Vitalia is not a conference; participants are encouraged to bring their work with them.
-    Amenities: The package includes medium-range private suites, free-use facilities like a gym and pool, on-site healthcare, and logistical services like car pooling.
-    Additional Services: Childcare services and a variety of wellness activities organized by residents are available.
-    Local Community: Roatan has a diverse and friendly local community with many accepting Bitcoin and other cryptocurrencies.
-    Acceleration of Longevity Innovation: Vitalia, long-term, aims to eliminate bureaucratic roadblocks to speed up clinical trials and lower costs in the longevity field.
-    
-    Answer the user's more specific question as best you can. For broad or general questions, it's okay to give a general overview.`
+    const response_json = await response.json();
+    const answer = response_json.answer;
+    const citationLinks: CitationLinks = response_json.citationLinks;
+
     setAlreadyAnswered(alreadyAnswered => [...alreadyAnswered, question]);
-    const direct_answer = await generateDirectAnswer(openai, question, instructions, text_citation_pairs);
     
     const endTime = Date.now();
     const params: ContentBlockParams = {
       type: ContentType.AnswerVitalia,
-      content: direct_answer,
+      content: answer,
       fake_stream: false,
       concurrentStreaming: false,
       citationLinks: citationLinks

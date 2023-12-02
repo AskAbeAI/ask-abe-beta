@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { generateDirectAnswer, generateEmbedding, generateQueryRefinement, convertGroupedRowsToTextCitationPairs } from '@/lib/helpers';
-import { GroupedRows, Jurisdiction } from '@/lib/types';
+import { GroupedRows, Jurisdiction, CitationLinks } from '@/lib/types';
 import OpenAI from "openai";
 import { insert_api_debug_log, jurisdiction_similarity_search_all_partitions, aggregateSiblingRows } from '@/lib/database';
 
@@ -66,18 +66,15 @@ export async function POST(req: Request) {
         
         const direct_answer_raw = await generateDirectAnswer(openai, original_question, instructions, text_citation_pairs);
         let direct_answer = createTextWithEmbeddedLink(direct_answer_raw);
+        const citationLinks: CitationLinks = {};
         for (const row of rows) {
-            if (direct_answer.includes(row.citation)) {
-                // find the index of row.citation in direct_answer
-                const index = direct_answer.indexOf(row.citation);
-                // Replace the citation with the row.link, while also removing the character right before index
-                direct_answer = direct_answer.slice(0, index - 1) + row.link + direct_answer.slice(index + row.citation.length);
-            }
+            citationLinks[row.citation] = row.link!
         }
         const endTime = Date.now();
 
         const response = NextResponse.json({
             "answer": direct_answer,
+            "citationLinks": citationLinks,
             "response_time": endTime - startTime,
             "status": 200
         })
