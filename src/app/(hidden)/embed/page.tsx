@@ -281,7 +281,7 @@ export default function EmbedPage() {
     };
     await addContentBlock(createNewBlock(params));
     setIsFormVisible(true);
-    setInputMode("initial");
+    setInputMode("vitalia");
     return direct_answer;
   };
   const dummyFunction = async () => {

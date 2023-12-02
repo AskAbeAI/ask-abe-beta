@@ -727,7 +727,7 @@ export const WelcomeBlock: React.FC = () => {
 
 export const WelcomeVitaliaBlock: React.FC = () => {
   return (
-    <div className="p-4 background-color: rgb(229 231 235); rounded-md shadow">
+    <div className="p-4 bg-gray-200 rounded-md shadow">
       <p className="text-lg font-semibold">Hello! I&apos;m Abe, welcome to the Vitalia Wiki.  </p>
       <p className="text-lg">
        Ask me a question!.
