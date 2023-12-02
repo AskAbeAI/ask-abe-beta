@@ -147,6 +147,7 @@ export default function EmbedPage() {
       api_key: vitalia_api_key,
       question: question,
     }
+    console.log("Sending request to Quarantined API")
     const response = await fetch("/api/externalAPI/vitalia", {
       method: 'POST',
       headers: {
@@ -154,7 +155,9 @@ export default function EmbedPage() {
       },
       body: JSON.stringify(request)
     });
+    console.log("Received response from Quarantined API")
     const response_json = await response.json();
+    console.log(response_json);
     const answer = response_json.answer;
     const citationLinks: CitationLinks = response_json.citationLinks;
 
