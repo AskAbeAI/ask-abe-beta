@@ -10,25 +10,35 @@ import ChatContainer from '@/components/chatContainer';
 import Frame from 'react-frame-component';
 
 // Import data types
-import { ContentType, ContentBlock, ContentBlockParams,  GroupedRows, Clarification, CitationLinks } from "@/lib/types";
+import { ContentType, ContentBlock, ContentBlockParams, Clarification, CitationLinks } from "@/lib/types";
 import { node_as_row,  ClarificationChoices} from '@/lib/types';
-import { aggregateSiblingRows } from '@/lib/database';
 
-import { Jurisdiction, questionJurisdictions } from '@/lib/types';
+
+import { Jurisdiction, GroupedRows, questionJurisdictions } from '@/lib/types';
 // Helper functions
 import { constructPromptQuery, constructPromptQueryMisc } from '@/lib/utils';
 
 
+import { generateDirectAnswer, generateEmbedding, generateQueryRefinement, convertGroupedRowsToTextCitationPairs } from '@/lib/helpers';
+
+import OpenAI from "openai";
+import { insert_api_debug_log, jurisdiction_similarity_search_all_partitions, aggregateSiblingRows } from '@/lib/database';
+
+const openAiKey = process.env.OPENAI_API_KEY;
+const openai = new OpenAI({
+  apiKey: openAiKey,
+});
 
 export default function EmbedPage() {
 
   // State variables for UI components
   const [isFormVisible, setIsFormVisible] = useState(true);
-  const [citationsOpen, setCitationsOpen] = useState(false);
+  
   const [currentlyStreaming, setCurrentlyStreaming] = useState(false);
   const [streamingQueue, setStreamingQueue] = useState<ContentBlock[]>([]);
   const [showCurrentLoading, setShowCurrentLoading] = useState(false);
   const [inputMode, setInputMode] = useState<string>('vitalia');
+
   useEffect(() => {
     const handleTailwindLoad = (event: MessageEvent) => {
       if (event.data.tailwindLoaded) {
@@ -68,19 +78,14 @@ export default function EmbedPage() {
   // State variables for session
   const [sessionID, setSessionID] = useState<string>("");
 
-  // State variables for options and jurisdictions
-  const [selectedMiscJurisdiction, setSelectedMiscJurisdiction] = useState<Jurisdiction | undefined>({id: '1', name: 'Vitalia Wiki', abbreviation: 'vitalia', corpusTitle: 'Vitalia Wiki Documentation', usesSubContentNodes: false, jurisdictionLevel: 'misc' });
-  const [questionJurisdictions, setQuestionJurisdictions] = useState<questionJurisdictions>({mode: "misc", misc: {id: '1', name: 'Vitalia Wiki', abbreviation: 'vitalia', corpusTitle: 'Vitalia Wiki Documentation', usesSubContentNodes: false, jurisdictionLevel: 'misc' }, federal: undefined, state: undefined});
 
+  
   // Generate Unique Sessiond IDs here
-  function generateSessionID() {
-    return `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-  }
   useEffect(() => {
-    const sessionID = generateSessionID();
+    const sessionID = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
     console.log(`Generated new session ID: ${sessionID}`);
     setSessionID(sessionID);
-    // Add welcome block
+
   }, []);
 
   // UI Component Block Functions
@@ -146,71 +151,22 @@ export default function EmbedPage() {
 
   // Logic for starting question answering process
   const handleNewQuestion = async (question: string) => {
-    
-    setIsFormVisible(false); // Hide the form when a question is submitted
     const questionText = question.trim();
     setQuestion(questionText);
     if (!questionText) return;
-
-    // Create a question block
-    let newParams: ContentBlockParams = {
+    setIsFormVisible(false); // Hide the form when a question is submitted
+    const embedding = JSON.parse(JSON.stringify(await generateEmbedding(openai, [question])));
+     // Create a question block
+     let newParams: ContentBlockParams = {
       type: ContentType.Question,
       content: questionText,
       fake_stream: false,
       concurrentStreaming: false
     };
     await addContentBlock(createNewBlock(newParams));
-    const question_jurisdictions = questionJurisdictions!;
     addNewLoadingBlock(false);
-    similaritySearch(question_jurisdictions, questionText, []);
-  };
-
-  // queryExpansion API handlers
-  const queryExpansion = async (user_query: string, specific_questions: string[]): Promise<string> => {
-    const requestBody = {
-      query: user_query,
-      refined_question: user_query,
-      specific_questions: specific_questions,
-    };
-    const response = await fetch('/api/improveQuery/queryExpansion', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Session-ID': sessionID,
-      },
-      body: JSON.stringify(requestBody),
-    });
-
-    const result = await response.json();
-    const embedding = result.embedded_expansion_query;
-    return embedding;
-  };
-
-  // similaritySearch API handler
-  const similaritySearch = async (question_jurisdiction: questionJurisdictions, user_query: string, specific_questions: string[]) => {
-
-    const query_expansion_embedding = await queryExpansion(user_query, specific_questions);
-    
-
-    console.log(question_jurisdiction)
-    const requestBody = {
-      jurisdictions: question_jurisdiction,
-      query_expansion_embedding: query_expansion_embedding,
-    };
-    console.log("  - Sending request to similaritySearch API!");
-    const response = await fetch('/api/searchDatabase/similaritySearch', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Session-ID': sessionID,
-      },
-      body: JSON.stringify(requestBody),
-    });
-    
-
-    const result = await response.json();
-
-    let primary_rows: node_as_row[] = result.primary_rows;
+    const rows = await jurisdiction_similarity_search_all_partitions("vitalia", embedding, 0.6, 10, 15, process.env.supabaseUrl!, process.env.supabaseKey!);
+    let primary_rows: node_as_row[] = rows;
     const citationLinks: CitationLinks = {};
 
     primary_rows.forEach(row => {
@@ -218,63 +174,24 @@ export default function EmbedPage() {
         citationLinks[row.citation] = row.link;
       }
     });
-    console.log("Received response from similaritySearch API!")
-    console.log(citationLinks)
-    //console.log(primary_rows)
-    const primary_jurisdiction: Jurisdiction = question_jurisdiction.misc!;
-
+    const jurisdiction: Jurisdiction = {id: '1', name: 'Vitalia Wiki', abbreviation: 'vitalia', corpusTitle: 'Vitalia Wiki Documentation', usesSubContentNodes: false, jurisdictionLevel: 'misc' };
+    const combined_parent_nodes: GroupedRows = await aggregateSiblingRows(rows, false, jurisdiction);
+    const text_citation_pairs = convertGroupedRowsToTextCitationPairs(combined_parent_nodes);
+    const instructions = `The user is looking to receive information about Vitalia 2024, which is a popup city event in the special economic zone of Prospera, on the island of Roatan Honduras. Here are some general facts that may help with answering: Location: Vitalia 2024 will be hosted in Próspera, a Special Economic Zone on the island of Roatan, Honduras.
+    Duration: The pop-up city experience will take place from Jan 6th to March 1st 2024, and encourages a minimum stay of 1 month, with a focus on participants willing to spend at least 2 months.
+    Cost: Room pricing ranges from $1,000 to $3,000 per month, including accommodation and shared amenities like a gym and shared cars.
+    Who's Coming: The resident profile consists of scientists, entrepreneurs, artists, and thinkers specializing in fields like longevity biotechnology, healthcare, and decentralized governance.
+    Work Compatibility: Vitalia is not a conference; participants are encouraged to bring their work with them.
+    Amenities: The package includes medium-range private suites, free-use facilities like a gym and pool, on-site healthcare, and logistical services like car pooling.
+    Additional Services: Childcare services and a variety of wellness activities organized by residents are available.
+    Local Community: Roatan has a diverse and friendly local community with many accepting Bitcoin and other cryptocurrencies.
+    Acceleration of Longevity Innovation: Vitalia, long-term, aims to eliminate bureaucratic roadblocks to speed up clinical trials and lower costs in the longevity field.
     
+    Answer the user's more specific question as best you can. For broad or general questions, it's okay to give a general overview.`
+    setAlreadyAnswered(alreadyAnswered => [...alreadyAnswered, question]);
+    const direct_answer = await generateDirectAnswer(openai, question, instructions, text_citation_pairs);
     
-    // Get a set of all unique parent_nodes in combinedRows variable
-    const primary_grouped_rows: GroupedRows = await aggregateSiblingRows(primary_rows, false, primary_jurisdiction);
-    setQuestionJurisdictions(question_jurisdiction);
-
-    await directAnswering(user_query, specific_questions, primary_grouped_rows, {}, clarificationResponses, citationLinks);
-  };
-
-  const directAnswering = async (
-    user_query: string,
-    specific_questions: string[],
-    primary_grouped_rows: GroupedRows,
-    secondary_grouped_rows: GroupedRows,
-    combinedClarifications: Clarification[],
-    citationLinks: CitationLinks
-  ) => {
-    console.log(questionJurisdictions);
-
-    let user_prompt_query: string = constructPromptQuery(user_query, questionJurisdictions?.state?.corpusTitle || 'The Country Of ', questionJurisdictions!.federal?.corpusTitle || "USA");
-
-    if (questionJurisdictions?.mode === "misc") {
-      user_prompt_query = constructPromptQueryMisc(user_query, questionJurisdictions?.misc?.corpusTitle || 'This Legal Documentation');
-    }
-    const requestBody = {
-      legal_question: user_prompt_query,
-      specific_questions: specific_questions,
-      primary_grouped_rows: primary_grouped_rows,
-      secondary_grouped_rows: secondary_grouped_rows,
-      already_answered: alreadyAnswered,
-      clarifications: { clarifications: combinedClarifications } as ClarificationChoices,
-      mode: "clarifications"
-    };
-    
-    requestBody.mode = "single";
-    
-
-    setAlreadyAnswered(alreadyAnswered => [...alreadyAnswered, user_query]);
-    console.log("  - Sending request to directAnswering API!");
-    const response = await fetch('/api/answerQuery/directAnswering', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Session-ID': sessionID,
-      },
-      body: JSON.stringify(requestBody),
-    });
-    const result = await response.json();
-    console.log("Received response from directAnswering API!");
-
-    const direct_answer: string = result.directAnswer;
-    console.log(direct_answer);
+    const endTime = Date.now();
     const params: ContentBlockParams = {
       type: ContentType.AnswerVitalia,
       content: direct_answer,
@@ -284,22 +201,19 @@ export default function EmbedPage() {
     };
     await addContentBlock(createNewBlock(params));
     setIsFormVisible(true);
-    setInputMode("vitalia");
-    return direct_answer;
+
   };
+
   const dummyFunction = async () => {
     return;
   }
   
-
   return (
     <Frame title="Ask Abe Integration" style={{ width: '100%', minHeight: '100vh' }}
       head={
         <>
           <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
           <link rel="stylesheet" href="/styles.css"></link>
-          
-          
         </>
       }
     
