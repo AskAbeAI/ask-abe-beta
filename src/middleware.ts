@@ -68,7 +68,6 @@ export default authMiddleware({
   },
   publicRoutes: ["/","/about", "/privacy","/tos", "/support", "/legal", "/how", "/devlog", "/devlogblog", "/playground", "/mission", "/api/(.*)"],
   ignoredRoutes: ["/embed", "/api/externalAPI/vitalia"],
-  debug: true,
 });
  
 export const config = {
