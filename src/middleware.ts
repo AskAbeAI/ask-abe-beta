@@ -67,7 +67,7 @@ export default authMiddleware({
     return middleware(req);
   },
   publicRoutes: ["/","/about", "/privacy","/tos", "/support", "/legal", "/how", "/devlog", "/devlogblog", "/playground", "/mission", "/api/(.*)"],
-  ignoredRoutes: ["/embed"],
+  ignoredRoutes: ["/embed", "/api/externalAPI/vitalia"],
   debug: true,
 });
  
