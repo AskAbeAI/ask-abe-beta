@@ -5,6 +5,19 @@ import { jurisdiction_similarity_search_all_partitions, insert_api_debug_log } f
 import { request } from 'http';
 
 export const maxDuration = 120;
+export function OPTIONS(req: Request) {
+    console.log(req.headers)
+    // Set CORS headers
+    const headers = {
+        'Access-Control-Allow-Origin': 'https://www.strikingly.com', // Modify as needed for your use case
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        // Include any other headers you might need for your requests
+    };
+
+    // Return the response with CORS headers and no body
+    return new NextResponse(null, { status: 204, headers });
+}
 
 export async function POST(req: Request) {
 
@@ -73,8 +86,12 @@ export async function POST(req: Request) {
 		const endTime = Date.now();
    		const executionTime = endTime - startTime;
     	await insert_api_debug_log("similaritySearch", executionTime, JSON.stringify(requestData), JSON.stringify(searchResponseBody), false, "", process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!, sessionId);
-		return NextResponse.json(searchResponseBody);
-		
+		const finalResponse = NextResponse.json(searchResponseBody);
+		finalResponse.headers.set('Access-Control-Allow-Origin', 'https://www.strikingly.com');
+		finalResponse.headers.set('Access-Control-Allow-Methods', 'POST, OPTIONS');
+		finalResponse.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+		return finalResponse;
+			
 	} catch (error) {
 		const endTime = Date.now();
 		let errorMessage = `${error},\n`
