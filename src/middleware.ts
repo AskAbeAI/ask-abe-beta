@@ -55,8 +55,7 @@ export default authMiddleware({
     // Execute next-intl middleware before Clerk's auth middleware
     return middleware(req);
   },
-  publicRoutes: ["/","/about", "/privacy","/tos", "/support", "/legal", "/how", "/devlog", "/devlogblog", "/playground", "/mission", "/api/(.*)"],
-  ignoredRoutes: ["/embed"],
+  publicRoutes: ["/","/embed","/about", "/privacy","/tos", "/support", "/legal", "/how", "/devlog", "/devlogblog", "/playground", "/mission", "/api/(.*)"],
   debug: true,
 });
  
