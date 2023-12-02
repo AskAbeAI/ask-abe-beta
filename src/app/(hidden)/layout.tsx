@@ -21,7 +21,7 @@ export default function RootLayout({
 }) {
   return (
       <html lang="en">
-        <link rel="stylesheet" href="https://askabeai.com/dist/styles.css"></link>
+        <link rel="stylesheet" href="/styles.css"></link>
         <body className={inter.className} style={{ width: '100%', minHeight: '100vh' }}>
          
           {children}
