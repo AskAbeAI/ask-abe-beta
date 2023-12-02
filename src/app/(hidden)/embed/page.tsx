@@ -141,8 +141,7 @@ export default function EmbedPage() {
     };
     await addContentBlock(createNewBlock(newParams));
     addNewLoadingBlock(false);
-
-    const vitalia_api_key = "ak_EjMsYGPJpLHcb48r4uCfP2ZYyrjw";
+    const vitalia_api_key = "ak_EjMsYGPJpLHcb48r4uCfP2ZYyrjwL";
     const request = {
       api_key: vitalia_api_key,
       question: question,
