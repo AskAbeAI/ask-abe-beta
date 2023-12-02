@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Script from 'next/script';
 import CustomIFrame from '@/components/customIFrame';
+import { NextResponse } from 'next/server';
 // Import UI components
 import BottomBar from '@/components/bottomBar';
 import ChatContainer from '@/components/chatContainer';
@@ -16,6 +17,8 @@ import { aggregateSiblingRows } from '@/lib/database';
 import { Jurisdiction, questionJurisdictions } from '@/lib/types';
 // Helper functions
 import { constructPromptQuery, constructPromptQueryMisc } from '@/lib/utils';
+
+
 
 export default function EmbedPage() {
 

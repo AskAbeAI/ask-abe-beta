@@ -31,6 +31,11 @@ function middleware(request: NextRequest) {
  
   const requestHeaders = new Headers(request.headers)
   requestHeaders.set('x-nonce', nonce)
+  requestHeaders.set('Access-Control-Allow-Origin', 'https://www.strikingly.com')
+  requestHeaders.set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
+  requestHeaders.set('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+        // Include any other headers you might need for your requests
+    
  
   requestHeaders.set(
     'Content-Security-Policy',
