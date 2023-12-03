@@ -145,6 +145,7 @@ export default function EmbedPage() {
     const request = {
       api_key: vitalia_api_key,
       question: question,
+      already_answered: alreadyAnswered,
     }
     console.log("Sending request to Quarantined API")
     const response = await fetch("/api/externalAPI/vitalia", {

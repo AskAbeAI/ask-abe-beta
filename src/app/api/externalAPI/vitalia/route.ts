@@ -35,6 +35,7 @@ export async function POST(req: Request) {
     
     const original_question: string = requestData.question;
     const api_key: string = requestData.api_key;
+    const already_answered: string[] = requestData.already_answered;
 
     if (api_key !== 'ak_EjMsYGPJpLHcb48r4uCfP2ZYyrjwL') {
         return NextResponse.json({ errorMessage: `Invalid API key: ${api_key}`, status: 401 });
@@ -52,7 +53,7 @@ export async function POST(req: Request) {
         const jurisdiction: Jurisdiction = {id: '1', name: 'Vitalia Wiki', abbreviation: 'vitalia', corpusTitle: 'Vitalia Wiki Documentation', usesSubContentNodes: false, jurisdictionLevel: 'misc' };
         const combined_parent_nodes: GroupedRows = await aggregateSiblingRows(rows, false, jurisdiction);
         const text_citation_pairs = convertGroupedRowsToTextCitationPairs(combined_parent_nodes);
-        const instructions = `The user is looking to receive information about Vitalia 2024, which is a popup city event in the special economic zone of Prospera, on the island of Roatan Honduras. Here are some general facts that may help with answering: Location: Vitalia 2024 will be hosted in Próspera, a Special Economic Zone on the island of Roatan, Honduras.
+        let instructions = `The user is looking to receive information about Vitalia 2024, which is a popup city event in the special economic zone of Prospera, on the island of Roatan Honduras. Here are some general facts that may help with answering: Location: Vitalia 2024 will be hosted in Próspera, a Special Economic Zone on the island of Roatan, Honduras.
         Duration: The pop-up city experience will take place from Jan 6th to March 1st 2024, and encourages a minimum stay of 1 month, with a focus on participants willing to spend at least 2 months.
         Cost: Room pricing ranges from $1,000 to $3,000 per month, including accommodation and shared amenities like a gym and shared cars.
         Who's Coming: The resident profile consists of scientists, entrepreneurs, artists, and thinkers specializing in fields like longevity biotechnology, healthcare, and decentralized governance.
@@ -62,9 +63,13 @@ export async function POST(req: Request) {
         Local Community: Roatan has a diverse and friendly local community with many accepting Bitcoin and other cryptocurrencies.
         Acceleration of Longevity Innovation: Vitalia, long-term, aims to eliminate bureaucratic roadblocks to speed up clinical trials and lower costs in the longevity field.
         
-        Answer the user's more specific question as best you can. For broad or general questions, it's okay to give a general overview.`
+        Answer the user's more specific question as best you can. For broad or general questions, it's okay to give a general overview.
+        `
+        if (already_answered.length > 0) {
+            instructions += `The following questions have already been answered: ${already_answered.join(', ')}. Please do not repeat the same information.`;
+        }
         
-        const direct_answer = await generateDirectAnswer(openai, original_question, instructions, text_citation_pairs);
+        const direct_answer = await generateDirectAnswer(openai, original_question, instructions,  text_citation_pairs);
         const citationLinks: CitationLinks = {};
         for (const row of rows) {
             citationLinks[row.citation] = row.link!
