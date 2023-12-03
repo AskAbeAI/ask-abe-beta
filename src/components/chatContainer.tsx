@@ -3,9 +3,10 @@
 import React, { useEffect, useState, useRef } from 'react';
 import ContentQueue from './contentQueue'; // Adjust import path as necessary
 
-import { ContentBlock, ClarificationChoices, TopicResponses, Clarification } from '@/lib/types'; // Adjust import path as necessary
+import { ContentBlock, ClarificationChoices, TopicResponses, Clarification, ContentType } from '@/lib/types'; // Adjust import path as necessary
 import 'ldrs/hourglass';
 import CitationBar from './citationBar';
+
 
 
 interface ChatContainerProps {
@@ -45,9 +46,11 @@ const ChatContainer: React.FC<ChatContainerProps> = ({
   // Scroll to the last message whenever contentBlocks updates
   useEffect(() => {
     // Wait for 5 seconds before scrolling to the bottom
-    setTimeout(() => {
-      endOfMessagesRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }, 3000);
+    if(contentBlocks.length > 1 && contentBlocks[1].type !== ContentType.WelcomeVitalia) {
+      setTimeout(() => {
+        endOfMessagesRef.current?.scrollIntoView({ behavior: 'smooth' });
+      }, 3000);
+    }
   }, [contentBlocks]);
 
   return (
