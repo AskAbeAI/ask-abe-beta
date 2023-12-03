@@ -148,7 +148,7 @@ export const AnswerVitaliaBlock: React.FC<AnswerVitaliaBlockProps> = ({ content,
       const placeholder = `CITATION_${Object.keys(citations).length}`;
       citations[placeholder] = (
         <a href={`${citationLinks[citation.trim()]}`} target="_blank" className="text-blue-500 hover:text-blue-700">
-          {citation.trim()}
+          {citation.trim().split("§ ")[1]}
         </a>
       );
       return placeholder;
