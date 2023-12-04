@@ -53,7 +53,7 @@ export async function POST(req: Request) {
         }
         const embedding = JSON.parse(JSON.stringify(await generateEmbedding(openai, [newQuestion])));
 
-        const rows = await jurisdiction_similarity_search_all_partitions("vitalia", embedding, 0.6, 10, 15, supabaseUrl, supabaseKey);
+        const rows = await jurisdiction_similarity_search_all_partitions("vitalia", embedding, 0.6, 10, 30, supabaseUrl, supabaseKey);
         const jurisdiction: Jurisdiction = {id: '1', name: 'Vitalia Wiki', abbreviation: 'vitalia', corpusTitle: 'Vitalia Wiki Documentation', usesSubContentNodes: false, jurisdictionLevel: 'misc' };
         const combined_parent_nodes: GroupedRows = await aggregateSiblingRows(rows, false, jurisdiction);
         const text_citation_pairs = convertGroupedRowsToTextCitationPairs(combined_parent_nodes);
