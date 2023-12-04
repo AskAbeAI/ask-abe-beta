@@ -289,6 +289,23 @@ export type node_as_row = {
   citation: string;
   similarity: number;
   link?: string;
+  node_name?: string;
+};
+
+export type new_node_as_row = {
+  id: string;
+  node_type: string;
+  top_level_title: string;
+  parent_node: string;
+  child_nodes: string[];
+  sibling_nodes: string[];
+  internal_references: string[];
+  external_references: string[];
+  node_text: string[];
+  citation: string;
+  similarity: number;
+  link?: string;
+  node_name?: string;
 };
 // Type for master partitioned table primary key
 export type node_key = {

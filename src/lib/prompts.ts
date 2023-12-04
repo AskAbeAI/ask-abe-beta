@@ -1,5 +1,5 @@
 import { Chat } from 'openai/resources/index.mjs';
-import { Message, ChatCompletionParams, TopicResponses, Clarification, PartialAnswer, ClarificationChoices, text_citation_pair } from '../lib/types';
+import { Message, ChatCompletionParams, TopicResponses, Clarification, PartialAnswer, ClarificationChoices, text_citation_pair, text_citation_pair_vitalia } from '../lib/types';
 import { convertToMessages, getChatCompletionParams } from '@/lib/chatCompletion';
 import { PassThrough } from 'stream';
 
@@ -464,7 +464,7 @@ export function getPromptDirectAnswering(
 export function getPromptDirectAnsweringVitalia(
   question: string,
   already_asked_questions: string[],
-  text_citation_pairs: text_citation_pair[],
+  text_citation_pairs: text_citation_pair_vitalia[],
   useRegularGPT4: boolean
 ): ChatCompletionParams {
   console.log(text_citation_pairs)

@@ -1,6 +1,6 @@
 import { getPromptQueryScoring, getPromptExpandedQuery, getPromptAnsweringInstructions, getPromptQueryRefinement, getPromptCondenseClarifications, getPromptClarificationQuestion, getPromptClarificationQuestionMultiple, getPromptDirectAnswering, getPromptBasicQueryRefinement, getPromptFollowupQuestion, getPromptDirectAnsweringVitalia, getPromptExpandedQueryVitalia } from "./prompts";
 import { createChatCompletion, getEmbedding } from "./chatCompletion";
-import { Clarification, text_citation_pair, text_citation_pair_vitalia,GroupedRows } from "./types";
+import { Clarification, text_citation_pair, text_citation_pair_vitalia,GroupedRows, new_node_as_row } from "./types";
 import { OpenAI } from "openai";
 
 // Query Scoring
@@ -110,7 +110,7 @@ export const generateDirectAnswer = async (openai: OpenAI, user_prompt_query: st
   return direct_answer;
 };
 
-export const generateDirectAnswerVitalia = async (openai: OpenAI, user_prompt_query: string,already_asked_questions: string[], all_text_citation_pairs: text_citation_pair[]): Promise<string> => {
+export const generateDirectAnswerVitalia = async (openai: OpenAI, user_prompt_query: string,already_asked_questions: string[], all_text_citation_pairs: text_citation_pair_vitalia[]): Promise<string> => {
   const params = getPromptDirectAnsweringVitalia(user_prompt_query, already_asked_questions, all_text_citation_pairs, false);
   const result = JSON.parse(await createChatCompletion(params, openai, "directAnsweringVitalia"));
   const direct_answer: string = result.direct_answer;
@@ -131,12 +131,12 @@ export const convertGroupedRowsToTextCitationPairs = (groupedRows: GroupedRows):
 };
 
 
-export const convertGroupedRowsToTextCitationPairsVitalia = (groupedRows: GroupedRows): text_citation_pair_vitalia[] => {
+export const convertRowsToTextCitationPairsVitalia = (rows: new_node_as_row[]): text_citation_pair_vitalia[] => {
   const all_text_citation_pairs: text_citation_pair_vitalia[] = [];
-  for (const key in groupedRows) {
+  for (const row of rows) {
     const pair: text_citation_pair_vitalia = {
-      section_citation: groupedRows[key].citation,
-      text: groupedRows[key].section_text.join("\n"),
+      section_citation: row.node_name!,
+      text: row.node_text.join("\n"),
     };
     all_text_citation_pairs.push(pair);
   }

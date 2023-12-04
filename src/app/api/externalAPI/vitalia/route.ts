@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
-import { generateDirectAnswer, generateEmbedding, generateQueryRefinement,generateDirectAnswerVitalia, convertGroupedRowsToTextCitationPairs, generateFollowupQuestion } from '@/lib/helpers';
+import { generateDirectAnswer, generateEmbedding, generateQueryRefinement,generateDirectAnswerVitalia, convertRowsToTextCitationPairsVitalia, generateFollowupQuestion } from '@/lib/helpers';
 import { GroupedRows, Jurisdiction, CitationLinks } from '@/lib/types';
 import OpenAI from "openai";
-import { insert_api_debug_log, jurisdiction_similarity_search_all_partitions, aggregateSiblingRows } from '@/lib/database';
+import { insert_api_debug_log, jurisdiction_similarity_search_all_partitions, aggregateSiblingRows, vitalia_search } from '@/lib/database';
 
 const openAiKey = process.env.OPENAI_API_KEY;
 const openai = new OpenAI({
@@ -55,11 +55,10 @@ export async function POST(req: Request) {
         
         const embedding = JSON.parse(JSON.stringify(await generateEmbedding(openai, [original_question])));
 
-        const rows = await jurisdiction_similarity_search_all_partitions("vitalia", embedding, 0.6, 20, 50, supabaseUrl, supabaseKey);
+        const rows = await vitalia_search("vitalia", embedding, 0.6, 50, supabaseUrl, supabaseKey);
         console.log(rows)
-        const jurisdiction: Jurisdiction = {id: '1', name: 'Vitalia Wiki', abbreviation: 'vitalia', corpusTitle: 'Vitalia Wiki Documentation', usesSubContentNodes: false, jurisdictionLevel: 'misc' };
-        const combined_parent_nodes: GroupedRows = await aggregateSiblingRows(rows, false, jurisdiction);
-        const text_citation_pairs = convertGroupedRowsToTextCitationPairs(combined_parent_nodes);
+        
+        const text_citation_pairs = convertRowsToTextCitationPairsVitalia(rows);
         console.log(text_citation_pairs)
         
         
@@ -67,7 +66,7 @@ export async function POST(req: Request) {
         console.log(direct_answer)
         const citationLinks: CitationLinks = {};
         for (const row of rows) {
-            citationLinks[row.citation.trim()] = row.link!
+            citationLinks[row.node_name!.trim()] = row.link!
         }
         console.log(citationLinks)
         const endTime = Date.now();
