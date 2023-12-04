@@ -26,7 +26,7 @@ export function OPTIONS(req: Request) {
 }
 
 export async function POST(req: Request) {
-    console.log(req.headers)
+    
     const startTime = Date.now();
     
     console.log("=== EXTERNAL VITALIA API ENDPOINT ===");
@@ -64,10 +64,12 @@ export async function POST(req: Request) {
         
         
         const direct_answer = await generateDirectAnswerVitalia(openai, newQuestion, already_answered,  text_citation_pairs);
+        console.log(direct_answer)
         const citationLinks: CitationLinks = {};
         for (const row of rows) {
             citationLinks[row.citation.trim()] = row.link!
         }
+        console.log(citationLinks)
         const endTime = Date.now();
 
         const response = NextResponse.json({

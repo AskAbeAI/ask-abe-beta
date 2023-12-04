@@ -1,6 +1,6 @@
 import { getPromptQueryScoring, getPromptExpandedQuery, getPromptAnsweringInstructions, getPromptQueryRefinement, getPromptCondenseClarifications, getPromptClarificationQuestion, getPromptClarificationQuestionMultiple, getPromptDirectAnswering, getPromptBasicQueryRefinement, getPromptFollowupQuestion, getPromptDirectAnsweringVitalia, getPromptExpandedQueryVitalia } from "./prompts";
 import { createChatCompletion, getEmbedding } from "./chatCompletion";
-import { Clarification, text_citation_pair, GroupedRows } from "./types";
+import { Clarification, text_citation_pair, text_citation_pair_vitalia,GroupedRows } from "./types";
 import { OpenAI } from "openai";
 
 // Query Scoring
@@ -124,6 +124,19 @@ export const convertGroupedRowsToTextCitationPairs = (groupedRows: GroupedRows):
       section_citation: groupedRows[key].citation,
       text: groupedRows[key].section_text.join("\n"),
       document: groupedRows[key].jurisdiction.corpusTitle
+    };
+    all_text_citation_pairs.push(pair);
+  }
+  return all_text_citation_pairs;
+};
+
+
+export const convertGroupedRowsToTextCitationPairsVitalia = (groupedRows: GroupedRows): text_citation_pair_vitalia[] => {
+  const all_text_citation_pairs: text_citation_pair_vitalia[] = [];
+  for (const key in groupedRows) {
+    const pair: text_citation_pair_vitalia = {
+      section_citation: groupedRows[key].citation,
+      text: groupedRows[key].section_text.join("\n"),
     };
     all_text_citation_pairs.push(pair);
   }

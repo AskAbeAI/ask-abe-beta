@@ -349,6 +349,11 @@ export type text_citation_pair = {
   document: string;
 };
 
+export type text_citation_pair_vitalia = {
+  section_citation: string;
+  text: string;
+};
+
 export type questionJurisdictions = {
   mode: string;
   state: Jurisdiction | undefined;
