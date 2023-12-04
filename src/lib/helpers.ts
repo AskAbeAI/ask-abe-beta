@@ -1,4 +1,4 @@
-import { getPromptQueryScoring, getPromptExpandedQuery, getPromptAnsweringInstructions, getPromptQueryRefinement, getPromptCondenseClarifications, getPromptClarificationQuestion, getPromptClarificationQuestionMultiple, getPromptDirectAnswering, getPromptBasicQueryRefinement, getPromptFollowupQuestion, getPromptDirectAnsweringVitalia } from "./prompts";
+import { getPromptQueryScoring, getPromptExpandedQuery, getPromptAnsweringInstructions, getPromptQueryRefinement, getPromptCondenseClarifications, getPromptClarificationQuestion, getPromptClarificationQuestionMultiple, getPromptDirectAnswering, getPromptBasicQueryRefinement, getPromptFollowupQuestion, getPromptDirectAnsweringVitalia, getPromptExpandedQueryVitalia } from "./prompts";
 import { createChatCompletion, getEmbedding } from "./chatCompletion";
 import { Clarification, text_citation_pair, GroupedRows } from "./types";
 import { OpenAI } from "openai";
@@ -19,6 +19,14 @@ export const generateQueryExpansion = async (openai: OpenAI, legal_questions: st
   const legal_statements: string[] = res.legal_statements;
   return legal_statements;
 };
+
+export const generateQueryExpansionVitalia = async (openai: OpenAI, questions: string[]) => {
+  const params = getPromptExpandedQueryVitalia(questions, true);
+  const res = JSON.parse(await createChatCompletion(params, openai, "expandedQueryVitalia"));
+  const tourism_statements: string[] = res.tourism_statements;
+  return tourism_statements;
+};
+
 
 export const generateEmbedding = async (openai: OpenAI, legal_statements: string[]) => {
   const embedded_expansion_query = await getEmbedding(legal_statements.join('\n'), openai);

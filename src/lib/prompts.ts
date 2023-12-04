@@ -288,6 +288,28 @@ export function getPromptExpandedQuery(
 
 }
 
+export function getPromptExpandedQueryVitalia(
+  questions: string[],
+  useRegularGPT4: boolean
+): ChatCompletionParams {
+  const system = `You are a helpful tour guide assistant that rephrases a user's question about visiting an island into a statement of how that question's answer looks like in the tourism guide. You will be provided with a list of questions, which you will translate into statements as it might appear in a tourism brouchure. Questions should be converted to statements that look like they could be found in actual tourism brouchures.
+  Transform each question in questions into a hypothetical statement, following these instructions:
+  1. Tourism statements are converted from the form of a question to a statement.
+  2. Tourism statements are intended to mimic the format of text in actual tourism brouchures.
+  3. Tourism statements are converted from the original question, but retain the same topics.
+  4. Tourism statements are translated into tourism speak, using proper language, as you would find in actual tourism brouchures.
+  6. Use generic 3rd person pronouns (an individual, a person). Refrain from using I, we, or other personal pronouns.\n\nReturn in json format: {tourism_statements: []}\n`;
+  const user = `{"questions": ${JSON.stringify(questions)}}`;
+  const messages = convertToMessages(system, user);
+  let model = "gpt-4-1106-preview";
+  if (useRegularGPT4) {
+    model = "gpt-4";
+  }
+  const params: ChatCompletionParams = getChatCompletionParams(model, messages, 0.4, 1000);
+  return params;
+
+}
+
 // TopicGeneration API prompts
 export function getPromptBlindTopics(
   main_question: string,
