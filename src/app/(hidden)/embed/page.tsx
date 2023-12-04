@@ -200,9 +200,10 @@ export default function EmbedPage() {
     await addContentBlock(createNewBlock(clarparams));
   };
 
-  const handleClarificationAnswer = async (response: Clarification, mode: string) => {
+  const handleClarificationVitaliaAnswer = async (response: Clarification, mode: string) => {
     // Append the response to the clarificationResponses state
     let params = {};
+    
     console.log("Handling clarification answer!");
     if(response.response === "No, Reach Out to An Organizer") {
       const params: ContentBlockParams = {
@@ -256,7 +257,7 @@ export default function EmbedPage() {
             <ChatContainer
               contentBlocks={contentBlocks}
               onSubmitClarificationAnswers={dummyFunction}
-              onSubmitClarificationVitaliaAnswers={dummyFunction}
+              onSubmitClarificationVitaliaAnswers={handleClarificationVitaliaAnswer}
               onSubmitTopicChoices={dummyFunction}
               onClarificationStreamEnd={dummyFunction}
               onStreamEnd={onStreamEnd}
