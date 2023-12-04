@@ -57,9 +57,7 @@ export async function POST(req: Request) {
         const jurisdiction: Jurisdiction = {id: '1', name: 'Vitalia Wiki', abbreviation: 'vitalia', corpusTitle: 'Vitalia Wiki Documentation', usesSubContentNodes: false, jurisdictionLevel: 'misc' };
         const combined_parent_nodes: GroupedRows = await aggregateSiblingRows(rows, false, jurisdiction);
         const text_citation_pairs = convertGroupedRowsToTextCitationPairs(combined_parent_nodes);
-        let instructions = `The user is looking to receive information about Vitalia 2024, which is a popup city event in the special economic zone of Prospera, on the island of Roatan Honduras. Here are some general facts that may help with answering: Location: Vitalia 2024 will be hosted in Próspera, a Special Economic Zone on the island of Roatan, Honduras.
-        Duration: The pop-up city experience will take place from Jan 6th to March 1st 2024, and encourages a minimum stay of 1 month, with a focus on participants willing to spend at least 2 months.
-        
+        let instructions = `The user is looking to receive information about Vitalia 2024, which is a popup city event in the special economic zone of Prospera, on the island of Roatan Honduras.
         
         Answer the user's more specific question as best you can. For broad or general questions, it's okay to give a general overview.
         `
