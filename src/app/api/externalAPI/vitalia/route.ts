@@ -76,7 +76,7 @@ export async function POST(req: Request) {
         const direct_answer = await generateDirectAnswer(openai, newQuestion, instructions,  text_citation_pairs);
         const citationLinks: CitationLinks = {};
         for (const row of rows) {
-            citationLinks[row.citation] = row.link!
+            citationLinks[row.citation.trim()] = row.link!
         }
         const endTime = Date.now();
 
