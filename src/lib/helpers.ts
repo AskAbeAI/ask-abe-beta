@@ -1,4 +1,4 @@
-import { getPromptQueryScoring, getPromptExpandedQuery, getPromptAnsweringInstructions, getPromptQueryRefinement, getPromptCondenseClarifications, getPromptClarificationQuestion, getPromptClarificationQuestionMultiple, getPromptDirectAnswering, getPromptBasicQueryRefinement, getPromptFollowupQuestion } from "./prompts";
+import { getPromptQueryScoring, getPromptExpandedQuery, getPromptAnsweringInstructions, getPromptQueryRefinement, getPromptCondenseClarifications, getPromptClarificationQuestion, getPromptClarificationQuestionMultiple, getPromptDirectAnswering, getPromptBasicQueryRefinement, getPromptFollowupQuestion, getPromptDirectAnsweringVitalia } from "./prompts";
 import { createChatCompletion, getEmbedding } from "./chatCompletion";
 import { Clarification, text_citation_pair, GroupedRows } from "./types";
 import { OpenAI } from "openai";
@@ -98,6 +98,13 @@ export const generateMultipleClarificationQuestions = async (openai: OpenAI, use
 export const generateDirectAnswer = async (openai: OpenAI, user_prompt_query: string, instructions: string, all_text_citation_pairs: text_citation_pair[]): Promise<string> => {
   const params = getPromptDirectAnswering(user_prompt_query, instructions, all_text_citation_pairs, false);
   const result = JSON.parse(await createChatCompletion(params, openai, "directAnswering"));
+  const direct_answer: string = result.direct_answer;
+  return direct_answer;
+};
+
+export const generateDirectAnswerVitalia = async (openai: OpenAI, user_prompt_query: string,already_asked_questions: string[], all_text_citation_pairs: text_citation_pair[]): Promise<string> => {
+  const params = getPromptDirectAnsweringVitalia(user_prompt_query, already_asked_questions, all_text_citation_pairs, false);
+  const result = JSON.parse(await createChatCompletion(params, openai, "directAnsweringVitalia"));
   const direct_answer: string = result.direct_answer;
   return direct_answer;
 };
