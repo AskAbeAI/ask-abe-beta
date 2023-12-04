@@ -135,10 +135,20 @@ export const convertRowsToTextCitationPairsVitalia = (rows: new_node_as_row[]): 
   const all_text_citation_pairs: text_citation_pair_vitalia[] = [];
   for (const row of rows) {
     const pair: text_citation_pair_vitalia = {
-      section_citation: row.node_name!.trim(),
+      section_citation: cleanString(row.node_name!.trim()),
       text: row.node_text.join("\n"),
     };
     all_text_citation_pairs.push(pair);
   }
   return all_text_citation_pairs;
 };
+
+function cleanString(inputString: string): string {
+  // Remove all newline characters
+  let cleanedString = inputString.replace(/\n/g, ' ');
+
+  // Replace multiple whitespaces with a single whitespace
+  cleanedString = cleanedString.replace(/\s+/g, ' ');
+
+  return cleanedString.trim();
+}

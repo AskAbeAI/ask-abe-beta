@@ -66,7 +66,7 @@ export async function POST(req: Request) {
         console.log(direct_answer)
         const citationLinks: CitationLinks = {};
         for (const row of rows) {
-            citationLinks[row.node_name!.trim()] = row.link!
+            citationLinks[cleanString(row.node_name!.trim())] = row.link!
         }
         console.log(citationLinks)
         const endTime = Date.now();
@@ -95,20 +95,13 @@ export async function POST(req: Request) {
     }
 }
 
-const createTextWithEmbeddedLink = (text: string): string => {
-    // Replace all occurrences of "(#" with just "#"
-    text = text.replace(/\n§/g, "§");
-    text = text.replace(/\(#/g, '#');
-    // Replace all occurrences of "#)" with just "#"
-    text = text.replace(/#\)/g, '#');
 
-    const citationPattern = /###(.*?)###/g;
-
-    // Replace citations in the text with HTML anchor tags
-    text = text.replace(citationPattern, (_, citation) => {
-        const trimmedCitation = citation.trim();
-        return `<a href="#${trimmedCitation}" class="text-blue-500 hover:text-blue-700">${trimmedCitation}</a>`;
-    });
-
-    return text;
-}
+function cleanString(inputString: string): string {
+    // Remove all newline characters
+    let cleanedString = inputString.replace(/\n/g, ' ');
+  
+    // Replace multiple whitespaces with a single whitespace
+    cleanedString = cleanedString.replace(/\s+/g, ' ');
+  
+    return cleanedString.trim();
+  }
