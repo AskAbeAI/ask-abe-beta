@@ -218,7 +218,7 @@ export default function EmbedPage() {
       citationLinks["Placeholder § Vitalia Wiki"] = "https://wiki.vitalia.city/"
       const params: ContentBlockParams = {
           type: ContentType.AnswerVitalia,
-          content: "Great! Glad I could help! Reach out if you have any other questions or check out our ###Placeholder § Vitalia Wiki###",
+          content: "Great! Glad I could help! Check out the ###Placeholder § Vitalia Wiki###. I can help answer a followup question or a completely new question.",
           fake_stream: true,
           concurrentStreaming: false,
           citationLinks: citationLinks
