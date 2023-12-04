@@ -173,6 +173,14 @@ export default function EmbedPage() {
     };
     await addContentBlock(createNewBlock(params));
     setIsFormVisible(true);
+    const clarparams: ContentBlockParams = {
+      type: ContentType.ClarificationVitalia,
+      content: answer,
+      fake_stream: false,
+      concurrentStreaming: false,
+      citationLinks: citationLinks
+    };
+    await addContentBlock(createNewBlock(params));
 
   };
 
@@ -196,6 +204,7 @@ export default function EmbedPage() {
             <ChatContainer
               contentBlocks={contentBlocks}
               onSubmitClarificationAnswers={dummyFunction}
+              onSubmitClarificationVitaliaAnswers={dummyFunction}
               onSubmitTopicChoices={dummyFunction}
               onClarificationStreamEnd={dummyFunction}
               onStreamEnd={onStreamEnd}

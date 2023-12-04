@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useRef } from 'react';
 import { useEffect } from 'react';
-import { CitationBlockProps, AnswerBlockProps, AnswerVitaliaBlockProps, QuestionBlockProps, ApprovalBlockProps, ClarificationBlockProps, ClarificationQuestionBlockProps, StreamingAnswerBlockProps, ClarificationChoices, TopicsBlockProps } from '@/lib/types';
+import { CitationBlockProps, AnswerBlockProps, AnswerVitaliaBlockProps, QuestionBlockProps, ApprovalBlockProps, ClarificationBlockProps, ClarificationVitaliaProps, ClarificationQuestionBlockProps, StreamingAnswerBlockProps, ClarificationChoices, TopicsBlockProps } from '@/lib/types';
 import { GeneralTopic, SubTopic, TopicResponses, PartialAnswer, FinalAnswerBlockProps, Clarification } from '@/lib/types';
 import Image from 'next/image';
 import { AbeIconProps } from '@/lib/types';
@@ -475,6 +475,139 @@ export const ClarificationBlock: React.FC<ClarificationBlockProps> = ({
             </button>
           </div>
         )}
+      </div >
+    </div>
+  );
+};
+
+export const ClarificationVitaliaBlock: React.FC<ClarificationVitaliaProps> = ({
+  clarifyingQuestion,
+  clarifyingAnswers,
+  content,
+  mode,
+  fakeStream,
+  concurrentStreaming,
+  onStreamEnd,
+  onSubmitClarificationVitaliaAnswers // Assume this prop is passed in with the content to the user
+  // ... other props
+}) => {
+
+ 
+  const [clarificationResponse, setClarificationResponse] = useState('');
+  const [otherInput, setOtherInput] = useState('');
+  const [isOtherInputVisible, setIsOtherInputVisible] = useState(false);
+  const [inputsLocked, setInputsLocked] = useState(false);
+  const [selectedAnswer, setSelectedAnswer] = useState('');
+  const [clickedButton, setClickedButton] = useState('');
+
+  // Tracks visibility of "Other" input fields
+
+
+
+  const handleAnswerChange = (answer: string) => {
+    if (inputsLocked) {
+      return;
+    }
+    // Show input field if "Other" is selected
+    //console.log(`Updating answer for question ${index} to ${answer}`);
+    if (answer === 'Custom Response') {
+      setIsOtherInputVisible(true);
+      setClarificationResponse(answer);
+      //console.log(`New answer for question ${index} is Other: ${answer}`);
+
+    } else {
+      if (isOtherInputVisible && !clarifyingAnswers.includes(answer)) {
+        //console.log("Other submit case");
+
+        setClarificationResponse("Custom Response: " + answer);
+        setIsOtherInputVisible(false);
+      } else {
+        //console.log("Switching form other!");
+        setIsOtherInputVisible(false);
+        setClarificationResponse(answer);
+      }
+      setClickedButton(answer);
+      setTimeout(() => {
+        setSelectedAnswer(answer); // Transition to text after a delay
+      }, 1500); // Adjust delay as needed for your animation timing
+
+    }
+  };
+
+  const handleOtherInputChange = (text: string) => {
+    if (inputsLocked) {
+      return;
+    }
+    setOtherInput(text);
+  };
+
+
+  useEffect(() => {
+    // After any state update, check if all clarificationResponses are not empty
+    //console.log(clarificationResponses);
+    const allResponsesSubmitted = (clarificationResponse !== '' && clarificationResponse !== 'Custom Response');
+    //console.log(`All responses submitted: ${allResponsesSubmitted}`);
+    if (allResponsesSubmitted) {
+      // create a new ClarificationResponse object with the updated responses
+      //console.log("Trying to submit clarification answers");
+
+      const obj: Clarification = {
+        question: clarifyingQuestion,
+        multiple_choice_answers: clarifyingAnswers,
+        response: clarificationResponse
+      };
+      onSubmitClarificationVitaliaAnswers(obj, mode);
+      setInputsLocked(true);
+    }
+  }, [clarificationResponse]); // Dependency array ensures this only runs when clarificationChoices changes
+
+
+  return (
+
+    <div className="flex flex-col items-end">
+      <UserIconLabel />
+      <div className='flex flex-wrap justify-start text-lg p-4 bg-user-color font-montserrat text-black rounded-lg'>
+        {selectedAnswer !== '' ? (
+          <p className="text-black">{selectedAnswer}</p>
+        ) : (
+          clarifyingAnswers.map((answer) => (
+            <button
+              key={answer}
+              onClick={() => handleAnswerChange(answer)}
+              className={`flex-grow truncate p-2 rounded-lg m-2 text-black border border-black border-1 
+              ${clickedButton === '' || clickedButton === answer ? '' : 'transition-opacity ease-linear duration-1000 opacity-0'}
+              ${answer === 'No' || answer === 'No, Reach Out to An Organizer'
+                  ? 'bg-red-300 hover:bg-red-500 hover:outline-red-700'
+                  : answer.includes('Custom Response')
+                    ? 'bg-orange-300 hover:bg-orange-500 hover:outline-orange-700'
+                    : 'bg-green-300 hover:bg-green-500 hover:outline-green-700'
+                }`}
+            >
+              {answer}
+            </button>
+          ))
+        )}
+
+        {/* Originally hidden text input for 'Other' option, expands when other is clicked */}
+        {isOtherInputVisible && (
+          <div>
+            <input
+              type="text"
+              value={otherInput}
+              onChange={(e) => handleOtherInputChange(e.target.value)}
+              placeholder="Please specify"
+              className="w-full p-2 border rounded"
+              contentEditable={!inputsLocked}
+            />
+            <button
+              onClick={() => handleAnswerChange(otherInput)}
+              className="p-2 bg-blue-500 text-white rounded mt-2"
+            >
+              Submit
+            </button>
+          </div>
+        )}
+        
       </div >
     </div>
   );

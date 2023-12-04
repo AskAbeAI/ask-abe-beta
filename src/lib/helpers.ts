@@ -46,6 +46,7 @@ export const generateBasicQueryRefinement = async (openai: OpenAI, original_ques
 export const generateFollowupQuestion = async (openai: OpenAI, question_string: string, already_answered: string[]): Promise<string> => {
   const params = getPromptFollowupQuestion(question_string, already_answered, true);
   const response = JSON.parse(await createChatCompletion(params, openai, "followupQuestion"));
+  console.log(response.followup_question)
   return response.followup_question;
 };
 export const condenseClarificationsIntoInstructions = async (openai: OpenAI, user_prompt_query: string, previous_clarifications: Clarification[]): Promise<string> => {
