@@ -48,12 +48,12 @@ export async function POST(req: Request) {
     
     try {
         console.log(original_question)
-        let newQuestion = await generateFollowupQuestion(openai, original_question, already_answered)
-        if (newQuestion === original_question) {
-            already_answered = [];
-        }
-        console.log(newQuestion)
-        const embedding = JSON.parse(JSON.stringify(await generateEmbedding(openai, [newQuestion])));
+        // let newQuestion = await generateFollowupQuestion(openai, original_question, already_answered)
+        // if (newQuestion === original_question) {
+        //     already_answered = [];
+        // }
+        
+        const embedding = JSON.parse(JSON.stringify(await generateEmbedding(openai, [original_question])));
 
         const rows = await jurisdiction_similarity_search_all_partitions("vitalia", embedding, 0.6, 20, 50, supabaseUrl, supabaseKey);
         console.log(rows)
@@ -63,7 +63,7 @@ export async function POST(req: Request) {
         console.log(text_citation_pairs)
         
         
-        const direct_answer = await generateDirectAnswerVitalia(openai, newQuestion, already_answered,  text_citation_pairs);
+        const direct_answer = await generateDirectAnswerVitalia(openai, original_question, already_answered,  text_citation_pairs);
         console.log(direct_answer)
         const citationLinks: CitationLinks = {};
         for (const row of rows) {
