@@ -26,7 +26,7 @@ export function OPTIONS(req: Request) {
 }
 
 export async function POST(req: Request) {
-   
+    console.log(req.headers)
     const startTime = Date.now();
     
     console.log("=== EXTERNAL VITALIA API ENDPOINT ===");
@@ -47,7 +47,7 @@ export async function POST(req: Request) {
 	if (supabaseKey === undefined) { throw new Error("process.env.SUPABASE_KEY is undefined!"); }
     
     try {
-        const newQuestion = await generateFollowupQuestion(openai, original_question, already_answered);
+        let newQuestion = await generateFollowupQuestion(openai, original_question, already_answered)
         if (newQuestion === original_question) {
             already_answered = [];
         }
@@ -57,12 +57,20 @@ export async function POST(req: Request) {
         const jurisdiction: Jurisdiction = {id: '1', name: 'Vitalia Wiki', abbreviation: 'vitalia', corpusTitle: 'Vitalia Wiki Documentation', usesSubContentNodes: false, jurisdictionLevel: 'misc' };
         const combined_parent_nodes: GroupedRows = await aggregateSiblingRows(rows, false, jurisdiction);
         const text_citation_pairs = convertGroupedRowsToTextCitationPairs(combined_parent_nodes);
-        let instructions = `The user is looking to receive information about Vitalia 2024, which is a popup city event in the special economic zone of Prospera, on the island of Roatan Honduras.
+        let instructions = `The user is looking to receive information about Vitalia 2024, which is a popup city event in the special economic zone of Prospera, on the island of Roatan Honduras. Here are some general facts that may help with answering: Location: Vitalia 2024 will be hosted in Próspera, a Special Economic Zone on the island of Roatan, Honduras.
+        Duration: The pop-up city experience will take place from Jan 6th to March 1st 2024, and encourages a minimum stay of 1 month, with a focus on participants willing to spend at least 2 months.
+        Cost: Room pricing ranges from $1,000 to $3,000 per month, including accommodation and shared amenities like a gym and shared cars.
+        Who's Coming: The resident profile consists of scientists, entrepreneurs, artists, and thinkers specializing in fields like longevity biotechnology, healthcare, and decentralized governance.
+        Work Compatibility: Vitalia is not a conference; participants are encouraged to bring their work with them.
+        Amenities: The package includes medium-range private suites, free-use facilities like a gym and pool, on-site healthcare, and logistical services like car pooling.
+        Additional Services: Childcare services and a variety of wellness activities organized by residents are available.
+        Local Community: Roatan has a diverse and friendly local community with many accepting Bitcoin and other cryptocurrencies.
+        Acceleration of Longevity Innovation: Vitalia, long-term, aims to eliminate bureaucratic roadblocks to speed up clinical trials and lower costs in the longevity field.
         
-        Answer the user's more specific question as best you can. For broad or general questions, it's okay to give a general overview.
+        Answer the user's question as best you can. For broad or general questions, it's okay to give a general overview.
         `
         if (already_answered.length > 0) {
-            instructions += `The following questions have already been answered: ${already_answered.join(', ')}. If there are previous questions, make sure to integrate them into your answer as their current question is most likely a followup question.`;
+            instructions += `The following questions have already been answered: ${already_answered.join(', ')}. The question they asked is a followup question to a previous question. Take their previous questions into account when answering their new question.`;
         }
         
         const direct_answer = await generateDirectAnswer(openai, newQuestion, instructions,  text_citation_pairs);
