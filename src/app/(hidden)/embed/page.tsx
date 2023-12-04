@@ -123,6 +123,7 @@ export default function EmbedPage() {
     if (streamingQueue.length === 0) {
       setCurrentlyStreaming(false);
     }
+    
 
     return;
   };
@@ -164,6 +165,10 @@ export default function EmbedPage() {
     setAlreadyAnswered(alreadyAnswered => [...alreadyAnswered, question]);
     
     const endTime = Date.now();
+    // Wait for 7 seconds before showing the answer
+    setTimeout(() => {
+      
+    }, 7000);
     const params: ContentBlockParams = {
       type: ContentType.AnswerVitalia,
       content: answer,
