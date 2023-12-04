@@ -860,6 +860,9 @@ export default function Playground() {
   const setShown = () => {
     setShowJurisdictionModal(false);
   }
+  const dummyFunction = async () => {
+    return;
+  }
 
   return (
 
@@ -886,6 +889,7 @@ export default function Playground() {
           <ChatContainer
             contentBlocks={contentBlocks}
             onSubmitClarificationAnswers={handleClarificationAnswer}
+            onSubmitClarificationVitaliaAnswers={dummyFunction}
             onSubmitTopicChoices={console.log}
             onClarificationStreamEnd={handleClarificationQuestionDone}
             onStreamEnd={onStreamEnd}

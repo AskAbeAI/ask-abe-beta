@@ -13,6 +13,7 @@ interface ChatContainerProps {
   contentBlocks: ContentBlock[];
   showCurrentLoading: boolean;
   onSubmitClarificationAnswers: (clarification: Clarification, mode: string) => void;
+  onSubmitClarificationVitaliaAnswers: (clarification: Clarification, mode: string) => void;
   onSubmitTopicChoices: (topicChoices: TopicResponses) => void;
   onStreamEnd: (concurrentStreaming: boolean) => void;
   onClarificationStreamEnd: (clarifyingQuestion: string, clarifyingAnswers: string[], mode: string) => void;
@@ -23,6 +24,7 @@ const ChatContainer: React.FC<ChatContainerProps> = ({
   contentBlocks,
   showCurrentLoading,
   onSubmitClarificationAnswers,
+  onSubmitClarificationVitaliaAnswers,
   onSubmitTopicChoices,
   onClarificationStreamEnd,
   onStreamEnd,
@@ -65,6 +67,7 @@ const ChatContainer: React.FC<ChatContainerProps> = ({
           items={contentBlocks}
           showCurrentLoading={showCurrentLoading}
           onSubmitClarificationAnswers={onSubmitClarificationAnswers}
+          onSubmitClarificationVitaliaAnswers={onSubmitClarificationVitaliaAnswers}
           onStreamEnd={onStreamEnd}
           onSubmitTopicChoices={onSubmitTopicChoices}
           onClarificationStreamEnd={onClarificationStreamEnd}

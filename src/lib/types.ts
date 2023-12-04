@@ -12,6 +12,7 @@ export enum ContentType {
   Answer,
   AnswerVitalia,
   Clarification,
+  ClarificationVitalia,
   ClarificationQuestion,
   StreamingAnswer,
   Approval,
@@ -101,6 +102,17 @@ export interface ClarificationBlockProps {
   fakeStream: boolean;
   concurrentStreaming: boolean;
   onSubmitClarificationAnswers: (clarification: Clarification, mode: string) => void;
+  onStreamEnd: (concurrentStreaming: boolean) => void;
+
+}
+export interface ClarificationVitaliaProps {
+  clarifyingQuestion: string;
+  clarifyingAnswers: string[];
+  content: string;
+  mode: string;
+  fakeStream: boolean;
+  concurrentStreaming: boolean;
+  onSubmitClarificationVitaliaAnswers: (clarification: Clarification, mode: string) => void;
   onStreamEnd: (concurrentStreaming: boolean) => void;
 
 }

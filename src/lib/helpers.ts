@@ -1,4 +1,4 @@
-import { getPromptQueryScoring, getPromptExpandedQuery, getPromptAnsweringInstructions, getPromptQueryRefinement, getPromptCondenseClarifications, getPromptClarificationQuestion, getPromptClarificationQuestionMultiple, getPromptDirectAnswering, getPromptBasicQueryRefinement } from "./prompts";
+import { getPromptQueryScoring, getPromptExpandedQuery, getPromptAnsweringInstructions, getPromptQueryRefinement, getPromptCondenseClarifications, getPromptClarificationQuestion, getPromptClarificationQuestionMultiple, getPromptDirectAnswering, getPromptBasicQueryRefinement, getPromptFollowupQuestion } from "./prompts";
 import { createChatCompletion, getEmbedding } from "./chatCompletion";
 import { Clarification, text_citation_pair, GroupedRows } from "./types";
 import { OpenAI } from "openai";
@@ -41,9 +41,14 @@ export const generateBasicQueryRefinement = async (openai: OpenAI, original_ques
   const res = JSON.parse(await createChatCompletion(params, openai, "basicQueryRefinement"));
   return res;
 };
-
+ 
 // Query Clarification
-
+export const generateFollowupQuestion = async (openai: OpenAI, question_string: string, already_answered: string[]): Promise<string> => {
+  const params = getPromptFollowupQuestion(question_string, already_answered, true);
+  const response = JSON.parse(await createChatCompletion(params, openai, "followupQuestion"));
+  console.log(response.followup_question)
+  return response.followup_question;
+};
 export const condenseClarificationsIntoInstructions = async (openai: OpenAI, user_prompt_query: string, previous_clarifications: Clarification[]): Promise<string> => {
   const params = getPromptCondenseClarifications(user_prompt_query, previous_clarifications, true);
   const response = JSON.parse(await createChatCompletion(params, openai, "condenseClarifications"));

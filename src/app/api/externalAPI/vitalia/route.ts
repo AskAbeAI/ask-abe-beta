@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { generateDirectAnswer, generateEmbedding, generateQueryRefinement, convertGroupedRowsToTextCitationPairs } from '@/lib/helpers';
+import { generateDirectAnswer, generateEmbedding, generateQueryRefinement, convertGroupedRowsToTextCitationPairs, generateFollowupQuestion } from '@/lib/helpers';
 import { GroupedRows, Jurisdiction, CitationLinks } from '@/lib/types';
 import OpenAI from "openai";
 import { insert_api_debug_log, jurisdiction_similarity_search_all_partitions, aggregateSiblingRows } from '@/lib/database';
@@ -35,7 +35,7 @@ export async function POST(req: Request) {
     
     const original_question: string = requestData.question;
     const api_key: string = requestData.api_key;
-    const already_answered: string[] = requestData.already_answered;
+    let already_answered: string[] = requestData.already_answered;
 
     if (api_key !== 'ak_EjMsYGPJpLHcb48r4uCfP2ZYyrjwL') {
         return NextResponse.json({ errorMessage: `Invalid API key: ${api_key}`, status: 401 });
@@ -47,7 +47,11 @@ export async function POST(req: Request) {
 	if (supabaseKey === undefined) { throw new Error("process.env.SUPABASE_KEY is undefined!"); }
     
     try {
-        const embedding = JSON.parse(JSON.stringify(await generateEmbedding(openai, [original_question])));
+        let newQuestion = await generateFollowupQuestion(openai, original_question, already_answered)
+        if (newQuestion === original_question) {
+            already_answered = [];
+        }
+        const embedding = JSON.parse(JSON.stringify(await generateEmbedding(openai, [newQuestion])));
 
         const rows = await jurisdiction_similarity_search_all_partitions("vitalia", embedding, 0.6, 10, 15, supabaseUrl, supabaseKey);
         const jurisdiction: Jurisdiction = {id: '1', name: 'Vitalia Wiki', abbreviation: 'vitalia', corpusTitle: 'Vitalia Wiki Documentation', usesSubContentNodes: false, jurisdictionLevel: 'misc' };
@@ -63,13 +67,13 @@ export async function POST(req: Request) {
         Local Community: Roatan has a diverse and friendly local community with many accepting Bitcoin and other cryptocurrencies.
         Acceleration of Longevity Innovation: Vitalia, long-term, aims to eliminate bureaucratic roadblocks to speed up clinical trials and lower costs in the longevity field.
         
-        Answer the user's more specific question as best you can. For broad or general questions, it's okay to give a general overview.
+        Answer the user's question as best you can. For broad or general questions, it's okay to give a general overview.
         `
         if (already_answered.length > 0) {
-            instructions += `The following questions have already been answered: ${already_answered.join(', ')}. Please do not repeat the same information.`;
+            instructions += `The following questions have already been answered: ${already_answered.join(', ')}. The question they asked is a followup question to a previous question. Take their previous questions into account when answering their new question.`;
         }
         
-        const direct_answer = await generateDirectAnswer(openai, original_question, instructions,  text_citation_pairs);
+        const direct_answer = await generateDirectAnswer(openai, newQuestion, instructions,  text_citation_pairs);
         const citationLinks: CitationLinks = {};
         for (const row of rows) {
             citationLinks[row.citation] = row.link!

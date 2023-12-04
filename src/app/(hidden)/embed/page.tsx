@@ -123,6 +123,7 @@ export default function EmbedPage() {
     if (streamingQueue.length === 0) {
       setCurrentlyStreaming(false);
     }
+    
 
     return;
   };
@@ -173,7 +174,69 @@ export default function EmbedPage() {
     };
     await addContentBlock(createNewBlock(params));
     setIsFormVisible(true);
+    const clarqparams: ContentBlockParams = {
+      type: ContentType.ClarificationQuestion,
+      content: "We care about your feedback!",
+      fake_stream: false,
+      concurrentStreaming: false,
+      clarifyingQuestion: "Did this answer your question?",
+      clarifyingAnswers: ["Yes","No",'No, Reach Out to An Organizer'],
+      mode: 'Single'
+    };
+    await addContentBlock(createNewBlock(clarqparams));
+    const clarparams: ContentBlockParams = {
+      type: ContentType.ClarificationVitalia,
+      content: "We care about your feedback!",
+      fake_stream: false,
+      concurrentStreaming: false,
+      clarifyingQuestion: "Did this answer your question?",
+      clarifyingAnswers: ["Yes","No",'No, Reach Out to An Organizer'],
+      mode: 'Single'
+    };
+    await addContentBlock(createNewBlock(clarparams));
+  };
 
+  const handleClarificationVitaliaAnswer = async (response: Clarification, mode: string) => {
+    // Append the response to the clarificationResponses state
+    let params = {};
+    
+    console.log("Handling clarification answer!");
+    if(response.response === "No, Reach Out to An Organizer") {
+      const citationLinks: CitationLinks = {}
+      citationLinks["Placeholder § Organizer"] = "https://t.me/tailsph"
+      const params: ContentBlockParams = {
+        type: ContentType.AnswerVitalia,
+        content: "I'm sorry I couldn't help you find what you're looking for. I have provided the contact information for one of the organizers of Vitalia below. Please reach out to them for further assistance. ###Placeholder § Organizer###",
+        fake_stream: true,
+        concurrentStreaming: false,
+        citationLinks: citationLinks
+      };
+      await addContentBlock(createNewBlock(params));
+      
+    } else if (response.response === "Yes") {
+      const citationLinks: CitationLinks = {}
+      citationLinks["Placeholder § Vitalia Wiki"] = "https://wiki.vitalia.city/"
+      const params: ContentBlockParams = {
+          type: ContentType.AnswerVitalia,
+          content: "Great! Glad I could help! Reach out if you have any other questions or check out our ###Placeholder § Vitalia Wiki###",
+          fake_stream: true,
+          concurrentStreaming: false,
+          citationLinks: citationLinks
+      };
+      await addContentBlock(createNewBlock(params));
+    } else if (response.response === "No"){
+      const citationLinks: CitationLinks = {}
+      citationLinks["Placeholder § Vitalia Wiki"] = "https://wiki.vitalia.city/"
+      const params: ContentBlockParams = {
+        type: ContentType.AnswerVitalia,
+        content: "I'm sorry I couldn't help you find what you're looking for. The ###Placeholder § Vitalia Wiki### has a lot of information that might be helpful.",
+        fake_stream: true,
+        concurrentStreaming: false,
+        citationLinks: citationLinks
+      };
+      await addContentBlock(createNewBlock(params));
+    }
+    return;
   };
 
   const dummyFunction = async () => {
@@ -196,6 +259,7 @@ export default function EmbedPage() {
             <ChatContainer
               contentBlocks={contentBlocks}
               onSubmitClarificationAnswers={dummyFunction}
+              onSubmitClarificationVitaliaAnswers={handleClarificationVitaliaAnswer}
               onSubmitTopicChoices={dummyFunction}
               onClarificationStreamEnd={dummyFunction}
               onStreamEnd={onStreamEnd}

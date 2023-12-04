@@ -160,6 +160,35 @@ export function getPromptAnsweringInstructions(
   return params;
 
 }
+export function getPromptFollowupQuestion(
+  question_string: string,
+  already_answered: string[],
+  
+  useRegularGPT4: boolean
+): ChatCompletionParams {
+  
+  const system = `You are a highly helpful tour guide. You help explain Vitalia 2024, a pop-up city event in the special economic zone of Prospera, on the island of Roatan Honduras.Your goal is to help a customer find information. You will be provided some data:
+  1. A customer's new question, which is a legal question that they are seeking information for themselves. This question is not well formed, and so the legal professional would like for the company to ask some clarifying questions to the customer.
+  2. A list of questions already answered by another tour guide.
+  
+  Your job is to determine if the customer's question is a followup question, and then create a new followup question with more information. Your new followup question which is more clear is going to be used to query the Vitalia internal documentation to find an answer for the customer. You will be creating this followup question by following these instructions:
+  1. Fully read the new question.
+  2. Read all of the already_answered_questions.
+  3. If the new question is a followup question, then create a followup question that is a followup question to the most recent question in the already_answered_questions. Make sure to include the same language as the most recent question in the already answered questions while creating the followup question.
+  4. If the new question is not a followup question, then simply return the new question.
+
+  Return your response in json format: {followup_question: "Your question here"};
+  `;
+  const user = `question: ${question_string}, already_answered_questions: {${JSON.stringify(already_answered)}}`;
+  const messages = convertToMessages(system, user);
+  let model = "gpt-4-1106-preview";
+  if (useRegularGPT4) {
+    model = "gpt-4";
+  }
+  const params: ChatCompletionParams = getChatCompletionParams(model, messages, 0.5, 2000);
+  return params;
+
+}
 export function getPromptClarificationQuestionMultiple(
   question_string: string,
   useRegularGPT4: boolean
