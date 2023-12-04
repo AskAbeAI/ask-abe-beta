@@ -47,16 +47,20 @@ export async function POST(req: Request) {
 	if (supabaseKey === undefined) { throw new Error("process.env.SUPABASE_KEY is undefined!"); }
     
     try {
+        console.log(original_question)
         let newQuestion = await generateFollowupQuestion(openai, original_question, already_answered)
         if (newQuestion === original_question) {
             already_answered = [];
         }
+        console.log(newQuestion)
         const embedding = JSON.parse(JSON.stringify(await generateEmbedding(openai, [newQuestion])));
 
-        const rows = await jurisdiction_similarity_search_all_partitions("vitalia", embedding, 0.6, 10, 30, supabaseUrl, supabaseKey);
+        const rows = await jurisdiction_similarity_search_all_partitions("vitalia", embedding, 0.6, 20, 50, supabaseUrl, supabaseKey);
+        console.log(rows)
         const jurisdiction: Jurisdiction = {id: '1', name: 'Vitalia Wiki', abbreviation: 'vitalia', corpusTitle: 'Vitalia Wiki Documentation', usesSubContentNodes: false, jurisdictionLevel: 'misc' };
         const combined_parent_nodes: GroupedRows = await aggregateSiblingRows(rows, false, jurisdiction);
         const text_citation_pairs = convertGroupedRowsToTextCitationPairs(combined_parent_nodes);
+        console.log(text_citation_pairs)
         
         
         const direct_answer = await generateDirectAnswerVitalia(openai, newQuestion, already_answered,  text_citation_pairs);

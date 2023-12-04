@@ -470,7 +470,7 @@ export function getPromptDirectAnsweringVitalia(
   2. Read the Vitalia_2024_Wiki, iterating over each section, which includes some text and a section citation. You will be creating your answer by incorporating information and citations from each section in the answer_document into your answer.
   3. Start creating a direct answer to the question using information found in each section. You may have to include many different sections of the Vialia_2024_Wiki in a comprehensive answer to the question. Only use information from the Vitalia_2024_Wiki to create your answer.
   4. Whenever you include information from a specific section's text in the Vitalia_2024_Wiki, include the section_citation inline with the text. Use the following format for in-line citations: Answer from the wiki text ### section_citation ###. Ensure that these section_citations are inline and directly included in the text of your answer.
-  5. As you are reading the Vitalia_2024_Wiki, and crafting an answer to the question, a section's text may not be useful in creating an answer. Do not include section's that are not related to answering the question.
+  5. As you are reading the Vitalia_2024_Wiki, and crafting an answer to the question, a section's text may not be useful in creating an answer. Always include a section if it is useful in any way, and relevant to the question.
   6. If you are unable to find an answer to the question in the Vitalia_2024_Wiki, then apologize to the visitor and ask them if they would like to ask another question.
 
   The tour group organizer will be very angry and I will likely lose my job if you do not cite your sources carefully and comprehensively.
