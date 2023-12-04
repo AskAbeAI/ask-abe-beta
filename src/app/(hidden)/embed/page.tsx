@@ -174,13 +174,15 @@ export default function EmbedPage() {
     await addContentBlock(createNewBlock(params));
     setIsFormVisible(true);
     const clarparams: ContentBlockParams = {
-      type: ContentType.ClarificationVitalia,
-      content: answer,
-      fake_stream: false,
+      type: ContentType.ClarificationQuestion,
+      content: "",
+      fake_stream: true,
       concurrentStreaming: false,
-      citationLinks: citationLinks
+      clarifyingQuestion: "Did this answer your question?",
+      clarifyingAnswers: ["Yes","No",'No, Reach Out to An Organizer'],
+      mode: 'Single'
     };
-    await addContentBlock(createNewBlock(params));
+    await addContentBlock(createNewBlock(clarparams));
 
   };
 
