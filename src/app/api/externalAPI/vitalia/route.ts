@@ -12,7 +12,7 @@ export const maxDuration = 120;
 
 
 export function OPTIONS(req: Request) {
-    console.log(req.headers)
+    
     // Set CORS headers
     const headers = {
         'Access-Control-Allow-Origin': 'https://www.strikingly.com', // Modify as needed for your use case
