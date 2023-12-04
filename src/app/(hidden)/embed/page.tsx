@@ -208,7 +208,7 @@ export default function EmbedPage() {
     if(response.response === "No, Reach Out to An Organizer") {
       const params: ContentBlockParams = {
         type: ContentType.AnswerVitalia,
-        content: "I'm sorry I couldn't help you find what you're looking for. I have provided the contact information for one of the organizers of Vitalia below. Please reach out to them for further assistance. \n ### Organizer ###",
+        content: "I'm sorry I couldn't help you find what you're looking for. I have provided the contact information for one of the organizers of Vitalia below. Please reach out to them for further assistance. ### Organizer ###",
         fake_stream: true,
         concurrentStreaming: false,
         citationLinks: {citation: "Organizer", link: "https://t.me/tailsph"} as CitationLinks
