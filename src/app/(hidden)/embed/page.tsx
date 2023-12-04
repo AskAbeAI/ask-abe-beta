@@ -167,7 +167,7 @@ export default function EmbedPage() {
     const endTime = Date.now();
     // Wait for 7 seconds before showing the answer
     setTimeout(() => {
-      
+
     }, 7000);
     const params: ContentBlockParams = {
       type: ContentType.AnswerVitalia,
@@ -198,6 +198,42 @@ export default function EmbedPage() {
       mode: 'Single'
     };
     await addContentBlock(createNewBlock(clarparams));
+  };
+
+  const handleClarificationAnswer = async (response: Clarification, mode: string) => {
+    // Append the response to the clarificationResponses state
+    let params = {};
+    console.log("Handling clarification answer!");
+    if(response.response === "No, Reach Out to An Organizer") {
+      const params: ContentBlockParams = {
+        type: ContentType.AnswerVitalia,
+        content: "I'm sorry I couldn't help you find what you're looking for. I have provided the contact information for one of the organizers of Vitalia below. Please reach out to them for further assistance. \n ### Organizer ###",
+        fake_stream: true,
+        concurrentStreaming: false,
+        citationLinks: {citation: "Organizer", link: "https://t.me/tailsph"} as CitationLinks
+      };
+      await addContentBlock(createNewBlock(params));
+      
+    } else if (response.response === "Yes") {
+      const params: ContentBlockParams = {
+          type: ContentType.AnswerVitalia,
+          content: "Great! Glad I could help! Reach out if you have any other questions or check out our ### Vitalia Wiki ###",
+          fake_stream: true,
+          concurrentStreaming: false,
+          citationLinks: {citation: "Vitalia Wiki", link: "https://wiki.vitalia.city/"} as CitationLinks
+      };
+      await addContentBlock(createNewBlock(params));
+    } else if (response.response === "No"){
+      const params: ContentBlockParams = {
+        type: ContentType.AnswerVitalia,
+        content: "I'm sorry I couldn't help you find what you're looking for. The ### Vitalia Wiki ### has a lot of information that might be helpful.",
+        fake_stream: true,
+        concurrentStreaming: false,
+        citationLinks: {citation: "Vitalia Wiki", link: "https://wiki.vitalia.city/"} as CitationLinks
+      };
+      await addContentBlock(createNewBlock(params));
+    }
+    return;
   };
 
   const dummyFunction = async () => {
