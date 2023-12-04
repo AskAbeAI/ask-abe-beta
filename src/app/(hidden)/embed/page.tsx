@@ -173,17 +173,26 @@ export default function EmbedPage() {
     };
     await addContentBlock(createNewBlock(params));
     setIsFormVisible(true);
-    const clarparams: ContentBlockParams = {
+    const clarqparams: ContentBlockParams = {
       type: ContentType.ClarificationQuestion,
-      content: "",
-      fake_stream: true,
+      content: "We care about your feedback!",
+      fake_stream: false,
+      concurrentStreaming: false,
+      clarifyingQuestion: "Did this answer your question?",
+      clarifyingAnswers: ["Yes","No",'No, Reach Out to An Organizer'],
+      mode: 'Single'
+    };
+    await addContentBlock(createNewBlock(clarqparams));
+    const clarparams: ContentBlockParams = {
+      type: ContentType.ClarificationVitalia,
+      content: "We care about your feedback!",
+      fake_stream: false,
       concurrentStreaming: false,
       clarifyingQuestion: "Did this answer your question?",
       clarifyingAnswers: ["Yes","No",'No, Reach Out to An Organizer'],
       mode: 'Single'
     };
     await addContentBlock(createNewBlock(clarparams));
-
   };
 
   const dummyFunction = async () => {
