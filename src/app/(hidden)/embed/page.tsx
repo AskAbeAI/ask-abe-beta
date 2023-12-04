@@ -203,7 +203,7 @@ export default function EmbedPage() {
     console.log("Handling clarification answer!");
     if(response.response === "No, Reach Out to An Organizer") {
       const citationLinks: CitationLinks = {}
-      citationLinks["§ Organizer"] = "https://t.me/tailsph"
+      citationLinks["Placeholder § Organizer"] = "https://t.me/tailsph"
       const params: ContentBlockParams = {
         type: ContentType.AnswerVitalia,
         content: "I'm sorry I couldn't help you find what you're looking for. I have provided the contact information for one of the organizers of Vitalia below. Please reach out to them for further assistance. ### §  Organizer ###",
@@ -215,7 +215,7 @@ export default function EmbedPage() {
       
     } else if (response.response === "Yes") {
       const citationLinks: CitationLinks = {}
-      citationLinks["§ Vitalia Wiki"] = "https://wiki.vitalia.city/"
+      citationLinks["Placeholder § Vitalia Wiki"] = "https://wiki.vitalia.city/"
       const params: ContentBlockParams = {
           type: ContentType.AnswerVitalia,
           content: "Great! Glad I could help! Reach out if you have any other questions or check out our ### §  Vitalia Wiki ###",
@@ -226,7 +226,7 @@ export default function EmbedPage() {
       await addContentBlock(createNewBlock(params));
     } else if (response.response === "No"){
       const citationLinks: CitationLinks = {}
-      citationLinks["§ Vitalia Wiki"] = "https://wiki.vitalia.city/"
+      citationLinks["Placeholder § Vitalia Wiki"] = "https://wiki.vitalia.city/"
       const params: ContentBlockParams = {
         type: ContentType.AnswerVitalia,
         content: "I'm sorry I couldn't help you find what you're looking for. The ### §  Vitalia Wiki ### has a lot of information that might be helpful.",
