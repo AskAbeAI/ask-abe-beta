@@ -860,9 +860,9 @@ export const WelcomeBlock: React.FC = () => {
 export const WelcomeVitaliaBlock: React.FC = () => {
   return (
     <div className="p-4 bg-gray-200 rounded-md shadow">
-      <p className="text-lg font-semibold">Hello! I&apos;m Abe, welcome to the Vitalia Wiki.  </p>
+      <p className="text-lg font-semibold">Hello! I&apos;m Abe, an AI virtual tourguide who can help answer any question you have about Vitalia 2024.</p>
       <p className="text-lg">
-       Ask me a question!.
+       Ask me a question!
       </p>
     </div>
   );
