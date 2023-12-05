@@ -1,5 +1,5 @@
 import { Chat } from 'openai/resources/index.mjs';
-import { Message, ChatCompletionParams, TopicResponses, Clarification, PartialAnswer, ClarificationChoices, text_citation_pair } from '../lib/types';
+import { Message, ChatCompletionParams, TopicResponses, Clarification, PartialAnswer, ClarificationChoices, text_citation_pair, text_citation_pair_vitalia } from '../lib/types';
 import { convertToMessages, getChatCompletionParams } from '@/lib/chatCompletion';
 import { PassThrough } from 'stream';
 
@@ -288,6 +288,28 @@ export function getPromptExpandedQuery(
 
 }
 
+export function getPromptExpandedQueryVitalia(
+  questions: string[],
+  useRegularGPT4: boolean
+): ChatCompletionParams {
+  const system = `You are a helpful tour guide assistant that rephrases a user's question about visiting an island into a statement of how that question's answer looks like in the tourism guide. You will be provided with a list of questions, which you will translate into statements as it might appear in a tourism brouchure. Questions should be converted to statements that look like they could be found in actual tourism brouchures.
+  Transform each question in questions into a hypothetical statement, following these instructions:
+  1. Tourism statements are converted from the form of a question to a statement.
+  2. Tourism statements are intended to mimic the format of text in actual tourism brouchures.
+  3. Tourism statements are converted from the original question, but retain the same topics.
+  4. Tourism statements are translated into tourism speak, using proper language, as you would find in actual tourism brouchures.
+  6. Use generic 3rd person pronouns (an individual, a person). Refrain from using I, we, or other personal pronouns.\n\nReturn in json format: {tourism_statements: []}\n`;
+  const user = `{"questions": ${JSON.stringify(questions)}}`;
+  const messages = convertToMessages(system, user);
+  let model = "gpt-4-1106-preview";
+  if (useRegularGPT4) {
+    model = "gpt-4";
+  }
+  const params: ChatCompletionParams = getChatCompletionParams(model, messages, 0.4, 1000);
+  return params;
+
+}
+
 // TopicGeneration API prompts
 export function getPromptBlindTopics(
   main_question: string,
@@ -432,6 +454,52 @@ export function getPromptDirectAnswering(
   
   `;
   let user = `{legal_question: ${legal_question}, instructions: ${instructions}, answer_document: ${JSON.stringify(text_citation_pairs)}}`;
+
+
+  const messages = convertToMessages(system, user);
+  const params: ChatCompletionParams = getChatCompletionParams("gpt-4-1106-preview", messages, 0.5);
+  return params;
+}
+
+export function getPromptDirectAnsweringVitalia(
+  question: string,
+  already_asked_questions: string[],
+  text_citation_pairs: text_citation_pair_vitalia[],
+  useRegularGPT4: boolean
+): ChatCompletionParams {
+  console.log(text_citation_pairs)
+  const system = `You are an enthustiac tour guide who assists visitors. Your main job is to help visitors find information about Vitalia 2024, a pop-up city event in the special economic zone of Prospera, on the island of Roatan Honduras. Here is some generaal information Vitalia that you need to know:
+  Location: Vitalia 2024 will be hosted in Próspera, a Special Economic Zone on the island of Roatan, Honduras.
+  Duration: The pop-up city experience will take place from Jan 6th to March 1st 2024, and encourages a minimum stay of 1 month, with a focus on participants willing to spend at least 2 months.
+  Cost: Room pricing ranges from $1,000 to $3,000 per month, including accommodation and shared amenities like a gym and shared cars.
+  Who's Coming: The resident profile consists of scientists, entrepreneurs, artists, and thinkers specializing in fields like longevity biotechnology, healthcare, and decentralized governance.
+  Work Compatibility: Vitalia is not a conference; participants are encouraged to bring their work with them.
+  Amenities: The package includes medium-range private suites, free-use facilities like a gym and pool, on-site healthcare, and logistical services like car pooling.
+  Additional Services: Childcare services and a variety of wellness activities organized by residents are available.
+  Local Community: Roatan has a diverse and friendly local community with many accepting Bitcoin and other cryptocurrencies.
+  Acceleration of Longevity Innovation: Vitalia, long-term, aims to eliminate bureaucratic roadblocks to speed up clinical trials and lower costs in the longevity field.
+  
+  Your job is to answer questions about Vitalia 2024 asked by a visitor or potential visitor. You will be given:
+  1. A question about Vitalia 2024 provided by a visitor.
+  2. A list of already_asked_questions, which are questions that have already been answered by another tour guide.
+  3. A copy of the Vitalia_2024_Wiki, which contains all necessary information about Vitalia 2024.
+  - Each secion has a section_citation, which is a unique identifier for that section of the wiki.
+  - Each section has some text, which is the actual text of the section.
+  
+
+  Your job is to read through all the sections in the Vitalia_2024_Wiki, and create a direct answer to the question. ** Ensure that each individual part of an answer from a section also includes citations in line **. Follow these instructions to create a direct answer with citations to the legal_question:
+  1. First, read the legal question and remember the provided general information. Take time to understand the needs of the visitor.
+  2. Read the Vitalia_2024_Wiki, iterating over each section, which includes some text and a section citation. You will be creating your answer by incorporating information and citations from each section in the answer_document into your answer.
+  3. Start creating a direct answer to the question using information found in each section. You may have to include many different sections of the Vialia_2024_Wiki in a comprehensive answer to the question. Only use information from the Vitalia_2024_Wiki to create your answer.
+  4. Whenever you include information from a specific section's text in the Vitalia_2024_Wiki, include the section_citation inline with the text. Use the following format for in-line citations: Answer from the wiki text ### section_citation ###. Ensure that these section_citations are inline and directly included in the text of your answer.
+  5. If you are unable to find an answer to the question in the Vitalia_2024_Wiki, then apologize to the visitor and ask them if they would like to ask another question.
+
+  The tour group organizer will be very angry and I will likely lose my job if you do not cite your sources carefully and comprehensively.
+
+  **Return your answer only in json (JSON) format***: {direct_answer: "Your answer here"}.
+  
+  `;
+  let user = `{question: ${question}, already_asked_questions: ${JSON.stringify(already_asked_questions)}, Vitalia_2024_Wiki: ${JSON.stringify(text_citation_pairs)}}`;
 
 
   const messages = convertToMessages(system, user);

@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
-import { node_as_row, node_key, GroupedRows, Jurisdiction } from "@/lib/types";
+import { node_as_row, node_key, GroupedRows, Jurisdiction, new_node_as_row } from "@/lib/types";
 import { match } from 'assert';
 
 
@@ -31,6 +31,30 @@ export async function jurisdiction_similarity_search_all_partitions(
   return data;
 }
 
+export async function vitalia_search(
+  jurisdiction: string,
+  query_embedding: string,
+  match_threshold: number,
+  max_rows: number,
+  supabaseUrl: string,
+  supabaseKey: string
+): Promise<new_node_as_row[]> {
+
+  const supabase = createClient(supabaseUrl!, supabaseKey!);
+  const { data, error } = await supabase
+    .rpc(`${jurisdiction}_similarity_search`, {
+      query_embedding: query_embedding,
+      match_threshold: match_threshold,
+      max_rows: max_rows,
+    });
+  if (error) {
+    console.log(error);
+    throw error;
+  }
+  //console.log(data);
+  return data;
+}
+
 export async function get_sibling_rows(
   jurisdiction: string,
   node_keys: node_key[],
@@ -49,7 +73,7 @@ export async function get_sibling_rows(
 
 
 export async function aggregateSiblingRows(rows: node_as_row[], usesSubContentNodes: boolean, jurisdiction: Jurisdiction): Promise<GroupedRows> {
- console.log(rows);
+ 
   const extractSortKey = (id: string): string => {
     const parts = id.split('/');
     const lastPart = parts[parts.length - 1];

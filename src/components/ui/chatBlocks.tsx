@@ -133,7 +133,6 @@ export const AnswerVitaliaBlock: React.FC<AnswerVitaliaBlockProps> = ({ content,
   const createTextWithEmbeddedLink = (text: string): JSX.Element[] => {
     // Regular expression to match citations
     // Replace all occurnces of "(#" with just "#"
-    text = text.replace(/\n§/g, "§");
     text = text.replace(/\(#/g, '#');
     // Replace all occurrences of "#)" with just "#"
     text = text.replace(/#\)/g, '#');
@@ -148,7 +147,7 @@ export const AnswerVitaliaBlock: React.FC<AnswerVitaliaBlockProps> = ({ content,
       const placeholder = `CITATION_${Object.keys(citations).length}`;
       citations[placeholder] = (
         <a href={`${citationLinks[citation.trim()]}`} target="_blank" className="text-blue-500 hover:text-blue-700">
-          {citation.trim().split("§ ")[1]}
+          {citation.trim()}
         </a>
       );
       return placeholder;
@@ -861,9 +860,9 @@ export const WelcomeBlock: React.FC = () => {
 export const WelcomeVitaliaBlock: React.FC = () => {
   return (
     <div className="p-4 bg-gray-200 rounded-md shadow">
-      <p className="text-lg font-semibold">Hello! I&apos;m Abe, welcome to the Vitalia Wiki.  </p>
+      <p className="text-lg font-semibold">Hello! I&apos;m Abe, an AI virtual tourguide who can help answer any question you have about Vitalia 2024.</p>
       <p className="text-lg">
-       Ask me a question!.
+       Ask me a question!
       </p>
     </div>
   );

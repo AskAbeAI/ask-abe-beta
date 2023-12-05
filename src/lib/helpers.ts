@@ -1,6 +1,6 @@
-import { getPromptQueryScoring, getPromptExpandedQuery, getPromptAnsweringInstructions, getPromptQueryRefinement, getPromptCondenseClarifications, getPromptClarificationQuestion, getPromptClarificationQuestionMultiple, getPromptDirectAnswering, getPromptBasicQueryRefinement, getPromptFollowupQuestion } from "./prompts";
+import { getPromptQueryScoring, getPromptExpandedQuery, getPromptAnsweringInstructions, getPromptQueryRefinement, getPromptCondenseClarifications, getPromptClarificationQuestion, getPromptClarificationQuestionMultiple, getPromptDirectAnswering, getPromptBasicQueryRefinement, getPromptFollowupQuestion, getPromptDirectAnsweringVitalia, getPromptExpandedQueryVitalia } from "./prompts";
 import { createChatCompletion, getEmbedding } from "./chatCompletion";
-import { Clarification, text_citation_pair, GroupedRows } from "./types";
+import { Clarification, text_citation_pair, text_citation_pair_vitalia,GroupedRows, new_node_as_row } from "./types";
 import { OpenAI } from "openai";
 
 // Query Scoring
@@ -19,6 +19,14 @@ export const generateQueryExpansion = async (openai: OpenAI, legal_questions: st
   const legal_statements: string[] = res.legal_statements;
   return legal_statements;
 };
+
+export const generateQueryExpansionVitalia = async (openai: OpenAI, questions: string[]) => {
+  const params = getPromptExpandedQueryVitalia(questions, true);
+  const res = JSON.parse(await createChatCompletion(params, openai, "expandedQueryVitalia"));
+  const tourism_statements: string[] = res.tourism_statements;
+  return tourism_statements;
+};
+
 
 export const generateEmbedding = async (openai: OpenAI, legal_statements: string[]) => {
   const embedded_expansion_query = await getEmbedding(legal_statements.join('\n'), openai);
@@ -102,6 +110,13 @@ export const generateDirectAnswer = async (openai: OpenAI, user_prompt_query: st
   return direct_answer;
 };
 
+export const generateDirectAnswerVitalia = async (openai: OpenAI, user_prompt_query: string,already_asked_questions: string[], all_text_citation_pairs: text_citation_pair_vitalia[]): Promise<string> => {
+  const params = getPromptDirectAnsweringVitalia(user_prompt_query, already_asked_questions, all_text_citation_pairs, false);
+  const result = JSON.parse(await createChatCompletion(params, openai, "directAnsweringVitalia"));
+  const direct_answer: string = result.direct_answer;
+  return direct_answer;
+};
+
 export const convertGroupedRowsToTextCitationPairs = (groupedRows: GroupedRows): text_citation_pair[] => {
   const all_text_citation_pairs: text_citation_pair[] = [];
   for (const key in groupedRows) {
@@ -114,3 +129,26 @@ export const convertGroupedRowsToTextCitationPairs = (groupedRows: GroupedRows):
   }
   return all_text_citation_pairs;
 };
+
+
+export const convertRowsToTextCitationPairsVitalia = (rows: new_node_as_row[]): text_citation_pair_vitalia[] => {
+  const all_text_citation_pairs: text_citation_pair_vitalia[] = [];
+  for (const row of rows) {
+    const pair: text_citation_pair_vitalia = {
+      section_citation: cleanString(row.node_name!.trim()),
+      text: row.node_text.join("\n"),
+    };
+    all_text_citation_pairs.push(pair);
+  }
+  return all_text_citation_pairs;
+};
+
+function cleanString(inputString: string): string {
+  // Remove all newline characters
+  let cleanedString = inputString.replace(/\n/g, ' ');
+
+  // Replace multiple whitespaces with a single whitespace
+  cleanedString = cleanedString.replace(/\s+/g, ' ');
+
+  return cleanedString.trim();
+}

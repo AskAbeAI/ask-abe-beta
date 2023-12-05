@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
-import { generateDirectAnswer, generateEmbedding, generateQueryRefinement, convertGroupedRowsToTextCitationPairs, generateFollowupQuestion } from '@/lib/helpers';
+import { generateDirectAnswer, generateEmbedding, generateQueryRefinement,generateDirectAnswerVitalia, convertRowsToTextCitationPairsVitalia, generateFollowupQuestion } from '@/lib/helpers';
 import { GroupedRows, Jurisdiction, CitationLinks } from '@/lib/types';
 import OpenAI from "openai";
-import { insert_api_debug_log, jurisdiction_similarity_search_all_partitions, aggregateSiblingRows } from '@/lib/database';
+import { insert_api_debug_log, jurisdiction_similarity_search_all_partitions, aggregateSiblingRows, vitalia_search } from '@/lib/database';
 
 const openAiKey = process.env.OPENAI_API_KEY;
 const openai = new OpenAI({
@@ -12,7 +12,7 @@ export const maxDuration = 120;
 
 
 export function OPTIONS(req: Request) {
-    console.log(req.headers)
+    
     // Set CORS headers
     const headers = {
         'Access-Control-Allow-Origin': 'https://www.strikingly.com', // Modify as needed for your use case
@@ -26,7 +26,7 @@ export function OPTIONS(req: Request) {
 }
 
 export async function POST(req: Request) {
-    console.log(req.headers)
+    
     const startTime = Date.now();
     
     console.log("=== EXTERNAL VITALIA API ENDPOINT ===");
@@ -47,37 +47,28 @@ export async function POST(req: Request) {
 	if (supabaseKey === undefined) { throw new Error("process.env.SUPABASE_KEY is undefined!"); }
     
     try {
-        let newQuestion = await generateFollowupQuestion(openai, original_question, already_answered)
-        if (newQuestion === original_question) {
-            already_answered = [];
-        }
-        const embedding = JSON.parse(JSON.stringify(await generateEmbedding(openai, [newQuestion])));
+        console.log(original_question)
+        // let newQuestion = await generateFollowupQuestion(openai, original_question, already_answered)
+        // if (newQuestion === original_question) {
+        //     already_answered = [];
+        // }
+        
+        const embedding = JSON.parse(JSON.stringify(await generateEmbedding(openai, [original_question])));
 
-        const rows = await jurisdiction_similarity_search_all_partitions("vitalia", embedding, 0.6, 10, 15, supabaseUrl, supabaseKey);
-        const jurisdiction: Jurisdiction = {id: '1', name: 'Vitalia Wiki', abbreviation: 'vitalia', corpusTitle: 'Vitalia Wiki Documentation', usesSubContentNodes: false, jurisdictionLevel: 'misc' };
-        const combined_parent_nodes: GroupedRows = await aggregateSiblingRows(rows, false, jurisdiction);
-        const text_citation_pairs = convertGroupedRowsToTextCitationPairs(combined_parent_nodes);
-        let instructions = `The user is looking to receive information about Vitalia 2024, which is a popup city event in the special economic zone of Prospera, on the island of Roatan Honduras. Here are some general facts that may help with answering: Location: Vitalia 2024 will be hosted in Próspera, a Special Economic Zone on the island of Roatan, Honduras.
-        Duration: The pop-up city experience will take place from Jan 6th to March 1st 2024, and encourages a minimum stay of 1 month, with a focus on participants willing to spend at least 2 months.
-        Cost: Room pricing ranges from $1,000 to $3,000 per month, including accommodation and shared amenities like a gym and shared cars.
-        Who's Coming: The resident profile consists of scientists, entrepreneurs, artists, and thinkers specializing in fields like longevity biotechnology, healthcare, and decentralized governance.
-        Work Compatibility: Vitalia is not a conference; participants are encouraged to bring their work with them.
-        Amenities: The package includes medium-range private suites, free-use facilities like a gym and pool, on-site healthcare, and logistical services like car pooling.
-        Additional Services: Childcare services and a variety of wellness activities organized by residents are available.
-        Local Community: Roatan has a diverse and friendly local community with many accepting Bitcoin and other cryptocurrencies.
-        Acceleration of Longevity Innovation: Vitalia, long-term, aims to eliminate bureaucratic roadblocks to speed up clinical trials and lower costs in the longevity field.
+        const rows = await vitalia_search("vitalia", embedding, 0.6, 50, supabaseUrl, supabaseKey);
+        console.log(rows)
         
-        Answer the user's question as best you can. For broad or general questions, it's okay to give a general overview.
-        `
-        if (already_answered.length > 0) {
-            instructions += `The following questions have already been answered: ${already_answered.join(', ')}. The question they asked is a followup question to a previous question. Take their previous questions into account when answering their new question.`;
-        }
+        const text_citation_pairs = convertRowsToTextCitationPairsVitalia(rows);
+        console.log(text_citation_pairs)
         
-        const direct_answer = await generateDirectAnswer(openai, newQuestion, instructions,  text_citation_pairs);
+        
+        const direct_answer = await generateDirectAnswerVitalia(openai, original_question, already_answered,  text_citation_pairs);
+        console.log(direct_answer)
         const citationLinks: CitationLinks = {};
         for (const row of rows) {
-            citationLinks[row.citation.trim()] = row.link!
+            citationLinks[cleanString(row.node_name!.trim())] = row.link!
         }
+        console.log(citationLinks)
         const endTime = Date.now();
 
         const response = NextResponse.json({
@@ -104,20 +95,13 @@ export async function POST(req: Request) {
     }
 }
 
-const createTextWithEmbeddedLink = (text: string): string => {
-    // Replace all occurrences of "(#" with just "#"
-    text = text.replace(/\n§/g, "§");
-    text = text.replace(/\(#/g, '#');
-    // Replace all occurrences of "#)" with just "#"
-    text = text.replace(/#\)/g, '#');
 
-    const citationPattern = /###(.*?)###/g;
-
-    // Replace citations in the text with HTML anchor tags
-    text = text.replace(citationPattern, (_, citation) => {
-        const trimmedCitation = citation.trim();
-        return `<a href="#${trimmedCitation}" class="text-blue-500 hover:text-blue-700">${trimmedCitation}</a>`;
-    });
-
-    return text;
-}
+function cleanString(inputString: string): string {
+    // Remove all newline characters
+    let cleanedString = inputString.replace(/\n/g, ' ');
+  
+    // Replace multiple whitespaces with a single whitespace
+    cleanedString = cleanedString.replace(/\s+/g, ' ');
+  
+    return cleanedString.trim();
+  }
