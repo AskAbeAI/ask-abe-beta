@@ -169,7 +169,7 @@ export default function EmbedPage() {
       type: ContentType.AnswerVitalia,
       content: answer,
       fake_stream: false,
-      concurrentStreaming: false,
+      concurrentStreaming: true,
       citationLinks: citationLinks
     };
     await addContentBlock(createNewBlock(params));

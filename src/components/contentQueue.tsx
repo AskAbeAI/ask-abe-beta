@@ -71,6 +71,7 @@ const ContentQueue: React.FC<ContentQueueProps> = ({
                 content={item.content}
                 citationLinks={item.citationLinks!}
                 onFinishAnswerVitalia={onFinishAnswerVitalia}
+                waitForStream={item.concurrentStreaming}
               />
             </div>
           );

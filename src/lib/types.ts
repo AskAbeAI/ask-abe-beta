@@ -73,6 +73,7 @@ export interface AnswerVitaliaBlockProps {
   content: string;
   citationLinks: CitationLinks
   onFinishAnswerVitalia: () => void;
+  waitForStream: boolean;
 }
 export interface FinalAnswerBlockProps {
   content: string;
