@@ -72,6 +72,7 @@ export interface AnswerBlockProps {
 export interface AnswerVitaliaBlockProps {
   content: string;
   citationLinks: CitationLinks
+  onFinishAnswerVitalia: () => void;
 }
 export interface FinalAnswerBlockProps {
   content: string;

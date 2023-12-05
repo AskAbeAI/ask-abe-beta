@@ -126,7 +126,7 @@ export const AnswerBlock: React.FC<AnswerBlockProps> = ({ content, content_list,
   );
 };
 
-export const AnswerVitaliaBlock: React.FC<AnswerVitaliaBlockProps> = ({ content, citationLinks}) => {
+export const AnswerVitaliaBlock: React.FC<AnswerVitaliaBlockProps> = ({ content, citationLinks, onFinishAnswerVitalia}) => {
 
   const [displayedElementsCount, setDisplayedElementsCount] = useState(0);
 
@@ -195,6 +195,7 @@ export const AnswerVitaliaBlock: React.FC<AnswerVitaliaBlockProps> = ({ content,
 
         if (wordIndex >= fullContentElements.length) {
           clearInterval(intervalId);
+          onFinishAnswerVitalia();
           
         }
       }, 25); // Adjust interval time as needed

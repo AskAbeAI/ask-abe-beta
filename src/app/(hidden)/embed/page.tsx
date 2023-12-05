@@ -173,7 +173,11 @@ export default function EmbedPage() {
       citationLinks: citationLinks
     };
     await addContentBlock(createNewBlock(params));
-    setIsFormVisible(true);
+    
+    
+  };
+
+  const addFeedbackBlocks = async () => {
     const clarqparams: ContentBlockParams = {
       type: ContentType.ClarificationQuestion,
       content: "We care about your feedback!",
@@ -194,7 +198,8 @@ export default function EmbedPage() {
       mode: 'Single'
     };
     await addContentBlock(createNewBlock(clarparams));
-  };
+    setIsFormVisible(true);
+  }
 
   const handleClarificationVitaliaAnswer = async (response: Clarification, mode: string) => {
     // Append the response to the clarificationResponses state
@@ -265,6 +270,7 @@ export default function EmbedPage() {
               onStreamEnd={onStreamEnd}
               showCurrentLoading={showCurrentLoading}
               setActiveCitationId={dummyFunction}
+              onFinishAnswerVitalia={addFeedbackBlocks}
             />
           </div>
         </div>
