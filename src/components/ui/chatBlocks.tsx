@@ -85,7 +85,7 @@ export const AnswerBlock: React.FC<AnswerBlockProps> = ({ content, content_list,
 
         if (wordIndex >= fullContentElements.length) {
           clearInterval(intervalId);
-          onStreamEnd(concurrentStreaming);
+          // onStreamEnd(concurrentStreaming);
           const temp = content_list?.pop();
           if (content_list) {
 
