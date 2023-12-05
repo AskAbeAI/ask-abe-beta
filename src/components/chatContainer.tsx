@@ -18,6 +18,7 @@ interface ChatContainerProps {
   onStreamEnd: (concurrentStreaming: boolean) => void;
   onClarificationStreamEnd: (clarifyingQuestion: string, clarifyingAnswers: string[], mode: string) => void;
   setActiveCitationId: (citationId: string) => void;
+  onFinishAnswerVitalia: () => void;
 }
 
 const ChatContainer: React.FC<ChatContainerProps> = ({
@@ -28,7 +29,8 @@ const ChatContainer: React.FC<ChatContainerProps> = ({
   onSubmitTopicChoices,
   onClarificationStreamEnd,
   onStreamEnd,
-  setActiveCitationId
+  setActiveCitationId,
+  onFinishAnswerVitalia
 }) => {
   const [isCitationExpanded, setCitationExpanded] = useState(false);
 
@@ -72,6 +74,7 @@ const ChatContainer: React.FC<ChatContainerProps> = ({
           onSubmitTopicChoices={onSubmitTopicChoices}
           onClarificationStreamEnd={onClarificationStreamEnd}
           setActiveCitationId={setActiveCitationId}
+          onFinishAnswerVitalia={onFinishAnswerVitalia}
           endOfMessagesRef={endOfMessagesRef}
         />
       )}

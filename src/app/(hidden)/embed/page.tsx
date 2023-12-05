@@ -161,19 +161,24 @@ export default function EmbedPage() {
     console.log(response_json);
     const answer = response_json.answer;
     const citationLinks: CitationLinks = response_json.citationLinks;
+    const already_answered = response_json.already_answered;
 
-    setAlreadyAnswered(alreadyAnswered => [...alreadyAnswered, question]);
+    setAlreadyAnswered(already_answered);
     
     const endTime = Date.now();
     const params: ContentBlockParams = {
       type: ContentType.AnswerVitalia,
       content: answer,
       fake_stream: false,
-      concurrentStreaming: false,
+      concurrentStreaming: true,
       citationLinks: citationLinks
     };
     await addContentBlock(createNewBlock(params));
-    setIsFormVisible(true);
+    
+    
+  };
+
+  const addFeedbackBlocks = async () => {
     const clarqparams: ContentBlockParams = {
       type: ContentType.ClarificationQuestion,
       content: "We care about your feedback!",
@@ -194,7 +199,8 @@ export default function EmbedPage() {
       mode: 'Single'
     };
     await addContentBlock(createNewBlock(clarparams));
-  };
+    setIsFormVisible(true);
+  }
 
   const handleClarificationVitaliaAnswer = async (response: Clarification, mode: string) => {
     // Append the response to the clarificationResponses state
@@ -265,6 +271,7 @@ export default function EmbedPage() {
               onStreamEnd={onStreamEnd}
               showCurrentLoading={showCurrentLoading}
               setActiveCitationId={dummyFunction}
+              onFinishAnswerVitalia={addFeedbackBlocks}
             />
           </div>
         </div>

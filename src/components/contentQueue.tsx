@@ -16,6 +16,7 @@ interface ContentQueueProps {
   onStreamEnd: (concurrentStreaming: boolean) => void; // Optional if no user input is needed
   onClarificationStreamEnd: (clarifyingQuestion: string, clarifyingAnswers: string[], mode: string) => void; // Optional if no user input is needed
   setActiveCitationId: (citationId: string) => void;
+  onFinishAnswerVitalia: () => void;
 }
 
 const ContentQueue: React.FC<ContentQueueProps> = ({
@@ -27,7 +28,8 @@ const ContentQueue: React.FC<ContentQueueProps> = ({
   onSubmitTopicChoices,
   onStreamEnd,
   onClarificationStreamEnd,
-  setActiveCitationId
+  setActiveCitationId,
+  onFinishAnswerVitalia
 }) => {
 
 
@@ -68,6 +70,8 @@ const ContentQueue: React.FC<ContentQueueProps> = ({
               <AnswerVitaliaBlock
                 content={item.content}
                 citationLinks={item.citationLinks!}
+                onFinishAnswerVitalia={onFinishAnswerVitalia}
+                waitForStream={item.concurrentStreaming}
               />
             </div>
           );

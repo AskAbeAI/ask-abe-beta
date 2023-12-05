@@ -894,6 +894,7 @@ export default function Playground() {
             onClarificationStreamEnd={handleClarificationQuestionDone}
             onStreamEnd={onStreamEnd}
             showCurrentLoading={showCurrentLoading}
+            onFinishAnswerVitalia={dummyFunction}
             setActiveCitationId={setActiveCitationId}
           />
 

@@ -85,7 +85,7 @@ export const AnswerBlock: React.FC<AnswerBlockProps> = ({ content, content_list,
 
         if (wordIndex >= fullContentElements.length) {
           clearInterval(intervalId);
-          onStreamEnd(concurrentStreaming);
+          // onStreamEnd(concurrentStreaming);
           const temp = content_list?.pop();
           if (content_list) {
 
@@ -126,7 +126,7 @@ export const AnswerBlock: React.FC<AnswerBlockProps> = ({ content, content_list,
   );
 };
 
-export const AnswerVitaliaBlock: React.FC<AnswerVitaliaBlockProps> = ({ content, citationLinks}) => {
+export const AnswerVitaliaBlock: React.FC<AnswerVitaliaBlockProps> = ({ content, citationLinks, onFinishAnswerVitalia, waitForStream}) => {
 
   const [displayedElementsCount, setDisplayedElementsCount] = useState(0);
 
@@ -147,7 +147,7 @@ export const AnswerVitaliaBlock: React.FC<AnswerVitaliaBlockProps> = ({ content,
       const placeholder = `CITATION_${Object.keys(citations).length}`;
       citations[placeholder] = (
         <a href={`${citationLinks[citation.trim()]}`} target="_blank" className="text-blue-500 hover:text-blue-700">
-          {citation.trim()}
+          [{citation.trim()}]
         </a>
       );
       return placeholder;
@@ -195,6 +195,9 @@ export const AnswerVitaliaBlock: React.FC<AnswerVitaliaBlockProps> = ({ content,
 
         if (wordIndex >= fullContentElements.length) {
           clearInterval(intervalId);
+          if(waitForStream) {
+            onFinishAnswerVitalia();
+          }
           
         }
       }, 25); // Adjust interval time as needed
