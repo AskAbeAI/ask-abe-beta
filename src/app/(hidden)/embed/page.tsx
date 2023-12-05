@@ -161,8 +161,9 @@ export default function EmbedPage() {
     console.log(response_json);
     const answer = response_json.answer;
     const citationLinks: CitationLinks = response_json.citationLinks;
+    const already_answered = response_json.already_answered;
 
-    setAlreadyAnswered(alreadyAnswered => [...alreadyAnswered, question]);
+    setAlreadyAnswered(already_answered);
     
     const endTime = Date.now();
     const params: ContentBlockParams = {

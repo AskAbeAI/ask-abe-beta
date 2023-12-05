@@ -33,7 +33,7 @@ export async function POST(req: Request) {
     
     const requestData: any = await req.json();
     
-    const original_question: string = requestData.question;
+    let original_question: string = requestData.question;
     const api_key: string = requestData.api_key;
     let already_answered: string[] = requestData.already_answered;
 
@@ -48,10 +48,14 @@ export async function POST(req: Request) {
     
     try {
         console.log(original_question)
-        // let newQuestion = await generateFollowupQuestion(openai, original_question, already_answered)
-        // if (newQuestion === original_question) {
-        //     already_answered = [];
-        // }
+        if (already_answered.length > 0) {
+            let newQuestion = await generateFollowupQuestion(openai, original_question, already_answered)
+            if (newQuestion === original_question) {
+                already_answered = [];
+            } else {
+                original_question = newQuestion;
+            }
+        }
         
         const embedding = JSON.parse(JSON.stringify(await generateEmbedding(openai, [original_question])));
 
@@ -70,11 +74,13 @@ export async function POST(req: Request) {
         }
         console.log(citationLinks)
         const endTime = Date.now();
+        already_answered.push(original_question);
 
         const response = NextResponse.json({
             "answer": direct_answer,
             "citationLinks": citationLinks,
             "response_time": endTime - startTime,
+            "already_answered": already_answered,
             "status": 200
         })
         
