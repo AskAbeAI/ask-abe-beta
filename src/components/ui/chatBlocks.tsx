@@ -444,7 +444,7 @@ export const ClarificationBlock: React.FC<ClarificationBlockProps> = ({
           <button
             key={answer}
             onClick={() => handleAnswerChange(answer)}
-            className={`flex-grow truncate p-2 rounded-lg m-2 text-black border border-black border-1 
+            className={`flex-grow truncate p-1 rounded-lg m-2 text-black border border-black border-1 
             ${clickedButton === '' || clickedButton === answer ? '' : 'transition-opacity ease-linear duration-1000 opacity-0'}
             ${answer === 'The Question Is Not Applicable' || answer === 'I Would Prefer Not to Respond'
                 ? 'bg-red-300 hover:bg-red-500 hover:outline-red-700'
