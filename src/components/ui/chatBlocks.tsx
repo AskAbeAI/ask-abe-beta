@@ -435,28 +435,31 @@ export const ClarificationBlock: React.FC<ClarificationBlockProps> = ({
   return (
 
     <div className="flex flex-col items-end">
-      <UserIconLabel />
-      <div className='flex flex-wrap justify-start text-lg p-4 bg-user-color font-montserrat text-black rounded-lg'>
-        {selectedAnswer !== '' ? (
-          <p className="text-black">{selectedAnswer}</p>
-        ) : (
-          clarifyingAnswers.map((answer) => (
-            <button
-              key={answer}
-              onClick={() => handleAnswerChange(answer)}
-              className={`flex-grow truncate p-2 rounded-lg m-2 text-black border border-black border-1 
-              ${clickedButton === '' || clickedButton === answer ? '' : 'transition-opacity ease-linear duration-1000 opacity-0'}
-              ${answer === 'The Question Is Not Applicable' || answer === 'I Would Prefer Not to Respond'
-                  ? 'bg-red-300 hover:bg-red-500 hover:outline-red-700'
-                  : answer.includes('Custom Response')
-                    ? 'bg-orange-300 hover:bg-orange-500 hover:outline-orange-700'
-                    : 'bg-green-300 hover:bg-green-500 hover:outline-green-700'
-                }`}
-            >
-              {answer}
-            </button>
-          ))
-        )}
+    <UserIconLabel />
+    <div className='flex flex-wrap justify-start text-lg p-4 bg-user-color font-montserrat text-black rounded-lg' style={{ maxWidth: '100vw' }}>
+      {selectedAnswer !== '' ? (
+        <p className="text-black" style={{ wordBreak: 'break-word' }}>{selectedAnswer}</p>
+      ) : (
+        clarifyingAnswers.map((answer) => (
+          <button
+            key={answer}
+            onClick={() => handleAnswerChange(answer)}
+            className={`flex-grow truncate p-2 rounded-lg m-2 text-black border border-black border-1 
+            ${clickedButton === '' || clickedButton === answer ? '' : 'transition-opacity ease-linear duration-1000 opacity-0'}
+            ${answer === 'The Question Is Not Applicable' || answer === 'I Would Prefer Not to Respond'
+                ? 'bg-red-300 hover:bg-red-500 hover:outline-red-700'
+                : answer.includes('Custom Response')
+                  ? 'bg-orange-300 hover:bg-orange-500 hover:outline-orange-700'
+                  : 'bg-green-300 hover:bg-green-500 hover:outline-green-700'
+              }`}
+            style={{ minWidth: 0, wordBreak: 'break-word' }}
+          >
+            {answer}
+          </button>
+        ))
+      )}
+   
+  
 
         {/* Originally hidden text input for 'Other' option, expands when other is clicked */}
         {isOtherInputVisible && (
