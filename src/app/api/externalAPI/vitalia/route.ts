@@ -30,14 +30,13 @@ export async function POST(req: Request) {
     const startTime = Date.now();
     
     console.log("=== EXTERNAL VITALIA API ENDPOINT ===");
-    
+
     const requestData: any = await req.json();
-    
     let original_question: string = requestData.question;
     const api_key: string = requestData.api_key;
     let already_answered: string[] = requestData.already_answered;
-
-    if (api_key !== 'ak_EjMsYGPJpLHcb48r4uCfP2ZYyrjwL') {
+    // Vitalia API key & Telegram Bot API key
+    if (api_key !== 'ak_jTMkA0rfIrMhu0WBkiHzy4YEZiVq82ym' && api_key !==  'ak_EjMsYGPJpLHcb48r4uCfP2ZYyrjwL') {
         return NextResponse.json({ errorMessage: `Invalid API key: ${api_key}`, status: 401 });
     }
     const supabaseUrl = process.env.SUPABASE_URL;
@@ -66,7 +65,7 @@ export async function POST(req: Request) {
         console.log(text_citation_pairs)
         
         
-        const direct_answer = await generateDirectAnswerVitalia(openai, original_question, already_answered,  text_citation_pairs);
+        let direct_answer = await generateDirectAnswerVitalia(openai, original_question, already_answered,  text_citation_pairs);
         console.log(direct_answer)
         const citationLinks: CitationLinks = {};
         for (const row of rows) {
@@ -75,7 +74,10 @@ export async function POST(req: Request) {
         console.log(citationLinks)
         const endTime = Date.now();
         already_answered.push(original_question);
-
+        if (api_key ===  'ak_EjMsYGPJpLHcb48r4uCfP2ZYyrjwL') {
+            direct_answer = replaceCitationsWithLinks(direct_answer, citationLinks);
+            console.log(direct_answer)
+        }
         const response = NextResponse.json({
             "answer": direct_answer,
             "citationLinks": citationLinks,
@@ -110,4 +112,25 @@ function cleanString(inputString: string): string {
     cleanedString = cleanedString.replace(/\s+/g, ' ');
   
     return cleanedString.trim();
+  }
+
+  function replaceCitationsWithLinks(text: string, citationLinks: CitationLinks): string {
+    let updatedText = text;
+  
+    // Iterate over the record entries
+    Object.entries(citationLinks).forEach(([citationText, url]) => {
+      // Escape special regex characters in the citation text to avoid issues in regex operations
+      const escapedCitationText = citationText.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      
+      // Create a regex pattern that matches the citation text enclosed within '###'
+      const pattern = new RegExp(`### ${escapedCitationText} ###`, 'g');
+      
+      // Replacement text with an HTML anchor tag
+      const replacement = `[${citationText}](${url})]`;
+      
+      // Replace the pattern with the replacement text
+      updatedText = updatedText.replace(pattern, replacement);
+    });
+  
+    return updatedText;
   }
