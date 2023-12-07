@@ -142,11 +142,12 @@ export default function EmbedPage() {
     };
     await addContentBlock(createNewBlock(newParams));
     addNewLoadingBlock(false);
-    const vitalia_api_key = "ak_EjMsYGPJpLHcb48r4uCfP2ZYyrjwL";
+    const telegram_api_key = 'ak_EjMsYGPJpLHcb48r4uCfP2ZYyrjwL'
+    const vitalia_api_key = 'ak_jTMkA0rfIrMhu0WBkiHzy4YEZiVq82ym';
     const request = {
-      api_key: vitalia_api_key,
-      question: question,
-      already_answered: alreadyAnswered,
+      api_key: vitalia_api_key, // The one I provided for the telegram bot
+      question: question,   // A plain text question to be answered
+      already_answered: alreadyAnswered,  // A list of questions that have already been answered
     }
     console.log("Sending request to Quarantined API")
     const response = await fetch("/api/externalAPI/vitalia", {
