@@ -126,7 +126,7 @@ function cleanString(inputString: string): string {
       const pattern = new RegExp(`### ${escapedCitationText} ###`, 'g');
       
       // Replacement text with an HTML anchor tag
-      const replacement = `[${citationText}](${url})]`;
+      const replacement = `[${citationText}](${url})`;
       
       // Replace the pattern with the replacement text
       updatedText = updatedText.replace(pattern, replacement);
