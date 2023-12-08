@@ -125,13 +125,13 @@ const PageFooter: React.FC = () => {
         </div>
         <div className="items-stretch flex justify-between gap-5 max-md:justify-center">
           <Link
-            href="#"
+            href="/privacy"
             className="text-black text-sm leading-5 underline"
           >
             Privacy Policy
           </Link>
           <Link
-            href="#"
+            href="/tos"
             className="text-black text-sm leading-5 underline"
           >
             Terms of Service
