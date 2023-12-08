@@ -120,7 +120,7 @@ function cleanString(inputString: string): string {
     // Iterate over the record entries
     Object.entries(citationLinks).forEach(([citationText, url]) => {
       // Escape special regex characters in the citation text to avoid issues in regex operations
-      const escapedCitationText = citationText.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const escapedCitationText = citationText.replace(/[.*+?^${}()'|[\]\\]/g, '\\$&');
       
       // Create a regex pattern that matches the citation text enclosed within '###'
       const pattern = new RegExp(`###\\s*${escapedCitationText}\\s*###`, 'g');
