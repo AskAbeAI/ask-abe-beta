@@ -20,9 +20,9 @@ export default function TOSPage() {
                                         </p>
                                     </div>
                                     <p className="text-black text-base leading-6 mt-6 max-md:max-w-full">
-                                        We are Ask Abe ("Company," "we," "us," "our").
+                                        We are Ask Abe (&quot;Company,&quot; &quot;we,&quot; &quot;us,&quot; &quot;our&quot;).
                                         <p className="text-black text-base leading-6 mt-6 max-md:max-w-full">
-                                            We operate the website askabeai.com (the "Site"), as well as any other related products and services that refer or link to these legal terms (the &ldquo;Legal Terms&rdquo;) (collectively, the &ldquo;Services&rdquo;).
+                                            We operate the website askabeai.com (the &quot;Site&quot;), as well as any other related products and services that refer or link to these legal terms (the &ldquo;Legal Terms&rdquo;) (collectively, the &ldquo;Services&rdquo;).
                                         </p>
 
 
