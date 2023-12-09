@@ -20,7 +20,7 @@ export default function PrivacyPage() {
                                         </p>
                                     </div>
                                     <p className="text-black text-base leading-6 mt-10 max-md:max-w-full">
-                                    This privacy notice for Ask Abe, describes how and why we might collect, store, use, and/or share ("process") your information when you use our services ("Services").
+                                    This privacy notice for Ask Abe, describes how and why we might collect, store, use, and/or share (&quot;process&quot;) your information when you use our services (&quot;Services&quot;).
                                     </p>
 
                                     <h4 className="text-black text-3xl font-bold leading-10 mt-6 pt-12 max-md:max-w-full">
@@ -86,7 +86,7 @@ export default function PrivacyPage() {
                                     </h4>
 
                                     <p className="text-black text-base leading-6 mt-4 max-md:max-w-full">
-                                        Withdrawing your consent: If we are relying on your consent to process your personal information, which may be express and/or implied consent depending on the applicable law, you have the right to withdraw your consent at any time. You can withdraw your consent at any time by contacting us by using the contact details provided in the section "HOW CAN YOU CONTACT US ABOUT THIS NOTICE?" below.
+                                        Withdrawing your consent: If we are relying on your consent to process your personal information, which may be express and/or implied consent depending on the applicable law, you have the right to withdraw your consent at any time. You can withdraw your consent at any time by contacting us by using the contact details provided in the section &quot;HOW CAN YOU CONTACT US ABOUT THIS NOTICE?&quot; below.
 
 
                                         However, please note that this will not affect the lawfulness of the processing before its withdrawal nor, when applicable law allows, will it affect the processing of your personal information conducted in reliance on lawful processing grounds other than consent.
@@ -124,7 +124,7 @@ export default function PrivacyPage() {
                                     </h4>
 
                                     <p className="text-black text-base leading-6 mt-4 max-md:max-w-full">
-                                        We may update this privacy notice from time to time. The updated version will be indicated by an updated "Revised" date and the updated version will be effective as soon as it is accessible. If we make material changes to this privacy notice, we may notify you either by prominently posting a notice of such changes or by directly sending you a notification. We encourage you to review this privacy notice frequently to be informed of how we are protecting your information.
+                                        We may update this privacy notice from time to time. The updated version will be indicated by an updated &quot;Revised&quot; date and the updated version will be effective as soon as it is accessible. If we make material changes to this privacy notice, we may notify you either by prominently posting a notice of such changes or by directly sending you a notification. We encourage you to review this privacy notice frequently to be informed of how we are protecting your information.
 
                                     </p>
 
