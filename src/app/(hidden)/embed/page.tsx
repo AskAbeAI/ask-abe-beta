@@ -261,7 +261,7 @@ export default function EmbedPage() {
     
     >
       <div className="flex h-full w-full px-5 py-5 bg-[#FAF5E6]" style={{ minHeight: '100vh' }}>  
-        <div className="flex w-full" style={{ minHeight: '100vh' }}>
+        <div className="w-full" style={{ minHeight: '100vh' }}>
           <div className="overflow-y-auto w-full" style={{ minHeight: '90vh' }}>
             <ChatContainer
               contentBlocks={contentBlocks}
@@ -275,8 +275,7 @@ export default function EmbedPage() {
               onFinishAnswerVitalia={addFeedbackBlocks}
             />
           </div>
-        </div>
-        <div>
+          <div className="bottom-0">
           {/* BottomBar */}
           {isFormVisible && (
             <BottomBar
@@ -286,6 +285,8 @@ export default function EmbedPage() {
             />
           )}
         </div>
+        </div>
+       
       </div>
     </Frame>
   );
