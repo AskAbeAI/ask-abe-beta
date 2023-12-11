@@ -14,7 +14,7 @@ const NavBar: React.FC = () => {
     <nav className="justify-center items-center bg-[#FAF5E6] flex flex-col px-10 border-b border-solid">
       <div className="justify-between items-stretch flex w-full max-w-full gap-5 my-3 max-md:max-w-full max-md:flex-wrap max-md:justify-center">
         <div className="flex justify-left items-center font-imfell font-bold text-[#4A4643] text-2xl">ASK ABE</div>
-        <ul className="items-stretch self-center flex justify-between gap-10 my-auto">
+        <ul className="items-stretch self-center flex justify-between gap-8 my-auto">
           <li className="text-[#4A4643] text-base font-raleway leading-6">
             <Link href="/" aria-label="Link One">
               Home

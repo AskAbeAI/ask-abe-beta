@@ -2,6 +2,8 @@ import react, { useState, useRef, useEffect } from "react";
 
 import { ContentBlock } from "@/lib/types";
 import { CitationBlock } from "@/components/ui/chatBlocks";
+import { useMediaQuery } from "react-responsive";
+import { GoArchive } from "react-icons/go";
 
 
 interface CitationProps {
@@ -13,6 +15,8 @@ interface CitationProps {
 }
 
 const CitationBar: React.FC<CitationProps> = ({ open, setOpen, citationItems, activeCitationId }) => {
+  const isDesktopOrLaptop = useMediaQuery({ minWidth: 1224 });
+  const isMobile = useMediaQuery({ maxWidth: 1224 });
 
 
 
@@ -64,11 +68,11 @@ const CitationBar: React.FC<CitationProps> = ({ open, setOpen, citationItems, ac
   const groupedCitations = groupByJurisdiction(citationItems);
 
   return (
-    <div className="h-auto max-h-full overflow-y-auto bg-[#FDFCFD] border-4 border-[#E4E0D2] p-2 w-full shadow-inner rounded-md">
-      {/* Button to toggle citation view*/}
-
-      <button className="sticky top-0 inline-flex items-center justify-start py-3 pl-4 pr-12 overflow-hidden font-montserrat font-semibold text-[#F8F8FA] transition-all duration-150 ease-in-out rounded hover:pl-10 hover:pr-6 bg-[#4A4643] group"
-        onClick={() => setOpen(!open)}>
+    <div>
+       {isDesktopOrLaptop &&
+    <div className="h-auto max-h-full overflow-y-auto bg-[#FDFCFD] border-4 border-[#E4E0D2] p-1 sm:p-2 w-full shadow-inner rounded-md">
+  <button className="sticky top-0 inline-flex items-center justify-start py-2 sm:py-3 pl-3 sm:pl-4 pr-8 sm:pr-12 overflow-hidden font-montserrat font-semibold text-[#F8F8FA] transition-all duration-150 ease-in-out rounded hover:pl-8 sm:hover:pl-10 hover:pr-4 sm:hover:pr-6 bg-[#4A4643] group"
+    onClick={() => setOpen(!open)}>
         <span className="absolute bottom-0 left-0 w-full h-1 transition-all duration-150 ease-in-out bg-green-300 group-hover:h-full"></span>
         <span className="absolute right-0 pr-4 duration-200 ease-out group-hover:translate-x-12">
           {/* Conditional SVG Rendering for Right Arrow */}
@@ -113,6 +117,28 @@ const CitationBar: React.FC<CitationProps> = ({ open, setOpen, citationItems, ac
       ))}
     </div>
     </div >
+}
+    {isMobile && 
+    <div className="absolute w-full flex justify-between pr-2 items-center">
+      <GoArchive className="z-20 cursor-pointer" size={25} onClick={() => setOpen(!open)}>
+      <div className= "flex flex-col fixed w-full h-full items-center justify-center">
+      <div className="overflow-y-auto scrollbar h-full w-25 max-h-full">
+      {Object.keys(groupedCitations).map((jurisdiction) => (
+        <div key={jurisdiction}>
+          <div className="pt-2 font-bold">{jurisdiction}</div>
+          {groupedCitations[jurisdiction].map((item) => (
+            <div key={item.blockId} className="pt-2">
+              {renderContentBlock(item)}
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+
+        </div>
+        </GoArchive> 
+      </div>}
+    </div>
 
 
 

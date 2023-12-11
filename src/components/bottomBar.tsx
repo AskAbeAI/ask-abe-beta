@@ -59,12 +59,12 @@ const BottomBar: React.FC<BottomBarProps> = ({
   }, [inputMode]);
 
   return (
-    <div className="fixed inset-x-0 bottom-0 shadow-md">
+    <div className="inset-x-0 bottom-0">
       <div className="container resize-y mx-auto p-4 flex justify-center items-center">
 
 
         {/* Form and input group with transparent background */}
-        <form className="flex flex-grow justify-center items-center relative w-full max-w-2xl" onSubmit={handleFormSubmit}>
+        <form className="flex flex-grow justify-center items-center relative w-full max-w-5xl" onSubmit={handleFormSubmit}>
           <textarea
             value={question}
             onChange={handleChange}

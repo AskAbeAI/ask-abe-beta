@@ -884,7 +884,7 @@ export default function Playground() {
           activeCitationId={activeCitationId}
         />
       </div>
-      <div className={`flex w-full ${citationsOpen ? 'hidden' : ''} style={(width: '68%')}`}>
+      <div className={` w-full ${citationsOpen ? 'hidden' : ''} style={(width: '68%')}`}>
         <div className="overflow-y-auto w-full" style={{ minHeight: '90vh', maxHeight: '90vh' }}>
           <ChatContainer
             contentBlocks={contentBlocks}
@@ -899,17 +899,20 @@ export default function Playground() {
           />
 
         </div>
-      </div>
-      <div>
+        <div className="bottom-0">
         {/* BottomBar */}
         {isFormVisible && (
+        
           <BottomBar
             inputMode={inputMode}
             handleSubmit={handleNewQuestion}
             handleSubmitFollowup={handleNewFollowupQuestion}
           />
+          
         )}
       </div>
+      </div>
+     
       <div className="pl-2 overflow-y-auto scrollbar  h-full" style={({width: '20%'})} >
         <OptionsList
           stateJurisdictions={StateJurisdictionOptions}
