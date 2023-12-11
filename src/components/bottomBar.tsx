@@ -54,7 +54,7 @@ const BottomBar: React.FC<BottomBarProps> = ({
     if (inputMode === 'followup') {
       setInputMessage('Ask a follow-up question');
     } else if (inputMode === 'vitalia') {
-      setInputMessage('Ask a question about Vitalia 2024');
+      setInputMessage('Ask a question');
     }
   }, [inputMode]);
 
