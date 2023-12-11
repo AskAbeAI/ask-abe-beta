@@ -119,8 +119,8 @@ const CitationBar: React.FC<CitationProps> = ({ open, setOpen, citationItems, ac
     </div >
 }
     {isMobile && 
-    <div className="absolute w-full flex justify-between pr-2 items-center">
-      <GoArchive className="z-20 cursor-pointer" size={25} onClick={() => setOpen(!open)}>
+    <div className="absolute p-2">
+      <GoArchive className="cursor-pointer" size={24} onClick={() => setOpen(!open)}>
       <div className="h-auto max-h-full overflow-y-auto bg-[#FDFCFD] border-4 border-[#E4E0D2] p-1 sm:p-2 w-full shadow-inner rounded-md">
   <button className="sticky top-0 inline-flex items-center justify-start py-2 sm:py-3 pl-3 sm:pl-4 pr-8 sm:pr-12 overflow-hidden font-montserrat font-semibold text-[#F8F8FA] transition-all duration-150 ease-in-out rounded hover:pl-8 sm:hover:pl-10 hover:pr-4 sm:hover:pr-6 bg-[#4A4643] group"
     onClick={() => setOpen(!open)}>
