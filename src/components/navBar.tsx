@@ -23,6 +23,9 @@ const NavBar: React.FC = () => {
         document.body.style.overflow = 'scroll'
     }
   };
+  const [isNavOpen, setIsNavOpen] = useState(false);
+
+
 
   return (
     <div>
@@ -111,7 +114,9 @@ const NavBar: React.FC = () => {
       {isMobile &&
         <div className="absolute w-full flex justify-between p-4 items-center bg-[#FAF5E6]  px-10 border-b border-solid">
           <div className="flex justify-left items-center font-imfell font-bold text-[#4A4643] text-2xl">ASK ABE</div>
-          <HiMenuAlt3 onClick={handleNav} className="z-20 cursor-pointer" size={25} />
+          <HiMenuAlt3 onClick={handleNav} className={`z-20 cursor-pointer ${nav ? 'text-white' : 'text-current'}`} size={25} 
+          
+          />
           <div
         className={
           nav
