@@ -150,6 +150,7 @@ export interface CitationBlockProps {
   open: boolean;
 
 }
+
 export interface AbeIconProps {
   showCurrentLoading: boolean;
   neverLoad: boolean;
@@ -251,6 +252,7 @@ export const ChatOptions: Option[] = [
 ];
 
 export interface OptionsListProps {
+  
   stateJurisdictions: Jurisdiction[];
   federalJurisdictions: Jurisdiction[];
   miscJurisdictions: Jurisdiction[];
@@ -261,6 +263,7 @@ export interface OptionsListProps {
   onFederalJurisdictionChange: (jurisdictions: Jurisdiction | undefined) => void;
   onMiscJurisdictionChange: (jurisdictions: Jurisdiction | undefined) => void;
 }
+
 
 export interface JurisdictionModalProps {
   shown: boolean;

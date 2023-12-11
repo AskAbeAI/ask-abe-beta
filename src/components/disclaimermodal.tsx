@@ -21,6 +21,9 @@ export const DisclaimerModal: React.FC = () => {
                             By clicking I accept, I acknowledge that the information provided by Ask Abe AI is for educational purposes only and is not intended as actual legal advice.
                             I understand that this service does not replace professional legal consultation and that any reliance on the material presented is strictly for educational purposes only and at my own risk.
                         </h2>
+                        <h2 className="text-md px-5 py-1 pb-4 items-center leading-normal font-raleway text-neutral-800 dark:text-neutral-200">
+                            *It is recommended that you do not include any personal information, especially sensitive personal information in any of your queries. All inputs are recorded and stored. Please refer to the <a href="/privacy" className="font-blue underline">Privacy Policy</a> for more information.
+                        </h2>
                         {/* Accept Button */}
                         <div className="flex justify-end p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
                             <button

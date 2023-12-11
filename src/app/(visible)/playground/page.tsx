@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 // Import UI components
 import BottomBar from '@/components/bottomBar';
 import ChatContainer from '@/components/chatContainer';
-import {DisclaimerModal, JurisdictionModal} from '@/components/disclaimermodal';
+import { DisclaimerModal, JurisdictionModal } from '@/components/disclaimermodal';
 // Import data types
 import { ContentType, ContentBlock, ContentBlockParams, CitationBlockProps, GroupedRows, Clarification } from "@/lib/types";
 import { node_as_row, node_key, SubTopic, GeneralTopic, TopicResponses, ClarificationChoices, PartialAnswer } from '@/lib/types';
@@ -18,6 +18,8 @@ import { StateJurisdictionOptions, FederalJurisdictionOptions, MiscJurisdictionO
 // Helper functions
 import { constructPromptQuery, constructPromptQueryMisc } from '@/lib/utils';
 
+import { useMediaQuery } from 'react-responsive';
+
 
 // Temporary variables
 
@@ -25,6 +27,9 @@ import { constructPromptQuery, constructPromptQueryMisc } from '@/lib/utils';
 
 export default function Playground() {
 
+
+  const isDesktopOrLaptop = useMediaQuery({ minWidth: 1224 });
+  const isMobile = useMediaQuery({ maxWidth: 1224 });
   // State variables for jurisdiction, option toggles
 
   // State variables for UI components
@@ -42,21 +47,21 @@ export default function Playground() {
 
   // State variables for contentBlocks
   const [contentBlocks, setContentBlocks] = useState<ContentBlock[]>([{
-        blockId: `id_${new Date().getTime()}_${Math.random().toString(36).substr(2, 9)}`,
-        type: ContentType.Loading,
-        content: "Loading...",
-        fakeStream: true,
-        concurrentStreaming: false,
-        neverLoad: true
-      },
-      {
-        blockId: `id_${new Date().getTime()}_${Math.random().toString(36).substr(2, 9)}`,
-        type: ContentType.Welcome,
-        content: "",
-        fakeStream: false,
-        concurrentStreaming: false,
-      }
-     ]);
+    blockId: `id_${new Date().getTime()}_${Math.random().toString(36).substr(2, 9)}`,
+    type: ContentType.Loading,
+    content: "Loading...",
+    fakeStream: true,
+    concurrentStreaming: false,
+    neverLoad: true
+  },
+  {
+    blockId: `id_${new Date().getTime()}_${Math.random().toString(36).substr(2, 9)}`,
+    type: ContentType.Welcome,
+    content: "",
+    fakeStream: false,
+    concurrentStreaming: false,
+  }
+  ]);
   const [citationBlocks, setCitationBlocks] = useState<ContentBlock[]>([]);
 
   // State variables for prompt logic
@@ -108,7 +113,7 @@ export default function Playground() {
       federal: selectedFederalJurisdiction,
       misc: selectedMiscJurisdiction
     });
-    
+
   }, [selectedStateJurisdiction, selectedFederalJurisdiction, selectedMiscJurisdiction]);
   // Generate Unique Sessiond IDs here
   function generateSessionID() {
@@ -121,7 +126,7 @@ export default function Playground() {
     // Add welcome block
   }, []);
 
-  
+
 
   // UI Component Block Functions
   const addContentBlock = async (newBlock: ContentBlock): Promise<string> => {
@@ -199,7 +204,7 @@ export default function Playground() {
 
   // Logic for starting question answering process
   const handleNewQuestion = async (question: string) => {
-    
+
     if (selectedFederalJurisdiction === undefined && selectedStateJurisdiction === undefined && selectedMiscJurisdiction === undefined) {
       setShowJurisdictionModal(true);
       return;
@@ -494,7 +499,7 @@ export default function Playground() {
       },
       body: JSON.stringify(requestBody),
     });
-    
+
 
     const result = await response.json();
 
@@ -503,9 +508,9 @@ export default function Playground() {
     console.log(primary_rows)
     const secondary_rows: node_as_row[] = result.secondary_rows;
 
-    
+
     let usesSubContentNodes: boolean = false;
-    
+
 
     let primaryJurisdiction;
     let secondaryJurisdiction;
@@ -526,7 +531,7 @@ export default function Playground() {
     }
     // Get a set of all unique parent_nodes in combinedRows variable
     const primary_grouped_rows: GroupedRows = await aggregateSiblingRows(primary_rows, usesSubContentNodes, primaryJurisdiction);
-    
+
     let secondary_grouped_rows: GroupedRows = {};
     if (secondary_rows.length > 0) {
       secondary_grouped_rows = await aggregateSiblingRows(secondary_rows, false, secondaryJurisdiction!);
@@ -767,7 +772,7 @@ export default function Playground() {
       if (option.name === "Skip Clarifying Questions") {
         console.log(`Setting skip clarifications to ${option.selected}`);
         setSkipClarifications(option.selected);
-      } 
+      }
     }
   };
 
@@ -866,65 +871,143 @@ export default function Playground() {
 
   return (
 
+    <div> {isDesktopOrLaptop &&
 
 
-    <div className="flex h-screen w-full px-3 py-3 bg-[#FAF5E6]">
-      
-        <JurisdictionModal 
-        shown={showJurisdictionModal}
-        setShown ={setShown}
-         />
-      
-      <DisclaimerModal />
-      <div className="pr-2" style={{ width: citationsOpen ? '100%' : '12%' }}>
-        <CitationBar
-          open={citationsOpen}
-          setOpen={setCitationsOpen}
-          citationItems={citationBlocks}
-          activeCitationId={activeCitationId}
+      <div className="flex h-screen w-full px-3 py-3 bg-[#FAF5E6]">
+
+        <JurisdictionModal
+          shown={showJurisdictionModal}
+          setShown={setShown}
         />
-      </div>
-      <div className={`flex w-full ${citationsOpen ? 'hidden' : ''} style={(width: '68%')}`}>
-        <div className="overflow-y-auto w-full" style={{ minHeight: '90vh', maxHeight: '90vh' }}>
-          <ChatContainer
-            contentBlocks={contentBlocks}
-            onSubmitClarificationAnswers={handleClarificationAnswer}
-            onSubmitClarificationVitaliaAnswers={dummyFunction}
-            onSubmitTopicChoices={console.log}
-            onClarificationStreamEnd={handleClarificationQuestionDone}
-            onStreamEnd={onStreamEnd}
-            showCurrentLoading={showCurrentLoading}
-            onFinishAnswerVitalia={dummyFunction}
-            setActiveCitationId={setActiveCitationId}
+
+        <DisclaimerModal />
+        <div className="pr-2" style={{ width: citationsOpen ? '100%' : '10%' }}>
+          <CitationBar
+            open={citationsOpen}
+            setOpen={setCitationsOpen}
+            citationItems={citationBlocks}
+            activeCitationId={activeCitationId}
           />
+        </div>
+        <div className={`w-full ${citationsOpen ? 'hidden' : ''}`} style={{ width: '90%' }}>
+          <div className="overflow-y-auto w-full" style={{ minHeight: '90vh', maxHeight: '90vh' }}>
+            <ChatContainer
+              contentBlocks={contentBlocks}
+              onSubmitClarificationAnswers={handleClarificationAnswer}
+              onSubmitClarificationVitaliaAnswers={dummyFunction}
+              onSubmitTopicChoices={console.log}
+              onClarificationStreamEnd={handleClarificationQuestionDone}
+              onStreamEnd={onStreamEnd}
+              showCurrentLoading={showCurrentLoading}
+              onFinishAnswerVitalia={dummyFunction}
+              setActiveCitationId={setActiveCitationId}
+            />
+
+          </div>
+          <div className="bottom-0">
+          {/* BottomBar */}
+          {isFormVisible && (
+            <BottomBar
+              inputMode={inputMode}
+              handleSubmit={handleNewQuestion}
+              handleSubmitFollowup={handleNewFollowupQuestion}
+            />
+          )}
+        </div>
+        </div>
+        <div className=" pl-2" style={({ width: '16%' })} >
+          <OptionsList
+            stateJurisdictions={StateJurisdictionOptions}
+            federalJurisdictions={FederalJurisdictionOptions}
+            miscJurisdictions={MiscJurisdictionOptions}
+            options={ChatOptions}
+            onOptionChange={handleOptionChange}
+            onStateJurisdictionChange={setSelectedStateJurisdiction}
+            onFederalJurisdictionChange={setSelectedFederalJurisdiction}
+            onMiscJurisdictionChange={setSelectedMiscJurisdiction}
+          />
+          {/* Other parts of your application */}
+        </div>
+
+      </div>
+    }
+
+
+      {isMobile &&
+
+        <div className="flex h-screen w-full px-3 py-3 bg-[#FAF5E6]">
+
+          <JurisdictionModal
+            shown={showJurisdictionModal}
+            setShown={setShown}
+          />
+
+          <DisclaimerModal />
+
+          <div className="overflow-y-auto hide-scrollbar w-full pr-2" style={{ width: citationsOpen ? '100%' : '10%' }}>
+
+            <div className="pr-2" style={{ maxHeight: '90vh' }}>
+              <CitationBar
+                open={citationsOpen}
+                setOpen={setCitationsOpen}
+                citationItems={citationBlocks}
+                activeCitationId={activeCitationId}
+              />
+            </div>
+          </div>
+          <div className={`w-full ${citationsOpen ? 'hidden' : ''}`} style={{ width: '70%' }}>
+            <div className="overflow-y-auto w-full " style={{ minHeight: '90vh', maxHeight: '90vh' }}>
+              <ChatContainer
+                contentBlocks={contentBlocks}
+                onSubmitClarificationAnswers={handleClarificationAnswer}
+                onSubmitClarificationVitaliaAnswers={dummyFunction}
+                onSubmitTopicChoices={console.log}
+                onClarificationStreamEnd={handleClarificationQuestionDone}
+                onStreamEnd={onStreamEnd}
+                showCurrentLoading={showCurrentLoading}
+                onFinishAnswerVitalia={dummyFunction}
+                setActiveCitationId={setActiveCitationId}
+              />
+
+            </div>
+            <div className="bottom-0">
+              {/* BottomBar */}
+              {isFormVisible && (
+
+                <BottomBar
+                  inputMode={inputMode}
+                  handleSubmit={handleNewQuestion}
+                  handleSubmitFollowup={handleNewFollowupQuestion}
+                />
+
+              )}
+            </div>
+
+          </div>
+
+          <div className="pl-2 overflow-y-auto scrollbar h-full" style={({ width: '10%' })} >
+            <OptionsList
+              stateJurisdictions={StateJurisdictionOptions}
+              federalJurisdictions={FederalJurisdictionOptions}
+              miscJurisdictions={MiscJurisdictionOptions}
+              options={ChatOptions}
+              onOptionChange={handleOptionChange}
+              onStateJurisdictionChange={setSelectedStateJurisdiction}
+              onFederalJurisdictionChange={setSelectedFederalJurisdiction}
+              onMiscJurisdictionChange={setSelectedMiscJurisdiction}
+            />
+            {/* Other parts of your application */}
+          </div>
 
         </div>
-      </div>
-      <div>
-        {/* BottomBar */}
-        {isFormVisible && (
-          <BottomBar
-            inputMode={inputMode}
-            handleSubmit={handleNewQuestion}
-            handleSubmitFollowup={handleNewFollowupQuestion}
-          />
-        )}
-      </div>
-      <div className="pl-2 overflow-y-auto scrollbar  h-full" style={({width: '20%'})} >
-        <OptionsList
-          stateJurisdictions={StateJurisdictionOptions}
-          federalJurisdictions={FederalJurisdictionOptions}
-          miscJurisdictions={MiscJurisdictionOptions}
-          options={ChatOptions}
-          onOptionChange={handleOptionChange}
-          onStateJurisdictionChange={setSelectedStateJurisdiction}
-          onFederalJurisdictionChange={setSelectedFederalJurisdiction}
-          onMiscJurisdictionChange={setSelectedMiscJurisdiction}
-        />
-        {/* Other parts of your application */}
-      </div>
+
+      }
 
     </div>
+
+
+
   );
 };
 
