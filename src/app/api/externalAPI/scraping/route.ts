@@ -37,8 +37,14 @@ export async function POST(req: Request) {
     }
     
     
+    
     try {
-        
+        const process = spawn('python', ['./test.py', 'Hello Will!']);
+
+        process.stdout.on('data', function(data) { 
+            console.log(data.toString()); 
+        } ) 
+            
         const response = NextResponse.json({
             "status": 200
         })
