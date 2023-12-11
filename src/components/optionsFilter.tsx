@@ -26,6 +26,10 @@ const OptionsList: React.FC<OptionsListProps> = ({
   const isMobile = useMediaQuery({ maxWidth: 1224 });
 
   const [showOptionSidebarOpen, setShowOptionSidebarOpen] = useState(false);
+
+  const toggleOptionSidebar = () => {
+    setShowOptionSidebarOpen(!showOptionSidebarOpen);
+  };
   // const [searchTerm, setSearchTerm] = useState('');
   // const [filteredJurisdictions, setFilteredJurisdictions] = useState();
   const [selectedOptions, setSelectedOptions] = useState<Option[]>(options);
@@ -41,9 +45,7 @@ const OptionsList: React.FC<OptionsListProps> = ({
 
   const [isHovered, setIsHovered] = useState(false);
 
-  const toggleOptionSidebar = () => {
-    setShowOptionSidebarOpen(!showOptionSidebarOpen);
-  };
+ 
 
 
   const toggleFederalDropdown = () => {
@@ -336,7 +338,7 @@ const OptionsList: React.FC<OptionsListProps> = ({
       }
 
       {isMobile &&
-        <div className="absolute p-2">
+        <div>
           <HiOutlineCog className="cursor-pointer" size={25} onClick={toggleOptionSidebar} />
           
          {showOptionSidebarOpen && (
