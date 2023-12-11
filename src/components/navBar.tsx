@@ -145,6 +145,32 @@ const NavBar: React.FC = () => {
                 Our Mission
               </Link>
             </li>
+            <li className="relative text-base font-raleway leading-6">
+                <button
+                  id="mega-menu-full-dropdown-button"
+                  data-collapse-toggle="mega-menu-full-dropdown"
+                  className="font-bold text-3xl p-8"
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                >
+                  Company
+                  {/* SVG for dropdown icon */}
+                </button>
+
+                {isDropdownOpen && (
+                  <div className="absolute flex justify-center top-full mt-2 shadow-lg rounded-lg z-10">
+                    <ul>
+                      {/* Dropdown menu items */}
+                      <li className="text-xl pt-1"><Link href="/about">About Us</Link></li>
+                      <li className="pt-1"><Link href="/devlog">DevLog</Link></li>
+                      <li className="pt-1"><Link href="/privacy">Privacy Policy</Link></li>
+                      <li className="pt-1"><Link href="/tos">Terms of Service</Link></li>
+                      <li className="pt-1"><Link href="/support">Support Us</Link></li>
+                      {/* ... more options ... */}
+                    </ul>
+                  </div>
+                )}
+              </li>
+
           </ul>
         </div>
         </div>
