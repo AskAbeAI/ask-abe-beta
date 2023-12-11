@@ -877,12 +877,14 @@ export default function Playground() {
       
       <DisclaimerModal />
       <div className="pr-2" style={{ width: citationsOpen ? '100%' : '12%' }}>
+      <div className="overflow-y-auto hide-scrollbar w-full" style={{  maxHeight: '90vh' }}>
         <CitationBar
           open={citationsOpen}
           setOpen={setCitationsOpen}
           citationItems={citationBlocks}
           activeCitationId={activeCitationId}
         />
+        </div>
       </div>
       <div className={` w-full ${citationsOpen ? 'hidden' : ''} style={(width: '68%')}`}>
         <div className="overflow-y-auto w-full" style={{ minHeight: '90vh', maxHeight: '90vh' }}>
@@ -913,7 +915,7 @@ export default function Playground() {
       </div>
       </div>
      
-      <div className="pl-2 overflow-y-auto scrollbar  h-full" style={({width: '20%'})} >
+      <div className="pl-2 overflow-y-auto scrollbar h-full" style={({width: '20%'})} >
         <OptionsList
           stateJurisdictions={StateJurisdictionOptions}
           federalJurisdictions={FederalJurisdictionOptions}

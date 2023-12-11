@@ -104,7 +104,7 @@ const CitationBar: React.FC<CitationProps> = ({ open, setOpen, citationItems, ac
       </button>
 
       {/* Citation sidebar content */}
-      <div className="overflow-y-auto scrollbar h-full w-25 max-h-full">
+      <div className="overflow-y-auto hide-scrollbar h-full w-25 max-h-full" style={{  maxHeight: '90vh' }}>
       {Object.keys(groupedCitations).map((jurisdiction) => (
         <div key={jurisdiction}>
           <div className="pt-2 font-bold">{jurisdiction}</div>
@@ -121,8 +121,41 @@ const CitationBar: React.FC<CitationProps> = ({ open, setOpen, citationItems, ac
     {isMobile && 
     <div className="absolute w-full flex justify-between pr-2 items-center">
       <GoArchive className="z-20 cursor-pointer" size={25} onClick={() => setOpen(!open)}>
-      <div className= "flex flex-col fixed w-full h-full items-center justify-center">
-      <div className="overflow-y-auto scrollbar h-full w-25 max-h-full">
+      <div className="h-auto max-h-full overflow-y-auto bg-[#FDFCFD] border-4 border-[#E4E0D2] p-1 sm:p-2 w-full shadow-inner rounded-md">
+  <button className="sticky top-0 inline-flex items-center justify-start py-2 sm:py-3 pl-3 sm:pl-4 pr-8 sm:pr-12 overflow-hidden font-montserrat font-semibold text-[#F8F8FA] transition-all duration-150 ease-in-out rounded hover:pl-8 sm:hover:pl-10 hover:pr-4 sm:hover:pr-6 bg-[#4A4643] group"
+    onClick={() => setOpen(!open)}>
+        <span className="absolute bottom-0 left-0 w-full h-1 transition-all duration-150 ease-in-out bg-green-300 group-hover:h-full"></span>
+        <span className="absolute right-0 pr-4 duration-200 ease-out group-hover:translate-x-12">
+          {/* Conditional SVG Rendering for Right Arrow */}
+          {open ? (
+            <svg className="w-5 h-5 text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+          ) : (
+            <svg className="w-5 h-5 text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+            </svg>
+          )}
+        </span>
+        <span className="absolute left-0 pl-2.5 -translate-x-12 group-hover:translate-x-0 ease-out duration-200">
+          {/* Conditional SVG Rendering for Left Arrow */}
+          {open ? (
+            <svg className="w-5 h-5 text-[#4A4643]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+          ) : (
+            <svg className="w-5 h-5 text-[#4A4643]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+            </svg>
+          )}
+        </span>
+        <span className="relative w-full text-left font-montserrat transition-colors duration-200 ease-in-out group-hover:text-[#4A4643]">
+          {open ? "Back To Chat" : "Citations"}
+        </span>
+      </button>
+
+      {/* Citation sidebar content */}
+      <div className="overflow-y-auto hide-scrollbar h-full w-25 max-h-full" style={{  maxHeight: '90vh' }}>
       {Object.keys(groupedCitations).map((jurisdiction) => (
         <div key={jurisdiction}>
           <div className="pt-2 font-bold">{jurisdiction}</div>
@@ -134,8 +167,7 @@ const CitationBar: React.FC<CitationProps> = ({ open, setOpen, citationItems, ac
         </div>
       ))}
     </div>
-
-        </div>
+    </div >
         </GoArchive> 
       </div>}
     </div>

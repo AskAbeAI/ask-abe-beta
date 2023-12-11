@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Jurisdiction, Option, OptionsListProps} from '@/lib/types';
 import { on } from 'events';
 import { useMediaQuery } from 'react-responsive';
-import { HiMenuAlt3 } from 'react-icons/hi';
+import { HiMenuAlt3, HiX } from 'react-icons/hi';
 // Define the structure of your options
 
 
@@ -336,17 +336,24 @@ const OptionsList: React.FC<OptionsListProps> = ({
       }
 
       {isMobile &&
-        <div className="absolute p-2 w-full">
-          <HiMenuAlt3 className="z-20 cursor-pointer" onClick={toggleOptionSidebar} />
+        <div className="absolute p-2 ">
+          <HiMenuAlt3 className="cursor-pointer" onClick={toggleOptionSidebar} />
           
          {showOptionSidebarOpen && (
 
-            <div className="bg-[#FDFCFD] border-4 border-[#E4E0D2] p-2 w-full shadow-inner rounded-md">
+            <div className="fixed inset-0 z-40 bg-black/70 flex items-center justify-center shadow-inner">
+              
+              
+              
 
-              <div className="flex justify-center font-raleway pb-2">
-                <div className="overflow-y-auto bg-[#FDFCFD] p-2 w-25 shadow-inner rounded-md">
+              <div className="flex justify-center bg-[#FDFCFD] border-4 border-[#E4E0D2] font-raleway pb-2">
+               
+                <div className=" bg-[#FDFCFD] p-2 w-25 shadow-inner rounded-md">
+                <div className=" pt-1 pb-1 flex items-end justify-end">
+              <HiX className="cursor-pointer" size={24} onClick={() => setShowOptionSidebarOpen(false)}/>
+              </div>
                   <div className="flex justify-center text-[#4A4643] font-bold text-lg font-raleway pb-3">Jurisdiction Options</div>
-                  <div className="overflow-y-auto w-full" style={{ maxHeight: '45vh' }}>
+                  <div className=" w-full" style={{ maxHeight: '45vh' }}>
 
                     {/* Federal Jurisdiction Button */}
                     <button
