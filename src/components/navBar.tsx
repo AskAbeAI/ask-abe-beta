@@ -23,7 +23,9 @@ const NavBar: React.FC = () => {
         document.body.style.overflow = 'scroll'
     }
   };
-  const [isNavOpen, setIsNavOpen] = useState(false);
+  const handleNav2 = () => {
+    setNav(false);
+  }
 
 
 
@@ -112,7 +114,7 @@ const NavBar: React.FC = () => {
 
 
       {isMobile &&
-        <div className="absolute w-full flex justify-between p-4 items-center bg-[#FAF5E6]  px-10 border-b border-solid">
+        <nav className="relative w-full flex justify-between p-4 items-center bg-[#FAF5E6] px-10 border-b border-solid">
           <div className="flex justify-left items-center font-imfell font-bold text-[#4A4643] text-2xl">ASK ABE</div>
           <HiMenuAlt3 onClick={handleNav} className={`z-20 cursor-pointer ${nav ? 'text-white' : 'text-current'}`} size={25} 
           
@@ -125,22 +127,22 @@ const NavBar: React.FC = () => {
         }
       >
           <ul className="flex flex-col fixed w-full h-full items-center justify-center">
-            <li className="font-bold text-3xl p-8">
+            <li className="font-bold text-3xl p-8" onClick={handleNav2}>
               <Link href="/" aria-label="Link One">
                 Home
               </Link>
             </li>
-            <li className="justify-between items-stretch font-raleway flex gap-1">
+            <li className="justify-between items-stretch font-raleway flex gap-1" onClick={handleNav2}>
               <Link href="/playground" aria-label="Link Four">
                 <div className="font-bold text-3xl p-8">Abe&apos;s Law Library</div>
               </Link>
             </li>
-            <li className="font-bold text-3xl p-8">
+            <li className="font-bold text-3xl p-8" onClick={handleNav2}>
               <Link href="/how" aria-label="Link One">
                 How To Use
               </Link>
             </li>
-            <li className="font-bold text-3xl p-8">
+            <li className="font-bold text-3xl p-8" onClick={handleNav2}>
               <Link href="/mission" aria-label="Link Two">
                 Our Mission
               </Link>
@@ -160,11 +162,11 @@ const NavBar: React.FC = () => {
                   <div className="absolute flex justify-center top-full mt-2 shadow-lg rounded-lg z-10">
                     <ul>
                       {/* Dropdown menu items */}
-                      <li className="text-xl pt-1"><Link href="/about">About Us</Link></li>
-                      <li className="pt-1"><Link href="/devlog">DevLog</Link></li>
-                      <li className="pt-1"><Link href="/privacy">Privacy Policy</Link></li>
-                      <li className="pt-1"><Link href="/tos">Terms of Service</Link></li>
-                      <li className="pt-1"><Link href="/support">Support Us</Link></li>
+                      <li className="text-xl pt-1" onClick={handleNav2}><Link href="/about">About Us</Link></li>
+                      <li className="pt-1" onClick={handleNav2}><Link href="/devlog">DevLog</Link></li>
+                      <li className="pt-1" onClick={handleNav2}><Link href="/privacy">Privacy Policy</Link></li>
+                      <li className="pt-1" onClick={handleNav2}><Link href="/tos">Terms of Service</Link></li>
+                      <li className="pt-1" onClick={handleNav2}><Link href="/support">Support Us</Link></li>
                       {/* ... more options ... */}
                     </ul>
                   </div>
@@ -173,7 +175,8 @@ const NavBar: React.FC = () => {
 
           </ul>
         </div>
-        </div>
+      
+        </nav>
 
 
       }
