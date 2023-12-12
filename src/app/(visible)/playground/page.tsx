@@ -882,7 +882,7 @@ export default function Playground() {
         />
 
         <DisclaimerModal />
-        <div className="pr-2" style={{ width: citationsOpen ? '100%' : '10%' }}>
+        <div className="pr-2" style={{ width: citationsOpen ? '100%' : '14%' }}>
           <CitationBar
             open={citationsOpen}
             setOpen={setCitationsOpen}

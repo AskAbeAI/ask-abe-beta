@@ -4,6 +4,7 @@ import { ContentBlock } from "@/lib/types";
 import { CitationBlock } from "@/components/ui/chatBlocks";
 import { useMediaQuery } from "react-responsive";
 import { GoArchive } from "react-icons/go";
+import { HiX } from 'react-icons/hi';
 
 
 interface CitationProps {
@@ -74,11 +75,11 @@ const CitationBar: React.FC<CitationProps> = ({ open, setOpen, citationItems, ac
   return (
     <div>
       {isDesktopOrLaptop &&
-        <div className="h-auto max-h-full overflow-y-auto bg-[#FDFCFD] border-4 border-[#E4E0D2] p-1 sm:p-2 w-full shadow-inner rounded-md">
-          <button className="sticky top-0 inline-flex items-center justify-start py-2 sm:py-3 pl-3 sm:pl-4 pr-8 sm:pr-12 overflow-hidden font-montserrat font-semibold text-[#F8F8FA] transition-all duration-150 ease-in-out rounded hover:pl-8 sm:hover:pl-10 hover:pr-4 sm:hover:pr-6 bg-[#4A4643] group"
+        <div className="h-auto max-h-full overflow-y-auto bg-[#FDFCFD] border-4 border-[#E4E0D2] p-1 sm:p-2  shadow-inner rounded-md">
+          <button className="w-full sticky top-0 inline-flex items-center justify-start py-2 sm:py-3 pl-3 sm:pl-4 pr-8 sm:pr-12 overflow-hidden font-montserrat font-semibold text-[#F8F8FA] transition-all duration-150 ease-in-out rounded hover:pl-8 sm:hover:pl-10 hover:pr-4 sm:hover:pr-6 bg-[#4A4643] group"
             onClick={() => setOpen(!open)}>
             <span className="absolute bottom-0 left-0 w-full h-1 transition-all duration-150 ease-in-out bg-green-300 group-hover:h-full"></span>
-            <span className="absolute right-0 pr-4 duration-200 ease-out group-hover:translate-x-12">
+            <span className="absolute right-0 pr-4 pl-4 duration-200 ease-out group-hover:translate-x-12">
               {/* Conditional SVG Rendering for Right Arrow */}
               {open ? (
                 <svg className="w-5 h-5 text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -125,35 +126,52 @@ const CitationBar: React.FC<CitationProps> = ({ open, setOpen, citationItems, ac
       {isMobile &&
         <div>
           <GoArchive className="cursor-pointer" size={24} onClick={toggleCitationSidebar} />
-            {showCitationSidebarOpen && (
-              <div>
+          {showCitationSidebarOpen && (
+            <div className="fixed inset-0 z-40 bg-black/70 flex items-center justify-center shadow-inner">
 
-            {/* Citation sidebar content */}
-            <div className="overflow-y-auto hide-scrollbar h-full w-25 max-h-full" style={{ maxHeight: '90vh' }}>
-              {Object.keys(groupedCitations).map((jurisdiction) => (
-                <div key={jurisdiction}>
-                  <div className="pt-2 font-bold">{jurisdiction}</div>
-                  {groupedCitations[jurisdiction].map((item) => (
-                    <div key={item.blockId} className="pt-2">
-                      {renderContentBlock(item)}
+
+
+
+              <div className="flex justify-center bg-[#FDFCFD] border-4 border-[#E4E0D2] font-raleway pb-2">
+
+                <div className=" bg-[#FDFCFD] p-2 w-25 shadow-inner rounded-md">
+                  <div className=" pt-1 pb-1 flex items-end justify-end">
+                    <HiX className="cursor-pointer" size={24} onClick={() => setShowCitationSidebarOpen(false)} />
+                  </div>
+
+                  {/* Citation sidebar content */}
+                  <div className="h-auto max-h-full overflow-y-auto bg-[#FDFCFD] border-4 border-[#E4E0D2] p-1 sm:p-2  shadow-inner rounded-md">
+                    <div className="sticky top-0 inline-flex items-center justify-start py-2 pl-3 pr-3  font-montserrat font-semibold text-[#F8F8FA] bg-[#4A4643]">Citations</div>
+                  <div className="overflow-y-auto hide-scrollbar h-full w-25 max-h-full" style={{ maxHeight: '90vh' }}>
+                    {Object.keys(groupedCitations).map((jurisdiction) => (
+                      <div key={jurisdiction}>
+                        <div className="pt-2 font-bold">{jurisdiction}</div>
+                        {groupedCitations[jurisdiction].map((item) => (
+                          <div key={item.blockId} className="pt-2">
+                            {renderContentBlock(item)}
+                          </div>
+                        ))}
+                      </div>
+                    ))}
                     </div>
-                  ))}
+
+
+                  </div>
                 </div>
-              ))}
+              </div>
+            </div>
+          )}
 
 
-            </div>
-            </div>
-            )}
-          
+
         </div>
-}
-</div>
-      
-      
+      }
+    </div>
+
+
 
 
 
   );
 };
-      export default CitationBar;
+export default CitationBar;
