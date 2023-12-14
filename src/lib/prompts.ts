@@ -1,5 +1,5 @@
 import { Chat } from 'openai/resources/index.mjs';
-import { Message, ChatCompletionParams, TopicResponses, Clarification, PartialAnswer, ClarificationChoices, text_citation_pair, text_citation_pair_vitalia } from '../lib/types';
+import { Message, ChatCompletionParams, Clarification,  ClarificationChoices, text_citation_document_trio, text_citation_pair } from '../lib/types';
 import { convertToMessages, getChatCompletionParams } from '@/lib/chatCompletion';
 import { PassThrough } from 'stream';
 
@@ -310,129 +310,14 @@ export function getPromptExpandedQueryVitalia(
 
 }
 
-// TopicGeneration API prompts
-export function getPromptBlindTopics(
-  main_question: string,
-  specific_questions: string[],
-  useRegularGPT4: boolean
-): ChatCompletionParams {
-  const system = `You are an intern at a Law Firm who helps a legal expert conduct legal research. 
-  You will be given a main legal question provided by a customer ("main_question" variable), as well as some specific questions that extend the main question ("specific_questions" variable).
-  
-  Your job is to transform the main question and specific questions into legal topics, which you will send to the legal expert. Legal topics should be concise, and look like something you would find as a title of actual legislation. The legal expert will use your topics to structure and format his legal research for the customer.
-  As a general guideline for creating topics, it is always good to have some universal main_topics, which can be tailored for the specific question:
-  1. Topic about the overall legality of a legal matter.
-  2. Topic about the regulations and restrictions of a legal matter.
-  3. Topic about the associated penalties for unlawful actions (use, consumption, actions) of a legal matter.
-  
-  
-  Carefully read the main_question and specific_questions, and come up with some General Topics (output "general_topics"). General topics should be high level topics that are used to format the legal research for the most crucial aspects of the main_question. Apply some of the universal main_topics to the main_question. Create other general_topics. General topics should be broad in scope, and clearly separate the main ideas of legal questions into distinct categories. These categories will be used for legal research, in order to apply actual legislation to the categories, which the legal expert will use to craft a comprehensive legal answer.
-  
-  Finally, use your extensive knowledge as an intern at a law firm to propose some of your own general_topics that aren't already represented. Take into account topics you have already created. Try to come up with topics that would be useful in answering the main_question.
-  
-  Return your answer in json format. {general_topics: [""]}`;
-  let user = `{main_question: ${main_question}, specific_questions: ${specific_questions}}`;
-
-  const messages = convertToMessages(system, user);
-  let model = "gpt-4-1106-preview";
-  if (useRegularGPT4) {
-    model = "gpt-4";
-  }
-  const params: ChatCompletionParams = getChatCompletionParams(model, messages, 0.5, 1000);
-  return params;
-}
-
-export function getPromptFirstTopics(
-  legal_question: string,
-  general_topics: string[],
-  legal_document: string,
-  legal_text: string
-): ChatCompletionParams {
-
-  const system = `You are an intern at a Law Firm who helps a legal expert conduct legal research. You will be given:
-  1. A legal_question provided by a customer.
-  2. A sections of legal_text (sourced from the legal_document) that the expert believes might be useful in constructing an answer to the legal question.
-  3. A section_citation for each section of legal_text.
-4. A general_topics list, which provides some high level topics and categories for structuring legal research, provided by the legal expert.
-
-  Carefully read the legal_question and take a moment to think about how an expert would create a comprehensive, professional, and accurate answer to the legal_question. 
-Your job is to apply the sections of legal_text to the general_topics. You need to create some sub_topics for each general_topic. Follow these guidelines for generating sub_topics based on the legal_text.
-  1. Generate sub_topics that are themes of the legal_text as it relates to outlining an answer to the legal_question.
-  2. Generate sub_topics that will be used to further structure one or many of the general_topics, so that the legal expert can create a professional and comprehensive answer to the legal question.
-  3. Only generate topics that are relevant to the legal_question. Some sections of legal_text may not be relevant to the legal_question. Some sections may not apply at all to any of the major_topics.
-  4. Topics should be specific, concise, and descriptive.
-
-  Create new sub_topics by reading the legal_text. Decide which sub_topics apply to which general_topics. You should include a list of section_citations for each sub_topic.
-
-Return your response in json format: {general_topics: [{general_topic: "", sub_topics: [{sub_topic: "", section_citations: [""]}]}]}`;
-
-  let user = `{\"legal_question\": ${legal_question}\", \"legal_document\": \"${legal_document}\", \"general_topics\": ${general_topics},\"legal_text\": ${legal_text}}`;
-
-  const messages = convertToMessages(system, user);
-  //console.log(messages);
-  const params: ChatCompletionParams = getChatCompletionParams("gpt-3.5-turbo-1106", messages, 0.4);
-  return params;
-}
-
-export function getPromptTopicCombination(
-  legal_question: string,
-  topicResponses: TopicResponses,
-): ChatCompletionParams {
-  const system = `You are an educated and highly skillful intern at a Law Firm. Your boss is going to give you a legal_question asked by a customer, as well as many topics found in real legal text that would help answer the customer's legal_question. \nThere are only a few general_topics, which themselves have many possible sub_topics. Each sub_topic has a list of section_citations that apply to that topic.\n\nFor each general_topic, combine the sub_topics by following these instructions:\n1. Combine 2 or more similar sub_topics which are related in wording and meaning, keeping the wording of the new topic concise.\n2. Combine sub_topics with the current general_topic in mind, as well as the overall legal_question.\n3. When you combine a topic (or multiple topics), also combine the list of section_citations.\n\nReturn your combined and condensed topics in json format: {general_topics: [{general_topic: \"\", sub_topics: [{sub_topic: \"\", section_citations: [\"\"]}]}]}`;
-  const user = `{\"legal_question\": ${legal_question}\", ${JSON.stringify(topicResponses)}}`;
-  const messages = convertToMessages(system, user);
-  const params: ChatCompletionParams = getChatCompletionParams("gpt-4-1106-preview", messages, 0.4);
-  return params;
-}
-
-// AnswerGeneration API prompts
-export function getPromptPartialAnswering(
-  legal_question: string,
-  general_topic: string,
-  sub_topic: string,
-  section_citations: string[],
-  rows: string[],
-  useRegularGPT4: boolean
-): ChatCompletionParams {
-  const system = `You are a well-educated intern at a Law Firm who helps assist a licensed legal professional in answering legal questions. You will be given:
-  1. A legal_question provided by a customer.
-  2. A major_topic, and a sub_topic that is used to structure and limit the answer to a specific part of the legal_question.
-  3. A list of section_citations and legal_text pairs that the legal professional wants to use to answer the legal question's topic.
-  Carefully read the legal_question and topic and take a moment to think about how an expert would create a comprehensive, professional, and accurate answer to the subset of the legal_question which falls under the topic. After, follow these instructions to create a partial answer to the legal_question:
-  1. Carefully read each legal_question and topic pair and understand how it relates to the topic and legal_question.
-  2. For each legal_text, iteritively answer the legal question by incorporating the legal_text directly into the answer.
-  3. No one legal_text will fully answer the topic, and you may need to include multiple legal_texts to answer the topic.
-  4. Every time you do incorporate a legal_text into the answer, include the section_citation of that legal_text in the answer. This section_citation should be embedded into the text of the answer in-line, where you incorporated the legal_text. Use the following format for in-line citations: Some legal text ###section_citation 1###. Some more legal text ###section_citation2###.
-  5. The answer should comprehensively help answer the legal question by applying information in the legal_text to the topic. Your answer will be a helpful tool for the legal professional to use in answering the legal_question.
-
-  Return your answer in json format: {major_topic: "", sub_topic: "", answer: "", section_citations: [""]}.
-  
-  `;
-  let user = `{legal_question: ${legal_question}, major_topic: ${general_topic}, sub_topic: ${sub_topic} relevant_sections: [`;
-  for (let i = 0; i < section_citations.length; i++) {
-    user += `{section_citation: ${section_citations[i]}, legal_text: ${rows[i]}}`;
-    if (i !== section_citations.length - 1) {
-      user += `,`;
-    }
-  }
-  user += `]}`;
-  const messages = convertToMessages(system, user);
-  let model = "gpt-4-1106-preview";
-  if (useRegularGPT4) {
-    model = "gpt-4";
-  }
-  const params: ChatCompletionParams = getChatCompletionParams(model, messages, 0.5, 1000);
-  return params;
-}
-
 
 export function getPromptDirectAnswering(
   legal_question: string,
   instructions: string,
-  text_citation_pairs: text_citation_pair[],
+  text_citation_document_trios: text_citation_document_trio[],
   useRegularGPT4: boolean
 ): ChatCompletionParams {
-  console.log(text_citation_pairs)
+  console.log(text_citation_document_trios)
   const system = `You are a well-educated intern at a Law Firm who helps assist a licensed legal professional in answering legal questions. You will be given:
   1. A legal_question provided by a customer.
   2. Instructions for answering the question provided by the legal professional, which includes necessary context and personal information about the customer.
@@ -453,7 +338,7 @@ export function getPromptDirectAnswering(
   **Return your answer only in json (JSON) format***: {direct_answer: "Your answer here"}.
   
   `;
-  let user = `{legal_question: ${legal_question}, instructions: ${instructions}, answer_document: ${JSON.stringify(text_citation_pairs)}}`;
+  let user = `{legal_question: ${legal_question}, instructions: ${instructions}, answer_document: ${JSON.stringify(text_citation_document_trios)}}`;
 
 
   const messages = convertToMessages(system, user);
@@ -464,10 +349,10 @@ export function getPromptDirectAnswering(
 export function getPromptDirectAnsweringVitalia(
   question: string,
   already_asked_questions: string[],
-  text_citation_pairs: text_citation_pair_vitalia[],
+  text_citation_pairs: text_citation_pair[],
   useRegularGPT4: boolean
 ): ChatCompletionParams {
-  console.log(text_citation_pairs)
+  
   const system = `You are an enthustiac tour guide who assists visitors. Your main job is to help visitors find information about Vitalia 2024, a pop-up city event in the special economic zone of Prospera, on the island of Roatan Honduras. Here is some generaal information Vitalia that you need to know:
   Location: Vitalia 2024 will be hosted in Próspera, a Special Economic Zone on the island of Roatan, Honduras.
   Duration: The pop-up city experience will take place from Jan 6th to March 1st 2024, and encourages a minimum stay of 1 month, with a focus on participants willing to spend at least 2 months.
@@ -510,7 +395,7 @@ export function getPromptDirectAnsweringVitalia(
 export function getPromptDirectAnsweringSeparate(
   legal_questions: string[],
   clarifications: ClarificationChoices,
-  text_citation_pairs: text_citation_pair[],
+  text_citation_document_trios: text_citation_document_trio[],
   useRegularGPT4: boolean
 ): ChatCompletionParams {
   const system = `You are a well-educated intern at a Law Firm who helps assist a licensed legal professional in answering legal questions. You will be given:
@@ -531,7 +416,7 @@ export function getPromptDirectAnsweringSeparate(
   Return your instructions in json format: {all_instructions: [{legal_question: "", relevant_sections: [""], instructions: ""}]}.
   
   `;
-  let user = `{legal_questions: ${JSON.stringify(legal_questions)}}, clarifications: ${JSON.stringify(clarifications)}, answer_document: ${JSON.stringify(text_citation_pairs)}}`;
+  let user = `{legal_questions: ${JSON.stringify(legal_questions)}}, clarifications: ${JSON.stringify(clarifications)}, answer_document: ${JSON.stringify(text_citation_document_trios)}}`;
 
 
   const messages = convertToMessages(system, user);

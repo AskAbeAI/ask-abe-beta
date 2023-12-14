@@ -61,17 +61,18 @@ export async function POST(req: Request) {
 		jurisdiction = jurisdiction.toLowerCase();
 		//console.log(jurisdiction)
 		const maxRetries = 2;
-
-		const primary_rows: node_as_row[] = await callWithRetries(
-		() => jurisdiction_similarity_search_all_partitions(jurisdiction, query_expansion_embedding, 0.6, maxRows / 2, maxRows, supabaseUrl, supabaseKey),
-		maxRetries
+		
+		const primary_rows = await callWithRetries(
+			() => jurisdiction_similarity_search_all_partitions(jurisdiction, query_expansion_embedding, 0.6, maxRows, supabaseUrl, supabaseKey),
+			maxRetries
 		);
-		//console.log(primary_rows)
+		
 
 		let secondary_rows: node_as_row[] = [];
 		if (mode === "state_federal") {
+			
 			secondary_rows = await callWithRetries(
-			() => jurisdiction_similarity_search_all_partitions(federalJurisdiction!.abbreviation, query_expansion_embedding, 0.6, 15, 45, supabaseUrl, supabaseKey),
+			() => jurisdiction_similarity_search_all_partitions(federalJurisdiction!.abbreviation, query_expansion_embedding, 0.6, maxRows, supabaseUrl, supabaseKey),
 			maxRetries
 		);
 		}

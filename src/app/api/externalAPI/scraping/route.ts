@@ -1,6 +1,4 @@
 import { NextResponse } from 'next/server';
-import { generateDirectAnswer, generateEmbedding, generateQueryRefinement,generateDirectAnswerVitalia, convertRowsToTextCitationPairsVitalia, generateFollowupQuestion } from '@/lib/helpers';
-import { GroupedRows, Jurisdiction, CitationLinks } from '@/lib/types';
 import { spawn } from 'child_process';
 
 

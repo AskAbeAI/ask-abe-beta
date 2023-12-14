@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
-import { generateDirectAnswer, generateEmbedding, generateQueryRefinement,generateDirectAnswerVitalia, convertRowsToTextCitationPairsVitalia, generateFollowupQuestion } from '@/lib/helpers';
-import { GroupedRows, Jurisdiction, CitationLinks } from '@/lib/types';
+import { generateEmbedding, generateDirectAnswerVitalia, generateFollowupQuestion } from '@/lib/helpers';
+import { CitationLinks, text_citation_pair } from '@/lib/types';
 import OpenAI from "openai";
-import { insert_api_debug_log, jurisdiction_similarity_search_all_partitions, aggregateSiblingRows, vitalia_search } from '@/lib/database';
+import { vitalia_search } from '@/lib/database';
 
 const openAiKey = process.env.OPENAI_API_KEY;
 const openai = new OpenAI({
@@ -59,24 +59,29 @@ export async function POST(req: Request) {
         const embedding = JSON.parse(JSON.stringify(await generateEmbedding(openai, [original_question])));
 
         const rows = await vitalia_search("vitalia", embedding, 0.6, 50, supabaseUrl, supabaseKey);
-        console.log(rows)
+        const text_citation_pairs: text_citation_pair[] = [];
+        for (const row of rows){
+            let new_text = row.node_text.join('\n');
+            const pair: text_citation_pair = {
+                section_citation: row.node_citation,
+                text: new_text
+            };
+        }
         
-        const text_citation_pairs = convertRowsToTextCitationPairsVitalia(rows);
-        console.log(text_citation_pairs)
         
         
         let direct_answer = await generateDirectAnswerVitalia(openai, original_question, already_answered,  text_citation_pairs);
         console.log(direct_answer)
         const citationLinks: CitationLinks = {};
         for (const row of rows) {
-            citationLinks[cleanString(row.node_name!.trim())] = row.link!
+            citationLinks[cleanString(row.node_name!.trim())] = row.node_link;
         }
-        console.log(citationLinks)
+        
         const endTime = Date.now();
         already_answered.push(original_question);
         if (api_key ===  'ak_EjMsYGPJpLHcb48r4uCfP2ZYyrjwL') {
             direct_answer = replaceCitationsWithLinks(direct_answer, citationLinks);
-            console.log(direct_answer)
+            
         }
         const response = NextResponse.json({
             "answer": direct_answer,

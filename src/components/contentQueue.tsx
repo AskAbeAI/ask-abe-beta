@@ -1,5 +1,5 @@
-import { ContentBlock, ContentType, ClarificationChoices, TopicResponses, Clarification } from "../lib/types";
-import { QuestionBlock, AnswerVitaliaBlock, ClarificationQuestionBlock, ClarificationVitaliaBlock, WelcomeBlock, WelcomeVitaliaBlock, TopicsBlock, AnswerBlock, FinalAnswerBlock, ClarificationBlock, StreamingAnswerBlock, ApprovalBlock, AbeIconLabel } from "@/components/ui/chatBlocks";
+import { ContentBlock, ContentType,  Clarification } from "../lib/types";
+import { QuestionBlock, AnswerVitaliaBlock, ClarificationQuestionBlock, ClarificationVitaliaBlock, WelcomeBlock, WelcomeVitaliaBlock, AnswerBlock,  ClarificationBlock, AbeIconLabel } from "@/components/ui/chatBlocks";
 import React from "react";
 
 
@@ -12,7 +12,6 @@ interface ContentQueueProps {
   endOfMessagesRef: React.RefObject<HTMLDivElement>;
   onSubmitClarificationAnswers: (clarification: Clarification, mode: string) => void;
   onSubmitClarificationVitaliaAnswers: (clarification: Clarification, mode: string) => void;
-  onSubmitTopicChoices: (topicChoices: TopicResponses) => void;
   onStreamEnd: (concurrentStreaming: boolean) => void; // Optional if no user input is needed
   onClarificationStreamEnd: (clarifyingQuestion: string, clarifyingAnswers: string[], mode: string) => void; // Optional if no user input is needed
   setActiveCitationId: (citationId: string) => void;
@@ -25,7 +24,6 @@ const ContentQueue: React.FC<ContentQueueProps> = ({
   endOfMessagesRef,
   onSubmitClarificationAnswers,
   onSubmitClarificationVitaliaAnswers,
-  onSubmitTopicChoices,
   onStreamEnd,
   onClarificationStreamEnd,
   setActiveCitationId,
@@ -75,22 +73,6 @@ const ContentQueue: React.FC<ContentQueueProps> = ({
               />
             </div>
           );
-      case ContentType.StreamingAnswer:
-        return <StreamingAnswerBlock content={item.content} />;
-      case ContentType.Approval:
-        return (
-
-          <div className="flex justify-start w-5/6">
-
-            <ApprovalBlock
-              content={item.content}
-              fakeStream={item.fakeStream}
-              concurrentStreaming={item.concurrentStreaming}
-              onStreamEnd={() => onStreamEnd(item.concurrentStreaming)}
-            />
-          </div>
-
-        );
       case ContentType.ClarificationQuestion:
         // Ensure that onConfirm and onDismiss are defined before trying to use them
 
@@ -156,39 +138,6 @@ const ContentQueue: React.FC<ContentQueueProps> = ({
             throw new Error('Clarification block must have clarifyingAnswers and clarifyingQuestions defined');
           }
 
-      case ContentType.Topics:
-        if (item.topicResponses) {
-          return (
-            <div className="flex justify-start w-5/6">
-              <TopicsBlock
-                topicResponses={item.topicResponses}
-                onSubmitTopicChoices={onSubmitTopicChoices}
-                content={item.content}
-                fakeStream={item.fakeStream}
-                concurrentStreaming={item.concurrentStreaming}
-                onStreamEnd={() => onStreamEnd(item.concurrentStreaming)}
-              />
-            </div>
-          );
-        } else {
-          throw new Error('Topics block must have topics defined');
-        }
-      case ContentType.FinalAnswer:
-        if (item.finalAnswer) {
-          return (
-            <div className="flex justify-start w-5/6">
-              <FinalAnswerBlock
-                content={""}
-                fakeStream={item.fakeStream}
-                concurrentStreaming={item.concurrentStreaming}
-                onStreamEnd={() => onStreamEnd(item.concurrentStreaming)}
-                finalAnswer={item.finalAnswer}
-              />
-            </div>
-          );
-        } else {
-          throw new Error('Final Answer block must have final answer defined');
-        }
       case ContentType.Welcome: {
         return (
           <div className="flex justify-start w-5/6">

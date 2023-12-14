@@ -1,9 +1,5 @@
 import '../globals.css';
 import { Inter } from 'next/font/google';
-import { Analytics } from '@vercel/analytics/react';
-import { ClerkProvider } from '@clerk/nextjs';
-import NavBar from '@/components/navBar';
-import PageFooter from '@/components/pageFooter';
 import type { Metadata, ResolvingMetadata } from 'next'
 
 const inter = Inter({ subsets: ['latin'] });

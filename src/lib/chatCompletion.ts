@@ -1,6 +1,6 @@
 import { Message, ChatCompletionParams } from '../lib/types';
 import openAI from 'openai';
-import { OpenAIStream, StreamingTextResponse } from 'ai';
+
 import { insert_completion_cost } from './database';
 
 export function convertToMessages(system: string, user: string): Message[] {
