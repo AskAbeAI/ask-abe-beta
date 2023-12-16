@@ -5,10 +5,10 @@ import os
 import json
 import urllib.request
 import re
+from http.server import BaseHTTPRequestHandler
 from openai import OpenAI
 from supabase import create_client, Client
 
-DIR = os.path.dirname(os.path.realpath(__file__))
 BASE_URL = "https://wiki.vitalia.city"
 SUPABASE_URL="https://jwscgsmkadanioyopaef.supabase.co"
 SUPABASE_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp3c2Nnc21rYWRhbmlveW9wYWVmIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTU2NzE1MTgsImV4cCI6MjAxMTI0NzUxOH0.1QwW9IV1TrMT72xyq2LQcmDr92tmLOEQg07mOPRLDO0"
@@ -19,6 +19,20 @@ client = OpenAI(
 
 ALL_URLS = []
 ALL_TITLES = []
+
+
+
+ 
+class handler(BaseHTTPRequestHandler):
+ 
+    def do_POST(self):
+        self.send_response(200)
+        self.send_header('Content-type','text/plain')
+        self.end_headers()
+        main()
+        return
+    
+
 def main():
     print("Hello!")
     exit(1)
