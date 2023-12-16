@@ -46,7 +46,7 @@ export async function POST(req: Request) {
 	if (supabaseKey === undefined) { throw new Error("process.env.SUPABASE_KEY is undefined!"); }
     
     try {
-        console.log(original_question)
+       
         if (already_answered.length > 0) {
             let newQuestion = await generateFollowupQuestion(openai, original_question, already_answered)
             if (newQuestion === original_question) {
@@ -63,13 +63,14 @@ export async function POST(req: Request) {
         for (const row of rows){
             let new_text = row.node_text.join('\n');
             const pair: text_citation_pair = {
-                section_citation: row.node_citation,
+                section_citation: row.node_name,
                 text: new_text
             };
+            text_citation_pairs.push(pair);
         }
         
         
-        
+        console.log(text_citation_pairs)
         let direct_answer = await generateDirectAnswerVitalia(openai, original_question, already_answered,  text_citation_pairs);
         console.log(direct_answer)
         const citationLinks: CitationLinks = {};

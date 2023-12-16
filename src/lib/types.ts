@@ -265,7 +265,7 @@ export type node_as_row = {
   node_addendum: string;
   node_name: string;
   node_summary: string;
-  node_hyde: string;
+  node_hyde: string[];
   node_parent: string;
   node_direct_children: string[];
   node_siblings: string[];
