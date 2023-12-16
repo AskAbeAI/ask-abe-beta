@@ -36,7 +36,9 @@ export async function POST(req: Request) {
     
     try {
         // Spawn a child process to run the Python script
+        
         const pythonProcess = spawn('python', ['api/externalAPI/scraping/scrapeVitalia.py']);
+        console.log("Spawned child process");
 
         // Handling standard output from the Python script
         pythonProcess.stdout.on('data', (data) => {
