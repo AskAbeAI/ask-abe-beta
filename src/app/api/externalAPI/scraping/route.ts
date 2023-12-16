@@ -9,7 +9,7 @@ export function OPTIONS(req: Request) {
     
     // Set CORS headers
     const headers = {
-        'Access-Control-Allow-Origin': 'https://www.strikingly.com', // Modify as needed for your use case
+        'Access-Control-Allow-Origin': 'https://web.postman.co', // Modify as needed for your use case
         'Access-Control-Allow-Methods': 'POST, OPTIONS',
         'Access-Control-Allow-Headers': 'Content-Type, Authorization',
         // Include any other headers you might need for your requests
