@@ -32,7 +32,7 @@ export async function POST(req: Request) {
     if (api_key !== 'ak_jTMkA0rfIrMhu0WBkiHzy4YEZiVq82ym' && api_key !==  'ak_EjMsYGPJpLHcb48r4uCfP2ZYyrjwL') {
         return NextResponse.json({ errorMessage: `Invalid API key: ${api_key}`, status: 401 });
     }
-    return NextResponse.json({ message: `Scraping API endpoint called successfully!`, status: 200 });
+    
     
     try {
         // Spawn a child process to run the Python script
