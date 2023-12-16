@@ -36,7 +36,7 @@ export async function POST(req: Request) {
     
     try {
         // Spawn a child process to run the Python script
-        const pythonProcess = spawn('python', ['./scrapeVitalia.py']);
+        const pythonProcess = spawn('python3', ['./scrapeVitalia.py']);
 
         // Handling standard output from the Python script
         pythonProcess.stdout.on('data', (data) => {
@@ -56,7 +56,7 @@ export async function POST(req: Request) {
         });
 
     } catch (error) {
-        console.error('Error running Python script:', error);
+        //console.error('Error running Python script:', error);
         return NextResponse.json({ errorMessage: `Error running Python script: ${error}`, status: 500 });
     }
 }

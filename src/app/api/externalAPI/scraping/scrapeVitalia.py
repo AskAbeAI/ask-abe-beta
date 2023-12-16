@@ -18,6 +18,8 @@ client = OpenAI(
 )
 
 def main():
+    print("Hello!")
+    exit(1)
     read_urls_to_list()
     read_urls_to_file()
     
