@@ -6,12 +6,12 @@ import BottomBar from '@/components/bottomBar';
 import ChatContainer from '@/components/chatContainer';
 import { DisclaimerModal, JurisdictionModal } from '@/components/disclaimermodal';
 // Import data types
-import { ContentType, ContentBlock, ContentBlockParams, CitationBlockProps, GroupedRows, Clarification } from "@/lib/types";
-import { node_as_row, node_key, SubTopic, GeneralTopic, TopicResponses, ClarificationChoices, PartialAnswer } from '@/lib/types';
-import { aggregateSiblingRows, generate_node_keys } from '@/lib/database';
+import { ContentType, ContentBlock, ContentBlockParams, CitationBlockProps, Clarification } from "@/lib/types";
+import {  node_as_row, ClarificationChoices} from '@/lib/types';
+
 import CitationBar from '@/components/citationBar';
 import OptionsList from '@/components/optionsFilter';
-import { Option, Jurisdiction, OptionsListProps, questionJurisdictions } from '@/lib/types';
+import { Option, Jurisdiction, questionJurisdictions } from '@/lib/types';
 
 import { StateJurisdictionOptions, FederalJurisdictionOptions, MiscJurisdictionOptions, ChatOptions } from '@/lib/types';
 
@@ -35,16 +35,15 @@ export default function Playground() {
   // State variables for UI components
   const [isFormVisible, setIsFormVisible] = useState(true);
   const [citationsOpen, setCitationsOpen] = useState(false);
-  const [currentlyStreaming, setCurrentlyStreaming] = useState(false);
+  
   const [streamingQueue, setStreamingQueue] = useState<ContentBlock[]>([]);
   const [showCurrentLoading, setShowCurrentLoading] = useState(false);
   const [activeCitationId, setActiveCitationId] = useState<string>('');
   const [inputMode, setInputMode] = useState<string>('Initial');
+  const [primaryRows, setPrimaryRows] = useState<node_as_row[]>([]);
+  const [secondaryRows, setSecondaryRows] = useState<node_as_row[]>([]);
 
-  // State variables for legal text, database search
-  const [primaryGroupedRows, setPrimaryGroupedRows] = useState<GroupedRows>({});
-  const [secondaryGroupedRows, setSecondaryGroupedRows] = useState<GroupedRows>({});
-
+  // State variables for legal text, database searches
   // State variables for contentBlocks
   const [contentBlocks, setContentBlocks] = useState<ContentBlock[]>([{
     blockId: `id_${new Date().getTime()}_${Math.random().toString(36).substr(2, 9)}`,
@@ -103,8 +102,9 @@ export default function Playground() {
     setClarificationResponses([]);
     setAlreadyAnswered([]);
     setActiveCitationId('');
-    setPrimaryGroupedRows({});
-    setSecondaryGroupedRows({});
+    setPrimaryRows([]);
+    setSecondaryRows([]);
+    
     setInputMode("Initial");
 
     setQuestionJurisdictions({
@@ -130,16 +130,13 @@ export default function Playground() {
 
   // UI Component Block Functions
   const addContentBlock = async (newBlock: ContentBlock): Promise<string> => {
-    if (newBlock.fakeStream) {
-      setCurrentlyStreaming(true);
-    }
+    
     setShowCurrentLoading(false);
     setContentBlocks(currentBlocks => [...currentBlocks, newBlock]);
     return newBlock.blockId;
   };
 
   const addManyContentBlock = async (newBlocks: ContentBlock[]): Promise<void> => {
-    setCurrentlyStreaming(true);
     setStreamingQueue(newBlocks);
     //console.log(newBlocks);
     if (newBlocks[0].type === ContentType.Citation) {
@@ -178,8 +175,6 @@ export default function Playground() {
       clarifyingQuestion: params.clarifyingQuestion,
       clarifyingAnswers: params.clarifyingAnswers,
       citationProps: params.citationProps,
-      topicResponses: params.topicResponses,
-      finalAnswer: params.finalAnswer,
       content_list: params.content_list,
       mode: params.mode,
       neverLoad: params.neverLoad
@@ -194,9 +189,6 @@ export default function Playground() {
     // If there's no line, return
     if (concurrentStreaming) {
       streamingQueue.shift();
-    }
-    if (streamingQueue.length === 0) {
-      setCurrentlyStreaming(false);
     }
 
     return;
@@ -502,14 +494,14 @@ export default function Playground() {
 
 
     const result = await response.json();
-
-    let primary_rows: node_as_row[] = result.primary_rows;
     console.log("Received response from similaritySearch API!")
-    console.log(primary_rows)
+    const primary_rows: node_as_row[] = result.primary_rows;
     const secondary_rows: node_as_row[] = result.secondary_rows;
+    console.log(primary_rows)
+    
 
 
-    let usesSubContentNodes: boolean = false;
+   
 
 
     let primaryJurisdiction;
@@ -526,26 +518,15 @@ export default function Playground() {
       primaryJurisdiction = question_jurisdiction.federal! as Jurisdiction;
     }
 
-    if (primaryJurisdiction.usesSubContentNodes) {
-      primary_rows = await getSiblingRows(generate_node_keys(primary_rows));
-    }
-    // Get a set of all unique parent_nodes in combinedRows variable
-    const primary_grouped_rows: GroupedRows = await aggregateSiblingRows(primary_rows, usesSubContentNodes, primaryJurisdiction);
-
-    let secondary_grouped_rows: GroupedRows = {};
-    if (secondary_rows.length > 0) {
-      secondary_grouped_rows = await aggregateSiblingRows(secondary_rows, false, secondaryJurisdiction!);
-    }
-
     const all_citation_blocks: ContentBlock[] = [];
 
     // Create citation blocks for each parent node
     const primary_citation_blocks: ContentBlock[] = [];
-    for (const parent_node in primary_grouped_rows) {
-      console.log(parent_node)
-      const section_text: string[] = primary_grouped_rows[parent_node].section_text;
-      const citation: string = primary_grouped_rows[parent_node].citation;
-      const link: string = primary_grouped_rows[parent_node].link;
+    for (const row of primary_rows) {
+      console.log(row)
+      const section_text: string[] = row.node_text;
+      const citation: string = row.node_citation;
+      const link: string = row.node_link;
       //console.log(citation);
 
 
@@ -572,10 +553,10 @@ export default function Playground() {
     if (secondary_rows.length > 0) {
       let jurisdictionName = secondaryJurisdiction!.corpusTitle;
       const secondary_citation_blocks: ContentBlock[] = [];
-      for (const parent_node in secondary_grouped_rows) {
-        const section_text: string[] = secondary_grouped_rows[parent_node].section_text;
-        const citation: string = secondary_grouped_rows[parent_node].citation;
-        const link: string = secondary_grouped_rows[parent_node].link;
+      for (const row of  secondary_rows) {
+        const section_text: string[] = row.node_text;
+        const citation: string = row.node_citation;
+        const link: string = row.node_link;
         const citationProps: CitationBlockProps = {
           citation: citation,
           jurisdictionName: jurisdictionName,
@@ -597,124 +578,25 @@ export default function Playground() {
       all_citation_blocks.push(...secondary_citation_blocks);
     }
 
-    setPrimaryGroupedRows(primary_grouped_rows);
-    setSecondaryGroupedRows(secondary_grouped_rows);
-    console.log(all_citation_blocks)
+    
+    
     await addManyContentBlock(all_citation_blocks);
     //const general_topics: string[] = await blindTopics(user_query, "CA", "USA", specific_questions);
     setQuestionJurisdictions(question_jurisdiction);
 
-    await directAnswering(user_query, specific_questions, primary_grouped_rows, secondary_grouped_rows, clarificationResponses);
+    await directAnswering(user_query, specific_questions, primary_rows, secondary_rows, clarificationResponses, question_jurisdiction);
 
     //await topicsBySection(user_query, general_topics, "CA", "USA", combined_parent_nodes, []);
-
-  };
-
-  // combineSiblingRows API handler
-  const getSiblingRows = async (node_keys: node_key[]): Promise<node_as_row[]> => {
-    const requestBody = {
-      jurisdictions: { "state": "ca", "federal": "USA" },
-      node_keys: node_keys,
-    };
-
-    const response = await fetch('/api/searchDatabase/getSiblingRows', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Session-ID': sessionID,
-      },
-      body: JSON.stringify(requestBody),
-    });
-    const result = await response.json();
-
-    const combined_rows: node_as_row[] = result.all_rows;
-    // Print type of combined_rows
-    //console.log(typeof combined_rows);
-
-
-    return combined_rows;
-  };
-
-  const blindTopics = async (
-    legal_question: string,
-    state_legal_document: string,
-    federal_legal_document: string,
-    specific_questions: string[],
-  ) => {
-    //console.log(specific_questions);
-    const requestBody = {
-      main_question: legal_question,
-      specific_questions: specific_questions,
-      state_legal_document: state_legal_document,
-      federal_legal_document: federal_legal_document,
-    };
-    console.log("  - Sending request to blindTopics API!");
-    const response = await fetch('/api/topicGeneration/blindTopics', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Session-ID': sessionID,
-      },
-      body: JSON.stringify(requestBody),
-    });
-    const result = await response.json();
-    console.log("Received response from blindTopics API!");
-    const general_topics: string[] = result.general_topics;
-    //console.log(`general_topics: \n${general_topics}`);
-    return general_topics;
-  };
-
-  const partialAnswering = async (
-    topics: TopicResponses,
-    rows: GroupedRows,
-
-  ) => {
-
-    const requestBody = {
-      topics: topics,
-      legal_question: question,
-      groupedRows: rows
-    };
-    console.log("  - Sending request to partialAnswering API!");
-    const response = await fetch('/api/answerQuery/partialAnswering', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Session-ID': sessionID,
-      },
-      body: JSON.stringify(requestBody),
-    });
-    const result = await response.json();
-    console.log("Received response from partialAnswering API!");
-    const final_answers: PartialAnswer[] = result.partialAnswers;
-    console.log(final_answers);
-    const clarifications: ClarificationChoices = {
-      clarifications: clarificationResponses
-    };
-    const detailClarifications: ClarificationChoices = {
-      clarifications: []
-    };
-    // const direct_answer = await directAnswering(final_answers, clarifications!, detailClarifications!);
-
-    const params: ContentBlockParams = {
-      type: ContentType.FinalAnswer,
-      content: "I have created a more structured, detailed, and comprehensive answer to your question below. If you would like to understand further, feel free to expand the below sections.",
-      fake_stream: true,
-      concurrentStreaming: false,
-      finalAnswer: final_answers
-
-    };
-    await addContentBlock(createNewBlock(params));
-
 
   };
 
   const directAnswering = async (
     user_query: string,
     specific_questions: string[],
-    primary_grouped_rows: GroupedRows,
-    secondary_grouped_rows: GroupedRows,
+    primary_rows: node_as_row[],
+    secondary_rows: node_as_row[],
     combinedClarifications: Clarification[],
+    question_jurisdiction: questionJurisdictions
   ) => {
     console.log(questionJurisdictions);
 
@@ -726,11 +608,12 @@ export default function Playground() {
     const requestBody = {
       legal_question: user_prompt_query,
       specific_questions: specific_questions,
-      primary_grouped_rows: primary_grouped_rows,
-      secondary_grouped_rows: secondary_grouped_rows,
+      primary_grouped_rows: primary_rows,
+      secondary_grouped_rows: secondary_rows,
       already_answered: alreadyAnswered,
       clarifications: { clarifications: combinedClarifications } as ClarificationChoices,
-      mode: "clarifications"
+      mode: "clarifications",
+      question_jurisdiction: question_jurisdiction
     };
     if (skipClarifications || selectedMiscJurisdiction !== undefined) {
       requestBody.mode = "single";
@@ -763,9 +646,6 @@ export default function Playground() {
     return direct_answer;
   };
 
-
-
-
   const handleOptionChange = (options: Option[]) => {
     for (const option of options) {
       console.log(option);
@@ -775,8 +655,6 @@ export default function Playground() {
       }
     }
   };
-
-
 
   const scoreNewFollowupQuestion = async (question: string): Promise<[number, string]> => {
     let score: number = 7;
@@ -811,6 +689,7 @@ export default function Playground() {
     }
     return [score, message_to_user];
   };
+
   const handleNewFollowupQuestion = async (question: string) => {
     console.log("NEW QUESTION: " + question);
     setIsFormVisible(false);
@@ -831,8 +710,8 @@ export default function Playground() {
       setClarificationResponses([]);
       setAlreadyAnswered([]);
       setActiveCitationId('');
-      setPrimaryGroupedRows({});
-      setSecondaryGroupedRows({});
+      setPrimaryRows([]);
+      setSecondaryRows([]);
       setInputMode("Initial");
       handleNewQuestion(questionText);
       return;
@@ -857,11 +736,13 @@ export default function Playground() {
       askNewClarification(questionJurisdictions, questionText, "single", { clarifications: clarificationResponses });
     }
   };
+
   const followUpQuestionAnswer = async (clarifications: Clarification[], newQuestion?: string) => {
     addNewLoadingBlock(false);
     const input = newQuestion || question;
-    await directAnswering(input, specificQuestions, primaryGroupedRows, secondaryGroupedRows, clarifications);
+    await directAnswering(input, specificQuestions, primaryRows, secondaryRows, clarifications, questionJurisdictions!);
   };
+  
   const setShown = () => {
     setShowJurisdictionModal(false);
   }
@@ -896,7 +777,6 @@ export default function Playground() {
               contentBlocks={contentBlocks}
               onSubmitClarificationAnswers={handleClarificationAnswer}
               onSubmitClarificationVitaliaAnswers={dummyFunction}
-              onSubmitTopicChoices={console.log}
               onClarificationStreamEnd={handleClarificationQuestionDone}
               onStreamEnd={onStreamEnd}
               showCurrentLoading={showCurrentLoading}
@@ -951,7 +831,6 @@ export default function Playground() {
                 contentBlocks={contentBlocks}
                 onSubmitClarificationAnswers={handleClarificationAnswer}
                 onSubmitClarificationVitaliaAnswers={dummyFunction}
-                onSubmitTopicChoices={console.log}
                 onClarificationStreamEnd={handleClarificationQuestionDone}
                 onStreamEnd={onStreamEnd}
                 showCurrentLoading={showCurrentLoading}
@@ -1013,76 +892,3 @@ export default function Playground() {
 };
 
 
-
-
-
-// // topicsBySection API handler
-// const topicsBySection = async (
-//   legal_question: string,
-//   general_topics: string[],
-//   state_legal_document: string,
-//   federal_legal_document: string,
-//   state_rows: GroupedRows,
-//   federal_rows: node_as_row[]
-// ) => {
-
-//   const requestBody = {
-//     legal_question: legal_question,
-//     general_topics: general_topics,
-//     state_legal_document: state_legal_document,
-//     federal_legal_document: federal_legal_document,
-//     state_rows: state_rows,
-//     federal_rows: federal_rows,
-//     row_limit: 20,
-//   };
-//   console.log("  - Sending request to topicsBySection API!");
-//   const response = await fetch('/api/topicGeneration/topicsBySection', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(requestBody),
-//   });
-//   const result = await response.json();
-//   console.log("Received response from topicsBySection API!");
-//   const combinedResponse: TopicResponses = result.combinedResponse;
-//   //console.log(combinedResponse);
-
-//   await topicCombination(combinedResponse, legal_question);
-
-// };
-
-// const topicCombination = async (
-//   combinedResponse: TopicResponses,
-//   main_question: string
-// ) => {
-//   const requestBody = {
-//     main_question: main_question,
-//     state_jurisdiction: "CA",
-//     federal_jurisdiction: "USA",
-//     combinedResponse: combinedResponse,
-//   };
-//   console.log("  - Sending request to topicCombination API!");
-//   const response = await fetch('/api/topicGeneration/topicCombination', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(requestBody),
-//   });
-//   const result = await response.json();
-//   console.log("Received response from topicCombination API!");
-//   const finalTopics: TopicResponses = result.final_topics;
-//   console.log(finalTopics);
-//   setFinalTopicTemplate(finalTopics);
-//   // Create topic block, clarification block for now.
-//   // const params: ContentBlockParams = {
-//   //   type: ContentType.Topics,
-//   //   content: "Here are some topics that I think are relevant to your question. Please select the topics that you would like to learn more about.",
-//   //   fake_stream: true,
-//   //   concurrentStreaming: false,
-//   //   topicResponses: finalTopics
-//   // };
-//   // await addContentBlock(createNewBlock(params));
-//   //partialAnswering(finalTopics, groupedRows);
-// };

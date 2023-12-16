@@ -1,6 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
-import { node_as_row, node_key, GroupedRows, Jurisdiction, new_node_as_row } from "@/lib/types";
+import { node_as_row } from "@/lib/types";
 import { match } from 'assert';
+
 
 
 
@@ -8,18 +9,15 @@ export async function jurisdiction_similarity_search_all_partitions(
   jurisdiction: string,
   query_embedding: string,
   match_threshold: number,
-  match_count: number,
   max_rows: number,
   supabaseUrl: string,
   supabaseKey: string
 ): Promise<node_as_row[]> {
 
   const supabase = createClient(supabaseUrl!, supabaseKey!);
-  console.log(match_threshold, match_count, max_rows)
   const { data, error } = await supabase
     .rpc(`${jurisdiction}_similarity_search`, {
       query_embedding: query_embedding,
-      k: match_count,
       match_threshold: match_threshold,
       max_rows: max_rows,
     });
@@ -38,7 +36,7 @@ export async function vitalia_search(
   max_rows: number,
   supabaseUrl: string,
   supabaseKey: string
-): Promise<new_node_as_row[]> {
+): Promise<node_as_row[]> {
 
   const supabase = createClient(supabaseUrl!, supabaseKey!);
   const { data, error } = await supabase
@@ -55,120 +53,7 @@ export async function vitalia_search(
   return data;
 }
 
-export async function get_sibling_rows(
-  jurisdiction: string,
-  node_keys: node_key[],
-  supabaseUrl: string,
-  supabaseKey: string
-): Promise<node_as_row[]> {
 
-  const supabase = createClient(supabaseUrl!, supabaseKey!);
-  const { data, error } = await supabase.rpc(`${jurisdiction}_get_sibling_rows`, { keys: node_keys });
-  if (error) {
-    console.error("ERRRRRRRRORRR!", error);
-    throw error;
-  }
-  return data;
-}
-
-
-export async function aggregateSiblingRows(rows: node_as_row[], usesSubContentNodes: boolean, jurisdiction: Jurisdiction): Promise<GroupedRows> {
- 
-  const extractSortKey = (id: string): string => {
-    const parts = id.split('/');
-    const lastPart = parts[parts.length - 1];
-    if (lastPart === "") {
-      return " "; // Special case: empty string (no identifier) sorts before alphabetical identifiers
-    }
-    if (lastPart.includes("Addendum")) {
-      return "zzzzzzzz"; // Sort "Addendum" last by giving it a sort key that will come alphabetically last
-    }
-    const match = lastPart.match(/\(([^)]+)\)/);
-    return match ? match[1] : lastPart; // Extract the identifier within parentheses or the whole part if no parentheses are found
-  };
-  const convertToCitationFormat = (id: string): string => {
-    const titleMatch = id.match(/TITLE=(\d+)/);
-    const sectionMatch = id.match(/SECTION=([\d.]+)/);
-  
-    if (!titleMatch || !sectionMatch) {
-      throw new Error("Invalid format");
-    }
-  
-    const title = titleMatch[1];
-    const section = sectionMatch[1];
-  
-    return `${title} C.F.R. § ${section}`;
-  };
-  
-
-  const groupedRows: GroupedRows = {};
-  if (usesSubContentNodes=== false) {
-    for (const row of rows) {
-      let citation = row.citation;
-      if(row.citation === undefined) {
-        citation = convertToCitationFormat(row.id);
-      }
-      
-      groupedRows[citation] = {
-        rows: [row],
-        section_text: [row.node_text],
-        citation: citation!,
-        link: "Placeholder!",
-        jurisdiction: jurisdiction
-      };
-    }
-    return groupedRows;
-  }
-
-  for (const row of rows) {
-    if (!groupedRows[row.parent_node]) {
-      groupedRows[row.parent_node] = { rows: [], section_text: [], citation: '', link: '', jurisdiction: jurisdiction };
-    }
-    if (!groupedRows[row.parent_node].rows.some(existingRow => existingRow.id === row.id)) {
-      groupedRows[row.parent_node].rows.push(row);
-    }
-
-  }
-
-  for (const parent_node in groupedRows) {
-    const siblingRows = groupedRows[parent_node].rows;
-
-    // Sorting logic
-    if(usesSubContentNodes) {
-      siblingRows.sort((a, b) => {
-        const keyA = extractSortKey(a.id);
-        const keyB = extractSortKey(b.id);
-        if (keyA.trim() === "" && keyB.trim() !== "") return -1;
-        if (keyB.trim() === "" && keyA.trim() !== "") return 1;
-        return keyA.localeCompare(keyB);
-      });
-    
-
-      let section_text: string[] = [];
-      let citation = "";
-      let link = "";
-
-      for (const row of siblingRows) {
-        section_text.push(row.node_text);
-        if (row.citation.includes("Addendum")) {
-          citation = row.citation.replace("Addendum", "");
-          link = "https://leginfo.legislature.ca.gov/faces/codes.xhtml";
-        }
-      }
-      groupedRows[parent_node] = {
-        rows: siblingRows,
-        section_text: section_text,
-        citation: citation,
-        link: link,
-        jurisdiction: jurisdiction
-      };
-    }
-
-    
-  }
-
-  return groupedRows;
-}
 
 export async function insert_completion_cost(
   phase: string,
@@ -189,26 +74,7 @@ export async function insert_completion_cost(
     throw error;
   }
 }
-export function generate_node_keys(rows: node_as_row[]) {
-  const sibling_node_keys: node_key[] = [];
 
-  for (const row of rows) {
-    const original_node: node_key = { "id": row.id, "top_level_title": row.top_level_title };
-    if (sibling_node_keys.includes(original_node)) {
-      continue;
-    }
-    sibling_node_keys.push(original_node);
-
-    for (const sibling_id of row.sibling_nodes) {
-      const sibling_node: node_key = { "id": sibling_id, "top_level_title": row.top_level_title };
-      if (sibling_node_keys.includes(sibling_node)) {
-        continue;
-      }
-      sibling_node_keys.push(sibling_node);
-    }
-  }
-  return sibling_node_keys;
-}
 
 export async function insert_api_debug_log(
   api_phase: string,

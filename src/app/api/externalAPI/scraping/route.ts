@@ -1,6 +1,4 @@
 import { NextResponse } from 'next/server';
-import { generateDirectAnswer, generateEmbedding, generateQueryRefinement,generateDirectAnswerVitalia, convertRowsToTextCitationPairsVitalia, generateFollowupQuestion } from '@/lib/helpers';
-import { GroupedRows, Jurisdiction, CitationLinks } from '@/lib/types';
 import { spawn } from 'child_process';
 
 
@@ -28,41 +26,38 @@ export async function POST(req: Request) {
     console.log("=== EXTERNAL SCRAPING API ENDPOINT ===");
 
     const requestData: any = await req.json();
-    let original_question: string = requestData.question;
     const api_key: string = requestData.api_key;
-    let already_answered: string[] = requestData.already_answered;
+    
     // Vitalia API key & Telegram Bot API key
     if (api_key !== 'ak_jTMkA0rfIrMhu0WBkiHzy4YEZiVq82ym' && api_key !==  'ak_EjMsYGPJpLHcb48r4uCfP2ZYyrjwL') {
         return NextResponse.json({ errorMessage: `Invalid API key: ${api_key}`, status: 401 });
     }
-    
-    
+    return NextResponse.json({ message: `Scraping API endpoint called successfully!`, status: 200 });
     
     try {
-        const process = spawn('python', ['./test.py', 'Hello Will!']);
+        // Spawn a child process to run the Python script
+        const pythonProcess = spawn('python', ['./scrapeVitalia.py']);
 
-        process.stdout.on('data', function(data) { 
-            console.log(data.toString()); 
-        } ) 
-            
-        const response = NextResponse.json({
-            "status": 200
-        })
-        
-        // Set CORS headers for POST response
-        response.headers.set('Access-Control-Allow-Origin', 'https://www.strikingly.com');
-        response.headers.set('Access-Control-Allow-Methods', 'POST, OPTIONS');
-        response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    
-        return response;
+        // Handling standard output from the Python script
+        pythonProcess.stdout.on('data', (data) => {
+            console.log(`stdout: ${data}`);
+        });
+
+        // Handling standard error output from the Python script
+        pythonProcess.stderr.on('data', (data) => {
+            console.error(`stderr: ${data}`);
+        });
+
+        // Handling the closing of the child process
+        pythonProcess.on('close', (code) => {
+            console.log(`child process exited with code ${code}`);
+            const endTime = Date.now();
+            console.log(`Execution time: ${endTime - startTime} ms`);
+        });
+
     } catch (error) {
-        const endTime = Date.now();
-        let errorMessage = `${error},\n`
-        if (error instanceof Error) {
-        errorMessage += error.stack;
-        }
-        const executionTime = endTime - startTime;
-        return NextResponse.json({"answer": undefined, "response_time": executionTime, "status": 500, "errorMessage": errorMessage});
+        console.error('Error running Python script:', error);
+        return NextResponse.json({ errorMessage: `Error running Python script: ${error}`, status: 500 });
     }
 }
 

@@ -13,7 +13,6 @@ export default function EmbedPage() {
 
   // State variables for UI components
   const [isFormVisible, setIsFormVisible] = useState(true);
-  const [currentlyStreaming, setCurrentlyStreaming] = useState(false);
   const [streamingQueue, setStreamingQueue] = useState<ContentBlock[]>([]);
   const [showCurrentLoading, setShowCurrentLoading] = useState(false);
   const [inputMode, setInputMode] = useState<string>('vitalia');
@@ -68,9 +67,6 @@ export default function EmbedPage() {
 
   // UI Component Block Functions
   const addContentBlock = async (newBlock: ContentBlock): Promise<string> => {
-    if (newBlock.fakeStream) {
-      setCurrentlyStreaming(true);
-    }
     setShowCurrentLoading(false);
     setContentBlocks(currentBlocks => [...currentBlocks, newBlock]);
     return newBlock.blockId;
@@ -102,8 +98,6 @@ export default function EmbedPage() {
       clarifyingQuestion: params.clarifyingQuestion,
       clarifyingAnswers: params.clarifyingAnswers,
       citationProps: params.citationProps,
-      topicResponses: params.topicResponses,
-      finalAnswer: params.finalAnswer,
       content_list: params.content_list,
       mode: params.mode,
       neverLoad: params.neverLoad,
@@ -119,9 +113,6 @@ export default function EmbedPage() {
     // If there's no line, return
     if (concurrentStreaming) {
       streamingQueue.shift();
-    }
-    if (streamingQueue.length === 0) {
-      setCurrentlyStreaming(false);
     }
     
 
@@ -267,7 +258,6 @@ export default function EmbedPage() {
               contentBlocks={contentBlocks}
               onSubmitClarificationAnswers={dummyFunction}
               onSubmitClarificationVitaliaAnswers={handleClarificationVitaliaAnswer}
-              onSubmitTopicChoices={dummyFunction}
               onClarificationStreamEnd={dummyFunction}
               onStreamEnd={onStreamEnd}
               showCurrentLoading={showCurrentLoading}

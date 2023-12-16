@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import OpenAI from "openai";
 import { condenseClarificationsIntoInstructions, generateNewClarificationQuestion, generateMultipleClarificationQuestions } from '@/lib/helpers';
-import { ClarificationChoices, Clarification } from '@/lib/types';
+import { Clarification } from '@/lib/types';
 import { insert_api_debug_log } from '@/lib/database';
 
 const openAiKey = process.env.OPENAI_API_KEY;

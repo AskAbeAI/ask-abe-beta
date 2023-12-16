@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import OpenAI from "openai";
 import { createChatCompletion } from "@/lib/chatCompletion";
 import { getPromptClarificationQuestion, getPromptQuerySimilarity, getPromptClarificationQuestionMultiple, getPromptCondenseClarifications } from '@/lib/prompts';
-import { ClarificationChoices, Clarification } from '@/lib/types';
+import { Clarification } from '@/lib/types';
 import { insert_api_debug_log } from '@/lib/database';
 
 const openAiKey = process.env.OPENAI_API_KEY;

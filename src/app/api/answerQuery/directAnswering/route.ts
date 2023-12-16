@@ -1,12 +1,8 @@
 import OpenAI from 'openai';
-import { OpenAIStream, StreamingTextResponse } from 'ai';
-import { Message, ChatCompletionParams, node_as_row, TopicResponses, GroupedRows, PartialAnswer, ClarificationChoices, text_citation_pair } from '@/lib/types';
+import {  ClarificationChoices, node_as_row, questionJurisdictions, text_citation_document_trio} from '@/lib/types';
 import { NextResponse } from 'next/server';
-import { getPromptDirectAnswering, getPromptPartialAnswering, getPromptDirectAnsweringSeparate, getPromptCondenseClarifications } from '@/lib/prompts';
-import { createChatCompletion } from '@/lib/chatCompletion';
-import { dir } from 'console';
 import { insert_api_debug_log } from '@/lib/database';
-import { condenseClarificationsIntoInstructions, convertGroupedRowsToTextCitationPairs, generateAnsweringInstructions, generateDirectAnswer } from '@/lib/helpers';
+import { condenseClarificationsIntoInstructions,generateAnsweringInstructions, generateDirectAnswer } from '@/lib/helpers';
 
 
 const openAiKey = process.env.OPENAI_API_KEY;
@@ -38,20 +34,51 @@ export async function POST(req: Request) {
   const requestData: any = await req.json();
   const sessionId: string = req.headers.get('x-session-id')!;
   const legal_question = requestData.legal_question;
-  const primaryGroupedRows: GroupedRows = requestData.primary_grouped_rows;
-  const secondaryGroupedRows: GroupedRows = requestData.secondary_grouped_rows;
   const clarifications: ClarificationChoices = requestData.clarifications;
   const specific_questions: string[] = requestData.specific_questions;
   const mode: string = requestData.mode;
   const already_answered: string[] = requestData.already_answered;
-
-  const primary_text_citation_pairs: text_citation_pair[] = convertGroupedRowsToTextCitationPairs(primaryGroupedRows);
-  let secondary_text_citation_pairs: text_citation_pair[] = [];
-  if(secondaryGroupedRows) {
-    secondary_text_citation_pairs = convertGroupedRowsToTextCitationPairs(secondaryGroupedRows);
+  const primary_rows: node_as_row[] = requestData.primary_rows;
+  const secondary_rows: node_as_row[] = requestData.secondary_rows;
+  const question_jurisdictions:questionJurisdictions = requestData.question_jurisdictions;
+  let primary_jurisdiction;
+  let secondary_jurisdiction;
+  if (question_jurisdictions.mode === "state_federal") {
+    primary_jurisdiction = question_jurisdictions.state!;
+    secondary_jurisdiction = question_jurisdictions.federal!;
+  } else if (question_jurisdictions.mode === "state") {
+    primary_jurisdiction = question_jurisdictions.state!;
+  } else if (question_jurisdictions.mode === "federal") {
+    primary_jurisdiction = question_jurisdictions.federal!;
+  } else if (question_jurisdictions.mode === "misc") {
+    primary_jurisdiction = question_jurisdictions.misc!;
   }
-  const all_text_citation_pairs: text_citation_pair[] = primary_text_citation_pairs.concat(secondary_text_citation_pairs);
   
+
+
+
+
+  const all_text_citation_pairs: text_citation_document_trio[] =[];
+  for (const row of primary_rows) {
+    // Join row.node_text into a single string with '\n' as the delimiter
+    let new_text = row.node_text.join('\n');
+    const pair: text_citation_document_trio = {
+      section_citation: row.node_citation,
+      text: new_text,
+      document: primary_jurisdiction!.corpusTitle
+    };
+  }
+  if (secondary_rows) {
+    for (const row of secondary_rows) {
+      // Join row.node_text into a single string with '\n' as the delimiter
+      let new_text = row.node_text.join('\n');
+      const pair: text_citation_document_trio = {
+        section_citation: row.node_citation,
+        text: new_text,
+        document: secondary_jurisdiction!.corpusTitle
+      };
+    }
+  }
   
   const all_questions: string[] = [];
   all_questions.push(legal_question);

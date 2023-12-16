@@ -14,12 +14,7 @@ export enum ContentType {
   Clarification,
   ClarificationVitalia,
   ClarificationQuestion,
-  StreamingAnswer,
-  Approval,
-  InteractiveElement,
   Citation,
-  Topics,
-  FinalAnswer,
   Loading// Future use
   // ... Add more as needed
 }
@@ -32,8 +27,6 @@ export type ContentBlockParams = {
   clarifyingClassifications?: string[];
   clarifyingQuestion?: string;
   clarifyingAnswers?: string[];
-  topicResponses?: TopicResponses;
-  finalAnswer?: PartialAnswer[];
   optionchoices?: string[];
   mode?: string;
   content_list?: string[];
@@ -53,8 +46,6 @@ export interface ContentBlock {
   citationProps?: CitationBlockProps;
   clarifyingQuestion?: string;
   clarifyingAnswers?: string[];
-  topicResponses?: TopicResponses;
-  finalAnswer?: PartialAnswer[];
   optionchoices?: string[];
   neverLoad?: boolean;
   citationLinks?: CitationLinks;
@@ -75,20 +66,8 @@ export interface AnswerVitaliaBlockProps {
   onFinishAnswerVitalia: () => void;
   waitForStream: boolean;
 }
-export interface FinalAnswerBlockProps {
-  content: string;
-  fakeStream: boolean;
-  concurrentStreaming: boolean;
-  onStreamEnd: (concurrentStreaming: boolean) => void;
-  finalAnswer: PartialAnswer[];
-}
-export interface ApprovalBlockProps {
-  content: string;
-  fakeStream: boolean;
-  concurrentStreaming: boolean;
-  onStreamEnd: (concurrentStreaming: boolean) => void;
 
-}
+
 
 
 export interface WelcomeMessageProps {
@@ -129,14 +108,7 @@ export interface ClarificationQuestionBlockProps {
 export interface QuestionBlockProps {
   content: string;
 }
-export interface TopicsBlockProps {
-  topicResponses: TopicResponses,
-  content: string,
-  fakeStream: boolean,
-  concurrentStreaming: boolean,
-  onStreamEnd: (concurrentStreaming: boolean) => void,
-  onSubmitTopicChoices: (topicChoices: TopicResponses) => void,
-}
+
 export interface StreamingAnswerBlockProps {
   content: string; // This will be the streamed text content
 
@@ -207,7 +179,7 @@ export const StateJurisdictionOptions: Jurisdiction[] = [
     // { id: '19', name: 'Maine', abbreviation: 'ME', corpusTitle: 'Maine Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
     // { id: '20', name: 'Maryland', abbreviation: 'MD', corpusTitle: 'Maryland Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
     // { id: '21', name: 'Massachusetts', abbreviation: 'MA', corpusTitle: 'Massachusetts Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
-    // { id: '22', name: 'Michigan', abbreviation: 'MI', corpusTitle: 'Michigan Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
+    { id: '22', name: 'Michigan', abbreviation: 'MI', corpusTitle: 'Michigan Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
     // { id: '23', name: 'Minnesota', abbreviation: 'MN', corpusTitle: 'Minnesota Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
     // { id: '24', name: 'Mississippi', abbreviation: 'MS', corpusTitle: 'Mississippi Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
     // { id: '25', name: 'Missouri', abbreviation: 'MO', corpusTitle: 'Missouri Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
@@ -281,42 +253,29 @@ export type Clarification = {
   response: string;
 };
 // Type for row returned from database
+
+
 export type node_as_row = {
-  id: string;
+  node_id: string;
+  node_top_level_title: string;
   node_type: string;
-  top_level_title: string;
-  parent_node: string;
-  child_nodes: string[];
-  sibling_nodes: string[];
-  internal_references: string[];
-  external_references: string[];
-  node_text: string;
-  citation: string;
+  node_level_classifier: string;
+  node_citation: string;
+  node_link: string;
+  node_addendum: string;
+  node_name: string;
+  node_summary: string;
+  node_hyde: string[];
+  node_parent: string;
+  node_direct_children: string[];
+  node_siblings: string[];
+  node_references: JSON;
+  node_incoming_references: JSON;
+  node_text: string[];
   similarity: number;
-  link?: string;
-  node_name?: string;
+  
 };
 
-export type new_node_as_row = {
-  id: string;
-  node_type: string;
-  top_level_title: string;
-  parent_node: string;
-  child_nodes: string[];
-  sibling_nodes: string[];
-  internal_references: string[];
-  external_references: string[];
-  node_text: string[];
-  citation: string;
-  similarity: number;
-  link?: string;
-  node_name?: string;
-};
-// Type for master partitioned table primary key
-export type node_key = {
-  id: string;
-  top_level_title: string;
-};
 
 // OpenAI API Types
 // Type for openAI chat completion parameters
@@ -335,43 +294,16 @@ export type ChatCompletionParams = {
   presence_penalty: number;
   stream: boolean;
 };
-// Topic Generation Types
-export interface SubTopic {
-  sub_topic: string;
-  section_citations: string[];
-}
-export interface GeneralTopic {
-  general_topic: string;
-  sub_topics: SubTopic[];
-}
-export interface TopicResponses {
-  general_topics: GeneralTopic[];
-}
-// Partial Answer Types
-export interface PartialAnswer {
-  major_topic: string;
-  sub_topic: string;
-  section_citations: string[];
-  answer: string;
-}
-// Grouped Rows Types
-export interface GroupedRows {
-  [parent: string]: {
-    rows: node_as_row[];
-    section_text: string[];
-    citation: string;
-    link: string;
-    jurisdiction: Jurisdiction;
-  };
-}
+
+
 // Citation Types
-export type text_citation_pair = {
+export type text_citation_document_trio = {
   section_citation: string;
   text: string;
   document: string;
 };
 
-export type text_citation_pair_vitalia = {
+export type text_citation_pair = {
   section_citation: string;
   text: string;
 };
