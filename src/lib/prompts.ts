@@ -380,7 +380,8 @@ export function getPromptDirectAnsweringVitalia(
   5. If you are unable to find an answer to the question in the Vitalia_2024_Wiki, then apologize to the visitor and ask them if they would like to ask another question.
 
   The tour group organizer will be very angry and I will likely lose my job if you do not cite your sources carefully and comprehensively.
-
+  Make sure to structure your answer into distinct paragraphs for each part of the answer. 
+  
   **Return your answer only in json (JSON) format***: {direct_answer: "Your answer here"}.
   
   `;
