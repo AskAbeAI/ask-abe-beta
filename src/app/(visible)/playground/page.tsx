@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 // Import UI components
 import BottomBar from '@/components/bottomBar';
-import ChatContainer from '@/components/chatContainer';
+import ContentQueue from '@/components/contentQueue';
 import { DisclaimerModal, JurisdictionModal } from '@/components/disclaimermodal';
 // Import data types
 import { ContentType, ContentBlock, ContentBlockParams, CitationBlockProps, Clarification } from "@/lib/types";
@@ -773,8 +773,8 @@ export default function Playground() {
         </div>
         <div className={`w-full ${citationsOpen ? 'hidden' : ''}`} style={{ width: '90%' }}>
           <div className="overflow-y-auto w-full" style={{ minHeight: '90vh', maxHeight: '90vh' }}>
-            <ChatContainer
-              contentBlocks={contentBlocks}
+            <ContentQueue
+              items={contentBlocks}
               onSubmitClarificationAnswers={handleClarificationAnswer}
               onSubmitClarificationVitaliaAnswers={dummyFunction}
               onClarificationStreamEnd={handleClarificationQuestionDone}
@@ -838,8 +838,8 @@ export default function Playground() {
           </div>
           <div className={`w-full ${citationsOpen ? 'hidden' : ''}`} style={{ width: '70%' }}>
             <div className="overflow-y-auto w-full " style={{ minHeight: '90vh', maxHeight: '90vh' }}>
-              <ChatContainer
-                contentBlocks={contentBlocks}
+              <ContentQueue
+                items={contentBlocks}
                 onSubmitClarificationAnswers={handleClarificationAnswer}
                 onSubmitClarificationVitaliaAnswers={dummyFunction}
                 onClarificationStreamEnd={handleClarificationQuestionDone}

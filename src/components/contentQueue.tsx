@@ -1,6 +1,6 @@
 import { ContentBlock, ContentType,  Clarification } from "../lib/types";
 import { QuestionBlock, AnswerVitaliaBlock, ClarificationQuestionBlock, ClarificationVitaliaBlock, WelcomeBlock, WelcomeVitaliaBlock, AnswerBlock,  ClarificationBlock, AbeIconLabel } from "@/components/ui/chatBlocks";
-import React from "react";
+import React, { useEffect, useState, useRef } from 'react';
 
 
 
@@ -9,7 +9,6 @@ import React from "react";
 interface ContentQueueProps {
   items: ContentBlock[];
   showCurrentLoading: boolean;
-  endOfMessagesRef: React.RefObject<HTMLDivElement>;
   onSubmitClarificationAnswers: (clarification: Clarification, mode: string) => void;
   onSubmitClarificationVitaliaAnswers: (clarification: Clarification, mode: string) => void;
   onStreamEnd: (concurrentStreaming: boolean) => void; // Optional if no user input is needed
@@ -21,7 +20,6 @@ interface ContentQueueProps {
 const ContentQueue: React.FC<ContentQueueProps> = ({
   items,
   showCurrentLoading,
-  endOfMessagesRef,
   onSubmitClarificationAnswers,
   onSubmitClarificationVitaliaAnswers,
   onStreamEnd,
@@ -29,6 +27,30 @@ const ContentQueue: React.FC<ContentQueueProps> = ({
   setActiveCitationId,
   onFinishAnswerVitalia
 }) => {
+  const [isCitationExpanded, setCitationExpanded] = useState(false);
+
+  useEffect(() => {
+    if (isCitationExpanded) {
+      // Hide the content queue
+    } else {
+      // Show the content queue
+      // Set the dimensions of citationBar to take over the space of the content queue
+    }
+  }, [isCitationExpanded]);
+
+
+
+  const endOfMessagesRef = useRef<HTMLDivElement>(null);
+
+  // Scroll to the last message whenever contentBlocks updates
+  useEffect(() => {
+    // Wait for 5 seconds before scrolling to the bottom
+    if(items.length > 1 && items[1].type !== ContentType.WelcomeVitalia) {
+      setTimeout(() => {
+        endOfMessagesRef.current?.scrollIntoView({ behavior: 'smooth' });
+      }, 3000);
+    }
+  }, [items]);
 
 
 
@@ -159,14 +181,18 @@ const ContentQueue: React.FC<ContentQueueProps> = ({
   };
 
   return (
-    <div className="w-full space-y-4 pb-4">
-      {items.map((item) => (
-        // The key should be here, on the first element inside the map
-        <div key={item.blockId}>
-          {renderContentBlock(item)}
+    <div className="p-4 bg-white rounded-lg shadow-inner overflow-auto max-h-full" style={{ minHeight: '90vh' }}>
+      {!isCitationExpanded && (
+        <div className="w-full space-y-4 pb-4">
+          {items.map((item) => (
+            // The key should be here, on the first element inside the map
+            <div key={item.blockId}>
+              {renderContentBlock(item)}
+            </div>
+          ))}
+          <div ref={endOfMessagesRef} />
         </div>
-      ))}
-      <div ref={endOfMessagesRef} />
+      )}
     </div>
   );
 };
