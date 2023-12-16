@@ -23,7 +23,9 @@ const NavBar: React.FC = () => {
         document.body.style.overflow = 'scroll'
     }
   };
-  const [isNavOpen, setIsNavOpen] = useState(false);
+  const handleNav2 = () => {
+    setNav(false);
+  }
 
 
 
@@ -33,7 +35,7 @@ const NavBar: React.FC = () => {
         <nav className="justify-center items-center bg-[#FAF5E6] flex flex-col px-10 border-b border-solid">
           <div className="justify-between items-stretch flex w-full max-w-full gap-5 my-3 max-md:max-w-full max-md:flex-wrap max-md:justify-center">
             <div className="flex justify-left items-center font-imfell font-bold text-[#4A4643] text-2xl">ASK ABE</div>
-            <ul className="items-stretch self-center flex justify-between gap-8 my-auto">
+            <ul className="items-stretch self-center flex justify-between gap-6 my-auto">
               <li className="text-[#4A4643] text-base font-raleway leading-6">
                 <Link href="/" aria-label="Link One">
                   Home
@@ -112,7 +114,7 @@ const NavBar: React.FC = () => {
 
 
       {isMobile &&
-        <div className="absolute w-full flex justify-between p-4 items-center bg-[#FAF5E6]  px-10 border-b border-solid">
+        <nav className="relative w-full flex justify-between p-3 items-center bg-[#FAF5E6] px-6 border-b border-solid">
           <div className="flex justify-left items-center font-imfell font-bold text-[#4A4643] text-2xl">ASK ABE</div>
           <HiMenuAlt3 onClick={handleNav} className={`z-20 cursor-pointer ${nav ? 'text-white' : 'text-current'}`} size={25} 
           
@@ -120,27 +122,27 @@ const NavBar: React.FC = () => {
           <div
         className={
           nav
-            ? 'ease-in duration-300 fixed text-gray-300 left-0 top-0 w-full h-screen bg-black/90 px-4 py-7 flex-col z-10'
+            ? 'ease-in duration-300 fixed text-gray-300 left-0 top-0 w-full h-screen bg-black/90 px-2 py-2 flex-col z-10'
             : 'absolute top-0 h-screen left-[-100%] ease-in duration-500 z-10'
         }
       >
-          <ul className="flex flex-col fixed w-full h-full items-center justify-center">
-            <li className="font-bold text-3xl p-8">
+          <ul className="flex flex-col w-full h-full items-center justify-center">
+            <li className="font-bold text-2xl pb-6 pr-6 pl-6" onClick={handleNav2}>
               <Link href="/" aria-label="Link One">
                 Home
               </Link>
             </li>
-            <li className="justify-between items-stretch font-raleway flex gap-1">
+            <li className="justify-between items-stretch font-raleway flex gap-1" onClick={handleNav2}>
               <Link href="/playground" aria-label="Link Four">
-                <div className="font-bold text-3xl p-8">Abe&apos;s Law Library</div>
+                <div className="font-bold text-2xl p-6">Abe&apos;s Law Library</div>
               </Link>
             </li>
-            <li className="font-bold text-3xl p-8">
+            <li className="font-bold text-2xl p-6" onClick={handleNav2}>
               <Link href="/how" aria-label="Link One">
                 How To Use
               </Link>
             </li>
-            <li className="font-bold text-3xl p-8">
+            <li className="font-bold text-2xl p-6" onClick={handleNav2}>
               <Link href="/mission" aria-label="Link Two">
                 Our Mission
               </Link>
@@ -149,7 +151,7 @@ const NavBar: React.FC = () => {
                 <button
                   id="mega-menu-full-dropdown-button"
                   data-collapse-toggle="mega-menu-full-dropdown"
-                  className="font-bold text-3xl p-8"
+                  className="font-bold text-2xl p-6"
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 >
                   Company
@@ -157,14 +159,14 @@ const NavBar: React.FC = () => {
                 </button>
 
                 {isDropdownOpen && (
-                  <div className="absolute flex justify-center top-full mt-2 shadow-lg rounded-lg z-10">
+                  <div className="absolute flex justify-center font-raleway pb-6 pr-6 pl-6 leading-6 z-10">
                     <ul>
                       {/* Dropdown menu items */}
-                      <li className="text-xl pt-1"><Link href="/about">About Us</Link></li>
-                      <li className="pt-1"><Link href="/devlog">DevLog</Link></li>
-                      <li className="pt-1"><Link href="/privacy">Privacy Policy</Link></li>
-                      <li className="pt-1"><Link href="/tos">Terms of Service</Link></li>
-                      <li className="pt-1"><Link href="/support">Support Us</Link></li>
+                      <li className="pt-1" onClick={handleNav2}><Link href="/about">About Us</Link></li>
+                      <li className="pt-1" onClick={handleNav2}><Link href="/devlog">DevLog</Link></li>
+                      <li className="pt-1" onClick={handleNav2}><Link href="/privacy">Privacy Policy</Link></li>
+                      <li className="pt-1" onClick={handleNav2}><Link href="/tos">Terms of Service</Link></li>
+                      <li className="pt-1" onClick={handleNav2}><Link href="/support">Support Us</Link></li>
                       {/* ... more options ... */}
                     </ul>
                   </div>
@@ -173,7 +175,8 @@ const NavBar: React.FC = () => {
 
           </ul>
         </div>
-        </div>
+      
+        </nav>
 
 
       }

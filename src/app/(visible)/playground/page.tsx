@@ -763,7 +763,7 @@ export default function Playground() {
         />
 
         <DisclaimerModal />
-        <div className="pr-2" style={{ width: citationsOpen ? '100%' : '10%' }}>
+        <div className="pr-2" style={{ width: citationsOpen ? '100%' : '14%' }}>
           <CitationBar
             open={citationsOpen}
             setOpen={setCitationsOpen}
@@ -786,15 +786,15 @@ export default function Playground() {
 
           </div>
           <div className="bottom-0">
-          {/* BottomBar */}
-          {isFormVisible && (
-            <BottomBar
-              inputMode={inputMode}
-              handleSubmit={handleNewQuestion}
-              handleSubmitFollowup={handleNewFollowupQuestion}
-            />
-          )}
-        </div>
+            {/* BottomBar */}
+            {isFormVisible && (
+              <BottomBar
+                inputMode={inputMode}
+                handleSubmit={handleNewQuestion}
+                handleSubmitFollowup={handleNewFollowupQuestion}
+              />
+            )}
+          </div>
         </div>
         <div className=" pl-2" style={({ width: '16%' })} >
           <OptionsList
@@ -816,7 +816,7 @@ export default function Playground() {
 
       {isMobile &&
 
-        <div className="flex h-screen w-full px-3 py-3 bg-[#FAF5E6]">
+        <div className="flex justify-center h-screen  pt-2  bg-[#FAF5E6]">
 
           <JurisdictionModal
             shown={showJurisdictionModal}
@@ -824,6 +824,7 @@ export default function Playground() {
           />
 
           <DisclaimerModal />
+
 
           <div className="overflow-y-auto hide-scrollbar w-full pr-2" style={{ width: citationsOpen ? '100%' : '10%' }}>
 
@@ -850,7 +851,19 @@ export default function Playground() {
               />
 
             </div>
-            <div className="bottom-0">
+            <div className="inset-x-0 bottom-0 flex justify-between items-center pt-2">
+              <div className="w-full pr-2" style={{ width: citationsOpen ? '100%' : '10%' }}>
+
+                <div className="pr-2" style={{ maxHeight: '90vh' }}>
+                  <CitationBar
+                    open={citationsOpen}
+                    setOpen={setCitationsOpen}
+                    citationItems={citationBlocks}
+                    activeCitationId={activeCitationId}
+                  />
+                </div>
+              </div>
+
               {/* BottomBar */}
               {isFormVisible && (
 
@@ -861,24 +874,24 @@ export default function Playground() {
                 />
 
               )}
+
+
+              <div className="pl-2">
+                <OptionsList
+                  stateJurisdictions={StateJurisdictionOptions}
+                  federalJurisdictions={FederalJurisdictionOptions}
+                  miscJurisdictions={MiscJurisdictionOptions}
+                  options={ChatOptions}
+                  onOptionChange={handleOptionChange}
+                  onStateJurisdictionChange={setSelectedStateJurisdiction}
+                  onFederalJurisdictionChange={setSelectedFederalJurisdiction}
+                  onMiscJurisdictionChange={setSelectedMiscJurisdiction}
+                />
+                {/* Other parts of your application */}
+              </div>
             </div>
 
           </div>
-
-          <div className="pl-2 overflow-y-auto scrollbar h-full" style={({ width: '10%' })} >
-            <OptionsList
-              stateJurisdictions={StateJurisdictionOptions}
-              federalJurisdictions={FederalJurisdictionOptions}
-              miscJurisdictions={MiscJurisdictionOptions}
-              options={ChatOptions}
-              onOptionChange={handleOptionChange}
-              onStateJurisdictionChange={setSelectedStateJurisdiction}
-              onFederalJurisdictionChange={setSelectedFederalJurisdiction}
-              onMiscJurisdictionChange={setSelectedMiscJurisdiction}
-            />
-            {/* Other parts of your application */}
-          </div>
-
         </div>
 
       }
