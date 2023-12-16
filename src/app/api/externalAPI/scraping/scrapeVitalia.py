@@ -26,7 +26,8 @@ ALL_TITLES = []
 class handler(BaseHTTPRequestHandler):
  
     def do_POST(self):
-        self.send_response(200)
+        self.send_response(200, "Accessed!")
+        print("PRINTING LOG")
         self.send_header('Content-type','text/plain')
         self.end_headers()
         main()
