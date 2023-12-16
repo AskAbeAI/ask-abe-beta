@@ -36,7 +36,7 @@ export async function POST(req: Request) {
     
     try {
         // Spawn a child process to run the Python script
-        const pythonProcess = spawn('python3', ['./scrapeVitalia.py']);
+        const pythonProcess = spawn('python', ['api/externalAPI/scraping/scrapeVitalia.py']);
 
         // Handling standard output from the Python script
         pythonProcess.stdout.on('data', (data) => {
@@ -54,6 +54,7 @@ export async function POST(req: Request) {
             const endTime = Date.now();
             console.log(`Execution time: ${endTime - startTime} ms`);
         });
+        return NextResponse.json({ message: "SDLFKSDJL" });
 
     } catch (error) {
         //console.error('Error running Python script:', error);
