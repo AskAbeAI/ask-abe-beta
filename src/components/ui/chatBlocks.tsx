@@ -178,12 +178,15 @@ export const AnswerVitaliaBlock: React.FC<AnswerVitaliaBlockProps> = ({ content,
         // Replace placeholder with the stored JSX element
         return <React.Fragment key={`citation-${index}`}>{citations[wordWithoutPunctuation]}{toAdd}</React.Fragment>;
       } else {
-        // Regular word
-        const newWord:string = word.replace(/~/g, "\n");
-        const splitWord = newWord.split('\n').map((line, lineIndex) => (
-          lineIndex === 0 ? line : [<br key={`br-${index}-${lineIndex}`} />, line]
-        ));
-      
+        const newWord = word.replace(/~/g, "\n");
+        const splitWord = newWord.split('\n').map((line, lineIndex, arr) => {
+          // Add a <br /> element before each line except the first one
+          const lineWithBreak = lineIndex !== 0 ? [<br key={`br-${index}-${lineIndex}`} />, line] : line;
+    
+          // Add a space after each line except the last one
+          return lineIndex !== arr.length - 1 ? [lineWithBreak, ' '] : lineWithBreak;
+        }).flat(); // Flatten the array to avoid nested arrays
+    
         // Return a fragment with the split words and line breaks
         return <React.Fragment key={`word-${index}`}>{splitWord}</React.Fragment>;
       }
