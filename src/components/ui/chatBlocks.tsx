@@ -131,7 +131,7 @@ export const AnswerVitaliaBlock: React.FC<AnswerVitaliaBlockProps> = ({ content,
   const [displayedElementsCount, setDisplayedElementsCount] = useState(0);
 
   const createTextWithEmbeddedLink = (text: string): JSX.Element[] => {
-    text = text.replace(/\n/g, "~");
+    text = text.replace(/\n/g, " <br/> ");
     // Regular expression to match citations
     // Replace all occurnces of "(#" with just "#"
     text = text.replace(/\(#/g, '#');
@@ -157,6 +157,7 @@ export const AnswerVitaliaBlock: React.FC<AnswerVitaliaBlockProps> = ({ content,
 
     // Split the text into words
     const words = textWithPlaceholders.split(/\s+/);
+    
 
     // Convert words and placeholders to JSX elements
     return words.map((word, index) => {
@@ -177,8 +178,8 @@ export const AnswerVitaliaBlock: React.FC<AnswerVitaliaBlockProps> = ({ content,
         return <React.Fragment key={`citation-${index}`}>{citations[wordWithoutPunctuation]}{toAdd}</React.Fragment>;
       } else {
         // Regular word
-        const newWord:string = word.replace(/~/g, "<br />");
-        return <React.Fragment key={`word-${index}`}>{newWord + ' '}</React.Fragment>;
+        
+        return <React.Fragment key={`word-${index}`}>{word + ' '}</React.Fragment>;
       }
     });
   };
