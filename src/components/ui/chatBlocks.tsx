@@ -131,6 +131,7 @@ export const AnswerVitaliaBlock: React.FC<AnswerVitaliaBlockProps> = ({ content,
   const [displayedElementsCount, setDisplayedElementsCount] = useState(0);
 
   const createTextWithEmbeddedLink = (text: string): JSX.Element[] => {
+    console.log(text)
     // Regular expression to match citations
     // Replace all occurnces of "(#" with just "#"
     text = text.replace(/\(#/g, '#');
@@ -213,7 +214,7 @@ export const AnswerVitaliaBlock: React.FC<AnswerVitaliaBlockProps> = ({ content,
     <div className="flex flex-col items-start">
       <div className={`flex flex-col text-lg p-4 bg-response-color font-montserrat text-black rounded-lg shadow`}>
         <div className="text-lg text-black font-montserrat whitespace-pre-line">
-          <p>{fullContentElements.slice(0, displayedElementsCount)}</p>
+          <p className=" whitespace-pre-line">{fullContentElements.slice(0, displayedElementsCount)}</p>
         </div>
       </div>
     </div >
