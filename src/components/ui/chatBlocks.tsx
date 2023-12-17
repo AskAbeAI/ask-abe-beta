@@ -133,6 +133,7 @@ export const AnswerVitaliaBlock: React.FC<AnswerVitaliaBlockProps> = ({ content,
   const createTextWithEmbeddedLink = (text: string): JSX.Element[] => {
     console.log(text)
     text = text.replace(/\n/g, "~");
+    console.log(text)
     // Regular expression to match citations
     // Replace all occurnces of "(#" with just "#"
     text = text.replace(/\(#/g, '#');
