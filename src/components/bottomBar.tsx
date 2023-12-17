@@ -48,6 +48,13 @@ const BottomBar: React.FC<BottomBarProps> = ({
     }
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault(); 
+      handleFormSubmit(event as unknown as React.FormEvent<HTMLFormElement>); 
+    }
+  };
+
   
 
   useEffect(() => {
@@ -68,6 +75,7 @@ const BottomBar: React.FC<BottomBarProps> = ({
           <textarea
             value={question}
             onChange={handleChange}
+            onKeyDown={handleKeyDown}
             placeholder={inputMessage}
             maxLength={maxLimit}
             className="w-full h-auto pl-4 pr-24 py-2 whitespace-normal font-montserrat rounded border-2 border-[#4A4643] focus:outline-none bg-white"

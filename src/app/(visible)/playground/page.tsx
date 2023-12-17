@@ -827,7 +827,7 @@ export default function Playground() {
 
 
           
-          <div className={`w-full ${citationsOpen ? 'hidden' : ''}`} style={{ width: '70%' }}>
+          <div className={`w-full ${citationsOpen ? 'hidden' : ''}`} style={{ width: '90%' }}>
             <div className="overflow-y-auto w-full " style={{ minHeight: '90vh', maxHeight: '90vh' }}>
               <ContentQueue
                 items={contentBlocks}
@@ -841,7 +841,7 @@ export default function Playground() {
               />
 
             </div>
-            <div className="inset-x-0 bottom-0 flex justify-between items-center pt-2">
+            <div className="inset-x-0 bottom-0 flex justify-between items-center">
               <div className="w-full pr-2" style={{ width: citationsOpen ? '100%' : '10%' }}>
 
                 <div className="pr-2" style={{ maxHeight: '90vh' }}>
