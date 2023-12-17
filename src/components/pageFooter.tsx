@@ -16,36 +16,11 @@ const PageFooter: React.FC = () => {
               <div className="items-stretch self-stretch flex flex-col mt-5 max-md:max-w-full">
                 <div className="flex flex-col ">
                   <div className="items-stretch flex grow flex-col">
-                    <Link
-                      href="/playground"
-                      className="text-black text-base font-raleway leading-6"
-                    >
-                      Abe&apos;s Law Library
-                    </Link>
-                    <Link
-                      href="/howto"
-                      className="text-black text-base font-raleway leading-6 mt-3"
-                    >
-                      How to Use
-                    </Link>
-                    <Link
-                      href="/mission"
-                      className="text-black text-base font-raleway leading-6 mt-3"
-                    >
-                      Our Mission
-                    </Link>
-                    <Link
-                      href="/about"
-                      className="text-black text-base font-raleway leading-6 mt-3"
-                    >
-                      About
-                    </Link>
-                    <Link
-                      href="/devlog"
-                      className="text-black text-base font-raleway leading-6 mt-3"
-                    >
-                      DevLog
-                    </Link>
+                    <Link href="/playground" className="text-black text-base font-raleway leading-6">Abe&apos;s Law Library</Link>
+                    <Link href="/howto" className="text-black text-base font-raleway leading-6 mt-3">How to Use</Link>
+                    <Link href="/mission" className="text-black text-base font-raleway leading-6 mt-3">Our Mission</Link>
+                    <Link href="/about" className="text-black text-base font-raleway leading-6 mt-3" >About</Link>
+                    <Link href="/devlog" className="text-black text-base font-raleway leading-6 mt-3">DevLog</Link>
                   </div>
                 </div>
               </div>
@@ -66,13 +41,11 @@ const PageFooter: React.FC = () => {
             href="tel:18001234567"
             className="text-black text-sm leading-5 underline mt-1 max-md:max-w-full"
           >
-
           </a>
           <a
             href="mailto:info@relume.io"
             className="text-black text-sm leading-5 underline max-md:max-w-full"
           >
-
           </a>
         </div>
         <div className="flex flex-col w-full max-w-full gap-3 mt-8 ">
@@ -83,42 +56,8 @@ const PageFooter: React.FC = () => {
         </div>
       </div>
 
-      {/* <div className="flex flex-col ">
-            <div className="items-stretch flex grow flex-col">
-              <Link
-                href="#"
-                className="text-black text-base font-raleway leading-6"
-              >
-                About
-              </Link>
-              <Link
-                href="#"
-                className="text-black text-base font-raleway leading-6 mt-3"
-              >
-                How to Use
-              </Link>
-              <Link
-                href="#"
-                className="text-black text-base font-raleway leading-6 mt-3"
-              >
-                Devlog
-              </Link>
-              <Link
-                href="#"
-                className="text-black text-base font-raleway leading-6 mt-3"
-              >
-                Legal
-              </Link>
-              {/* <Link>
-                href="#"
-                className="text-black text-base font-raleway leading-6 mt-3"
-              >
-                Link Ten
-              </Link> */}
 
-
-
-      < hr className="bg-black flex shrink-0 h-px flex-col mt-7 max-md:max-w-full max-md:mt-10" />
+      <hr className="bg-black flex shrink-0 h-px flex-col mt-7 max-md:max-w-full max-md:mt-10" />
       <div className="justify-between items-stretch flex w-full gap-5 mt-1 max-md:max-w-full max-md:flex-wrap">
         <div className="text-black text-sm leading-5">
           © 2023 Ask Abe AI. All rights reserved.
