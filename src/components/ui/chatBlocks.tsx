@@ -180,7 +180,12 @@ export const AnswerVitaliaBlock: React.FC<AnswerVitaliaBlockProps> = ({ content,
       } else {
         // Regular word
         const newWord:string = word.replace(/~/g, "\n");
-        return <React.Fragment key={`word-${index}`}>{newWord + ' '}</React.Fragment>;
+        const splitWord = newWord.split('\n').map((line, lineIndex) => (
+          lineIndex === 0 ? line : [<br key={`br-${index}-${lineIndex}`} />, line]
+        ));
+      
+        // Return a fragment with the split words and line breaks
+        return <React.Fragment key={`word-${index}`}>{splitWord}</React.Fragment>;
       }
     });
   };
