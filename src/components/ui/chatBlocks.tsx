@@ -178,7 +178,9 @@ export const AnswerVitaliaBlock: React.FC<AnswerVitaliaBlockProps> = ({ content,
         return <React.Fragment key={`citation-${index}`}>{citations[wordWithoutPunctuation]}{toAdd}</React.Fragment>;
       } else {
         // Regular word
-        
+        if ("<br/>" === word){
+          return <br key={`word-${index}`}></br>;
+        }
         return <React.Fragment key={`word-${index}`}>{word + ' '}</React.Fragment>;
       }
     });
