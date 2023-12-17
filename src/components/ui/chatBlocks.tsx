@@ -212,7 +212,7 @@ export const AnswerVitaliaBlock: React.FC<AnswerVitaliaBlockProps> = ({ content,
 
     <div className="flex flex-col items-start">
       <div className={`flex flex-col text-lg p-4 bg-response-color font-montserrat text-black rounded-lg shadow`}>
-        <div className="text-lg text-black font-montserrat">
+        <div className="text-lg text-black font-montserrat whitespace-pre-line">
           <p>{fullContentElements.slice(0, displayedElementsCount)}</p>
         </div>
       </div>
