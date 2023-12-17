@@ -112,10 +112,10 @@ export async function POST(req: Request) {
 
 function cleanString(inputString: string): string {
     // Remove all newline characters
-    let cleanedString = inputString.replace(/\n/g, ' ');
+    //let cleanedString = inputString.replace(/\n/g, ' ');
   
     // Replace multiple whitespaces with a single whitespace
-    cleanedString = cleanedString.replace(/\s+/g, ' ');
+    const cleanedString = inputString.replace(/\s+/g, ' ');
   
     return cleanedString.trim();
   }
