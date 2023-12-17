@@ -7,14 +7,14 @@ interface BottomBarProps {
   inputMode: string;
   handleSubmit: (question: string) => void;
   handleSubmitFollowup: (question: string) => void;
-  
+
 }
 
 const BottomBar: React.FC<BottomBarProps> = ({
   inputMode,
   handleSubmit,
   handleSubmitFollowup,
-  
+
 }) => {
   const [question, setQuestion] = useState('');
   const [inputLength, setInputLength] = useState(0);
@@ -40,7 +40,7 @@ const BottomBar: React.FC<BottomBarProps> = ({
     if (length <= maxLimit) {
       setQuestion(value);
       setInputLength(length);
-  
+
       // Logic to resize the textarea
       const textarea = e.target;
       textarea.style.height = 'auto'; // Reset the height
@@ -50,12 +50,12 @@ const BottomBar: React.FC<BottomBarProps> = ({
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === 'Enter' && !event.shiftKey) {
-      event.preventDefault(); 
-      handleFormSubmit(event as unknown as React.FormEvent<HTMLFormElement>); 
+      event.preventDefault();
+      handleFormSubmit(event as unknown as React.FormEvent<HTMLFormElement>);
     }
   };
 
-  
+
 
   useEffect(() => {
     if (inputMode === 'followup') {
@@ -69,7 +69,6 @@ const BottomBar: React.FC<BottomBarProps> = ({
     <div className="inset-x-0 bottom-0">
       <div className="container resize-y mx-auto p-4 flex justify-center items-center">
 
-
         {/* Form and input group with transparent background */}
         <form className="flex flex-grow justify-center items-center relative w-full max-w-5xl" onSubmit={handleFormSubmit}>
           <textarea
@@ -81,8 +80,8 @@ const BottomBar: React.FC<BottomBarProps> = ({
             className="w-full h-auto pl-4 pr-24 py-2 whitespace-normal font-montserrat rounded border-2 border-[#4A4643] focus:outline-none bg-white"
             rows={1}
             style={{ overflowY: 'hidden' }}
-            ></textarea>
-            
+          ></textarea>
+
           <button
             type="submit"
             className="absolute right-0 bg-[#4A4643] text-white rounded px-6 py-2 font-montserrat text-xl"
@@ -90,6 +89,7 @@ const BottomBar: React.FC<BottomBarProps> = ({
             Ask
           </button>
         </form>
+        
         {/* Toast notification for character limit */}
         {inputLength > maxLimit * 0.9 && showWarning ? (
           <div id="toast-warning" className="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
@@ -121,13 +121,3 @@ const BottomBar: React.FC<BottomBarProps> = ({
 export default BottomBar;
 
 
-{/* <ChatOptionToggle
-          optionLabel="Skip Clarifications"
-          isToggled={skipClarifications}
-          onToggle={setSkipClarifications}
-        />
-        <ChatOptionToggle
-          optionLabel="Generate Suggestions"
-          isToggled={generateSuggestions}
-          onToggle={setGenerateSuggestions}
-        /> */}

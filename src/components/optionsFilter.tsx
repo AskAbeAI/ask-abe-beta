@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Jurisdiction, Option, OptionsListProps} from '@/lib/types';
+import { Jurisdiction, Option, OptionsListProps } from '@/lib/types';
 import { on } from 'events';
 import { useMediaQuery } from 'react-responsive';
 import { HiOutlineCog, HiX } from 'react-icons/hi';
@@ -45,7 +45,7 @@ const OptionsList: React.FC<OptionsListProps> = ({
 
   const [isHovered, setIsHovered] = useState(false);
 
- 
+
 
 
   const toggleFederalDropdown = () => {
@@ -129,7 +129,6 @@ const OptionsList: React.FC<OptionsListProps> = ({
     <div>
       {isDesktopOrLaptop &&
         <div className="bg-[#FDFCFD] border-4 border-[#E4E0D2] w-full shadow-inner rounded-md">
-
           <div className="flex justify-center font-raleway pb-2">
             <div className="overflow-y-auto bg-[#FDFCFD] w-full p-3 shadow-inner rounded-md">
               <div className="flex justify-center text-[#4A4643] font-bold text-lg font-raleway pb-3">Jurisdiction Options</div>
@@ -138,7 +137,6 @@ const OptionsList: React.FC<OptionsListProps> = ({
                 {/* Federal Jurisdiction Button */}
                 <button
                   id="dropdownRadioBgHoverButtonFederal"
-
                   onMouseEnter={() => toggleHover(true)}
                   onMouseLeave={() => toggleHover(false)}
                   onClick={toggleFederalDropdown}
@@ -156,7 +154,6 @@ const OptionsList: React.FC<OptionsListProps> = ({
                 {isFederalDropdownOpen && (
 
                   <div className="bg-white py-2 rounded-lg shadow">
-
                     <ul className="space-y-1 text-md text-gray-700">
                       {/* Loop through options */}
                       {federalJurisdictions.map((jurisdiction: Jurisdiction) => (
@@ -170,9 +167,7 @@ const OptionsList: React.FC<OptionsListProps> = ({
                               checked={selectedFederal === jurisdiction}
                               className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
                             />
-
                             <label htmlFor={jurisdiction.id} className="w-25 ml-2 text-md font-medium text-gray-900">
-
                               {jurisdiction.name}
                             </label>
                           </div>
@@ -181,13 +176,15 @@ const OptionsList: React.FC<OptionsListProps> = ({
 
                     </ul>
                   </div>
+
                 )}
+
               </div>
+
               <div className="overflow-y-auto w-full pt-2" style={{ maxHeight: '45vh' }}>
                 {/* State Jurisdiction Button */}
                 <button
                   id="dropdownRadioBgHoverButtonState"
-
                   onMouseEnter={() => toggleHover(true)}
                   onMouseLeave={() => toggleHover(false)}
                   onClick={toggleStateDropdown}
@@ -203,9 +200,7 @@ const OptionsList: React.FC<OptionsListProps> = ({
 
                 {/* State Jurisdiction Dropdown Content */}
                 {isStateDropdownOpen && (
-
                   <div className="bg-white py-2 rounded-lg shadow">
-
                     <ul className="space-y-1 text-md text-gray-700">
                       {/* Loop through options */}
                       {stateJurisdictions.map((jurisdiction: Jurisdiction) => (
@@ -221,19 +216,18 @@ const OptionsList: React.FC<OptionsListProps> = ({
                             />
 
                             <label htmlFor={jurisdiction.id} className="w-25 ml-2 text-md font-medium text-gray-900">
-
                               {jurisdiction.name}
                             </label>
                           </div>
                         </li>
                       ))}
-                      {/* Loop through jurisdictions */}
-                      {/* Similar loop for stateJurisdictions, federalJurisdictions, miscJurisdictions */}
+
                     </ul>
                   </div>
-                )}
-              </div>
 
+                )}
+
+              </div>
 
               <div className="overflow-y-auto w-full pt-2" style={{ maxHeight: '45vh' }}>
                 {/* Misc Jurisdiction Button */}
@@ -272,12 +266,17 @@ const OptionsList: React.FC<OptionsListProps> = ({
                             </label>
                           </div>
                         </li>
+
                       ))}
+
                       {/* Loop through jurisdictions */}
                       {/* Similar loop for stateJurisdictions, federalJurisdictions, miscJurisdictions */}
+
                     </ul>
                   </div>
+
                 )}
+
               </div>
 
               <div className="flex justify-center text-[#4A4643] font-bold text-lg font-raleway pt-4">Chat Options</div>
@@ -287,7 +286,6 @@ const OptionsList: React.FC<OptionsListProps> = ({
 
                   {options.map(option => (
                     <li key={option.id} className="flex items-center space-x-2">
-
                       <input
                         type="checkbox"
                         className="form-checkbox"
@@ -302,6 +300,7 @@ const OptionsList: React.FC<OptionsListProps> = ({
 
                 </ul>
               </div>
+
               {/* <button onClick={handleSelectAll}>Select All</button> */}
               <div className="flex justify-center pt-4">
                 <button
@@ -333,34 +332,29 @@ const OptionsList: React.FC<OptionsListProps> = ({
                 </div>
               </div>
             </div>
+
           )}
+
         </div >
       }
 
       {isMobile &&
         <div>
           <HiOutlineCog className="cursor-pointer" size={25} onClick={toggleOptionSidebar} />
-          
-         {showOptionSidebarOpen && (
 
+          {showOptionSidebarOpen && (
             <div className="fixed inset-0 z-40 bg-black/70 flex items-center justify-center shadow-inner">
-              
-              
-              
-
               <div className="flex justify-center bg-[#FDFCFD] border-4 border-[#E4E0D2] font-raleway pb-2">
-               
                 <div className=" bg-[#FDFCFD] p-2 w-25 shadow-inner rounded-md">
-                <div className=" pt-1 pb-1 flex items-end justify-end">
-              <HiX className="cursor-pointer" size={24} onClick={() => setShowOptionSidebarOpen(false)}/>
-              </div>
+                  <div className=" pt-1 pb-1 flex items-end justify-end">
+                    <HiX className="cursor-pointer" size={24} onClick={() => setShowOptionSidebarOpen(false)} />
+                  </div>
                   <div className="flex justify-center text-[#4A4643] font-bold text-lg font-raleway pb-3">Jurisdiction Options</div>
                   <div className=" w-full" style={{ maxHeight: '45vh' }}>
 
                     {/* Federal Jurisdiction Button */}
                     <button
                       id="dropdownRadioBgHoverButtonFederal"
-
                       onMouseEnter={() => toggleHover(true)}
                       onMouseLeave={() => toggleHover(false)}
                       onClick={toggleFederalDropdown}
@@ -378,9 +372,9 @@ const OptionsList: React.FC<OptionsListProps> = ({
                     {isFederalDropdownOpen && (
 
                       <div className="bg-white py-2 rounded-lg shadow">
-
                         <ul className="space-y-1 text-md text-gray-700">
                           {/* Loop through options */}
+
                           {federalJurisdictions.map((jurisdiction: Jurisdiction) => (
                             <li key={jurisdiction.id}>
                               <div className="flex items-center p-2 rounded hover:bg-gray-100">
@@ -394,7 +388,6 @@ const OptionsList: React.FC<OptionsListProps> = ({
                                 />
 
                                 <label htmlFor={jurisdiction.id} className="w-25 ml-2 text-md font-medium text-gray-900">
-
                                   {jurisdiction.name}
                                 </label>
                               </div>
@@ -403,13 +396,15 @@ const OptionsList: React.FC<OptionsListProps> = ({
 
                         </ul>
                       </div>
+
                     )}
+
                   </div>
+
                   <div className="overflow-y-auto w-full pt-2" style={{ maxHeight: '45vh' }}>
                     {/* State Jurisdiction Button */}
                     <button
                       id="dropdownRadioBgHoverButtonState"
-
                       onMouseEnter={() => toggleHover(true)}
                       onMouseLeave={() => toggleHover(false)}
                       onClick={toggleStateDropdown}
@@ -427,7 +422,6 @@ const OptionsList: React.FC<OptionsListProps> = ({
                     {isStateDropdownOpen && (
 
                       <div className="bg-white py-2 rounded-lg shadow">
-
                         <ul className="space-y-1 text-md text-gray-700">
                           {/* Loop through options */}
                           {stateJurisdictions.map((jurisdiction: Jurisdiction) => (
@@ -443,7 +437,6 @@ const OptionsList: React.FC<OptionsListProps> = ({
                                 />
 
                                 <label htmlFor={jurisdiction.id} className="w-25 ml-2 text-md font-medium text-gray-900">
-
                                   {jurisdiction.name}
                                 </label>
                               </div>
@@ -509,7 +502,6 @@ const OptionsList: React.FC<OptionsListProps> = ({
 
                       {options.map(option => (
                         <li key={option.id} className="flex items-center space-x-2">
-
                           <input
                             type="checkbox"
                             className="form-checkbox"
@@ -559,12 +551,10 @@ const OptionsList: React.FC<OptionsListProps> = ({
               )}
 
             </div>
-            )}
-            
+          )}
 
-        
-
-        </div> }
+        </div>
+      }
     </div>
 
   );

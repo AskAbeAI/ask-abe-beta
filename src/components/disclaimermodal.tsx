@@ -12,7 +12,6 @@ export const DisclaimerModal: React.FC = () => {
         isOpen && (
             <div className="fixed inset-0 z-50 flex items-center justify-center rounded">
                 <div className="relative p-4 w-full rounded-lg max-w-2xl">
-
                     <div className="relative bg-[#FEFDF9] rounded-lg shadow dark:bg-gray-700">
                         <h1 className="text-2xl font-bold font-raleway pt-5 pb-3 px-5 items-center leading-normal text-neutral-800 dark:text-neutral-200">
                             Educational Purpose Disclaimer
@@ -46,12 +45,11 @@ export const JurisdictionModal: React.FC<JurisdictionModalProps> = ({
     shown,
     setShown
 }) => {
-    
+
     return (
         shown && (
             <div className="fixed inset-0 z-50 flex items-center justify-center rounded">
                 <div className="relative p-4 w-full rounded-lg max-w-2xl">
-
                     <div className="relative bg-[#FEFDF9] rounded-lg shadow dark:bg-gray-700">
                         <h1 className="text-2xl font-bold font-raleway pt-5 pb-3 px-5 items-center leading-normal text-neutral-800 dark:text-neutral-200">
                             No Jurisdiction Selected
