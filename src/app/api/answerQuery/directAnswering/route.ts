@@ -12,7 +12,7 @@ const openai = new OpenAI({
 export const maxDuration = 120;
 
 export function OPTIONS(req: Request) {
-  console.log(req.headers)
+  //console.log(req.headers)
   // Set CORS headers
   const headers = {
       'Access-Control-Allow-Origin': 'https://www.strikingly.com', // Modify as needed for your use case
@@ -40,9 +40,12 @@ export async function POST(req: Request) {
   const already_answered: string[] = requestData.already_answered;
   const primary_rows: node_as_row[] = requestData.primary_rows;
   const secondary_rows: node_as_row[] = requestData.secondary_rows;
-  const question_jurisdictions:questionJurisdictions = requestData.question_jurisdictions;
+  const question_jurisdictions:questionJurisdictions = requestData.question_jurisdiction;
   let primary_jurisdiction;
   let secondary_jurisdiction;
+  //console.log(`mode: ${mode}`)
+  //console.log(`question_jurisdictions: ${question_jurisdictions}`)
+  //console.log(`primary_rows: ${primary_rows}`)
   if (question_jurisdictions.mode === "state_federal") {
     primary_jurisdiction = question_jurisdictions.state!;
     secondary_jurisdiction = question_jurisdictions.federal!;
@@ -61,22 +64,34 @@ export async function POST(req: Request) {
   const all_text_citation_pairs: text_citation_document_trio[] =[];
   for (const row of primary_rows) {
     // Join row.node_text into a single string with '\n' as the delimiter
+    //console.log(row.node_text)
     let new_text = row.node_text.join('\n');
+    //console.log(new_text)
+    let citation = row.node_citation;
+    
+    if(citation === undefined || citation === null) {
+      
+      citation = row.node_name;
+    }
+    console.log(citation)
     const pair: text_citation_document_trio = {
-      section_citation: row.node_citation,
+      section_citation: citation,
       text: new_text,
       document: primary_jurisdiction!.corpusTitle
     };
+    all_text_citation_pairs.push(pair);
   }
   if (secondary_rows) {
     for (const row of secondary_rows) {
       // Join row.node_text into a single string with '\n' as the delimiter
       let new_text = row.node_text.join('\n');
+
       const pair: text_citation_document_trio = {
         section_citation: row.node_citation,
         text: new_text,
         document: secondary_jurisdiction!.corpusTitle
       };
+      all_text_citation_pairs.push(pair);
     }
   }
   
@@ -88,10 +103,7 @@ export async function POST(req: Request) {
 
   try {
     let direct_answer;
-    console.log(legal_question)
-    console.log(clarifications.clarifications)
-    console.log(already_answered)
-    console.log(mode)
+    
 
     if (mode === "clarifications") {
       const instructions = await condenseClarificationsIntoInstructions(openai, legal_question, clarifications.clarifications);
@@ -99,7 +111,7 @@ export async function POST(req: Request) {
     } else {
       const customer_information = "The customer is interested in getting accurate legal information about their question. They are a resident of the applicable jurisdiction. They are looking for a general answer to their question, not specific legal advice. They only want to understand current legislation, not any future or upcoming changes.";
       const instructions = await generateAnsweringInstructions(openai, legal_question, customer_information, already_answered);
-      console.log(instructions);
+      //console.log(instructions);
       direct_answer = await generateDirectAnswer(openai, legal_question, instructions, all_text_citation_pairs);
       console.log(direct_answer)
 

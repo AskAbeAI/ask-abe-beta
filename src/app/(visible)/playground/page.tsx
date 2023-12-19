@@ -229,7 +229,6 @@ export default function Playground() {
 
     // Do not ask clarifying questions if skipClarifications is true or if a misc jurisdiction is selected
     if (skipClarifications || selectedMiscJurisdiction !== undefined) {
-      addNewLoadingBlock(false);
       similaritySearch(question_jurisdictions, questionText, []);
     } else if (score <= 1) {
       setIsFormVisible(true);
@@ -497,7 +496,7 @@ export default function Playground() {
     console.log("Received response from similaritySearch API!")
     const primary_rows: node_as_row[] = result.primary_rows;
     const secondary_rows: node_as_row[] = result.secondary_rows;
-    console.log(primary_rows)
+    //console.log(primary_rows)
     
 
 
@@ -523,9 +522,17 @@ export default function Playground() {
     // Create citation blocks for each parent node
     const primary_citation_blocks: ContentBlock[] = [];
     for (const row of primary_rows) {
-      console.log(row)
+      //console.log(row)
+      let possible_citation = row.node_citation;
+      console.log(possible_citation)
+      if(possible_citation === undefined || possible_citation === null) {
+      
+        possible_citation = row.node_name;
+      }
+      
+
       const section_text: string[] = row.node_text;
-      const citation: string = row.node_citation;
+      const citation: string = possible_citation;
       const link: string = row.node_link;
       //console.log(citation);
 
@@ -554,8 +561,14 @@ export default function Playground() {
       let jurisdictionName = secondaryJurisdiction!.corpusTitle;
       const secondary_citation_blocks: ContentBlock[] = [];
       for (const row of  secondary_rows) {
+        let possible_citation = row.node_citation;
+        console.log(possible_citation)
+        if(possible_citation === undefined || possible_citation === null) {
+        
+          possible_citation = row.node_name.split(" ")[0];
+        }
         const section_text: string[] = row.node_text;
-        const citation: string = row.node_citation;
+        const citation: string = possible_citation;
         const link: string = row.node_link;
         const citationProps: CitationBlockProps = {
           citation: citation,
@@ -608,8 +621,8 @@ export default function Playground() {
     const requestBody = {
       legal_question: user_prompt_query,
       specific_questions: specific_questions,
-      primary_grouped_rows: primary_rows,
-      secondary_grouped_rows: secondary_rows,
+      primary_rows: primary_rows,
+      secondary_rows: secondary_rows,
       already_answered: alreadyAnswered,
       clarifications: { clarifications: combinedClarifications } as ClarificationChoices,
       mode: "clarifications",
@@ -621,6 +634,7 @@ export default function Playground() {
 
     setAlreadyAnswered(alreadyAnswered => [...alreadyAnswered, user_query]);
     console.log("  - Sending request to directAnswering API!");
+    console.log(requestBody)
     const response = await fetch('/api/answerQuery/directAnswering', {
       method: 'POST',
       headers: {

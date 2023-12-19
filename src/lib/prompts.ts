@@ -317,7 +317,7 @@ export function getPromptDirectAnswering(
   text_citation_document_trios: text_citation_document_trio[],
   useRegularGPT4: boolean
 ): ChatCompletionParams {
-  console.log(text_citation_document_trios)
+  //console.log(text_citation_document_trios)
   const system = `You are a well-educated intern at a Law Firm who helps assist a licensed legal professional in answering legal questions. You will be given:
   1. A legal_question provided by a customer.
   2. Instructions for answering the question provided by the legal professional, which includes necessary context and personal information about the customer.
