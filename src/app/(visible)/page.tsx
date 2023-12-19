@@ -39,10 +39,10 @@ export default function HomePage() {
               </div>
               <div className="items-fit flex  max-w-full justify-between mt-10">
                 <Link href="/playground"
-                      className="text-lg font-raleway rounded-sm font-bold px-6 py-3 leading-none text-white border focus:outline-none focus:shadow-outline bg-gradient-to-b hover:text-[#4A4643] hover:from-green-300 from-[#4A4643] to-[#4A4643]">
-                      Enter Abe&apos;s Law Library
-            
-       
+                  className="text-lg font-raleway rounded-sm font-bold px-6 py-3 leading-none text-white border focus:outline-none focus:shadow-outline bg-gradient-to-b hover:text-[#4A4643] hover:from-green-300 from-[#4A4643] to-[#4A4643]">
+                  Enter Abe&apos;s Law Library
+
+
                   {/* <button className="button1">
                     <span className="font-raleway">Enter Abe&apos;s Law Library</span>
                     <div className="top"></div>
@@ -62,15 +62,15 @@ export default function HomePage() {
           <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
             <div className="flex flex-col items-stretch w-6/12 max-md:w-full max-md:ml-0">
               <div className="items-stretch flex flex-col max-md:max-w-full max-md:mt-10">
-                
-              <h1 className="text-[#2F3F3D] mt-16 text-5xl font-imfell font-semibold leading-[57.6px] max-md:max-w-full max-md:text-4xl">
-                    What is Ask Abe?
-                  </h1>
-                  <p className="text-black text-xl font-raleway font-light leading-12 mt-6 max-md:max-w-full">
-                    
+
+                <h1 className="text-[#2F3F3D] mt-16 text-5xl font-imfell font-semibold leading-[57.6px] max-md:max-w-full max-md:text-4xl">
+                  What is Ask Abe?
+                </h1>
+                <p className="text-black text-xl font-raleway font-light leading-12 mt-6 max-md:max-w-full">
+
                   Ask Abe is an educational tool that helps a user navigate complex legal frameworks and provides detailed legal informatiion.
                   Abe is a conversational AI that user&apos;s can ask legal questions to and receive legal information with direct ciations to primary source legislation.
-                  </p>
+                </p>
               </div>
             </div>
             <div className="flex flex-col items-stretch w-6/12 ml-5 max-md:w-full max-md:ml-0">
@@ -154,9 +154,7 @@ export default function HomePage() {
       <section className="items-center bg-[#FCF8EE] shadow-inner flex flex-col px-56 max-md:px-5">
         <div className="items-center bg-[#FCF8EE] flex flex-col px-16 max-md:px-5">
           <div className="self-center text-black text-center text-lg leading-7 max-w-screen-md mt-6 max-md:max-w-full">
-
           </div>
-
           <div className="border bg-[#FCF9F3] self-stretch mt-10 mb-10 pl-8 pr-8 border-solid border-8 border-[#FEFDF9] shadow-inner max-md:max-w-full max-md:my-10 max-md:pl-5">
             <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
               <div className="flex flex-col items-stretch w-[46%] max-md:w-full max-md:ml-0">
@@ -365,8 +363,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-
       <PageFooter />
     </div>
 
