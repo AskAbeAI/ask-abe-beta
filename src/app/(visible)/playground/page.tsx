@@ -16,7 +16,7 @@ import { Option, Jurisdiction, questionJurisdictions } from '@/lib/types';
 import { StateJurisdictionOptions, FederalJurisdictionOptions, MiscJurisdictionOptions, ChatOptions } from '@/lib/types';
 
 // Helper functions
-import { constructPromptQuery, constructPromptQueryMisc } from '@/lib/utils';
+import { constructPromptQuery, constructPromptQueryMisc, constructPromptQueryBoth } from '@/lib/utils';
 
 import { useMediaQuery } from 'react-responsive';
 
@@ -91,6 +91,8 @@ export default function Playground() {
     // Determine the mode based on the current jurisdiction selections
     if (selectedFederalJurisdiction && selectedStateJurisdiction) {
       mode = 'state_federal';
+    } else if(selectedMiscJurisdiction && selectedFederalJurisdiction) {
+      mode = 'misc_federal';
     } else if (selectedMiscJurisdiction) {
       mode = 'misc';
     } else if (selectedFederalJurisdiction) {
@@ -516,6 +518,10 @@ export default function Playground() {
     } else {
       primaryJurisdiction = question_jurisdiction.federal! as Jurisdiction;
     }
+    if(question_jurisdiction.mode === "misc_federal") {
+      primaryJurisdiction = question_jurisdiction.misc! as Jurisdiction;
+      secondaryJurisdiction = question_jurisdiction.federal! as Jurisdiction;
+    }
 
     const all_citation_blocks: ContentBlock[] = [];
 
@@ -529,7 +535,9 @@ export default function Playground() {
       
         possible_citation = row.node_name;
       }
-      
+      if(possible_citation === undefined || possible_citation === null) {
+        possible_citation = row.node_id.split("/").pop()!;
+      }
 
       const section_text: string[] = row.node_text;
       const citation: string = possible_citation;
@@ -617,6 +625,8 @@ export default function Playground() {
 
     if (questionJurisdictions?.mode === "misc") {
       user_prompt_query = constructPromptQueryMisc(user_query, questionJurisdictions?.misc?.corpusTitle || 'This Legal Documentation');
+    } else if (questionJurisdictions?.mode === "misc_federal") {
+      user_prompt_query = constructPromptQueryBoth(user_query, questionJurisdictions?.misc?.name!, questionJurisdictions?.federal?.name!);
     }
     const requestBody = {
       legal_question: user_prompt_query,
