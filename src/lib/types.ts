@@ -215,7 +215,7 @@ export const FederalJurisdictionOptions: Jurisdiction[] = [
 ];
 
 export const MiscJurisdictionOptions: Jurisdiction[] = [
-  {id: '1', name: 'Vitalia Wiki', abbreviation: 'vitalia', corpusTitle: 'Vitalia Wiki Documentation', usesSubContentNodes: false, jurisdictionLevel: 'misc' },
+  {id: '1', name: 'Aeronautical Information Manual', abbreviation: 'aim', corpusTitle: 'FAAs official guide to basic flight information and Air traffic control (ATC) procedures.', usesSubContentNodes: false, jurisdictionLevel: 'misc' },
 ];
 
 export const ChatOptions: Option[] = [

@@ -101,11 +101,7 @@ const OptionsList: React.FC<OptionsListProps> = ({
 
 
   useEffect(() => {
-    if (selectedMisc && (selectedFederal || selectedState)) {
-      setPopupMessage('Currently, miscellaneous jurisdictions cannot be selected at the same time as federal or state jurisdictions. Plans to implement this feature are in the works. Please select only one jurisdiction type at a time. I will de-select the miscellaneous jurisdiction for you.');
-      setSelectedMisc(undefined);
-      setShowBadJurisdictionsPopup(true);
-    }
+    
     if (selectedFederal) {
       onFederalJurisdictionChange(selectedFederal);
     }

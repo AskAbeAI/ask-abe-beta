@@ -28,3 +28,10 @@ export function constructPromptQueryMisc(
 ): string {
   return `According to the regulations in ${legal_document}: ${user_query}`;
 }
+export function constructPromptQueryBoth(
+  user_query: string,
+  legal_document: string,
+  legal_document_two: string,
+): string {
+  return `According to the rules and regulations in ${legal_document} and ${legal_document_two}: ${user_query}`;
+}

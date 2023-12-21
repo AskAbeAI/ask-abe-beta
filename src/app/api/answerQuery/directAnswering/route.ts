@@ -44,7 +44,7 @@ export async function POST(req: Request) {
   let primary_jurisdiction;
   let secondary_jurisdiction;
   //console.log(`mode: ${mode}`)
-  //console.log(`question_jurisdictions: ${question_jurisdictions}`)
+  console.log(`question_jurisdictions: ${question_jurisdictions}`)
   //console.log(`primary_rows: ${primary_rows}`)
   if (question_jurisdictions.mode === "state_federal") {
     primary_jurisdiction = question_jurisdictions.state!;
@@ -55,6 +55,9 @@ export async function POST(req: Request) {
     primary_jurisdiction = question_jurisdictions.federal!;
   } else if (question_jurisdictions.mode === "misc") {
     primary_jurisdiction = question_jurisdictions.misc!;
+  } else if (question_jurisdictions.mode === "misc_federal") {
+    primary_jurisdiction = question_jurisdictions.misc!;
+    secondary_jurisdiction = question_jurisdictions.federal!;
   }
   
 
@@ -72,6 +75,9 @@ export async function POST(req: Request) {
     if(citation === undefined || citation === null) {
       
       citation = row.node_name;
+    }
+    if(citation === undefined || citation === null) {
+      citation = row.node_id.split("/").pop()!;
     }
     console.log(citation)
     const pair: text_citation_document_trio = {

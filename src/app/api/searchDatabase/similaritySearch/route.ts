@@ -47,7 +47,7 @@ export async function POST(req: Request) {
 		let jurisdiction: string;
 		let maxRows = 30;
 
-		if (mode === "misc") {
+		if (mode === "misc" || mode === "misc_federal") {
 			jurisdiction = miscJurisdiction!.abbreviation;
 		} else if (mode === "state" || mode === "state_federal") {
 			if (stateJurisdiction?.usesSubContentNodes) {
@@ -69,13 +69,15 @@ export async function POST(req: Request) {
 		
 
 		let secondary_rows: node_as_row[] = [];
-		if (mode === "state_federal") {
+		if (mode === "state_federal" || mode === "misc_federal") {
 			
 			secondary_rows = await callWithRetries(
 			() => jurisdiction_similarity_search_all_partitions(federalJurisdiction!.abbreviation, query_expansion_embedding, 0.6, maxRows, supabaseUrl, supabaseKey),
 			maxRetries
-		);
+			);
 		}
+		
+		
 		console.log("Made it out of the similarity search function!")
 		const searchResponseBody = {
 			primary_rows: primary_rows,
