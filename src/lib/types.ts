@@ -208,6 +208,9 @@ export const StateJurisdictionOptions: Jurisdiction[] = [
     // { id: '48', name: 'West Virginia', abbreviation: 'WV', corpusTitle: 'West Virginia Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
     // { id: '49', name: 'Wisconsin', abbreviation: 'WI', corpusTitle: 'Wisconsin Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
     // { id: '50', name: 'Wyoming', abbreviation: 'WY', corpusTitle: 'Wyoming Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
+    { id: '51', name: 'Marshall Islands', abbreviation: 'mhl', corpusTitle: 'Republic of the Marshall Islands - US Territory', usesSubContentNodes: false, jurisdictionLevel: 'state' },
+
+
   ];
 
 export const FederalJurisdictionOptions: Jurisdiction[] = [
