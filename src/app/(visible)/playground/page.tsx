@@ -81,7 +81,7 @@ export default function Playground() {
   const [questionJurisdictions, setQuestionJurisdictions] = useState<questionJurisdictions>();
 
   const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
-  const [skipClarifications, setSkipClarifications] = useState(false);
+  const [askClarifications, setAskClarifications] = useState(false);
   const [showJurisdictionModal, setShowJurisdictionModal] = useState(false);
 
 
@@ -223,14 +223,14 @@ export default function Playground() {
     let score = 7;
     let message_to_user = "";
     // Only score questions if no misc jurisdiction is selected
-    if (selectedMiscJurisdiction === undefined && !skipClarifications) {
+    if (selectedMiscJurisdiction === undefined && askClarifications) {
       [score, message_to_user] = await scoreQuestion(question_jurisdictions, questionText);
     }
 
 
 
     // Do not ask clarifying questions if skipClarifications is true or if a misc jurisdiction is selected
-    if (skipClarifications || selectedMiscJurisdiction !== undefined) {
+    if (!askClarifications || selectedMiscJurisdiction !== undefined) {
       similaritySearch(question_jurisdictions, questionText, []);
     } else if (score <= 1) {
       setIsFormVisible(true);
@@ -638,7 +638,7 @@ export default function Playground() {
       mode: "clarifications",
       question_jurisdiction: question_jurisdiction
     };
-    if (skipClarifications || selectedMiscJurisdiction !== undefined) {
+    if (!askClarifications || selectedMiscJurisdiction !== undefined) {
       requestBody.mode = "single";
     }
 
@@ -675,7 +675,7 @@ export default function Playground() {
       console.log(option);
       if (option.name === "Skip Clarifying Questions") {
         console.log(`Setting skip clarifications to ${option.selected}`);
-        setSkipClarifications(option.selected);
+        setAskClarifications(option.selected);
       }
     }
   };
@@ -754,7 +754,7 @@ export default function Playground() {
 
 
 
-    if (skipClarifications || selectedMiscJurisdiction !== undefined) {
+    if (!askClarifications || selectedMiscJurisdiction !== undefined) {
       followUpQuestionAnswer(clarificationResponses, questionText);
     } else {
       askNewClarification(questionJurisdictions, questionText, "single", { clarifications: clarificationResponses });

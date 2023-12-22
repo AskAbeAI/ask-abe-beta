@@ -223,7 +223,7 @@ export const MiscJurisdictionOptions: Jurisdiction[] = [
 
 export const ChatOptions: Option[] = [
   // { id: 0, name: 'Include US Federal Jurisdiction', selected: false },
-  { id: 0, name: 'Skip Clarifying Questions', selected: false }
+  { id: 0, name: 'Ask Clarifying Questions', selected: false }
 ];
 
 export interface OptionsListProps {
