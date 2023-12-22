@@ -498,6 +498,8 @@ export default function Playground() {
     console.log("Received response from similaritySearch API!")
     const primary_rows: node_as_row[] = result.primary_rows;
     const secondary_rows: node_as_row[] = result.secondary_rows;
+    setPrimaryRows(primary_rows);
+    setSecondaryRows(secondary_rows);
     //console.log(primary_rows)
     
 
