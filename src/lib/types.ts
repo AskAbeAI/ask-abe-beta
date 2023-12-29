@@ -166,7 +166,7 @@ export const StateJurisdictionOptions: Jurisdiction[] = [
     // { id: '6', name: ' Colorado', abbreviation: 'CO', corpusTitle: 'Colorado Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
     // { id: '7', name: ' Connecticut', abbreviation: 'CT', corpusTitle: 'Connecticut Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
     // { id: '8', name: ' Delaware', abbreviation: 'DE', corpusTitle: 'Delaware Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
-    // { id: '9', name: ' Florida', abbreviation: 'FL', corpusTitle: 'Florida Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
+    { id: '9', name: ' Florida', abbreviation: 'FL', corpusTitle: 'Florida Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
     // { id: '10', name: ' Georgia', abbreviation: 'GA', corpusTitle: 'Georgia Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
     // { id: '11', name: ' Hawaii', abbreviation: 'HI', corpusTitle: 'Hawaii Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
     // { id: '12', name: ' Idaho', abbreviation: 'ID', corpusTitle: 'Idaho Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
@@ -192,7 +192,7 @@ export const StateJurisdictionOptions: Jurisdiction[] = [
     // { id: '32', name: 'New York', abbreviation: 'NY', corpusTitle: 'New York Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
     // { id: '33', name: 'North Carolina', abbreviation: 'NC', corpusTitle: 'North Carolina Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
     // { id: '34', name: 'North Dakota', abbreviation: 'ND', corpusTitle: 'North Dakota Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
-    // { id: '35', name: 'Ohio', abbreviation: 'OH', corpusTitle: 'Ohio Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
+    { id: '35', name: 'Ohio', abbreviation: 'OH', corpusTitle: 'Ohio Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
     // { id: '36', name: 'Oklahoma', abbreviation: 'OK', corpusTitle: 'Oklahoma Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
     // { id: '37', name: 'Oregon', abbreviation: 'OR', corpusTitle: 'Oregon Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
     // { id: '38', name: 'Pennsylvania', abbreviation: 'PA', corpusTitle: 'Pennsylvania Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
@@ -208,13 +208,15 @@ export const StateJurisdictionOptions: Jurisdiction[] = [
     // { id: '48', name: 'West Virginia', abbreviation: 'WV', corpusTitle: 'West Virginia Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
     // { id: '49', name: 'Wisconsin', abbreviation: 'WI', corpusTitle: 'Wisconsin Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
     // { id: '50', name: 'Wyoming', abbreviation: 'WY', corpusTitle: 'Wyoming Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
-    { id: '51', name: 'Marshall Islands', abbreviation: 'mhl', corpusTitle: 'Republic of the Marshall Islands - US Territory', usesSubContentNodes: false, jurisdictionLevel: 'state' },
 
 
   ];
 
 export const FederalJurisdictionOptions: Jurisdiction[] = [
   { id: '1', name: 'US Federal Regulations', abbreviation: 'ecfr', corpusTitle: 'United States Code of Federal Regulations', usesSubContentNodes: false, jurisdictionLevel: 'federal' },
+  { id: '2', name: 'US Code', abbreviation: 'musc', corpusTitle: 'United States Code', usesSubContentNodes: false, jurisdictionLevel: 'federal' },
+  { id: '3', name: 'Marshall Islands', abbreviation: 'mhl', corpusTitle: 'Republic of the Marshall Islands - US Territory', usesSubContentNodes: false, jurisdictionLevel: 'federal' },
+
 ];
 
 export const MiscJurisdictionOptions: Jurisdiction[] = [
