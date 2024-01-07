@@ -28,7 +28,7 @@ export async function POST(req: Request) {
     
     const startTime = Date.now();
     
-    console.log("=== EXTERNAL SCRAPING API ENDPOINT ===");
+    console.log("=== EXTERNAL QA API EndPoint ===");
 
     const requestData: any = await req.json();
     const api_key: string = requestData.api_key;
@@ -56,7 +56,7 @@ export async function POST(req: Request) {
         const legal_statements: string[] = await generateQueryExpansion(openai, legal_questions);
         const embedded_expansion_query_raw:number[] = await generateEmbedding(openai, legal_statements);
         // Convert the embedded expansion query into a string
-        const embedded_expansion_query:string = embedded_expansion_query_raw.join(",");
+        const embedded_expansion_query:string = "[" + embedded_expansion_query_raw.join(",") + "]";
 
         const rows = await jurisdiction_similarity_search_all_partitions("ca", embedded_expansion_query, 0.8, 20, process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
         const all_text_citation_pairs: text_citation_pair[] =[];
@@ -91,8 +91,8 @@ export async function POST(req: Request) {
 
     } catch (error) {
         //console.error('Error running Python script:', error);
-        console.log('Error running Python script:', error)
-        return NextResponse.json({ errorMessage: `Error running Python script: ${error}`, status: 500 });
+        console.log('Error in privateQA', error)
+        return NextResponse.json({ errorMessage: `Error in privateQA: ${error}`, status: 500 });
     }
 }
 
