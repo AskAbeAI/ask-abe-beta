@@ -346,6 +346,41 @@ export function getPromptDirectAnswering(
   return params;
 }
 
+export function getPromptDirectAnsweringSimple(
+  legal_question: string,
+  instructions: string,
+  text_citation_pairs: text_citation_pair[],
+  useRegularGPT4: boolean
+): ChatCompletionParams {
+  //console.log(text_citation_document_trios)
+  const system = `You are a well-educated intern at a Law Firm who helps assist a licensed legal professional in answering legal questions. You will be given:
+  1. A legal_question provided by a customer.
+  2. Instructions for answering the question provided by the legal professional, which includes instructions for answering the question, as well as context about the legislation you will be analyzing.
+  3. An answer_document which contains a list of sections that the legal professional has found to be useful in answering the legal_question.
+  - Each section has a section_citation, which is a unique identifier for that section.
+  - Each section has some legal text, which is the actual text of the section.
+ 
+
+  Your job is to read through all the sections in the answer document, and create a direct answer to the legal_question. ** Ensure that each individual part of an answer from a section also includes citations in line **. Follow these instructions to create a direct answer with citations to the legal_question:
+  1. First, read the legal question and instructions. Take time to understand the needs and personal circumstances of the customer, and how a good answer to the original legal question must include this information.
+  2. Read the answer document, iterating over each section, which includes some text and a section citation. You will be creating your answer by incorporating information and citations from each section in the answer_document into your answer.
+  3. Start creating a direct answer to the legal_question using information found in each section. You will have to include many different sections in the answer_document into a comprehensive answer to the legal_question. Only use information from the answer_document to create your answer, and only create citations from section_citations that are found in the answer_document.
+  4. Whenever you include information from a specific section's text in the answer_document, include the section_citation inline with the text. Use the following format for in-line citations: Answer from the legal text ### section_citation ###. Ensure that these section_citations are inline and directly included in the text of your answer.
+  5. As you are reading the answer document, and crafting an answer to the legal_question, a section's text may not be useful in creating an answer. If it is useful in any way, include the section_citation inline in your answer.
+
+  The legal expert will be very angry and I will likely lose my job if you do not cite your sources carefully and comprehensively. Make sure that your answer follows the legal professionals instructions.
+
+  **Return your answer only in json (JSON) format***: {direct_answer: "Your answer here"}.
+  
+  `;
+  let user = `{legal_question: ${legal_question}, instructions: ${instructions}, answer_document: ${JSON.stringify(text_citation_pairs)}}`;
+
+
+  const messages = convertToMessages(system, user);
+  const params: ChatCompletionParams = getChatCompletionParams("gpt-4-1106-preview", messages, 0.5);
+  return params;
+}
+
 export function getPromptDirectAnsweringVitalia(
   question: string,
   already_asked_questions: string[],

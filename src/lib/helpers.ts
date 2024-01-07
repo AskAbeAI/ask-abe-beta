@@ -1,4 +1,4 @@
-import { getPromptQueryScoring, getPromptExpandedQuery, getPromptAnsweringInstructions, getPromptQueryRefinement, getPromptCondenseClarifications, getPromptClarificationQuestion, getPromptClarificationQuestionMultiple, getPromptDirectAnswering, getPromptBasicQueryRefinement, getPromptFollowupQuestion, getPromptDirectAnsweringVitalia, getPromptExpandedQueryVitalia } from "./prompts";
+import { getPromptQueryScoring, getPromptExpandedQuery, getPromptAnsweringInstructions, getPromptQueryRefinement, getPromptCondenseClarifications, getPromptClarificationQuestion, getPromptClarificationQuestionMultiple, getPromptDirectAnswering, getPromptBasicQueryRefinement, getPromptFollowupQuestion, getPromptDirectAnsweringVitalia, getPromptExpandedQueryVitalia, getPromptDirectAnsweringSimple } from "./prompts";
 import { createChatCompletion, getEmbedding } from "./chatCompletion";
 import { Clarification, text_citation_pair, text_citation_document_trio} from "./types";
 import { OpenAI } from "openai";
@@ -105,6 +105,13 @@ export const generateMultipleClarificationQuestions = async (openai: OpenAI, use
 
 export const generateDirectAnswer = async (openai: OpenAI, user_prompt_query: string, instructions: string, all_text_citation_pairs: text_citation_document_trio[]): Promise<string> => {
   const params = getPromptDirectAnswering(user_prompt_query, instructions, all_text_citation_pairs, false);
+  const result = JSON.parse(await createChatCompletion(params, openai, "directAnswering"));
+  const direct_answer: string = result.direct_answer;
+  return direct_answer;
+};
+
+export const generateDirectAnswerSimple = async (openai: OpenAI, user_prompt_query: string, instructions: string, all_text_citation_pairs: text_citation_pair[]): Promise<string> => {
+  const params = getPromptDirectAnsweringSimple(user_prompt_query, instructions, all_text_citation_pairs, false);
   const result = JSON.parse(await createChatCompletion(params, openai, "directAnswering"));
   const direct_answer: string = result.direct_answer;
   return direct_answer;

@@ -67,9 +67,7 @@ export async function POST(req: Request) {
   const all_text_citation_pairs: text_citation_document_trio[] =[];
   for (const row of primary_rows) {
     // Join row.node_text into a single string with '\n' as the delimiter
-    //console.log(row.node_text)
     let new_text = row.node_text.join('\n');
-    //console.log(new_text)
     let citation = row.node_citation;
     
     if(citation === undefined || citation === null) {
