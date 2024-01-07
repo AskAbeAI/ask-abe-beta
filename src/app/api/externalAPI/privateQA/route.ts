@@ -58,7 +58,7 @@ export async function POST(req: Request) {
         // Convert the embedded expansion query into a string
         const embedded_expansion_query:string = "[" + embedded_expansion_query_raw.join(",") + "]";
 
-        const rows = await jurisdiction_similarity_search_all_partitions("ca", embedded_expansion_query, 0.8, 20, process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
+        const rows = await jurisdiction_similarity_search_all_partitions(jurisdiction.abbreviation, embedded_expansion_query, 0.8, 20, process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
         const all_text_citation_pairs: text_citation_pair[] =[];
         for (const row of rows) {
             // Join row.node_text into a single string with '\n' as the delimiter
