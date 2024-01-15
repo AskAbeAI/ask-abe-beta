@@ -153,8 +153,7 @@ export default function EmbedPage() {
     console.log(response_json);
     let answer = response_json.answer;
     // Replace all "<" with "###" and ">" with "###"
-    answer = answer.replace(/</g, "###");
-    answer = answer.replace(/>/g, "###");
+    
     const citationLinks: CitationLinks = response_json.citationLinks;
     const already_answered = response_json.already_answered;
 
