@@ -151,7 +151,10 @@ export default function EmbedPage() {
     console.log("Received response from Quarantined API")
     const response_json = await response.json();
     console.log(response_json);
-    const answer = response_json.answer;
+    let answer = response_json.answer;
+    // Replace all "<" with "###" and ">" with "###"
+    answer = answer.replace(/</g, "###");
+    answer = answer.replace(/>/g, "###");
     const citationLinks: CitationLinks = response_json.citationLinks;
     const already_answered = response_json.already_answered;
 
