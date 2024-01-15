@@ -129,7 +129,7 @@ function cleanString(inputString: string): string {
       const escapedCitationText = citationText.replace(/[.*+?^${}()'|[\]\\]/g, '\\$&');
       
       // Create a regex pattern that matches the citation text enclosed within '###'
-      const pattern = new RegExp(`###\\s*${escapedCitationText}\\s*###`, 'g');
+      const pattern = new RegExp(`<\\s*${escapedCitationText}\\s*>`, 'g');
       
       // Replacement text with an HTML anchor tag
       const replacement = `[${citationText}](${url})`;

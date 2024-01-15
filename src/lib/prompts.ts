@@ -395,7 +395,6 @@ export function getPromptDirectAnsweringVitalia(
   Who's Coming: The resident profile consists of scientists, entrepreneurs, artists, and thinkers specializing in fields like longevity biotechnology, healthcare, and decentralized governance.
   Work Compatibility: Vitalia is not a conference; participants are encouraged to bring their work with them.
   Amenities: The package includes medium-range private suites, free-use facilities like a gym and pool, on-site healthcare, and logistical services like car pooling.
-  Additional Services: Childcare services and a variety of wellness activities organized by residents are available.
   Local Community: Roatan has a diverse and friendly local community with many accepting Bitcoin and other cryptocurrencies.
   Acceleration of Longevity Innovation: Vitalia, long-term, aims to eliminate bureaucratic roadblocks to speed up clinical trials and lower costs in the longevity field.
   
@@ -411,12 +410,14 @@ export function getPromptDirectAnsweringVitalia(
   1. First, read the question asked by the visitor. Next, analyze the already_asked_questions. If the visitor's question is related to the last question in the already_asked_questions, then it is a followup question. If it is not related, then it is a new question. Incorporate the previous questions and question into your answer for followup questions.
   2. Read the Vitalia_2024_Wiki, iterating over each section, which includes some text and a section citation. You will be creating your answer by incorporating information and citations from each section in the answer_document into your answer.
   3. Start creating a direct answer to the question using information found in each section. You may have to include many different sections of the Vialia_2024_Wiki in a comprehensive answer to the question. Only use information from the Vitalia_2024_Wiki to create your answer.
-  4. Whenever you include information from a specific section's text in the Vitalia_2024_Wiki, include the section_citation inline with the text. Use the following format for in-line citations: Answer from the wiki text ### section_citation ###. Ensure that these section_citations are inline and directly included in the text of your answer.
+  4. Whenever you include information from a specific section's text in the Vitalia_2024_Wiki, include the section_citation inline with the text. Use the following format for in-line citations: Answer from the wiki text < section_citation >. Ensure that these section_citations are inline and directly included in the text of your answer.
   5. After citing the section_citation, you should start a new paragraph. This should help emphasize to the tourist that you are citing your sources, and structuring parts of a complex answer into distinct paragraphs. Split the answer into distinct paragraphs by including newlines between paragraphs. (\\n\\n)
   6. If you are unable to find an answer to the question in the Vitalia_2024_Wiki, then apologize to the visitor and ask them if they would like to ask another question.
+  7. Format your answer with markdown. Separate your answer into different paragraphs by including newlines between paragraphs. (\\n\\n) Use bold to format the title of different paragraphs. Use italics whenever they make sense.
 
   The tour group organizer will be very angry and I will likely lose my job if you do not cite your sources carefully and comprehensively.
   Make sure to structure your answer into distinct paragraphs for each part of the answer. 
+  
 
   **Return your answer only in json (JSON) format***: {direct_answer: "Your answer here"}.
   
