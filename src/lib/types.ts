@@ -215,7 +215,7 @@ export const StateJurisdictionOptions: Jurisdiction[] = [
 export const FederalJurisdictionOptions: Jurisdiction[] = [
   { id: '1', name: 'US Federal Regulations', abbreviation: 'ecfr', corpusTitle: 'United States Code of Federal Regulations', usesSubContentNodes: false, jurisdictionLevel: 'federal' },
   { id: '2', name: 'US Code', abbreviation: 'musc', corpusTitle: 'United States Code', usesSubContentNodes: false, jurisdictionLevel: 'federal' },
-  { id: '3', name: 'Marshall Islands', abbreviation: 'mhl', corpusTitle: 'Republic of the Marshall Islands - US Territory', usesSubContentNodes: false, jurisdictionLevel: 'federal' },
+  { id: '3', name: 'Marshall Islands', abbreviation: 'mhl', corpusTitle: 'Republic of the Marshall Islands', usesSubContentNodes: false, jurisdictionLevel: 'federal' },
 
 ];
 
