@@ -38,9 +38,13 @@ export async function POST(req: Request) {
   const specific_questions = requestData.specific_questions;
   const legal_questions: string[] = [refined_question, ...specific_questions];
 
+  const vendor = "openai"
+  const model = "gpt-4-1106-preview"
+
+
   try {
     
-    const legal_statements: string[] = await generateQueryExpansion(openai, legal_questions);
+    const legal_statements: string[] = await generateQueryExpansion(vendor, model, openai, legal_questions, sessionId);
     const embedded_expansion_query: number[] = await generateEmbedding(openai, legal_statements);
 
     const response = {

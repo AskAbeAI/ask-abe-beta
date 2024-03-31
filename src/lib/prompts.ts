@@ -265,10 +265,9 @@ export function getPromptBasicQueryRefinement(
 }
 
 
-export function getPromptExpandedQuery(
-  legal_questions: string[],
-  useRegularGPT4: boolean
-): ChatCompletionParams {
+export function expand_query(
+  legal_questions: string[]
+): [Message[], number] {
   const system = `You are a helpful legal assistant that rephrases a user's legal question into a statement of how that question's answer looks like in official legislation. You will be provided with a list of legal_questions, which you will translate into legal language, as it might appear in actual legislation. Questions should be converted to statements that look like they could be found in actual legislation.
   Transform each question in legal_questions into a hypothetical legal statement, following these instructions:
   1. Legal statements are converted from the form of a question to a statement.
@@ -279,12 +278,11 @@ export function getPromptExpandedQuery(
   6. Use generic 3rd person pronouns (an individual, a person). Refrain from using I, we, or other personal pronouns.\n\nReturn in json format: {legal_statements: []}\n`;
   const user = `{"legal_questions": ${JSON.stringify(legal_questions)}}`;
   const messages = convertToMessages(system, user);
-  let model = "gpt-4-1106-preview";
-  if (useRegularGPT4) {
-    model = "gpt-4";
-  }
-  const params: ChatCompletionParams = getChatCompletionParams(model, messages, 0.4, 1000);
-  return params;
+
+  let rag_tokens: number = 0;
+  // For all parameters, get the number of tokens
+  // #TODO
+  return [messages, rag_tokens];
 
 }
 

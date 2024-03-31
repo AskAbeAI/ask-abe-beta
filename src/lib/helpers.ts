@@ -1,6 +1,6 @@
-import { getPromptQueryScoring, getPromptExpandedQuery, getPromptAnsweringInstructions, getPromptQueryRefinement, getPromptCondenseClarifications, getPromptClarificationQuestion, getPromptClarificationQuestionMultiple, getPromptDirectAnswering, getPromptBasicQueryRefinement, getPromptFollowupQuestion, getPromptDirectAnsweringVitalia, getPromptExpandedQueryVitalia, getPromptDirectAnsweringSimple } from "./prompts";
-import { createChatCompletion, getEmbedding } from "./chatCompletion";
-import { Clarification, text_citation_pair, text_citation_document_trio} from "./types";
+import { getPromptQueryScoring, getPromptAnsweringInstructions, getPromptQueryRefinement, getPromptCondenseClarifications, getPromptClarificationQuestion, getPromptClarificationQuestionMultiple, getPromptDirectAnswering, getPromptBasicQueryRefinement, getPromptFollowupQuestion, getPromptDirectAnsweringVitalia, getPromptExpandedQueryVitalia, getPromptDirectAnsweringSimple, expand_query } from "./prompts";
+import { createChatCompletion, getEmbedding, create_chat_completion } from "./chatCompletion";
+import { Clarification, text_citation_pair, text_citation_document_trio, APIParameters} from "./types";
 import { OpenAI } from "openai";
 
 // Query Scoring
@@ -13,12 +13,34 @@ export const calculateQuestionClarityScore = async (openai: OpenAI, user_prompt_
 };
 
 // Query Expansion
-export const generateQueryExpansion = async (openai: OpenAI, legal_questions: string[]) => {
-  const params = getPromptExpandedQuery(legal_questions, true);
-  const res = JSON.parse(await createChatCompletion(params, openai, "expandedQuery"));
-  const legal_statements: string[] = res.legal_statements;
+export const generateQueryExpansion = async (vendor: string, model: string, openai: OpenAI, legal_questions: string[], session_id: string) => {
+  const [messages, rag_tokens] = expand_query(legal_questions); // Ensure expand_query is implemented
+  const params = new APIParameters(
+    vendor,
+    model,
+    messages, // Assuming new_messages is an array of Message objects
+    0.4, // Temperature
+    undefined, // top_p is optional, so we can skip it or set it as undefined explicitly
+    0, // Frequency penalty
+    rag_tokens,
+    undefined, // Max tokens
+    false, // Stream
+    undefined, // Response format
+    0, // Presence penalty
+    undefined, // Response model
+    1, // Max retries
+    undefined, // Stop sequences
+    "generateQueryExpansion" // Calling function
+  );
+  // Create the chat completion
+  const [response, api_usage] = await create_chat_completion(params, false, openai);
+  api_usage.sessionId = session_id;
+  api_usage.insert()
+  // Parse the response to JSON and extract the legal questions.
+  const legal_statements: string[] = JSON.parse(response!).legal_questions!
+  
   return legal_statements;
-};
+}
 
 export const generateQueryExpansionVitalia = async (openai: OpenAI, questions: string[]) => {
   const params = getPromptExpandedQueryVitalia(questions, true);

@@ -198,17 +198,18 @@ export default function Playground() {
 
   // Logic for starting question answering process
   const handleNewQuestion = async (question: string) => {
-
+    // If no jurisdiction is selected, make the user choose one
     if (selectedFederalJurisdiction === undefined && selectedStateJurisdiction === undefined && selectedMiscJurisdiction === undefined) {
       setShowJurisdictionModal(true);
       return;
     }
     setIsFormVisible(false); // Hide the form when a question is submitted
+    // Add the question to the state variable
     const questionText = question.trim();
     setQuestion(questionText);
     if (!questionText) return;
 
-    // Create a question block
+    // Create a question block and add it
     let newParams: ContentBlockParams = {
       type: ContentType.Question,
       content: questionText,
@@ -226,8 +227,6 @@ export default function Playground() {
     if (selectedMiscJurisdiction === undefined && askClarifications) {
       [score, message_to_user] = await scoreQuestion(question_jurisdictions, questionText);
     }
-
-
 
     // Do not ask clarifying questions if skipClarifications is true or if a misc jurisdiction is selected
     if (!askClarifications || selectedMiscJurisdiction !== undefined) {
@@ -475,7 +474,7 @@ export default function Playground() {
 
   // similaritySearch API handler
   const similaritySearch = async (question_jurisdiction: questionJurisdictions, user_query: string, specific_questions: string[]) => {
-
+    // Expand the query and then return the embedding
     const query_expansion_embedding = await queryExpansion(user_query, specific_questions);
     addNewLoadingBlock(false);
     console.log(question_jurisdiction)

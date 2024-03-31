@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
-import { node_as_row } from "@/lib/types";
+import { node_as_row, APIUsage } from "@/lib/types";
 import { match } from 'assert';
 
 
@@ -71,6 +71,19 @@ export async function insert_completion_cost(
   if (error) {
     console.error("Error inserting completion cost into database!" + error);
     
+    throw error;
+  }
+}
+
+export async function insert_api_usage(
+  api_usage: APIUsage
+): Promise<void> {
+  const supabase = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
+  const { error } = await supabase
+    .from('api_usage')
+    .insert(api_usage);
+  if (error) {
+    console.error("Error inserting api usage into database!" + error);
     throw error;
   }
 }
