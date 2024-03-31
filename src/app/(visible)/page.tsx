@@ -71,6 +71,9 @@ export default function HomePage() {
                   Ask Abe is an educational tool that helps a user navigate complex legal frameworks and provides detailed legal informatiion.
                   Abe is a conversational AI that user&apos;s can ask legal questions to and receive legal information with direct ciations to primary source legislation.
                 </p>
+                <p>
+                  Last updated 3/31/24.
+                </p>
               </div>
             </div>
             <div className="flex flex-col items-stretch w-6/12 ml-5 max-md:w-full max-md:ml-0">
