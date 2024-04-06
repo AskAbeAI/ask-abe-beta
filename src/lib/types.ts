@@ -1,4 +1,4 @@
-import { insert_api_usage } from './database';
+import { insertApiUsage } from './database';
 import dataset from './dataset.json';
 
 export type Dataset = (typeof dataset)[number];
@@ -7,6 +7,44 @@ type BaseLevels = "jurisdiction" | "subjurisdiction" | "corpus"
 type AllowedLevels =     "title" | "subtitle" | "code" | "part" | "subpart" | "division" | "subdivision" | "article" | "subarticle" | "chapter" | "subchapter" | "subject-group" | "section" | "appendix" | "hub"; // Extend as needed
 const ALLOWED_LEVELS: AllowedLevels[] = ["title", "subtitle", "code", "part", "subpart", "division", "subdivision", "article", "subarticle", "chapter", "subchapter", "subject-group", "section", "appendix", "hub"];
 
+export interface UiState {
+  isMobile: boolean;
+  isDesktopOrLaptop: boolean;
+  isFormVisible: boolean;
+  citationsOpen: boolean;
+}
+export interface Short {
+  lastUserInput: string;
+
+  currentQuestion?: string;
+  currentRefinedQuestion?: string
+
+  specificQuestions?: string[];
+  previousClarifications?: Clarification[];
+}
+export interface Long {
+  questionJurisdictions?: questionJurisdictions
+  inputMode?: string;
+  previousQuestions?: string[]
+  primaryRows?: node_as_row;
+  secondaryRows?: node_as_row;
+}
+export interface History {
+  messages: Message[];
+  pipelineModel: PipelineModel;
+}
+export interface Settings {
+  clarificationMode: string;
+
+}
+
+export interface AbeMemory {
+  short: Short;
+  long: Long;
+  history: History;
+  uiState?: UiState;
+  settings?: Settings;
+}
 
 // Generic Content Block Types, Props, and Interfaces
 export enum ContentType {
@@ -326,63 +364,75 @@ export type questionJurisdictions = {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 // ### Completion Stuff ###
 
+
+
+export interface APIParametersParams {
+  vendor: string;
+  model: string;
+  messages: Message[];
+  temperature?: number; // Optional with default value
+  top_p?: number; // Optional with validation
+  frequency_penalty?: number; // Optional with default value
+  rag_tokens: number;
+  max_tokens?: number; // Optional
+  stream?: boolean; // Optional with default value
+  response_format?: { [key: string]: any }; // Optional
+  presence_penalty?: number; // Optional with default value
+  response_model?: any; // Optional, dynamic type
+  max_retries?: number; // Optional with default value
+  stop_sequences?: string[]; // Optional
+  calling_function?: string; // Optional
+}
 
 export class APIParameters {
   vendor: string;
   model: string;
   messages: Message[];
-  temperature: number;
-  top_p?: number;
-  frequency_penalty: number;
+  temperature: number = 1;
+  top_p: number = 1;
+  frequency_penalty: number = 0;
+  rag_tokens: number;
   max_tokens?: number;
-  stream?: boolean;
-  response_format?: { [key: string]: any }; // Assuming a simple object structure
-  presence_penalty: number;
-  response_model?: any; // TypeScript doesn't directly support Pydantic's BaseModel or dynamic types
-  max_retries?: number;
+  stream: boolean = false;
+  response_format?: { [key: string]: any };
+  presence_penalty: number = 0;
+  response_model?: any;
+  max_retries: number = 1;
   stop_sequences?: string[];
   calling_function?: string;
-  rag_tokens: number;
 
-  constructor(
-    vendor: string,
-    model: string,
-    messages: Message[],
-    temperature: number = 1,
-    top_p: number = 1,
-    frequency_penalty: number = 0,
-    rag_tokens: number,
-    max_tokens?: number,
-    stream: boolean = false,
-    response_format?: { [key: string]: any },
-    presence_penalty: number = 0,
-    response_model?: any,
-    max_retries: number = 1,
-    stop_sequences?: string[],
-    calling_function?: string
-  ) {
-    this.vendor = vendor;
-    this.model = model;
-    this.messages = messages;
-    this.temperature = Math.min(Math.max(temperature, 0), 1); // Simulate Pydantic's le=1, gt=0
-    this.top_p = Math.min(Math.max(top_p, 0), 1); // Optional, with validation
-    this.frequency_penalty = Math.min(Math.max(frequency_penalty, 0), 1);
-    this.max_tokens = max_tokens;
-    this.stream = stream;
-    this.response_format = response_format;
-    this.presence_penalty = Math.min(Math.max(presence_penalty, 0), 1);
-    this.response_model = response_model; // Handling dynamic types might require a different approach
-    this.max_retries = max_retries;
-    this.stop_sequences = stop_sequences;
-    this.calling_function = calling_function; // Consider manually setting this based on use case
-    this.rag_tokens = rag_tokens;
+  constructor(params: APIParametersParams) {
+    // Assign each parameter, applying default values and validation as needed
+    this.vendor = params.vendor;
+    this.model = params.model;
+    this.messages = params.messages;
+    this.temperature = Math.min(Math.max(params.temperature || 1, 0), 1);
+    this.top_p = params.top_p !== undefined ? Math.min(Math.max(params.top_p, 0), 1) : 1;
+    this.frequency_penalty = Math.min(Math.max(params.frequency_penalty || 0, 0), 1);
+    this.rag_tokens = params.rag_tokens;
+    this.max_tokens = params.max_tokens;
+    this.stream = params.stream !== undefined ? params.stream : false;
+    this.response_format = params.response_format;
+    this.presence_penalty = Math.min(Math.max(params.presence_penalty || 0, 0), 1);
+    this.response_model = params.response_model;
+    this.max_retries = params.max_retries !== undefined ? params.max_retries : 1;
+    this.stop_sequences = params.stop_sequences;
+    this.calling_function = params.calling_function;
   }
-
-  // Add methods for any custom logic or validation as needed.
 }
-
 
 
 
@@ -390,86 +440,83 @@ export class APIParameters {
 // ##### Usage Stuff ######
 
 export class APIUsage {
-  responseId: string;
-  sessionId: string | null;
-  callingFunction: string;
+  response_id: string;
+  session_id: string | null;
+  calling_function: string;
   vendor: string;
   model: string;
-  inputTokens: number | null;
-  ragTokens: number | null;
-  outputTokens: number | null;
-  totalTokens: number | null;
-  inputCost: number | null;
-  ragCost: number | null;
-  outputCost: number | null;
-  totalCost: number | null;
-  requestStatus: number;
-  errorMessage: string | null;
+  input_tokens: number | null;
+  rag_tokens: number | null;
+  output_tokens: number | null;
+  total_tokens: number | null;
+  input_cost: number | null;
+  rag_cost: number | null;
+  output_cost: number | null;
+  total_cost: number | null;
+  request_status: number;
+  error_message: string | null;
   duration: number | null;
-  apiKeyName: string | null;
+  api_key_name: string | null;
   timestamp: Date | null;
 
   constructor(
-    responseId: string,
-    callingFunction: string,
+    response_id: string,
+    calling_function: string,
     vendor: string,
     model: string,
-    requestStatus: number,
-    sessionId: string | null = null,
-    inputTokens: number | null = null,
-    ragTokens: number | null = null,
-    outputTokens: number | null = null,
-    totalTokens: number | null = null,
-    inputCost: number | null = null,
-    ragCost: number | null = null,
-    outputCost: number | null = null,
-    totalCost: number | null = null,
-    errorMessage: string | null = null,
+    request_status: number,
+    session_id: string | null = null,
+    input_tokens: number | null = null,
+    rag_tokens: number | null = null,
+    output_tokens: number | null = null,
+    total_tokens: number | null = null,
+    input_cost: number | null = null,
+    rag_cost: number | null = null,
+    output_cost: number | null = null,
+    total_cost: number | null = null,
+    error_message: string | null = null,
     duration: number | null = null,
-    apiKeyName: string | null = null,
+    api_key_name: string | null = null,
     timestamp: Date | null = null
   ) {
-    this.responseId = responseId;
-    this.sessionId = sessionId;
-    this.callingFunction = callingFunction;
+    this.response_id = response_id;
+    this.session_id = session_id;
+    this.calling_function = calling_function;
     this.vendor = vendor;
     this.model = model;
-    this.inputTokens = inputTokens;
-    this.ragTokens = ragTokens;
-    this.outputTokens = outputTokens;
-    this.totalTokens = totalTokens;
-    this.inputCost = inputCost;
-    this.ragCost = ragCost;
-    this.outputCost = outputCost;
-    this.totalCost = totalCost;
-    this.requestStatus = requestStatus;
-    this.errorMessage = errorMessage;
+    this.input_tokens = input_tokens;
+    this.rag_tokens = rag_tokens;
+    this.output_tokens = output_tokens;
+    this.total_tokens = total_tokens;
+    this.input_cost = input_cost;
+    this.rag_cost = rag_cost;
+    this.output_cost = output_cost;
+    this.total_cost = total_cost;
+    this.request_status = request_status;
+    this.error_message = error_message;
     this.duration = duration;
-    this.apiKeyName = apiKeyName;
+    this.api_key_name = api_key_name;
     this.timestamp = timestamp;
     this.computeCost();
-
   }
 
-  // Example Method: A method to update the status and error message of the ApiUsage instance
-  updateStatus(requestStatus: number, errorMessage: string | null): void {
-    this.requestStatus = requestStatus;
-    this.errorMessage = errorMessage;
+  // Method names should also follow the convention, if you're changing them
+  updateStatus(request_status: number, error_message: string | null): void {
+    this.request_status = request_status;
+    this.error_message = error_message;
   }
   insert() {
-    insert_api_usage(this)
+    insertApiUsage(this);
   }
   computeCost(): void {
-    // Don't recompute if the cost is already set
-    if (this.totalCost !== null) {
+    // Implementation remains unchanged
+    if (this.total_cost !== null) {
       return;
     }
-    // Don't compute if there are no input tokens (Failed completion)
-    if (this.inputCost === null) {
+    if (this.input_cost === null) {
       return;
     }
     
-    // Access the vendor and model specific pricing information
     let vendor = this.vendor.includes("instructor/") ? this.vendor.replace("instructor/", "") : this.vendor;
     let modelPricing;
     try {
@@ -478,68 +525,92 @@ export class APIUsage {
       throw new Error(`Pricing data not found for model ${this.model} and vendor ${this.vendor}`);
     }
 
-    // Calculate costs assuming inputTokens, ragTokens, and outputTokens are not null
-    this.inputCost = (this.inputTokens || 0) / 1e6 * parseFloat(modelPricing.input_price);
-    this.ragCost = (this.ragTokens || 0) / 1e6 * parseFloat(modelPricing.input_price);
-    this.outputCost = (this.outputTokens || 0) / 1e6 * parseFloat(modelPricing.output_price);
-    this.totalCost = (this.inputCost || 0) + (this.outputCost || 0);
+    this.input_cost = (this.input_tokens || 0) / 1e6 * parseFloat(modelPricing.input_price);
+    this.rag_cost = (this.rag_tokens || 0) / 1e6 * parseFloat(modelPricing.input_price);
+    this.output_cost = (this.output_tokens || 0) / 1e6 * parseFloat(modelPricing.output_price);
+    this.total_cost = (this.input_cost || 0) + (this.output_cost || 0);
   }
 
-  // Additional methods can be added here to handle other behaviors.
+  // Keep other methods unchanged in functionality but renamed to fit conventions.
 }
 
 
 
 
-enum PhaseType {
+
+export enum PhaseType {
   SQL_TRANSFER = "SQL_TRANSFER",
-  PYTHON_LOAD = "PYTHON_LOAD",
+  API_REQUEST = "API_REQUEST",
+  API_RESPONSE = "API_RESPONSE",
+  TS_LOAD = "TS_LOAD",
   LLM_CALL = "LLM_CALL",
-  PYTHON_DUMP = "PYTHON_DUMP"
+  TS_DUMP = "TS_DUMP"
 }
 
-
-class PhaseReport {
-  phaseType: PhaseType;
-  description?: string;
-  sourceTable?: string;
-  pythonFunction?: string;
-  destinationTable?: string;
-  apiUsageId?: string;
+interface PhaseReportParams {
+  phase_type: PhaseType;
   timestamp: Date;
-  errorCode?: number;
-  errorMessage?: string;
-
-  constructor(
-    phaseType: PhaseType,
-    timestamp: Date, // Required fields must be included in the constructor
-    description?: string,
-    sourceTable?: string,
-    pythonFunction?: string,
-    destinationTable?: string,
-    apiUsageId?: string,
-    errorCode?: number,
-    errorMessage?: string
-  ) {
-    this.phaseType = phaseType;
-    this.timestamp = timestamp;
-    this.description = description;
-    this.sourceTable = sourceTable;
-    this.pythonFunction = pythonFunction;
-    this.destinationTable = destinationTable;
-    this.apiUsageId = apiUsageId;
-    this.errorCode = errorCode;
-    this.errorMessage = errorMessage;
-  }
-
-  // Example Method: Update the phase report's error information
-  updateError(errorCode: number, errorMessage: string): void {
-    this.errorCode = errorCode;
-    this.errorMessage = errorMessage;
-  }
+  description?: string;
+  source_table?: string;
+  ts_function?: string;
+  api_route?: string;
+  destination_table?: string;
+  api_usage_id?: string;
+  error_code?: number;
+  error_message?: string;
 }
 
 
+
+export class PhaseReport {
+  phase_type: PhaseType;
+  timestamp: Date;
+  description?: string;
+  source_table?: string;
+  ts_function?: string;
+  api_route?: string;
+  destination_table?: string;
+  api_usage_id?: string;
+  error_code?: number;
+  error_message?: string;
+
+  constructor(params: PhaseReportParams) {
+    // Use object destructuring with default values for optional parameters
+    this.phase_type = params.phase_type;
+    this.timestamp = params.timestamp;
+    this.description = params.description;
+    this.source_table = params.source_table;
+    this.ts_function = params.ts_function;
+    this.api_route = params.api_route;
+    this.destination_table = params.destination_table;
+    this.api_usage_id = params.api_usage_id;
+    this.error_code = params.error_code;
+    this.error_message = params.error_message;
+  }
+
+  updateError(errorCode: number, errorMessage: string): void {
+    this.error_code = errorCode;
+    this.error_message = errorMessage;
+  }
+  static fromObject(obj: any): PhaseReport {
+    // Convert the timestamp string back to a Date object if necessary
+    const timestamp = obj.timestamp instanceof Date ? obj.timestamp : new Date(obj.timestamp);
+
+    // Instantiate and return a new PhaseReport using the deserialized object
+    return new PhaseReport({
+      phase_type: obj.phase_type,
+      timestamp: timestamp,
+      description: obj.description,
+      source_table: obj.source_table,
+      ts_function: obj.ts_function,
+      api_route: obj.api_route,
+      destination_table: obj.destination_table,
+      api_usage_id: obj.api_usage_id,
+      error_code: obj.error_code,
+      error_message: obj.error_message,
+    });
+  }
+}
 
 // #### New Types ####
 class NodeID {
@@ -640,18 +711,18 @@ class Definition {
 class IncorporatedTerms {
   import_source_link?: string;
   import_source_corpus?: string;
-  import_source_id?: string;
+  import_sourceId?: string;
   terms?: string[];
 
   constructor(
     import_source_link?: string,
     import_source_corpus?: string,
-    import_source_id?: string,
+    import_sourceId?: string,
     terms?: string[]
   ) {
     this.import_source_link = import_source_link;
     this.import_source_corpus = import_source_corpus;
-    this.import_source_id = import_source_id;
+    this.import_sourceId = import_sourceId;
     this.terms = terms;
   }
 }
@@ -661,18 +732,18 @@ class DefinitionHub {
   local_definitions: { [key: string]: Definition };
   incorporated_definitions?: IncorporatedTerms[];
   scope?: string;
-  scope_ids?: string[];
+  scopeIds?: string[];
 
   constructor(
     local_definitions: { [key: string]: Definition },
     incorporated_definitions?: IncorporatedTerms[],
     scope?: string,
-    scope_ids?: string[]
+    scopeIds?: string[]
   ) {
     this.local_definitions = local_definitions;
     this.incorporated_definitions = incorporated_definitions;
     this.scope = scope;
-    this.scope_ids = scope_ids;
+    this.scopeIds = scopeIds;
   }
 
   // Example method: Add a local definition
@@ -762,16 +833,16 @@ class Paragraph {
 
 class NodeText {
   paragraphs: { [key: string]: Paragraph };
-  root_paragraph_id: string;
+  root_paragraphId: string;
   length: number;
 
   constructor(
     paragraphs: { [key: string]: Paragraph } = {},
-    root_paragraph_id: string = "ROOT", // Default value if not provided
+    root_paragraphId: string = "ROOT", // Default value if not provided
     length: number = 0 // Default value if not provided
   ) {
     this.paragraphs = paragraphs;
-    this.root_paragraph_id = root_paragraph_id;
+    this.root_paragraphId = root_paragraphId;
     this.length = length;
   }
 
@@ -849,6 +920,67 @@ class Addendum {
 }
 
 
+
+// Session ID
+interface PipelineModelParams {
+  session_id: string;
+  history: PhaseReport[];
+  queryScoring?: any; // Optional
+  queryClarification?: any; // Optional
+  queryRefinement?: any; // Optional
+  queryExpansion?: any; // Optional
+  similaritySearch?: any; // Optional
+  directAnswering?: any; // Optional
+  scoreFollowup?: any; // Optional
+}
+
+export class PipelineModel {
+  session_id: string;
+  history: PhaseReport[];
+  queryScoring?: any;
+  queryClarification?: any;
+  queryRefinement?: any;
+  queryExpansion?: any;
+  similaritySearch?: any;
+  directAnswering?: any;
+  scoreFollowup?: any;
+
+  constructor(params: PipelineModelParams) {
+    this.session_id = params.session_id;
+    this.history = params.history;
+    this.queryScoring = params.queryScoring;
+    this.queryClarification = params.queryClarification;
+    this.queryRefinement = params.queryRefinement;
+    this.queryExpansion = params.queryExpansion;
+    this.similaritySearch = params.similaritySearch;
+    this.directAnswering = params.directAnswering;
+    this.scoreFollowup = params.scoreFollowup;
+  }
+
+  addReport(report: PhaseReport) {
+    this.history.push(report);
+  }
+
+  static fromObject(obj: any): PipelineModel {
+    // Assuming PhaseReport also has a way to be initialized from a plain object
+    const history = obj.history.map((report: any) => PhaseReport.fromObject(report));
+
+    // Create the new PipelineModel with all properties, defaulting optional ones as necessary
+    const model = new PipelineModel({
+      session_id: obj.session_id,
+      history: history,
+      queryScoring: obj.queryScoring,
+      queryClarification: obj.queryClarification,
+      queryRefinement: obj.queryRefinement,
+      queryExpansion: obj.queryExpansion,
+      similaritySearch: obj.similaritySearch,
+      directAnswering: obj.directAnswering,
+      scoreFollowup: obj.scoreFollowup,
+    });
+
+    return model;
+  }
+}
 
 
 

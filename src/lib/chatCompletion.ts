@@ -41,16 +41,16 @@ export async function createChatCompletion(params: ChatCompletionParams, openai:
   if (!completion) {
     throw new Error(`OpenAI API call failed with status: ${completion}`);
   }
-  const prompt_tokens = completion.usage?.prompt_tokens || 0;
-  const completion_tokens = completion.usage?.completion_tokens || 0;
+  const promptTokens = completion.usage?.prompt_tokens || 0;
+  const completionTokens = completion.usage?.completion_tokens || 0;
   let cost = 0; 
-  if (prompt_tokens === 0 || completion_tokens === 0) {
-    console.log(`WARNING: prompt_tokens or completion_tokens is 0!`);
+  if (promptTokens === 0 || completionTokens === 0) {
+    console.log(`WARNING: promptTokens or completionTokens is 0!`);
   } else {
-    cost = calculateChatCompletionCost(model, prompt_tokens, completion_tokens);
+    cost = calculateChatCompletionCost(model, promptTokens, completionTokens);
   }
   try {
-    await insert_completion_cost(phase, prompt_tokens, completion_tokens, cost, model, process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
+    await insert_completion_cost(phase, promptTokens, completionTokens, cost, model, process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
   } catch (error) {
     console.error("Error inserting completion cost into database!" + error);
   }
@@ -89,7 +89,7 @@ export async function getEmbedding(text: string, openai: openAI) {
   return embedding.data[0].embedding;
 }
 
-export function calculateChatCompletionCost(model: string, prompt_tokens: number, completion_tokens: number): number {
+export function calculateChatCompletionCost(model: string, promptTokens: number, completionTokens: number): number {
   let prompt_rate = 0;
   let completion_rate = 0;
   if (model === "gpt-4") {
@@ -111,7 +111,7 @@ export function calculateChatCompletionCost(model: string, prompt_tokens: number
     prompt_rate = 0;
     completion_rate = 0;
   }
-  return ((prompt_tokens * prompt_rate) / 1000) + ((completion_tokens * completion_rate) / 1000);
+  return ((promptTokens * prompt_rate) / 1000) + ((completionTokens * completion_rate) / 1000);
 
 }
 
@@ -119,50 +119,51 @@ export function calculateChatCompletionCost(model: string, prompt_tokens: number
 
 
 
-function create_chat_completion_instructor(params: APIParameters): [string, APIUsage] {
+function createChatCompletionInstructor(params: APIParameters): [string | undefined, APIUsage] {
   // Placeholder implementation
   return ["", {} as APIUsage];
 }
 
-function create_chat_completion_anthropic(params: APIParameters): [string, APIUsage] {
+function createChatCompletionAnthropic(params: APIParameters): [string | undefined, APIUsage] {
   // Placeholder implementation
   return ["", {} as APIUsage];
 }
 
-export async function create_chat_completion(params: APIParameters, insert_usage: boolean = true, vendor_client: openAI): Promise<[string | null, APIUsage]> {
-  let response_tuple: [string | null, APIUsage];
+export async function createChatCompletionNew(params: APIParameters, insertUsage: boolean = true, vendorClient: openAI): Promise<[string | undefined, APIUsage]> {
+  let responseTuple: [string | undefined, APIUsage];
 
   const vendorLower = params.vendor.toLowerCase();
   if (vendorLower === 'openai') {
-    response_tuple = await create_chat_completion_openai(params, vendor_client);
+    responseTuple = await createChatCompletionOpenai(params, vendorClient);
   } else if (vendorLower.includes('instructor/')) {
-    response_tuple = create_chat_completion_instructor(params);
+    responseTuple = createChatCompletionInstructor(params);
   } else if (vendorLower === 'anthropic') {
-    response_tuple = create_chat_completion_anthropic(params);
+    responseTuple = createChatCompletionAnthropic(params);
   } else {
     throw new Error("Unsupported vendor");
   }
   
-  if (insert_usage) {
-    response_tuple[1].insert();
+  if (insertUsage) {
+    responseTuple[1].insert();
   }
 
-  return response_tuple;
+  return responseTuple;
 }
 
-async function create_chat_completion_openai(params: APIParameters, openai_client: openAI): Promise<[string | null, APIUsage]> {
+async function createChatCompletionOpenai(params: APIParameters, openaiClient: openAI): Promise<[string | undefined, APIUsage]> {
   const start = new Date(); // Capture start time
-  let content: string | null = null;
-  let input_tokens: number | null = null;
-  let output_tokens: number | null = null;
-  let total_tokens: number | null = null;
-  let response_id: string | null = null;
+  let content: string | undefined = undefined;
+  let inputTokens: number | undefined = undefined;
+  let outputTokens: number | undefined = undefined;
+  let totalTokens: number | undefined = undefined;
+  let responseId: string | undefined = undefined;
   let status = 200; // Default to success
-  let error_message: string | null = null;
-  let duration: number | null = null;
+  let errorMessage: string | undefined = undefined;
+  let duration: number | undefined = undefined;
   
   try {
-    const completion: any = await openai_client.chat.completions.create({
+    
+    const completion: any = await openaiClient.chat.completions.create({
       model: params.model,
       messages: params.messages,
       temperature: params.temperature,
@@ -170,6 +171,7 @@ async function create_chat_completion_openai(params: APIParameters, openai_clien
       frequency_penalty: params.frequency_penalty,
       presence_penalty: params.presence_penalty,
       stream: params.stream,
+      response_format: params.response_format
       // Additional properties as required
     });
 
@@ -178,39 +180,39 @@ async function create_chat_completion_openai(params: APIParameters, openai_clien
     }
 
     content = completion.choices[0].message.content;
-    response_id = completion.id;
+    responseId = completion.id;
     // Assume usage data is correctly populated in the completion object
-    input_tokens = completion.usage?.prompt_tokens || null;
-    output_tokens = completion.usage?.completion_tokens || null;
-    total_tokens = completion.usage?.total_tokens || null;
+    inputTokens = completion.usage?.promptTokens || null;
+    outputTokens = completion.usage?.completionTokens || null;
+    totalTokens = completion.usage?.totalTokens || null;
     duration = new Date().getTime() - start.getTime();
 
   } catch (error) {
     console.error("Error calling OpenAI:", error);
     status = 400; // Indicate failure
-    error_message = error instanceof Error ? error.message : 'Unknown error';
+    errorMessage = error instanceof Error ? error.message : 'Unknown error';
     // Generate a unique response_id for error tracking (using Date.now() as an example)
-    response_id = `ERROR-${Date.now()}`;
+    responseId = `ERROR-${Date.now()}`;
   }
 
   
   // Create APIUsage instance
   const usage = new APIUsage(
-    response_id!,
+    responseId!,
     params.calling_function!, // Assuming callingFunction is known/static in this context
     params.vendor,
     params.model,
     status,
     null, // sessionId would be set according to your application logic
-    input_tokens,
-    null, // Assuming rag_tokens needs to be calculated or provided differently
-    output_tokens,
-    total_tokens,
+    inputTokens,
+    null, // Assuming ragTokens needs to be calculated or provided differently
+    outputTokens,
+    totalTokens,
     null, // inputCost needs to be calculated or provided differently
     null, // ragCost needs to be calculated or provided differently
     null, // outputCost needs to be calculated or provided differently
     null, // totalCost needs to be calculated or provided differently
-    error_message,
+    errorMessage,
     duration,
     null, // apiKeyName would be set according to your application logic
     new Date() // timestamp

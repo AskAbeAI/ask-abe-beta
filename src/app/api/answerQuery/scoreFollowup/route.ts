@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import OpenAI from "openai";
 import { createChatCompletion } from "@/lib/chatCompletion";
-import { getPromptClarificationQuestion, getPromptQuerySimilarity, getPromptClarificationQuestionMultiple, getPromptCondenseClarifications } from '@/lib/prompts';
+import { getPromptClarificationQuestion, getPromptQuerySimilarity, getPromptClarificationQuestionMultiple, condenseClarifications } from '@/lib/prompts';
 import { Clarification } from '@/lib/types';
 import { insert_api_debug_log } from '@/lib/database';
 

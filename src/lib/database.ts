@@ -75,7 +75,7 @@ export async function insert_completion_cost(
   }
 }
 
-export async function insert_api_usage(
+export async function insertApiUsage(
   api_usage: APIUsage
 ): Promise<void> {
   const supabase = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);

@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { generateBasicQueryRefinement, generateQueryExpansion, generateDirectAnswerSimple, generateEmbedding } from '@/lib/helpers';
+import { generateBasicQueryRefinement, generateDirectAnswerSimple, generateEmbedding } from '@/lib/helpers';
 import { jurisdiction_similarity_search_all_partitions } from '@/lib/database';
 import OpenAI from 'openai';
 import { Jurisdiction, node_as_row, text_citation_pair } from '@/lib/types';
@@ -53,8 +53,8 @@ export async function POST(req: Request) {
 
         
         const legal_questions: string[] = specific_questions
-        const legal_statements: string[] = await generateQueryExpansion(openai, legal_questions);
-        const embedded_expansion_query_raw:number[] = await generateEmbedding(openai, legal_statements);
+        // const legal_statements: string[] = await generateQueryExpansion(openai, legal_questions);
+        const embedded_expansion_query_raw:number[] = await generateEmbedding(openai, legal_questions);
         // Convert the embedded expansion query into a string
         const embedded_expansion_query:string = "[" + embedded_expansion_query_raw.join(",") + "]";
 

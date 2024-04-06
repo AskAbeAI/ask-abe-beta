@@ -1,14 +1,16 @@
 import OpenAI from 'openai';
 import {  ClarificationChoices, node_as_row, questionJurisdictions, text_citation_document_trio} from '@/lib/types';
 import { NextResponse } from 'next/server';
-import { insert_api_debug_log } from '@/lib/database';
-import { condenseClarificationsIntoInstructions,generateAnsweringInstructions, generateDirectAnswer } from '@/lib/helpers';
+import { condenseClarificationsIntoInstructions,answeringInstructionsHelper, directAnswerHelper } from '@/lib/helpers';
+import { generateApiRequestReport, generateApiResponseReport } from '@/lib/utils';
+import { BaseResponse, DirectAnsweringRequest, DirectAnsweringResponse } from '@/lib/api_types';
 
 
 const openAiKey = process.env.OPENAI_API_KEY;
 const openai = new OpenAI({
   apiKey: openAiKey,
 });
+const API_ROUTE = "api/answerQuery/directAnswering"
 export const maxDuration = 120;
 
 export function OPTIONS(req: Request) {
@@ -31,41 +33,42 @@ export async function POST(req: Request) {
   console.log("=== directAnswering API ENDPOINT ===");
   
 
-  const requestData: any = await req.json();
-  const sessionId: string = req.headers.get('x-session-id')!;
-  const legal_question = requestData.legal_question;
-  const clarifications: ClarificationChoices = requestData.clarifications;
-  const specific_questions: string[] = requestData.specific_questions;
-  const mode: string = requestData.mode;
-  const already_answered: string[] = requestData.already_answered;
-  const primary_rows: node_as_row[] = requestData.primary_rows;
-  const secondary_rows: node_as_row[] = requestData.secondary_rows;
-  const question_jurisdictions:questionJurisdictions = requestData.question_jurisdiction;
-  let primary_jurisdiction;
-  let secondary_jurisdiction;
-  //console.log(`mode: ${mode}`)
-  //console.log(`question_jurisdictions: ${question_jurisdictions}`)
-  //console.log(`primary_rows: ${primary_rows}`)
-  if (question_jurisdictions.mode === "state_federal") {
-    primary_jurisdiction = question_jurisdictions.state!;
-    secondary_jurisdiction = question_jurisdictions.federal!;
-  } else if (question_jurisdictions.mode === "state") {
-    primary_jurisdiction = question_jurisdictions.state!;
-  } else if (question_jurisdictions.mode === "federal") {
-    primary_jurisdiction = question_jurisdictions.federal!;
-  } else if (question_jurisdictions.mode === "misc") {
-    primary_jurisdiction = question_jurisdictions.misc!;
-  } else if (question_jurisdictions.mode === "misc_federal") {
-    primary_jurisdiction = question_jurisdictions.misc!;
-    secondary_jurisdiction = question_jurisdictions.federal!;
+  const request: DirectAnsweringRequest = await req.json();
+  console.log(request)
+  generateApiRequestReport(request.base, API_ROUTE)
+
+  let errorMessage: string | undefined = undefined;
+  let directAnswer: string = "ERROR";
+
+
+  const refinedQuestion = request.refinedQuestion
+  const clarifications: ClarificationChoices = request.clarifications!;
+  const specificQuestions: string[] = request.specificQuestions;
+  const answerMode: string = request.answerMode;
+  const alreadyAnswered: string[] = request.alreadyAnswered;
+  const primaryRows: node_as_row[] = request.primaryRows;
+  const secondaryRows: node_as_row[] = request.secondaryRows;
+  const questionJurisdictions:questionJurisdictions = request.questionJurisdictions;
+  let primaryJurisdiction;
+  let secondaryJurisdiction;
+  
+  if (questionJurisdictions.mode === "state_federal") {
+    primaryJurisdiction = questionJurisdictions.state!;
+    secondaryJurisdiction = questionJurisdictions.federal!;
+  } else if (questionJurisdictions.mode === "state") {
+    primaryJurisdiction = questionJurisdictions.state!;
+  } else if (questionJurisdictions.mode === "federal") {
+    primaryJurisdiction = questionJurisdictions.federal!;
+  } else if (questionJurisdictions.mode === "misc") {
+    primaryJurisdiction = questionJurisdictions.misc!;
+  } else if (questionJurisdictions.mode === "misc_federal") {
+    primaryJurisdiction = questionJurisdictions.misc!;
+    secondaryJurisdiction = questionJurisdictions.federal!;
   }
   
 
-
-
-
   const all_text_citation_pairs: text_citation_document_trio[] =[];
-  for (const row of primary_rows) {
+  for (const row of primaryRows) {
     // Join row.node_text into a single string with '\n' as the delimiter
     let new_text = row.node_text.join('\n');
     let citation = row.node_citation;
@@ -81,70 +84,70 @@ export async function POST(req: Request) {
     const pair: text_citation_document_trio = {
       section_citation: citation,
       text: new_text,
-      document: primary_jurisdiction!.corpusTitle
+      document: primaryJurisdiction!.corpusTitle
     };
     all_text_citation_pairs.push(pair);
   }
-  if (secondary_rows) {
-    for (const row of secondary_rows) {
+  if (secondaryRows) {
+    for (const row of secondaryRows) {
       // Join row.node_text into a single string with '\n' as the delimiter
       let new_text = row.node_text.join('\n');
 
       const pair: text_citation_document_trio = {
         section_citation: row.node_citation,
         text: new_text,
-        document: secondary_jurisdiction!.corpusTitle
+        document: secondaryJurisdiction!.corpusTitle
       };
       all_text_citation_pairs.push(pair);
     }
   }
   
   const all_questions: string[] = [];
-  all_questions.push(legal_question);
-  for (const question of specific_questions) {
+  all_questions.push(refinedQuestion);
+  for (const question of specificQuestions) {
     all_questions.push(question);
   }
 
   try {
-    let direct_answer;
     
 
-    if (mode === "clarifications") {
-      const instructions = await condenseClarificationsIntoInstructions(openai, legal_question, clarifications.clarifications);
-      direct_answer = await generateDirectAnswer(openai, legal_question, instructions, all_text_citation_pairs);
+    if (answerMode === "clarifications") {
+      const instructions = await condenseClarificationsIntoInstructions(request.base, openai, refinedQuestion, clarifications.clarifications);
+      directAnswer = await directAnswerHelper(request.base, openai, refinedQuestion, instructions, all_text_citation_pairs);
     } else {
       const customer_information = "The customer is interested in getting accurate legal information about their question. They are a resident of the applicable jurisdiction. They are looking for a general answer to their question, not specific legal advice. They only want to understand current legislation, not any future or upcoming changes.";
-      const instructions = await generateAnsweringInstructions(openai, legal_question, customer_information, already_answered);
-      //console.log(instructions);
-      direct_answer = await generateDirectAnswer(openai, legal_question, instructions, all_text_citation_pairs);
-      console.log(direct_answer)
+      const instructions = await answeringInstructionsHelper(request.base, openai, refinedQuestion, customer_information, alreadyAnswered);
+      console.log("Finished instructions!")
+      directAnswer = await directAnswerHelper(request.base, openai, refinedQuestion, instructions, all_text_citation_pairs);
+      console.log("Returned from directAnswerHelper!")
+      console.log(directAnswer)
 
     }
 
-    const directAnsweringResponseBody = {
-      directAnswer: direct_answer,
-      statusMessage: 'Successfully generated directAnswer!'
-    };
-
-    const endTime = Date.now();
-    const executionTime = endTime - startTime;
-    await insert_api_debug_log("directAnswering", executionTime, JSON.stringify(requestData), JSON.stringify(directAnsweringResponseBody), false, "", process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!, sessionId);
-
-    const finalResponse = NextResponse.json(directAnsweringResponseBody);
-    finalResponse.headers.set('Access-Control-Allow-Origin', 'https://www.strikingly.com');
-    finalResponse.headers.set('Access-Control-Allow-Methods', 'POST, OPTIONS');
-    finalResponse.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    return finalResponse;
+    
     
   } catch (error) {
-    const endTime = Date.now();
-		let errorMessage = `${error},\n`
+    console.log(error)
+		errorMessage = `${error},\n`
 		if (error instanceof Error) {
 		errorMessage += error.stack;
 		}
-		const executionTime = endTime - startTime;
-		await insert_api_debug_log("directAnswering", executionTime, JSON.stringify(requestData), "{}", true, errorMessage, process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!, sessionId);
-    return NextResponse.json({ errorMessage: `An error occurred in directAnswering: ${error}` });
+		
+  } finally {
+    const baseResponse: BaseResponse = {
+      pipelineModel: request.base.pipelineModel
+    }
+    if (errorMessage !== undefined) {
+      baseResponse.errorMessage = errorMessage;
+    }
+    const response: DirectAnsweringResponse = {
+      base: baseResponse,
+      directAnswer: directAnswer
+      
+    };
+
+    generateApiResponseReport(request.base, API_ROUTE, response?.base.errorMessage )
+    return NextResponse.json(response);
   }
 }
 

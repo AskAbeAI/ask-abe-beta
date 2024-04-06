@@ -21,7 +21,7 @@ import { constructPromptQuery, constructPromptQueryMisc, constructPromptQueryBot
 
 import { useMediaQuery } from 'react-responsive';
 // Import Request, Response types from APIs
-import { QueryScoringRequest, QueryScoringResponse, QueryExpansionRequest, QueryExpansionResponse, SimilaritySearchRequest, SimilaritySearchResponse, QueryClarificationRequest, QueryClarificationResponse, DirectAnsweringRequest, DirectAnsweringResponse } from '@/lib/api_types';
+import { QueryScoringRequest, QueryScoringResponse, QueryExpansionRequest, QueryExpansionResponse, SimilaritySearchRequest, SimilaritySearchResponse, QueryClarificationRequest, QueryClarificationResponse } from '@/lib/api_types';
 
 export default function Playground() {
 
@@ -37,7 +37,6 @@ export default function Playground() {
   const [showCurrentLoading, setShowCurrentLoading] = useState(false);
   const [activeCitationId, setActiveCitationId] = useState<string>('');
   const [inputMode, setInputMode] = useState<string>('Initial');
-  const [abeMemory, setAbeMemory] = useState<AbeMemory>();
   const [primaryRows, setPrimaryRows] = useState<node_as_row[]>([]);
   const [secondaryRows, setSecondaryRows] = useState<node_as_row[]>([]);
 
@@ -211,7 +210,6 @@ export default function Playground() {
     if (!questionText) return;
 
     const memory: AbeMemory = createNewMemory(question, sessionId, questionJurisdictions!)
-    memory.short.specificQuestions = [];
    
    
     // Create a question block and add it
@@ -628,52 +626,48 @@ export default function Playground() {
     await addManyContentBlock(all_citation_blocks);
     
     
-    setAbeMemory(memory);
+    const currentQuestion = memory.short.currentRefinedQuestion!;
+    const currentSpecificQuestions = memory.short.specificQuestions!;
 
-    await directAnswering(memory, pimaryRows, secondaryRows, clarificationResponses, jurisdictions);
+    await directAnswering(currentQuestion, currentSpecificQuestions, pimaryRows, secondaryRows, clarificationResponses, jurisdictions);
 
 
   };
 
-  const directAnswering = async (memory: AbeMemory,
+  const directAnswering = async (
+    user_query: string,
+    specific_questions: string[],
     pimaryRows: node_as_row[],
     secondaryRows: node_as_row[],
     combinedClarifications: Clarification[],
-    questionJurisdiction: questionJurisdictions
+    question_jurisdiction: questionJurisdictions
   ) => {
-    const refinedQuestion = memory.short.currentRefinedQuestion!;
-    const specificQuestions = memory.short.specificQuestions!;
     console.log(questionJurisdictions);
 
-    let user_prompt_query: string = constructPromptQuery(refinedQuestion, questionJurisdictions?.state?.corpusTitle || 'The Country Of ', questionJurisdictions!.federal?.corpusTitle || "USA");
+    let user_prompt_query: string = constructPromptQuery(user_query, questionJurisdictions?.state?.corpusTitle || 'The Country Of ', questionJurisdictions!.federal?.corpusTitle || "USA");
 
     if (questionJurisdictions?.mode === "misc") {
-      user_prompt_query = constructPromptQueryMisc(refinedQuestion, questionJurisdictions?.misc?.corpusTitle || 'This Legal Documentation');
+      user_prompt_query = constructPromptQueryMisc(user_query, questionJurisdictions?.misc?.corpusTitle || 'This Legal Documentation');
     } else if (questionJurisdictions?.mode === "misc_federal") {
-      user_prompt_query = constructPromptQueryBoth(refinedQuestion, questionJurisdictions?.misc?.name!, questionJurisdictions?.federal?.name!);
+      user_prompt_query = constructPromptQueryBoth(user_query, questionJurisdictions?.misc?.name!, questionJurisdictions?.federal?.name!);
     }
-    const requestBody: DirectAnsweringRequest = {
-      base: {
-        vendor: "openai",
-        model: "gpt-4-turbo-preview",
-        callingFunction: "expandQuery",
-        pipelineModel: memory.history.pipelineModel
-      },
-      refinedQuestion: refinedQuestion,
-      specificQuestions: specificQuestions,
-      primaryRows: pimaryRows,
-      secondaryRows: secondaryRows,
-      alreadyAnswered: alreadyAnswered,
+    const requestBody = {
+      legal_question: user_prompt_query,
+      specific_questions: specific_questions,
+      pimary_rows: pimaryRows,
+      secondary_rows: secondaryRows,
+      already_answered: alreadyAnswered,
       clarifications: { clarifications: combinedClarifications } as ClarificationChoices,
-      answerMode: "clarifications",
-      questionJurisdictions: questionJurisdiction
+      mode: "clarifications",
+      question_jurisdiction: question_jurisdiction
     };
     if (!askClarifications || selectedMiscJurisdiction !== undefined) {
-      requestBody.answerMode = "single";
+      requestBody.mode = "single";
     }
 
-    setAlreadyAnswered(alreadyAnswered => [...alreadyAnswered, refinedQuestion]);
-    
+    setAlreadyAnswered(alreadyAnswered => [...alreadyAnswered, user_query]);
+    console.log("  - Sending request to directAnswering API!");
+    console.log(requestBody)
     const response = await fetch('/api/answerQuery/directAnswering', {
       method: 'POST',
       headers: {
@@ -681,8 +675,7 @@ export default function Playground() {
       },
       body: JSON.stringify(requestBody),
     });
-
-    const result: DirectAnsweringResponse = await response.json();
+    const result = await response.json();
     console.log("Received response from directAnswering API!");
 
     const direct_answer: string = result.directAnswer;
@@ -792,9 +785,7 @@ export default function Playground() {
   const followUpQuestionAnswer = async (clarifications: Clarification[], newQuestion?: string) => {
     addNewLoadingBlock(false);
     const input = newQuestion || question;
-    const memory = abeMemory!;
-    memory.short.currentRefinedQuestion = input;
-    await directAnswering(memory, primaryRows, secondaryRows, clarifications, questionJurisdictions!);
+    await directAnswering(input, specificQuestions, primaryRows, secondaryRows, clarifications, questionJurisdictions!);
   };
   
   const setShown = () => {
