@@ -20,7 +20,7 @@ const PageFooter: React.FC = () => {
                     <Link href="/howto" className="text-black text-base font-raleway leading-6 mt-3">How to Use</Link>
                     <Link href="/mission" className="text-black text-base font-raleway leading-6 mt-3">Our Mission</Link>
                     <Link href="/about" className="text-black text-base font-raleway leading-6 mt-3" >About</Link>
-                    <Link href="/devlog" className="text-black text-base font-raleway leading-6 mt-3">DevLog</Link>
+                    {/* <Link href="/devlog" className="text-black text-base font-raleway leading-6 mt-3">DevLog</Link> */}
                   </div>
                 </div>
               </div>
@@ -60,7 +60,7 @@ const PageFooter: React.FC = () => {
       <hr className="bg-black flex shrink-0 h-px flex-col mt-7 max-md:max-w-full max-md:mt-10" />
       <div className="justify-between items-stretch flex w-full gap-5 mt-1 max-md:max-w-full max-md:flex-wrap">
         <div className="text-black text-sm leading-5">
-          © 2023 Ask Abe AI. All rights reserved.
+          © 2024 Ask Abe AI. All rights reserved.
         </div>
         <div className="items-stretch flex justify-between gap-5 max-md:justify-center">
           <Link
