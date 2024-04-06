@@ -77,10 +77,10 @@ const NavBar: React.FC = () => {
                     <ul>
                       {/* Dropdown menu items */}
                       <li className="pt-1"><Link href="/about">About Us</Link></li>
-                      <li className="pt-1"><Link href="/devlog">DevLog</Link></li>
+                      {/* <li className="pt-1"><Link href="/devlog">DevLog</Link></li> */}
                       <li className="pt-1"><Link href="/privacy">Privacy Policy</Link></li>
                       <li className="pt-1"><Link href="/tos">Terms of Service</Link></li>
-                      <li className="pt-1"><Link href="/support">Support Us</Link></li>
+                      {/* <li className="pt-1"><Link href="/support">Support Us</Link></li> */}
                       {/* ... more options ... */}
                     </ul>
                   </div>
@@ -163,10 +163,10 @@ const NavBar: React.FC = () => {
                     <ul>
                       {/* Dropdown menu items */}
                       <li className="pt-1" onClick={handleNav2}><Link href="/about">About Us</Link></li>
-                      <li className="pt-1" onClick={handleNav2}><Link href="/devlog">DevLog</Link></li>
+                      {/* <li className="pt-1" onClick={handleNav2}><Link href="/devlog">DevLog</Link></li> */}
                       <li className="pt-1" onClick={handleNav2}><Link href="/privacy">Privacy Policy</Link></li>
                       <li className="pt-1" onClick={handleNav2}><Link href="/tos">Terms of Service</Link></li>
-                      <li className="pt-1" onClick={handleNav2}><Link href="/support">Support Us</Link></li>
+                      {/* <li className="pt-1" onClick={handleNav2}><Link href="/support">Support Us</Link></li> */}
                       {/* ... more options ... */}
                     </ul>
                   </div>
