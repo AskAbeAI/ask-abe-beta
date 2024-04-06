@@ -113,8 +113,8 @@ export const AnswerBlock: React.FC<AnswerBlockProps> = ({ content, content_list,
   return (
 
     <div className="flex flex-col items-start">
-      <div className={`flex flex-col text-lg md:text-xl lg:text-2xl p-4 bg-response-color text-black rounded-lg shadow`}>
-        <div className="text-lg md:text-xl lg:text-2xl text-black">
+      <div className={`flex flex-col text-lg md:text-lg lg:text-xl p-4 bg-response-color text-black rounded-lg shadow`}>
+        <div className="text-lg md:text-lg lg:text-xl text-black">
           <p>{fullContentElements.slice(0, displayedElementsCount)}</p>
           {content_list && content_list.slice(0, displayedContentCount).map((answer, index) => (
             <li key={index} className="text-black">{answer}</li>
@@ -620,7 +620,7 @@ export const QuestionBlock: React.FC<QuestionBlockProps> = ({ content }) => {
     <div className="flex flex-col items-end">
       <UserIconLabel />
       <div className="p-2 bg-[#B2d2da] rounded-lg shadow">
-        <h3 className="text-lg text-black">{content}</h3>
+        <h3 className="text-xl text-black">{content}</h3>
       </div>
     </div>
   );
@@ -630,12 +630,11 @@ export const QuestionBlock: React.FC<QuestionBlockProps> = ({ content }) => {
 
 export const WelcomeBlock: React.FC = () => {
   return (
-    <div className="p-4 bg-gray-200 rounded-md shadow">
-      <p className="text-lg md:text-xl lg:text-2xl font-semibold">Hello, I&apos;m Abe! Welcome to my law library.  </p>
-      <p className="text-lg md:text-xl lg:text-2xl">
+    <div className="p-4 bg-[#ECECEC] rounded-md shadow">
+      <p className="text-lg md:text-lg lg:text-xl font-semibold">Hello, I&apos;m Abe! Welcome to my law library.  </p>
+      <p className="text-lg md:text-xl lg:text-xl">
        Ask me a legal question, and I can guide you through the relevant legislation.
-      </p>
-      <p className="text-lg md:text-xl lg:text-2xl">
+      
         To get started, choose a jurisdiction in the top right and then enter a question at the bottom!
       </p>
     </div>
