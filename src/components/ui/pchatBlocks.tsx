@@ -113,8 +113,8 @@ export const AnswerBlock: React.FC<AnswerBlockProps> = ({ content, content_list,
   return (
 
     <div className="flex flex-col items-start">
-      <div className={`flex flex-col text-lg md:text-xl lg:text-2xl p-4 bg-response-color text-black rounded-lg shadow`}>
-        <div className="text-lg md:text-xl lg:text-2xl text-black">
+      <div className={`flex flex-col text-lg p-4 bg-response-color font-montserrat text-black rounded-lg shadow`}>
+        <div className="text-lg text-black font-montserrat">
           <p>{fullContentElements.slice(0, displayedElementsCount)}</p>
           {content_list && content_list.slice(0, displayedContentCount).map((answer, index) => (
             <li key={index} className="text-black">{answer}</li>
@@ -216,8 +216,8 @@ export const AnswerVitaliaBlock: React.FC<AnswerVitaliaBlockProps> = ({ content,
   return (
 
     <div className="flex flex-col items-start">
-      <div className={`flex flex-col text-lg p-4 bg-response-color text-black rounded-lg shadow`}>
-        <div className="text-lg text-black whitespace-pre-line">
+      <div className={`flex flex-col text-lg p-4 bg-response-color font-montserrat text-black rounded-lg shadow`}>
+        <div className="text-lg text-black font-montserrat whitespace-pre-line">
           <p className=" whitespace-pre-line">{fullContentElements.slice(0, displayedElementsCount)}</p>
         </div>
       </div>
@@ -245,7 +245,7 @@ export const CitationBlock: React.FC<CitationBlockProps> = ({ citation, link, se
       className="p-4 bg-[#F8F8FA] rounded-lg shadow space-y-2"
       onClick={() => setOpen(true)}
     >
-      <summary className="text-[#2B303A] cursor-pointer">
+      <summary className="font-montserrat text-[#2B303A] cursor-pointer">
         {citation}
       </summary>
       <a href={link} target="_blank" rel="noopener noreferrer">
@@ -381,7 +381,7 @@ export const ClarificationBlock: React.FC<ClarificationBlockProps> = ({
 
     <div className="flex flex-col items-end">
     <UserIconLabel />
-    <div className='flex flex-wrap justify-start p-4 bg-user-color text-black rounded-lg'>
+    <div className='flex flex-wrap justify-start p-4 bg-user-color font-montserrat text-black rounded-lg'>
       {selectedAnswer !== '' ? (
         <p className="text-black" style={{ wordBreak: 'break-word' }}>{selectedAnswer}</p>
       ) : (
@@ -516,7 +516,7 @@ export const ClarificationVitaliaBlock: React.FC<ClarificationVitaliaProps> = ({
 
     <div className="flex flex-col items-end">
       <UserIconLabel />
-      <div className='flex flex-wrap justify-start text-lg p-4 bg-user-color text-black rounded-lg'>
+      <div className='flex flex-wrap justify-start text-lg p-4 bg-user-color font-montserrat text-black rounded-lg'>
         {selectedAnswer !== '' ? (
           <p className="text-black">{selectedAnswer}</p>
         ) : (
@@ -598,7 +598,7 @@ export const ClarificationQuestionBlock: React.FC<ClarificationQuestionBlockProp
 
   return (
     <div className="flex flex-col items-start">
-      <div className={`flex flex-col text-lg p-4 bg-response-color text-black rounded-lg shadow`}>
+      <div className={`flex flex-col text-lg p-4 bg-response-color font-montserrat text-black rounded-lg shadow`}>
         <div className="mb-2">
           <p className="font-semibold">
             {clarifyingQuestion}
@@ -620,7 +620,7 @@ export const QuestionBlock: React.FC<QuestionBlockProps> = ({ content }) => {
     <div className="flex flex-col items-end">
       <UserIconLabel />
       <div className="p-2 bg-[#B2d2da] rounded-lg shadow">
-        <h3 className="text-lg text-black">{content}</h3>
+        <h3 className="font-montserrat text-lg text-black">{content}</h3>
       </div>
     </div>
   );
@@ -631,12 +631,11 @@ export const QuestionBlock: React.FC<QuestionBlockProps> = ({ content }) => {
 export const WelcomeBlock: React.FC = () => {
   return (
     <div className="p-4 bg-gray-200 rounded-md shadow">
-      <p className="text-lg md:text-xl lg:text-2xl font-semibold">Hello, I&apos;m Abe! Welcome to my law library.  </p>
-      <p className="text-lg md:text-xl lg:text-2xl">
+      <p className="text-lg md:text-xl lg:text-2xl p-1 font-semibold">Hello!</p>
+      <p className="text-lg md:text-xl lg:text-2xl pl-1 pb-2 font-semibold">I&apos;m Abe, welcome to my law library.  </p>
+      <p className="text-lg md:text-xl lg:text-2xl p-1">
        Ask me a legal question, and I can guide you through the relevant legislation.
-      </p>
-      <p className="text-lg md:text-xl lg:text-2xl">
-        To get started, choose a jurisdiction in the top right and then enter a question at the bottom!
+        To get started, choose a jurisdiction by clicking the settings icon and then enter a question at the bottom!
       </p>
     </div>
   );
