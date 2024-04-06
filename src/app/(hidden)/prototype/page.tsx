@@ -956,7 +956,8 @@ export default function Playground() {
  
       
       {isMobile && (
-        <div className="justify-center items-center h-screen w-screen">
+        <div className="justify-center items-center h-full w-screen">
+          <NavBar/>
           <JurisdictionModal
             shown={showJurisdictionModal}
             setShown={setShown}
