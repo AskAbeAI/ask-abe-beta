@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
-import { node_as_row, APIUsage } from "@/lib/types";
+import { node_as_row, Node, APIUsage } from "@/lib/types";
 import { match } from 'assert';
 
 
@@ -26,6 +26,81 @@ export async function jurisdiction_similarity_search_all_partitions(
     throw error;
   }
   //console.log(data);
+  return data;
+}
+export async function searchSimilarContent(
+  jurisdiction: string,
+  query_embedding: string,
+  search_scope_id: string,
+  match_threshold: number,
+  max_rows: number,
+  supabaseUrl: string,
+  supabaseKey: string
+): Promise<Node[]> {
+
+  const supabase = createClient(supabaseUrl!, supabaseKey!);
+  const { data, error } = await supabase
+    .rpc(`${jurisdiction}_searchSimilarContent`, {
+      query_embedding: query_embedding,
+      match_threshold: match_threshold,
+      max_rows: max_rows,
+      search_scope_id,
+    });
+  if (error) {
+    console.log(error);
+    throw error;
+  }
+  
+  return data;
+}
+export async function searchSimilarStructure(
+  jurisdiction: string,
+  query_embedding: string,
+  search_scope_id: string,
+  match_threshold: number,
+  max_rows: number,
+  supabaseUrl: string,
+  supabaseKey: string
+): Promise<Node[]> {
+
+  const supabase = createClient(supabaseUrl!, supabaseKey!);
+  const { data, error } = await supabase
+    .rpc(`${jurisdiction}_searchSimilarStructure`, {
+      query_embedding: query_embedding,
+      match_threshold: match_threshold,
+      max_rows: max_rows,
+      search_scope_id,
+    });
+  if (error) {
+    console.log(error);
+    throw error;
+  }
+  
+  return data;
+}
+export async function searchSimilarDefinitions(
+  jurisdiction: string,
+  query_embedding: string,
+  search_scope_id: string,
+  match_threshold: number,
+  max_rows: number,
+  supabaseUrl: string,
+  supabaseKey: string
+): Promise<Node[]> {
+
+  const supabase = createClient(supabaseUrl!, supabaseKey!);
+  const { data, error } = await supabase
+    .rpc(`${jurisdiction}_searchSimilarDefinitions`, {
+      query_embedding: query_embedding,
+      match_threshold: match_threshold,
+      max_rows: max_rows,
+      search_scope_id,
+    });
+  if (error) {
+    console.log(error);
+    throw error;
+  }
+  
   return data;
 }
 

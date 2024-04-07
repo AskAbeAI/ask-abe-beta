@@ -10,31 +10,16 @@ import {
   JurisdictionModal,
 } from "@/components/disclaimermodal";
 // Import data types
-import {
-  ContentType,
-  ContentBlock,
-  ContentBlockParams,
-  CitationBlockProps,
-  Clarification,
-} from "@/lib/types";
-import { node_as_row, ClarificationChoices } from "@/lib/types";
+import { ContentType, ContentBlock, ContentBlockParams, CitationBlockProps, Clarification, Node, AnswerChunk } from "@/lib/types";
+import {  node_as_row, ClarificationChoices} from '@/lib/types';
 
-import CitationBar from "@/components/pcitationBar";
-import OptionsList from "@/components/poptionsFilter";
-import {
-  Option,
-  Jurisdiction,
-  questionJurisdictions,
-  PipelineModel,
-} from "@/lib/types";
+import CitationBar from '@/components/citationBar';
+import OptionsList from '@/components/optionsFilter';
+import { Option, Jurisdiction, questionJurisdictions, PipelineModel } from '@/lib/types';
 
-import {
-  StateJurisdictionOptions,
-  FederalJurisdictionOptions,
-  MiscJurisdictionOptions,
-  ChatOptions,
-} from "@/lib/types";
-import { UiState, Short, Long, History, AbeMemory } from "@/lib/types";
+import { StateJurisdictionOptions, FederalJurisdictionOptions, MiscJurisdictionOptions, ChatOptions } from '@/lib/types';
+import { UiState, Short, Long, History, AbeMemory } from '@/lib/types';
+
 
 // Helper functions
 import {
@@ -46,16 +31,8 @@ import {
 
 import { useMediaQuery } from "react-responsive";
 // Import Request, Response types from APIs
-import {
-  QueryScoringRequest,
-  QueryScoringResponse,
-  QueryExpansionRequest,
-  QueryExpansionResponse,
-  SimilaritySearchRequest,
-  SimilaritySearchResponse,
-  QueryClarificationRequest,
-  QueryClarificationResponse,
-} from "@/lib/api_types";
+import { QueryScoringRequest, QueryScoringResponse, QueryExpansionRequest, QueryExpansionResponse, SimilaritySearchRequest, SimilaritySearchResponse, QueryClarificationRequest, QueryClarificationResponse, SearchSimilarContentRequest, SearchSimilarContentResponse, AnswerNewQuestionRequest, AnswerNewQuestionResponse } from '@/lib/api_types';
+
 
 export default function Playground() {
   const isDesktopOrLaptop = useMediaQuery({ minWidth: 1224 });
@@ -68,10 +45,10 @@ export default function Playground() {
 
   const [streamingQueue, setStreamingQueue] = useState<ContentBlock[]>([]);
   const [showCurrentLoading, setShowCurrentLoading] = useState(false);
-  const [activeCitationId, setActiveCitationId] = useState<string>("");
-  const [inputMode, setInputMode] = useState<string>("Initial");
-  const [primaryRows, setPrimaryRows] = useState<node_as_row[]>([]);
-  const [secondaryRows, setSecondaryRows] = useState<node_as_row[]>([]);
+  const [activeCitationId, setActiveCitationId] = useState<string>('');
+  const [inputMode, setInputMode] = useState<string>('Initial');
+ 
+
 
   // State variables for legal text, database searches
   // State variables for contentBlocks
@@ -97,74 +74,24 @@ export default function Playground() {
     },
   ]);
   const [citationBlocks, setCitationBlocks] = useState<ContentBlock[]>([]);
+  const [jurisdiction, setJurisdiction] = useState<questionJurisdictions>();
 
-  // State variables for prompt logic
-  const [question, setQuestion] = useState("");
 
-  const [clarificationQueue, setClarificationQueue] = useState<
-    ContentBlockParams[]
-  >([]);
-  const [specificQuestions, setSpecificQuestions] = useState<string[]>([]);
-  const [clarificationResponses, setClarificationResponses] = useState<
-    Clarification[]
-  >([]);
-  const [alreadyAnswered, setAlreadyAnswered] = useState([""]);
+
+
 
   // State variables for session
   const [sessionId, setSessionId] = useState<string>("");
-  const [pipelineModel, setPipelineModel] = useState<PipelineModel>();
 
   // State variables for options and jurisdictions
-  const [selectedFederalJurisdiction, setSelectedFederalJurisdiction] =
-    useState<Jurisdiction | undefined>(undefined);
-  const [selectedStateJurisdiction, setSelectedStateJurisdiction] = useState<
-    Jurisdiction | undefined
-  >(undefined);
-  const [selectedMiscJurisdiction, setSelectedMiscJurisdiction] = useState<
-    Jurisdiction | undefined
-  >(undefined);
-  const [questionJurisdictions, setQuestionJurisdictions] =
-    useState<questionJurisdictions>();
+  
 
-  const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
+
   const [askClarifications, setAskClarifications] = useState(false);
   const [showJurisdictionModal, setShowJurisdictionModal] = useState(false);
 
-  useEffect(() => {
-    let mode = "state"; // Default mode
 
-    // Determine the mode based on the current jurisdiction selections
-    if (selectedFederalJurisdiction && selectedStateJurisdiction) {
-      mode = "state_federal";
-    } else if (selectedMiscJurisdiction && selectedFederalJurisdiction) {
-      mode = "misc_federal";
-    } else if (selectedMiscJurisdiction) {
-      mode = "misc";
-    } else if (selectedFederalJurisdiction) {
-      mode = "federal";
-    }
-    console.log("CLEARING EVERYTHING!");
-    setCitationBlocks([]);
-    setSpecificQuestions([]);
-    setClarificationResponses([]);
-    setAlreadyAnswered([]);
-    setActiveCitationId("");
-    setPrimaryRows([]);
-    setSecondaryRows([]);
 
-    setInputMode("Initial");
-
-    setQuestionJurisdictions({
-      mode: mode,
-      state: selectedStateJurisdiction,
-      federal: selectedFederalJurisdiction,
-      misc: selectedMiscJurisdiction,
-    });
-  }, [
-    selectedStateJurisdiction,
-    selectedFederalJurisdiction,
-    selectedMiscJurisdiction,
-  ]);
   // Generate Unique Sessiond IDs here
   function generateSessionID() {
     return `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
@@ -250,281 +177,45 @@ export default function Playground() {
   };
 
   // Logic for starting question answering process
-  const handleNewQuestion = async (question: string) => {
+  const handleNewTextInput = async (textInput: string) => {
     // If no jurisdiction is selected, make the user choose one
-    if (
-      selectedFederalJurisdiction === undefined &&
-      selectedStateJurisdiction === undefined &&
-      selectedMiscJurisdiction === undefined
-    ) {
-      setShowJurisdictionModal(true);
-      return;
-    }
+    
+
     setIsFormVisible(false); // Hide the form when a question is submitted
     // Add the question to the state variable
-    const questionText = question.trim();
-    setQuestion(questionText);
-    if (!questionText) return;
+    const text = textInput.trim();
+    if (!text) return;
 
-    const memory: AbeMemory = createNewMemory(
-      question,
-      sessionId,
-      questionJurisdictions!
-    );
+    const ecfrJurisdiction: questionJurisdictions = {
+      mode: 'federal',
+      state: undefined,
+      federal: { id: '1', name: 'US Federal Regulations', abbreviation: 'ecfr', corpusTitle: 'United States Code of Federal Regulations', usesSubContentNodes: false, jurisdictionLevel: 'federal' },
+      misc: undefined
+    }
+    setJurisdiction(ecfrJurisdiction)
+
+    
+   
 
     // Create a question block and add it
     let newParams: ContentBlockParams = {
       type: ContentType.Question,
-      content: questionText,
+      content: text,
       fake_stream: false,
       concurrentStreaming: false,
     };
     await addContentBlock(createNewBlock(newParams));
 
-    let score = 7;
-    let message_to_user = "";
-    // Only score questions if no misc jurisdiction is selected
-    if (selectedMiscJurisdiction === undefined && askClarifications) {
-      [score, message_to_user] = await scoreQuestion(memory);
-    }
+    const memory: AbeMemory = createNewMemory(text, sessionId, ecfrJurisdiction)
+    memory.short.currentRefinedQuestion = text;
+    let embedding = await expandQuery(memory);
+    memory.short.currentEmbedding = embedding;
 
-    // Do not ask clarifying questions if skipClarifications is true or if a misc jurisdiction is selected
-    if (!askClarifications || selectedMiscJurisdiction !== undefined) {
-      similaritySearch(memory);
-    } else if (score <= 1) {
-      setIsFormVisible(true);
-      return;
-    }
-    // } else {
-    //   newParams = {
-    //     type: ContentType.Answer,
-    //     content: message_to_user,
-    //     fake_stream: true,
-    //     concurrentStreaming: false
-    //   };
-    //   addNewLoadingBlock(true);
-    //   await addContentBlock(createNewBlock(newParams));
-    //   askNewClarification(question_jurisdictions, questionText, "multiple");
-    // }
+    await searchDatabase(memory);
+
+    let answer = await answerQuestion(memory);
   };
 
-  const scoreQuestion = async (
-    memory: AbeMemory
-  ): Promise<[number, string]> => {
-    const currentQuestion: string = memory.short.currentQuestion!;
-    const jurisdictions: questionJurisdictions =
-      memory.long.questionJurisdictions!;
-
-    const maskedQuestion: string = constructPromptQuery(
-      currentQuestion,
-      jurisdictions.state?.corpusTitle || "The Country Of ",
-      jurisdictions.federal?.corpusTitle || "USA"
-    );
-
-    const requestBody: QueryScoringRequest = {
-      base: {
-        vendor: "openai",
-        model: "gpt-4-turbo-preview",
-        callingFunction: "scoreQuestion",
-        pipelineModel: memory.history.pipelineModel,
-      },
-      userQuery: maskedQuestion,
-    };
-    const response = await fetch("/api/improveQuery/queryScoring", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(requestBody),
-    });
-    const result: QueryScoringResponse = await response.json();
-    const score: number = result.qualityScore;
-    const message_to_user: string = result.messageToUser;
-    return [score, message_to_user];
-  };
-
-  // queryClarification API handlers
-  // const askNewClarification = async (memory: AbeMemory) => {
-  //   const state_jurisdiction: string = memory.long.questionJurisdictions!.state?.corpusTitle || "";
-  //   const federal_jurisdiction: string =  memory.long.questionJurisdictions!.federal?.corpusTitle || "USA";
-  //   const userPromptQuery: string = constructPromptQuery(memory.short.currentRefinedQuestion!, state_jurisdiction, federal_jurisdiction);
-
-  //   addNewLoadingBlock(false);
-  //   if (clarificationQueue.length > 0) {
-  //     const newClarificationBlock = clarificationQueue[0];
-  //     await addContentBlock(createNewBlock(newClarificationBlock));
-  //     // Remove the first element from the queue
-  //     setClarificationQueue(clarificationQueue.slice(1));
-  //     return;
-  //   }
-
-  //   const requestBody: QueryClarificationRequest  = {
-  //     base: {
-  //       vendor: "openai",
-  //       model: "gpt-4-turbo-preview",
-  //       callingFunction: "scoreQuestion",
-  //       pipelineModel: memory.history.pipelineModel
-  //     },
-  //     userPromptQuery: userPromptQuery,
-  //     clarificationMode: memory.settings!.clarificationMode!,
-  //   };
-  //   if (memory.settings?.clarificationMode === "single") {
-  //     requestBody.previousClarifications = memory.short.previousClarifications!,
-  //   }
-
-  //   const response = await fetch('/api/improveQuery/queryClarification', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify(requestBody),
-  //   });
-
-  //   const result: QueryClarificationResponse = await response.json();
-
-  //   if (memory.settings!.clarificationMode === "single") {
-  //     const clarification_content: string = result.messages_to_customers[0];
-  //     const clarification: Clarification = result.clarifications[0];
-
-  //     const clarifyingQuestion: string = clarification.question;
-  //     const clarifyingAnswers: string[] = clarification.multiple_choice_answers;
-  //     console.log("Creating new ClarificationQuestionBlock!");
-  //     const params: ContentBlockParams = {
-  //       type: ContentType.ClarificationQuestion,
-  //       content: clarification_content,
-  //       fake_stream: true,
-  //       concurrentStreaming: false,
-  //       clarifyingQuestion: clarifyingQuestion,
-  //       clarifyingAnswers: clarifyingAnswers,
-  //       mode: mode
-  //     };
-  //     await addContentBlock(createNewBlock(params));
-  //   } else {
-  //     const clarification_content: string[] = result.messages_to_customer;
-  //     const clarifications: Clarification[] = result.clarifications;
-
-  //     let firstResult: ContentBlockParams;
-  //     const results: ContentBlockParams[] = [];
-  //     for (let i = 0; i < clarifications.length; i++) {
-  //       const clarification = clarifications[i];
-
-  //       const clarifyingQuestion: string = clarification.question;
-  //       const clarifyingAnswers: string[] = clarification.multiple_choice_answers;
-
-  //       const params: ContentBlockParams = {
-  //         type: ContentType.ClarificationQuestion,
-  //         content: clarification_content[i],
-  //         fake_stream: true,
-  //         concurrentStreaming: false,
-  //         clarifyingQuestion: clarifyingQuestion,
-  //         clarifyingAnswers: clarifyingAnswers,
-  //         mode: mode
-  //       };
-  //       if (i === 0) {
-  //         firstResult = params;
-  //       } else {
-  //         results.push(params);
-  //       }
-
-  //     }
-  //     await addContentBlock(createNewBlock(firstResult!));
-  //     setClarificationQueue(results);
-  //   }
-
-  // };
-
-  // const handleClarificationQuestionDone = async (clarifyingQuestion: string, clarifyingAnswers: string[], mode: string) => {
-  //   console.log("Clarification question done! Adding new clarification block!");
-  //   const params: ContentBlockParams = {
-  //     type: ContentType.Clarification,
-  //     content: "",
-  //     fake_stream: false,
-  //     concurrentStreaming: false,
-  //     clarifyingQuestion: clarifyingQuestion,
-  //     clarifyingAnswers: clarifyingAnswers,
-  //     mode: mode
-  //   };
-  //   await addContentBlock(createNewBlock(params));
-  // };
-
-  // queryRefinement API handlers
-  // const handleQuestionRefinement = async (memory: AbeMemory) => {
-  //   // Get clarifying questions as string[] from all (non dismissed) clarification blocks
-  //   addNewLoadingBlock(false);
-  //   const clarificationChoices: ClarificationChoices = {
-  //     clarifications: clarifications
-  //   };
-  //   if (!clarificationChoices) {
-  //     throw new Error("Clarification choices not found!");
-  //   }
-  //   let clarifyingQuestions: string[] = [];
-  //   let clarifyingAnswers: string[] = [];
-
-  //   for (const clarification of clarificationChoices.clarifications) {
-  //     const answer = clarification.response;
-  //     if (answer !== "Prefer Not To Respond") {
-  //       clarifyingQuestions.push(clarification.question);
-  //       clarifyingAnswers.push(clarification.response);
-  //     }
-  //   }
-  //   //console.log(clarifyingQuestions);
-
-  //   const requestBody = {
-  //     original_question: question,
-  //     clarifyingQuestions: clarifyingQuestions,
-  //     clarifyingAnswers: clarifyingAnswers
-  //   };
-
-  //   const response = await fetch('/api/improveQuery/queryRefinement', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify(requestBody),
-  //   });
-
-  //   // After the streaming is finished, extract the question from result (question is surrounded by " ")
-  //   const result = await response.json();
-  //   const refined_question = result.refined_question;
-  //   const specific_questions = result.specific_questions;
-  //   setSpecificQuestions(specific_questions);
-  //   const customer_message: string[] = result.customer_messages;
-  //   customer_message.push("I will now start my in-depth legal research process. Please be patient, as this may take a little time to ensure accuracy and thoroughness.");
-  //   console.log(result);
-  //   setQuestion(refined_question);
-
-  //   // Create an approval block
-  //   const newParams: ContentBlockParams = {
-  //     type: ContentType.Answer,
-  //     content: "Thank you for your responses.",
-  //     content_list: customer_message,
-  //     fake_stream: true,
-  //     concurrentStreaming: false
-  //   };
-  //   await addContentBlock(createNewBlock(newParams));
-  //   similaritySearch(memory);
-  // };
-
-  // const handleClarificationAnswer = (response: Clarification, mode: string) => {
-  //   // Append the response to the clarificationResponses state
-  //   console.log("Handling clarification answer!");
-  //   const clarifications: Clarification[] = clarificationResponses;
-  //   clarifications.push(response);
-  //   setClarificationResponses(clarifications);
-
-  //   // Move to the next clarification or proceed if done
-  //   if (clarificationQueue.length > 0) {
-  //     //askNewClarification(questionJurisdictions, question, "multiple");
-  //   } else {
-  //     if (mode === "multiple") {
-  //       handleQuestionRefinement(clarifications);
-  //     } else {
-  //       followUpQuestionAnswer(clarifications);
-  //     }
-  //   }
-  // };
-
-  // queryExpansion API handlers
   const expandQuery = async (memory: AbeMemory): Promise<number[]> => {
     const requestBody: QueryExpansionRequest = {
       base: {
@@ -549,14 +240,9 @@ export default function Playground() {
     return embedding;
   };
 
-  // similaritySearch API handler
-  const similaritySearch = async (memory: AbeMemory) => {
-    // Expand the query and then return the embedding
-
+  const searchDatabase = async (memory: AbeMemory) => {
     const query_expansion_embedding = await expandQuery(memory);
-    addNewLoadingBlock(false);
-
-    const requestBody: SimilaritySearchRequest = {
+    const requestBody: SearchSimilarContentRequest = {
       base: {
         vendor: "openai",
         model: "gpt-4-turbo-preview",
@@ -566,319 +252,85 @@ export default function Playground() {
       jurisdictions: memory.long.questionJurisdictions!,
       query_expansion_embedding: query_expansion_embedding,
     };
-    const response = await fetch("/api/searchDatabase/similaritySearch", {
-      method: "POST",
+    const response = await fetch('/api/prototype/search/similarContent', {
+      method: 'POST',
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(requestBody),
     });
-
-    const result: SimilaritySearchResponse = await response.json();
-    console.log(result);
-
-    const pimaryRows: node_as_row[] = result.primaryRows;
-    const secondaryRows: node_as_row[] = result.secondaryRows;
-    setPrimaryRows(pimaryRows);
-    setSecondaryRows(secondaryRows);
-    //console.log(pimaryRows)
-
-    const jurisdictions: questionJurisdictions =
-      memory.long.questionJurisdictions!;
-
-    let primaryJurisdiction;
-    let secondaryJurisdiction;
-    if (jurisdictions.mode === "misc") {
-      primaryJurisdiction = jurisdictions.misc! as Jurisdiction;
-    } else if (
-      jurisdictions.mode === "state" ||
-      jurisdictions.mode === "state_federal"
-    ) {
-      primaryJurisdiction = jurisdictions.state! as Jurisdiction;
-      if (jurisdictions.mode === "state_federal") {
-        secondaryJurisdiction = jurisdictions.federal! as Jurisdiction;
-      }
-    } else {
-      primaryJurisdiction = jurisdictions.federal! as Jurisdiction;
-    }
-    if (jurisdictions.mode === "misc_federal") {
-      primaryJurisdiction = jurisdictions.misc! as Jurisdiction;
-      secondaryJurisdiction = jurisdictions.federal! as Jurisdiction;
-    }
-
-    const all_citation_blocks: ContentBlock[] = [];
-
-    // Create citation blocks for each parent node
-    const primary_citation_blocks: ContentBlock[] = [];
-    for (const row of pimaryRows) {
-      //console.log(row)
-      let possible_citation = row.node_citation;
-      console.log(possible_citation);
-      if (possible_citation === undefined || possible_citation === null) {
-        possible_citation = row.node_name;
-      }
-      if (possible_citation === undefined || possible_citation === null) {
-        possible_citation = row.node_id.split("/").pop()!;
-      }
-
-      const section_text: string[] = row.node_text;
-      const citation: string = possible_citation;
-      const link: string = row.node_link;
-      //console.log(citation);
-
-      const citationProps: CitationBlockProps = {
-        citation: citation,
-        jurisdictionName: primaryJurisdiction.corpusTitle,
-        link: link,
-        section_text: section_text,
-        setOpen: setCitationsOpen,
-        open: citationsOpen,
-      };
-      const newParams: ContentBlockParams = {
-        type: ContentType.Citation,
-        content: "",
-        fake_stream: false,
-        concurrentStreaming: false,
-        citationProps: citationProps,
-      };
-      const block = createNewBlock(newParams);
-      primary_citation_blocks.push(block);
-    }
-    all_citation_blocks.push(...primary_citation_blocks);
-
-    if (secondaryRows.length > 0) {
-      let jurisdictionName = secondaryJurisdiction!.corpusTitle;
-      const secondary_citation_blocks: ContentBlock[] = [];
-      for (const row of secondaryRows) {
-        let possible_citation = row.node_citation;
-        console.log(possible_citation);
-        if (possible_citation === undefined || possible_citation === null) {
-          possible_citation = row.node_name.split(" ")[0];
-        }
-        const section_text: string[] = row.node_text;
-        const citation: string = possible_citation;
-        const link: string = row.node_link;
-        const citationProps: CitationBlockProps = {
-          citation: citation,
-          jurisdictionName: jurisdictionName,
-          link: link,
-          section_text: section_text,
-          setOpen: setCitationsOpen,
-          open: citationsOpen,
-        };
-        const newParams: ContentBlockParams = {
-          type: ContentType.Citation,
-          content: jurisdictionName,
-          fake_stream: false,
-          concurrentStreaming: false,
-          citationProps: citationProps,
-        };
-        const block = createNewBlock(newParams);
-        secondary_citation_blocks.push(block);
-      }
-      all_citation_blocks.push(...secondary_citation_blocks);
-    }
-
-    await addManyContentBlock(all_citation_blocks);
-
-    const currentQuestion = memory.short.currentRefinedQuestion!;
-    const currentSpecificQuestions = memory.short.specificQuestions!;
-
-    await directAnswering(
-      currentQuestion,
-      currentSpecificQuestions,
-      pimaryRows,
-      secondaryRows,
-      clarificationResponses,
-      jurisdictions
-    );
+    const result: SearchSimilarContentResponse = await response.json();
+    const rows: Node[] = result.primaryRows;
+    memory.long.prototypeRows = rows;
+    return;
   };
 
-  const directAnswering = async (
-    user_query: string,
-    specific_questions: string[],
-    pimaryRows: node_as_row[],
-    secondaryRows: node_as_row[],
-    combinedClarifications: Clarification[],
-    question_jurisdiction: questionJurisdictions
-  ) => {
-    console.log(questionJurisdictions);
-
-    let user_prompt_query: string = constructPromptQuery(
-      user_query,
-      questionJurisdictions?.state?.corpusTitle || "The Country Of ",
-      questionJurisdictions!.federal?.corpusTitle || "USA"
-    );
-
-    if (questionJurisdictions?.mode === "misc") {
-      user_prompt_query = constructPromptQueryMisc(
-        user_query,
-        questionJurisdictions?.misc?.corpusTitle || "This Legal Documentation"
-      );
-    } else if (questionJurisdictions?.mode === "misc_federal") {
-      user_prompt_query = constructPromptQueryBoth(
-        user_query,
-        questionJurisdictions?.misc?.name!,
-        questionJurisdictions?.federal?.name!
-      );
-    }
-    const requestBody = {
-      legal_question: user_prompt_query,
-      specific_questions: specific_questions,
-      pimary_rows: pimaryRows,
-      secondary_rows: secondaryRows,
-      already_answered: alreadyAnswered,
-      clarifications: {
-        clarifications: combinedClarifications,
-      } as ClarificationChoices,
-      mode: "clarifications",
-      question_jurisdiction: question_jurisdiction,
-    };
-    if (!askClarifications || selectedMiscJurisdiction !== undefined) {
-      requestBody.mode = "single";
-    }
-
-    setAlreadyAnswered((alreadyAnswered) => [...alreadyAnswered, user_query]);
-    console.log("  - Sending request to directAnswering API!");
-    console.log(requestBody);
-    const response = await fetch("/api/answerQuery/directAnswering", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(requestBody),
-    });
-    const result = await response.json();
-    console.log("Received response from directAnswering API!");
-
-    const direct_answer: string = result.directAnswer;
-    console.log(direct_answer);
-    const params: ContentBlockParams = {
-      type: ContentType.Answer,
-      content: direct_answer,
-      fake_stream: true,
-      concurrentStreaming: false,
-    };
-    await addContentBlock(createNewBlock(params));
-    setIsFormVisible(true);
-    setInputMode("followup");
-    return direct_answer;
-  };
-
-  const handleOptionChange = (options: Option[]) => {
-    for (const option of options) {
-      console.log(option);
-      if (option.name === "Skip Clarifying Questions") {
-        console.log(`Setting skip clarifications to ${option.selected}`);
-        setAskClarifications(option.selected);
-      }
-    }
-  };
-
-  const scoreNewFollowupQuestion = async (
-    question: string
-  ): Promise<[number, string]> => {
-    let score: number = 7;
-    if (questionJurisdictions!.mode !== "misc") {
-      const user_prompt_query: string = constructPromptQuery(
-        question,
-        selectedStateJurisdiction?.corpusTitle || "",
-        selectedFederalJurisdiction?.corpusTitle || "USA"
-      );
-
-      const requestBody = {
-        user_prompt_query: user_prompt_query,
-        previous_clarifications: clarificationResponses,
-        already_answered: alreadyAnswered,
+  const answerQuestion = async (
+      memory: AbeMemory
+    ) => {
+      let refinedQuestion: string = constructPromptQuery(memory.short.currentRefinedQuestion!, "Code of Federal Regulations", "United States of America");
+  
+      const requestBody: AnswerNewQuestionRequest = {
+        base: {
+          vendor: "openai",
+          model: "gpt-4-turbo-preview",
+          callingFunction: "expandQuery",
+          pipelineModel: memory.history.pipelineModel
+        },
+        refinedQuestion: refinedQuestion,
+        primaryRows: memory.long.prototypeRows!,
+        questionJurisdictions: memory.long.questionJurisdictions!
       };
-      const response = await fetch("/api/answerQuery/scoreFollowup", {
-        method: "POST",
+      
+  
+      
+      
+    const response = await fetch('/api/prototype/answer/newQuestion', {
+        method: 'POST',
+
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(requestBody),
       });
-      const result = await response.json();
-      score = result.do_new_research_score;
-    }
-    let message_to_user;
-    if (score < 2) {
-      message_to_user =
-        "I am not confident in my ability to answer this question with my current research. Please give me a moment to retrieve more relevant information. I apologize for the inconvenience, but I am committed to providing you with only the most relevant legal information.";
-    } else {
-      message_to_user = "";
-    }
-    return [score, message_to_user];
-  };
+  
+      const result: AnswerNewQuestionResponse = await response.json();
+      console.log("Received response from directAnswering API!");
+  
+      const direct_answer: AnswerChunk[] = result.directAnswer;
+      const formattedAnswer = formatAnswer(direct_answer);
+      console.log(formattedAnswer);
 
-  const handleNewFollowupQuestion = async (question: string) => {
-    console.log("NEW QUESTION: " + question);
-    setIsFormVisible(false);
-    const questionText = question.trim();
-    const [score, message_to_user] =
-      await scoreNewFollowupQuestion(questionText);
-    if (score < 2) {
-      // Create new Answer block with message_to_user
-      const newParams: ContentBlockParams = {
+
+      const params: ContentBlockParams = {
+
         type: ContentType.Answer,
-        content: message_to_user,
+        content: formattedAnswer,
         fake_stream: true,
         concurrentStreaming: false,
       };
-      await addContentBlock(createNewBlock(newParams));
-      // Start over, reset ALL necessary states
-      setCitationBlocks([]);
-      setSpecificQuestions([]);
-      setClarificationResponses([]);
-      setAlreadyAnswered([]);
-      setActiveCitationId("");
-      setPrimaryRows([]);
-      setSecondaryRows([]);
-      setInputMode("Initial");
-      handleNewQuestion(questionText);
-      return;
-    }
-    setQuestion(questionText);
-    if (!questionText) return;
+      await addContentBlock(createNewBlock(params));
+      setIsFormVisible(true);
+      setInputMode("followup");
+      return direct_answer;
 
-    // Create a question block
-    let newParams: ContentBlockParams = {
-      type: ContentType.Question,
-      content: questionText,
-      fake_stream: false,
-      concurrentStreaming: false,
     };
-    await addContentBlock(createNewBlock(newParams));
 
-    if (!askClarifications || selectedMiscJurisdiction !== undefined) {
-      followUpQuestionAnswer(clarificationResponses, questionText);
-    } //else {
-    //askNewClarification(questionJurisdictions, questionText, "single", { clarifications: clarificationResponses });
-    //}
-  };
-
-  const followUpQuestionAnswer = async (
-    clarifications: Clarification[],
-    newQuestion?: string
-  ) => {
-    addNewLoadingBlock(false);
-    const input = newQuestion || question;
-    await directAnswering(
-      input,
-      specificQuestions,
-      primaryRows,
-      secondaryRows,
-      clarifications,
-      questionJurisdictions!
-    );
-  };
+  
+  
 
   const setShown = () => {
     setShowJurisdictionModal(false);
   };
   const dummyFunction = async () => {
     return;
-  };
+  }
+  function formatAnswer(chunks: AnswerChunk[]): string {
+    return chunks
+      .map(chunk => `${chunk.answerTopic}\n${chunk.text}`)
+      .join('\n\n');
+  }
+
 
   return (
     <div>
@@ -931,8 +383,8 @@ export default function Playground() {
             {isFormVisible && (
               <BottomBar
                 inputMode={inputMode}
-                handleSubmit={handleNewQuestion}
-                handleSubmitFollowup={handleNewFollowupQuestion}
+                handleSubmit={handleNewTextInput}
+                handleSubmitFollowup={handleNewTextInput}
               />
             )}
 
@@ -951,6 +403,7 @@ export default function Playground() {
             </div>
           </div>
         </div>
+
       </div>
       )}
  
@@ -1003,8 +456,8 @@ export default function Playground() {
               {isFormVisible && (
                 <BottomBar
                   inputMode={inputMode}
-                  handleSubmit={handleNewQuestion}
-                  handleSubmitFollowup={handleNewFollowupQuestion}
+                  handleSubmit={handleNewTextInput}
+                  handleSubmitFollowup={handleNewTextInput}
                 />
               )}
 
@@ -1014,10 +467,10 @@ export default function Playground() {
                   federalJurisdictions={FederalJurisdictionOptions}
                   miscJurisdictions={MiscJurisdictionOptions}
                   options={ChatOptions}
-                  onOptionChange={handleOptionChange}
-                  onStateJurisdictionChange={setSelectedStateJurisdiction}
-                  onFederalJurisdictionChange={setSelectedFederalJurisdiction}
-                  onMiscJurisdictionChange={setSelectedMiscJurisdiction}
+                  onOptionChange={dummyFunction}
+                  onStateJurisdictionChange={dummyFunction}
+                  onFederalJurisdictionChange={dummyFunction}
+                  onMiscJurisdictionChange={dummyFunction}
                 />
                 {/* Other parts of your application */}
               </div>
