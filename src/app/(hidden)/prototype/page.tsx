@@ -394,10 +394,10 @@ export default function Playground() {
                 federalJurisdictions={FederalJurisdictionOptions}
                 miscJurisdictions={MiscJurisdictionOptions}
                 options={ChatOptions}
-                onOptionChange={handleOptionChange}
-                onStateJurisdictionChange={setSelectedStateJurisdiction}
-                onFederalJurisdictionChange={setSelectedFederalJurisdiction}
-                onMiscJurisdictionChange={setSelectedMiscJurisdiction}
+                onOptionChange={dummyFunction}
+                onStateJurisdictionChange={dummyFunction}
+                onFederalJurisdictionChange={dummyFunction}
+                onMiscJurisdictionChange={dummyFunction}
               />
               {/* Other parts of your application */}
             </div>
