@@ -7,6 +7,12 @@ type BaseLevels = "jurisdiction" | "subjurisdiction" | "corpus"
 type AllowedLevels =     "title" | "subtitle" | "code" | "part" | "subpart" | "division" | "subdivision" | "article" | "subarticle" | "chapter" | "subchapter" | "subject-group" | "section" | "appendix" | "hub"; // Extend as needed
 const ALLOWED_LEVELS: AllowedLevels[] = ["title", "subtitle", "code", "part", "subpart", "division", "subdivision", "article", "subarticle", "chapter", "subchapter", "subject-group", "section", "appendix", "hub"];
 
+export interface TreeNode {
+  id: string;
+  name: string;
+  children: TreeNode[];
+}
+
 export interface UiState {
   isMobile: boolean;
   isDesktopOrLaptop: boolean;

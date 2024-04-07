@@ -5,6 +5,9 @@ import React, { useState, useEffect } from "react";
 import NavBar from "@/components/pnavBar";
 import BottomBar from "@/components/pbottombar";
 import ContentQueue from "@/components/pcontentQueue";
+import DynamicDropdown from "@/components/sectionDropdown";
+import { TreeNode } from "@/lib/types";
+import treeData from "/Users/madelinekaufman/VS_Code_Projects/AskAbe-1207/ask-abe-beta/public/data/treeData.json";
 import {
   DisclaimerModal,
   JurisdictionModal,
@@ -73,6 +76,17 @@ export default function Playground() {
   const [primaryRows, setPrimaryRows] = useState<node_as_row[]>([]);
   const [secondaryRows, setSecondaryRows] = useState<node_as_row[]>([]);
 
+  // Testing dynamic dropdown
+  const [dropdowns, setDropdowns] = useState([{ level: 1, data: treeData }]);
+
+  const handleChange = (selectedTreeNode: TreeNode | null, level: number) => {
+    if (selectedTreeNode) {
+      const newLevelData = selectedTreeNode.children || [];
+      setDropdowns(current => [...current.slice(0, level), { level: level + 1, data: newLevelData }]);
+    } else {
+      setDropdowns(current => current.slice(0, level));
+    }
+  };
   // State variables for legal text, database searches
   // State variables for contentBlocks
   const [contentBlocks, setContentBlocks] = useState<ContentBlock[]>([
@@ -886,78 +900,18 @@ export default function Playground() {
       {isDesktopOrLaptop && (
         <div className="justify-center items-center h-screen ">
           <NavBar />
-        <JurisdictionModal
-          shown={showJurisdictionModal}
-          setShown={setShown}
-        />
-
-        <DisclaimerModal />
-
-        <div
-          className={`w-full ${citationsOpen ? "hidden" : ""}`}
-          
-        >
-          <div
-            className="overflow-y-auto w-full "
-            style={{ minHeight: "90vh", maxHeight: "90vh" }}
-          >
-            <ContentQueue
-              items={contentBlocks}
-              onSubmitClarificationAnswers={dummyFunction}
-              onSubmitClarificationVitaliaAnswers={dummyFunction}
-              onClarificationStreamEnd={dummyFunction}
-              onStreamEnd={onStreamEnd}
-              showCurrentLoading={showCurrentLoading}
-              onFinishAnswerVitalia={dummyFunction}
-              setActiveCitationId={setActiveCitationId}
-            />
-          </div>
-          <div className="inset-x-0 bottom-0 flex justify-between items-center">
-            <div
-              className="pl-10"
-              style={{ width: citationsOpen ? "100%" : "10%" }}
-            >
-              <div className="" style={{ maxHeight: "90vh" }}>
-                <CitationBar
-                  open={citationsOpen}
-                  setOpen={setCitationsOpen}
-                  citationItems={citationBlocks}
-                  activeCitationId={activeCitationId}
-                />
-              </div>
-            </div>
-
-            {/* BottomBar */}
-            {isFormVisible && (
-              <BottomBar
-                inputMode={inputMode}
-                handleSubmit={handleNewQuestion}
-                handleSubmitFollowup={handleNewFollowupQuestion}
-              />
-            )}
-
-            <div className="pr-10">
-              <OptionsList
-                stateJurisdictions={StateJurisdictionOptions}
-                federalJurisdictions={FederalJurisdictionOptions}
-                miscJurisdictions={MiscJurisdictionOptions}
-                options={ChatOptions}
-                onOptionChange={handleOptionChange}
-                onStateJurisdictionChange={setSelectedStateJurisdiction}
-                onFederalJurisdictionChange={setSelectedFederalJurisdiction}
-                onMiscJurisdictionChange={setSelectedMiscJurisdiction}
-              />
-              {/* Other parts of your application */}
-            </div>
-          </div>
-        </div>
-      </div>
-      )}
- 
-      
-      {isMobile && (
-        <div className="justify-center items-center h-full w-screen">
-          <NavBar/>
+              {/* <div className="justify-center items-center h-screen">
+                <div className="p-4">
+                  {dropdowns.map(({ level, data }) => (
+                    <DynamicDropdown
+                      key={level}
+                      data={data as TreeNode[]} // Update the type of the data prop
+                      level={level}
+                      onChange={handleChange}
+                    />
+                  ))}
+                </div>
+              </div> */}
           <JurisdictionModal
             shown={showJurisdictionModal}
             setShown={setShown}
@@ -965,10 +919,74 @@ export default function Playground() {
 
           <DisclaimerModal />
 
-          <div
-            className={`w-full ${citationsOpen ? "hidden" : ""}`}
-            
-          >
+          <div className={`w-full ${citationsOpen ? "hidden" : ""}`}>
+            <div
+              className="overflow-y-auto w-full "
+              style={{ minHeight: "90vh", maxHeight: "90vh" }}
+            >
+              <ContentQueue
+                items={contentBlocks}
+                onSubmitClarificationAnswers={dummyFunction}
+                onSubmitClarificationVitaliaAnswers={dummyFunction}
+                onClarificationStreamEnd={dummyFunction}
+                onStreamEnd={onStreamEnd}
+                showCurrentLoading={showCurrentLoading}
+                onFinishAnswerVitalia={dummyFunction}
+                setActiveCitationId={setActiveCitationId}
+              />
+            </div>
+            <div className="inset-x-0 bottom-0 flex justify-between items-center">
+              <div
+                className="pl-10"
+                style={{ width: citationsOpen ? "100%" : "10%" }}
+              >
+                <div className="" style={{ maxHeight: "90vh" }}>
+                  <CitationBar
+                    open={citationsOpen}
+                    setOpen={setCitationsOpen}
+                    citationItems={citationBlocks}
+                    activeCitationId={activeCitationId}
+                  />
+                </div>
+              </div>
+
+              {/* BottomBar */}
+              {isFormVisible && (
+                <BottomBar
+                  inputMode={inputMode}
+                  handleSubmit={handleNewQuestion}
+                  handleSubmitFollowup={handleNewFollowupQuestion}
+                />
+              )}
+
+              <div className="pr-10">
+                <OptionsList
+                  stateJurisdictions={StateJurisdictionOptions}
+                  federalJurisdictions={FederalJurisdictionOptions}
+                  miscJurisdictions={MiscJurisdictionOptions}
+                  options={ChatOptions}
+                  onOptionChange={handleOptionChange}
+                  onStateJurisdictionChange={setSelectedStateJurisdiction}
+                  onFederalJurisdictionChange={setSelectedFederalJurisdiction}
+                  onMiscJurisdictionChange={setSelectedMiscJurisdiction}
+                />
+                {/* Other parts of your application */}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {isMobile && (
+        <div className="justify-center items-center h-full w-screen">
+          <NavBar />
+          <JurisdictionModal
+            shown={showJurisdictionModal}
+            setShown={setShown}
+          />
+
+          <DisclaimerModal />
+
+          <div className={`w-full ${citationsOpen ? "hidden" : ""}`}>
             <div
               className="overflow-y-auto w-full "
               style={{ minHeight: "90vh", maxHeight: "90vh" }}
