@@ -1,6 +1,6 @@
 import * as prompts from './prompts';
 import { createChatCompletion, getEmbedding, createChatCompletionNew } from "./chatCompletion";
-import { Clarification, text_citation_pair, text_citation_document_trio, APIParameters, APIParametersParams, PipelineModel, PhaseReport, PhaseType} from "./types";
+import { Clarification, text_citation_pair, text_citation_document_trio, APIParameters, APIParametersParams, PipelineModel, PhaseReport, PhaseType, Node, AnswerChunk} from "./types";
 import { OpenAI } from "openai";
 import { BaseRequest } from './api_types';
 
@@ -208,6 +208,40 @@ export const directAnswerHelper = async (base: BaseRequest, openai: OpenAI, refi
   const directAnswer: string = JSON.parse(response).directAnswer;
   return directAnswer;
 };
+
+export const answerNewQuestionHelper = async (base: BaseRequest, openai: OpenAI, refinedQuestion: string, instructions: string, rows: Node[]): Promise<[AnswerChunk]> => {
+  let sectionList: string[] = [];
+  for(let i = 0; i < rows.length; i++) {
+    let current = rows[i]!
+    sectionList.push(current.nodeText!.displayTreeAsJson(current.number!, current.nodeName!))
+  }
+
+  const [messages, ragTokens] = prompts.answerNewQuestion(refinedQuestion, instructions, sectionList);
+
+  const params = new APIParameters({
+    vendor: base.vendor,
+    model: base.model,
+    messages: messages, // Assuming new_messages is an array of Message objects
+    temperature: 0.4, // Temperature
+    rag_tokens: ragTokens,
+    stream: false, // Stream
+    calling_function:"answerNewQuestionHelper", // Calling function
+    response_format:{ type: "json_object" }
+  });
+  const [response, api_usage] = await createChatCompletionNew(params, false, openai);
+  console.log(response)
+  if (response === undefined) {
+    throw new Error("Undefined completion response!")
+  }
+  
+  api_usage.session_id = base.pipelineModel.session_id;
+  api_usage.insert()
+
+  const directAnswer: [AnswerChunk] = JSON.parse(response).answer;
+
+  return directAnswer;
+};
+
 
 export const generateDirectAnswerSimple = async (openai: OpenAI, user_prompt_query: string, instructions: string, all_text_citation_pairs: text_citation_pair[]): Promise<string> => {
   const params = prompts.getPromptDirectAnsweringSimple(user_prompt_query, instructions, all_text_citation_pairs, false);

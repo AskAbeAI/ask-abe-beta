@@ -23,7 +23,8 @@ export interface Short {
   lastUserInput: string;
 
   currentQuestion?: string;
-  currentRefinedQuestion?: string
+  currentRefinedQuestion?: string;
+  currentEmbedding?: number[];
 
   specificQuestions?: string[];
   previousClarifications?: Clarification[];
@@ -34,6 +35,7 @@ export interface Long {
   previousQuestions?: string[]
   primaryRows?: node_as_row;
   secondaryRows?: node_as_row;
+  prototypeRows?: Node[];
 }
 export interface History {
   messages: Message[];
@@ -328,6 +330,11 @@ export type node_as_row = {
   similarity: number;
   
 };
+
+export interface AnswerChunk {
+  answerTopic: string;
+  text: string;
+}
 
 
 // OpenAI API Types
@@ -852,18 +859,60 @@ class NodeText {
     this.length = length;
   }
 
-  // Example method: Add a new paragraph
-  addParagraph(paragraphId: string, paragraph: Paragraph): void {
-    if (!this.paragraphs[paragraphId]) {
-      this.paragraphs[paragraphId] = paragraph;
-      this.length++;
+  private _displayTreeJson(rootId?: string, level: number = 1): any {
+    if (!rootId) {
+      rootId = this.root_paragraphId;
     }
+
+    let tree: any = {};
+    // Check if the rootId is in paragraphs to ensure it's a valid starting point.
+    if (this.paragraphs[rootId]) {
+      const rootParagraph = this.paragraphs[rootId];
+      // Initialize the object for the root paragraph with text and an empty children object.
+      tree[rootId] = { text: rootParagraph.text, children: {} };
+
+      for (const childId of rootParagraph.children) {
+        // Recursively build the tree for each child.
+        const childTree = this._displayTreeJson(childId, level + 1);
+        if (childTree) {
+          // Directly add the child tree without repeating the child ID as a key inside its own object.
+          Object.assign(tree[rootId].children, childTree);
+        }
+      }
+    } else {
+      // If rootId is not a valid key in paragraphs, attempt to build trees for paragraphs without a parent.
+      for (const [id, paragraph] of Object.entries(this.paragraphs)) {
+        if (paragraph.parent === this.root_paragraphId) {
+          const childTree = this._displayTreeJson(id, level);
+          if (childTree) {
+            Object.assign(tree, childTree);
+          }
+        }
+      }
+    }
+
+    return tree;
   }
 
-  // Example method: Get a paragraph by its ID
-  getParagraph(paragraphId: string): Paragraph | undefined {
-    return this.paragraphs[paragraphId];
+  displayTreeAsJson(sectionCitation: string, sectionName: string): any {
+    // Assuming _displayTreeJson is a method in this class that returns
+    // a nested dictionary (object in TypeScript) representing the tree
+    const treeDict = this._displayTreeJson(); // Assume this method exists and is implemented
+
+    // Construct the JSON representation of the section with the nested tree
+    const sectionJson = {
+      Section: {
+        name: sectionName,
+        citation: sectionCitation,
+        Content: treeDict,
+      },
+    };
+
+    return sectionJson;
   }
+
+
+
 }
 
 
@@ -1020,6 +1069,7 @@ interface NodeConstructorParams {
   hydeEmbedding?: string;
   dateCreated?: Date;
   dateModified?: Date;
+  similarity?: number;
 }
 // # Infastructure Node Type
 export class Node {
@@ -1065,6 +1115,9 @@ export class Node {
   dateCreated?: Date; // Assuming usage of JavaScript Date object
   dateModified?: Date;
 
+  // Similarity Fields:
+  similarity?: number;
+
   constructor(params: NodeConstructorParams) {
     this.id = params.id;
     this.citation = params.citation;
@@ -1094,6 +1147,7 @@ export class Node {
     this.hydeEmbedding = params.hydeEmbedding;
     this.dateCreated = params.dateCreated || new Date(); // Defaulting to current date if not provided
     this.dateModified = params.dateModified || new Date(); // Defaulting to current date if not provided
+    this.similarity = params.similarity || undefined;
   }
 }
 
