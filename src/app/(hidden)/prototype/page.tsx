@@ -5,7 +5,6 @@ import React, { useState, useEffect } from "react";
 import NavBar from "@/components/pnavBar";
 import BottomBar from "@/components/pbottombar";
 import ContentQueue from "@/components/pcontentQueue";
-import DynamicDropdown from "@/components/sectionDropdown";
 import { TreeNode } from "@/lib/types";
 import LegislationTreeView from '@/components/legislationTreeView';
 import legislationData from '../../../../public/treedata/title1.json'; // Adjust the path as necessary
