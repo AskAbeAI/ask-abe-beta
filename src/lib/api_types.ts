@@ -1,4 +1,4 @@
-import { PipelineModel, questionJurisdictions, node_as_row, ClarificationChoices } from './types';
+import { PipelineModel, questionJurisdictions, node_as_row, ClarificationChoices, Node, AnswerChunk } from './types';
 
 export interface BaseRequest {
     vendor: string;
@@ -47,6 +47,18 @@ export interface SimilaritySearchResponse {
     secondaryRows: node_as_row[];
 }
 
+export interface SearchSimilarContentRequest {
+    base: BaseRequest;
+    jurisdictions: questionJurisdictions;
+    query_expansion_embedding: number[];
+    parentScope?: string;
+}
+
+export interface SearchSimilarContentResponse {
+    base: BaseResponse;
+    primaryRows: Node[];
+}
+
 export interface QueryClarificationRequest {
     base: BaseRequest;
     userPromptQuery: string;
@@ -72,4 +84,16 @@ export interface DirectAnsweringRequest {
 export interface DirectAnsweringResponse {
     base: BaseResponse;
     directAnswer: string;
+}
+
+
+export interface AnswerNewQuestionRequest {
+    base: BaseRequest;
+    refinedQuestion: string;
+    primaryRows: Node[];
+    questionJurisdictions: questionJurisdictions;
+}
+export interface AnswerNewQuestionResponse {
+    base: BaseResponse;
+    directAnswer: AnswerChunk[];
 }
