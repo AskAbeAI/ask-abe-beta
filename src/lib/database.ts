@@ -40,11 +40,11 @@ export async function searchSimilarContent(
 
   const supabase = createClient(supabaseUrl!, supabaseKey!);
   const { data, error } = await supabase
-    .rpc(`${jurisdiction}_searchSimilarContent`, {
+    .rpc(`${jurisdiction}_searchsimilarcontent`, {
       query_embedding: query_embedding,
       match_threshold: match_threshold,
       max_rows: max_rows,
-      search_scope_id,
+      parent_scope_id: search_scope_id,
     });
   if (error) {
     console.log(error);
