@@ -1,10 +1,14 @@
 "use client";
 // Import React dependencies
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 // Import UI components
-import BottomBar from '@/components/bottomBar';
-import ContentQueue from '@/components/contentQueue';
-import { DisclaimerModal, JurisdictionModal } from '@/components/disclaimermodal';
+import NavBar from "@/components/pnavBar";
+import BottomBar from "@/components/pbottombar";
+import ContentQueue from "@/components/pcontentQueue";
+import {
+  DisclaimerModal,
+  JurisdictionModal,
+} from "@/components/disclaimermodal";
 // Import data types
 import { ContentType, ContentBlock, ContentBlockParams, CitationBlockProps, Clarification, Node, AnswerChunk } from "@/lib/types";
 import {  node_as_row, ClarificationChoices} from '@/lib/types';
@@ -16,15 +20,21 @@ import { Option, Jurisdiction, questionJurisdictions, PipelineModel } from '@/li
 import { StateJurisdictionOptions, FederalJurisdictionOptions, MiscJurisdictionOptions, ChatOptions } from '@/lib/types';
 import { UiState, Short, Long, History, AbeMemory } from '@/lib/types';
 
-// Helper functions
-import { constructPromptQuery, constructPromptQueryMisc, constructPromptQueryBoth, createNewMemory } from '@/lib/utils';
 
-import { useMediaQuery } from 'react-responsive';
+// Helper functions
+import {
+  constructPromptQuery,
+  constructPromptQueryMisc,
+  constructPromptQueryBoth,
+  createNewMemory,
+} from "@/lib/utils";
+
+import { useMediaQuery } from "react-responsive";
 // Import Request, Response types from APIs
 import { QueryScoringRequest, QueryScoringResponse, QueryExpansionRequest, QueryExpansionResponse, SimilaritySearchRequest, SimilaritySearchResponse, QueryClarificationRequest, QueryClarificationResponse, SearchSimilarContentRequest, SearchSimilarContentResponse, AnswerNewQuestionRequest, AnswerNewQuestionResponse } from '@/lib/api_types';
 
-export default function Playground() {
 
+export default function Playground() {
   const isDesktopOrLaptop = useMediaQuery({ minWidth: 1224 });
   const isMobile = useMediaQuery({ maxWidth: 1224 });
   // State variables for jurisdiction, option toggles
@@ -32,35 +42,40 @@ export default function Playground() {
   // State variables for UI components
   const [isFormVisible, setIsFormVisible] = useState(true);
   const [citationsOpen, setCitationsOpen] = useState(false);
-  
+
   const [streamingQueue, setStreamingQueue] = useState<ContentBlock[]>([]);
   const [showCurrentLoading, setShowCurrentLoading] = useState(false);
   const [activeCitationId, setActiveCitationId] = useState<string>('');
   const [inputMode, setInputMode] = useState<string>('Initial');
  
 
-  
 
   // State variables for legal text, database searches
   // State variables for contentBlocks
-  const [contentBlocks, setContentBlocks] = useState<ContentBlock[]>([{
-    blockId: `id_${new Date().getTime()}_${Math.random().toString(36).substr(2, 9)}`,
-    type: ContentType.Loading,
-    content: "Loading...",
-    fakeStream: true,
-    concurrentStreaming: false,
-    neverLoad: true
-  },
-  {
-    blockId: `id_${new Date().getTime()}_${Math.random().toString(36).substr(2, 9)}`,
-    type: ContentType.Welcome,
-    content: "",
-    fakeStream: false,
-    concurrentStreaming: false,
-  }
+  const [contentBlocks, setContentBlocks] = useState<ContentBlock[]>([
+    {
+      blockId: `id_${new Date().getTime()}_${Math.random()
+        .toString(36)
+        .substr(2, 9)}`,
+      type: ContentType.Loading,
+      content: "Loading...",
+      fakeStream: true,
+      concurrentStreaming: false,
+      neverLoad: true,
+    },
+    {
+      blockId: `id_${new Date().getTime()}_${Math.random()
+        .toString(36)
+        .substr(2, 9)}`,
+      type: ContentType.Welcome,
+      content: "",
+      fakeStream: false,
+      concurrentStreaming: false,
+    },
   ]);
   const [citationBlocks, setCitationBlocks] = useState<ContentBlock[]>([]);
   const [jurisdiction, setJurisdiction] = useState<questionJurisdictions>();
+
 
 
 
@@ -71,8 +86,10 @@ export default function Playground() {
   // State variables for options and jurisdictions
   
 
+
   const [askClarifications, setAskClarifications] = useState(false);
   const [showJurisdictionModal, setShowJurisdictionModal] = useState(false);
+
 
 
   // Generate Unique Sessiond IDs here
@@ -86,47 +103,52 @@ export default function Playground() {
     // Add welcome block
   }, []);
 
-
-
   // UI Component Block Functions
   const addContentBlock = async (newBlock: ContentBlock): Promise<string> => {
-    
     setShowCurrentLoading(false);
-    setContentBlocks(currentBlocks => [...currentBlocks, newBlock]);
+    setContentBlocks((currentBlocks) => [...currentBlocks, newBlock]);
     return newBlock.blockId;
   };
 
-  const addManyContentBlock = async (newBlocks: ContentBlock[]): Promise<void> => {
+  const addManyContentBlock = async (
+    newBlocks: ContentBlock[]
+  ): Promise<void> => {
     setStreamingQueue(newBlocks);
     //console.log(newBlocks);
     if (newBlocks[0].type === ContentType.Citation) {
-      setCitationBlocks(currentBlocks => [...currentBlocks, ...newBlocks]);
+      setCitationBlocks((currentBlocks) => [...currentBlocks, ...newBlocks]);
     } else {
-      setContentBlocks(currentBlocks => [...currentBlocks, ...newBlocks]);
+      setContentBlocks((currentBlocks) => [...currentBlocks, ...newBlocks]);
     }
 
     // console.log(currentlyStreaming);
     return;
   };
 
-  const addNewLoadingBlock = async (neverLoad: boolean, loadingMessage?: string) => {
+  const addNewLoadingBlock = async (
+    neverLoad: boolean,
+    loadingMessage?: string
+  ) => {
     setShowCurrentLoading(true);
     const loadingBlock: ContentBlock = {
-      blockId: `id_${new Date().getTime()}_${Math.random().toString(36).substr(2, 9)}`,
+      blockId: `id_${new Date().getTime()}_${Math.random()
+        .toString(36)
+        .substr(2, 9)}`,
       type: ContentType.Loading,
       content: loadingMessage || "Loading...",
       fakeStream: true,
       concurrentStreaming: false,
-      neverLoad: neverLoad
+      neverLoad: neverLoad,
     };
-    setContentBlocks(currentBlocks => [...currentBlocks, loadingBlock]);
+    setContentBlocks((currentBlocks) => [...currentBlocks, loadingBlock]);
     return;
   };
 
   const createNewBlock = (params: ContentBlockParams) => {
-
     const newBlock = {
-      blockId: `id_${new Date().getTime()}_${Math.random().toString(36).substr(2, 9)}`, // Generate a unique ID for the new block
+      blockId: `id_${new Date().getTime()}_${Math.random()
+        .toString(36)
+        .substr(2, 9)}`, // Generate a unique ID for the new block
       type: params.type,
       content: params.content,
       fakeStream: params.fake_stream,
@@ -137,7 +159,7 @@ export default function Playground() {
       citationProps: params.citationProps,
       content_list: params.content_list,
       mode: params.mode,
-      neverLoad: params.neverLoad
+      neverLoad: params.neverLoad,
     };
 
     return newBlock;
@@ -158,6 +180,7 @@ export default function Playground() {
   const handleNewTextInput = async (textInput: string) => {
     // If no jurisdiction is selected, make the user choose one
     
+
     setIsFormVisible(false); // Hide the form when a question is submitted
     // Add the question to the state variable
     const text = textInput.trim();
@@ -173,12 +196,13 @@ export default function Playground() {
 
     
    
+
     // Create a question block and add it
     let newParams: ContentBlockParams = {
       type: ContentType.Question,
       content: text,
       fake_stream: false,
-      concurrentStreaming: false
+      concurrentStreaming: false,
     };
     await addContentBlock(createNewBlock(newParams));
 
@@ -193,21 +217,20 @@ export default function Playground() {
   };
 
   const expandQuery = async (memory: AbeMemory): Promise<number[]> => {
-
     const requestBody: QueryExpansionRequest = {
       base: {
         vendor: "openai",
         model: "gpt-4-turbo-preview",
         callingFunction: "expandQuery",
-        pipelineModel: memory.history.pipelineModel
+        pipelineModel: memory.history.pipelineModel,
       },
       refinedQuestion: memory.short.currentRefinedQuestion!,
       specificQuestions: memory.short.specificQuestions!,
     };
-    const response = await fetch('/api/improveQuery/queryExpansion', {
-      method: 'POST',
+    const response = await fetch("/api/improveQuery/queryExpansion", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(requestBody),
     });
@@ -224,7 +247,7 @@ export default function Playground() {
         vendor: "openai",
         model: "gpt-4-turbo-preview",
         callingFunction: "expandQuery",
-        pipelineModel: memory.history.pipelineModel
+        pipelineModel: memory.history.pipelineModel,
       },
       jurisdictions: memory.long.questionJurisdictions!,
       query_expansion_embedding: query_expansion_embedding,
@@ -232,7 +255,7 @@ export default function Playground() {
     const response = await fetch('/api/prototype/search/similarContent', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(requestBody),
     });
@@ -264,8 +287,9 @@ export default function Playground() {
       
     const response = await fetch('/api/prototype/answer/newQuestion', {
         method: 'POST',
+
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(requestBody),
       });
@@ -279,6 +303,7 @@ export default function Playground() {
 
 
       const params: ContentBlockParams = {
+
         type: ContentType.Answer,
         content: formattedAnswer,
         fake_stream: true,
@@ -288,13 +313,15 @@ export default function Playground() {
       setIsFormVisible(true);
       setInputMode("followup");
       return direct_answer;
+
     };
 
   
   
+
   const setShown = () => {
     setShowJurisdictionModal(false);
-  }
+  };
   const dummyFunction = async () => {
     return;
   }
@@ -304,29 +331,28 @@ export default function Playground() {
       .join('\n\n');
   }
 
+
   return (
-
-    <div> {isDesktopOrLaptop &&
-
-
-      <div className="flex h-screen w-full px-3 py-3 bg-[#FAF5E6]">
-
+    <div>
+      {" "}
+      {isDesktopOrLaptop && (
+        <div className="justify-center items-center h-screen ">
+          <NavBar />
         <JurisdictionModal
           shown={showJurisdictionModal}
           setShown={setShown}
         />
 
         <DisclaimerModal />
-        <div className="pr-2" style={{ width: citationsOpen ? '100%' : '14%' }}>
-          <CitationBar
-            open={citationsOpen}
-            setOpen={setCitationsOpen}
-            citationItems={citationBlocks}
-            activeCitationId={activeCitationId}
-          />
-        </div>
-        <div className={`w-full ${citationsOpen ? 'hidden' : ''}`} style={{ width: '90%' }}>
-          <div className="overflow-y-auto w-full" style={{ minHeight: '90vh', maxHeight: '90vh' }}>
+
+        <div
+          className={`w-full ${citationsOpen ? "hidden" : ""}`}
+          
+        >
+          <div
+            className="overflow-y-auto w-full "
+            style={{ minHeight: "90vh", maxHeight: "90vh" }}
+          >
             <ContentQueue
               items={contentBlocks}
               onSubmitClarificationAnswers={dummyFunction}
@@ -337,9 +363,22 @@ export default function Playground() {
               onFinishAnswerVitalia={dummyFunction}
               setActiveCitationId={setActiveCitationId}
             />
-
           </div>
-          <div className="bottom-0">
+          <div className="inset-x-0 bottom-0 flex justify-between items-center">
+            <div
+              className="pl-10"
+              style={{ width: citationsOpen ? "100%" : "10%" }}
+            >
+              <div className="" style={{ maxHeight: "90vh" }}>
+                <CitationBar
+                  open={citationsOpen}
+                  setOpen={setCitationsOpen}
+                  citationItems={citationBlocks}
+                  activeCitationId={activeCitationId}
+                />
+              </div>
+            </div>
+
             {/* BottomBar */}
             {isFormVisible && (
               <BottomBar
@@ -348,30 +387,30 @@ export default function Playground() {
                 handleSubmitFollowup={handleNewTextInput}
               />
             )}
+
+            <div className="pr-10">
+              <OptionsList
+                stateJurisdictions={StateJurisdictionOptions}
+                federalJurisdictions={FederalJurisdictionOptions}
+                miscJurisdictions={MiscJurisdictionOptions}
+                options={ChatOptions}
+                onOptionChange={handleOptionChange}
+                onStateJurisdictionChange={setSelectedStateJurisdiction}
+                onFederalJurisdictionChange={setSelectedFederalJurisdiction}
+                onMiscJurisdictionChange={setSelectedMiscJurisdiction}
+              />
+              {/* Other parts of your application */}
+            </div>
           </div>
-        </div>
-        <div className=" pl-2" style={({ width: '16%' })} >
-          <OptionsList
-            stateJurisdictions={StateJurisdictionOptions}
-            federalJurisdictions={FederalJurisdictionOptions}
-            miscJurisdictions={MiscJurisdictionOptions}
-            options={ChatOptions}
-            onOptionChange={dummyFunction}
-            onStateJurisdictionChange={dummyFunction}
-            onFederalJurisdictionChange={dummyFunction}
-            onMiscJurisdictionChange={dummyFunction}
-          />
-          {/* Other parts of your application */}
         </div>
 
       </div>
-    }
-
-
-      {isMobile &&
-
-        <div className="flex justify-center h-screen  pt-2  bg-[#FAF5E6]">
-
+      )}
+ 
+      
+      {isMobile && (
+        <div className="justify-center items-center h-full w-screen">
+          <NavBar/>
           <JurisdictionModal
             shown={showJurisdictionModal}
             setShown={setShown}
@@ -379,10 +418,14 @@ export default function Playground() {
 
           <DisclaimerModal />
 
-
-          
-          <div className={`w-full ${citationsOpen ? 'hidden' : ''}`} style={{ width: '90%' }}>
-            <div className="overflow-y-auto w-full " style={{ minHeight: '90vh', maxHeight: '90vh' }}>
+          <div
+            className={`w-full ${citationsOpen ? "hidden" : ""}`}
+            
+          >
+            <div
+              className="overflow-y-auto w-full "
+              style={{ minHeight: "90vh", maxHeight: "90vh" }}
+            >
               <ContentQueue
                 items={contentBlocks}
                 onSubmitClarificationAnswers={dummyFunction}
@@ -393,12 +436,13 @@ export default function Playground() {
                 onFinishAnswerVitalia={dummyFunction}
                 setActiveCitationId={setActiveCitationId}
               />
-
             </div>
             <div className="inset-x-0 bottom-0 flex justify-between items-center">
-              <div className="w-full pr-2" style={{ width: citationsOpen ? '100%' : '10%' }}>
-
-                <div className="pr-2" style={{ maxHeight: '90vh' }}>
+              <div
+                className="pl-4"
+                style={{ width: citationsOpen ? "100%" : "10%" }}
+              >
+                <div className="" style={{ maxHeight: "90vh" }}>
                   <CitationBar
                     open={citationsOpen}
                     setOpen={setCitationsOpen}
@@ -410,17 +454,14 @@ export default function Playground() {
 
               {/* BottomBar */}
               {isFormVisible && (
-
                 <BottomBar
                   inputMode={inputMode}
                   handleSubmit={handleNewTextInput}
                   handleSubmitFollowup={handleNewTextInput}
                 />
-
               )}
 
-
-              <div className="pl-2">
+              <div className="pr-4">
                 <OptionsList
                   stateJurisdictions={StateJurisdictionOptions}
                   federalJurisdictions={FederalJurisdictionOptions}
@@ -434,17 +475,9 @@ export default function Playground() {
                 {/* Other parts of your application */}
               </div>
             </div>
-
           </div>
         </div>
-
-      }
-
+      )}
     </div>
-
-
-
   );
-};
-
-
+}
