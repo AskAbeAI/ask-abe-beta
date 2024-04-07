@@ -7,7 +7,10 @@ import BottomBar from "@/components/pbottombar";
 import ContentQueue from "@/components/pcontentQueue";
 import DynamicDropdown from "@/components/sectionDropdown";
 import { TreeNode } from "@/lib/types";
-import treeData from "/Users/madelinekaufman/VS_Code_Projects/AskAbe-1207/ask-abe-beta/public/data/treeData.json";
+import LegislationTreeView from '@/components/legislationTreeView';
+import legislationData from '../../../../public/data/title1.json'; // Adjust the path as necessary
+
+
 import {
   DisclaimerModal,
   JurisdictionModal,
@@ -54,16 +57,9 @@ export default function Playground() {
 
 
   // Testing dynamic dropdown
-  const [dropdowns, setDropdowns] = useState([{ level: 1, data: treeData }]);
+  
 
-  const handleChange = (selectedTreeNode: TreeNode | null, level: number) => {
-    if (selectedTreeNode) {
-      const newLevelData = selectedTreeNode.children || [];
-      setDropdowns(current => [...current.slice(0, level), { level: level + 1, data: newLevelData }]);
-    } else {
-      setDropdowns(current => current.slice(0, level));
-    }
-  };
+  
   // State variables for legal text, database searches
   // State variables for contentBlocks
   const [contentBlocks, setContentBlocks] = useState<ContentBlock[]>([
@@ -352,18 +348,9 @@ export default function Playground() {
       {isDesktopOrLaptop && (
         <div className="justify-center items-center h-screen ">
           <NavBar />
-              {/* <div className="justify-center items-center h-screen">
-                <div className="p-4">
-                  {dropdowns.map(({ level, data }) => (
-                    <DynamicDropdown
-                      key={level}
-                      data={data as TreeNode[]} // Update the type of the data prop
-                      level={level}
-                      onChange={handleChange}
-                    />
-                  ))}
-                </div>
-              </div> */}
+          <div className="w-64 h-screen overflow-auto"> {/* Adjust width as needed */}
+          <LegislationTreeView legislationData={legislationData} />
+        </div>
           <JurisdictionModal
             shown={showJurisdictionModal}
             setShown={setShown}
@@ -407,8 +394,8 @@ export default function Playground() {
               {isFormVisible && (
                 <BottomBar
                   inputMode={inputMode}
-                  handleSubmit={handleNewQuestion}
-                  handleSubmitFollowup={handleNewFollowupQuestion}
+                  handleSubmit={handleNewTextInput}
+                  handleSubmitFollowup={handleNewTextInput}
                 />
               )}
 
@@ -418,10 +405,10 @@ export default function Playground() {
                   federalJurisdictions={FederalJurisdictionOptions}
                   miscJurisdictions={MiscJurisdictionOptions}
                   options={ChatOptions}
-                  onOptionChange={handleOptionChange}
-                  onStateJurisdictionChange={setSelectedStateJurisdiction}
-                  onFederalJurisdictionChange={setSelectedFederalJurisdiction}
-                  onMiscJurisdictionChange={setSelectedMiscJurisdiction}
+                  onOptionChange={dummyFunction}
+                  onStateJurisdictionChange={dummyFunction}
+                  onFederalJurisdictionChange={dummyFunction}
+                  onMiscJurisdictionChange={dummyFunction}
                 />
                 {/* Other parts of your application */}
               </div>
