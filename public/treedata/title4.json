@@ -1,0 +1,1424 @@
+{
+    "id": "us/federal/ecfr/title=4",
+    "name": "Title 4-Accounts",
+    "children": [
+        {
+            "id": "us/federal/ecfr/title=4/chapter=I",
+            "name": "CHAPTER I-GOVERNMENT ACCOUNTABILITY OFFICE",
+            "children": [
+                {
+                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=E",
+                    "name": "SUBCHAPTER E-STANDARDIZED FISCAL PROCEDURES",
+                    "children": [
+                        {
+                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=E/part=75",
+                            "name": "PART 75-CERTIFICATES AND APPROVALS OF BASIC VOUCHERS AND INVOICES",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=E/part=75/section=75.1",
+                                    "name": "§ 75.1 Contractors' and vendors' certificates.",
+                                    "children": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B",
+                    "name": "SUBCHAPTER B-GENERAL PROCEDURES",
+                    "children": [
+                        {
+                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=25",
+                            "name": "PART 25-CONDUCT IN THE GOVERNMENT ACCOUNTABILITY OFFICE BUILDING AND ON ITS GROUNDS",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=25/section=25.11",
+                                    "name": "§ 25.11 Photographs for news, advertising, or commercial purposes.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=25/section=25.3",
+                                    "name": "§ 25.3 Admission to the GAO building.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=25/section=25.7",
+                                    "name": "§ 25.7 Gambling.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=25/section=25.8",
+                                    "name": "§ 25.8 Alcoholic beverages and narcotics.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=25/section=25.13",
+                                    "name": "§ 25.13 Vehicular and pedestrian traffic.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=25/section=25.15",
+                                    "name": "§ 25.15 Nondiscrimination.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=25/section=25.5",
+                                    "name": "§ 25.5 Conformity with signs and directions.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=25/section=25.6",
+                                    "name": "§ 25.6 Disturbances.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=25/section=25.2",
+                                    "name": "§ 25.2 Inspection.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=25/section=25.4",
+                                    "name": "§ 25.4 Preservation of property.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=25/section=25.12",
+                                    "name": "§ 25.12 Dogs and other animals.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=25/section=25.1",
+                                    "name": "§ 25.1 Applicability and governing laws.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=25/section=25.9",
+                                    "name": "§ 25.9 Soliciting, vending, and debt collection.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=25/section=25.10",
+                                    "name": "§ 25.10 Posting and distributing materials.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=25/section=25.14",
+                                    "name": "§ 25.14 Weapons and explosives.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=25/section=25.16",
+                                    "name": "§ 25.16 Penalties.",
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28",
+                            "name": "PART 28-GOVERNMENT ACCOUNTABILITY OFFICE PERSONNEL APPEALS BOARD; PROCEDURES APPLICABLE TO CLAIMS CONCERNING EMPLOYMENT PRACTICES AT THE GOVERNMENT ACCOUNTABILITY OFFICE",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/hub=definitions",
+                                    "name": null,
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=H",
+                                    "name": "Subpart H-Appeals by Members of the Senior Executive Service",
+                                    "children": [
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=H/section=28.141",
+                                            "name": "§ 28.141 Performance based actions.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=H/section=28.140",
+                                            "name": "§ 28.140 Personnel actions involving SES members.",
+                                            "children": []
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B",
+                                    "name": "Subpart B-Procedures",
+                                    "children": [
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/section=28.8",
+                                            "name": "§ 28.8 Informal procedural advice.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/section=28.12",
+                                            "name": "§ 28.12 General Counsel Procedures.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR231b3893bbe8f43",
+                                            "name": "Hearing Procedures for Cases Before the Board-General",
+                                            "children": [
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR231b3893bbe8f43/section=28.16",
+                                                    "name": "§ 28.16 Revocation, amendment or waiver of rules.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR231b3893bbe8f43/section=28.18",
+                                                    "name": "§ 28.18 Filing a petition with the Board.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR231b3893bbe8f43/section=28.19",
+                                                    "name": "§ 28.19 Content of response by charged party.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR231b3893bbe8f43/section=28.22",
+                                                    "name": "§ 28.22 Administrative judges.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR231b3893bbe8f43/section=28.23",
+                                                    "name": "§ 28.23 Disqualification of administrative judges.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR231b3893bbe8f43/section=28.17",
+                                                    "name": "§ 28.17 Internal petitions of Board employees.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR231b3893bbe8f43/section=28.15",
+                                                    "name": "§ 28.15 Scope and policy.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR231b3893bbe8f43/section=28.20",
+                                                    "name": "§ 28.20 Number of Pleadings, service and response.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR231b3893bbe8f43/section=28.21",
+                                                    "name": "§ 28.21 Amendments to petitions and motions practice.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR231b3893bbe8f43/section=28.24",
+                                                    "name": "§ 28.24 Sanctions.",
+                                                    "children": []
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR4dc38668216a3d3",
+                                            "name": "Board Decisions, Attorney's Fees and Judicial Review",
+                                            "children": [
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR4dc38668216a3d3/section=28.87",
+                                                    "name": "§ 28.87 Board procedures; initial decisions.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR4dc38668216a3d3/section=28.89",
+                                                    "name": "§ 28.89 Attorney's fees and costs.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR4dc38668216a3d3/section=28.86",
+                                                    "name": "§ 28.86 [Reserved]",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR4dc38668216a3d3/section=28.88",
+                                                    "name": "§ 28.88 Board procedures; enforcement.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR4dc38668216a3d3/section=28.90",
+                                                    "name": "§ 28.90 Board procedures; judicial review.",
+                                                    "children": []
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR116f5d6dfb7b730",
+                                            "name": "Discovery",
+                                            "children": [
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR116f5d6dfb7b730/section=28.45",
+                                                    "name": "§ 28.45 Admission of facts and genuineness of documents.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR116f5d6dfb7b730/section=28.42",
+                                                    "name": "§ 28.42 Discovery procedures and protective orders.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR116f5d6dfb7b730/section=28.44",
+                                                    "name": "§ 28.44 Taking of depositions.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR116f5d6dfb7b730/section=28.40",
+                                                    "name": "§ 28.40 Statement of purpose.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR116f5d6dfb7b730/section=28.41",
+                                                    "name": "§ 28.41 Explanation, scope and methods.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR116f5d6dfb7b730/section=28.43",
+                                                    "name": "§ 28.43 Compelling discovery.",
+                                                    "children": []
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFRe51ec5f052eb5ce",
+                                            "name": "Evidence",
+                                            "children": [
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFRe51ec5f052eb5ce/section=28.67",
+                                                    "name": "§ 28.67 Production of statements.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFRe51ec5f052eb5ce/section=28.66",
+                                                    "name": "§ 28.66 Admissibility.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFRe51ec5f052eb5ce/section=28.69",
+                                                    "name": "§ 28.69 Judicial notice.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFRe51ec5f052eb5ce/section=28.65",
+                                                    "name": "§ 28.65 Service of documents.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFRe51ec5f052eb5ce/section=28.68",
+                                                    "name": "§ 28.68 Stipulations.",
+                                                    "children": []
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR895570314129668",
+                                            "name": "Parties, Practitioners and Witnesses",
+                                            "children": [
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR895570314129668/section=28.28",
+                                                    "name": "§ 28.28 Substitution.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR895570314129668/section=28.25",
+                                                    "name": "§ 28.25 Representation.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR895570314129668/section=28.26",
+                                                    "name": "§ 28.26 Witness fees.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR895570314129668/section=28.27",
+                                                    "name": "§ 28.27 Intervenors.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR895570314129668/section=28.29",
+                                                    "name": "§ 28.29 Consolidation or joinder.",
+                                                    "children": []
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR04f9d4fbaa99d47",
+                                            "name": "Subpoenas",
+                                            "children": [
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR04f9d4fbaa99d47/section=28.50",
+                                                    "name": "§ 28.50 Enforcement.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR04f9d4fbaa99d47/section=28.47",
+                                                    "name": "§ 28.47 Motion to quash.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR04f9d4fbaa99d47/section=28.46",
+                                                    "name": "§ 28.46 Motion for subpoena.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR04f9d4fbaa99d47/section=28.48",
+                                                    "name": "§ 28.48 Service.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR04f9d4fbaa99d47/section=28.49",
+                                                    "name": "§ 28.49 Return of service.",
+                                                    "children": []
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR68df83f7d7776a3",
+                                            "name": "Interlocutory Appeals",
+                                            "children": [
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR68df83f7d7776a3/section=28.80",
+                                                    "name": "§ 28.80 Explanation.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFR68df83f7d7776a3/section=28.81",
+                                                    "name": "§ 28.81 Procedures and criteria for certification.",
+                                                    "children": []
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFRef8ff80a1a96fac",
+                                            "name": "Hearings",
+                                            "children": [
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFRef8ff80a1a96fac/section=28.57",
+                                                    "name": "§ 28.57 Public hearings.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFRef8ff80a1a96fac/section=28.58",
+                                                    "name": "§ 28.58 Transcript.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFRef8ff80a1a96fac/section=28.62",
+                                                    "name": "§ 28.62 Decision on the record.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFRef8ff80a1a96fac/section=28.61",
+                                                    "name": "§ 28.61 Burden and degree of proof.",
+                                                    "children": [
+                                                        {
+                                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFRef8ff80a1a96fac/section=28.61/hub=definitions",
+                                                            "name": null,
+                                                            "children": []
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFRef8ff80a1a96fac/section=28.55",
+                                                    "name": "§ 28.55 Scheduling the hearing.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFRef8ff80a1a96fac/section=28.56",
+                                                    "name": "§ 28.56 Hearing procedures, conduct and copies of exhibits.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFRef8ff80a1a96fac/section=28.59",
+                                                    "name": "§ 28.59 Official record.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFRef8ff80a1a96fac/section=28.60",
+                                                    "name": "§ 28.60 Briefs.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/subject-group=ECFRef8ff80a1a96fac/section=28.63",
+                                                    "name": "§ 28.63 Closing the record.",
+                                                    "children": []
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/section=28.11",
+                                            "name": "§ 28.11 Filing a charge with the Office of General Counsel.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/section=28.9",
+                                            "name": "§ 28.9 Procedures; general.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/section=28.10",
+                                            "name": "§ 28.10 Notice of petition rights.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=B/section=28.13",
+                                            "name": "§ 28.13 Special procedure for Reduction in Force.",
+                                            "children": []
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=C",
+                                    "name": "Subpart C-Oversight Procedures",
+                                    "children": [
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=C/section=28.91",
+                                            "name": "§ 28.91 General.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=C/section=28.92",
+                                            "name": "§ 28.92 Oversight of GAO EEO program.",
+                                            "children": []
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=A",
+                                    "name": "Subpart A-Purpose, General Definitions, and Jurisdiction",
+                                    "children": [
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=A/section=28.3",
+                                            "name": "§ 28.3 General definitions.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=A/section=28.4",
+                                            "name": "§ 28.4 Computation of time.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=A/section=28.1",
+                                            "name": "§ 28.1 Purpose and scope.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=A/section=28.2",
+                                            "name": "§ 28.2 Jurisdiction.",
+                                            "children": []
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=D",
+                                    "name": "Subpart D-Special Procedures; Equal Employment Opportunity (EEO) Cases",
+                                    "children": [
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=D/section=28.100",
+                                            "name": "§ 28.100 [Reserved]",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=D/section=28.96",
+                                            "name": "§ 28.96 Applicability of general procedures.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=D/section=28.98",
+                                            "name": "§ 28.98 Individual charges in EEO cases.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=D/section=28.99",
+                                            "name": "§ 28.99 Petitions to the Board in EEO cases.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=D/section=28.95",
+                                            "name": "§ 28.95 Purpose and scope.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=D/section=28.97",
+                                            "name": "§ 28.97 Class actions in EEO cases.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=D/section=28.101",
+                                            "name": "§ 28.101 Termination of Board proceedings when suit is filed in Federal District Court.",
+                                            "children": []
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=F",
+                                    "name": "Subpart F-Special Procedures; Unfair Labor Practices",
+                                    "children": [
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=F/section=28.121",
+                                            "name": "§ 28.121 Unfair labor practices; Board procedures.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=F/section=28.123",
+                                            "name": "§ 28.123 Standards of conduct for labor organizations.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=F/section=28.122",
+                                            "name": "§ 28.122 Negotiability issues.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=F/section=28.124",
+                                            "name": "§ 28.124 Review of arbitration awards.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=F/section=28.120",
+                                            "name": "§ 28.120 Authority of the Board.",
+                                            "children": []
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=I",
+                                    "name": "Subpart I-Ex Parte Communications",
+                                    "children": [
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=I/hub=definitions",
+                                            "name": null,
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=I/section=28.147",
+                                            "name": "§ 28.147 Prohibited communications.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=I/section=28.149",
+                                            "name": "§ 28.149 Sanctions.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=I/section=28.145",
+                                            "name": "§ 28.145 Policy.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=I/section=28.146",
+                                            "name": "§ 28.146 Explanation and definitions.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=I/section=28.148",
+                                            "name": "§ 28.148 Reporting of communications.",
+                                            "children": []
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=E",
+                                    "name": "Subpart E-Special Procedures; Representation Proceedings",
+                                    "children": [
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=E/section=28.110",
+                                            "name": "§ 28.110 Purpose.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=E/section=28.111",
+                                            "name": "§ 28.111 Scope.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=E/section=28.114",
+                                            "name": "§ 28.114 Pre-investigation proceedings.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=E/section=28.112",
+                                            "name": "§ 28.112 Who may file petitions.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=E/section=28.113",
+                                            "name": "§ 28.113 Contents of representation petitions.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=E/section=28.115",
+                                            "name": "§ 28.115 Processing petitions.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=E/section=28.116",
+                                            "name": "§ 28.116 Conduct of elections.",
+                                            "children": []
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=G",
+                                    "name": "Subpart G-Corrective Action, Disciplinary and Stay Proceedings",
+                                    "children": [
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=G/section=28.130",
+                                            "name": "§ 28.130 General authority.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=G/section=28.131",
+                                            "name": "§ 28.131 Corrective action proceedings.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=G/section=28.132",
+                                            "name": "§ 28.132 Disciplinary proceedings.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=G/section=28.133",
+                                            "name": "§ 28.133 Stay proceedings.",
+                                            "children": []
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=J",
+                                    "name": "Subpart J-Statement of Policy or Guidance",
+                                    "children": [
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=J/section=28.155",
+                                            "name": "§ 28.155 Statement of policy or guidance.",
+                                            "children": []
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=K",
+                                    "name": "Subpart K-Access to Records",
+                                    "children": [
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=K/section=28.160",
+                                            "name": "§ 28.160 Request for records.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=28/subpart=K/section=28.161",
+                                            "name": "§ 28.161 Denial of access to information-Appeals.",
+                                            "children": []
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=27",
+                            "name": "PART 27-GOVERNMENT ACCOUNTABILITY OFFICE PERSONNEL APPEALS BOARD; ORGANIZATION",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=27/section=27.3",
+                                    "name": "§ 27.3 The General Counsel.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=27/section=27.2",
+                                    "name": "§ 27.2 The Chair, Vice Chair.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=27/section=27.1",
+                                    "name": "§ 27.1 The Board.",
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=21",
+                            "name": "PART 21-BID PROTEST REGULATIONS",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=21/section=21.1",
+                                    "name": "§ 21.1 Filing a protest.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=21/section=21.4",
+                                    "name": "§ 21.4 Protective orders.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=21/section=21.6",
+                                    "name": "§ 21.6 Withholding of award and suspension of contract performance.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=21/section=21.9",
+                                    "name": "§ 21.9 Time for decision by GAO.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=21/section=21.11",
+                                    "name": "§ 21.11 Effect of judicial proceedings.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=21/section=21.13",
+                                    "name": "§ 21.13 Nonstatutory protests.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=21/section=21.0",
+                                    "name": "§ 21.0 Definitions.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=21/section=21.2",
+                                    "name": "§ 21.2 Time for filing.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=21/section=21.3",
+                                    "name": "§ 21.3 Notice of protest, communications among parties, submission of agency report, and time for filing of comments on report.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=21/section=21.5",
+                                    "name": "§ 21.5 Protest issues not for consideration.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=21/section=21.7",
+                                    "name": "§ 21.7 Hearings.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=21/section=21.8",
+                                    "name": "§ 21.8 Remedies.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=21/section=21.10",
+                                    "name": "§ 21.10 Express options, flexible alternative procedures, accelerated schedules, summary decisions, and status and other conferences.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=21/section=21.12",
+                                    "name": "§ 21.12 Distribution of decisions.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=21/section=21.14",
+                                    "name": "§ 21.14 Request for reconsideration.",
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=22",
+                            "name": "PART 22-RULES OF PROCEDURE OF THE GOVERNMENT ACCOUNTABILITY OFFICE CONTRACT APPEALS BOARD",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=22/section=22.8",
+                                    "name": "§ 22.8 General Discovery Procedures [Rule 8].",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=22/section=22.16",
+                                    "name": "§ 22.16 Hearings [Rule 16].",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=22/section=22.18",
+                                    "name": "§ 22.18 Closing the Record [Rule 18].",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=22/section=22.21",
+                                    "name": "§ 22.21 Motion for Reconsideration [Rule 21].",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=22/section=22.22",
+                                    "name": "§ 22.22 Accelerated and Small Claims Procedures [Rule 22].",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=22/section=22.25",
+                                    "name": "§ 22.25 Protective Orders and In Camera Review [Rule 25].",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=22/section=22.26",
+                                    "name": "§ 22.26 Representation of Parties [Rule 26].",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=22/section=22.29",
+                                    "name": "§ 22.29 Inspection of the Record [Rule 29].",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=22/section=22.6",
+                                    "name": "§ 22.6 Motions, Briefs, and Other Statements [Rule 6].",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=22/section=22.7",
+                                    "name": "§ 22.7 Copies and Service Thereof [Rule 7].",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=22/section=22.14",
+                                    "name": "§ 22.14 Production of Documents, Electronically Stored Information, Other Tangible Things, or Entry Onto Land [Rule 14].",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=22/section=22.15",
+                                    "name": "§ 22.15 Conferences and Orders [Rule 15].",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=22/section=22.13",
+                                    "name": "§ 22.13 Requests for Admission [Rule 13].",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=22/section=22.4",
+                                    "name": "§ 22.4 Appeal File [Rule 4].",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=22/section=22.5",
+                                    "name": "§ 22.5 Pleadings [Rule 5].",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=22/section=22.1",
+                                    "name": "§ 22.1 Applicability of Rules [Rule 1].",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=22/section=22.2",
+                                    "name": "§ 22.2 Board Consideration [Rule 2].",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=22/section=22.3",
+                                    "name": "§ 22.3 Appeals-How Taken [Rule 3].",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=22/section=22.9",
+                                    "name": "§ 22.9 Subpoenas [Rule 9].",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=22/section=22.10",
+                                    "name": "§ 22.10 Sanctions [Rule 10].",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=22/section=22.11",
+                                    "name": "§ 22.11 Depositions [Rule 11].",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=22/section=22.12",
+                                    "name": "§ 22.12 Interrogatories [Rule 12].",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=22/section=22.17",
+                                    "name": "§ 22.17 Submission on the Record Without a Hearing [Rule 17].",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=22/section=22.19",
+                                    "name": "§ 22.19 Findings and Decisions of the Board [Rule 19].",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=22/section=22.20",
+                                    "name": "§ 22.20 Mistakes and Corrections [Rule 20].",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=22/section=22.23",
+                                    "name": "§ 22.23 Suspension of Proceedings [Rule 23].",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=22/section=22.24",
+                                    "name": "§ 22.24 Alternative Dispute Resolution [Rule 24].",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=22/section=22.27",
+                                    "name": "§ 22.27 Ex Parte Communications [Rule 27].",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=22/section=22.28",
+                                    "name": "§ 22.28 Time [Rule 28].",
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=B/part=29",
+                            "name": "PART 29 [RESERVED]",
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A",
+                    "name": "SUBCHAPTER A-PERSONNEL SYSTEM",
+                    "children": [
+                        {
+                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=6",
+                            "name": "PART 6-ATTENDANCE AND LEAVE",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=6/section=6.1",
+                                    "name": "§ 6.1 Applicable law and regulations.",
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=11",
+                            "name": "PART 11-RECOGNITION OF ATTORNEYS AND OTHER REPRESENTATIVES",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=11/section=11.4",
+                                    "name": "§ 11.4 Authority to represent in other cases.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=11/section=11.5",
+                                    "name": "§ 11.5 Revocation of authority to represent.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=11/section=11.1",
+                                    "name": "§ 11.1 Right to representation before the Government Accountability Office.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=11/section=11.2",
+                                    "name": "§ 11.2 Practice by attorneys.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=11/section=11.3",
+                                    "name": "§ 11.3 Authority to represent in payment cases.",
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=2",
+                            "name": "PART 2-PURPOSE AND GENERAL PROVISION",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=2/section=2.1",
+                                    "name": "§ 2.1 Purpose, scope, and applicability.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=2/section=2.2",
+                                    "name": "§ 2.2 References.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=2/section=2.3",
+                                    "name": "§ 2.3 GAO Personnel Appeals Board.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=2/section=2.4",
+                                    "name": "§ 2.4 Merit system principles.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=2/section=2.5",
+                                    "name": "§ 2.5 Prohibited personnel practices.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=2/section=2.6",
+                                    "name": "§ 2.6 Veterans' preference.",
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=9",
+                            "name": "PART 9-SENIOR EXECUTIVE SERVICE",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=9/section=9.1",
+                                    "name": "§ 9.1 GAO Senior Executive Service.",
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=4",
+                            "name": "PART 4-EMPLOYEE PERFORMANCE AND UTILIZATION",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=4/section=4.2",
+                                    "name": "§ 4.2 Performance appraisal.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=4/section=4.4",
+                                    "name": "§ 4.4 Incentive awards.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=4/section=4.1",
+                                    "name": "§ 4.1 Training.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=4/section=4.3",
+                                    "name": "§ 4.3 Removal for unacceptable performance.",
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=8",
+                            "name": "PART 8-INSURANCE AND ANNUITIES",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=8/section=8.1",
+                                    "name": "§ 8.1 Applicable law and regulations.",
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=3",
+                            "name": "PART 3-EMPLOYMENT",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=3/section=3.2",
+                                    "name": "§ 3.2 Oath of office.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=3/section=3.1",
+                                    "name": "§ 3.1 Appointment, promotion, and assignment.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=3/section=3.3",
+                                    "name": "§ 3.3 Assignments to and from States.",
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=5",
+                            "name": "PART 5-COMPENSATION",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=5/section=5.3",
+                                    "name": "§ 5.3 Merit pay.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=5/section=5.6",
+                                    "name": "§ 5.6 Allowances.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=5/section=5.1",
+                                    "name": "§ 5.1 Pay.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=5/section=5.2",
+                                    "name": "§ 5.2 Grade and pay retention.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=5/section=5.4",
+                                    "name": "§ 5.4 Pay administration.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=5/section=5.5",
+                                    "name": "§ 5.5 Travel, transportation, and subsistence.",
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=7",
+                            "name": "PART 7-PERSONNEL RELATIONS AND SERVICES",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=7/section=7.3",
+                                    "name": "§ 7.3 Political activities.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=7/section=7.4",
+                                    "name": "§ 7.4 Employment limitations, foreign gifts and decorations, and misconduct.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=7/section=7.8",
+                                    "name": "§ 7.8 Services to employees.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=7/section=7.5",
+                                    "name": "§ 7.5 Adverse actions: Suspensions for 14 days or less.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=7/section=7.6",
+                                    "name": "§ 7.6 Adverse actions: Removal, suspension for more than 14 days, reduced in grade, reduced in pay or furloughed for 30 days or less.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=7/section=7.1",
+                                    "name": "§ 7.1 Labor management relations.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=7/section=7.2",
+                                    "name": "§ 7.2 Equal employment opportunity.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=7/section=7.7",
+                                    "name": "§ 7.7 Other appeals and grievances.",
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=A/part=1",
+                            "name": "PART 1 [RESERVED]",
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=F",
+                    "name": "SUBCHAPTER F-RECORDS",
+                    "children": [
+                        {
+                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=F/part=82",
+                            "name": "PART 82-FURNISHING RECORDS OF THE GOVERNMENT ACCOUNTABILITY OFFICE IN JUDICIAL PROCEEDINGS",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=F/part=82/section=82.2",
+                                    "name": "§ 82.2 Fees and charges.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=F/part=82/section=82.1",
+                                    "name": "§ 82.1 Court subpoenas or requests.",
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=F/part=81",
+                            "name": "PART 81-PUBLIC AVAILABILITY OF GOVERNMENT ACCOUNTABILITY OFFICE RECORDS",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=F/part=81/hub=definitions",
+                                    "name": null,
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=F/part=81/section=81.2",
+                                    "name": "§ 81.2 Administration.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=F/part=81/section=81.6",
+                                    "name": "§ 81.6 Records which may be exempt from disclosure.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=F/part=81/section=81.8",
+                                    "name": "§ 81.8 Public reading facility.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=F/part=81/section=81.1",
+                                    "name": "§ 81.1 Purpose and scope of part.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=F/part=81/section=81.3",
+                                    "name": "§ 81.3 Definitions.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=F/part=81/section=81.4",
+                                    "name": "§ 81.4 Requests for identifiable records.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=F/part=81/section=81.5",
+                                    "name": "§ 81.5 Records originating outside GAO, records of interviews, or records involving work in progress.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=F/part=81/section=81.7",
+                                    "name": "§ 81.7 Fees and charges.",
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=4/chapter=I/subchapter=F/part=83",
+                            "name": "PART 83-PRIVACY PROCEDURES FOR PERSONNEL RECORDS",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=F/part=83/hub=definitions",
+                                    "name": null,
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=F/part=83/section=83.2",
+                                    "name": "§ 83.2 Administration.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=F/part=83/section=83.4",
+                                    "name": "§ 83.4 Conditions of disclosure.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=F/part=83/section=83.6",
+                                    "name": "§ 83.6 Accounting of certain disclosures.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=F/part=83/section=83.9",
+                                    "name": "§ 83.9 Social Security number.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=F/part=83/section=83.11",
+                                    "name": "§ 83.11 Official Personnel Folder.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=F/part=83/section=83.13",
+                                    "name": "§ 83.13 Inquiries.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=F/part=83/section=83.16",
+                                    "name": "§ 83.16 Administrative review of request for amendment of record.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=F/part=83/section=83.19",
+                                    "name": "§ 83.19 Government contractors.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=F/part=83/section=83.21",
+                                    "name": "§ 83.21 Exemptions.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=F/part=83/section=83.1",
+                                    "name": "§ 83.1 Purpose and scope of part.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=F/part=83/section=83.3",
+                                    "name": "§ 83.3 Definitions.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=F/part=83/section=83.5",
+                                    "name": "§ 83.5 Specific disclosure of information.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=F/part=83/section=83.10",
+                                    "name": "§ 83.10 First Amendment rights.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=F/part=83/section=83.7",
+                                    "name": "§ 83.7 GAO policy and requirements.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=F/part=83/section=83.8",
+                                    "name": "§ 83.8 Standards of conduct.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=F/part=83/section=83.12",
+                                    "name": "§ 83.12 Procedures for individual access to records.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=F/part=83/section=83.14",
+                                    "name": "§ 83.14 Denial of access requests.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=F/part=83/section=83.15",
+                                    "name": "§ 83.15 Request for amendment of record.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=F/part=83/section=83.17",
+                                    "name": "§ 83.17 Fees.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=F/part=83/section=83.18",
+                                    "name": "§ 83.18 Rights of legal guardians.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=F/part=83/section=83.20",
+                                    "name": "§ 83.20 Mailing lists.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=F/part=83/appendix=Appendix-I-to-Part-83",
+                                    "name": "Appendix I to Part 83-Memorandum of Understanding",
+                                    "children": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=C-D",
+                    "name": "SUBCHAPTERS C-D [RESERVED]",
+                    "children": []
+                },
+                {
+                    "id": "us/federal/ecfr/title=4/chapter=I/subchapter=G",
+                    "name": "SUBCHAPTER G [RESERVED]",
+                    "children": []
+                },
+                {
+                    "id": "us/federal/ecfr/title=4/chapter=I/part=84-199",
+                    "name": "PARTS 84-199 [RESERVED]",
+                    "children": []
+                }
+            ]
+        }
+    ]
+}

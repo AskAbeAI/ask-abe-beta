@@ -1,0 +1,1968 @@
+{
+    "id": "us/federal/ecfr/title=1",
+    "name": "Title 1-General Provisions",
+    "children": [
+        {
+            "id": "us/federal/ecfr/title=1/chapter=IV",
+            "name": "CHAPTER IV-MISCELLANEOUS AGENCIES",
+            "children": [
+                {
+                    "id": "us/federal/ecfr/title=1/chapter=IV/part=400-424",
+                    "name": "PARTS 400-424 [RESERVED]",
+                    "children": []
+                },
+                {
+                    "id": "us/federal/ecfr/title=1/chapter=IV/part=500",
+                    "name": "PART 500-ENFORCEMENT OF NONDISCRIMINATION ON THE BASIS OF HANDICAP IN PROGRAMS OR ACTIVITIES CONDUCTED BY THE NATIONAL COMMISSION FOR EMPLOYMENT POLICY",
+                    "children": [
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=500/section=500.149",
+                            "name": "§ 500.149 Program accessibility: Discrimination prohibited.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=500/section=500.110",
+                            "name": "§ 500.110 Self-evaluation.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=500/section=500.140",
+                            "name": "§ 500.140 Employment.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=500/section=500.151",
+                            "name": "§ 500.151 Program accessibility: New construction and alterations.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=500/section=500.150",
+                            "name": "§ 500.150 Program accessibility: Existing facilities.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=500/section=500.102",
+                            "name": "§ 500.102 Application.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=500/section=500.101",
+                            "name": "§ 500.101 Purpose.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=500/section=500.111",
+                            "name": "§ 500.111 Notice.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=500/section=500.130",
+                            "name": "§ 500.130 General prohibitions against discrimination.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=500/section=500.160",
+                            "name": "§ 500.160 Communications.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=500/section=500.170",
+                            "name": "§ 500.170 Compliance procedures.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=500/section=500.103",
+                            "name": "§ 500.103 Definitions.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=500/hub=definitions",
+                            "name": null,
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=500/section=500.152-500.159",
+                            "name": "§§ 500.152-500.159 [Reserved]",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=500/section=500.161-500.169",
+                            "name": "§§ 500.161-500.169 [Reserved]",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=500/section=500.171-500.999",
+                            "name": "§§ 500.171-500.999 [Reserved]",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=500/section=500.104-500.109",
+                            "name": "§§ 500.104-500.109 [Reserved]",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=500/section=500.112-500.129",
+                            "name": "§§ 500.112-500.129 [Reserved]",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=500/section=500.131-500.139",
+                            "name": "§§ 500.131-500.139 [Reserved]",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=500/section=500.141-500.148",
+                            "name": "§§ 500.141-500.148 [Reserved]",
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "id": "us/federal/ecfr/title=1/chapter=IV/part=425",
+                    "name": "PART 425-PRESIDENT'S COMMISSION ON WHITE HOUSE FELLOWSHIPS",
+                    "children": [
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=425/section=425.4",
+                            "name": "§ 425.4 Correction of records.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=425/section=425.5",
+                            "name": "§ 425.5 Disclosure of records to agencies or persons other than the individual to whom the record pertains.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=425/section=425.1",
+                            "name": "§ 425.1 Purpose and scope.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=425/section=425.2",
+                            "name": "§ 425.2 Procedures for notification of existence of records pertaining to individuals.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=425/section=425.3",
+                            "name": "§ 425.3 Procedure for requests for access to or disclosure of records pertaining to individuals.",
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "id": "us/federal/ecfr/title=1/chapter=IV/part=426",
+                    "name": "PART 426-NATIONAL COMMISSION ON MILITARY, NATIONAL, AND PUBLIC SERVICE",
+                    "children": [
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=426/hub=definitions",
+                            "name": null,
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=426/subpart=A",
+                            "name": "Subpart A-Implementation of the Privacy Act of 1974",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=IV/part=426/subpart=A/section=426.103",
+                                    "name": "§ 426.103 Inquiries about systems of records or implementation of the Privacy Act.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=IV/part=426/subpart=A/section=426.109",
+                                    "name": "§ 426.109 Procedures for maintaining accounts of disclosures.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=IV/part=426/subpart=A/section=426.102",
+                                    "name": "§ 426.102 Definitions.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=IV/part=426/subpart=A/section=426.107",
+                                    "name": "§ 426.107 Procedures for appealing a refusal to amend or correct a record.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=IV/part=426/subpart=A/section=426.108",
+                                    "name": "§ 426.108 Fees charged to locate, review, or copy records.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=IV/part=426/subpart=A/section=426.101",
+                                    "name": "§ 426.101 Purpose and scope.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=IV/part=426/subpart=A/section=426.104",
+                                    "name": "§ 426.104 Procedures for accessing records pertaining to an individual.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=IV/part=426/subpart=A/section=426.105",
+                                    "name": "§ 426.105 Identification required when requesting access to records pertaining to an individual.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=IV/part=426/subpart=A/section=426.106",
+                                    "name": "§ 426.106 Procedures for amending or correcting an individual's record.",
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=426/subpart=B",
+                            "name": "Subpart B-Disclosure of Records and Information Under the Freedom of Information Act",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=IV/part=426/subpart=B/section=426.202",
+                                    "name": "§ 426.202 Proactive disclosures.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=IV/part=426/subpart=B/section=426.205",
+                                    "name": "§ 426.205 Timing of responses to requests.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=IV/part=426/subpart=B/section=426.207",
+                                    "name": "§ 426.207 Confidential commercial information.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=IV/part=426/subpart=B/section=426.209",
+                                    "name": "§ 426.209 Preservation of records.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=IV/part=426/subpart=B/section=426.206",
+                                    "name": "§ 426.206 Response to requests.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=IV/part=426/subpart=B/section=426.204",
+                                    "name": "§ 426.204 Responsibility for responding to requests.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=IV/part=426/subpart=B/section=426.201",
+                                    "name": "§ 426.201 General.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=IV/part=426/subpart=B/section=426.203",
+                                    "name": "§ 426.203 Requirements for making requests.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=IV/part=426/subpart=B/section=426.208",
+                                    "name": "§ 426.208 Appeals.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=IV/part=426/subpart=B/section=426.211",
+                                    "name": "§ 426.211 Other rights and services.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=IV/part=426/subpart=B/section=426.210",
+                                    "name": "§ 426.210 Fees.",
+                                    "children": [
+                                        {
+                                            "id": "us/federal/ecfr/title=1/chapter=IV/part=426/subpart=B/section=426.210/hub=definitions",
+                                            "name": null,
+                                            "children": []
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "us/federal/ecfr/title=1/chapter=IV/part=457",
+                    "name": "PART 457-ENFORCEMENT OF NONDISCRIMINATION ON THE BASIS OF HANDICAP IN PROGRAMS OR ACTIVITIES CONDUCTED BY THE NATIONAL CAPITAL PLANNING COMMISSION",
+                    "children": [
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=457/section=457.101",
+                            "name": "§ 457.101 Purpose.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=457/section=457.110",
+                            "name": "§ 457.110 Self-evaluation.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=457/section=457.140",
+                            "name": "§ 457.140 Employment.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=457/section=457.151",
+                            "name": "§ 457.151 Program accessibility: New construction and alterations.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=457/section=457.170",
+                            "name": "§ 457.170 Compliance procedures.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=457/section=457.102",
+                            "name": "§ 457.102 Application.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=457/section=457.104-457.109",
+                            "name": "§§ 457.104-457.109 [Reserved]",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=457/section=457.111",
+                            "name": "§ 457.111 Notice.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=457/section=457.130",
+                            "name": "§ 457.130 General prohibitions against discrimination.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=457/section=457.149",
+                            "name": "§ 457.149 Program accessibility: Discrimination prohibited.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=457/section=457.150",
+                            "name": "§ 457.150 Program accessibility: Existing facilities.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=457/section=457.160",
+                            "name": "§ 457.160 Communications.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=457/section=457.171-457.999",
+                            "name": "§§ 457.171-457.999 [Reserved]",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=457/section=457.103",
+                            "name": "§ 457.103 Definitions.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=457/hub=definitions",
+                            "name": null,
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=457/section=457.161-457.169",
+                            "name": "§§ 457.161-457.169 [Reserved]",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=457/section=457.131-457.139",
+                            "name": "§§ 457.131-457.139 [Reserved]",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=457/section=457.112-457.129",
+                            "name": "§§ 457.112-457.129 [Reserved]",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=457/section=457.141-457.148",
+                            "name": "§§ 457.141-457.148 [Reserved]",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=IV/part=457/section=457.152-457.159",
+                            "name": "§§ 457.152-457.159 [Reserved]",
+                            "children": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "us/federal/ecfr/title=1/chapter=V",
+            "name": "CHAPTER V [RESERVED]",
+            "children": []
+        },
+        {
+            "id": "us/federal/ecfr/title=1/chapter=VI",
+            "name": "CHAPTER VI-NATIONAL CAPITAL PLANNING COMMISSION",
+            "children": [
+                {
+                    "id": "us/federal/ecfr/title=1/chapter=VI/part=600",
+                    "name": "PART 600 [RESERVED]",
+                    "children": []
+                },
+                {
+                    "id": "us/federal/ecfr/title=1/chapter=VI/part=602",
+                    "name": "PART 602-NATIONAL CAPITAL PLANNING COMMISSION FREEDOM OF INFORMATION ACT REGULATIONS",
+                    "children": [
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=602/section=602.7",
+                            "name": "§ 602.7 Multi-track processing.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=602/section=602.1",
+                            "name": "§ 602.1 Purpose.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=602/section=602.9",
+                            "name": "§ 602.9 Consultations and referrals.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=602/section=602.14",
+                            "name": "§ 602.14 Fee waiver requirements.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=602/section=602.8",
+                            "name": "§ 602.8 Expedited processing.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=602/section=602.15",
+                            "name": "§ 602.15 Preservation of FOIA records.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=602/section=602.2",
+                            "name": "§ 602.2 Policy.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=602/section=602.4",
+                            "name": "§ 602.4 Information available without a FOIA Request.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=602/section=602.5",
+                            "name": "§ 602.5 FOIA Request requirements.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=602/section=602.6",
+                            "name": "§ 602.6 FOIA response requirements.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=602/section=602.10",
+                            "name": "§ 602.10 Classified and Controlled Unclassified Information.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=602/section=602.11",
+                            "name": "§ 602.11 Confidential Commercial Information.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=602/section=602.12",
+                            "name": "§ 602.12 Appeals of Adverse Determinations.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=602/section=602.13",
+                            "name": "§ 602.13 Fees.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=602/section=602.3",
+                            "name": "§ 602.3 Definitions.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=602/hub=definitions",
+                            "name": null,
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "id": "us/federal/ecfr/title=1/chapter=VI/part=603",
+                    "name": "PART 603-PRIVACY ACT REGULATIONS",
+                    "children": [
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=603/section=603.3",
+                            "name": "§ 603.3 Privacy Act program responsibilities.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=603/section=603.4",
+                            "name": "§ 603.4 Standards used to Maintain Records.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=603/section=603.6",
+                            "name": "§ 603.6 System of Records Notice or SORN.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=603/section=603.8",
+                            "name": "§ 603.8 Employee conduct.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=603/section=603.17",
+                            "name": "§ 603.17 Fees.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=603/section=603.11",
+                            "name": "§ 603.11 Accounting of disclosures.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=603/section=603.1",
+                            "name": "§ 603.1 Purpose and scope.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=603/section=603.15",
+                            "name": "§ 603.15 Requests for Accounting of Record disclosures.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=603/section=603.16",
+                            "name": "§ 603.16 Appeals of Adverse Determinations.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=603/section=603.5",
+                            "name": "§ 603.5 Notice to Individuals supplying information.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=603/section=603.7",
+                            "name": "§ 603.7 Procedures to safeguard Records.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=603/section=603.9",
+                            "name": "§ 603.9 Government contracts.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=603/section=603.10",
+                            "name": "§ 603.10 Conditions for disclosure.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=603/section=603.12",
+                            "name": "§ 603.12 Requests for notification of the existence of Records.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=603/section=603.13",
+                            "name": "§ 603.13 Requests for access to Records.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=603/section=603.14",
+                            "name": "§ 603.14 Requests for Amendment or Correction of Records.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=603/section=603.18",
+                            "name": "§ 603.18 Privacy Impact Assessments.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=603/section=603.2",
+                            "name": "§ 603.2 Definitions.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=603/hub=definitions",
+                            "name": null,
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "id": "us/federal/ecfr/title=1/chapter=VI/part=601",
+                    "name": "PART 601-IMPLEMENTATION OF THE NATIONAL ENVIRONMENTAL POLICY ACT",
+                    "children": [
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=601/hub=definitions",
+                            "name": null,
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=601/subpart=A",
+                            "name": "Subpart A-General",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=VI/part=601/subpart=A/section=601.1",
+                                    "name": "§ 601.1 Purpose.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=VI/part=601/subpart=A/section=601.3",
+                                    "name": "§ 601.3 Definitions.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=VI/part=601/subpart=A/section=601.2",
+                                    "name": "§ 601.2 Policies.",
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=601/subpart=B",
+                            "name": "Subpart B-Lead and Cooperating Agencies",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=VI/part=601/subpart=B/section=601.4",
+                                    "name": "§ 601.4 Designation of Lead Agency.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=VI/part=601/subpart=B/section=601.6",
+                                    "name": "§ 601.6 Resolving disputes over Lead Agency status.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=VI/part=601/subpart=B/section=601.5",
+                                    "name": "§ 601.5 Lead Agency obligations.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=VI/part=601/subpart=B/section=601.7",
+                                    "name": "§ 601.7 Cooperating Agencies.",
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=601/subpart=C",
+                            "name": "Subpart C-NEPA Submission Schedules",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=VI/part=601/subpart=C/section=601.8",
+                                    "name": "§ 601.8 NEPA submission schedule for applications governed by the National Capital Planning Act.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=VI/part=601/subpart=C/section=601.9",
+                                    "name": "§ 601.9 NEPA submission schedule for applications governed by the Commemorative Works Act.",
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=601/subpart=D",
+                            "name": "Subpart D-Initiating the NEPA Process",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=VI/part=601/subpart=D/section=601.10",
+                                    "name": "§ 601.10 Characteristics of Commission actions eligible for a Categorical Exclusion.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=VI/part=601/subpart=D/section=601.11",
+                                    "name": "§ 601.11 Extraordinary Circumstances.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=VI/part=601/subpart=D/section=601.12",
+                                    "name": "§ 601.12 National Capital Planning Commission Categorical Exclusions.",
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=601/subpart=G",
+                            "name": "Subpart G-Dispute Resolution",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=VI/part=601/subpart=G/section=601.28",
+                                    "name": "§ 601.28 Dispute resolution.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=VI/part=601/subpart=G/section=601.29",
+                                    "name": "§ 601.29 [Reserved]",
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=601/subpart=F",
+                            "name": "Subpart F-Environmental Impact Statements",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=VI/part=601/subpart=F/section=601.23",
+                                    "name": "§ 601.23 The Environmental Impact Statement process.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=VI/part=601/subpart=F/section=601.20",
+                                    "name": "§ 601.20 Streamlining Environmental Impact Statements.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=VI/part=601/subpart=F/section=601.21",
+                                    "name": "§ 601.21 Programmatic Environmental Impact Statements and tiering.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=VI/part=601/subpart=F/section=601.25",
+                                    "name": "§ 601.25 Record of Decision.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=VI/part=601/subpart=F/section=601.26",
+                                    "name": "§ 601.26 Supplemental Environmental Impact Statement.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=VI/part=601/subpart=F/section=601.18",
+                                    "name": "§ 601.18 Requirement for and timing of an Environmental Impact Statement.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=VI/part=601/subpart=F/section=601.19",
+                                    "name": "§ 601.19 Context, intensity, and significance of impacts.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=VI/part=601/subpart=F/section=601.22",
+                                    "name": "§ 601.22 Contents of an Environmental Impact Statement.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=VI/part=601/subpart=F/section=601.24",
+                                    "name": "§ 601.24 Final Environmental Impact Statement.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=VI/part=601/subpart=F/section=601.27",
+                                    "name": "§ 601.27 Legislative Environmental Impact Statement.",
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=VI/part=601/subpart=E",
+                            "name": "Subpart E-Environmental Assessments",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=VI/part=601/subpart=E/section=601.13",
+                                    "name": "§ 601.13 Characteristics of Commission actions eligible for an Environmental Assessment.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=VI/part=601/subpart=E/section=601.17",
+                                    "name": "§ 601.17 Supplemental Environmental Assessments.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=VI/part=601/subpart=E/section=601.16",
+                                    "name": "§ 601.16 Finding of No Significant Impact.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=VI/part=601/subpart=E/section=601.14",
+                                    "name": "§ 601.14 Commission actions generally eligible for an Environmental Assessment.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=VI/part=601/subpart=E/section=601.15",
+                                    "name": "§ 601.15 Process for preparing an Environmental Assessment.",
+                                    "children": []
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "us/federal/ecfr/title=1/chapter=I/hub=definitions",
+            "name": null,
+            "children": []
+        },
+        {
+            "id": "us/federal/ecfr/title=1/chapter=II",
+            "name": "CHAPTER II-OFFICE OF THE FEDERAL REGISTER",
+            "children": [
+                {
+                    "id": "us/federal/ecfr/title=1/chapter=II/part=50",
+                    "name": "PART 50 [RESERVED]",
+                    "children": []
+                },
+                {
+                    "id": "us/federal/ecfr/title=1/chapter=II/part=52-299",
+                    "name": "PARTS 52-299 [RESERVED]",
+                    "children": []
+                },
+                {
+                    "id": "us/federal/ecfr/title=1/chapter=II/part=51",
+                    "name": "PART 51-INCORPORATION BY REFERENCE",
+                    "children": [
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=II/part=51/section=51.5",
+                            "name": "§ 51.5 How does an agency request approval?",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=II/part=51/section=51.7",
+                            "name": "§ 51.7 What publications are eligible?",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=II/part=51/section=51.9",
+                            "name": "§ 51.9 What is the proper language of incorporation?",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=II/part=51/section=51.1",
+                            "name": "§ 51.1 Policy.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=II/part=51/section=51.3",
+                            "name": "§ 51.3 When will the Director approve a publication?",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=II/part=51/section=51.11",
+                            "name": "§ 51.11 How does an agency change or remove an approved incorporation?",
+                            "children": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "us/federal/ecfr/title=1/chapter=III",
+            "name": "CHAPTER III-ADMINISTRATIVE CONFERENCE OF THE UNITED STATES",
+            "children": [
+                {
+                    "id": "us/federal/ecfr/title=1/chapter=III/part=300",
+                    "name": "PART 300 [RESERVED]",
+                    "children": []
+                },
+                {
+                    "id": "us/federal/ecfr/title=1/chapter=III/part=302-303",
+                    "name": "PARTS 302-303 [RESERVED]",
+                    "children": []
+                },
+                {
+                    "id": "us/federal/ecfr/title=1/chapter=III/part=305-399",
+                    "name": "PARTS 305-399 [RESERVED]",
+                    "children": []
+                },
+                {
+                    "id": "us/federal/ecfr/title=1/chapter=III/part=304",
+                    "name": "PART 304-DISCLOSURE OF RECORDS OR INFORMATION",
+                    "children": [
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=III/part=304/subpart=B",
+                            "name": "Subpart B-Protection of Privacy and Access to Individual Records Under the Privacy Act of 1974",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=III/part=304/subpart=B/section=304.21",
+                                    "name": "§ 304.21 Requests for access to records.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=III/part=304/subpart=B/section=304.27",
+                                    "name": "§ 304.27 Fees.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=III/part=304/subpart=B/section=304.28",
+                                    "name": "§ 304.28 Notice of court-ordered and emergency disclosures.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=III/part=304/subpart=B/section=304.30",
+                                    "name": "§ 304.30 Contracts for the operation of record systems.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=III/part=304/subpart=B/section=304.33",
+                                    "name": "§ 304.33 Preservation of records.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=III/part=304/subpart=B/section=304.20",
+                                    "name": "§ 304.20 General provisions.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=III/part=304/subpart=B/section=304.22",
+                                    "name": "§ 304.22 Responsibility for responding to requests for access to records.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=III/part=304/subpart=B/section=304.23",
+                                    "name": "§ 304.23 Responses to requests for access to records.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=III/part=304/subpart=B/section=304.24",
+                                    "name": "§ 304.24 Appeals from denials of requests for access to records.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=III/part=304/subpart=B/section=304.25",
+                                    "name": "§ 304.25 Requests for amendment or correction of records.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=III/part=304/subpart=B/section=304.26",
+                                    "name": "§ 304.26 Requests for an accounting of record disclosures.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=III/part=304/subpart=B/section=304.32",
+                                    "name": "§ 304.32 Employee standards of conduct.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=III/part=304/subpart=B/section=304.29",
+                                    "name": "§ 304.29 Security of systems of records.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=III/part=304/subpart=B/section=304.31",
+                                    "name": "§ 304.31 Use and collection of social security numbers and other information.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=III/part=304/subpart=B/section=304.34",
+                                    "name": "§ 304.34 Other rights and services.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=III/part=304/subpart=B/hub=definitions",
+                                    "name": null,
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=III/part=304/subpart=A",
+                            "name": "Subpart A-Procedures for Disclosure of Records Under the Freedom of Information Act",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=III/part=304/subpart=A/section=304.3",
+                                    "name": "§ 304.3 Requirements for making requests.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=III/part=304/subpart=A/section=304.10",
+                                    "name": "§ 304.10 Preservation of records.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=III/part=304/subpart=A/section=304.1",
+                                    "name": "§ 304.1 General provisions.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=III/part=304/subpart=A/section=304.2",
+                                    "name": "§ 304.2 Proactive disclosures.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=III/part=304/subpart=A/section=304.4",
+                                    "name": "§ 304.4 Responsibility for responding to requests.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=III/part=304/subpart=A/section=304.5",
+                                    "name": "§ 304.5 Timing of responses to requests.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=III/part=304/subpart=A/section=304.6",
+                                    "name": "§ 304.6 Responses to requests.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=III/part=304/subpart=A/section=304.8",
+                                    "name": "§ 304.8 Appeals.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=III/part=304/subpart=A/section=304.11",
+                                    "name": "§ 304.11 Other rights and services.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=III/part=304/subpart=A/section=304.9",
+                                    "name": "§ 304.9 Fees.",
+                                    "children": [
+                                        {
+                                            "id": "us/federal/ecfr/title=1/chapter=III/part=304/subpart=A/section=304.9/hub=definitions",
+                                            "name": null,
+                                            "children": []
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=III/part=304/subpart=A/section=304.7",
+                                    "name": "§ 304.7 Business information.",
+                                    "children": [
+                                        {
+                                            "id": "us/federal/ecfr/title=1/chapter=III/part=304/subpart=A/section=304.7/hub=definitions",
+                                            "name": null,
+                                            "children": []
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "us/federal/ecfr/title=1/chapter=III/part=301",
+                    "name": "PART 301-ORGANIZATION AND PURPOSE",
+                    "children": [
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=III/part=301/section=301.1",
+                            "name": "§ 301.1 Establishment and location.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=III/part=301/section=301.5",
+                            "name": "§ 301.5 Office of the Chairman.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=III/part=301/section=301.2",
+                            "name": "§ 301.2 Purposes.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=III/part=301/section=301.3",
+                            "name": "§ 301.3 Organization.",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=III/part=301/section=301.4",
+                            "name": "§ 301.4 Activities.",
+                            "children": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "us/federal/ecfr/title=1/chapter=I",
+            "name": "CHAPTER I-ADMINISTRATIVE COMMITTEE OF THE FEDERAL REGISTER",
+            "children": [
+                {
+                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=C",
+                    "name": "SUBCHAPTER C-SPECIAL EDITIONS OF THE FEDERAL REGISTER",
+                    "children": [
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=C/part=10",
+                            "name": "PART 10-PRESIDENTIAL PAPERS",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=C/part=10/subpart=B",
+                                    "name": "Subpart B [Reserved]",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=C/part=10/subpart=A",
+                                    "name": "Subpart A-Regular Publication",
+                                    "children": [
+                                        {
+                                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=C/part=10/subpart=A/section=10.1",
+                                            "name": "§ 10.1 Publication required.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=C/part=10/subpart=A/section=10.2",
+                                            "name": "§ 10.2 Scope and sources.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=C/part=10/subpart=A/section=10.3",
+                                            "name": "§ 10.3 Format.",
+                                            "children": []
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=C/part=8",
+                            "name": "PART 8-CODE OF FEDERAL REGULATIONS",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=C/part=8/section=8.3",
+                                    "name": "§ 8.3 Periodic updating.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=C/part=8/section=8.4",
+                                    "name": "§ 8.4 Indexes.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=C/part=8/section=8.7",
+                                    "name": "§ 8.7 Agency cooperation.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=C/part=8/section=8.9",
+                                    "name": "§ 8.9 Form of citation.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=C/part=8/section=8.5",
+                                    "name": "§ 8.5 Ancillaries.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=C/part=8/section=8.1",
+                                    "name": "§ 8.1 Policy.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=C/part=8/section=8.2",
+                                    "name": "§ 8.2 Orderly development.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=C/part=8/section=8.6",
+                                    "name": "§ 8.6 Forms of publication.",
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=C/part=9",
+                            "name": "PART 9-THE UNITED STATES GOVERNMENT MANUAL",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=C/part=9/section=9.1",
+                                    "name": "§ 9.1 Publication required.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=C/part=9/section=9.2",
+                                    "name": "§ 9.2 Scope.",
+                                    "children": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E",
+                    "name": "SUBCHAPTER E-PREPARATION, TRANSMITTAL, AND PROCESSING OF DOCUMENTS",
+                    "children": [
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=23-49",
+                            "name": "PARTS 23-49 [RESERVED]",
+                            "children": []
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=17",
+                            "name": "PART 17-FILING FOR PUBLIC INSPECTION AND PUBLICATION SCHEDULES",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=17/subpart=C",
+                                    "name": "Subpart C-Emergency Schedule",
+                                    "children": [
+                                        {
+                                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=17/subpart=C/section=17.3",
+                                            "name": "§ 17.3 Criteria for emergency publication.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=17/subpart=C/section=17.4",
+                                            "name": "§ 17.4 Procedure and timing for emergency publication.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=17/subpart=C/section=17.6",
+                                            "name": "§ 17.6 Procedure and timing for emergency filing for public inspection.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=17/subpart=C/section=17.5",
+                                            "name": "§ 17.5 Criteria for emergency filing for public inspection.",
+                                            "children": []
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=17/subpart=A",
+                                    "name": "Subpart A-Receipt and Processing",
+                                    "children": [
+                                        {
+                                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=17/subpart=A/section=17.1",
+                                            "name": "§ 17.1 Receipt and processing.",
+                                            "children": []
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=17/subpart=B",
+                                    "name": "Subpart B-Regular Schedule",
+                                    "children": [
+                                        {
+                                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=17/subpart=B/section=17.2",
+                                            "name": "§ 17.2 Procedure and timing for regular schedule.",
+                                            "children": []
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=17/subpart=D",
+                                    "name": "Subpart D-Deferred Schedule",
+                                    "children": [
+                                        {
+                                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=17/subpart=D/section=17.7",
+                                            "name": "§ 17.7 Criteria for deferred schedule.",
+                                            "children": []
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=20",
+                            "name": "PART 20-HANDLING OF THE UNITED STATES GOVERNMENT MANUAL STATEMENTS",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=20/section=20.3",
+                                    "name": "§ 20.3 Organization.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=20/section=20.7",
+                                    "name": "§ 20.7 Deadline dates.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=20/section=20.2",
+                                    "name": "§ 20.2 Preparation of agency statements.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=20/section=20.1",
+                                    "name": "§ 20.1 Liaison officers.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=20/section=20.4",
+                                    "name": "§ 20.4 Description of program activities.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=20/section=20.5",
+                                    "name": "§ 20.5 Sources of information.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=20/section=20.6",
+                                    "name": "§ 20.6 Form, style, arrangement and apportionment of space.",
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=21",
+                            "name": "PART 21-PREPARATION OF DOCUMENTS SUBJECT TO CODIFICATION",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=21/subpart=A",
+                                    "name": "Subpart A-General",
+                                    "children": [
+                                        {
+                                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=21/subpart=A/section=21.1",
+                                            "name": "§ 21.1 Drafting.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=21/subpart=A/section=21.6",
+                                            "name": "§ 21.6 Notice of expiration of codified material.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=21/subpart=A/subject-group=ECFR37eba531f722e6f",
+                                            "name": "OMB Control Numbers",
+                                            "children": [
+                                                {
+                                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=21/subpart=A/subject-group=ECFR37eba531f722e6f/section=21.35",
+                                                    "name": "§ 21.35 OMB control numbers.",
+                                                    "children": []
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=21/subpart=A/subject-group=ECFRf2579046aba770d",
+                                            "name": "Amendments",
+                                            "children": [
+                                                {
+                                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=21/subpart=A/subject-group=ECFRf2579046aba770d/section=21.20",
+                                                    "name": "§ 21.20 General requirements.",
+                                                    "children": []
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=21/subpart=A/subject-group=ECFR36a1e3d4aeb7ac2",
+                                            "name": "Headings",
+                                            "children": [
+                                                {
+                                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=21/subpart=A/subject-group=ECFR36a1e3d4aeb7ac2/section=21.16",
+                                                    "name": "§ 21.16 Required document headings.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=21/subpart=A/subject-group=ECFR36a1e3d4aeb7ac2/section=21.19",
+                                                    "name": "§ 21.19 Composition of part headings.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=21/subpart=A/subject-group=ECFR36a1e3d4aeb7ac2/section=21.18",
+                                                    "name": "§ 21.18 Tables of contents.",
+                                                    "children": []
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=21/subpart=A/subject-group=ECFR095b3363a246648",
+                                            "name": "References",
+                                            "children": [
+                                                {
+                                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=21/subpart=A/subject-group=ECFR095b3363a246648/section=21.23",
+                                                    "name": "§ 21.23 Parallel citations of Code and Federal Register.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=21/subpart=A/subject-group=ECFR095b3363a246648/section=21.21",
+                                                    "name": "§ 21.21 General requirements: References.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=21/subpart=A/subject-group=ECFR095b3363a246648/section=21.24",
+                                                    "name": "§ 21.24 References to 1938 edition of Code.",
+                                                    "children": []
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=21/subpart=A/subject-group=ECFRbf8cbe3dda76da6",
+                                            "name": "Code Structure",
+                                            "children": [
+                                                {
+                                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=21/subpart=A/subject-group=ECFRbf8cbe3dda76da6/section=21.7",
+                                                    "name": "§ 21.7 Titles and subtitles.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=21/subpart=A/subject-group=ECFRbf8cbe3dda76da6/section=21.8",
+                                                    "name": "§ 21.8 Chapters and subchapters.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=21/subpart=A/subject-group=ECFRbf8cbe3dda76da6/section=21.9",
+                                                    "name": "§ 21.9 Parts, subparts, and undesignated center heads.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=21/subpart=A/subject-group=ECFRbf8cbe3dda76da6/section=21.10",
+                                                    "name": "§ 21.10 Sections.",
+                                                    "children": []
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=21/subpart=A/subject-group=ECFR0e55ed0aa1f6b70",
+                                            "name": "Effective Date Statement",
+                                            "children": [
+                                                {
+                                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=21/subpart=A/subject-group=ECFR0e55ed0aa1f6b70/section=21.30",
+                                                    "name": "§ 21.30 General.",
+                                                    "children": []
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=21/subpart=A/subject-group=ECFRe8a0e8af6bd5c46",
+                                            "name": "Numbering",
+                                            "children": [
+                                                {
+                                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=21/subpart=A/subject-group=ECFRe8a0e8af6bd5c46/section=21.11",
+                                                    "name": "§ 21.11 Standard organization of the Code of Federal Regulations.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=21/subpart=A/subject-group=ECFRe8a0e8af6bd5c46/section=21.12",
+                                                    "name": "§ 21.12 Reservation of numbers.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=21/subpart=A/subject-group=ECFRe8a0e8af6bd5c46/section=21.14",
+                                                    "name": "§ 21.14 Deviations from standard organization of the Code of Federal Regulations.",
+                                                    "children": []
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=21/subpart=B",
+                                    "name": "Subpart B-Citations of Authority",
+                                    "children": [
+                                        {
+                                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=21/subpart=B/section=21.41",
+                                            "name": "§ 21.41 Agency responsibility.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=21/subpart=B/section=21.40",
+                                            "name": "§ 21.40 General requirements: Authority citations.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=21/subpart=B/section=21.42",
+                                            "name": "§ 21.42 Exceptions.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=21/subpart=B/subject-group=ECFR5191d02807da4e6",
+                                            "name": "Form",
+                                            "children": [
+                                                {
+                                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=21/subpart=B/subject-group=ECFR5191d02807da4e6/section=21.51",
+                                                    "name": "§ 21.51 General.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=21/subpart=B/subject-group=ECFR5191d02807da4e6/section=21.53",
+                                                    "name": "§ 21.53 Nonstatutory materials.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=21/subpart=B/subject-group=ECFR5191d02807da4e6/section=21.52",
+                                                    "name": "§ 21.52 Statutory material.",
+                                                    "children": []
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=21/subpart=B/subject-group=ECFR4c85b4234cc9c56",
+                                            "name": "Placement",
+                                            "children": [
+                                                {
+                                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=21/subpart=B/subject-group=ECFR4c85b4234cc9c56/section=21.45",
+                                                    "name": "§ 21.45 Nonstatutory authority.",
+                                                    "children": []
+                                                },
+                                                {
+                                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=21/subpart=B/subject-group=ECFR4c85b4234cc9c56/section=21.43",
+                                                    "name": "§ 21.43 Placing and amending authority citations.",
+                                                    "children": []
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=22",
+                            "name": "PART 22-PREPARATION OF NOTICES AND PROPOSED RULES",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=22/subpart=B",
+                                    "name": "Subpart B-Proposed Rules",
+                                    "children": [
+                                        {
+                                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=22/subpart=B/section=22.6",
+                                            "name": "§ 22.6 Code designation.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=22/subpart=B/section=22.5",
+                                            "name": "§ 22.5 General requirements.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=22/subpart=B/section=22.7",
+                                            "name": "§ 22.7 Codification.",
+                                            "children": []
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=22/subpart=A",
+                                    "name": "Subpart A-Notices",
+                                    "children": [
+                                        {
+                                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=22/subpart=A/section=22.1",
+                                            "name": "§ 22.1 Name of issuing agency and subdivision.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=22/subpart=A/section=22.2",
+                                            "name": "§ 22.2 Authority citation.",
+                                            "children": []
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=19",
+                            "name": "PART 19-EXECUTIVE ORDERS AND PRESIDENTIAL PROCLAMATIONS",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=19/section=19.4",
+                                    "name": "§ 19.4 Proclamations calling for the observance of special days or events.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=19/section=19.1",
+                                    "name": "§ 19.1 Form.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=19/section=19.2",
+                                    "name": "§ 19.2 Routing and approval of drafts.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=19/section=19.3",
+                                    "name": "§ 19.3 Routing and certification of originals and copies.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=19/section=19.5",
+                                    "name": "§ 19.5 Proclamations of treaties excluded.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=19/section=19.6",
+                                    "name": "§ 19.6 Definition.",
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=18",
+                            "name": "PART 18-PREPARATION AND TRANSMITTAL OF DOCUMENTS GENERALLY",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=18/section=18.3",
+                                    "name": "§ 18.3 Submission of documents and letters of transmittal.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=18/section=18.5",
+                                    "name": "§ 18.5 Certified copies.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=18/section=18.7",
+                                    "name": "§ 18.7 Signature.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=18/section=18.9",
+                                    "name": "§ 18.9 Style.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=18/section=18.13",
+                                    "name": "§ 18.13 Withdrawal or correction of filed documents.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=18/section=18.20",
+                                    "name": "§ 18.20 Identification of subjects in agency regulations.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=18/section=18.17",
+                                    "name": "§ 18.17 Effective dates and time periods.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=18/section=18.1",
+                                    "name": "§ 18.1 Original and copies required.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=18/section=18.2",
+                                    "name": "§ 18.2 Prohibition on combined category documents.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=18/section=18.4",
+                                    "name": "§ 18.4 Form of document.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=18/section=18.6",
+                                    "name": "§ 18.6 Form of certification.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=18/section=18.8",
+                                    "name": "§ 18.8 Seal.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=18/section=18.10",
+                                    "name": "§ 18.10 Illustrations, tabular material, and forms.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=18/section=18.12",
+                                    "name": "§ 18.12 Preamble requirements.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=18/section=18.15",
+                                    "name": "§ 18.15 Correction of errors in printing.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=18/section=18.16",
+                                    "name": "§ 18.16 Reinstatement of expired regulations.",
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=15",
+                            "name": "PART 15-SERVICES TO FEDERAL AGENCIES",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=15/subpart=A",
+                                    "name": "Subpart A-General",
+                                    "children": [
+                                        {
+                                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=15/subpart=A/section=15.1",
+                                            "name": "§ 15.1 Cooperation.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=15/subpart=A/section=15.3",
+                                            "name": "§ 15.3 Staff assistance.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=15/subpart=A/section=15.2",
+                                            "name": "§ 15.2 Information services.",
+                                            "children": []
+                                        },
+                                        {
+                                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=15/subpart=A/section=15.4",
+                                            "name": "§ 15.4 Reproduction and certification of copies of acts and documents.",
+                                            "children": []
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=15/subpart=B",
+                                    "name": "Subpart B-Special Assistance",
+                                    "children": [
+                                        {
+                                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=15/subpart=B/section=15.10",
+                                            "name": "§ 15.10 Information on drafting and publication.",
+                                            "children": []
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=16",
+                            "name": "PART 16-AGENCY REPRESENTATIVES",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=16/section=16.1",
+                                    "name": "§ 16.1 Designation.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=16/section=16.3",
+                                    "name": "§ 16.3 Certifying duties.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=16/section=16.2",
+                                    "name": "§ 16.2 Liaison duties.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=E/part=16/section=16.4",
+                                    "name": "§ 16.4 Authorizing duties.",
+                                    "children": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=D",
+                    "name": "SUBCHAPTER D-AVAILABILITY OF OFFICE OF THE FEDERAL REGISTER PUBLICATIONS",
+                    "children": [
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=D/part=12",
+                            "name": "PART 12-OFFICIAL DISTRIBUTION WITHIN FEDERAL GOVERNMENT",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=D/part=12/section=12.1",
+                                    "name": "§ 12.1 Federal Register.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=D/part=12/section=12.2",
+                                    "name": "§ 12.2 Code of Federal Regulations.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=D/part=12/section=12.4",
+                                    "name": "§ 12.4 Weekly Compilation of Presidential Documents.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=D/part=12/section=12.5",
+                                    "name": "§ 12.5 [Reserved]",
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=D/part=11",
+                            "name": "PART 11-SUBSCRIPTIONS",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=D/part=11/section=11.1",
+                                    "name": "§ 11.1 Subscription by the public.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=D/part=11/section=11.5",
+                                    "name": "§ 11.5 Public Papers of the Presidents of the United States.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=D/part=11/section=11.8",
+                                    "name": "§ 11.8 LSA (List of CFR Sections Affected).",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=D/part=11/section=11.2",
+                                    "name": "§ 11.2 Federal Register.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=D/part=11/section=11.3",
+                                    "name": "§ 11.3 Code of Federal Regulations.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=D/part=11/section=11.4",
+                                    "name": "§ 11.4 The United States Government Manual.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=D/part=11/section=11.7",
+                                    "name": "§ 11.7 Federal Register Index.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=D/part=11/section=11.6",
+                                    "name": "§ 11.6 [Reserved]",
+                                    "children": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=A",
+                    "name": "SUBCHAPTER A-GENERAL",
+                    "children": [
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=A/part=1",
+                            "name": "PART 1-DEFINITIONS",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=A/part=1/section=1.1",
+                                    "name": "§ 1.1 Definitions.",
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=A/part=3",
+                            "name": "PART 3-SERVICES TO THE PUBLIC",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=A/part=3/section=3.1",
+                                    "name": "§ 3.1 Information services.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=A/part=3/section=3.3",
+                                    "name": "§ 3.3 Reproduction and certification of copies of acts and documents.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=A/part=3/section=3.2",
+                                    "name": "§ 3.2 Public inspection of documents.",
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=A/part=2",
+                            "name": "PART 2-GENERAL INFORMATION",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=A/part=2/section=2.5",
+                                    "name": "§ 2.5 Publication of statutes, regulations, and related documents.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=A/part=2/section=2.1",
+                                    "name": "§ 2.1 Scope and purpose.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=A/part=2/section=2.4",
+                                    "name": "§ 2.4 General authority of Director.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=A/part=2/section=2.6",
+                                    "name": "§ 2.6 Unrestricted use.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=A/part=2/section=2.2",
+                                    "name": "§ 2.2 Administrative Committee of the Federal Register.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=A/part=2/section=2.3",
+                                    "name": "§ 2.3 Office of the Federal Register; location; office hours.",
+                                    "children": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=B",
+                    "name": "SUBCHAPTER B-THE FEDERAL REGISTER",
+                    "children": [
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=B/part=6",
+                            "name": "PART 6-INDEXES AND ANCILLARIES",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=B/part=6/section=6.3",
+                                    "name": "§ 6.3 Daily lists of parts affected.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=B/part=6/section=6.4",
+                                    "name": "§ 6.4 Monthly list of sections affected.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=B/part=6/section=6.1",
+                                    "name": "§ 6.1 Index to daily issues.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=B/part=6/section=6.2",
+                                    "name": "§ 6.2 Analytical subject indexes.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=B/part=6/section=6.5",
+                                    "name": "§ 6.5 Indexes, digests, and guides.",
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": "us/federal/ecfr/title=1/chapter=I/subchapter=B/part=5",
+                            "name": "PART 5-GENERAL",
+                            "children": [
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=B/part=5/section=5.1",
+                                    "name": "§ 5.1 Publication policy.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=B/part=5/section=5.9",
+                                    "name": "§ 5.9 Categories of documents.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=B/part=5/section=5.2",
+                                    "name": "§ 5.2 Documents required to be filed for public inspection and published.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=B/part=5/section=5.4",
+                                    "name": "§ 5.4 Publication not authorized.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=B/part=5/section=5.5",
+                                    "name": "§ 5.5 Supplement to the Code of Federal Regulations.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=B/part=5/section=5.10",
+                                    "name": "§ 5.10 Forms of publication.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=B/part=5/section=5.3",
+                                    "name": "§ 5.3 Publication of other documents.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=B/part=5/section=5.6",
+                                    "name": "§ 5.6 Daily publication.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=B/part=5/section=5.7",
+                                    "name": "§ 5.7 Delivery and mailing.",
+                                    "children": []
+                                },
+                                {
+                                    "id": "us/federal/ecfr/title=1/chapter=I/subchapter=B/part=5/section=5.8",
+                                    "name": "§ 5.8 Form of citation.",
+                                    "children": []
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
