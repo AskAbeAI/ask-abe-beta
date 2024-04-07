@@ -53,16 +53,21 @@ export async function POST(req: Request) {
 		
 		//console.log(jurisdiction)
 		const maxRetries = 2;
+		console.log(jurisdiction)
+		console.log(query_expansion_embedding)
+		console.log(parentScope)
+		console.log(maxRows)
 		
 		primaryRows = await callWithRetries(
 			() => searchSimilarContent(jurisdiction, query_expansion_embedding, parentScope, 0.6, maxRows, supabaseUrl, supabaseKey),
 			maxRetries
 		);
+		console.log(primaryRows)
 		
 	
 			
 	} catch (error) {
-		
+		console.log(error)
 		errorMessage = `${error},\ne`
 		if (error instanceof Error) {
 		errorMessage += error.stack;

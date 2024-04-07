@@ -8,7 +8,7 @@ import ContentQueue from "@/components/pcontentQueue";
 import DynamicDropdown from "@/components/sectionDropdown";
 import { TreeNode } from "@/lib/types";
 import LegislationTreeView from '@/components/legislationTreeView';
-import legislationData from '../../../../public/data/title1.json'; // Adjust the path as necessary
+import legislationData from '../../../../public/treedata/title1.json'; // Adjust the path as necessary
 
 
 import {
@@ -327,8 +327,6 @@ export default function Playground() {
     };
 
   
-  
-
   const setShown = () => {
     setShowJurisdictionModal(false);
   };
@@ -348,9 +346,9 @@ export default function Playground() {
       {isDesktopOrLaptop && (
         <div className="justify-center items-center h-screen ">
           <NavBar />
-          <div className="w-64 h-screen overflow-auto"> {/* Adjust width as needed */}
+          {/* <div className="w-64 h-screen overflow-auto"> 
           <LegislationTreeView legislationData={legislationData} />
-        </div>
+      </div> */}
           <JurisdictionModal
             shown={showJurisdictionModal}
             setShown={setShown}
