@@ -1,8 +1,9 @@
 import { NextResponse } from 'next/server';
-import { generateBasicQueryRefinement, generateDirectAnswerSimple, generateEmbedding } from '@/lib/helpers';
+import { generateBasicQueryRefinement, generateDirectAnswerSimple, generateEmbedding, answeringInstructionsHelper, directAnswerHelper } from '@/lib/helpers';
+import { callWithRetries } from '@/lib/utils';
 import { jurisdiction_similarity_search_all_partitions } from '@/lib/database';
 import OpenAI from 'openai';
-import { Jurisdiction, node_as_row, text_citation_pair } from '@/lib/types';
+import { Jurisdiction, node_as_row, text_citation_pair, text_citation_document_trio, PipelineModel } from '@/lib/types';
 
 export const maxDuration = 120;
 const openAiKey = process.env.OPENAI_API_KEY;
@@ -23,48 +24,56 @@ const openai = new OpenAI({
 //     // Return the response with CORS headers and no body
 //     return new NextResponse(null, { status: 204, headers });
 // }
+interface PrivateQARequest {
+    abe_api_key: string;
+    question: string;
+    jurisdiction: string;
+    
+}
 
 export async function POST(req: Request) {
     
-    const startTime = Date.now();
-    
     console.log("=== EXTERNAL QA API EndPoint ===");
 
-    const requestData: any = await req.json();
-    const api_key: string = requestData.api_key;
-    const question: string = requestData.question;
-    const jurisdiction: Jurisdiction = requestData.jurisdiction;
+    const request: PrivateQARequest = await req.json();
+    const abe_api_key: string = request.abe_api_key;
+    const question: string = request.question;
+    const jurisdiction: string = request.jurisdiction;
+    const maxRows = 10;
+    const maxRetries = 2;
     
-    // Vitalia API key & Telegram Bot API key
-    if (api_key !== 'privateQAPassInternalShit') {
-        return NextResponse.json({ errorMessage: `Invalid API key: ${api_key}`, status: 401 });
+    const supabaseUrl = process.env.SUPABASE_URL;
+	const supabaseKey = process.env.SUPABASE_KEY;
+
+	if (supabaseUrl === undefined) { throw new Error("process.env.SUPABUSE_URL is undefined!"); }
+	if (supabaseKey === undefined) { throw new Error("process.env.SUPABASE_KEY is undefined!"); }
+    
+    
+    if (abe_api_key !== 'conciergeTestKey') {
+        return NextResponse.json({ errorMessage: `Invalid API key: ${abe_api_key}`, status: 401 });
     }
     
     
     try {
-        // Spawn a child process to run the Python script
-          // for(const question of testing_question_list) {
-        
+        const base = {
+            vendor: "openai",
+            model: "gpt-4-turbo-preview",
+            callingFunction: "privateQA",
+            pipelineModel: new PipelineModel({session_id: "random1", history: [] }),
+          }
+        const legal_questions: string[] = [question];
 
-        console.log(question);
-        
-        const res_0 = await generateBasicQueryRefinement(openai, question);
-        const specific_questions = res_0.specific_questions;
+        const embedding: number[] = await generateEmbedding(openai, legal_questions);
+        const query_expansion_embedding = `[${embedding.toString()}]`;
+        const primaryRows: node_as_row[] = await callWithRetries(
+			() => jurisdiction_similarity_search_all_partitions(jurisdiction, query_expansion_embedding, 0.6, maxRows, supabaseUrl, supabaseKey),
+			maxRetries
+		);
 
-        
-        const legal_questions: string[] = specific_questions
-        // const legal_statements: string[] = await generateQueryExpansion(openai, legal_questions);
-        const embedded_expansion_query_raw:number[] = await generateEmbedding(openai, legal_questions);
-        // Convert the embedded expansion query into a string
-        const embedded_expansion_query:string = "[" + embedded_expansion_query_raw.join(",") + "]";
-
-        const rows = await jurisdiction_similarity_search_all_partitions(jurisdiction.abbreviation.toLowerCase(), embedded_expansion_query, 0.8, 20, process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
-        const all_text_citation_pairs: text_citation_pair[] =[];
-        for (const row of rows) {
+        const all_text_citation_pairs: text_citation_document_trio[] =[];
+        for (const row of primaryRows) {
             // Join row.node_text into a single string with '\n' as the delimiter
-            //console.log(row.node_text)
             let new_text = row.node_text.join('\n');
-            //console.log(new_text)
             let citation = row.node_citation;
             
             if(citation === undefined || citation === null) {
@@ -75,19 +84,23 @@ export async function POST(req: Request) {
             citation = row.node_id.split("/").pop()!;
             }
             //console.log(citation)
-            const pair: text_citation_pair = {
-                section_citation: citation,
-                text: new_text,
+            const pair: text_citation_document_trio = {
+            section_citation: citation,
+            text: new_text,
+            document: jurisdiction
             };
             all_text_citation_pairs.push(pair);
         }
+        const customer_information = "The customer is interested in getting accurate legal information about their question. They are a resident of the applicable jurisdiction. They are looking for a general answer to their question, not specific legal advice. They only want to understand current legislation, not any future or upcoming changes.";
+        const instructions = await answeringInstructionsHelper(base, openai, question, customer_information, []);
+       
+        const directAnswer = await directAnswerHelper(base, openai, question, instructions, all_text_citation_pairs);
+        
+        
 
-        const instructions:string = `The user is looking for a general answer to the legal question. Please include relevant statistics and values included in the legislation. Answer the question directly, and include values that could be used to create graphs/statistical analysis after that.\n All sections you analyze will be from the ${jurisdiction.corpusTitle}.`
-        const direct_answer = await generateDirectAnswerSimple(openai, question, instructions, all_text_citation_pairs);
-        console.log(direct_answer);
+
         
-        
-        return NextResponse.json({ answer: direct_answer });
+        return NextResponse.json({ "response": directAnswer });
 
     } catch (error) {
         //console.error('Error running Python script:', error);

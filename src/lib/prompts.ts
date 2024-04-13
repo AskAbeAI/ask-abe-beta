@@ -253,7 +253,7 @@ export function getPromptBasicQueryRefinement(
 export function expandQuery(
   legal_questions: string[]
 ): [Message[], number] {
-  const system = `You are a helpful legal assistant that rephrases a user's legal question into a statement of how that question's answer looks like in official legislation. You will be provided with a list of legal_questions, which you will translate into legal language, as it might appear in actual legislation. Questions should be converted to statements that look like they could be found in actual legislation.
+  const system = `You are a helpful legal assistant that rephrases a user's legal question into a statement of how that question's answer looks like in official legislation. You will be provided with a user's legal question, which you will translate into legal language, as it might appear in actual legislation. One question should be converted to many legal statements that look like they could be found in actual legislation, containing slight variations in wording/ meaning.
   Transform each question in legal_questions into a hypothetical legal statement, following these instructions:
   1. Legal statements are converted from the form of a question to a statement.
   2. Legal statements are intended to mimic the format of text in actual legislation. Do not include any section headers or identifiers, just raw legal text.

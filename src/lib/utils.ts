@@ -89,3 +89,21 @@ export function createNewMemory(userInput: string, sessionId: string, questionJu
   }
   return memory;
 }
+
+export async function callWithRetries<T>(
+	fn: () => Promise<T>, 
+	maxRetries: number
+  ): Promise<T> {
+	let attempts = 0;
+	while (true) {
+	  try {
+		return await fn();
+	  } catch (error) {
+		attempts++;
+		if (attempts > maxRetries) {
+		  throw error;
+		}
+		console.log(`Attempt ${attempts} failed, retrying...`);
+	  }
+	}
+  }
