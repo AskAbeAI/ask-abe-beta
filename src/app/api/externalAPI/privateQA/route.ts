@@ -97,9 +97,6 @@ export async function POST(req: Request) {
         const directAnswer = await directAnswerHelper(base, openai, question, instructions, all_text_citation_pairs);
         
         
-
-
-        
         return NextResponse.json({ "response": directAnswer });
 
     } catch (error) {

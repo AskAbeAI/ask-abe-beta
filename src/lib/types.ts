@@ -110,6 +110,16 @@ export interface AnswerBlockProps {
   onStreamEnd: (concurrentStreaming: boolean) => void;
   setActiveCitationId: (citationId: string) => void;
 }
+
+export interface QuestionBlockProps {
+  content: string;
+}
+export interface ConciergeIconProps {
+  showCurrentLoading: boolean;
+  neverLoad: boolean;
+}
+
+
 export interface AnswerVitaliaBlockProps {
   content: string;
   citationLinks: CitationLinks
@@ -155,9 +165,6 @@ export interface ClarificationQuestionBlockProps {
   onClarificationStreamEnd: (clarifyingQuestion: string, clarifyingAnswers: string[], mode: string) => void;
 }
 
-export interface QuestionBlockProps {
-  content: string;
-}
 
 export interface StreamingAnswerBlockProps {
   content: string; // This will be the streamed text content

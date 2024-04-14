@@ -10,7 +10,6 @@ function middleware(request: NextRequest) {
   const nonce = Buffer.from(crypto.randomUUID()).toString('base64')
   const cspHeader = `
   
-  frame-ancestors 'self' *.strikingly.com;  
   
 `
   // style-src 'self' 'nonce-${nonce}';
@@ -32,7 +31,7 @@ function middleware(request: NextRequest) {
   const requestHeaders = new Headers(request.headers)
   requestHeaders.set('x-nonce', nonce)
   requestHeaders.set("Access-Control-Allow-Credentials", "true")
-  requestHeaders.set('Access-Control-Allow-Origin', 'https://www.strikingly.com')
+  requestHeaders.set('Access-Control-Allow-Origin', 'https://concierge-live.vercel.app/')
   requestHeaders.set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
   requestHeaders.set('Access-Control-Allow-Headers', 'Content-Type, Authorization')
         // Include any other headers you might need for your requests
@@ -54,7 +53,7 @@ function middleware(request: NextRequest) {
   )
   response.headers.set('x-nonce', nonce)
   response.headers.set("Access-Control-Allow-Credentials", "true")
-  response.headers.set('Access-Control-Allow-Origin', 'https://www.strikingly.com')
+  response.headers.set('Access-Control-Allow-Origin', 'https://concierge-live.vercel.app/')
   response.headers.set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
   response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization')
  
@@ -67,7 +66,7 @@ export default authMiddleware({
     return middleware(req);
   },
   publicRoutes: ["/","/about", "/privacy","/tos", "/support", "/legal", "/how", "/devlog", "/devlogblog", "/playground", "/mission", "/api/(.*)"],
-  ignoredRoutes: ["/embed", "/prototype", "/api/externalAPI/vitalia"],
+  ignoredRoutes: ["/embed", "/prototype", "/api/externalAPI/vitalia", "/api/externalAPI/privateQA"],
 });
  
 export const config = {
