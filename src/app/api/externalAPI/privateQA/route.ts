@@ -15,7 +15,7 @@ export function OPTIONS(req: Request) {
     
     // Set CORS headers
     const headers = {
-        'Access-Control-Allow-Origin': 'https://concierge-live.vercel.app/', // Modify as needed for your use case
+        'Access-Control-Allow-Origin': 'https://concierge-live.vercel.app/chat/', // Modify as needed for your use case
         'Access-Control-Allow-Methods': 'POST, OPTIONS',
         'Access-Control-Allow-Headers': 'Content-Type, Authorization',
         // Include any other headers you might need for your requests

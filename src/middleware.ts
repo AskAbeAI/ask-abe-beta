@@ -31,7 +31,7 @@ function middleware(request: NextRequest) {
   const requestHeaders = new Headers(request.headers)
   requestHeaders.set('x-nonce', nonce)
   requestHeaders.set("Access-Control-Allow-Credentials", "true")
-  requestHeaders.set('Access-Control-Allow-Origin', 'https://concierge-live.vercel.app/')
+  requestHeaders.set('Access-Control-Allow-Origin', 'https://concierge-live.vercel.app/chat/')
   requestHeaders.set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
   requestHeaders.set('Access-Control-Allow-Headers', 'Content-Type, Authorization')
         // Include any other headers you might need for your requests
@@ -53,7 +53,7 @@ function middleware(request: NextRequest) {
   )
   response.headers.set('x-nonce', nonce)
   response.headers.set("Access-Control-Allow-Credentials", "true")
-  response.headers.set('Access-Control-Allow-Origin', 'https://concierge-live.vercel.app/')
+  response.headers.set('Access-Control-Allow-Origin', 'https://concierge-live.vercel.app/chat/')
   response.headers.set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
   response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization')
  
