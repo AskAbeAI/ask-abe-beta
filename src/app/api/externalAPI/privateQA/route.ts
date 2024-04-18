@@ -49,7 +49,7 @@ export async function POST(req: Request) {
 	if (supabaseKey === undefined) { throw new Error("process.env.SUPABASE_KEY is undefined!"); }
     
     
-    if (abe_api_key !== 'conciergeTestKey') {
+    if (abe_api_key !== 'conciergeTestKey' && abe_api_key !== 'seanGroveTestKey') {
         return NextResponse.json({ errorMessage: `Invalid API key: ${abe_api_key}`, status: 401 });
     }
     
