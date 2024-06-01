@@ -61,9 +61,9 @@ const NavBar: React.FC = () => {
 	return (
 		<div>
 
-			<nav className="justify-center items-center bg-[#FAF5E6] flex flex-col px-10 border-b border-solid">
+			<nav className="justify-center items-center bg-background flex flex-col px-10 border-b border-solid">
 				<div className="justify-between items-stretch flex w-full max-w-full gap-5 my-3 max-md:max-w-full max-md:flex-wrap max-md:justify-center">
-					<div className="flex justify-left items-center font-imfell font-bold text-[#4A4643] text-2xl">ASK ABE</div>
+					<div className="flex justify-left items-center font-imfell font-bold text-foreground text-2xl">ASK ABE</div>
 					<NavigationMenu>
 						<NavigationMenuList>
 							<NavigationMenuItem>
