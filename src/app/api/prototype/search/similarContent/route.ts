@@ -4,7 +4,7 @@ import {  questionJurisdictions, Node } from "@/lib/types";
 import { searchSimilarContent, insert_api_debug_log } from "@/lib/database";
 import { request } from 'http';
 import { SearchSimilarContentRequest, SearchSimilarContentResponse} from '@/lib/api_types';
-import { generateApiRequestReport, generateApiResponseReport } from '@/lib/utils';
+import { generateApiRequestReport, generateApiResponseReport } from '@/lib/utilities';
 
 export const maxDuration = 120;
 export function OPTIONS(req: Request) {

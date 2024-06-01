@@ -2,7 +2,7 @@ import OpenAI from 'openai';
 import {  ClarificationChoices, node_as_row, questionJurisdictions, text_citation_document_trio, Node, AnswerChunk} from '@/lib/types';
 import { NextResponse } from 'next/server';
 import { condenseClarificationsIntoInstructions,answeringInstructionsHelper, answerNewQuestionHelper } from '@/lib/helpers';
-import { generateApiRequestReport, generateApiResponseReport } from '@/lib/utils';
+import { generateApiRequestReport, generateApiResponseReport } from '@/lib/utilities';
 import { BaseResponse, AnswerNewQuestionRequest, AnswerNewQuestionResponse } from '@/lib/api_types';
 
 

@@ -3,7 +3,7 @@ import OpenAI from "openai";
 import { scoreQuestionHelper } from "@/lib/helpers";
 import { PipelineModel, PhaseReport, PhaseType } from '@/lib/types';
 import { BaseResponse, QueryScoringRequest, QueryScoringResponse } from '@/lib/api_types';
-import { generateApiRequestReport, generateApiResponseReport } from '@/lib/utils';
+import { generateApiRequestReport, generateApiResponseReport } from '@/lib/utilities';
 const openAiKey = process.env.OPENAI_API_KEY;
 const openai = new OpenAI({
   apiKey: openAiKey,

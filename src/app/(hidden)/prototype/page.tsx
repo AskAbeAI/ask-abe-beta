@@ -32,7 +32,7 @@ import {
   constructPromptQueryMisc,
   constructPromptQueryBoth,
   createNewMemory,
-} from "@/lib/utils";
+} from "@/lib/utilities";
 
 import { useMediaQuery } from "react-responsive";
 // Import Request, Response types from APIs

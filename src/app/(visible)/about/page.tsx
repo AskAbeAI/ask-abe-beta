@@ -1,5 +1,4 @@
-"use client";
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import PageFooter from '@/components/pageFooter';
 
@@ -35,7 +34,7 @@ export default function aboutPage() {
                 <div className="flex justify-center text-center text-[#2F3F3D] text-5xl font-cinzel leading-[58px] max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
                   Confronting the Challenges of Accessibility
                 </div>
-                <div className="text-black text-lg text-base font-raleway leading-24 mt-6 max-md:max-w-full">
+                <div className="text-black text-lg font-raleway leading-24 mt-6 max-md:max-w-full">
                   In today&apos;s complex legal landscape, a significant challenge lies in the widespread lack of understanding of laws and regulations. This issue disproportionately affects individuals, especially those from historically undereducated, resource-limited, and marginalized communities. For them, the absence of basic legal knowledge often leads to greater vulnerability and injustice, as they lack the means to access legal assistance. On a societal level, the problem runs deeper. The legal system is riddled with artificial and longstanding barriers that hinder the democratization of legal knowledge. A society where citizens are forced to rely on paid legal services for even basic legal understanding is fundamentally flawed. It stifles informed citizenship and perpetuates inequities. Providing every citizen with the tools and capability to grasp essential laws and regulations is not just a matter of individual empowerment, but a cornerstone for a more just, informed, and equitable society.
                 </div>
 
@@ -88,16 +87,16 @@ export default function aboutPage() {
                 <div className="text-[#2F3F3D] text-5xl font-cinzel leading-[58px] max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
                   Who does this benefit?
                 </div>
-                <div className="text-black text-lg text-base font-raleway leading-6 mt-6 max-md:max-w-full">
+                <div className="text-black text-lg font-raleway leading-6 mt-6 max-md:max-w-full">
                   In short, everyone. </div>
-                <div className="text-black text-lg text-base font-raleway leading-24 mt-4 max-md:max-w-full">
+                <div className="text-black text-lg font-raleway leading-24 mt-4 max-md:max-w-full">
                   The profound impact of understanding the laws that govern our society cannot be overstated. It is a powerful tool that benefits everyone, cutting across various strata of society. Our AI tool, Ask Abe, plays a pivotal role in this process of empowerment.
 
                   For the individual, the knowledge of laws and regulations provided by Ask Abe is more than just information; it&apos;s a means to navigate daily life with newfound confidence. Knowing one&apos;s rights and responsibilities demystifies the legal aspects of everyday scenarios, from signing a lease to understanding workplace rights. This clarity not only fosters a sense of security but also encourages proactive engagement in legal matters.
 
                   This benefit extends to marginalized and underrepresented communities as well. Often, these groups are the most impacted by the lack of accessible legal information. Ask Abe serves as a bridge, reducing the knowledge gap and providing these communities with the tools they need to assert their rights and protect their interests.
 
-                  <div className="text-black text-lg text-base font-raleway leading-6 mt-6 max-md:max-w-full">
+                  <div className="text-black text-lg font-raleway leading-6 mt-6 max-md:max-w-full">
                     By democratizing legal knowledge, Ask Abe is instrumental in leveling the playing field and promoting social justice.
 
                     On a broader scale, a society where citizens are informed about their legal environment is a society with a stronger foundation. Knowledgeable citizens are more likely to make informed decisions, contribute positively to their communities, and participate actively in the democratic process. They become advocates not just for themselves but for their community, fostering a culture of legal awareness and civic responsibility.
@@ -165,41 +164,6 @@ export default function aboutPage() {
         </div>
       </div>
 
-      {/* Examples of Ask Abe in Use Section */}
-
-
-      {/* <div className="items-stretch bg-[#FAF5E6] flex flex-col px-16 max-md:px-5">
-        <div className="self-center text-center text-[#2F3F3D] text-5xl font-cinzel leading-[58px] max-w-screen-md mt-28 max-md:max-w-full max-md:text-4xl max-md:leading-[54px] max-md:mt-10">
-          Ask Abe in Action
-        </div>
-        <div className="self-center text-black font-raleway text-center text-lg leading-7 max-w-screen-md mt-6 max-md:max-w-full">
-          Example questions answered by Abe:
-        </div>
-        <div className="mt-20 mb-24 max-md:max-w-full max-md:my-10">
-          <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
-            <div className="flex flex-col items-stretch w-6/12 max-md:w-full max-md:ml-0">
-              <div className="items-stretch flex grow flex-col max-md:max-w-full max-md:mt-8">
-                <img
-                  loading="lazy"
-                  srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/75649c69-0d9f-4c91-88a6-25bbba0b6e84?apiKey=0444d2d78e064e0ba018ac2a58ee83fe&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/75649c69-0d9f-4c91-88a6-25bbba0b6e84?apiKey=0444d2d78e064e0ba018ac2a58ee83fe&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/75649c69-0d9f-4c91-88a6-25bbba0b6e84?apiKey=0444d2d78e064e0ba018ac2a58ee83fe&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/75649c69-0d9f-4c91-88a6-25bbba0b6e84?apiKey=0444d2d78e064e0ba018ac2a58ee83fe&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/75649c69-0d9f-4c91-88a6-25bbba0b6e84?apiKey=0444d2d78e064e0ba018ac2a58ee83fe&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/75649c69-0d9f-4c91-88a6-25bbba0b6e84?apiKey=0444d2d78e064e0ba018ac2a58ee83fe&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/75649c69-0d9f-4c91-88a6-25bbba0b6e84?apiKey=0444d2d78e064e0ba018ac2a58ee83fe&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/75649c69-0d9f-4c91-88a6-25bbba0b6e84?apiKey=0444d2d78e064e0ba018ac2a58ee83fe&" className="aspect-square object-contain object-center w-full overflow-hidden max-md:max-w-full"
-                />
-                <img
-                  loading="lazy"
-                  srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/d6defca7-d309-4c3f-a05d-2e57611878d7?apiKey=0444d2d78e064e0ba018ac2a58ee83fe&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/d6defca7-d309-4c3f-a05d-2e57611878d7?apiKey=0444d2d78e064e0ba018ac2a58ee83fe&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/d6defca7-d309-4c3f-a05d-2e57611878d7?apiKey=0444d2d78e064e0ba018ac2a58ee83fe&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/d6defca7-d309-4c3f-a05d-2e57611878d7?apiKey=0444d2d78e064e0ba018ac2a58ee83fe&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/d6defca7-d309-4c3f-a05d-2e57611878d7?apiKey=0444d2d78e064e0ba018ac2a58ee83fe&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/d6defca7-d309-4c3f-a05d-2e57611878d7?apiKey=0444d2d78e064e0ba018ac2a58ee83fe&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/d6defca7-d309-4c3f-a05d-2e57611878d7?apiKey=0444d2d78e064e0ba018ac2a58ee83fe&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/d6defca7-d309-4c3f-a05d-2e57611878d7?apiKey=0444d2d78e064e0ba018ac2a58ee83fe&" className="aspect-[1.5] object-contain object-center w-full overflow-hidden mt-8 max-md:max-w-full"
-                />
-              </div>
-            </div>
-            <div className="flex flex-col items-stretch w-6/12 ml-5 max-md:w-full max-md:ml-0">
-              <div className="items-stretch flex flex-col max-md:max-w-full max-md:mt-8">
-                <img
-                  loading="lazy"
-                  srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/4cc1fdf9-7ea1-4e4b-b13c-6841222297e9?apiKey=0444d2d78e064e0ba018ac2a58ee83fe&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/4cc1fdf9-7ea1-4e4b-b13c-6841222297e9?apiKey=0444d2d78e064e0ba018ac2a58ee83fe&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/4cc1fdf9-7ea1-4e4b-b13c-6841222297e9?apiKey=0444d2d78e064e0ba018ac2a58ee83fe&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/4cc1fdf9-7ea1-4e4b-b13c-6841222297e9?apiKey=0444d2d78e064e0ba018ac2a58ee83fe&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/4cc1fdf9-7ea1-4e4b-b13c-6841222297e9?apiKey=0444d2d78e064e0ba018ac2a58ee83fe&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/4cc1fdf9-7ea1-4e4b-b13c-6841222297e9?apiKey=0444d2d78e064e0ba018ac2a58ee83fe&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/4cc1fdf9-7ea1-4e4b-b13c-6841222297e9?apiKey=0444d2d78e064e0ba018ac2a58ee83fe&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/4cc1fdf9-7ea1-4e4b-b13c-6841222297e9?apiKey=0444d2d78e064e0ba018ac2a58ee83fe&" className="aspect-[1.5] object-contain object-center w-full overflow-hidden max-md:max-w-full"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
 
       <PageFooter />
 
