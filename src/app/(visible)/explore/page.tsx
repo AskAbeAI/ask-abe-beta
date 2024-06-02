@@ -14,40 +14,40 @@ const GraphPage: React.FC = () => {
 	const [nodeData, setNodeData] = useState<NodeProps[]>([]);
 	const [linkData, setLinkData] = useState<LinkProps[]>([]); // Adjusted to any[] for compatibility with links
 
-	
+
 
 	useEffect(() => {
 		const initializeNodes = async () => {
 			const rootNodes = await fetchRootNodes();
-			const calculatedNodes = await calculateNodePositions(rootNodes, [])
+			const calculatedNodes = await calculateNodePositions(rootNodes, []);
 			setNodeData(calculatedNodes);
 		};
 
 		initializeNodes();
 	}, []);
 
-	
-	
+
+
 
 	const handleNodeClick = async (node: NodeProps) => {
 		// Fetch new child nodes
 		const childNodes = await fetchChildNodes(node.node_id);
+		console.log(node.node_id)
 		// Calculate new links
 		const childLinks: LinkProps[] = childNodes.map((child, index) => ({
 			source: node.node_id,
 			target: child.node_id,
-			key: `${node.node_id}-${child.node_id}-${index}` // Ensure uniqueness
+			key: `${node.node_id}-${child.node_id}-${index}`, // Ensure uniqueness
+			sourceNodePos: [0, 0, 0], // Placeholder
+			targetNodePos: [0, 0, 0]  // Placeholder
 		}));
+		//console.log(childLinks[0])
+
 		const newLinks: LinkProps[] = [...linkData, ...childLinks];
+
 		// Feed combined nodes and links to calculate position
-		const newNodes = await calculateNodePositions([...nodeData, ...childNodes], newLinks)
+		const newNodes = await calculateNodePositions([...nodeData, ...childNodes], newLinks);
 		setNodeData(newNodes);
-		// Iterate over all newLinks
-			// For each newLink, search nodeData for both the target and source positions, which may have updated.
-				// Update newLink.sourceNodePos
-				// Update newLink.targetNodePos
-				
-		// Finally update all links
 		setLinkData(newLinks);
 	};
 
@@ -57,7 +57,7 @@ const GraphPage: React.FC = () => {
 				<OrbitControls />
 				<ambientLight />
 				<pointLight position={[10, 10, 10]} />
-				{positionedNodes.map(node => (
+				{nodeData.map(node => (
 					<Node
 						key={node.node_id}
 						{...node}
@@ -65,7 +65,10 @@ const GraphPage: React.FC = () => {
 					/>
 				))}
 				{linkData.map(link => (
-					<Link key={link.key} sourceNodePos={link.sourceNodePos!} targetNodePos={link.targetNodePos!} />
+					<Link key={link.key}
+						sourceNodePos={link.sourceNodePos!}
+						targetNodePos={link.targetNodePos!}
+					/>
 				))}
 			</Canvas>
 		</div>

@@ -31,16 +31,25 @@ export interface LinkProps {
 
 
 export const calculateNodePositions = (nodes: NodeProps[], links: LinkProps[]) => {
-	const simulation = d3.forceSimulation(nodes, 3)
-		.force("link", d3.forceLink(links).id(function (d) { return d.node_id!; }))
+	console.log(JSON.stringify(links[0]))
+	const simulation = d3.forceSimulation([], 3)
+		.force("link", d3.forceLink().id(function (d) { return d.node_id!; }))
 		.force("center", d3.forceCenter());
 
-
+	simulation.nodes(nodes)
+	simulation.force("link").links(links)
 	simulation.tick(300); // Run the simulation for a few ticks to stabilize
 
 
 	simulation.stop();
 	//console.log(`Node positions calculated!\n${JSON.stringify(nodes, null, 2)}`)
+	for (const link of links as any[]) {
+		link.sourceNodePos = getPosition(link.source)
+		link.source = link.source.node_id!
+		link.targetNodePos = getPosition(link.raget)
+		link.target = link.target.node_id!
+	}
+	console.log(JSON.stringify(links[0]))
 	return nodes;
 };
 
