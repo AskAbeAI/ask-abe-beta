@@ -2,12 +2,9 @@
 import { createClient } from '@supabase/supabase-js';
 import { NodeProps } from './forceSimulation'; // Adjust the import as per your file structure
 
-
-
-
 export const fetchRootNodes = async (): Promise<NodeProps[]> => {
-	const supabaseUrl = process.env.SUPABASE_URL!;
-	const supabaseKey = process.env.SUPABASE_KEY!;
+	const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+	const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 	const supabase = createClient(supabaseUrl, supabaseKey);
   
 	const { data, error } = await supabase
@@ -60,7 +57,9 @@ export const fetchRootNodes = async (): Promise<NodeProps[]> => {
   };
 
 export const fetchChildNodes = async (parentId: string): Promise<NodeProps[]> => {
-	const supabase = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!)
+	const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+	const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+	const supabase = createClient(supabaseUrl, supabaseKey);
 	const { data, error } = await supabase
 	  .from('us_federal_ecfr')
 	  .select(`

@@ -19,6 +19,7 @@ export interface NodeProps extends d3.Node {
     parent?: string,
     direct_children?: string[]
     siblings?: string[]
+	onClick?: () => void;
 }
 export interface LinkProps {
 	source: string;
