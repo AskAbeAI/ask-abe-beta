@@ -1,4 +1,5 @@
 // /utils/forceSimulation.ts
+import { chooseArgs } from "@/components/threejs/node";
 import * as d3 from "d3-force-3d";
 
 export interface NodeProps extends d3.Node {
@@ -34,22 +35,25 @@ export const calculateNodePositions = (nodes: NodeProps[], links: LinkProps[]) =
 	console.log(JSON.stringify(links[0]))
 	const simulation = d3.forceSimulation([], 3)
 		.force("link", d3.forceLink().id(function (d) { return d.node_id!; }))
-		.force("center", d3.forceCenter());
+		.force("center", d3.forceCenter())
+		.force("collide", d3.forceCollide().radius(function (d: NodeProps) { return chooseArgs(d.level_classifier!)[1]; } ));
+		
 
 	simulation.nodes(nodes)
-	simulation.force("link").links(links)
-	simulation.tick(300); // Run the simulation for a few ticks to stabilize
+	simulation.force("link").links(links).distance(5)
+	simulation.tick(1000); // Run the simulation for a few ticks to stabilize
 
 
 	simulation.stop();
 	//console.log(`Node positions calculated!\n${JSON.stringify(nodes, null, 2)}`)
 	for (const link of links as any[]) {
+		//console.log(JSON.stringify(link.source))
 		link.sourceNodePos = getPosition(link.source)
 		link.source = link.source.node_id!
-		link.targetNodePos = getPosition(link.raget)
+		link.targetNodePos = getPosition(link.target)
 		link.target = link.target.node_id!
 	}
-	console.log(JSON.stringify(links[0]))
+	
 	return nodes;
 };
 

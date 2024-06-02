@@ -37,9 +37,7 @@ const GraphPage: React.FC = () => {
 		const childLinks: LinkProps[] = childNodes.map((child, index) => ({
 			source: node.node_id,
 			target: child.node_id,
-			key: `${node.node_id}-${child.node_id}-${index}`, // Ensure uniqueness
-			sourceNodePos: [0, 0, 0], // Placeholder
-			targetNodePos: [0, 0, 0]  // Placeholder
+			key: `${node.node_id}-${child.node_id}-${index}`
 		}));
 		//console.log(childLinks[0])
 

@@ -17,7 +17,7 @@ export const Link: React.FC<LinkPosition> = ({ sourceNodePos, targetNodePos }) =
 		<Line
 			points={[sourceNodePos, targetNodePos]}
 			color="black"
-			lineWidth={2}
+			lineWidth={1}
 		/>
 
 

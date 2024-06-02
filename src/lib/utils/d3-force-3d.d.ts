@@ -28,7 +28,7 @@ declare module "d3-force-3d" {
 
     type Edges = Array<Edge>
 
-    type IdAccessor = (n: Node) => string | number;
+    type IdAccessor = (n: Node | NodeProps) => string | number;
     export interface Force {
         (alpha?: number): void,
         initialize(nodes: Nodes, ... args: unknown): unknown,
@@ -39,6 +39,8 @@ declare module "d3-force-3d" {
         iterations(x: unknown): unknown,
         strength(x: unknown): unknown,
         distance(x: unknown): unknown,
+		radius(forceAccessor: IdAccessor): Force,
+		radius(): IdAccessor,
     }
 
     export interface Simulation {
@@ -71,4 +73,5 @@ declare module "d3-force-3d" {
     export function forceLink(links?: unknown): Force;
     export function forceManyBody(): Force;
     export function forceCenter(x?: number, y?: number, z?: number): Force;
+	export function forceCollide(radius?: number): Force;
 }
