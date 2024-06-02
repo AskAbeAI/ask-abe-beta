@@ -1,7 +1,7 @@
 // /utils/forceSimulation.ts
-import * as d3 from "d3";
+import * as d3 from "d3-force-3d";
 
-export interface NodeProps extends d3.SimulationNodeDatum {
+export interface NodeProps extends d3.Node {
 	node_id: string,
     citation?: string,
     link?: string,
@@ -19,29 +19,22 @@ export interface NodeProps extends d3.SimulationNodeDatum {
     parent?: string,
     direct_children?: string[]
     siblings?: string[]
-	position?: [x: number, y: number, z: number];
+}
+export interface LinkProps {
+	source: string;
+	target: string;
 }
 
-interface Link {
-  source: string;
-  target: string;
-}
-const d3nodes: d3.SimulationNodeDatum = {
 
-}
-
-export const calculateNodePositions = (nodes: NodeProps[], links: Link[]) => {
-	const simulation = d3.forceSimulation(nodes)
-	  .force('link', d3.forceLink(links).id((d: any) => d.id).distance(50))
-	  .force('charge', d3.forceManyBody().strength(-200))
-	  .force('center', d3.forceCenter(0, 0))
-	  .force('collision', d3.forceCollide().radius(10));
+export const calculateNodePositions = (nodes: NodeProps[], links: LinkProps[]) => {
+	const simulation = d3.forceSimulation(nodes, 3)
+	.force("charge", d3.forceManyBody())
+    .force("link", d3.forceLink(links))
+    .force("center", d3.forceCenter());
+	  
   
 	simulation.tick(300); // Run the simulation for a few ticks to stabilize
-  
-	nodes.forEach(node => {
-	  node.position = [node.x || 0, node.y || 0, 0]; // Assign calculated positions
-	});
+
   
 	simulation.stop();
   

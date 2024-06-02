@@ -1,26 +1,23 @@
 // /components/Link.tsx
 import React from 'react';
+import { NodeProps } from '@/lib/utils/forceSimulation';
 
-interface Node {
-  id: number;
-  position: [number, number, number];
-}
 
 interface LinkProps {
-  source: number;
-  target: number;
-  nodes: Node[];
+  source: string;
+  target: string;
+  nodes: NodeProps[];
 }
 
 export const Link: React.FC<LinkProps> = ({ source, target, nodes }) => {
-  const sourceNode = nodes.find(node => node.id === source);
-  const targetNode = nodes.find(node => node.id === target);
+  const sourceNode = nodes.find(node => node.node_id === source);
+  const targetNode = nodes.find(node => node.node_id === target);
 
   if (!sourceNode || !targetNode) return null;
 
   const positions = new Float32Array([
-    ...sourceNode.position,
-    ...targetNode.position,
+    [sourceNode.x, sourceNode.y, sourceNode.z]
+    [targetNode.x, targetNode.y, targetNode.z],
   ]);
 
   return (

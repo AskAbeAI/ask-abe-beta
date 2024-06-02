@@ -3,22 +3,110 @@ import { createClient } from '@supabase/supabase-js';
 import { NodeProps } from './forceSimulation'; // Adjust the import as per your file structure
 
 
-t
+
+
+export const fetchRootNodes = async (): Promise<NodeProps[]> => {
+	const supabaseUrl = process.env.SUPABASE_URL!;
+	const supabaseKey = process.env.SUPABASE_KEY!;
+	const supabase = createClient(supabaseUrl, supabaseKey);
+  
+	const { data, error } = await supabase
+	  .from('us_federal_ecfr')
+	  .select(`
+		id, 
+		citation, 
+		link, 
+		status, 
+		node_type, 
+		top_level_title, 
+		level_classifier, 
+		number, 
+		node_name, 
+		node_text, 
+		definitions, 
+		core_metadata, 
+		processing, 
+		addendum, 
+		parent, 
+		direct_children,
+		siblings
+	  `)
+	  .eq('id', 'us/federal/ecfr');
+  
+	if (error) {
+	  console.error('Error fetching root nodes:', error);
+	  return [];
+	}
+  
+	return (data as any[]).map(node => ({
+	  node_id: node.id,
+	  citation: node.citation,
+	  link: node.link,
+	  status: node.status,
+	  node_type: node.node_type,
+	  top_level_title: node.top_level_title,
+	  level_classifier: node.level_classifier,
+	  number: node.number,
+	  node_name: node.node_name,
+	  node_text: node.node_text,
+	  definitions: node.definitions,
+	  core_metadata: node.core_metadata,
+	  processing: node.processing,
+	  addendum: node.addendum,
+	  parent: node.parent,
+	  direct_children: node.direct_children,
+	  siblings: node.siblings, // You might need to fetch or calculate siblings separately
+	} as NodeProps));
+  };
 
 export const fetchChildNodes = async (parentId: string): Promise<NodeProps[]> => {
 	const supabase = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!)
 	const { data, error } = await supabase
-		.from('us_federal_ecfr')
-		.select('*')
-		.eq('parent', parentId); // Fetch child nodes for the given parent
-
+	  .from('us_federal_ecfr')
+	  .select(`
+		id, 
+		citation, 
+		link, 
+		status, 
+		node_type, 
+		top_level_title, 
+		level_classifier, 
+		number, 
+		node_name, 
+		node_text, 
+		definitions, 
+		core_metadata, 
+		processing, 
+		addendum, 
+		parent, 
+		direct_children,
+		siblings
+	  `)
+	  .eq('parent', parentId);
+  
 	if (error) {
-		console.error(`Error fetching child nodes for parent ${parentId}:`, error);
-		return [];
+	  console.error('Error fetching root nodes:', error);
+	  return [];
 	}
-
-	return data.map(node => ({
-		...node,
-		position: [0, 0, 0], // Initial position (can be adjusted later)
-	}));
-};
+  
+	return (data as any[]).map(node => ({
+	  node_id: node.id,
+	  citation: node.citation,
+	  link: node.link,
+	  status: node.status,
+	  node_type: node.node_type,
+	  top_level_title: node.top_level_title,
+	  level_classifier: node.level_classifier,
+	  number: node.number,
+	  node_name: node.node_name,
+	  node_text: node.node_text,
+	  definitions: node.definitions,
+	  core_metadata: node.core_metadata,
+	  processing: node.processing,
+	  addendum: node.addendum,
+	  parent: node.parent,
+	  direct_children: node.direct_children,
+	  siblings: node.siblings, // You might need to fetch or calculate siblings separately
+	  
+	} as NodeProps));
+  };
