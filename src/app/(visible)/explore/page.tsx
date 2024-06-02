@@ -1,33 +1,35 @@
-import * as THREE from 'three'
-import { createRoot } from 'react-dom/client'
-import React, { useRef, useState } from 'react'
-import { Canvas, useFrame, ThreeElements } from '@react-three/fiber'
+"use client";
+// /app/explore/page.tsx
+import React, {useEffect, useState} from 'react';
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls } from '@react-three/drei';
+import { Node } from '@/components/threejs/node';
+import { Link } from '@/components/threejs/link';
+import { calculateNodePositions } from '@/lib/utils/forceSimulation';
+import { NodeProps } from '@react-three/fiber';
 
-function Box(props: ThreeElements['mesh']) {
-  const meshRef = useRef<THREE.Mesh>(null!)
-  const [hovered, setHover] = useState(false)
-  const [active, setActive] = useState(false)
-  useFrame((state, delta) => (meshRef.current.rotation.x += delta))
-  return (
-    <mesh
-      {...props}
-      ref={meshRef}
-      scale={active ? 1.5 : 1}
-      onClick={(event) => setActive(!active)}
-      onPointerOver={(event) => setHover(true)}
-      onPointerOut={(event) => setHover(false)}>
-      <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
-    </mesh>
-  )
-}
-
-createRoot(document.getElementById('root')).render(
-  <Canvas>
-    <ambientLight intensity={Math.PI / 2} />
-    <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} decay={0} intensity={Math.PI} />
-    <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
-    <Box position={[-1.2, 0, 0]} />
-    <Box position={[1.2, 0, 0]} />
-  </Canvas>,
-)
+const GraphPage: React.FC = () => {
+	const [nodeData, setNodeData] = useState<NodeProps[]>(initialNodeData);
+	const [linkData, setLinkData] = useState<NodeProps[]>(initialLinkData);
+  
+	useEffect(() => {
+	  const positionedNodes = calculateNodePositions(nodeData, linkData);
+	  setNodeData([...positionedNodes]);
+	}, []);
+  
+	return (
+	  <div style={{ height: '100vh' }}>
+		<Canvas>
+		  <OrbitControls />
+		  <ambientLight />
+		  <pointLight position={[10, 10, 10]} />
+		  {nodeData.map(node => (
+			<Node key={node.id} id={node.id} position={node.position} type={node.type} text={node.text} />
+		  ))}
+		  {linkData.map(link => (
+			<Link key={`${link.source}-${link.target}`} source={link.source} target={link.target} nodes={nodeData} />
+		  ))}
+		</Canvas>
+	  </div>
+	);
+  };
