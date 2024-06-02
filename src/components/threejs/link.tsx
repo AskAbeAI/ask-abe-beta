@@ -1,36 +1,26 @@
 // /components/Link.tsx
 import React from 'react';
 import { NodeProps } from '@/lib/utils/forceSimulation';
+import { Line } from '@react-three/drei';
 
+export interface LinkPosition {
 
-interface LinkProps {
-  source: string;
-  target: string;
-  nodes: NodeProps[];
+	sourceNodePos: [number, number, number];
+	targetNodePos: [number, number, number];
+	key?: string;
 }
 
-export const Link: React.FC<LinkProps> = ({ source, target, nodes }) => {
-  const sourceNode = nodes.find(node => node.node_id === source);
-  const targetNode = nodes.find(node => node.node_id === target);
+export const Link: React.FC<LinkPosition> = ({ sourceNodePos, targetNodePos }) => {
 
-  if (!sourceNode || !targetNode) return null;
+	return (
 
-  const positions = new Float32Array([
-    [sourceNode.x, sourceNode.y, sourceNode.z]
-    [targetNode.x, targetNode.y, targetNode.z],
-  ]);
+		<Line
+			points={[sourceNodePos, targetNodePos]}
+			color="black"
+			lineWidth={2}
+		/>
 
-  return (
-    <line>
-      <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          array={positions}
-          itemSize={3}
-          count={positions.length / 3}
-        />
-      </bufferGeometry>
-      <lineBasicMaterial color={'white'} />
-    </line>
-  );
+
+
+	);
 };

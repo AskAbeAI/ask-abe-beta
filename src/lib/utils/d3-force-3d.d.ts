@@ -1,6 +1,7 @@
 declare module "d3-force-3d" {
     interface Node {
         index: NodeIndex;
+		node_id?: string;
         x: number;
         y: number;
         z: number;
