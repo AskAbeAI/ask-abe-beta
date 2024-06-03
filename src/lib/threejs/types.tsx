@@ -18,13 +18,13 @@ export interface NodeProps {
 	processing?: JSON,
 	addendum?: JSON,
 	parent?: string,
-	direct_children?: string[];
-	siblings?: string[];
+	// direct_children?: string[];
+	// siblings?: string[];
 
 }
 export type Node = BaseNodeObject<NodeProps>;
 
-export interface LinkProps {
+export interface Link {
 	source: string;
 	target: string;
 	key?: string;

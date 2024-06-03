@@ -1,70 +1,66 @@
 "use client";
 // /app/explore/page.tsx
 import React, { useEffect, useState, useMemo } from 'react';
-import { Canvas } from '@react-three/fiber';
-import { Node, LinkProps, getColor } from '@/lib/threejs/types'
+import { Node, Link, getColor } from '@/lib/threejs/types';
 
-
-import { fetchRootNodes, fetchChildNodes } from '@/lib/utils/dynamicGraph';
+import { fetchNodes } from '@/lib/utils/dynamicGraph';
 import dynamic from 'next/dynamic';
 const NoSSRForceGraph3D = dynamic(() => import('@/components/threejs/forceGraph'), {
 	ssr: false,
-  });
+});
 
+// https://github.com/vasturiano/3d-force-graph/tree/master
+// https://github.com/vasturiano/react-force-graph
 
 const GraphPage: React.FC = () => {
 	const [nodeData, setNodeData] = useState<Node[]>([]);
-	const [linkData, setLinkData] = useState<LinkProps[]>([]); // Adjusted to any[] for compatibility with links
-
-
+	const [linkData, setLinkData] = useState<Link[]>([]);
 
 	useEffect(() => {
 		const initializeNodes = async () => {
-			const rootNodes = await fetchRootNodes();
-			setNodeData(rootNodes);
+			const depth: number = 3;
+			const root: string = "us/federal";
+			const result = await fetchNodes(root, depth); // fetchNodes now returns an object
+			console.log(`Succesfully returned ${result.nodes.length} nodes, with ${result.links.length} links!`)
+			setNodeData(result.nodes);
+			setLinkData(result.links);
 		};
 
 		initializeNodes();
 	}, []);
 
-
-
-
 	const handleNodeClick = async (node: Node, event: MouseEvent) => {
 		// Fetch new child nodes
-		const childNodes = await fetchChildNodes(node.node_id!);
-		//console.log(node.node_id);
-		// Calculate new links
-		const childLinks: LinkProps[] = childNodes.map((child, index) => ({
-			source: node.node_id!,
-			target: child.node_id!,
-			key: `${node.node_id!}-${child.node_id!}-${index}`
-		}));
-		//console.log(childLinks[0])
+		const result = await fetchNodes(node.node_id!, 1); // Assuming you want to fetch children of the clicked node at depth 1
+		console.log(`Succesfully returned ${result.nodes.length} nodes, with ${result.links.length} links!`)
+		const childNodes = result.nodes;
+		const childLinks = result.links;
 
-		const newLinks: LinkProps[] = [...linkData, ...childLinks];
+		// Calculate new links
+		const newLinks: Link[] = [...linkData, ...childLinks];
 
 		// Feed combined nodes and links to calculate position
 		const newNodes: Node[] = [...nodeData, ...childNodes];
 		setNodeData(newNodes);
 		setLinkData(newLinks);
 	};
-
 	return (
-		
-			<Canvas>
-
-				<NoSSRForceGraph3D
-					graphData={{ nodes: nodeData, links: linkData }}
-					nodeId="node_id"
-					nodeLabel="node_name"
-					nodeColor={getColor}
-					onNodeClick={handleNodeClick}
-				/>
 
 
-			</Canvas>
-		
+		<NoSSRForceGraph3D
+			graphData={{ nodes: nodeData, links: linkData }}
+			nodeId="node_id"
+			nodeLabel="node_name"
+			nodeColor={getColor}
+			onNodeClick={handleNodeClick}
+			linkDirectionalParticles={5}
+			linkDirectionalParticleSpeed={0.0001}
+			linkDirectionalParticleColor={getColor}
+		/>
+
+
+
+
 	);
 };
 
