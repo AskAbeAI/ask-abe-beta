@@ -1,38 +1,43 @@
 // components/threejs/NodeHUD.tsx
 import React from 'react';
-import { NodeProps } from '@/lib/threejs/types';  // Ensure you import your correct type definitions
+import { Node } from '@/lib/threejs/types';  // Ensure you import your correct type definitions
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 interface NodeHUDProps {
-  node: NodeProps | null;
+  node: Node | null;
 }
 
 const NodeHUD: React.FC<NodeHUDProps> = ({ node }) => {
-  if (!node) return null; // Don't render if no node is selected
+  if (!node) return null;  // Don't render if no node is selected
 
   return (
-    <div style={{
-      position: 'absolute',
-      top: '10%',
-      right: '10%',
-      backgroundColor: 'rgba(255, 255, 255, 0.8)',
-      padding: '20px',
-      borderRadius: '8px',
-      zIndex: 1000,  // Ensure it is above all canvas elements
-      maxWidth: '300px',
-      overflow: 'hidden'
-    }}>
-      <h3>Node Details</h3>
-      <p><strong>ID:</strong> {node.node_id}</p>
-      <p><strong>Citation:</strong> {node.citation}</p>
-      <p><strong>Link:</strong> <a href={node.link} target="_blank" rel="noopener noreferrer">View</a></p>
-      <p><strong>Status:</strong> {node.status || 'Normal'}</p>
-      <p><strong>Type:</strong> {node.node_type}</p>
-      <p><strong>Top Level Title:</strong> {node.top_level_title}</p>
-      <p><strong>Level Classifier:</strong> {node.level_classifier}</p>
-      <p><strong>Number:</strong> {node.number}</p>
-      <p><strong>Name:</strong> {node.node_name}</p>
-      <p><strong>Text:</strong> Placeholder</p>
-      <p><strong>Parent:</strong> {node.parent}</p>
+    <div className="absolute top-20 right-1 z-50 max-w-sm">
+      <Card className="bg-white shadow-lg rounded-lg overflow-hidden">
+        <CardHeader>
+          <CardTitle>{node.node_name}</CardTitle>
+          <CardDescription>{node.citation || 'No citation available'}</CardDescription>
+        </CardHeader>
+        <CardContent className="text-gray-700">
+          <div><strong>ID:</strong> {node.id}</div>
+          <div><strong>Link:</strong> <a href={node.link} className="text-blue-500 hover:text-blue-700" target="_blank" rel="noopener noreferrer">View</a></div>
+          <div><strong>Status:</strong> {node.status || 'Normal'}</div>
+          <div><strong>Type:</strong> {node.node_type}</div>
+          <div><strong>Level Classifier:</strong> {node.level_classifier}</div>
+          <div><strong>Number:</strong> {node.number}</div>
+          <div><strong>Parent:</strong> {node.parent}</div>
+          <div><strong>Text Available:</strong> {node.node_text ? 'Yes' : 'No'}</div>
+        </CardContent>
+        <CardFooter>
+          <p className="text-sm text-gray-600">Click on other nodes to see more details</p>
+        </CardFooter>
+      </Card>
     </div>
   );
 };
