@@ -5,7 +5,7 @@ import { BaseResponse, QueryExpansionRequest, QueryExpansionResponse } from '@/l
 import { expandQueryHelper, generateEmbedding } from '@/lib/helpers';
 import OpenAI from "openai";
 import { insert_api_debug_log } from '@/lib/database';
-import { generateApiRequestReport, generateApiResponseReport } from '@/lib/utils';
+import { generateApiRequestReport, generateApiResponseReport } from '@/lib/utilities';
 
 const openAiKey = process.env.OPENAI_API_KEY;
 

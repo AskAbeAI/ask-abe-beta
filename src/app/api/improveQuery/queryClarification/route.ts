@@ -4,7 +4,7 @@ import { condenseClarificationsIntoInstructions, generateNewClarificationQuestio
 import { Clarification } from '@/lib/types';
 import { insert_api_debug_log } from '@/lib/database';
 import { QueryClarificationRequest, QueryClarificationResponse, BaseRequest, BaseResponse } from '@/lib/api_types';
-import { generateApiRequestReport, generateApiResponseReport } from '@/lib/utils';
+import { generateApiRequestReport, generateApiResponseReport } from '@/lib/utilities';
 
 const openAiKey = process.env.OPENAI_API_KEY;
 const openai = new OpenAI({

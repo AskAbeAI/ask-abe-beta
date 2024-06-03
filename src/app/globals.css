@@ -1,11 +1,59 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow&family=Barlow:wght@400;500;600;700&family=Cardo:wght@400;700&family=Cinzel:wght@400;500;600;700;800;900&family=Courier+Prime:wght@400;700&family=Cutive+Mono&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Fauna+One&family=Gotu&family=IM+Fell+Great+Primer+SC&family=IM+Fell+Great+Primer:ital@0;1&family=Italiana&family=Josefin+Sans:wght@300;400;500;600;700&family=Montserrat:wght@100;200;300;400;500;600;700&family=Open+Sans:wght@400;500;600;700;800&family=Oswald:wght@300;500;700&family=Quicksand:wght@300;400;500;600;700&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Slab:wght@300;400;500;600;700&display=swap');
 
-
 @tailwind base;
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    /* Primary background and text colors */
+    --background: 100% 100% 100%; /* White remains as the primary background color */
+    --foreground: 0% 0% 0%; /* Black for most text to maximize readability */
+
+    /* Muted background and text colors for less emphasis areas */
+    --muted: 98% 95% 90%; /* Soft gray for less emphasized areas */
+    --muted-foreground: 0% 0% 0%; /* Black for text on muted backgrounds for better contrast */
+
+    /* Card background */
+    --card: 100% 98% 92%; /* Light parchment color for cards for subtle differentiation */
+    --card-foreground: 0% 0% 0%; /* Black text for clarity against card background */
+
+    /* Popover component styling */
+    --popover: 100% 98% 92%; /* Match card background for consistency */
+    --popover-foreground: 0% 0% 0%; /* Black text for clarity */
+
+    /* Borders and inputs */
+    --border: 60% 50% 40%; /* Warm gray for a softer border definition */
+    --input: 98% 96% 94%; /* Off-white for input fields to differentiate from the primary background */
+
+    /* Primary interaction elements like buttons */
+    --primary: 210 100% 50%; /* Soft blue for primary interaction elements like buttons */
+    --primary-foreground: 100% 100% 100%; /* White text for contrast on blue buttons */
+
+    /* Secondary interaction elements */
+    --secondary: 28 80% 65%; /* Warm terra-cotta for secondary elements */
+    --secondary-foreground: 100% 100% 100%; /* White text for clarity on secondary elements */
+
+    /* Accent elements for hover states or small components */
+    --accent: 120 40% 50%; /* A calming green for hover states to enhance visual feedback */
+    --accent-foreground: 100% 100% 100%; /* White text for contrast on hover elements */
+
+    /* Destructive actions */
+    --destructive: 0 100% 50%; /* Vibrant red for contrast on destructive actions */
+    --destructive-foreground: 100% 100% 100%; /* White text for clarity on destructive buttons */
+
+    /* Focus rings */
+    --ring: 210 100% 50%; /* Blue to maintain accessibility standards with focus indication */
+
+    /* Common border radius for UI elements */
+    --radius: 0.5rem;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
 
 /* Hide scrollbar for Chrome, Safari and Opera */
 .hide-scrollbar::-webkit-scrollbar {

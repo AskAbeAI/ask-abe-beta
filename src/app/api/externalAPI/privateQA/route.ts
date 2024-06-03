@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { generateBasicQueryRefinement, generateDirectAnswerSimple, generateEmbedding, answeringInstructionsHelper, directAnswerHelper } from '@/lib/helpers';
-import { callWithRetries } from '@/lib/utils';
+import { callWithRetries } from '@/lib/utilities';
 import { jurisdiction_similarity_search_all_partitions } from '@/lib/database';
 import OpenAI from 'openai';
 import { Jurisdiction, node_as_row, text_citation_pair, text_citation_document_trio, PipelineModel } from '@/lib/types';

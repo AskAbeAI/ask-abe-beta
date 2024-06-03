@@ -4,7 +4,7 @@ import { node_as_row, questionJurisdictions } from "@/lib/types";
 import { jurisdiction_similarity_search_all_partitions, insert_api_debug_log } from "@/lib/database";
 import { request } from 'http';
 import { SimilaritySearchRequest, SimilaritySearchResponse } from '@/lib/api_types';
-import { generateApiRequestReport, generateApiResponseReport } from '@/lib/utils';
+import { generateApiRequestReport, generateApiResponseReport } from '@/lib/utilities';
 
 export const maxDuration = 120;
 export function OPTIONS(req: Request) {
