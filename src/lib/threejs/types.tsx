@@ -30,26 +30,7 @@ export interface Link {
 	key?: string;
 }
 
-export function getRadius(node: Node): number {
-	switch(node.level_classifier!) {
-	case "CORPUS":
-		return 0.4;
-	case "title":
-		return  0.35;
-	case "subtitle":
-		return 0.3;
-	case "chapter":
-		return 0.25;
-	case "subchapter":
-		return 0.2;
-	case "part":
-		return 0.15;
-	case "subpart":
-		return 0.1;
-	default:
-		return 0.05;
-	}
-}
+
 export function getColor(node: Node): string{
 	switch(node.level_classifier!) {
 	case "CORPUS":
@@ -68,5 +49,25 @@ export function getColor(node: Node): string{
 		return "blue";
 	default:
 		return "gray";
+	}
+}
+export function getRadius(node: Node): number {
+	switch(node.level_classifier!) {
+	case "CORPUS":
+		return 10;
+	case "title":
+		return  8;
+	case "subtitle":
+		return 6;
+	case "chapter":
+		return 5;
+	case "subchapter":
+		return 4;
+	case "part":
+		return 3;
+	case "subpart":
+		return 2;
+	default:
+		return 1;
 	}
 }
