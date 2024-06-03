@@ -1,8 +1,8 @@
 // /lib/api.ts
 import { createClient } from '@supabase/supabase-js';
-import { NodeProps } from './forceSimulation'; // Adjust the import as per your file structure
+import { Node } from '@/lib/threejs/types'; // Adjust the import as per your file structure
 
-export const fetchRootNodes = async (): Promise<NodeProps[]> => {
+export const fetchRootNodes = async (): Promise<Node[]> => {
 	const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 	const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 	const supabase = createClient(supabaseUrl, supabaseKey);
@@ -53,10 +53,10 @@ export const fetchRootNodes = async (): Promise<NodeProps[]> => {
 	  parent: node.parent,
 	  direct_children: node.direct_children,
 	  siblings: node.siblings, // You might need to fetch or calculate siblings separately
-	} as NodeProps));
+	} as Node));
   };
 
-export const fetchChildNodes = async (parentId: string): Promise<NodeProps[]> => {
+export const fetchChildNodes = async (parentId: string): Promise<Node[]> => {
 	const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 	const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 	const supabase = createClient(supabaseUrl, supabaseKey);
@@ -107,5 +107,5 @@ export const fetchChildNodes = async (parentId: string): Promise<NodeProps[]> =>
 	  direct_children: node.direct_children,
 	  siblings: node.siblings, // You might need to fetch or calculate siblings separately
 	  
-	} as NodeProps));
+	} as Node));
   };

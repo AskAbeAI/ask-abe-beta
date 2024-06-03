@@ -38,7 +38,8 @@ declare module "d3-force-3d" {
         id(): IdAccessor,
         iterations(x: unknown): unknown,
         strength(x: unknown): unknown,
-        distance(x: unknown): unknown,
+        distance(): IdAccessor,
+		distance(forceAccessor: IdAccessor): Force,
 		radius(forceAccessor: IdAccessor): Force,
 		radius(): IdAccessor,
     }
