@@ -84,6 +84,7 @@
     "remark-gfm": "^4.0.0",
     "remark-math": "^6.0.0",
     "swr": "^2.2.4",
+    "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
     "tailwindcss-textshadow": "^2.1.3",
     "three": "^0.165.0",
