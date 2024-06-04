@@ -1,6 +1,6 @@
 // /lib/api.ts
 import { createClient } from '@supabase/supabase-js';
-import { PerformanceNode, Node, Link } from '@/lib/threejs/types'; // Adjust the import as per your file structure
+import { PerformanceNode, Node, Link, getRadius } from '@/lib/threejs/types'; // Adjust the import as per your file structure
 
 
 export const fetchNodes = async (
@@ -61,6 +61,15 @@ export const fetchNodes = async (
 	}
 	return;
 };
+// export const fetchToRoot = async(parentId: string,
+// 	depth: number,
+// 	performanceNodes: PerformanceNode[],
+// 	setPerformanceNodeData: React.Dispatch<React.SetStateAction<PerformanceNode[]>>,
+// 	setLinkData: React.Dispatch<React.SetStateAction<Link[]>>): Promise<void> =>
+// 	{
+
+
+// 	}
 
 export const fetchPerformanceNodes = async (
 	parentId: string,
@@ -77,42 +86,42 @@ export const fetchPerformanceNodes = async (
 	const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 	const supabase = createClient(supabaseUrl, supabaseKey);
 
-	let pageIndex = 0;
-	let pageSize = 1000;  // Set page size, Supabase default limit is 1000
-	let hasMore = true;
+
 	let newLinks: Link[] = [];
 	let newNodes: PerformanceNode[] = [];
-	while (hasMore) {
-		const { data: newData, error, count } = await supabase
-			.from('us_federal_ecfr_performance')
-			.select('*', { count: 'exact' })
-			.range(pageIndex * pageSize, (pageIndex + 1) * pageSize - 1);
-	//const { data, error } = await supabase.rpc('fetch_tree_nodes', { parent_id: parentId, max_depth: depth }).range(pageIndex * pageSize, (pageIndex + 1) * pageSize - 1);;
-	
 
-		if (error) {
-			console.error(`Error fetching nodes for parent ID ${parentId}:`, error);
-			return;
-		}
-		// Get all new nodes for this parentId
-		
-
-		
-		for (const node of newData as PerformanceNode[]) {
-			newNodes.push(node)
-			if (node.parent == "us/federal") {
-				continue;
-			}
-			newLinks.push({
-				source: node.parent,
-				target: node.id as string,
-				key: `${parentId}-${node.id}`
-			} as Link);
-		}
+	const { data, error } = await supabase.rpc('fetch_tree_nodes', { parent_id: parentId, max_depth: depth });
 
 
-		
+	if (error) {
+		console.error(`Error fetching nodes for parent ID ${parentId}:`, error);
+		return;
 	}
+	// Get all new nodes for this parentId
+
+	//console.log(JSON.stringify(data))
+
+	for (let node of data as PerformanceNode[]) {
+		if (node.level_classifier == "hub") {
+			console.log(JSON.stringify(node, null, 2))
+			node.node_name = `Definitions Hub for ${node.parent}`
+		}
+		node.value = getRadius(node)
+		newNodes.push(node);
+		if (node.parent == "us/federal") {
+			continue;
+		}
+		newLinks.push({
+			source: node.parent,
+			target: node.id as string,
+			key: `${parentId}-${node.id}`
+		} as Link);
+	}
+
+
+
+
+
 	//console.log(`NewLinks: ${JSON.stringify(newLinks)}`);
 	setLinkData(prev => [...prev, ...newLinks]);
 
@@ -126,53 +135,58 @@ export const fetchPerformanceNodes = async (
 export async function fetchCachedNodes(setPerformanceNodeData: React.Dispatch<React.SetStateAction<PerformanceNode[]>>,
 	setLinkData: React.Dispatch<React.SetStateAction<Link[]>>) {
 
-	let pageIndex = 0;
-	let pageSize = 1000;  // Set page size, Supabase default limit is 1000
-	let hasMore = true;
-
 	const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 	const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 	const supabase = createClient(supabaseUrl, supabaseKey);
-	let finalNodes: PerformanceNode[] = [];
-	let finalLinks: Link[] = [];
-	let counter = 0;
+
+	let pageIndex = 0;
+	let pageSize = 1000;  // Set page size, Supabase default limit is 1000
+	let hasMore = true;
+	let newLinks: Link[] = [];
+	let newNodes: PerformanceNode[] = [];
 	while (hasMore) {
 		const { data: newData, error, count } = await supabase
 			.from('us_federal_ecfr_performance')
 			.select('*', { count: 'exact' })
 			.range(pageIndex * pageSize, (pageIndex + 1) * pageSize - 1);
+		//const { data, error } = await supabase.rpc('fetch_tree_nodes', { parent_id: parentId, max_depth: depth }).range(pageIndex * pageSize, (pageIndex + 1) * pageSize - 1);;
 
 
 		if (error) {
-			console.error('Error fetching data:', error);
-			break;
+			console.error(`Error fetching nodes for parent ID :`, error);
+			return;
 		}
-		
-		
+		// Get all new nodes for this parentId
+
+
+
 		for (const node of newData as PerformanceNode[]) {
-			finalNodes.push(node)
+			newNodes.push(node);
 			if (node.parent == "us/federal") {
 				continue;
 			}
-			finalLinks.push({
+			newLinks.push({
 				source: node.parent,
 				target: node.id as string,
+				key: `${node.parent}-${node.id}`
 			} as Link);
 		}
-		//console.log(`NewLinks: ${JSON.stringify(Links)}`);
-		setLinkData(prev => [...prev, ...finalLinks]);
-
-		// console.log(`NewNodes: ${JSON.stringify(newNodes)}`);
-		setPerformanceNodeData(prev => [...prev, ...finalNodes]);
-
-
 
 		pageIndex++;
 		// Check if there's more data to fetch
 		hasMore = newData.length === pageSize;
 
 
-	}
 
-return;
+	}
+	//console.log(`NewLinks: ${JSON.stringify(newLinks)}`);
+	setLinkData(prev => [...prev, ...newLinks]);
+
+	//console.log(`NewNodes: ${JSON.stringify(newNodes)}`);
+	setPerformanceNodeData(prev => [...prev, ...newNodes]);
+
+
+	return;
+
+
 }
