@@ -25,7 +25,6 @@ export interface NodeProps {
 export interface PerformanceNodeProps {
 	parent?: string,
 	level_classifier?: string,
-	depth?: string
 }
 export type Node = BaseNodeObject<NodeProps>;
 export type PerformanceNode = BaseNodeObject<PerformanceNodeProps>;
@@ -33,7 +32,6 @@ export type PerformanceNode = BaseNodeObject<PerformanceNodeProps>;
 export interface Link {
 	source: string;
 	target: string;
-	key?: string;
 }
 
 

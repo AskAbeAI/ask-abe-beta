@@ -77,52 +77,55 @@ export const fetchPerformanceNodes = async (
 	const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 	const supabase = createClient(supabaseUrl, supabaseKey);
 
-	const { data, error } = await supabase.rpc('fetch_tree_nodes', { parent_id: parentId, max_depth: depth });
-	// const { data, error } = await supabase
-	//     .from('us_federal_ecfr')
-	//     .select(`
-	//         id, 
-	//         level_classifier, 
-	//         parent
-	//     `)
-	//     .eq('parent', parentId);
-
-	if (error) {
-		console.error(`Error fetching nodes for parent ID ${parentId}:`, error);
-		return;
-	}
-	// Get all new nodes for this parentId
-	const newNodes: PerformanceNode[] = (data as PerformanceNode[])?.map(node => ({ ...node }));
-
+	let pageIndex = 0;
+	let pageSize = 1000;  // Set page size, Supabase default limit is 1000
+	let hasMore = true;
 	let newLinks: Link[] = [];
-	for (const node of newNodes) {
-		if (node.parent == "us/federal") {
-			continue;
+	let newNodes: PerformanceNode[] = [];
+	while (hasMore) {
+		const { data: newData, error, count } = await supabase
+			.from('us_federal_ecfr_performance')
+			.select('*', { count: 'exact' })
+			.range(pageIndex * pageSize, (pageIndex + 1) * pageSize - 1);
+	//const { data, error } = await supabase.rpc('fetch_tree_nodes', { parent_id: parentId, max_depth: depth }).range(pageIndex * pageSize, (pageIndex + 1) * pageSize - 1);;
+	
+
+		if (error) {
+			console.error(`Error fetching nodes for parent ID ${parentId}:`, error);
+			return;
 		}
-		newLinks.push({
-			source: node.parent,
-			target: node.id as string,
-			key: `${parentId}-${node.id}`
-		} as Link);
+		// Get all new nodes for this parentId
+		
+
+		
+		for (const node of newData as PerformanceNode[]) {
+			newNodes.push(node)
+			if (node.parent == "us/federal") {
+				continue;
+			}
+			newLinks.push({
+				source: node.parent,
+				target: node.id as string,
+				key: `${parentId}-${node.id}`
+			} as Link);
+		}
+
+
+		
 	}
-
-
-	console.log(`NewLinks: ${JSON.stringify(newLinks)}`);
+	//console.log(`NewLinks: ${JSON.stringify(newLinks)}`);
 	setLinkData(prev => [...prev, ...newLinks]);
 
-	console.log(`NewNodes: ${JSON.stringify(newNodes)}`);
+	//console.log(`NewNodes: ${JSON.stringify(newNodes)}`);
 	setPerformanceNodeData(prev => [...prev, ...newNodes]);
 
 
-	// for (const node of newNodes) {
-	// 	await fetchPerformanceNodes(node.id as string, depth - 1, newNodes, setPerformanceNodeData, setLinkData);
-	// }
 	return;
 };
 
 export async function fetchCachedNodes(setPerformanceNodeData: React.Dispatch<React.SetStateAction<PerformanceNode[]>>,
 	setLinkData: React.Dispatch<React.SetStateAction<Link[]>>) {
-	
+
 	let pageIndex = 0;
 	let pageSize = 1000;  // Set page size, Supabase default limit is 1000
 	let hasMore = true;
@@ -131,7 +134,8 @@ export async function fetchCachedNodes(setPerformanceNodeData: React.Dispatch<Re
 	const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 	const supabase = createClient(supabaseUrl, supabaseKey);
 	let finalNodes: PerformanceNode[] = [];
-	let finalLinks: Link[] = []
+	let finalLinks: Link[] = [];
+	let counter = 0;
 	while (hasMore) {
 		const { data: newData, error, count } = await supabase
 			.from('us_federal_ecfr_performance')
@@ -143,32 +147,32 @@ export async function fetchCachedNodes(setPerformanceNodeData: React.Dispatch<Re
 			console.error('Error fetching data:', error);
 			break;
 		}
-		let newNodes: PerformanceNode[] = (newData as PerformanceNode[])?.map(node => ({ ...node }));
-
-		let newLinks: Link[] = [];
-		for (const node of newNodes) {
+		
+		
+		for (const node of newData as PerformanceNode[]) {
+			finalNodes.push(node)
 			if (node.parent == "us/federal") {
 				continue;
 			}
-			newLinks.push({
+			finalLinks.push({
 				source: node.parent,
 				target: node.id as string,
-				key: `${node.parent}-${node.id}`
 			} as Link);
 		}
-		console.log(`NewLinks: ${newLinks.length}`);
-		finalLinks = finalLinks.concat(newLinks)
+		//console.log(`NewLinks: ${JSON.stringify(Links)}`);
+		setLinkData(prev => [...prev, ...finalLinks]);
 
-		console.log(`NewNodes: ${newNodes.length}`);
-		finalNodes = finalNodes.concat(newNodes)
+		// console.log(`NewNodes: ${JSON.stringify(newNodes)}`);
+		setPerformanceNodeData(prev => [...prev, ...finalNodes]);
 
-		
+
+
 		pageIndex++;
 		// Check if there's more data to fetch
 		hasMore = newData.length === pageSize;
+
+
 	}
 
-	setPerformanceNodeData(finalNodes);
-	setLinkData(finalLinks);
-	return;
+return;
 }

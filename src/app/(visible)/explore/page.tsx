@@ -19,7 +19,6 @@ const NoSSRForceGraph3D = dynamic(() => import('@/components/threejs/forceGraph'
 
 
 const GraphPage: React.FC = () => {
-	const [nodeData, setNodeData] = useState<Node[]>([]);
 	const [performanceNodeData, setPerformanceNodeData] = useState<PerformanceNode[]>([]);
 	const [linkData, setLinkData] = useState<Link[]>([]);
 	const [selectedNode, setSelectedNode] = useState<Node | null>(null);
@@ -29,8 +28,8 @@ const GraphPage: React.FC = () => {
 		if (!hasFetched.current) {
 			hasFetched.current = true;
 			const root = "us/federal";
-			fetchCachedNodes(setPerformanceNodeData, setLinkData)
-			//fetchPerformanceNodes(root, 4, performanceNodeData, setPerformanceNodeData, setLinkData);
+			//fetchCachedNodes(setPerformanceNodeData, setLinkData)
+			fetchPerformanceNodes(root, 4, performanceNodeData, setPerformanceNodeData, setLinkData);
 		}
 		
 	}, []);
@@ -50,16 +49,16 @@ const GraphPage: React.FC = () => {
 			<NoSSRForceGraph3D
 				graphData={{ nodes: performanceNodeData, links: linkData }}
 				nodeVal={getRadius}
-				//nodeLabel="id"
+				nodeLabel="id"
 				nodeColor={getColor}
 				onNodeClick={handleNodeClick}
 				warmupTicks={200}
 				cooldownTicks={0}
 				nodeResolution={4}
-				//linkDirectionalParticles={5}
-				//linkDirectionalParticleSpeed={0.0005}
-				//linkDirectionalParticleColor={getColor}
-				//showNavInfo={true}
+				linkDirectionalParticles={5}
+				linkDirectionalParticleSpeed={0.0005}
+				linkDirectionalParticleColor={getColor}
+				showNavInfo={true}
 				controlType='orbit'
 
 
