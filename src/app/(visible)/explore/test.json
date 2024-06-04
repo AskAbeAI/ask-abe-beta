@@ -1,835 +1,4026 @@
 [
-    {
-      "id": "us/federal/ecfr/title=12",
-      "citation": "Title 12 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-12",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "12",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 12-Banks and Banking",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=37",
-      "citation": "Title 37 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-37",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "37",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 37-Patents, Trademarks, and Copyrights",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=5",
-      "citation": "Title 5 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-5",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "5",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 5-Administrative Personnel",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=19",
-      "citation": "Title 19 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-19",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "19",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 19-Customs Duties",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=50",
-      "citation": "Title 50 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-50",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "50",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 50-Wildlife and Fisheries",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=36",
-      "citation": "Title 36 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-36",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "36",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 36-Parks, Forests, and Public Property",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=6",
-      "citation": "Title 6 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-6",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "6",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 6-Domestic Security",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=2",
-      "citation": "Title 2 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-2",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "2",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 2-Grants and Agreements",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=13",
-      "citation": "Title 13 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-13",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "13",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 13-Business Credit and Assistance",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=15",
-      "citation": "Title 15 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-15",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "15",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 15-Commerce and Foreign Trade",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=24",
-      "citation": "Title 24 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-24",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "24",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 24-Housing and Urban Development",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=33",
-      "citation": "Title 33 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-33",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "33",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 33-Navigation and Navigable Waters",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=3",
-      "citation": "Title 3 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-3",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "3",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 3-The President",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=16",
-      "citation": "Title 16 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-16",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "16",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 16-Commercial Practices",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=18",
-      "citation": "Title 18 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-18",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "18",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 18-Conservation of Power and Water Resources",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=14",
-      "citation": "Title 14 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-14",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "14",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 14-Aeronautics and Space",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=21",
-      "citation": "Title 21 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-21",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "21",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 21-Food and Drugs",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=41",
-      "citation": "Title 41 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-41",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "41",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 41-Public Contracts and Property Management",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=30",
-      "citation": "Title 30 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-30",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "30",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 30-Mineral Resources",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=1",
-      "citation": "Title 1 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-1",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "1",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 1-General Provisions",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=44",
-      "citation": "Title 44 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-44",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "44",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 44-Emergency Management and Assistance",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=45",
-      "citation": "Title 45 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-45",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "45",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 45-Public Welfare",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=26",
-      "citation": "Title 26 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-26",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "26",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 26-Internal Revenue",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=9",
-      "citation": "Title 9 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-9",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "9",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 9-Animals and Animal Products",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=39",
-      "citation": "Title 39 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-39",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "39",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 39-Postal Service",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=11",
-      "citation": "Title 11 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-11",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "11",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 11-Federal Elections",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=23",
-      "citation": "Title 23 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-23",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "23",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 23-Highways",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=34",
-      "citation": "Title 34 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-34",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "34",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 34-Education",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=4",
-      "citation": "Title 4 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-4",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "4",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 4-Accounts",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=48",
-      "citation": "Title 48 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-48",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "48",
-      "level_classifier": "title",
-      "number": "48",
-      "node_name": "Title 48—Federal Acquisition Regulations System",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=22",
-      "citation": "Title 22 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-22",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "22",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 22-Foreign Relations",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=27",
-      "citation": "Title 27 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-27",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "27",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 27-Alcohol, Tobacco Products and Firearms",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=7",
-      "citation": "Title 7 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-7",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "7",
-      "level_classifier": "title",
-      "number": "7",
-      "node_name": "Title 7—Agriculture",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=49",
-      "citation": "Title 49 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-49",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "49",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 49-Transportation",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=10",
-      "citation": "Title 10 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-10",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "10",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 10-Energy",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=46",
-      "citation": "Title 46 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-46",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "46",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 46-Shipping",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=40",
-      "citation": "Title 40 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-40",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "40",
-      "level_classifier": "title",
-      "number": "40",
-      "node_name": "Title 40—Protection of Environment",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=28",
-      "citation": "Title 28 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-28",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "28",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 28-Judicial Administration",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=8",
-      "citation": "Title 8 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-8",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "8",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 8-Aliens and Nationality",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=47",
-      "citation": "Title 47 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-47",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "47",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 47-Telecommunication",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=17",
-      "citation": "Title 17 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-17",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "17",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 17-Commodity and Securities Exchanges",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=25",
-      "citation": "Title 25 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-25",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "25",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 25-Indians",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=32",
-      "citation": "Title 32 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-32",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "32",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 32-National Defense",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=20",
-      "citation": "Title 20 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-20",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "20",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 20-Employees' Benefits",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=31",
-      "citation": "Title 31 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-31",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "31",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 31-Money and Finance: Treasury",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=29",
-      "citation": "Title 29 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-29",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "29",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 29-Labor",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=38",
-      "citation": "Title 38 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-38",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "38",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 38-Pensions, Bonuses, and Veterans' Relief",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=42",
-      "citation": "Title 42 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-42",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "42",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 42-Public Health",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    },
-    {
-      "id": "us/federal/ecfr/title=43",
-      "citation": "Title 43 of the CFR",
-      "link": "https://www.ecfr.gov/current/title-43",
-      "status": null,
-      "node_type": "structure",
-      "top_level_title": "43",
-      "level_classifier": "title",
-      "number": null,
-      "node_name": "Title 43-Public Lands: Interior",
-      "node_text": null,
-      "definitions": null,
-      "core_metadata": null,
-      "processing": null,
-      "addendum": null,
-      "parent": "us/federal/ecfr"
-    }
-  ]
+  {
+    "id": "us/federal/ecfr/title=40/chapter=V",
+    "node_name": " Chapter V—Council on Environmental Quality",
+    "parent": "us/federal/ecfr/title=40",
+    "status": null,
+    "level_classifier": "chapter",
+    "depth": 1
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I",
+    "node_name": " Chapter I—Environmental Protection Agency",
+    "parent": "us/federal/ecfr/title=40",
+    "status": null,
+    "level_classifier": "chapter",
+    "depth": 1
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=IV",
+    "node_name": " Chapter IV—Environmental Protection Agency and Department of Justice",
+    "parent": "us/federal/ecfr/title=40",
+    "status": null,
+    "level_classifier": "chapter",
+    "depth": 1
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI",
+    "node_name": " Chapter VI—Chemical Safety and Hazard Investigation Board",
+    "parent": "us/federal/ecfr/title=40",
+    "status": null,
+    "level_classifier": "chapter",
+    "depth": 1
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VII",
+    "node_name": " Chapter VII—Environmental Protection Agency and Department of Defense; Uniform National Discharge Standards for Vessels of the Armed Forces",
+    "parent": "us/federal/ecfr/title=40",
+    "status": null,
+    "level_classifier": "chapter",
+    "depth": 1
+  },
+  {
+    "id": "us/federal/ecfr/title=40/hub=definitions",
+    "node_name": null,
+    "parent": "us/federal/ecfr/title=40",
+    "status": "definitions",
+    "level_classifier": "hub",
+    "depth": 1
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=IX",
+    "node_name": " Chapter IX—Federal Permitting Improvement Steering Council",
+    "parent": "us/federal/ecfr/title=40",
+    "status": null,
+    "level_classifier": "chapter",
+    "depth": 1
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VIII",
+    "node_name": " Chapter VIII—Gulf Coast Ecosystem Restoration Council",
+    "parent": "us/federal/ecfr/title=40",
+    "status": null,
+    "level_classifier": "chapter",
+    "depth": 1
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=G",
+    "node_name": "Subchapter G—Noise Abatement Programs",
+    "parent": "us/federal/ecfr/title=40/chapter=I",
+    "status": null,
+    "level_classifier": "subchapter",
+    "depth": 2
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=U",
+    "node_name": "Subchapter U—Air Pollution Controls",
+    "parent": "us/federal/ecfr/title=40/chapter=I",
+    "status": null,
+    "level_classifier": "subchapter",
+    "depth": 2
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=H",
+    "node_name": "Subchapter H—Ocean Dumping",
+    "parent": "us/federal/ecfr/title=40/chapter=I",
+    "status": null,
+    "level_classifier": "subchapter",
+    "depth": 2
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=E",
+    "node_name": "Subchapter E—Pesticide Programs",
+    "parent": "us/federal/ecfr/title=40/chapter=I",
+    "status": null,
+    "level_classifier": "subchapter",
+    "depth": 2
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=V/subchapter=B",
+    "node_name": "Subchapter B—Administrative Procedures and Operations",
+    "parent": "us/federal/ecfr/title=40/chapter=V",
+    "status": null,
+    "level_classifier": "subchapter",
+    "depth": 2
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=V/subchapter=A",
+    "node_name": "Subchapter A—National Environmental Policy Act Implementing Regulations",
+    "parent": "us/federal/ecfr/title=40/chapter=V",
+    "status": null,
+    "level_classifier": "subchapter",
+    "depth": 2
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1621-1699",
+    "node_name": "Parts 1621–1699 [Reserved]",
+    "parent": "us/federal/ecfr/title=40/chapter=VI",
+    "status": "reserved",
+    "level_classifier": "part",
+    "depth": 2
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VIII/part=1800",
+    "node_name": "Part 1800—Spill Impact Component",
+    "parent": "us/federal/ecfr/title=40/chapter=VIII",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 2
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=F",
+    "node_name": "Subchapter F—Radiation Protection Programs",
+    "parent": "us/federal/ecfr/title=40/chapter=I",
+    "status": null,
+    "level_classifier": "subchapter",
+    "depth": 2
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=A",
+    "node_name": "Subchapter A—General",
+    "parent": "us/federal/ecfr/title=40/chapter=I",
+    "status": null,
+    "level_classifier": "subchapter",
+    "depth": 2
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=O",
+    "node_name": "Subchapter O—Sewage Sludge",
+    "parent": "us/federal/ecfr/title=40/chapter=I",
+    "status": null,
+    "level_classifier": "subchapter",
+    "depth": 2
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=IV/subchapter=A",
+    "node_name": "Subchapter A—Accidental Release Prevention Requirements; Risk Management Programs Under the Clean Air Act Section 112(r)(7); Distribution of Off-Site Consequence Analysis Information",
+    "parent": "us/federal/ecfr/title=40/chapter=IV",
+    "status": null,
+    "level_classifier": "subchapter",
+    "depth": 2
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=S-T",
+    "node_name": "Subchapters S–T [Reserved]",
+    "parent": "us/federal/ecfr/title=40/chapter=I",
+    "status": "RESERVED",
+    "level_classifier": "subchapter",
+    "depth": 2
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=D",
+    "node_name": "Subchapter D—Water Programs",
+    "parent": "us/federal/ecfr/title=40/chapter=I",
+    "status": null,
+    "level_classifier": "subchapter",
+    "depth": 2
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1604",
+    "node_name": "Part 1604—Reporting of Accidental Releases",
+    "parent": "us/federal/ecfr/title=40/chapter=VI",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 2
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VIII/part=1850",
+    "node_name": "Part 1850—Availability of Records",
+    "parent": "us/federal/ecfr/title=40/chapter=VIII",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 2
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=Q",
+    "node_name": "Subchapter Q—Energy Policy",
+    "parent": "us/federal/ecfr/title=40/chapter=I",
+    "status": null,
+    "level_classifier": "subchapter",
+    "depth": 2
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=P",
+    "node_name": "Subchapter P [Reserved]",
+    "parent": "us/federal/ecfr/title=40/chapter=I",
+    "status": "RESERVED",
+    "level_classifier": "subchapter",
+    "depth": 2
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=B",
+    "node_name": "Subchapter B—Grants and Other Federal Assistance",
+    "parent": "us/federal/ecfr/title=40/chapter=I",
+    "status": null,
+    "level_classifier": "subchapter",
+    "depth": 2
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VIII/part=1851-1899",
+    "node_name": "Parts 1851–1899 [Reserved]",
+    "parent": "us/federal/ecfr/title=40/chapter=VIII",
+    "status": "reserved",
+    "level_classifier": "part",
+    "depth": 2
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VII/part=1701-1799",
+    "node_name": "Parts 1701–1799 [Reserved]",
+    "parent": "us/federal/ecfr/title=40/chapter=VII",
+    "status": "reserved",
+    "level_classifier": "part",
+    "depth": 2
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "node_name": "Subchapter C—Air Programs",
+    "parent": "us/federal/ecfr/title=40/chapter=I",
+    "status": null,
+    "level_classifier": "subchapter",
+    "depth": 2
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=R",
+    "node_name": "Subchapter R—Toxic Substances Control Act",
+    "parent": "us/federal/ecfr/title=40/chapter=I",
+    "status": null,
+    "level_classifier": "subchapter",
+    "depth": 2
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1613-1619",
+    "node_name": "Parts 1613–1619 [Reserved]",
+    "parent": "us/federal/ecfr/title=40/chapter=VI",
+    "status": "reserved",
+    "level_classifier": "part",
+    "depth": 2
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VII/part=1700",
+    "node_name": "Part 1700—Uniform National Discharge Standards for Vessels of the Armed Forces",
+    "parent": "us/federal/ecfr/title=40/chapter=VII",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 2
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VIII/part=1801-1849",
+    "node_name": "Parts 1801–1849 [Reserved]",
+    "parent": "us/federal/ecfr/title=40/chapter=VIII",
+    "status": "reserved",
+    "level_classifier": "part",
+    "depth": 2
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=J",
+    "node_name": "Subchapter J—Superfund, Emergency Planning, and Community Right-to-Know Programs",
+    "parent": "us/federal/ecfr/title=40/chapter=I",
+    "status": null,
+    "level_classifier": "subchapter",
+    "depth": 2
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=IX/part=1900",
+    "node_name": "Part 1900—Federal Permitting Improvement",
+    "parent": "us/federal/ecfr/title=40/chapter=IX",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 2
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "node_name": "Subchapter N—Effluent Guidelines and Standards",
+    "parent": "us/federal/ecfr/title=40/chapter=I",
+    "status": null,
+    "level_classifier": "subchapter",
+    "depth": 2
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1601",
+    "node_name": "Part 1601—Procedures for Disclosure of Records Under the Freedom of Information Act",
+    "parent": "us/federal/ecfr/title=40/chapter=VI",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 2
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1620",
+    "node_name": "Part 1620—Administrative Claims Arising Under the Federal Tort Claims Act",
+    "parent": "us/federal/ecfr/title=40/chapter=VI",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 2
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1612",
+    "node_name": "Part 1612—Production of Records in Legal Proceedings",
+    "parent": "us/federal/ecfr/title=40/chapter=VI",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 2
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1610",
+    "node_name": "Part 1610—Administrative Investigations",
+    "parent": "us/federal/ecfr/title=40/chapter=VI",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 2
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1602",
+    "node_name": "Part 1602—Protection of Privacy and Access to Individual Records Under the Privacy Act of 1974",
+    "parent": "us/federal/ecfr/title=40/chapter=VI",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 2
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1603",
+    "node_name": "Part 1603—Rules Implementing the Government in the Sunshine Act",
+    "parent": "us/federal/ecfr/title=40/chapter=VI",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 2
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=I",
+    "node_name": "Subchapter I—Solid Wastes",
+    "parent": "us/federal/ecfr/title=40/chapter=I",
+    "status": null,
+    "level_classifier": "subchapter",
+    "depth": 2
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1600",
+    "node_name": "Part 1600—Organization and Functions of the Chemical Safety and Hazard Investigation Board",
+    "parent": "us/federal/ecfr/title=40/chapter=VI",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 2
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1611",
+    "node_name": "Part 1611—Testimony by Employees in Legal Proceedings",
+    "parent": "us/federal/ecfr/title=40/chapter=VI",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 2
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=73",
+    "node_name": "Part 73—Sulfur Dioxide Allowance System",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=A/part=24",
+    "node_name": "Part 24—Rules Governing Issuance of and Administrative Hearings on Interim Status Corrective Action Orders",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=A",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=A/part=9",
+    "node_name": "Part 9—OMB Approvals Under the Paperwork Reduction Act",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=A",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=A/part=18",
+    "node_name": "Part 18—Environmental Protection Research Fellowships and Special Research Consultants for Environmental Protection",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=A",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=A/part=2",
+    "node_name": "Part 2—Public Information",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=A",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=B/part=49",
+    "node_name": "Part 49—Indian Country: Air Quality Planning and Management",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=B",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=87",
+    "node_name": "Part 87—Control of Air Pollution from Aircraft and Aircraft Engines",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=82",
+    "node_name": "Part 82—Protection of Stratospheric Ozone",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=81",
+    "node_name": "Part 81—Designation of Areas for Air Quality Planning Purposes",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=H/hub=definitions",
+    "node_name": null,
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=H",
+    "status": "definitions",
+    "level_classifier": "hub",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=451",
+    "node_name": "Part 451—Concentrated Aquatic Animal Production Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=408",
+    "node_name": "Part 408—Canned and Preserved Seafood Processing Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=454",
+    "node_name": "Part 454—Gum and Wood Chemicals Manufacturing Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=458",
+    "node_name": "Part 458—Carbon Black Manufacturing Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=D/part=125",
+    "node_name": "Part 125—Criteria and Standards for the National Pollutant Discharge Elimination System",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=D",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=D/part=132",
+    "node_name": "Part 132—Water Quality Guidance for the Great Lakes System",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=D",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=D/part=146",
+    "node_name": "Part 146—Underground Injection Control Program: Criteria and Standards",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=D",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=D/part=112",
+    "node_name": "Part 112—Oil Pollution Prevention",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=D",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=D/part=140",
+    "node_name": "Part 140—Marine Sanitation Device Standard",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=D",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=E/part=169",
+    "node_name": "Part 169—Books and Records of Pesticide Production and Distribution",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=E",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=E/part=174",
+    "node_name": "Part 174—Procedures and Requirements for Plant-Incorporated Protectants",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=E",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=G/part=201",
+    "node_name": "Part 201—Noise Emission Standards for Transportation Equipment; Interstate Rail Carriers",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=G",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=H/part=225",
+    "node_name": "Part 225—Corps of Engineers Dredged Material Permits",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=H",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=H/part=220",
+    "node_name": "Part 220—General",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=H",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=I/part=263",
+    "node_name": "Part 263—Standards Applicable to Transporters of Hazardous Waste",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=I",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=I/part=268",
+    "node_name": "Part 268—Land Disposal Restrictions",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=I",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=I/part=272",
+    "node_name": "Part 272—Approved State Hazardous Waste Management Programs",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=I",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=471",
+    "node_name": "Part 471—Nonferrous Metals Forming and Metal Powders Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=461",
+    "node_name": "Part 461—Battery Manufacturing Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=437",
+    "node_name": "Part 437—The Centralized Waste Treatment Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=429",
+    "node_name": "Part 429—Timber Products Processing Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=419",
+    "node_name": "Part 419—Petroleum Refining Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=U/part=1051",
+    "node_name": "Part 1051—Control of Emissions from Recreational Engines and Vehicles",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=U",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=U/part=1030",
+    "node_name": "Part 1030—Control of Greenhouse Gas Emissions from Engines Installed on Airplanes",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=U",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=R/part=705",
+    "node_name": "Part 705—Reporting and Recordkeeping Requirements for Certain Per- and Polyfluoroalkyl Substances",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=R",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=R/part=707",
+    "node_name": "Part 707—Chemical Imports and Exports",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=R",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=R/part=798",
+    "node_name": "Part 798—Health Effects Testing Guidelines",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=R",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1620/section=1620.5",
+    "node_name": "§ 1620.5 Administrative claim; evidence and information to be submitted.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1620",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=V/subchapter=A/part=1501",
+    "node_name": "Part 1501—NEPA and Agency Planning",
+    "parent": "us/federal/ecfr/title=40/chapter=V/subchapter=A",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1601/subpart=A",
+    "node_name": "Subpart A-Purpose, Scope, and Applicability",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1601",
+    "status": null,
+    "level_classifier": "subpart",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1601/hub=definitions",
+    "node_name": null,
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1601",
+    "status": "definitions",
+    "level_classifier": "hub",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=74",
+    "node_name": "Part 74—Sulfur Dioxide Opt-Ins",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VIII/part=1800/hub=definitions",
+    "node_name": null,
+    "parent": "us/federal/ecfr/title=40/chapter=VIII/part=1800",
+    "status": "definitions",
+    "level_classifier": "hub",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=56",
+    "node_name": "Part 56—Regional Consistency",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=99",
+    "node_name": "Part 99 [Reserved]",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": "reserved",
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=90",
+    "node_name": "Part 90—Control of Emissions from Nonroad Spark-Ignition Engines at or Below 19 Kilowatts",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=96",
+    "node_name": "Part 96—NOX Budget Trading Program and CAIR NOX and SO2 Trading Programs for State Implementation Plans",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=94",
+    "node_name": "Part 94—Control of Emissions from Marine Compression-Ignition Engines",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=A/part=17",
+    "node_name": "Part 17—Implementation of the Equal Access to Justice Act in EPA Administrative Proceedings",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=A",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=A/part=13",
+    "node_name": "Part 13—Claims Collection Standards",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=A",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=B/part=47",
+    "node_name": "Part 47—National Environmental Education Act Grants",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=B",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=93",
+    "node_name": "Part 93—Determining Conformity of Federal Actions to State or Federal Implementation Plans",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=I/part=243",
+    "node_name": "Part 243—Guidelines for the Storage and Collection of Residential, Commercial, and Institutional Solid Waste",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=I",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=I/part=273",
+    "node_name": "Part 273—Standards for Universal Waste Management",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=I",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=D/part=135",
+    "node_name": "Part 135—Prior Notice of Citizen Suits",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=D",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=D/part=122",
+    "node_name": "Part 122—EPA Administered Permit Programs: the National Pollutant Discharge Elimination System",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=D",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=D/part=117",
+    "node_name": "Part 117—Determination of Reportable Quantities for Hazardous Substances",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=D",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=D/part=144",
+    "node_name": "Part 144—Underground Injection Control Program",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=D",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=D/part=105",
+    "node_name": "Part 105—Recognition Awards Under the Clean Water Act",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=D",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=E/part=176",
+    "node_name": "Part 176—Time-Limited Tolerances for Emergency Exemptions",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=E",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=E/part=155",
+    "node_name": "Part 155—Registration Standards and Registration Review",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=E",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=G/part=204",
+    "node_name": "Part 204—Noise Emission Standards for Construction Equipment",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=G",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=H/part=224",
+    "node_name": "Part 224—Records and Reports Required of Ocean Dumping Permittees Under Section 102 of the Act",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=H",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=H/part=221",
+    "node_name": "Part 221—Applications for Ocean Dumping Permits Under Section 102 of the Act",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=H",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=I/part=257",
+    "node_name": "Part 257—Criteria for Classification of Solid Waste Disposal Facilities and Practices",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=I",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=J/part=350",
+    "node_name": "Part 350—Trade Secrecy Claims for Emergency Planning and Community Right-to-Know Information: and Trade Secret Disclosures to Health Professionals",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=J",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=J/part=374",
+    "node_name": "Part 374—Prior Notice of Citizen Suits",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=J",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=410",
+    "node_name": "Part 410—Textile Mills Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=442",
+    "node_name": "Part 442—Transportation Equipment Cleaning Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=460",
+    "node_name": "Part 460—Hospital Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=443",
+    "node_name": "Part 443—Effluent Limitations Guidelines for Existing Sources and Standards of Performance and Pretreatment Standards for New Sources for the Paving and Roofing Materials (Tars and Asphalt) Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=435",
+    "node_name": "Part 435—Oil and Gas Extraction Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=R/part=712",
+    "node_name": "Part 712—Chemical Information Rules",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=R",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=U/part=1065",
+    "node_name": "Part 1065—Engine-Testing Procedures",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=U",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=U/part=1066",
+    "node_name": "Part 1066—Vehicle-Testing Procedures",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=U",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=U/part=1048",
+    "node_name": "Part 1048—Control of Emissions from New, Large Nonroad Spark-Ignition Engines",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=U",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=IV/subchapter=A/part=1401-1499",
+    "node_name": "Parts 1401–1499 [Reserved]",
+    "parent": "us/federal/ecfr/title=40/chapter=IV/subchapter=A",
+    "status": "reserved",
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=V/subchapter=A/part=1506",
+    "node_name": "Part 1506—Other Requirements of NEPA",
+    "parent": "us/federal/ecfr/title=40/chapter=V/subchapter=A",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=V/subchapter=A/part=1508",
+    "node_name": "Part 1508—Definitions",
+    "parent": "us/federal/ecfr/title=40/chapter=V/subchapter=A",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=V/subchapter=A/part=1503",
+    "node_name": "Part 1503—Commenting on Environmental Impact Statements",
+    "parent": "us/federal/ecfr/title=40/chapter=V/subchapter=A",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=V/subchapter=B/part=1516",
+    "node_name": "Part 1516—Privacy Act Implementation",
+    "parent": "us/federal/ecfr/title=40/chapter=V/subchapter=B",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VIII/part=1850/subpart=A",
+    "node_name": "Subpart A-Production or Disclosure Under the Freedom of Information Act",
+    "parent": "us/federal/ecfr/title=40/chapter=VIII/part=1850",
+    "status": null,
+    "level_classifier": "subpart",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=417",
+    "node_name": "Part 417—Soap and Detergent Manufacturing Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=A/part=14",
+    "node_name": "Part 14—Employee Personal Property Claims",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=A",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=A/part=5",
+    "node_name": "Part 5—Nondiscrimination on the Basis of Sex in Education Programs or Activities Receiving Federal Financial Assistance",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=A",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=A/part=6",
+    "node_name": "Part 6—Procedures for Implementing the National Environmental Policy Act and Assessing the Environmental Effects Abroad of EPA Actions",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=A",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=A/part=11",
+    "node_name": "Part 11—Security Classification Regulations Pursuant to Executive Order 11652",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=A",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=A/part=20",
+    "node_name": "Part 20—Certification of Facilities",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=A",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=A/part=21",
+    "node_name": "Part 21—Small Business",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=A",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=B/part=35",
+    "node_name": "Part 35—State and Local Assistance",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=B",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=72",
+    "node_name": "Part 72—Permits Regulation",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=79",
+    "node_name": "Part 79—Registration of Fuels and Fuel Additives",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=65",
+    "node_name": "Part 65—Consolidated Federal Air Rule",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=55",
+    "node_name": "Part 55—Outer Continental Shelf Air Regulations",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=416",
+    "node_name": "Part 416 [Reserved]",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": "reserved",
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=E/part=170",
+    "node_name": "Part 170—Worker Protection Standard",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=E",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=E/part=154",
+    "node_name": "Part 154—Special Review Procedures",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=E",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=D/part=143",
+    "node_name": "Part 143—Other Safe Drinking Water Act Regulations",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=D",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=D/part=108",
+    "node_name": "Part 108—Employee Protection Hearings",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=D",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=D/part=136",
+    "node_name": "Part 136—Guidelines Establishing Test Procedures for the Analysis of Pollutants",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=D",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=D/part=129",
+    "node_name": "Part 129—Toxic Pollutant Effluent Standards",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=D",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=E/part=180",
+    "node_name": "Part 180—Tolerances and Exemptions for Pesticide Chemical Residues in Food",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=E",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=F/part=191",
+    "node_name": "Part 191—Environmental Radiation Protection Standards for Management and Disposal of Spent Nuclear Fuel, High-Level and Transuranic Radioactive Wastes",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=F",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=418",
+    "node_name": "Part 418—Fertilizer Manufacturing Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=G/part=211",
+    "node_name": "Part 211—Product Noise Labeling",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=G",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=H/part=227",
+    "node_name": "Part 227—Criteria for the Evaluation of Permit Applications for Ocean Dumping of Materials",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=H",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=H/part=231",
+    "node_name": "Part 231—Section 404(c) Procedures",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=H",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=433",
+    "node_name": "Part 433—Metal Finishing Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=I/part=258",
+    "node_name": "Part 258—Criteria for Municipal Solid Waste Landfills",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=I",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=I/part=246",
+    "node_name": "Part 246—Source Separation for Materials Recovery Guidelines",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=I",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=I/part=267",
+    "node_name": "Part 267—Standards for Owners and Operators of Hazardous Waste Facilities Operating Under a Standardized Permit",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=I",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=I/part=262",
+    "node_name": "Part 262—Standards Applicable to Generators of Hazardous Waste",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=I",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=422",
+    "node_name": "Part 422—Phosphate Manufacturing Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=466",
+    "node_name": "Part 466—Porcelain Enameling Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=457",
+    "node_name": "Part 457—Explosives Manufacturing Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=439",
+    "node_name": "Part 439—Pharmaceutical Manufacturing Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=434",
+    "node_name": "Part 434—Coal Mining Point Source Category BPT, BAT, BCT Limitations and New Source Performance Standards",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=Q/part=610",
+    "node_name": "Part 610—Fuel Economy Retrofit Devices",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=Q",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=R/part=770",
+    "node_name": "Part 770—Formaldehyde Standards for Composite Wood Products",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=R",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=R/part=799",
+    "node_name": "Part 799—Identification of Specific Chemical Substance and Mixture Testing Requirements",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=R",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=U/part=1045",
+    "node_name": "Part 1045—Control of Emissions from Spark-Ignition Propulsion Marine Engines and Vessels",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=U",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=U/part=1075-1089",
+    "node_name": "Parts 1075–1089 [Reserved]",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=U",
+    "status": "reserved",
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=V/subchapter=A/part=1500",
+    "node_name": "Part 1500—Purpose and Policy",
+    "parent": "us/federal/ecfr/title=40/chapter=V/subchapter=A",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1602/hub=definitions",
+    "node_name": null,
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1602",
+    "status": "definitions",
+    "level_classifier": "hub",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1603/hub=definitions",
+    "node_name": null,
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1603",
+    "status": "definitions",
+    "level_classifier": "hub",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1604/hub=definitions",
+    "node_name": null,
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1604",
+    "status": "definitions",
+    "level_classifier": "hub",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1610/section=1610.1",
+    "node_name": "§ 1610.1 Representation of witnesses in investigations.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1610",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1620/section=1620.2",
+    "node_name": "§ 1620.2 Administrative claim; when presented.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1620",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VIII/part=1800/subpart=B",
+    "node_name": "Subpart B-Minimum Allocation Available for Planning Purposes",
+    "parent": "us/federal/ecfr/title=40/chapter=VIII/part=1800",
+    "status": null,
+    "level_classifier": "subpart",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=455",
+    "node_name": "Part 455—Pesticide Chemicals",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=I/part=259",
+    "node_name": "Part 259 [Reserved]",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=I",
+    "status": "reserved",
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=I/part=239",
+    "node_name": "Part 239—Requirements for State Permit Program Determination of Adequacy",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=I",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=I/part=266",
+    "node_name": "Part 266—Standards for the Management of Specific Hazardous Wastes and Specific Types of Hazardous Waste Management Facilities",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=I",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=97",
+    "node_name": "Part 97—Federal NOX Budget Trading Program, CAIR NOX and SO2 Trading Programs, CSAPR NOX and SO2 Trading Programs, and Texas SO2 Trading Program",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=51",
+    "node_name": "Part 51—Requirements for Preparation, Adoption, and Submittal of Implementation Plans",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=A/part=7",
+    "node_name": "Part 7—Nondiscrimination in Programs or Activities Receiving Federal Assistance from the Environmental Protection Agency",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=A",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=A/part=22",
+    "node_name": "Part 22—Consolidated Rules of Practice Governing the Administrative Assessment of Civil Penalties and the Revocation/Termination or Suspension of Permits",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=A",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=57",
+    "node_name": "Part 57—Primary Nonferrous Smelter Orders",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=92",
+    "node_name": "Part 92—Control of Air Pollution from Locomotives and Locomotive Engines",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=63",
+    "node_name": "Part 63—National Emission Standards for Hazardous Air Pollutants for Source Categories",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=E/part=152",
+    "node_name": "Part 152—Pesticide Registration and Classification Procedures",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=E",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=E/part=164",
+    "node_name": "Part 164—Rules of Practice Governing Hearings, Under the Federal Insecticide, Fungicide, and Rodenticide Act, Arising from Refusals to Register, Cancellations of Registrations, Changes of Classifications, Suspensions of Registrations and Other Hearings Called Pursuant to Section 6 of the Act",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=E",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=E/part=171",
+    "node_name": "Part 171—Certification of Pesticide Applicators",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=E",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=E/part=158",
+    "node_name": "Part 158—Data Requirements for Pesticides",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=E",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=G/part=202",
+    "node_name": "Part 202—Motor Carriers Engaged in Interstate Commerce",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=G",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=G/part=209",
+    "node_name": "Part 209—Rules of Practice Governing Proceedings Under the Noise Control Act of 1972",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=G",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=H/part=228",
+    "node_name": "Part 228—Criteria for the Management of Disposal Sites for Ocean Dumping",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=H",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=H/part=229",
+    "node_name": "Part 229—General Permits",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=H",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=J/part=355",
+    "node_name": "Part 355—Emergency Planning and Notification",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=J",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=J/part=312",
+    "node_name": "Part 312—Innocent Landowners, Standards for Conducting All Appropriate Inquiries",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=J",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=J/part=373",
+    "node_name": "Part 373—Reporting Hazardous Substance Activity When Selling or Transferring Federal Real Property",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=J",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=445",
+    "node_name": "Part 445—Landfills Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=468",
+    "node_name": "Part 468—Copper Forming Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=423",
+    "node_name": "Part 423—Steam Electric Power Generating Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=407",
+    "node_name": "Part 407—Canned and Preserved Fruits and Vegetables Processing Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=415",
+    "node_name": "Part 415—Inorganic Chemicals Manufacturing Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=465",
+    "node_name": "Part 465—Coil Coating Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=R/part=749",
+    "node_name": "Part 749—Water Treatment Chemicals",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=R",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=R/part=761",
+    "node_name": "Part 761—Polychlorinated Biphenyls (PCBs) Manufacturing, Processing, Distribution in Commerce, and Use Prohibitions",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=R",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=O/part=501",
+    "node_name": "Part 501—State Sludge Management Program Regulations",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=O",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=Q/part=611-699",
+    "node_name": "Parts 611–699 [Reserved]",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=Q",
+    "status": "reserved",
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=R/part=717",
+    "node_name": "Part 717—Records and Reports of Allegations That Chemical Substances Cause Significant Adverse Reactions to Health or the Environment",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=R",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=R/part=751",
+    "node_name": "Part 751—Regulation of Certain Chemical Substances and Mixtures Under Section 6 of the Toxic Substances Control Act",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=R",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=R/part=766",
+    "node_name": "Part 766—Dibenzo-Para-Dioxins/Dibenzofurans",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=R",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=U/part=1036",
+    "node_name": "Part 1036—Control of Emissions from New and In-Use Heavy-Duty Highway Engines",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=U",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=U/part=1068",
+    "node_name": "Part 1068—General Compliance Provisions for Highway, Stationary, and Nonroad Programs",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=U",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=V/subchapter=B/part=1517",
+    "node_name": "Part 1517—Public Meeting Procedures of the Council on Environmental Quality",
+    "parent": "us/federal/ecfr/title=40/chapter=V/subchapter=B",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=V/subchapter=A/part=1504",
+    "node_name": "Part 1504—Pre–Decisional Referrals to the Council of Proposed Federal Actions Determined to Be Environmentally Unsatisfactory",
+    "parent": "us/federal/ecfr/title=40/chapter=V/subchapter=A",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=V/subchapter=B/part=1518",
+    "node_name": "Part 1518—Office of Environmental Quality Management Fund",
+    "parent": "us/federal/ecfr/title=40/chapter=V/subchapter=B",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1603/section=1603.7",
+    "node_name": "§ 1603.7 Grounds on which meetings may be closed or information may be withheld.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1603",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1611/hub=definitions",
+    "node_name": null,
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1611",
+    "status": "definitions",
+    "level_classifier": "hub",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VIII/part=1850/subpart=B",
+    "node_name": "Subpart B-Production or Disclosure Under the Privacy Act",
+    "parent": "us/federal/ecfr/title=40/chapter=VIII/part=1850",
+    "status": null,
+    "level_classifier": "subpart",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=H/part=230",
+    "node_name": "Part 230—Section 404(b)(1) Guidelines for Specification of Disposal Sites for Dredged or Fill Material",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=H",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=H/part=223",
+    "node_name": "Part 223—Contents of Permits; Revision, Revocation or Limitation of Ocean Dumping Permits Under Section 104(d) of the Act",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=H",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=I/part=270",
+    "node_name": "Part 270—EPA Administered Permit Programs: the Hazardous Waste Permit Program",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=I",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=V/subchapter=B/part=1515",
+    "node_name": "Part 1515—Freedom of Information Act Procedures",
+    "parent": "us/federal/ecfr/title=40/chapter=V/subchapter=B",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=J/part=375-399",
+    "node_name": "Parts 375–399 [Reserved]",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=J",
+    "status": "reserved",
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=467",
+    "node_name": "Part 467—Aluminum Forming Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=D/part=123",
+    "node_name": "Part 123—State Program Requirements",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=D",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1603/section=1603.5",
+    "node_name": "§ 1603.5 Assurance of compliance.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1603",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=I/part=255",
+    "node_name": "Part 255—Identification of Regions and Agencies for Solid Waste Management",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=I",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=F/part=190",
+    "node_name": "Part 190—Environmental Radiation Protection Standards for Nuclear Power Operations",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=F",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=I/part=265",
+    "node_name": "Part 265—Interim Status Standards for Owners and Operators of Hazardous Waste Treatment, Storage, and Disposal Facilities",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=I",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=F/part=197",
+    "node_name": "Part 197—Public Health and Environmental Radiation Protection Standards for Yucca Mountain, Nevada",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=F",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1601/subpart=D",
+    "node_name": "Subpart D-Administration",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1601",
+    "status": null,
+    "level_classifier": "subpart",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=A/part=19",
+    "node_name": "Part 19—Adjustment of Civil Monetary Penalties for Inflation",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=A",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1611/section=1611.3",
+    "node_name": "§ 1611.3 Scope of permissible testimony.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1611",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VII/part=1700/subpart=C",
+    "node_name": "Subpart C-Effect on States",
+    "parent": "us/federal/ecfr/title=40/chapter=VII/part=1700",
+    "status": null,
+    "level_classifier": "subpart",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=D/part=100-103",
+    "node_name": "Parts 100–103 [Reserved]",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=D",
+    "status": "reserved",
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=449",
+    "node_name": "Part 449—Airport Deicing Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=R/part=704",
+    "node_name": "Part 704—Reporting and Recordkeeping Requirements",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=R",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=431",
+    "node_name": "Part 431 [Reserved]",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": "reserved",
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=86",
+    "node_name": "Part 86—Control of Emissions from New and In-Use Highway Vehicles and Engines",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=D/part=141",
+    "node_name": "Part 141—National Primary Drinking Water Regulations",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=D",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=E/part=150",
+    "node_name": "Part 150—General",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=E",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=E/part=153",
+    "node_name": "Part 153—Registration Policies and Interpretations",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=E",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=E/part=157",
+    "node_name": "Part 157—Packaging Requirements for Pesticides and Devices",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=E",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=E/part=159",
+    "node_name": "Part 159—Statements of Policies and Interpretations",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=E",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=444",
+    "node_name": "Part 444—Waste Combustors Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=427",
+    "node_name": "Part 427—Asbestos Manufacturing Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=A/part=3",
+    "node_name": "Part 3—Cross-Media Electronic Reporting",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=A",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=I/part=240",
+    "node_name": "Part 240—Guidelines for the Thermal Processing of Solid Wastes",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=I",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=I/part=281",
+    "node_name": "Part 281—Approval of State Underground Storage Tank Programs",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=I",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=I/part=283-299",
+    "node_name": "Parts 283–299 [Reserved]",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=I",
+    "status": "reserved",
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=89",
+    "node_name": "Part 89—Control of Emissions from New and In-Use Nonroad Compression-Ignition Engines",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=400",
+    "node_name": "Part 400 [Reserved]",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": "reserved",
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=402",
+    "node_name": "Part 402 [Reserved]",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": "reserved",
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=A/part=23",
+    "node_name": "Part 23—Judicial Review Under EPA-Administered Statutes",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=A",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=409",
+    "node_name": "Part 409—Sugar Processing Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=411",
+    "node_name": "Part 411—Cement Manufacturing Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=83",
+    "node_name": "Part 83 [Reserved]",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": "reserved",
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=A/part=10",
+    "node_name": "Part 10—Administrative Claims Under Federal Tort Claims Act",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=A",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=R/part=700",
+    "node_name": "Part 700—General",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=R",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=R/part=722",
+    "node_name": "Part 722 [Reserved]",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=R",
+    "status": "reserved",
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=R/part=723",
+    "node_name": "Part 723—Premanufacture Notification Exemptions",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=R",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=R/part=771-789",
+    "node_name": "Parts 771–789 [Reserved]",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=R",
+    "status": "reserved",
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=R/part=792",
+    "node_name": "Part 792—Good Laboratory Practice Standards",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=R",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=U/part=1031",
+    "node_name": "Part 1031—Control of Air Pollution from Aircraft Engines",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=U",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VII/part=1700/subpart=A",
+    "node_name": "Subpart A-Scope",
+    "parent": "us/federal/ecfr/title=40/chapter=VII/part=1700",
+    "status": null,
+    "level_classifier": "subpart",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VII/part=1700/subpart=D",
+    "node_name": "Subpart D-Marine Pollution Control Device (MPCD) Performance Standards",
+    "parent": "us/federal/ecfr/title=40/chapter=VII/part=1700",
+    "status": null,
+    "level_classifier": "subpart",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=98",
+    "node_name": "Part 98—Mandatory Greenhouse Gas Reporting",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=D/part=124",
+    "node_name": "Part 124—Procedures for Decisionmaking",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=D",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=F/part=195",
+    "node_name": "Part 195—Radon Proficiency Programs",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=F",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=A/part=27",
+    "node_name": "Part 27—Program Fraud Civil Remedies",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=A",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=F/part=194",
+    "node_name": "Part 194—Criteria for the Certification and Re-Certification of the Waste Isolation Pilot Plant's Compliance with the 40 CFR Part 191 Disposal Regulations",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=F",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=78",
+    "node_name": "Part 78—Appeal Procedures",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=95",
+    "node_name": "Part 95—Mandatory Patent Licenses",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=66",
+    "node_name": "Part 66—Assessment and Collection of Noncompliance Penalties by EPA",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=67",
+    "node_name": "Part 67—EPA Approval of State Noncompliance Penalty Program",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=77",
+    "node_name": "Part 77—Excess Emissions",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=52",
+    "node_name": "Part 52—Approval and Promulgation of Implementation Plans",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=64",
+    "node_name": "Part 64—Compliance Assurance Monitoring",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=61",
+    "node_name": "Part 61—National Emission Standards for Hazardous Air Pollutants",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=D/part=113",
+    "node_name": "Part 113—Liability Limits for Small Onshore Storage Facilities",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=D",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=D/part=147",
+    "node_name": "Part 147—State, Tribal, and EPA-Administered Underground Injection Control Programs",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=D",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=D/part=130",
+    "node_name": "Part 130—Water Quality Planning and Management",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=D",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=D/part=148",
+    "node_name": "Part 148—Hazardous Waste Injection Restrictions",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=D",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=D/part=109",
+    "node_name": "Part 109—Criteria for State, Local and Regional Oil Removal Contingency Plans",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=D",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=F/part=192",
+    "node_name": "Part 192—Health and Environmental Protection Standards for Uranium and Thorium Mill Tailings",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=F",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=E/part=156",
+    "node_name": "Part 156—Labeling Requirements for Pesticides and Devices",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=E",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=E/part=165",
+    "node_name": "Part 165—Pesticide Management and Disposal",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=E",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=E/part=173",
+    "node_name": "Part 173—Procedures Governing the Rescission of State Primary Enforcement Responsibility for Pesticide Use Violations",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=E",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=I/part=256",
+    "node_name": "Part 256—Guidelines for Development and Implementation of State Solid Waste Management Plans",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=I",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=G/part=205",
+    "node_name": "Part 205—Transportation Equipment Noise Emission Controls",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=G",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=G/part=203",
+    "node_name": "Part 203—Low-Noise-Emission Products",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=G",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=I/part=282",
+    "node_name": "Part 282—Approved Underground Storage Tank Programs",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=I",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=I/part=264",
+    "node_name": "Part 264—Standards for Owners and Operators of Hazardous Waste Treatment, Storage, and Disposal Facilities",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=I",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=I/part=279",
+    "node_name": "Part 279—Standards for the Management of Used Oil",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=I",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=J/part=304",
+    "node_name": "Part 304—Arbitration Procedures for Small Superfund Cost Recovery Claims",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=J",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=J/part=370",
+    "node_name": "Part 370—Hazardous Chemical Reporting: Community Right-to-Know",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=J",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=J/part=372",
+    "node_name": "Part 372—Toxic Chemical Release Reporting: Community Right-to-Know",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=J",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=J/part=311",
+    "node_name": "Part 311—Worker Protection",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=J",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=447",
+    "node_name": "Part 447—Ink Formulating Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=424",
+    "node_name": "Part 424—Ferroalloy Manufacturing Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=436",
+    "node_name": "Part 436—Mineral Mining and Processing Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=464",
+    "node_name": "Part 464—Metal Molding and Casting Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=426",
+    "node_name": "Part 426—Glass Manufacturing Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=425",
+    "node_name": "Part 425—Leather Tanning and Finishing Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=432",
+    "node_name": "Part 432—Meat and Poultry Products Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=R/part=711",
+    "node_name": "Part 711—TSCA Chemical Data Reporting Requirements",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=R",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=R/part=763",
+    "node_name": "Part 763—Asbestos",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=R",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=R/part=796",
+    "node_name": "Part 796—Chemical Fate Testing Guidelines",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=R",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=R/part=721",
+    "node_name": "Part 721—Significant New Uses of Chemical Substances",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=R",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=R/part=745",
+    "node_name": "Part 745—Lead-Based Paint Poisoning Prevention in Certain Residential Structures",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=R",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=R/part=795",
+    "node_name": "Part 795—Provisional Test Guidelines",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=R",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1601/subpart=B",
+    "node_name": "Subpart B-Procedures for Requesting and Disclosing Records",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1601",
+    "status": null,
+    "level_classifier": "subpart",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=U/part=1033",
+    "node_name": "Part 1033—Control of Emissions from Locomotives",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=U",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=U/part=1000-1026",
+    "node_name": "Parts 1000–1026 [Reserved]",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=U",
+    "status": "reserved",
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=V/subchapter=A/part=1507",
+    "node_name": "Part 1507—Agency Compliance",
+    "parent": "us/federal/ecfr/title=40/chapter=V/subchapter=A",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VIII/part=1800/subpart=C",
+    "node_name": "Subpart C-Spill Impact Formula",
+    "parent": "us/federal/ecfr/title=40/chapter=VIII/part=1800",
+    "status": null,
+    "level_classifier": "subpart",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VIII/part=1800/subpart=A",
+    "node_name": "Subpart A-Definitions",
+    "parent": "us/federal/ecfr/title=40/chapter=VIII/part=1800",
+    "status": null,
+    "level_classifier": "subpart",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1601/subpart=E",
+    "node_name": "Subpart E-Fees",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1601",
+    "status": null,
+    "level_classifier": "subpart",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=I/part=254",
+    "node_name": "Part 254—Prior Notice of Citizen Suits",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=I",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=A/part=4",
+    "node_name": "Part 4—Uniform Relocation Assistance and Real Property Acquisition for Federal and Federally Assisted Programs",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=A",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=H/part=232",
+    "node_name": "Part 232—404 Program Definitions; Exempt Activities Not Requiring 404 Permits",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=H",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VII/part=1700/subpart=B",
+    "node_name": "Subpart B-Discharge Determinations",
+    "parent": "us/federal/ecfr/title=40/chapter=VII/part=1700",
+    "status": null,
+    "level_classifier": "subpart",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=IX/part=1900/section=1900.2",
+    "node_name": "§ 1900.2 FAST-41 sectors.",
+    "parent": "us/federal/ecfr/title=40/chapter=IX/part=1900",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=IX/part=1900/section=1900.1",
+    "node_name": "§ 1900.1 Definitions.",
+    "parent": "us/federal/ecfr/title=40/chapter=IX/part=1900",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1610/section=1610.2",
+    "node_name": "§ 1610.2 Repeated attorney misconduct, sanctions, hearings.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1610",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1600/section=1600.1",
+    "node_name": "§ 1600.1 Purpose.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1600",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1600/section=1600.2",
+    "node_name": "§ 1600.2 Organization.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1600",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1600/section=1600.4",
+    "node_name": "§ 1600.4 Operation.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1600",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1600/section=1600.3",
+    "node_name": "§ 1600.3 Functions.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1600",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1600/section=1600.5",
+    "node_name": "§ 1600.5 Quorum and voting requirements.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1600",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1600/section=1600.6",
+    "node_name": "§ 1600.6 Office location.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1600",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1602/section=1602.1",
+    "node_name": "§ 1602.1 General provisions.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1602",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1602/section=1602.4",
+    "node_name": "§ 1602.4 Responses to requests for access to records.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1602",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1602/section=1602.2",
+    "node_name": "§ 1602.2 Requests for access to records.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1602",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1602/section=1602.10",
+    "node_name": "§ 1602.10 Notice of court-ordered and emergency disclosures.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1602",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1602/section=1602.3",
+    "node_name": "§ 1602.3 Responsibility for responding to requests for access to records.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1602",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1602/section=1602.5",
+    "node_name": "§ 1602.5 Appeals from denials of requests for access to records.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1602",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1602/section=1602.8",
+    "node_name": "§ 1602.8 Preservation of records.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1602",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1602/section=1602.7",
+    "node_name": "§ 1602.7 Requests for an accounting of record disclosures.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1602",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1602/section=1602.6",
+    "node_name": "§ 1602.6 Requests for amendment or correction of records.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1602",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1602/section=1602.9",
+    "node_name": "§ 1602.9 Fees.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1602",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1603/section=1603.1",
+    "node_name": "§ 1603.1 Applicability.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1603",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1603/section=1603.13",
+    "node_name": "§ 1603.13 Report to Congress.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1603",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1603/section=1603.10",
+    "node_name": "§ 1603.10 Changes following public announcement.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1603",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1603/section=1603.12",
+    "node_name": "§ 1603.12 Availability of transcripts, recordings, and minutes, and applicable fees.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1603",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1603/section=1603.11",
+    "node_name": "§ 1603.11 Transcripts, recordings, or minutes of closed meetings.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1603",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1603/section=1603.14",
+    "node_name": "§ 1603.14 Severability.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1603",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1603/section=1603.2",
+    "node_name": "§ 1603.2 Policy.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1603",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1603/section=1603.3",
+    "node_name": "§ 1603.3 Definitions.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1603",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1603/section=1603.4",
+    "node_name": "§ 1603.4 Open meetings requirement.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1603",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1603/section=1603.6",
+    "node_name": "§ 1603.6 Business requiring a meeting.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1603",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1603/section=1603.9",
+    "node_name": "§ 1603.9 Procedures for public announcement of meetings.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1603",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1604/section=1604.2",
+    "node_name": "§ 1604.2 Definitions.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1604",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1604/section=1604.1",
+    "node_name": "§ 1604.1 Purpose.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1604",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1603/section=1603.8",
+    "node_name": "§ 1603.8 Procedures for closing meetings, or withholding information, and requests by affected persons to close a meeting.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1603",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1604/section=1604.3",
+    "node_name": "§ 1604.3 Reporting an accidental release.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1604",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1604/section=1604.4",
+    "node_name": "§ 1604.4 Information required in an accidental release report.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1604",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1604/section=1604.5",
+    "node_name": "§ 1604.5 Failure to report an accidental release.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1604",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1604/section=1604.6",
+    "node_name": "§ 1604.6 Public availability of accidental release records.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1604",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1611/section=1611.1",
+    "node_name": "§ 1611.1 General.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1611",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1610/section=1610.3",
+    "node_name": "§ 1610.3 Sequestration of witnesses and exclusion of Counsel.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1610",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1610/section=1610.4",
+    "node_name": "§ 1610.4 Deposition Transcripts.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1610",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1611/section=1611.10",
+    "node_name": "§ 1611.10 Obtaining CSB investigation reports and supporting information.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1611",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1611/section=1611.2",
+    "node_name": "§ 1611.2 Definitions.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1611",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1611/section=1611.4",
+    "node_name": "§ 1611.4 Manner in which testimony is given in civil litigation.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1611",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1611/section=1611.6",
+    "node_name": "§ 1611.6 Testimony of former CSB employees.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1611",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1611/section=1611.7",
+    "node_name": "§ 1611.7 Testimony by current CSB employees regarding prior activity.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1611",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1611/section=1611.5",
+    "node_name": "§ 1611.5 Request for testimony in civil litigation.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1611",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1611/section=1611.9",
+    "node_name": "§ 1611.9 Testimony in Federal, State, or local criminal investigations and other proceedings.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1611",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1611/section=1611.8",
+    "node_name": "§ 1611.8 Procedure in the event of a subpoena in civil litigation.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1611",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1612/section=1612.3",
+    "node_name": "§ 1612.3 Published reports and material contained in the public incident investigation dockets.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1612",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1612/section=1612.4",
+    "node_name": "§ 1612.4 Requests for authentication or certification of records.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1612",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1620/section=1620.8",
+    "node_name": "§ 1620.8 Referral to Department of Justice.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1620",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1612/section=1612.2",
+    "node_name": "§ 1612.2 Applicability.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1612",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1620/section=1620.1",
+    "node_name": "§ 1620.1 Purpose and scope of regulations.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1620",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1620/section=1620.10",
+    "node_name": "§ 1620.10 Action on approved claim.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1620",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1612/section=1612.1",
+    "node_name": "§ 1612.1 Purpose and scope.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1612",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1620/section=1620.3",
+    "node_name": "§ 1620.3 Administrative claim; who may file.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1620",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1620/section=1620.4",
+    "node_name": "§ 1620.4 Investigations.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1620",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1620/section=1620.6",
+    "node_name": "§ 1620.6 Authority to adjust, determine, compromise, and settle.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1620",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1620/section=1620.7",
+    "node_name": "§ 1620.7 Limitations on authority.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1620",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1620/section=1620.9",
+    "node_name": "§ 1620.9 Final denial of claim.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1620",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=A/part=25",
+    "node_name": "Part 25—Public Participation in Programs Under the Resource Conservation and Recovery Act, the Safe Drinking Water Act, and the Clean Water Act",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=A",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=B/part=33",
+    "node_name": "Part 33—Participation by Disadvantaged Business Enterprises in United States Environmental Protection Agency Programs",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=B",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=91",
+    "node_name": "Part 91—Control of Emissions from Marine Spark-Ignition Engines",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=88",
+    "node_name": "Part 88—Clean-Fuel Vehicles",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=84",
+    "node_name": "Part 84—Phasedown of Hydrofluorocarbons",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=D/part=127",
+    "node_name": "Part 127—NPDES Electronic Reporting",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=D",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=D/part=133",
+    "node_name": "Part 133—Secondary Treatment Regulation",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=D",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=E/part=172",
+    "node_name": "Part 172—Experimental Use Permits",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=E",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=E/part=167",
+    "node_name": "Part 167—Registration of Pesticide and Active Ingredient Producing Establishments, Submission of Pesticide Reports",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=E",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=E/part=179",
+    "node_name": "Part 179—Formal Evidentiary Public Hearing",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=E",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=E/part=166",
+    "node_name": "Part 166—Exemption of Federal and State Agencies for Use of Pesticides Under Emergency Conditions",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=E",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=H/part=233",
+    "node_name": "Part 233—404 State Program Regulations",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=H",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=I/part=241",
+    "node_name": "Part 241—Solid Wastes Used as Fuels or Ingredients in Combustion Units",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=I",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=I/part=280",
+    "node_name": "Part 280—Technical Standards and Corrective Action Requirements for Owners and Operators of Underground Storage Tanks (UST)",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=I",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=J/part=310",
+    "node_name": "Part 310—Reimbursement to Local Governments for Emergency Response to Hazardous Substance Releases",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=J",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=J/part=307",
+    "node_name": "Part 307—Comprehensive Environmental Response, Compensation, and Liability Act (CERCLA) Claims Procedures",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=J",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=446",
+    "node_name": "Part 446—Paint Formulating Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=414",
+    "node_name": "Part 414—Organic Chemicals, Plastics, and Synthetic Fibers",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=406",
+    "node_name": "Part 406—Grain Mills Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=413",
+    "node_name": "Part 413—Electroplating Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=U/part=1039",
+    "node_name": "Part 1039—Control of Emissions from New and In-Use Nonroad Compression-Ignition Engines",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=U",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=U/part=1054",
+    "node_name": "Part 1054—Control of Emissions from New, Small Nonroad Spark-Ignition Engines and Equipment",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=U",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=U/part=1027",
+    "node_name": "Part 1027—Fees for Vehicle and Engine Compliance Programs",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=U",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=U/part=1042",
+    "node_name": "Part 1042—Control of Emissions from New and In-Use Marine Compression-Ignition Engines and Vessels",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=U",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=U/part=1037",
+    "node_name": "Part 1037—Control of Emissions from New Heavy-Duty Motor Vehicles",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=U",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=U/part=1074",
+    "node_name": "Part 1074—Preemption of State Standards and Procedures for Waiver of Federal Preemption for Nonroad Engines and Nonroad Vehicles",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=U",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=V/subchapter=A/hub=definitions",
+    "node_name": null,
+    "parent": "us/federal/ecfr/title=40/chapter=V/subchapter=A",
+    "status": "definitions",
+    "level_classifier": "hub",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=V/subchapter=A/part=1502",
+    "node_name": "Part 1502—Environmental Impact Statement",
+    "parent": "us/federal/ecfr/title=40/chapter=V/subchapter=A",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=75",
+    "node_name": "Part 75—Continuous Emission Monitoring",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=B/part=46",
+    "node_name": "Part 46—Fellowships",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=B",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=A/part=1",
+    "node_name": "Part 1—Statement of Organization and General Information",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=A",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=A/part=30-31",
+    "node_name": "Parts 30–31 [Reserved]",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=A",
+    "status": "reserved",
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=B/part=40",
+    "node_name": "Part 40—Research and Demonstration Grants",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=B",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=B/part=45",
+    "node_name": "Part 45—Training Assistance",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=B",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=B/part=34",
+    "node_name": "Part 34—New Restrictions on Lobbying",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=B",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=59",
+    "node_name": "Part 59—National Volatile Organic Compound Emission Standards for Consumer and Commercial Products",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=62",
+    "node_name": "Part 62—Approval and Promulgation of State Plans for Designated Facilities and Pollutants",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=53",
+    "node_name": "Part 53—Ambient Air Monitoring Reference and Equivalent Methods",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=85",
+    "node_name": "Part 85—Control of Air Pollution from Mobile Sources",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=76",
+    "node_name": "Part 76—Acid Rain Nitrogen Oxides Emission Reduction Program",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=80",
+    "node_name": "Part 80—Regulation of Fuels and Fuel Additives",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=I/part=261",
+    "node_name": "Part 261—Identification and Listing of Hazardous Waste",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=I",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=I/part=260",
+    "node_name": "Part 260—Hazardous Waste Management System: General",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=I",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=R/part=703",
+    "node_name": "Part 703—Confidentiality Claims",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=R",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=R/part=767-769",
+    "node_name": "Parts 767–769 [Reserved]",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=R",
+    "status": "reserved",
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=R/part=791",
+    "node_name": "Part 791—Data Reimbursement",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=R",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=R/part=750",
+    "node_name": "Part 750—Procedures for Rulemaking Under Section 6 of the Toxic Substances Control Act",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=R",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=D/part=142",
+    "node_name": "Part 142—National Primary Drinking Water Regulations Implementation",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=D",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=D/part=149",
+    "node_name": "Part 149—Sole Source Aquifers",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=D",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=D/part=131",
+    "node_name": "Part 131—Water Quality Standards",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=D",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=D/part=110",
+    "node_name": "Part 110—Discharge of Oil",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=D",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=E/part=168",
+    "node_name": "Part 168—Statements of Enforcement Policies and Interpretations",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=E",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=E/part=178",
+    "node_name": "Part 178—Objections and Requests for Hearings",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=E",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=E/part=160",
+    "node_name": "Part 160—Good Laboratory Practice Standards",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=E",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=412",
+    "node_name": "Part 412—Concentrated Animal Feeding Operations (CAFO) Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=J/part=302",
+    "node_name": "Part 302—Designation, Reportable Quantities, and Notification",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=J",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=J/part=300",
+    "node_name": "Part 300—National Oil and Hazardous Substances Pollution Contingency Plan",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=J",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=403",
+    "node_name": "Part 403—General Pretreatment Regulations for Existing and New Sources of Pollution",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=O/part=503",
+    "node_name": "Part 503—Standards for the Use or Disposal of Sewage Sludge",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=O",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=R/part=713",
+    "node_name": "Part 713—Reporting Requirements for the TSCA Inventory of Mercury Supply, Use, and Trade",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=R",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=U/part=1043",
+    "node_name": "Part 1043—Control of NOX, Sox, and PM Emissions from Marine Engines and Vessels Subject to the Marpol Protocol",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=U",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=U/part=1090",
+    "node_name": "Part 1090—Regulation of Fuels, Fuel Additives, and Regulated Blendstocks",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=U",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=IX/part=1900/hub=definitions",
+    "node_name": null,
+    "parent": "us/federal/ecfr/title=40/chapter=IX/part=1900",
+    "status": "definitions",
+    "level_classifier": "hub",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=V/subchapter=A/part=1505",
+    "node_name": "Part 1505—NEPA and Agency Decision Making",
+    "parent": "us/federal/ecfr/title=40/chapter=V/subchapter=A",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1601/subpart=C",
+    "node_name": "Subpart C-Appeals",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1601",
+    "status": null,
+    "level_classifier": "subpart",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=R/part=747",
+    "node_name": "Part 747—Metalworking Fluids",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=R",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=R/part=790",
+    "node_name": "Part 790—Procedures Governing Testing Consent Agreements and Test Rules",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=R",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=R/part=716",
+    "node_name": "Part 716—Health and Safety Data Reporting",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=R",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=R/part=710",
+    "node_name": "Part 710—Compilation of the TSCA Chemical Substance Inventory",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=R",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=A/part=29",
+    "node_name": "Part 29—Intergovernmental Review of Environmental Protection Agency Programs and Activities",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=A",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=A/part=8",
+    "node_name": "Part 8—Environmental Impact Assessment of Nongovernmental Activities in Antarctica",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=A",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=A/part=26",
+    "node_name": "Part 26—Protection of Human Subjects",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=A",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=A/part=16",
+    "node_name": "Part 16—Implementation of Privacy Act of 1974",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=A",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=A/part=12",
+    "node_name": "Part 12—Nondiscrimination on the Basis of Handicap in Programs or Activities Conducted by the Environmental Protection Agency",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=A",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=71",
+    "node_name": "Part 71—Federal Operating Permit Programs",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=69",
+    "node_name": "Part 69—Special Exemptions from Requirements of the Clean Air Act",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=54",
+    "node_name": "Part 54—Prior Notice of Citizen Suits",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=68",
+    "node_name": "Part 68—Chemical Accident Prevention Provisions",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=58",
+    "node_name": "Part 58—Ambient Air Quality Surveillance",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=60",
+    "node_name": "Part 60—Standards of Performance for New Stationary Sources",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=70",
+    "node_name": "Part 70—State Operating Permit Programs",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=D/part=116",
+    "node_name": "Part 116—Designation of Hazardous Substances",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=D",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=D/part=120",
+    "node_name": "Part 120—Definition of Waters of the United States",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=D",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=D/part=104",
+    "node_name": "Part 104—Public Hearings on Effluent Standards for Toxic Pollutants",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=D",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=D/part=121",
+    "node_name": "Part 121—State Certification of Activities Requiring a Federal License or Permit",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=D",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=E/part=162",
+    "node_name": "Part 162—State Registration of Pesticide Products",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=E",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=E/part=151",
+    "node_name": "Part 151 [Reserved]",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=E",
+    "status": "reserved",
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=E/part=181-189",
+    "node_name": "Parts 181–189 [Reserved]",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=E",
+    "status": "reserved",
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=H/part=222",
+    "node_name": "Part 222—Action on Ocean Dumping Permit Applications Under Section 102 of the Act",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=H",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=G/part=210",
+    "node_name": "Part 210—Prior Notice of Citizen Suits",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=G",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=H/part=238",
+    "node_name": "Part 238—Degradable Plastic Ring Carriers",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=H",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=I/part=271",
+    "node_name": "Part 271—Requirements for Authorization of State Hazardous Waste Programs",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=I",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=I/part=247",
+    "node_name": "Part 247—Comprehensive Procurement Guideline for Products Containing Recovered Materials",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=I",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=I/part=278",
+    "node_name": "Part 278—Criteria for the Management of Granular Mine Tailings (Chat) in Asphalt Concrete and Portland Cement Concrete in Transportation Construction Projects Funded in Whole or in Part by Federal Funds",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=I",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=441",
+    "node_name": "Part 441—Dental Office Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=J/part=305",
+    "node_name": "Part 305—Comprehensive Environmental Response, Compensation, and Liability Act (CERCLA) Administrative Hearing Procedures for Claims Against the Superfund",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=J",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=J/part=303",
+    "node_name": "Part 303—Citizen Awards for Information on Criminal Violations Under Superfund",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=J",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=469",
+    "node_name": "Part 469—Electrical and Electronic Components Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=421",
+    "node_name": "Part 421—Nonferrous Metals Manufacturing Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=405",
+    "node_name": "Part 405—Dairy Products Processing Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=440",
+    "node_name": "Part 440—Ore Mining and Dressing Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=438",
+    "node_name": "Part 438—Metal Products and Machinery Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=430",
+    "node_name": "Part 430—The Pulp, Paper, and Paperboard Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=428",
+    "node_name": "Part 428—Rubber Manufacturing Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=420",
+    "node_name": "Part 420—Iron and Steel Manufacturing Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=401",
+    "node_name": "Part 401—General Provisions",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=450",
+    "node_name": "Part 450—Construction and Development Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=459",
+    "node_name": "Part 459—Photographic Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=N/part=463",
+    "node_name": "Part 463—Plastics Molding and Forming Point Source Category",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=N",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=R/part=702",
+    "node_name": "Part 702—General Practices and Procedures",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=R",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=R/part=720",
+    "node_name": "Part 720—Premanufacture Notification",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=R",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=Q/part=600",
+    "node_name": "Part 600—Fuel Economy and Greenhouse Gas Exhaust Emissions of Motor Vehicles",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=Q",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=R/part=725",
+    "node_name": "Part 725—Reporting Requirements and Review Processes for Microorganisms",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=R",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=R/part=797",
+    "node_name": "Part 797—Environmental Effects Testing Guidelines",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=R",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=U/part=1091-1099",
+    "node_name": "Parts 1091–1099 [Reserved]",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=U",
+    "status": "reserved",
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=U/part=1060",
+    "node_name": "Part 1060—Control of Evaporative Emissions from New and In-Use Nonroad and Stationary Equipment",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=U",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=VI/part=1612/section=1612.5",
+    "node_name": "§ 1612.5 Other material.",
+    "parent": "us/federal/ecfr/title=40/chapter=VI/part=1612",
+    "status": null,
+    "level_classifier": "section",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=IV/subchapter=A/part=1400",
+    "node_name": "Part 1400—Distribution of Off-Site Consequence Analysis Information",
+    "parent": "us/federal/ecfr/title=40/chapter=IV/subchapter=A",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=V/subchapter=B/part=1519-1599",
+    "node_name": "Parts 1519–1599 [Reserved]",
+    "parent": "us/federal/ecfr/title=40/chapter=V/subchapter=B",
+    "status": "reserved",
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=C/part=50",
+    "node_name": "Part 50—National Primary and Secondary Ambient Air Quality Standards",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=C",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  },
+  {
+    "id": "us/federal/ecfr/title=40/chapter=I/subchapter=D/part=145",
+    "node_name": "Part 145—State UIC Program Requirements",
+    "parent": "us/federal/ecfr/title=40/chapter=I/subchapter=D",
+    "status": null,
+    "level_classifier": "part",
+    "depth": 3
+  }
+]

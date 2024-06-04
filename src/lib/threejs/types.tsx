@@ -22,16 +22,26 @@ export interface NodeProps {
 	// siblings?: string[];
 
 }
+export interface PerformanceNodeProps {
+	parent?: string,
+	node_name?: string,
+	status?: string,
+	level_classifier?: string,
+	value?: number
+}
 export type Node = BaseNodeObject<NodeProps>;
+export type PerformanceNode = BaseNodeObject<PerformanceNodeProps>;
 
 export interface Link {
 	source: string;
 	target: string;
-	key?: string;
 }
 
 
 export function getColor(node: Node): string{
+	if (node.status && node.status != "definitions") {
+		return "gray";
+	}
 	switch(node.level_classifier!) {
 	case "CORPUS":
 		return "purple";
@@ -48,26 +58,57 @@ export function getColor(node: Node): string{
 	case "subpart":
 		return "blue";
 	default:
-		return "gray";
+		return "white";
 	}
 }
 export function getRadius(node: Node): number {
+	//console.log(node.level_classifier)
 	switch(node.level_classifier!) {
 	case "CORPUS":
 		return 10;
 	case "title":
-		return  8;
+		return  5;
 	case "subtitle":
-		return 6;
-	case "chapter":
-		return 5;
-	case "subchapter":
 		return 4;
-	case "part":
+	case "chapter":
 		return 3;
-	case "subpart":
+	case "subchapter":
+		return 3;
+	case "part":
 		return 2;
+	case "subpart":
+		return 1;
 	default:
 		return 1;
 	}
+}
+export function getOpacity(node: Node): number {
+	if (node.status && node.status != "definitions") {
+		return 0;
+	} else {
+		return 1;
+	}
+}
+export function dagIgnore(node: Node): boolean {
+	switch(node.level_classifier!) {
+		case "CORPUS":
+			return true;
+		case "title":
+			return  false;
+		case "subtitle":
+			return false;
+		case "chapter":
+			return false;
+		case "subchapter":
+			return true;
+		case "part":
+			return true;
+		case "subpart":
+			return true;
+		case "hub":
+			return true;
+		default:
+			
+			return false;
+		}
 }
