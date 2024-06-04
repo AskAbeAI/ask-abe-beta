@@ -1,79 +1,72 @@
 "use client";
 // /app/explore/page.tsx
-import React, { useEffect, useState, useMemo } from 'react';
-import { Node, Link, getColor, getRadius } from '@/lib/threejs/types';
+import React, { useEffect, useState, useRef } from 'react';
+import { Node, Link, getColor, getRadius, PerformanceNode } from '@/lib/threejs/types';
 
-import { fetchNodes } from '@/lib/utils/dynamicGraph';
+import { fetchNodes, fetchPerformanceNodes, fetchCachedNodes } from '@/lib/utils/dynamicGraph';
 import dynamic from 'next/dynamic';
 import NodeHUD from '@/components/threejs/hud';
-import NodeTextHUD, { NodeText} from '@/components/threejs/textHud';
+import NodeTextHUD, { NodeText } from '@/components/threejs/textHud';
+import NodeCountComponent from '@/components/threejs/nodeCounter';
 
 const NoSSRForceGraph3D = dynamic(() => import('@/components/threejs/forceGraph'), {
 	ssr: false,
 });
 // https://github.com/d3/d3-force
 // https://github.com/vasturiano/3d-force-graph/tree/master
-// https://github.com/vasturiano/react-force-graph
+
 
 const GraphPage: React.FC = () => {
 	const [nodeData, setNodeData] = useState<Node[]>([]);
+	const [performanceNodeData, setPerformanceNodeData] = useState<PerformanceNode[]>([]);
 	const [linkData, setLinkData] = useState<Link[]>([]);
 	const [selectedNode, setSelectedNode] = useState<Node | null>(null);
+	const hasFetched = useRef(false);
 
 	useEffect(() => {
-		const initializeNodes = async () => {
-			const depth: number = 2;
-			const root: string = "us/federal";
-			const result = await fetchNodes(root, depth); // fetchNodes now returns an object
-			console.log(`Succesfully returned ${result.nodes.length} nodes, with ${result.links.length} links!`);
-			setSelectedNode(result.nodes[0]);
-			setNodeData(result.nodes);
-			setLinkData(result.links);
-		};
+		if (!hasFetched.current) {
+			hasFetched.current = true;
+			const root = "us/federal";
+			fetchCachedNodes(setPerformanceNodeData, setLinkData)
+			//fetchPerformanceNodes(root, 5, performanceNodeData, setPerformanceNodeData, setLinkData);
 
-		initializeNodes();
+		}
+		
 	}, []);
 
-	const handleNodeClick = async (node: Node, event: MouseEvent) => {
-		// Fetch new child nodes
+	const handleNodeClick = async (node: PerformanceNode, event: MouseEvent) => {
 		setSelectedNode(node)
-		if (node.node_text) {
+		if (performanceNodeData.some(existingNode => existingNode.parent === node.id)) {
+			console.log(`Skipping processing click on ${node}`)
 			return;
 		}
-		const result = await fetchNodes(node.node_id!, 1); // Assuming you want to fetch children of the clicked node at depth 1
-		console.log(`Succesfully returned ${result.nodes.length} nodes, with ${result.links.length} links!`);
-		const childNodes = result.nodes;
-		const childLinks = result.links;
+		//await fetchPerformanceNodes(node.id as string, 1, performanceNodeData, setPerformanceNodeData, setLinkData);
 
-		// Calculate new links
-		const newLinks: Link[] = [...linkData, ...childLinks];
-
-		// Feed combined nodes and links to calculate position
-		const newNodes: Node[] = [...nodeData, ...childNodes];
-		setNodeData(newNodes);
-		setLinkData(newLinks);
 	};
 	return (
 		<>
+			{/* https://github.com/vasturiano/react-force-graph */}
 			<NoSSRForceGraph3D
-				graphData={{ nodes: nodeData, links: linkData }}
+				graphData={{ nodes: performanceNodeData, links: linkData }}
 				nodeVal={getRadius}
-				nodeId="node_id"
-				nodeLabel="node_name"
+				nodeLabel="id"
 				nodeColor={getColor}
 				onNodeClick={handleNodeClick}
 				linkDirectionalParticles={5}
 				linkDirectionalParticleSpeed={0.0005}
 				linkDirectionalParticleColor={getColor}
 				showNavInfo={true}
+				controlType='orbit'
+
 
 			/>
-			<NodeHUD
+			<NodeCountComponent nodes={performanceNodeData} />
+			{/* <NodeHUD
 				node={selectedNode}
 			/>
 			<NodeTextHUD
 				node_text={selectedNode ? selectedNode.node_text as unknown as NodeText : null}
-			/>
+			/> */}
 		</>
 
 

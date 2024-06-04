@@ -22,7 +22,13 @@ export interface NodeProps {
 	// siblings?: string[];
 
 }
+export interface PerformanceNodeProps {
+	parent?: string,
+	level_classifier?: string,
+	depth?: string
+}
 export type Node = BaseNodeObject<NodeProps>;
+export type PerformanceNode = BaseNodeObject<PerformanceNodeProps>;
 
 export interface Link {
 	source: string;
