@@ -16,6 +16,8 @@ const NoSSRForceGraph3D = dynamic(() => import('@/components/threejs/forceGraph'
 // https://github.com/vasturiano/3d-force-graph/tree/master
 
 
+
+
 const GraphPage: React.FC = () => {
 	const [nodeData, setNodeData] = useState<Node[]>([]);
 	const [performanceNodeData, setPerformanceNodeData] = useState<PerformanceNode[]>([]);
@@ -28,8 +30,7 @@ const GraphPage: React.FC = () => {
 			hasFetched.current = true;
 			const root = "us/federal";
 			fetchCachedNodes(setPerformanceNodeData, setLinkData)
-			//fetchPerformanceNodes(root, 5, performanceNodeData, setPerformanceNodeData, setLinkData);
-
+			//fetchPerformanceNodes(root, 4, performanceNodeData, setPerformanceNodeData, setLinkData);
 		}
 		
 	}, []);
@@ -49,13 +50,16 @@ const GraphPage: React.FC = () => {
 			<NoSSRForceGraph3D
 				graphData={{ nodes: performanceNodeData, links: linkData }}
 				nodeVal={getRadius}
-				nodeLabel="id"
+				//nodeLabel="id"
 				nodeColor={getColor}
 				onNodeClick={handleNodeClick}
-				linkDirectionalParticles={5}
-				linkDirectionalParticleSpeed={0.0005}
-				linkDirectionalParticleColor={getColor}
-				showNavInfo={true}
+				warmupTicks={200}
+				cooldownTicks={0}
+				nodeResolution={4}
+				//linkDirectionalParticles={5}
+				//linkDirectionalParticleSpeed={0.0005}
+				//linkDirectionalParticleColor={getColor}
+				//showNavInfo={true}
 				controlType='orbit'
 
 

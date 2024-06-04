@@ -122,7 +122,7 @@ export const fetchPerformanceNodes = async (
 
 export async function fetchCachedNodes(setPerformanceNodeData: React.Dispatch<React.SetStateAction<PerformanceNode[]>>,
 	setLinkData: React.Dispatch<React.SetStateAction<Link[]>>) {
-	let data: PerformanceNode[] = [];
+	
 	let pageIndex = 0;
 	let pageSize = 1000;  // Set page size, Supabase default limit is 1000
 	let hasMore = true;
@@ -130,7 +130,8 @@ export async function fetchCachedNodes(setPerformanceNodeData: React.Dispatch<Re
 	const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 	const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 	const supabase = createClient(supabaseUrl, supabaseKey);
-
+	let finalNodes: PerformanceNode[] = [];
+	let finalLinks: Link[] = []
 	while (hasMore) {
 		const { data: newData, error, count } = await supabase
 			.from('us_federal_ecfr_performance')
@@ -142,7 +143,7 @@ export async function fetchCachedNodes(setPerformanceNodeData: React.Dispatch<Re
 			console.error('Error fetching data:', error);
 			break;
 		}
-		let newNodes: PerformanceNode[] = (data as PerformanceNode[])?.map(node => ({ ...node }));
+		let newNodes: PerformanceNode[] = (newData as PerformanceNode[])?.map(node => ({ ...node }));
 
 		let newLinks: Link[] = [];
 		for (const node of newNodes) {
@@ -156,16 +157,18 @@ export async function fetchCachedNodes(setPerformanceNodeData: React.Dispatch<Re
 			} as Link);
 		}
 		console.log(`NewLinks: ${newLinks.length}`);
-		setLinkData(prev => [...prev, ...newLinks]);
+		finalLinks = finalLinks.concat(newLinks)
 
 		console.log(`NewNodes: ${newNodes.length}`);
-		setPerformanceNodeData(prev => [...prev, ...newNodes]);
+		finalNodes = finalNodes.concat(newNodes)
 
-		data = data.concat(newData as PerformanceNode[]);
+		
 		pageIndex++;
 		// Check if there's more data to fetch
 		hasMore = newData.length === pageSize;
 	}
 
-	return data;
+	setPerformanceNodeData(finalNodes);
+	setLinkData(finalLinks);
+	return;
 }
