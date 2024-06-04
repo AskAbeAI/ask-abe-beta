@@ -65,21 +65,20 @@ export function getRadius(node: Node): number {
 	//console.log(node.level_classifier)
 	switch(node.level_classifier!) {
 	case "CORPUS":
-		return 10000;
-	case "title":
-		return  500;
-	case "subtitle":
-		return 100;
-	case "chapter":
-		return 20;
-	case "subchapter":
 		return 10;
+	case "title":
+		return  5;
+	case "subtitle":
+		return 4;
+	case "chapter":
+		return 3;
+	case "subchapter":
+		return 3;
 	case "part":
-		return 5;
-	case "subpart":
 		return 2;
+	case "subpart":
+		return 1;
 	default:
-		console.log(JSON.stringify(node))
 		return 1;
 	}
 }
@@ -89,4 +88,27 @@ export function getOpacity(node: Node): number {
 	} else {
 		return 1;
 	}
+}
+export function dagIgnore(node: Node): boolean {
+	switch(node.level_classifier!) {
+		case "CORPUS":
+			return true;
+		case "title":
+			return  false;
+		case "subtitle":
+			return false;
+		case "chapter":
+			return false;
+		case "subchapter":
+			return true;
+		case "part":
+			return true;
+		case "subpart":
+			return true;
+		case "hub":
+			return true;
+		default:
+			
+			return false;
+		}
 }

@@ -1,6 +1,6 @@
 // /lib/api.ts
 import { createClient } from '@supabase/supabase-js';
-import { PerformanceNode, Node, Link, getRadius } from '@/lib/threejs/types'; // Adjust the import as per your file structure
+import { PerformanceNode, Node, Link, getRadius, getColor } from '@/lib/threejs/types'; // Adjust the import as per your file structure
 
 
 export const fetchNodes = async (
@@ -91,6 +91,7 @@ export const fetchPerformanceNodes = async (
 	let newNodes: PerformanceNode[] = [];
 
 	const { data, error } = await supabase.rpc('fetch_tree_nodes', { parent_id: parentId, max_depth: depth });
+	console.log(JSON.stringify(data))
 
 
 	if (error) {
@@ -103,18 +104,20 @@ export const fetchPerformanceNodes = async (
 
 	for (let node of data as PerformanceNode[]) {
 		if (node.level_classifier == "hub") {
-			console.log(JSON.stringify(node, null, 2))
+			//console.log(JSON.stringify(node, null, 2))
 			node.node_name = `Definitions Hub for ${node.parent}`
 		}
-		node.value = getRadius(node)
+		//node.value = getRadius(node)
 		newNodes.push(node);
-		if (node.parent == "us/federal") {
+		if (node.parent == "us/federal/ecfr") {
 			continue;
 		}
 		newLinks.push({
 			source: node.parent,
 			target: node.id as string,
-			key: `${parentId}-${node.id}`
+			key: `${parentId}-${node.id}`,
+			color: getColor(node),
+			width: getRadius(node)
 		} as Link);
 	}
 

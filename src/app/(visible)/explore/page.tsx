@@ -1,7 +1,7 @@
 "use client";
 // /app/explore/page.tsx
 import React, { useEffect, useState, useRef } from 'react';
-import { Node, Link, getColor, getRadius, PerformanceNode, getOpacity } from '@/lib/threejs/types';
+import { Node, Link, getColor, getRadius, PerformanceNode, getOpacity, dagIgnore } from '@/lib/threejs/types';
 
 import { fetchNodes, fetchPerformanceNodes, fetchCachedNodes } from '@/lib/utils/dynamicGraph';
 import dynamic from 'next/dynamic';
@@ -30,7 +30,8 @@ const GraphPage: React.FC = () => {
 			const root = "us/federal";
 			const offsetNode = "us/federal/ecfr/title=40"
 			//fetchCachedNodes(setPerformanceNodeData, setLinkData)
-			fetchPerformanceNodes(root, 3, performanceNodeData, setPerformanceNodeData, setLinkData);
+
+			fetchPerformanceNodes(offsetNode, 2, performanceNodeData, setPerformanceNodeData, setLinkData);
 			//fetchPerformanceNodes(offsetNode, 4, performanceNodeData, setPerformanceNodeData, setLinkData);
 
 		}
@@ -40,11 +41,12 @@ const GraphPage: React.FC = () => {
 	const handleNodeClick = async (node: PerformanceNode, event: MouseEvent) => {
 		if (node.status) { return; }
 		setSelectedNode(node)
-		if (performanceNodeData.some(existingNode => existingNode.parent === node.id)) {
-			console.log(`Skipping processing click on ${node}`)
-			return;
-		}
-		await fetchPerformanceNodes(node.id as string, 3, performanceNodeData, setPerformanceNodeData, setLinkData);
+		// if (performanceNodeData.some(existingNode => existingNode.parent === node.id)) {
+		// 	console.log(`Skipping processing click on ${node}`)
+		// 	return;
+		// }
+		await fetchPerformanceNodes(node.id as string, 2, performanceNodeData, setPerformanceNodeData, setLinkData);
+		
 
 	};
 	return (
@@ -53,7 +55,7 @@ const GraphPage: React.FC = () => {
 			<NoSSRForceGraph3D
 				graphData={{ nodes: performanceNodeData, links: linkData }}
 				nodeRelSize={4}
-				nodeVal="value"
+				//nodeVal="value"
 				nodeLabel="node_name"
 				nodeOpacity={0.8}
 				// nodeThreeObject={node => {
@@ -62,13 +64,15 @@ const GraphPage: React.FC = () => {
 				// 	sprite.textHeight = 8;
 				// 	return sprite;
 				//   }}
+				//dagNodeFilter={dagIgnore}
 				nodeColor={getColor}
 				onNodeClick={handleNodeClick}
 				nodeResolution={10}
-				dagMode="radialin"
-				
-				linkDirectionalParticles={5}
-				linkDirectionalParticleSpeed={0.0005}
+				//dagMode="radialout"
+				linkColor="color"
+				linkDirectionalParticles={2}
+				linkDirectionalParticleSpeed={0.001}
+				linkWidth="width"
 				linkDirectionalParticleColor={getColor}
 				showNavInfo={true}
 				controlType='orbit'
