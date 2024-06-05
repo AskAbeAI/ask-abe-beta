@@ -27,11 +27,11 @@ const GraphPage: React.FC = () => {
 	useEffect(() => {
 		if (!hasFetched.current) {
 			hasFetched.current = true;
-			const root = "us/federal";
-			const offsetNode = "us/federal/ecfr/title=40"
+			const root = "us/federal/ecfr";
+			//const offsetNode = "us/federal/ecfr/title=40"
 			//fetchCachedNodes(setPerformanceNodeData, setLinkData)
 
-			fetchPerformanceNodes(offsetNode, 2, performanceNodeData, setPerformanceNodeData, setLinkData);
+			fetchPerformanceNodes(root, 2, performanceNodeData, setPerformanceNodeData, setLinkData);
 			//fetchPerformanceNodes(offsetNode, 4, performanceNodeData, setPerformanceNodeData, setLinkData);
 
 		}

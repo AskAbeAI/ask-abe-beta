@@ -100,11 +100,11 @@ export function dagIgnore(node: Node): boolean {
 		case "chapter":
 			return false;
 		case "subchapter":
-			return true;
+			return false;
 		case "part":
-			return true;
+			return false;
 		case "subpart":
-			return true;
+			return false;
 		case "hub":
 			return true;
 		default:

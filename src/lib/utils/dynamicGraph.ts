@@ -109,7 +109,7 @@ export const fetchPerformanceNodes = async (
 		}
 		//node.value = getRadius(node)
 		newNodes.push(node);
-		if (node.parent == "us/federal/ecfr") {
+		if (node.parent == "us/federal") {
 			continue;
 		}
 		newLinks.push({
