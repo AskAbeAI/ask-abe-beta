@@ -7,15 +7,18 @@
 @layer base {
   :root {
     /* Primary background and text colors */
-    --background: 100% 100% 100%; /* White remains as the primary background color */
-    --foreground: 0% 0% 0%; /* Black for most text to maximize readability */
+    --background: hsl(45, 67%, 94%); /* Light beige color */
+    --foreground: #000000; /* Black for most text to maximize readability */
 
     /* Muted background and text colors for less emphasis areas */
-    --muted: 98% 95% 90%; /* Soft gray for less emphasized areas */
-    --muted-foreground: 0% 0% 0%; /* Black for text on muted backgrounds for better contrast */
+    --muted-background: hsl(43, 70%, 96%); /* Correct muted background color */
+    --muted-foreground: #000000; 
+
+    /* Secondary background color */
+    --secondary-background: rgb(252, 248, 238); /* Previously defined muted background color */
 
     /* Card background */
-    --card: 100% 98% 92%; /* Light parchment color for cards for subtle differentiation */
+    --card: hsl(45, 67%, 94%); /* Light parchment color for cards for subtle differentiation */
     --card-foreground: 0% 0% 0%; /* Black text for clarity against card background */
 
     /* Popover component styling */
@@ -48,13 +51,22 @@
     /* Common border radius for UI elements */
     --radius: 0.5rem;
   }
-
-  body {
-    @apply bg-background text-foreground;
-  }
 }
 
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+}
 
+.muted {
+    background-color: var(--muted-background);
+    color: var(--muted-foreground);
+}
+
+.secondary {
+  background-color: var(--secondary-background);
+  color: var(--foreground); /* Assuming black text for secondary background as well */
+}
 /* Hide scrollbar for Chrome, Safari and Opera */
 .hide-scrollbar::-webkit-scrollbar {
     display: none;
