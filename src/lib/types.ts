@@ -782,7 +782,7 @@ class DefinitionHub {
 
 
 // # References
-class Reference {
+export class Reference {
   text: string;
   placeholder?: string;
   corpus?: string;
@@ -799,7 +799,7 @@ class Reference {
 }
 
 
-class ReferenceHub {
+export class ReferenceHub {
   references: { [key: string]: Reference };
 
   constructor(references: { [key: string]: Reference } = {}) {
@@ -817,7 +817,7 @@ class ReferenceHub {
 
 
 // # Node Text
-class Paragraph {
+export class Paragraph {
   index: number;
   text: string;
   parent: string;
@@ -851,7 +851,7 @@ class Paragraph {
 }
 
 
-class NodeText {
+export class NodeText {
   paragraphs: { [key: string]: Paragraph };
   root_paragraphId: string;
   length: number;
