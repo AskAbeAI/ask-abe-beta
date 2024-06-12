@@ -68,8 +68,7 @@ export default function HomePage() {
                 </h1>
                 <p className="text-black text-xl font-raleway font-light leading-12 mt-6 max-md:max-w-full">
 
-                  Ask Abe is an educational tool that helps a user navigate complex legal frameworks and provides detailed legal information.
-                  Abe is a conversational AI that user&apos;s can ask legal questions to and receive legal information with direct ciations to primary source legislation.
+				Ask Abe is an educational tool designed to help users navigate complex legal frameworks and access detailed legal information. This conversational AI allows users to ask legal questions and receive answers with direct citations to primary source legislation.
                 </p>
                 <p>
                   Last updated 3/31/24.
@@ -115,7 +114,8 @@ export default function HomePage() {
                     Democratizing Legal Knowledge For All, One Question At a Time
                   </h1>
                   <p className="text-black text-xl font-raleway font-light leading-7 mt-6 max-md:max-w-full">
-                    Our dream is to revolutionize the legal landscape, making legal literacy a common asset, not a privilege. This dream is rooted in our mission to empower every individual with accessible, comprehensible legal knowledge through Ask Abe. This includes our commitment to keeping this invaluable tool free forever, and our ambition to expand its benefits globally. We envision a future where every citizen, regardless of background or location, is equipped with the tools to navigate the legal world confidently, contributing to a more just, informed, and equitable society.
+                    
+Our vision is to revolutionize the legal landscape by making legal literacy accessible to everyone. We are committed to empowering individuals with comprehensible legal knowledge through Ask Abe. Our mission includes keeping this invaluable tool free forever and expanding its benefits globally. We envision a future where every citizen, regardless of background or location, is equipped with the tools to navigate the legal world confidently, contributing to a more just, informed, and equitable society.
                   </p>
                 </div>
                 <div className="items-stretch flex max-w-full gap-4 mt-10 self-start">
@@ -170,14 +170,15 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col items-stretch w-[54%] ml-5 max-md:w-full max-md:ml-0">
-                <Image
+              <div className="flex flex-col  ml-5 max-md:w-full max-md:ml-0">
+			  <Image
                   src="/howto/citation.png"
                   alt="library2"
-                  width={5184}
-                  height={3888}
-                  className="aspect-[1.03] object-contain object-center w-full self-stretch overflow-hidden grow max-md:max-w-full max-md:mt-10"
+                  width={900}
+                  height={600}
+                  className="aspect-[1.03] object-contain object-center overflow-hidden max-md:max-w-full max-md:mt-10"
                 />
+             
               </div>
             </div>
           </div>
@@ -189,18 +190,17 @@ export default function HomePage() {
                     Chat Options & Jurisdictions
                   </div>
                   <div className="self-stretch text-black font-raleway text-base leading-6 mt-6 max-md:max-w-full">
-                    Don&apos;t feel like getting asked clarifying questions, check skip clarifications to turn this off.
-                    Also, select from which jurisdiction you would like Abe to focus his answer. (More jurisdictions coming soon)
+                    Select the jurisdiction for Abe to focus on in his answer. (More jurisdictions coming soon)
                   </div>
                 </div>
               </div>
               <div className="flex flex-col items-stretch w-[54%] ml-5 max-md:w-full max-md:ml-0">
                 <Image
-                  src="/howto/selectJurisdiction.png"
+                  src="/home/select.png"
                   alt="library2"
-                  width={5184}
-                  height={3888}
-                  className="aspect-[1.03] object-contain object-center w-full self-stretch overflow-hidden grow max-md:max-w-full max-md:mt-10"
+                  width={400}
+                  height={600}
+                  className="aspect-[1.03] object-contain object-center overflow-hidden grow max-md:max-w-full max-md:mt-10"
                 />
               </div>
             </div>
@@ -223,7 +223,7 @@ export default function HomePage() {
                     Ask a follow-up question
                   </div>
                   <div className="self-stretch text-black font-raleway text-base leading-6 mt-6 max-md:max-w-full">
-                    When Abe gives you an answer to your original query, but you&apos;re left with more questions, ask a follow-up question.
+				  If Abe's answer to your query raises more questions, feel free to ask a follow-up question.
                   </div>
                 </div>
               </div>

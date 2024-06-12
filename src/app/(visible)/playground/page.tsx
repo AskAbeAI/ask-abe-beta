@@ -46,7 +46,8 @@ import {
 } from "@/lib/api_types";
 
 export default function Playground() {
-  const maxLimit = 10000; // Replace 100 with the actual maximum character limit
+  const isDesktopOrLaptop = useMediaQuery({ minWidth: 1224 });
+  const isMobile = useMediaQuery({ maxWidth: 1224 });
 
   const [isFormVisible, setIsFormVisible] = useState(true);
   const [citationsOpen, setCitationsOpen] = useState(false);
@@ -651,44 +652,32 @@ export default function Playground() {
             setActiveCitationId={setActiveCitationId}
           />
         </div>
-        {isFormVisible && (
-          <div className="border-t-2 border-gray-200 pt-4">
-            <form className="flex justify-center items-center relative w-full" onSubmit={(e) => { e.preventDefault(); handleNewQuestion(question); }}>
-              <textarea
-                value={question}
-                onChange={(e) => setQuestion(e.target.value)}
-                placeholder={inputMode === "followup" ? "Ask a follow-up question" : "Ask a legal question"}
-                className="w-full h-auto pl-4 pr-24 py-2 whitespace-normal font-montserrat rounded border-2 border-[#4A4643] focus:outline-none bg-white"
-                rows={1}
-                style={{ overflowY: 'hidden' }}
-                onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleNewQuestion(question); } }}
-              ></textarea>
-              <button type="submit" className="absolute right-0 bg-[#4A4643] text-white rounded px-6 py-2 font-montserrat text-xl">
-                Ask
-              </button>
-            </form>
-            
-            {question.length > maxLimit * 0.9 && (
-              <div className="text-sm text-red-500 mt-2">
-                You are close to reaching the maximum character limit.
-              </div>
-            )}
+            <div className="bottom-0">
+              {isFormVisible && (
+                <BottomBar
+                  inputMode={inputMode}
+                  handleSubmit={handleNewQuestion}
+                  handleSubmitFollowup={handleNewFollowupQuestion}
+                />
+              )}
+            </div>
           </div>
-        )}
-      </div>
-      <div className="flex-shrink-0 pl-2" style={{ width: "14%" }}>
-        <OptionsList
-          options={[]} // Add the missing 'options' property here
-          stateJurisdictions={StateJurisdictionOptions}
-          federalJurisdictions={FederalJurisdictionOptions}
-          miscJurisdictions={MiscJurisdictionOptions}
-          onOptionChange={handleOptionChange}
-          onStateJurisdictionChange={setSelectedStateJurisdiction}
-          onFederalJurisdictionChange={setSelectedFederalJurisdiction}
-          onMiscJurisdictionChange={setSelectedMiscJurisdiction}
-        />
-      </div>
-    </div>
-  </div>
+          <div className="flex flex-col pl-2" style={{ width: "16%" }}>
+            <OptionsList
+              options={[]} // Add the options property here with the appropriate value
+              stateJurisdictions={StateJurisdictionOptions}
+              federalJurisdictions={FederalJurisdictionOptions}
+              miscJurisdictions={MiscJurisdictionOptions}
+              onOptionChange={handleOptionChange}
+              onStateJurisdictionChange={setSelectedStateJurisdiction}
+              onFederalJurisdictionChange={setSelectedFederalJurisdiction}
+              onMiscJurisdictionChange={setSelectedMiscJurisdiction}
+            />
+          </div>
+        </div>
+        </div>
+      
+    
+    
   );
 }
