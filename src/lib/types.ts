@@ -286,6 +286,7 @@ export interface OptionsListProps {
   stateJurisdictions: Jurisdiction[];
   federalJurisdictions: Jurisdiction[];
   miscJurisdictions: Jurisdiction[];
+  options : Option[];
   onOptionChange: (options: Option[]) => void;
   onStateJurisdictionChange: (jurisdictions: Jurisdiction | undefined) => void;
   onFederalJurisdictionChange: (jurisdictions: Jurisdiction | undefined) => void;

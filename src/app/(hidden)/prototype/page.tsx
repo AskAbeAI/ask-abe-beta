@@ -396,9 +396,11 @@ export default function Playground() {
 
               <div className="pr-10">
                 <OptionsList
+                  options={[]} // Add the 'options' property with an empty array as its value
                   stateJurisdictions={StateJurisdictionOptions}
                   federalJurisdictions={FederalJurisdictionOptions}
                   miscJurisdictions={MiscJurisdictionOptions}
+                  
                   onOptionChange={dummyFunction}
                   onStateJurisdictionChange={dummyFunction}
                   onFederalJurisdictionChange={dummyFunction}
@@ -463,6 +465,7 @@ export default function Playground() {
 
               <div className="pr-4">
                 <OptionsList
+                  options={[]} // Add the 'options' property with an empty array as its value
                   stateJurisdictions={StateJurisdictionOptions}
                   federalJurisdictions={FederalJurisdictionOptions}
                   miscJurisdictions={MiscJurisdictionOptions}
