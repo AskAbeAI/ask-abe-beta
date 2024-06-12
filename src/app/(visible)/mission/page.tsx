@@ -47,59 +47,7 @@ export default function MissionPage() {
       </div>
 
 
-      <div className="items-stretch bg-[#FAF5E6] shadow-inner flex flex-col px-16 max-md:px-5">
-        <div className="mt-16 max-md:max-w-full max-md:mt-10">
-          <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
-            <div className="flex flex-col items-stretch w-6/12 max-md:w-full max-md:ml-0">
-              <div className="self-stretch text-[#2F3F3D] text-4xl font-cinzel leading-10 max-md:max-w-full max-md:mt-10">
-                Core Values
-              </div>
-            </div>
-            <div className="flex flex-col items-stretch w-6/12 ml-5 max-md:w-full max-md:ml-0">
-              <div className="self-stretch text-black text-lg font-raleway leading-7 max-md:max-w-full max-md:mt-10">
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="mt-20 mb-24 max-md:max-w-full max-md:my-10">
-          <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
-            <div className="flex flex-col items-stretch w-[33%] max-md:w-full max-md:ml-0">
-              <div className="flex grow justify-between gap-5 max-md:mt-10">
-                <div className="self-stretch flex grow basis-[0%] flex-col">
-                  <div className="self-stretch text-black text-2xl font-raleway font-bold leading-9">ACCESIBILITY</div>
-                  {/* <div className="self-stretch text-black text-base font-raleway leading-6 mt-4">
-                    Insert
-                  </div> */}
-
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-col items-stretch w-[33%] ml-5 max-md:w-full max-md:ml-0">
-              <div className="flex grow justify-between gap-5 max-md:mt-10">
-                <div className="self-stretch flex grow basis-[0%] flex-col">
-                  <div className="self-stretch text-black text-2xl font-raleway font-bold leading-9">HONESTY</div>
-                  {/* <div className="self-stretch text-black text-base font-raleway leading-6 mt-4">
-                  Insert
-                  </div> */}
-
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-col items-stretch w-[33%] ml-5 max-md:w-full max-md:ml-0">
-              <div className="flex grow justify-between gap-5 max-md:mt-10">
-                <div className="self-stretch flex grow basis-[0%] flex-col">
-                  <div className="self-stretch text-black text-2xl font-raleway font-bold leading-9">IMPROVEMENT</div>
-                  {/* <div className="self-stretch text-black text-base font-raleway leading-6 mt-4">
-                  Insert
-                  </div> */}
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
+     
       
       <PageFooter />
     </div>

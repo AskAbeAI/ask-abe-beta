@@ -280,19 +280,14 @@ export const MiscJurisdictionOptions: Jurisdiction[] = [
   {id: '1', name: 'Aeronautical Information Manual', abbreviation: 'aim', corpusTitle: 'FAAs official guide to basic flight information and Air traffic control (ATC) procedures.', usesSubContentNodes: false, jurisdictionLevel: 'misc' },
 ];
 
-export const ChatOptions: Option[] = [
-  // { id: 0, name: 'Include US Federal Jurisdiction', selected: false },
-  { id: 0, name: 'Ask Clarifying Questions', selected: false }
-];
 
 export interface OptionsListProps {
   
   stateJurisdictions: Jurisdiction[];
   federalJurisdictions: Jurisdiction[];
   miscJurisdictions: Jurisdiction[];
-  options: Option[];
+  options : Option[];
   onOptionChange: (options: Option[]) => void;
-  
   onStateJurisdictionChange: (jurisdictions: Jurisdiction | undefined) => void;
   onFederalJurisdictionChange: (jurisdictions: Jurisdiction | undefined) => void;
   onMiscJurisdictionChange: (jurisdictions: Jurisdiction | undefined) => void;
