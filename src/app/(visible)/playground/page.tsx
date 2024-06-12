@@ -31,7 +31,6 @@ import {
   StateJurisdictionOptions,
   FederalJurisdictionOptions,
   MiscJurisdictionOptions,
-  ChatOptions,
 } from "@/lib/types";
 import { UiState, Short, Long, History, AbeMemory } from "@/lib/types";
 
@@ -769,7 +768,6 @@ export default function Playground() {
               stateJurisdictions={StateJurisdictionOptions}
               federalJurisdictions={FederalJurisdictionOptions}
               miscJurisdictions={MiscJurisdictionOptions}
-              options={ChatOptions}
               onOptionChange={handleOptionChange}
               onStateJurisdictionChange={setSelectedStateJurisdiction}
               onFederalJurisdictionChange={setSelectedFederalJurisdiction}
@@ -833,7 +831,6 @@ export default function Playground() {
                   stateJurisdictions={StateJurisdictionOptions}
                   federalJurisdictions={FederalJurisdictionOptions}
                   miscJurisdictions={MiscJurisdictionOptions}
-                  options={ChatOptions}
                   onOptionChange={handleOptionChange}
                   onStateJurisdictionChange={setSelectedStateJurisdiction}
                   onFederalJurisdictionChange={setSelectedFederalJurisdiction}

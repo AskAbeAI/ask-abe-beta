@@ -20,7 +20,7 @@ import CitationBar from '@/components/citationBar';
 import OptionsList from '@/components/optionsFilter';
 import { Option, Jurisdiction, questionJurisdictions, PipelineModel } from '@/lib/types';
 
-import { StateJurisdictionOptions, FederalJurisdictionOptions, MiscJurisdictionOptions, ChatOptions } from '@/lib/types';
+import { StateJurisdictionOptions, FederalJurisdictionOptions, MiscJurisdictionOptions } from '@/lib/types';
 import { UiState, Short, Long, History, AbeMemory } from '@/lib/types';
 
 
@@ -399,7 +399,6 @@ export default function Playground() {
                   stateJurisdictions={StateJurisdictionOptions}
                   federalJurisdictions={FederalJurisdictionOptions}
                   miscJurisdictions={MiscJurisdictionOptions}
-                  options={ChatOptions}
                   onOptionChange={dummyFunction}
                   onStateJurisdictionChange={dummyFunction}
                   onFederalJurisdictionChange={dummyFunction}
@@ -467,7 +466,6 @@ export default function Playground() {
                   stateJurisdictions={StateJurisdictionOptions}
                   federalJurisdictions={FederalJurisdictionOptions}
                   miscJurisdictions={MiscJurisdictionOptions}
-                  options={ChatOptions}
                   onOptionChange={dummyFunction}
                   onStateJurisdictionChange={dummyFunction}
                   onFederalJurisdictionChange={dummyFunction}

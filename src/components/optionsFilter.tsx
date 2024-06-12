@@ -14,7 +14,6 @@ const OptionsList: React.FC<OptionsListProps> = ({
   stateJurisdictions,
   federalJurisdictions,
   miscJurisdictions,
-  options,
   onOptionChange,
   onStateJurisdictionChange,
   onFederalJurisdictionChange,
@@ -32,7 +31,7 @@ const OptionsList: React.FC<OptionsListProps> = ({
   };
   // const [searchTerm, setSearchTerm] = useState('');
   // const [filteredJurisdictions, setFilteredJurisdictions] = useState();
-  const [selectedOptions, setSelectedOptions] = useState<Option[]>(options);
+
   const [selectedFederal, setSelectedFederal] = useState<Jurisdiction>();
   const [selectedState, setSelectedState] = useState<Jurisdiction>();
   const [selectedMisc, setSelectedMisc] = useState<Jurisdiction>();
@@ -71,28 +70,14 @@ const OptionsList: React.FC<OptionsListProps> = ({
     setSelectedState(undefined);
     setSelectedMisc(undefined);
     // Set all options "selected" to false
-    setSelectedOptions(prevSelected =>
-      prevSelected.map(prevOption => ({ ...prevOption, selected: false }))
-    );
+
 
     onFederalJurisdictionChange(undefined);
     onStateJurisdictionChange(undefined);
     onMiscJurisdictionChange(undefined);
   };
 
-  const toggleSelection = (index: number) => {
-    console.log(selectedOptions);
-    console.log(index);
-    const option = selectedOptions[index];
-
-    option.selected = !option.selected;
-
-    // Replace the modified option in the selectedOptions array
-    setSelectedOptions(prevSelected =>
-      prevSelected.map((prevOption, i) => (i === index ? option : prevOption))
-    );
-
-  };
+  
 
   // Function to toggle the hover state
   const toggleHover = (hoverState: boolean) => {
@@ -115,10 +100,7 @@ const OptionsList: React.FC<OptionsListProps> = ({
   }, [selectedFederal, selectedState, selectedMisc]);
 
 
-  useEffect(() => {
-    onOptionChange(selectedOptions);
-  }, [selectedOptions]);
-
+ 
   const closePopup = () => setShowBadJurisdictionsPopup(false);
 
   return (
@@ -275,24 +257,11 @@ const OptionsList: React.FC<OptionsListProps> = ({
 
               </div>
 
-              <div className="flex justify-center text-[#4A4643] font-bold text-lg font-raleway pt-4">Chat Options</div>
+             
               {/* Rest of the OptionsList content */}
               <div className="h-auto max-h-full ">
                 <ul className=" pt-4">
 
-                  {options.map(option => (
-                    <li key={option.id} className="flex items-center space-x-2">
-                      <input
-                        type="checkbox"
-                        className="form-checkbox"
-                        checked={selectedOptions[option.id].selected}
-                        onChange={() => toggleSelection(option.id)}
-                      />
-                      <label htmlFor={`checkbox-${option.id}`} className="text-md">
-                        {option.name}
-                      </label>
-                    </li>
-                  ))}
 
                 </ul>
               </div>
@@ -495,21 +464,6 @@ const OptionsList: React.FC<OptionsListProps> = ({
                   {/* Rest of the OptionsList content */}
                   <div className="h-auto max-h-full ">
                     <ul className=" pt-4">
-
-                      {options.map(option => (
-                        <li key={option.id} className="flex items-center space-x-2">
-                          <input
-                            type="checkbox"
-                            className="form-checkbox"
-                            checked={selectedOptions[option.id].selected}
-                            onChange={() => toggleSelection(option.id)}
-                          />
-                          <label htmlFor={`checkbox-${option.id}`} className="text-md">
-                            {option.name}
-                          </label>
-                        </li>
-                      ))}
-
                     </ul>
                   </div>
                   {/* <button onClick={handleSelectAll}>Select All</button> */}

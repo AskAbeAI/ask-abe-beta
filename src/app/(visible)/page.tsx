@@ -181,31 +181,6 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-
-          <div className="border bg-[#FCF9F3] self-stretch mt-10 mb-10 pl-8 pr-8 border-solid border-8 border-[#FEFDF9] shadow-inner max-md:max-w-full max-md:my-10 max-md:pl-5">
-            <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
-              <div className="flex flex-col items-stretch w-[52%] max-md:w-full max-md:ml-0">
-                <Image
-                  src="/howto/calrifying.png"
-                  alt="library2"
-                  width={5184}
-                  height={3888}
-                  className="aspect-[1.03] object-contain object-center w-full self-stretch overflow-hidden grow max-md:max-w-full max-md:mt-10"
-                />
-              </div>
-              <div className="flex flex-col items-stretch w-[48%] ml-5 max-md:w-full max-md:ml-0">
-                <div className="justify-center items-start self-stretch flex flex-col my-auto max-md:max-w-full max-md:mt-10">
-                  <div className="self-stretch text-black text-4xl font-raleway font-bold leading-10 mt-2 max-md:max-w-full">
-                    Clarification Question Answer Options
-                  </div>
-                  <div className="self-stretch text-black font-raleway text-base leading-6 mt-6 max-md:max-w-full">
-                    With multiple choice options, you can focus more on getting the answer fast. If the clarifying question doesn&apos;t apply, click &apos;not applicable&apos;, or if none of the answers suit your needs -- write your own custom response.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
           <div className="border bg-[#FCF9F3] self-stretch mt-10 mb-10 pl-8 pr-8 border-solid border-8 border-[#FEFDF9] shadow-inner max-md:max-w-full max-md:my-10 max-md:pl-5">
             <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
               <div className="flex flex-col items-stretch w-[46%] max-md:w-full max-md:ml-0">
