@@ -79,7 +79,7 @@ const CitationBar: React.FC<CitationProps> = ({ open, setOpen, citationItems, ac
          <GoArchive className="cursor-pointer" size={24} onClick={toggleCitationSidebar} />
          {showCitationSidebarOpen && (
            <div className="fixed inset-0 z-40 bg-black/70 flex items-center justify-center shadow-inner">
-             <div className="flex justify-center bg-extralightbg border-4 border-bonewhite font-raleway pb-2">
+             <div className="flex justify-center bg-extralightbg border-4 border-bonewhite font-body pb-2">
                <div className=" bg-extralightbg p-2 w-25 shadow-inner rounded-md">
                  <div className=" pt-1 pb-1 flex items-end justify-end">
                    <HiX className="cursor-pointer" size={24} onClick={() => setShowCitationSidebarOpen(false)} />
@@ -114,7 +114,7 @@ const CitationBar: React.FC<CitationProps> = ({ open, setOpen, citationItems, ac
           <GoArchive className="cursor-pointer" size={24} onClick={toggleCitationSidebar} />
           {showCitationSidebarOpen && (
             <div className="fixed inset-0 z-40 bg-black/70 flex items-center justify-center shadow-inner">
-              <div className="flex justify-center bg-extralightbg border-4 border-bonewhite font-raleway pb-2">
+              <div className="flex justify-center bg-extralightbg border-4 border-bonewhite font-body pb-2">
                 <div className=" bg-extralightbg p-2 w-25 shadow-inner rounded-md">
                   <div className=" pt-1 pb-1 flex items-end justify-end">
                     <HiX className="cursor-pointer" size={24} onClick={() => setShowCitationSidebarOpen(false)} />

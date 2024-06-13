@@ -24,7 +24,7 @@ export default function HomePage() {
           <div className="flex flex-col container items-stretch w-8/12 ">
             <div className="flex flex-col my-auto max-md:max-w-full max-md:mt-10">
               <div className="items-stretch self-stretch flex flex-col mt-4 max-md:max-w-full">
-                <div className="text-black text-9xl font-raleway leading- max-md:max-w-full max-md:text-9xl">
+                <div className="text-black text-9xl font-body leading- max-md:max-w-full max-md:text-9xl">
                   <Image
                     src="/home/title1.png"
                     alt="Legal Research Image"
@@ -32,18 +32,18 @@ export default function HomePage() {
                     height={500}
                   />
                 </div>
-                <p className="text-black text-lg pt-1 font-raleway leading-7 mt-6 max-md:max-w-full">
+                <p className="text-black text-lg pt-1 font-body leading-7 mt-6 max-md:max-w-full">
                   A Conversational AI Legal Education Assistant
                 </p>
               </div>
               <div className="items-fit flex  max-w-full justify-between mt-10">
                 <Link
                   href="/playground"
-                  className="text-lg font-raleway rounded-sm font-bold px-6 py-3 leading-none text-white border focus:outline-none focus:shadow-outline bg-gradient-to-b hover:text-olivebrown hover:from-green-300 from-olivebrown to-olivebrown"
+                  className="text-lg font-body rounded-sm font-bold px-6 py-3 leading-none text-white border focus:outline-none focus:shadow-outline bg-gradient-to-b hover:text-olivebrown hover:from-green-300 from-olivebrown to-olivebrown"
                 >
                   Enter Abe&apos;s Law Library
                   {/* <button className="button1">
-                    <span className="font-raleway">Enter Abe&apos;s Law Library</span>
+                    <span className="font-body">Enter Abe&apos;s Law Library</span>
                     <div className="top"></div>
                     <div className="left"></div>
                     <div className="bottom"></div>
@@ -61,10 +61,10 @@ export default function HomePage() {
           <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
             <div className="flex flex-col items-stretch w-6/12 max-md:w-full max-md:ml-0">
               <div className="items-stretch flex flex-col max-md:max-w-full max-md:mt-10">
-                <h1 className="text-darkgreen mt-16 text-5xl font-imfell font-semibold leading-[57.6px] max-md:max-w-full max-md:text-4xl">
+                <h1 className="text-darkgreen mt-16 text-5xl font-header font-semibold leading-[57.6px] max-md:max-w-full max-md:text-4xl">
                   What is Ask Abe?
                 </h1>
-                <p className="text-black text-xl font-raleway font-light leading-12 mt-6 max-md:max-w-full">
+                <p className="text-black text-xl font-body font-light leading-12 mt-6 max-md:max-w-full">
                   Ask Abe is an educational tool designed to help users navigate
                   complex legal frameworks and access detailed legal
                   information. This conversational AI allows users to ask legal
@@ -102,15 +102,15 @@ export default function HomePage() {
             </div>
             <div className="flex flex-col items-stretch w-6/12 ml-5 max-md:w-full max-md:ml-0">
               <div className="flex flex-col my-auto max-md:max-w-full max-md:mt-10">
-                {/* <h2 className="text-black text-center font-raleway text-base font-semibold leading-6 self-stretch whitespace-nowrap max-md:max-w-full">
+                {/* <h2 className="text-black text-center font-body text-base font-semibold leading-6 self-stretch whitespace-nowrap max-md:max-w-full">
                 Innovative
               </h2> */}
                 <div className="items-stretch self-stretch flex flex-col mt-4 max-md:max-w-full">
-                  <h1 className="text-darkgreen text-5xl font-imfell font-semibold leading-[57.6px] max-md:max-w-full max-md:text-4xl">
+                  <h1 className="text-darkgreen text-5xl font-header font-semibold leading-[57.6px] max-md:max-w-full max-md:text-4xl">
                     Democratizing Legal Knowledge For All, One Question At a
                     Time
                   </h1>
-                  <p className="text-black text-xl font-raleway font-light leading-7 mt-6 max-md:max-w-full">
+                  <p className="text-black text-xl font-body font-light leading-7 mt-6 max-md:max-w-full">
                     Our vision is to revolutionize the legal landscape by making
                     legal literacy accessible to everyone. We are committed to
                     empowering individuals with comprehensible legal knowledge
@@ -125,17 +125,17 @@ export default function HomePage() {
                 <div className="items-stretch flex max-w-full gap-4 mt-10 self-start">
                   <a
                     href="/mission"
-                    className="text-black font-raleway font-raleway text-base leading-6 whitespace-nowrap justify-center items-center border grow px-5 py-3 border-solid border-darkgreen"
+                    className="text-black font-body font-body text-base leading-6 whitespace-nowrap justify-center items-center border grow px-5 py-3 border-solid border-darkgreen"
                   >
                     Our Mission
                   </a>
                 </div>
                 {/* <div className="items-stretch flex w-60 max-w-full justify-between gap-5 mt-10">
-                <a href="#" className="text-black font-raleway text-base leading-6 whitespace-nowrap justify-center items-center border grow px-5 py-3 border-solid border-darkgreen">
+                <a href="#" className="text-black font-body text-base leading-6 whitespace-nowrap justify-center items-center border grow px-5 py-3 border-solid border-darkgreen">
                   Learn More
                 </a>
                 {/* <div className="justify-center items-stretch self-center flex gap-2 my-auto">
-                  <div className="text-black font-raleway text-base leading-6">Sign Up</div>
+                  <div className="text-black font-body text-base leading-6">Sign Up</div>
                 </div> */}
                 {/* </div> */}
               </div>
@@ -152,7 +152,7 @@ export default function HomePage() {
             height={2812}
             className="absolute inset-0 w-full h-full object-cover"
           />
-          <div className="relative top-5/6 text-extralightbg text-center text-5xl font-raleway font-bold leading-[80px] max-w-screen-md mt-40 max-md:max-w-full max-md:mt-10">
+          <div className="relative top-5/6 text-extralightbg text-center text-5xl font-body font-bold leading-[80px] max-w-screen-md mt-40 max-md:max-w-full max-md:mt-10">
             Ask Abe&apos;s Features
           </div>
         </div>
@@ -166,10 +166,10 @@ export default function HomePage() {
             <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
               <div className="flex flex-col items-stretch w-[46%] max-md:w-full max-md:ml-0">
                 <div className="justify-center items-start self-stretch flex flex-col my-auto max-md:max-w-full max-md:mt-10">
-                  <div className="self-stretch text-black text-4xl font-raleway font-bold leading-10 mt-2 max-md:max-w-full">
+                  <div className="self-stretch text-black text-4xl font-body font-bold leading-10 mt-2 max-md:max-w-full">
                     Expandable Citations
                   </div>
-                  <div className="self-stretch text-black font-raleway text-base leading-6 mt-6 max-md:max-w-full">
+                  <div className="self-stretch text-black font-body text-base leading-6 mt-6 max-md:max-w-full">
                     View citations collapsed or expanded. Whichever suits your
                     preference.
                   </div>
@@ -190,10 +190,10 @@ export default function HomePage() {
             <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
               <div className="flex flex-col items-stretch w-[46%] max-md:w-full max-md:ml-0">
                 <div className="justify-center items-start self-stretch flex flex-col my-auto max-md:max-w-full max-md:mt-10">
-                  <div className="self-stretch text-black text-4xl font-raleway font-bold leading-10 mt-2 max-md:max-w-full">
+                  <div className="self-stretch text-black text-4xl font-body font-bold leading-10 mt-2 max-md:max-w-full">
                     Chat Options & Jurisdictions
                   </div>
-                  <div className="self-stretch text-black font-raleway text-base leading-6 mt-6 max-md:max-w-full">
+                  <div className="self-stretch text-black font-body text-base leading-6 mt-6 max-md:max-w-full">
                     Select the jurisdiction for Abe to focus on in his answer.
                     (More jurisdictions coming soon)
                   </div>
@@ -224,10 +224,10 @@ export default function HomePage() {
               </div>
               <div className="flex flex-col items-stretch w-[48%] ml-5 max-md:w-full max-md:ml-0">
                 <div className="justify-center items-start self-stretch flex flex-col my-auto max-md:max-w-full max-md:mt-10">
-                  <div className="self-stretch text-black text-4xl font-raleway font-bold leading-10 mt-2 max-md:max-w-full">
+                  <div className="self-stretch text-black text-4xl font-body font-bold leading-10 mt-2 max-md:max-w-full">
                     Ask a follow-up question
                   </div>
-                  <div className="self-stretch text-black font-raleway text-base leading-6 mt-6 max-md:max-w-full">
+                  <div className="self-stretch text-black font-body text-base leading-6 mt-6 max-md:max-w-full">
                     If Abe&apos;s answer to your query raises more questions,
                     feel free to ask a follow-up question.
                   </div>
@@ -241,7 +241,7 @@ export default function HomePage() {
       {/* Team Section */}
       <section className="items-center bg-lightbg flex flex-col px-5 shadow-inner ">
         <div className="flex w-[768px] max-w-full flex-col items-stretch mt-16 mb-16 max-md:my-10">
-          <h1 className="text-darkgreen text-center font-imfell text-5xl font-semibold leading-[58px] max-md:max-w-full max-md:text-5xl max-md:leading-[54px]">
+          <h1 className="text-darkgreen text-center font-header text-5xl font-semibold leading-[58px] max-md:max-w-full max-md:text-5xl max-md:leading-[54px]">
             Our Team
           </h1>
           <div className="self-center w-[640px] max-w-full mt-10 max-md:mt-10">
@@ -254,10 +254,10 @@ export default function HomePage() {
                     className="rounded-full w-32 h-32 object-cover"
                     alt="Will Diamond"
                   />
-                  <h2 className="self-stretch text-black text-center text-xl font-raleway font-semibold leading-8 mt-6">
+                  <h2 className="self-stretch text-black text-center text-xl font-body font-semibold leading-8 mt-6">
                     Will Diamond
                   </h2>
-                  <p className="self-stretch text-black text-center font-raleway text-lg leading-7">
+                  <p className="self-stretch text-black text-center font-body text-lg leading-7">
                     Co-Founder
                   </p>
                   <div className="items-stretch flex w-[100px] max-w-full gap-3.5 mt-6 max-md:justify-center">
@@ -319,10 +319,10 @@ export default function HomePage() {
                     className="rounded-full w-32 h-32 object-cover"
                     alt="Will Diamond"
                   />
-                  <h2 className="self-stretch text-black text-center text-xl font-raleway font-semibold leading-8 mt-6">
+                  <h2 className="self-stretch text-black text-center text-xl font-body font-semibold leading-8 mt-6">
                     Madeline Kaufman
                   </h2>
-                  <p className="self-stretch text-black text-center font-raleway text-lg leading-7">
+                  <p className="self-stretch text-black text-center font-body text-lg leading-7">
                     Co-Founder
                   </p>
                   <div className="items-stretch flex w-[100px] max-w-full gap-3.5 mt-6 max-md:justify-center">

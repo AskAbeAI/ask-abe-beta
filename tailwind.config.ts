@@ -27,7 +27,7 @@ module.exports = {
         dmsans: ["DM Sans", "sans-serif"],
         fauna: ["Fauna One", "serif"],
         gotu: ["Gotu", "sans-serif"],
-        imfell: ["IM Fell Great Primer", "serif"],
+        header: ["IM Fell Great Primer", "serif"],
         imfellgreat: ["IM Fell Great Primer SC", "serif"],
         italiana: ["Italiana", "sans-serif"],
         josefinsans: ["Josefin Sans", "sans-serif"],
@@ -35,7 +35,7 @@ module.exports = {
         opensans: ["Open Sans", "sans-serif"],
         oswald: ["Oswald", "sans-serif"],
         quicksand: ["Quicksand", "sans-serif"],
-        raleway: ["Raleway", "sans-serif"],
+        body: ["Raleway", "sans-serif"],
         robotoslab: ["Roboto Slab", "serif"],
       },
 

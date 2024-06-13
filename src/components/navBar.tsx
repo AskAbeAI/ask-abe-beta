@@ -1,10 +1,9 @@
 "use client";
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { useMediaQuery } from 'react-responsive';
-import { HiMenuAlt3 } from 'react-icons/hi';
-import Image from 'next/image';
-
+import React, { useState } from "react";
+import Link from "next/link";
+import { useMediaQuery } from "react-responsive";
+import { HiMenuAlt3 } from "react-icons/hi";
+import Image from "next/image";
 
 const NavBar: React.FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -17,43 +16,47 @@ const NavBar: React.FC = () => {
   const [nav, setNav] = useState(false);
   const handleNav = () => {
     setNav(!nav);
-    if(!nav) {
-        document.body.style.overflow = 'hidden'
+    if (!nav) {
+      document.body.style.overflow = "hidden";
     } else {
-        document.body.style.overflow = 'scroll'
+      document.body.style.overflow = "scroll";
     }
   };
   const handleNav2 = () => {
     setNav(false);
-  }
-
-
+  };
 
   return (
     <div>
-      {isDesktopOrLaptop &&
-        <nav className="justify-center items-center bg-mainbg flex flex-col px-10 border-b border-solid">
+  
+      {isDesktopOrLaptop && (
+        <nav className="fixed top-0 left-0 right-0 justify-center items-center bg-mainbg flex flex-col px-10 border-b border-solid z-50">
           <div className="justify-between items-stretch flex w-full max-w-full gap-5 my-3 max-md:max-w-full max-md:flex-wrap max-md:justify-center">
-		  <Link href="/">
-            <div className="flex justify-left items-center font-imfell font-bold text-olivebrown text-2xl">ASK ABE</div>
-			</Link>
-            <ul className="items-stretch self-center flex justify-between gap-6 my-auto">
-              <li className="justify-between items-stretch font-raleway flex gap-1">
+            <Link href="/">
+              <div className="flex justify-left items-center font-header font-bold text-olivebrown text-2xl">
+                ASK ABE
+              </div>
+            </Link>
+            <ul className="items-stretch self-center flex justify-center gap-6 my-auto">
+              <li className="justify-center items-stretch font-body flex gap-1">
                 <Link href="/playground" aria-label="Link Four">
-                  <div className="text-olivebrown text-base leading-6">Abe&apos;s Law Library</div>
+                  <div className="text-olivebrown text-base leading-6">
+                    Abe&apos;s Law Library
+                  </div>
                 </Link>
               </li>
-              <li className="text-olivebrown text-base font-raleway leading-6">
+              <li className="text-olivebrown text-base font-body leading-6">
                 <Link href="/how" aria-label="Link One">
                   How To Use
                 </Link>
               </li>
-              <li className="text-olivebrown text-base font-raleway leading-6">
+              <li className="text-olivebrown text-base font-body leading-6">
                 <Link href="/mission" aria-label="Link Two">
                   Our Mission
                 </Link>
               </li>
-              <li className="relative text-olivebrown text-base font-raleway leading-6"
+           
+              {/* <li className="relative text-olivebrown text-base font-body leading-6"
                 onMouseEnter={showDropdown}
 
               >
@@ -64,7 +67,7 @@ const NavBar: React.FC = () => {
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 >
                   Company
-                  {/* SVG for dropdown icon */}
+                 
                 </button>
 
                 {isDropdownOpen && (
@@ -72,32 +75,25 @@ const NavBar: React.FC = () => {
 
                     onMouseLeave={hideDropdown}>
                     <ul>
-                      {/* Dropdown menu items */}
                       <li className="pt-1"><Link href="/about">About Us</Link></li>
             
                       <li className="pt-1"><Link href="/privacy">Privacy Policy</Link></li>
                       <li className="pt-1"><Link href="/tos">Terms of Service</Link></li>
      
-                      {/* ... more options ... */}
+              
                     </ul>
                   </div>
                 )}
-              </li>
-
-
-
-
-
-
+              </li> */}
             </ul>
-            <Link href="/sign-in" className="relative px-5 py-3 overflow-hidden font-medium text-gray-600 bg-mainbg border border-gray-100 rounded-lg shadow-inner group">
+            {/* <Link href="/sign-in" className="relative px-5 py-3 overflow-hidden font-medium text-gray-600 bg-mainbg border border-gray-100 rounded-lg shadow-inner group">
               <span className="absolute top-0 left-0 w-0 h-0 transition-all duration-200 border-t-2 border-gray-600 group-hover:w-full ease"></span>
               <span className="absolute bottom-0 right-0 w-0 h-0 transition-all duration-200 border-b-2 border-gray-600 group-hover:w-full ease"></span>
               <span className="absolute top-0 left-0 w-full h-0 transition-all duration-300 delay-200 bg-gray-600 group-hover:h-full ease"></span>
               <span className="absolute bottom-0 left-0 w-full h-0 transition-all duration-300 delay-200 bg-gray-600 group-hover:h-full ease"></span>
               <span className="absolute inset-0 w-full h-full duration-300 delay-300 bg-gray-900 opacity-0 group-hover:opacity-100"></span>
               <span className="relative transition-colors font-monserrat duration-300 delay-200 group-hover:text-white ease">Sign In</span>
-            </Link>
+            </Link> */}
 
             {/* <button
           className="text-white text-base leading-6 whitespace-nowrap justify-center items-stretch border bg-zinc-500 rounded-full px-5 py-2 border-solid border-black"
@@ -107,44 +103,57 @@ const NavBar: React.FC = () => {
         </button> */}
           </div>
         </nav>
-      }
+      )}
 
-
-      {isMobile &&
+      {isMobile && (
         <nav className="relative w-full flex justify-between p-3 items-center bg-mainbg px-6 border-b border-solid">
-          <div className="flex justify-left items-center font-imfell font-bold text-olivebrown text-2xl">ASK ABE</div>
-          <HiMenuAlt3 onClick={handleNav} className={`z-20 cursor-pointer ${nav ? 'text-white' : 'text-current'}`} size={25} 
-          
+          <div className="flex justify-left items-center font-header font-bold text-olivebrown text-2xl">
+            ASK ABE
+          </div>
+          <HiMenuAlt3
+            onClick={handleNav}
+            className={`z-20 cursor-pointer ${
+              nav ? "text-white" : "text-current"
+            }`}
+            size={25}
           />
           <div
-        className={
-          nav
-            ? 'ease-in duration-300 fixed text-gray-300 left-0 top-0 w-full h-screen bg-black/90 px-2 py-2 flex-col z-10'
-            : 'absolute top-0 h-screen left-[-100%] ease-in duration-500 z-10'
-        }
-      >
-          <ul className="flex flex-col w-full h-full items-center justify-center">
-            <li className="font-bold text-2xl pb-6 pr-6 pl-6" onClick={handleNav2}>
-              <Link href="/" aria-label="Link One">
-                Home
-              </Link>
-            </li>
-            <li className="justify-between items-stretch font-raleway flex gap-1" onClick={handleNav2}>
-              <Link href="/playground" aria-label="Link Four">
-                <div className="font-bold text-2xl p-6">Abe&apos;s Law Library</div>
-              </Link>
-            </li>
-            <li className="font-bold text-2xl p-6" onClick={handleNav2}>
-              <Link href="/how" aria-label="Link One">
-                How To Use
-              </Link>
-            </li>
-            <li className="font-bold text-2xl p-6" onClick={handleNav2}>
-              <Link href="/mission" aria-label="Link Two">
-                Our Mission
-              </Link>
-            </li>
-            <li className="relative text-base font-raleway leading-6">
+            className={
+              nav
+                ? "ease-in duration-300 fixed text-gray-300 left-0 top-0 w-full h-screen bg-black/90 px-2 py-2 flex-col z-10"
+                : "absolute top-0 h-screen left-[-100%] ease-in duration-500 z-10"
+            }
+          >
+            <ul className="flex flex-col w-full h-full items-center justify-center">
+              <li
+                className="font-bold text-2xl pb-6 pr-6 pl-6"
+                onClick={handleNav2}
+              >
+                <Link href="/" aria-label="Link One">
+                  Home
+                </Link>
+              </li>
+              <li
+                className="justify-between items-stretch font-body flex gap-1"
+                onClick={handleNav2}
+              >
+                <Link href="/playground" aria-label="Link Four">
+                  <div className="font-bold text-2xl p-6">
+                    Abe&apos;s Law Library
+                  </div>
+                </Link>
+              </li>
+              <li className="font-bold text-2xl p-6" onClick={handleNav2}>
+                <Link href="/how" aria-label="Link One">
+                  How To Use
+                </Link>
+              </li>
+              <li className="font-bold text-2xl p-6" onClick={handleNav2}>
+                <Link href="/mission" aria-label="Link Two">
+                  Our Mission
+                </Link>
+              </li>
+              {/* <li className="relative text-base font-body leading-6">
                 <button
                   id="mega-menu-full-dropdown-button"
                   data-collapse-toggle="mega-menu-full-dropdown"
@@ -152,34 +161,27 @@ const NavBar: React.FC = () => {
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 >
                   Company
-                  {/* SVG for dropdown icon */}
+               
                 </button>
 
                 {isDropdownOpen && (
-                  <div className="absolute flex justify-center font-raleway pb-6 pr-6 pl-6 leading-6 z-10">
+                  <div className="absolute flex justify-center font-body pb-6 pr-6 pl-6 leading-6 z-10">
                     <ul>
-                      {/* Dropdown menu items */}
+                    
                       <li className="pt-1" onClick={handleNav2}><Link href="/about">About Us</Link></li>
                       <li className="pt-1" onClick={handleNav2}><Link href="/privacy">Privacy Policy</Link></li>
                       <li className="pt-1" onClick={handleNav2}><Link href="/tos">Terms of Service</Link></li>
   
-                      {/* ... more options ... */}
                     </ul>
                   </div>
                 )}
-              </li>
-
-          </ul>
-        </div>
-      
+              </li> */}
+            </ul>
+          </div>
         </nav>
-
-
-      }
-
+      )}
     </div>
-
   );
-}
+};
 
 export default NavBar;

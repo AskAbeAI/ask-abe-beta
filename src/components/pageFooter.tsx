@@ -12,15 +12,14 @@ const PageFooter: React.FC = () => {
         <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
           <div className="flex flex-col items-stretch w-[69%] max-md:w-full max-md:ml-0">
             <div className="flex flex-col ">
-              <div className="flex items-center font-imfell font-bold text-3xl">ASK ABE </div>
+              <div className="flex items-center font-header font-bold text-3xl">ASK ABE </div>
               <div className="items-stretch self-stretch flex flex-col mt-5 max-md:max-w-full">
                 <div className="flex flex-col ">
                   <div className="items-stretch flex grow flex-col">
-                    <Link href="/playground" className="text-foreground text-base font-raleway leading-6">Abe&apos;s Law Library</Link>
-                    <Link href="/how" className="text-foreground text-base font-raleway leading-6 mt-3">How to Use</Link>
-                    <Link href="/mission" className="text-foreground text-base font-raleway leading-6 mt-3">Our Mission</Link>
-                    <Link href="/about" className="text-foreground text-base font-raleway leading-6 mt-3" >About</Link>
-                    {/* <Link href="/devlog" className="text-black text-base font-raleway leading-6 mt-3">DevLog</Link> */}
+                    <Link href="/playground" className="text-foreground text-base font-body leading-6">Abe&apos;s Law Library</Link>
+                    <Link href="/how" className="text-foreground text-base font-body leading-6 mt-3">How to Use</Link>
+                    <Link href="/mission" className="text-foreground text-base font-body leading-6 mt-3">Our Mission</Link>
+                    {/* <Link href="/devlog" className="text-black text-base font-body leading-6 mt-3">DevLog</Link> */}
                   </div>
                 </div>
               </div>

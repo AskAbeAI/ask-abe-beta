@@ -679,7 +679,7 @@ export const AbeIconLabel: React.FC<AbeIconProps> = ({
               height={50}
             /></span>
         </div>
-        <p className="text-xl font-imfell ">Abe</p>
+        <p className="text-xl font-header ">Abe</p>
         {(!neverLoadAgain && showCurrentLoading) && (
           <Bouncy />
 
