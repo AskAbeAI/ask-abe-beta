@@ -125,19 +125,19 @@ const OptionsList: React.FC<OptionsListProps> = ({
       <HiOutlineCog className="cursor-pointer" size={25} onClick={toggleOptionSidebar} />
       {showOptionSidebarOpen && (
         <div className="fixed inset-0 z-40 bg-black/70 flex items-center justify-center shadow-inner">
-          <div className="bg-[#FDFCFD] border-4 border-[#E4E0D2] font-raleway p-4 rounded-md shadow-inner">
+          <div className="bg-extralightbg border-4 border-bonewhite font-raleway p-4 rounded-md shadow-inner">
             <div className="flex justify-end mb-4">
               <HiX className="cursor-pointer" size={24} onClick={() => setShowOptionSidebarOpen(false)} />
             </div>
-            <div className="text-center text-[#4A4643] font-bold text-lg font-raleway mb-4">Jurisdiction Options</div>
+            <div className="text-center text-olivebrown font-bold text-lg font-raleway mb-4">Jurisdiction Options</div>
             <div className="space-y-4" style={{ maxHeight: '45vh', overflowY: 'auto' }}>
               <div>
                 <button
                   onClick={toggleFederalDropdown}
-                  className="w-full text-white bg-[#4A4643] font-raleway hover:bg-green-300 hover:text-[#4A4643] focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-md px-5 py-2.5 inline-flex items-center justify-center"
+                  className="w-full text-white bg-olivebrown font-raleway hover:bg-green-300 hover:text-olivebrown focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-md px-5 py-2.5 inline-flex items-center justify-center"
                 >
                   Federal
-                  <svg className={`w-2.5 h-2.5 ml-3 ${isHovered ? 'text-[#4A4643]' : 'text-green-300'}`} aria-hidden="true" fill="none" viewBox="0 0 10 6">
+                  <svg className={`w-2.5 h-2.5 ml-3 ${isHovered ? 'text-olivebrown' : 'text-green-300'}`} aria-hidden="true" fill="none" viewBox="0 0 10 6">
                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
                   </svg>
                 </button>
@@ -168,10 +168,10 @@ const OptionsList: React.FC<OptionsListProps> = ({
               <div>
                 <button
                   onClick={toggleStateDropdown}
-                  className="w-full text-white bg-[#4A4643] font-raleway hover:bg-green-300 hover:text-[#4A4643] focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-md px-5 py-2.5 inline-flex items-center justify-center"
+                  className="w-full text-white bg-olivebrown font-raleway hover:bg-green-300 hover:text-olivebrown focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-md px-5 py-2.5 inline-flex items-center justify-center"
                 >
                   State
-                  <svg className={`w-2.5 h-2.5 ml-3 ${isHovered ? 'text-[#4A4643]' : 'text-green-300'}`} aria-hidden="true" fill="none" viewBox="0 0 10 6">
+                  <svg className={`w-2.5 h-2.5 ml-3 ${isHovered ? 'text-olivebrown' : 'text-green-300'}`} aria-hidden="true" fill="none" viewBox="0 0 10 6">
                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
                   </svg>
                 </button>
@@ -202,10 +202,10 @@ const OptionsList: React.FC<OptionsListProps> = ({
               <div>
                 <button
                   onClick={toggleMiscDropdown}
-                  className="w-full text-white bg-[#4A4643] font-raleway hover:bg-green-300 hover:text-[#4A4643] focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-md px-5 py-2.5 inline-flex items-center justify-center"
+                  className="w-full text-white bg-olivebrown font-raleway hover:bg-green-300 hover:text-olivebrown focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-md px-5 py-2.5 inline-flex items-center justify-center"
                 >
                   Special
-                  <svg className={`w-2.5 h-2.5 ml-3 ${isHovered ? 'text-[#4A4643]' : 'text-green-300'}`} aria-hidden="true" fill="none" viewBox="0 0 10 6">
+                  <svg className={`w-2.5 h-2.5 ml-3 ${isHovered ? 'text-olivebrown' : 'text-green-300'}`} aria-hidden="true" fill="none" viewBox="0 0 10 6">
                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
                   </svg>
                 </button>
@@ -233,7 +233,7 @@ const OptionsList: React.FC<OptionsListProps> = ({
                   </div>
                 )}
               </div>
-              <div className="text-center text-[#4A4643] font-bold text-lg font-raleway pt-4">Chat Options</div>
+              <div className="text-center text-olivebrown font-bold text-lg font-raleway pt-4">Chat Options</div>
               {/* <div className="h-auto max-h-full">
                 <ul className="pt-4 space-y-2">
                   {selectedOptions.map(option => (
@@ -253,7 +253,7 @@ const OptionsList: React.FC<OptionsListProps> = ({
               </div> */}
               <div className="flex justify-center pt-4">
                 <button
-                  className="px-4 py-1 rounded bg-gray-100 shadow-inner text-[#4A4643] hover:bg-[#4A4643] hover:text-white"
+                  className="px-4 py-1 rounded bg-gray-100 shadow-inner text-olivebrown hover:bg-olivebrown hover:text-white"
                   onClick={handleClearSelection}
                 >
                   Clear

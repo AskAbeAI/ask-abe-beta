@@ -7,7 +7,7 @@ import Link from 'next/link';
 const PageFooter: React.FC = () => {
 
   return (
-    <section className="flex flex-col justify-between bg-background w-full px-16 py-6 max-md:max-w-full max-md:px-5 shadow-inner">
+    <section className="flex flex-col justify-between bg-mainbg w-full px-16 py-6 max-md:max-w-full max-md:px-5 shadow-inner">
       <div className="max-md:max-w-full">
         <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
           <div className="flex flex-col items-stretch w-[69%] max-md:w-full max-md:ml-0">

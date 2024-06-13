@@ -4,7 +4,7 @@ import PageFooter from "@/components/pageFooter";
 export default function Blog() {
   return (
 <div>
-    <div className="bg-[#FEFDF9] flex w-full flex-col px-20 py-12 max-md:max-w-full max-md:px-5">
+    <div className="bg-extralightbg flex w-full flex-col px-20 py-12 max-md:max-w-full max-md:px-5">
       <div className="items-stretch self-center flex w-[768px] max-w-full flex-col mt-16 pt-6 max-md:mt-10">
         <div className="text-black text-4xl font-cinzel font-bold leading-10 max-md:max-w-full">
           Relaunching Ask Abe Beta 0.2

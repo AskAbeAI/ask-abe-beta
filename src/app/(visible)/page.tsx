@@ -8,13 +8,13 @@ import PageFooter from '@/components/pageFooter';
 
 export default function HomePage() {
   return (
-    <div className="h-screen w-full bg-background">
+    <div className="h-screen w-full bg-mainbg">
       <div className="flex justify-center items-center">
 
       </div>
 
       {/* Landing Section */}
-      <section className="items-center bg-[#FAF5E6] shadow-inner flex w-full flex-col pb-12 pt-8">
+      <section className="items-center bg-mainbg shadow-inner flex w-full flex-col pb-12 pt-8">
         <div className="gap-2 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
           <div className="flex flex-col items-stretch w-8/12 max-md:w-full max-md:ml-0">
             <Image
@@ -39,7 +39,7 @@ export default function HomePage() {
               </div>
               <div className="items-fit flex  max-w-full justify-between mt-10">
                 <Link href="/playground"
-                  className="text-lg font-raleway rounded-sm font-bold px-6 py-3 leading-none text-white border focus:outline-none focus:shadow-outline bg-gradient-to-b hover:text-[#4A4643] hover:from-green-300 from-[#4A4643] to-[#4A4643]">
+                  className="text-lg font-raleway rounded-sm font-bold px-6 py-3 leading-none text-white border focus:outline-none focus:shadow-outline bg-gradient-to-b hover:text-olivebrown hover:from-green-300 from-olivebrown to-olivebrown">
                   Enter Abe&apos;s Law Library
 
 
@@ -57,13 +57,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="items-center bg-[#FCF8EE] shadow-inner flex flex-col px-5">
+      <div className="items-center bg-lightbg shadow-inner flex flex-col px-5">
         <div className="w-full max-w-[1312px] mt-16 mb-16 max-md:max-w-full max-md:my-10">
           <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
             <div className="flex flex-col items-stretch w-6/12 max-md:w-full max-md:ml-0">
               <div className="items-stretch flex flex-col max-md:max-w-full max-md:mt-10">
 
-                <h1 className="text-[#2F3F3D] mt-16 text-5xl font-imfell font-semibold leading-[57.6px] max-md:max-w-full max-md:text-4xl">
+                <h1 className="text-darkgreen mt-16 text-5xl font-imfell font-semibold leading-[57.6px] max-md:max-w-full max-md:text-4xl">
                   What is Ask Abe?
                 </h1>
                 <p className="text-black text-xl font-raleway font-light leading-12 mt-6 max-md:max-w-full">
@@ -110,7 +110,7 @@ export default function HomePage() {
                 Innovative
               </h2> */}
                 <div className="items-stretch self-stretch flex flex-col mt-4 max-md:max-w-full">
-                  <h1 className="text-[#2F3F3D] text-5xl font-imfell font-semibold leading-[57.6px] max-md:max-w-full max-md:text-4xl">
+                  <h1 className="text-darkgreen text-5xl font-imfell font-semibold leading-[57.6px] max-md:max-w-full max-md:text-4xl">
                     Democratizing Legal Knowledge For All, One Question At a Time
                   </h1>
                   <p className="text-black text-xl font-raleway font-light leading-7 mt-6 max-md:max-w-full">
@@ -145,7 +145,7 @@ Our vision is to revolutionize the legal landscape by making legal literacy acce
             height={2812}
             className="absolute inset-0 w-full h-full object-cover"
           />
-          <div className="relative top-5/6 text-[#FEFDF9] text-center text-5xl font-raleway font-bold leading-[80px] max-w-screen-md mt-40 max-md:max-w-full max-md:mt-10">
+          <div className="relative top-5/6 text-extralightbg text-center text-5xl font-raleway font-bold leading-[80px] max-w-screen-md mt-40 max-md:max-w-full max-md:mt-10">
             Ask Abe&apos;s Features
           </div>
 
@@ -154,11 +154,11 @@ Our vision is to revolutionize the legal landscape by making legal literacy acce
       </section>
 
       {/* Feature Section */}
-      <section className="items-center bg-[#FCF8EE] shadow-inner flex flex-col px-56 max-md:px-5">
-        <div className="items-center bg-[#FCF8EE] flex flex-col px-16 max-md:px-5">
+      <section className="items-center bg-lightbg shadow-inner flex flex-col px-56 max-md:px-5">
+        <div className="items-center bg-lightbg flex flex-col px-16 max-md:px-5">
           <div className="self-center text-black text-center text-lg leading-7 max-w-screen-md mt-6 max-md:max-w-full">
           </div>
-          <div className="border bg-[#FCF9F3] self-stretch mt-10 mb-10 pl-8 pr-8 border-solid border-8 border-[#FEFDF9] shadow-inner max-md:max-w-full max-md:my-10 max-md:pl-5">
+          <div className="border bg-[#FCF9F3] self-stretch mt-10 mb-10 pl-8 pr-8 border-solid border-8 border-extralightbg shadow-inner max-md:max-w-full max-md:my-10 max-md:pl-5">
             <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
               <div className="flex flex-col items-stretch w-[46%] max-md:w-full max-md:ml-0">
                 <div className="justify-center items-start self-stretch flex flex-col my-auto max-md:max-w-full max-md:mt-10">
@@ -182,7 +182,7 @@ Our vision is to revolutionize the legal landscape by making legal literacy acce
               </div>
             </div>
           </div>
-          <div className="border bg-[#FCF9F3] self-stretch mt-10 mb-10 pl-8 pr-8 border-solid border-8 border-[#FEFDF9] shadow-inner max-md:max-w-full max-md:my-10 max-md:pl-5">
+          <div className="border bg-[#FCF9F3] self-stretch mt-10 mb-10 pl-8 pr-8 border-solid border-8 border-extralightbg shadow-inner max-md:max-w-full max-md:my-10 max-md:pl-5">
             <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
               <div className="flex flex-col items-stretch w-[46%] max-md:w-full max-md:ml-0">
                 <div className="justify-center items-start self-stretch flex flex-col my-auto max-md:max-w-full max-md:mt-10">
@@ -206,7 +206,7 @@ Our vision is to revolutionize the legal landscape by making legal literacy acce
             </div>
           </div>
 
-          <div className="border bg-[#FCF9F3] self-stretch mt-10 mb-10 pl-8 pr-8 border-solid border-8 border-[#FEFDF9] shadow-inner max-md:max-w-full max-md:my-10 max-md:pl-5">
+          <div className="border bg-[#FCF9F3] self-stretch mt-10 mb-10 pl-8 pr-8 border-solid border-8 border-extralightbg shadow-inner max-md:max-w-full max-md:my-10 max-md:pl-5">
             <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
               <div className="flex flex-col items-stretch w-[52%] max-md:w-full max-md:ml-0">
                 <Image
@@ -234,9 +234,9 @@ Our vision is to revolutionize the legal landscape by making legal literacy acce
 
 
       {/* Team Section */}
-      <section className="items-center bg-[#FCF8EE] flex flex-col px-5 shadow-inner ">
+      <section className="items-center bg-lightbg flex flex-col px-5 shadow-inner ">
         <div className="flex w-[768px] max-w-full flex-col items-stretch mt-16 mb-16 max-md:my-10">
-          <h1 className="text-[#2F3F3D] text-center font-imfell text-5xl font-semibold leading-[58px] max-md:max-w-full max-md:text-5xl max-md:leading-[54px]">
+          <h1 className="text-darkgreen text-center font-imfell text-5xl font-semibold leading-[58px] max-md:max-w-full max-md:text-5xl max-md:leading-[54px]">
             Our Team
           </h1>
           <div className="self-center w-[640px] max-w-full mt-10 max-md:mt-10">

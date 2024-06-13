@@ -5,7 +5,7 @@ import PageFooter from '@/components/pageFooter';
 export default function DevPage() {
   return (
 
-    <div className="h-screen w-full bg-[#FEFDF9]">
+    <div className="h-screen w-full bg-extralightbg">
       <div className="items-center flex flex-col px-16 max-md:px-5">
         <div className="text-black text-center text-base font-cinzel font-semibold leading-6 self-center whitespace-nowrap mt-28 max-md:mt-10">
           Ask Abe

@@ -7,7 +7,7 @@ import PageFooter from '@/components/pageFooter';
 export default function HowToPage() {
 	return (
 
-		<div className="h-screen w-full bg-[#FAF5E6]">
+		<div className="h-screen w-full bg-mainbg">
 			<section>
 				<div className="flex-col items-center overflow-hidden relative flex min-h-[200px] px-12 max-md:px-5">
 					<Image
@@ -17,7 +17,7 @@ export default function HowToPage() {
 						height={2812}
 						className="absolute inset-0 w-full h-full object-cover"
 					/>
-					<div className="relative top-2/6 text-[#FEFDF9] text-center text-5xl font-raleway font-bold leading-[80px] max-w-screen-md mt-16 max-md:max-w-full max-md:mt-10">
+					<div className="relative top-2/6 text-extralightbg text-center text-5xl font-raleway font-bold leading-[80px] max-w-screen-md mt-16 max-md:max-w-full max-md:mt-10">
 						How to Use Ask Abe
 					</div>
 
@@ -26,13 +26,13 @@ export default function HowToPage() {
 			</section>
 
 			{/* Feature Section */}
-			<section className="items-center bg-[#FCF8EE] shadow-inner flex flex-col px-56 max-md:px-5">
-				<div className="items-center bg-[#FCF8EE] flex flex-col px-16 max-md:px-5">
+			<section className="items-center bg-lightbg shadow-inner flex flex-col px-56 max-md:px-5">
+				<div className="items-center bg-lightbg flex flex-col px-16 max-md:px-5">
 					<div className="self-center text-black text-center text-lg leading-7 max-w-screen-md mt-6 max-md:max-w-full">
 
 					</div>
 
-					<div className="bg-[#FCF9F3] self-stretch mt-4 mb-4 pl-8 pr-8 border-solid border-8 border-[#FEFDF9] shadow-inner max-md:max-w-full max-md:my-10 max-md:pl-5">
+					<div className="bg-[#FCF9F3] self-stretch mt-4 mb-4 pl-8 pr-8 border-solid border-8 border-extralightbg shadow-inner max-md:max-w-full max-md:my-10 max-md:pl-5">
 						<div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
 							<div className="flex flex-col items-stretch w-[46%] max-md:w-full max-md:ml-0">
 								<div className="justify-center items-start self-stretch flex flex-col my-auto max-md:max-w-full max-md:mt-10">
@@ -57,7 +57,7 @@ export default function HowToPage() {
 						</div>
 					</div>
 
-					<div className="bg-[#FCF9F3] self-stretch mt-4 mb-4 pl-8 pr-8 border-solid border-8 border-[#FEFDF9] shadow-inner max-md:max-w-full max-md:my-10 max-md:pl-5">
+					<div className="bg-[#FCF9F3] self-stretch mt-4 mb-4 pl-8 pr-8 border-solid border-8 border-extralightbg shadow-inner max-md:max-w-full max-md:my-10 max-md:pl-5">
 						<div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
 							<div className="flex flex-col items-stretch w-[52%] max-md:w-full max-md:ml-0">
 								<Image
@@ -80,7 +80,7 @@ export default function HowToPage() {
 						</div>
 					</div>
 
-					{/* <div className="bg-[#FCF9F3] self-stretch mt-4 mb-4 pl-8 pr-8 border-solid border-8 border-[#FEFDF9] shadow-inner max-md:max-w-full max-md:my-10 max-md:pl-5">
+					{/* <div className="bg-[#FCF9F3] self-stretch mt-4 mb-4 pl-8 pr-8 border-solid border-8 border-extralightbg shadow-inner max-md:max-w-full max-md:my-10 max-md:pl-5">
 						<div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
 							<div className="flex flex-col items-stretch w-[46%] max-md:w-full max-md:ml-0">
 								<div className="justify-center items-start self-stretch flex flex-col my-auto max-md:max-w-full max-md:mt-10">
@@ -106,7 +106,7 @@ export default function HowToPage() {
 						</div>
 					</div> */}
 
-					<div className="bg-[#FCF9F3] self-stretch mt-4 mb-4 pl-8 pr-8 border-solid border-8 border-[#FEFDF9] shadow-inner max-md:max-w-full max-md:my-10 max-md:pl-5">
+					<div className="bg-[#FCF9F3] self-stretch mt-4 mb-4 pl-8 pr-8 border-solid border-8 border-extralightbg shadow-inner max-md:max-w-full max-md:my-10 max-md:pl-5">
 						<div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
 							<div className="flex flex-col items-stretch w-[52%] max-md:w-full max-md:ml-0">
 								<Image
@@ -130,7 +130,7 @@ export default function HowToPage() {
 							</div>
 						</div>
 					</div>
-					<div className="bg-[#FCF9F3] self-stretch mt-4 mb-4 pl-8 pr-8 border-solid border-8 border-[#FEFDF9] shadow-inner max-md:max-w-full max-md:my-10 max-md:pl-5">
+					<div className="bg-[#FCF9F3] self-stretch mt-4 mb-4 pl-8 pr-8 border-solid border-8 border-extralightbg shadow-inner max-md:max-w-full max-md:my-10 max-md:pl-5">
 						<div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
 							<div className="flex flex-col items-stretch w-[46%] max-md:w-full max-md:ml-0">
 								<div className="justify-center items-start self-stretch flex flex-col my-auto max-md:max-w-full max-md:mt-10">
