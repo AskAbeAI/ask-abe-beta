@@ -223,7 +223,7 @@ Our vision is to revolutionize the legal landscape by making legal literacy acce
                     Ask a follow-up question
                   </div>
                   <div className="self-stretch text-black font-raleway text-base leading-6 mt-6 max-md:max-w-full">
-				  If Abe's answer to your query raises more questions, feel free to ask a follow-up question.
+				  If Abe&apos;s answer to your query raises more questions, feel free to ask a follow-up question.
                   </div>
                 </div>
               </div>
