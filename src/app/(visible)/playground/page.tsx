@@ -627,7 +627,7 @@ export default function Playground() {
   };
 
   return (
-    <div className="flex flex-col h-screen w-full px-3 py-3 bg-[#FAF5E6]">
+    <div className="flex flex-col h-screen w-full px-3 py-3 bg-mainbg">
     <JurisdictionModal shown={showJurisdictionModal} setShown={setShown} />
     <DisclaimerModal />
     <div className="flex flex-row h-full">

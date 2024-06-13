@@ -75,8 +75,8 @@ const CitationBar: React.FC<CitationProps> = ({ open, setOpen, citationItems, ac
   return (
     <div>
       {isDesktopOrLaptop &&
-        <div className="h-auto max-h-full overflow-y-auto bg-[#FDFCFD] border-4 border-[#E4E0D2] p-1 sm:p-2  shadow-inner rounded-md">
-          <button className="w-full sticky top-0 inline-flex items-center justify-start py-2 sm:py-3 pl-3 sm:pl-4 pr-8 sm:pr-12 overflow-hidden font-montserrat font-semibold text-[#F8F8FA] transition-all duration-150 ease-in-out rounded hover:pl-8 sm:hover:pl-10 hover:pr-4 sm:hover:pr-6 bg-[#4A4643] group"
+        <div className="h-auto max-h-full overflow-y-auto bg-extralightbg border-4 border-bonewhite p-1 sm:p-2  shadow-inner rounded-md">
+          <button className="w-full sticky top-0 inline-flex items-center justify-start py-2 sm:py-3 pl-3 sm:pl-4 pr-8 sm:pr-12 overflow-hidden font-montserrat font-semibold text-seasaltwhite transition-all duration-150 ease-in-out rounded hover:pl-8 sm:hover:pl-10 hover:pr-4 sm:hover:pr-6 bg-olivebrown group"
             onClick={() => setOpen(!open)}>
             <span className="absolute bottom-0 left-0 w-full h-1 transition-all duration-150 ease-in-out bg-green-300 group-hover:h-full"></span>
             <span className="absolute right-0 pr-4 pl-4 duration-200 ease-out group-hover:translate-x-12">
@@ -94,16 +94,16 @@ const CitationBar: React.FC<CitationProps> = ({ open, setOpen, citationItems, ac
             <span className="absolute left-0 pl-2.5 -translate-x-12 group-hover:translate-x-0 ease-out duration-200">
               {/* Conditional SVG Rendering for Left Arrow */}
               {open ? (
-                <svg className="w-5 h-5 text-[#4A4643]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <svg className="w-5 h-5 text-olivebrown" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                 </svg>
               ) : (
-                <svg className="w-5 h-5 text-[#4A4643]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <svg className="w-5 h-5 text-olivebrown" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                 </svg>
               )}
             </span>
-            <span className="relative w-full text-left font-montserrat transition-colors duration-200 ease-in-out group-hover:text-[#4A4643]">
+            <span className="relative w-full text-left font-montserrat transition-colors duration-200 ease-in-out group-hover:text-olivebrown">
               {open ? "Back To Chat" : "Citations"}
             </span>
           </button>
@@ -130,15 +130,15 @@ const CitationBar: React.FC<CitationProps> = ({ open, setOpen, citationItems, ac
           <GoArchive className="cursor-pointer" size={24} onClick={toggleCitationSidebar} />
           {showCitationSidebarOpen && (
             <div className="fixed inset-0 z-40 bg-black/70 flex items-center justify-center shadow-inner">
-              <div className="flex justify-center bg-[#FDFCFD] border-4 border-[#E4E0D2] font-raleway pb-2">
-                <div className=" bg-[#FDFCFD] p-2 w-25 shadow-inner rounded-md">
+              <div className="flex justify-center bg-extralightbg border-4 border-bonewhite font-body pb-2">
+                <div className=" bg-extralightbg p-2 w-25 shadow-inner rounded-md">
                   <div className=" pt-1 pb-1 flex items-end justify-end">
                     <HiX className="cursor-pointer" size={24} onClick={() => setShowCitationSidebarOpen(false)} />
                   </div>
 
                   {/* Citation sidebar content */}
-                  <div className="h-auto max-h-full overflow-y-auto bg-[#FDFCFD] border-4 border-[#E4E0D2] p-1 sm:p-2  shadow-inner rounded-md">
-                    <div className="sticky top-0 inline-flex items-center justify-start py-2 pl-3 pr-3  font-montserrat font-semibold text-[#F8F8FA] bg-[#4A4643]">Citations</div>
+                  <div className="h-auto max-h-full overflow-y-auto bg-extralightbg border-4 border-bonewhite p-1 sm:p-2  shadow-inner rounded-md">
+                    <div className="sticky top-0 inline-flex items-center justify-start py-2 pl-3 pr-3  font-montserrat font-semibold text-seasaltwhite bg-olivebrown">Citations</div>
                     <div className="overflow-y-auto hide-scrollbar h-full w-25 max-h-full" style={{ maxHeight: '90vh' }}>
                       {Object.keys(groupedCitations).map((jurisdiction) => (
                         <div key={jurisdiction}>

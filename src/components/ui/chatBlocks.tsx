@@ -242,10 +242,10 @@ export const CitationBlock: React.FC<CitationBlockProps> = ({ citation, link, se
     <details
       ref={detailsRef}
       id={citation}
-      className="p-4 bg-[#F8F8FA] rounded-lg shadow space-y-2"
+      className="p-4 bg-seasaltwhite rounded-lg shadow space-y-2"
       onClick={() => setOpen(true)}
     >
-      <summary className="text-[#2B303A] cursor-pointer">
+      <summary className="text-black cursor-pointer">
         {citation}
       </summary>
       <a href={link} target="_blank" rel="noopener noreferrer">
@@ -619,7 +619,7 @@ export const QuestionBlock: React.FC<QuestionBlockProps> = ({ content }) => {
   return (
     <div className="flex flex-col items-end">
       <UserIconLabel />
-      <div className="p-2 bg-[#B2d2da] rounded-lg shadow">
+      <div className="p-2 bg-lightblue rounded-lg shadow">
         <h3 className="text-xl text-black">{content}</h3>
       </div>
     </div>
@@ -630,7 +630,7 @@ export const QuestionBlock: React.FC<QuestionBlockProps> = ({ content }) => {
 
 export const WelcomeBlock: React.FC = () => {
   return (
-    <div className="p-4 bg-[#ECECEC] rounded-md shadow">
+    <div className="p-4 bg-seasaltwhite rounded-md shadow">
       <p className="text-lg md:text-lg lg:text-xl font-semibold">Hello, I&apos;m Abe! Welcome to my law library.  </p>
       <p className="text-lg md:text-xl lg:text-xl">
        Ask me a legal question, and I can guide you through the relevant legislation.
@@ -679,7 +679,7 @@ export const AbeIconLabel: React.FC<AbeIconProps> = ({
               height={50}
             /></span>
         </div>
-        <p className="text-xl font-imfell ">Abe</p>
+        <p className="text-xl font-header ">Abe</p>
         {(!neverLoadAgain && showCurrentLoading) && (
           <Bouncy />
 

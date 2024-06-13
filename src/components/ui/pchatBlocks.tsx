@@ -242,10 +242,10 @@ export const CitationBlock: React.FC<CitationBlockProps> = ({ citation, link, se
     <details
       ref={detailsRef}
       id={citation}
-      className="p-4 bg-[#F8F8FA] rounded-lg shadow space-y-2"
+      className="p-4 bg-seasaltwhite rounded-lg shadow space-y-2"
       onClick={() => setOpen(true)}
     >
-      <summary className="font-montserrat text-[#2B303A] cursor-pointer">
+      <summary className="font-montserrat text-black cursor-pointer">
         {citation}
       </summary>
       <a href={link} target="_blank" rel="noopener noreferrer">
@@ -619,7 +619,7 @@ export const QuestionBlock: React.FC<QuestionBlockProps> = ({ content }) => {
   return (
     <div className="flex flex-col items-end">
       <UserIconLabel />
-      <div className="p-2 bg-[#B2d2da] rounded-lg shadow">
+      <div className="p-2 bg-lightblue rounded-lg shadow">
         <h3 className="font-montserrat text-lg text-black">{content}</h3>
       </div>
     </div>
@@ -679,7 +679,7 @@ export const AbeIconLabel: React.FC<AbeIconProps> = ({
               height={50}
             /></span>
         </div>
-        <p className="text-xl font-imfell ">Abe</p>
+        <p className="text-xl font-header ">Abe</p>
         {(!neverLoadAgain && showCurrentLoading) && (
           <Bouncy />
 

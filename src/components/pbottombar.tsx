@@ -77,14 +77,14 @@ const BottomBar: React.FC<BottomBarProps> = ({
             onKeyDown={handleKeyDown}
             placeholder={inputMessage}
             maxLength={maxLimit}
-            className="w-full h-auto pl-4 pr-24 py-2 whitespace-normal font-montserrat rounded border-2 border-[#4A4643] focus:outline-none bg-white"
+            className="w-full h-auto pl-4 pr-24 py-2 whitespace-normal font-montserrat rounded border-2 border-olivebrown focus:outline-none bg-white"
             rows={1}
             style={{ overflowY: 'hidden' }}
           ></textarea>
 
           <button
             type="submit"
-            className="absolute-right rounded bg-[#4A4643] text-white px-4 py-2 font-montserrat text-xl"
+            className="absolute-right rounded bg-olivebrown text-white px-4 py-2 font-montserrat text-xl"
           >
             Ask
           </button>

@@ -3,9 +3,9 @@ import PageFooter from "@/components/pageFooter"
 
 export default function TOSPage() {
     return (
-        <div className="h-auto w-screen bg-[#FCF8EE]">
-            <div className="container max-width-lg bg-[#FCF8EE]">
-                <div className="items-stretch bg-[#FCF8EE] flex flex-col justify-center px-24 py-12 max-md:px-5">
+        <div className="h-auto w-screen bg-lightbg">
+            <div className="container max-width-lg bg-lightbg">
+                <div className="items-stretch bg-lightbg flex flex-col justify-center px-24 py-12 max-md:px-5">
                     <header className="header justify-between mt-16 mb-10 max-md:max-w-full max-md:mr-1 max-md:mt-10">
                         <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
                             <div className="flex flex-col items-stretch w-full max-md:w-full max-md:ml-0">

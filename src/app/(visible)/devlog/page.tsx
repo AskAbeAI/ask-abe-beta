@@ -5,12 +5,12 @@ import PageFooter from '@/components/pageFooter';
 export default function DevPage() {
   return (
 
-    <div className="h-screen w-full bg-[#FEFDF9]">
+    <div className="h-screen w-full bg-extralightbg">
       <div className="items-center flex flex-col px-16 max-md:px-5">
-        <div className="text-black text-center text-base font-cinzel font-semibold leading-6 self-center whitespace-nowrap mt-28 max-md:mt-10">
+        <div className="text-black text-center text-base font-header font-semibold leading-6 self-center whitespace-nowrap mt-28 max-md:mt-10">
           Ask Abe
         </div>
-        <div className="self-center text-black text-center font-cinzel text-6xl font-bold leading-[67px] max-w-screen-md mt-4 max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
+        <div className="self-center text-black text-center font-header text-6xl font-bold leading-[67px] max-w-screen-md mt-4 max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
           DevLog
         </div>
         <div className="self-center text-black text-center text-lg leading-7 max-w-screen-md mt-6 max-md:max-w-full">
@@ -46,7 +46,7 @@ export default function DevPage() {
                     className="aspect-[1.39] object-contain object-center w-full overflow-hidden"
                   />
 
-                  <Link href="/devlogblog" className="text-black text-2xl font-raleway font-bold leading-8 mt-2">
+                  <Link href="/devlogblog" className="text-black text-2xl font-body font-bold leading-8 mt-2">
                     Title
                   </Link>
                   <div className="text-black text-base leading-6 mt-2">
@@ -55,15 +55,15 @@ export default function DevPage() {
                   <div className="items-stretch flex justify-between gap-4 mt-6">
 
                     <div className="items-stretch flex grow basis-[0%] flex-col">
-                      <div className="text-black font-raleway text-sm font-semibold leading-5">
+                      <div className="text-black font-body text-sm font-semibold leading-5">
                         Will
                       </div>
                       <div className="items-stretch flex justify-between gap-5 max-md:justify-center">
-                        <div className="text-black font-raleway text-sm leading-5 self-center my-auto">
+                        <div className="text-black font-body text-sm leading-5 self-center my-auto">
                           26 Nov 2023
                         </div>
 
-                        <div className="text-black font-raleway text-sm leading-5 self-center whitespace-nowrap my-auto">
+                        <div className="text-black font-body text-sm leading-5 self-center whitespace-nowrap my-auto">
                           5 min read
                         </div>
                       </div>
@@ -79,7 +79,7 @@ export default function DevPage() {
                     className="aspect-[1.39] object-contain object-center w-full overflow-hidden"
                   />
 
-                  <Link href="/devlogblog" className="text-black text-2xl font-raleway font-bold leading-8 mt-2">
+                  <Link href="/devlogblog" className="text-black text-2xl font-body font-bold leading-8 mt-2">
                     Relaunching Ask Abe Beta 0.2
                   </Link>
                   <div className="text-black text-base leading-6 mt-2">
@@ -88,15 +88,15 @@ export default function DevPage() {
                   <div className="items-stretch flex justify-between gap-4 mt-6">
 
                     <div className="items-stretch flex grow basis-[0%] flex-col">
-                      <div className="text-black font-raleway text-sm font-semibold leading-5">
+                      <div className="text-black font-body text-sm font-semibold leading-5">
                         Madeline
                       </div>
                       <div className="items-stretch flex justify-between gap-5 max-md:justify-center">
-                        <div className="text-black font-raleway text-sm leading-5 self-center my-auto">
+                        <div className="text-black font-body text-sm leading-5 self-center my-auto">
                           15 Nov 2023
                         </div>
 
-                        <div className="text-black font-raleway text-sm leading-5 self-center whitespace-nowrap my-auto">
+                        <div className="text-black font-body text-sm leading-5 self-center whitespace-nowrap my-auto">
                           5 min read
                         </div>
                       </div>
@@ -112,7 +112,7 @@ export default function DevPage() {
                     className="aspect-[1.39] object-contain object-center w-full overflow-hidden"
                   />
 
-                  <Link href="/devlogblog" className="text-black text-2xl font-raleway font-bold leading-8 mt-2">
+                  <Link href="/devlogblog" className="text-black text-2xl font-body font-bold leading-8 mt-2">
                     Relaunching Ask Abe Beta 0.2
                   </Link>
                   <div className="text-black text-base leading-6 mt-2">
@@ -121,15 +121,15 @@ export default function DevPage() {
                   <div className="items-stretch flex justify-between gap-4 mt-6">
 
                     <div className="items-stretch flex grow basis-[0%] flex-col">
-                      <div className="text-black font-raleway text-sm font-semibold leading-5">
+                      <div className="text-black font-body text-sm font-semibold leading-5">
                         Madeline
                       </div>
                       <div className="items-stretch flex justify-between gap-5 max-md:justify-center">
-                        <div className="text-black font-raleway text-sm leading-5 self-center my-auto">
+                        <div className="text-black font-body text-sm leading-5 self-center my-auto">
                           15 Nov 2023
                         </div>
 
-                        <div className="text-black font-raleway text-sm leading-5 self-center whitespace-nowrap my-auto">
+                        <div className="text-black font-body text-sm leading-5 self-center whitespace-nowrap my-auto">
                           5 min read
                         </div>
                       </div>
