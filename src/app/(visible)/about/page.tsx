@@ -35,7 +35,7 @@ export default function aboutPage() {
                   Confronting the Challenges of Accessibility
                 </div>
                 <div className="text-black text-lg font-raleway leading-24 mt-6 max-md:max-w-full">
-                The lack of legal knowledge disproportionately affects marginalized communities, leading to vulnerability and injustice. Society's reliance on paid legal services for basic understanding perpetuates inequities. Empowering everyone with essential legal knowledge is key to a more just and equitable society.
+                The lack of legal knowledge disproportionately affects marginalized communities, leading to vulnerability and injustice. Society&apos;s reliance on paid legal services for basic understanding perpetuates inequities. Empowering everyone with essential legal knowledge is key to a more just and equitable society.
                 </div>
 
               </div>
@@ -59,7 +59,7 @@ export default function aboutPage() {
             How can AI help?
           </div>
           <div className="text-black text-lg font-raleway leading-24 grow shrink basis-auto self-start w-7/12 max-md:max-w-full">
-          Traditional methods of accessing legal information are time-consuming and complex. Ask Abe revolutionizes this by using AI to provide an interactive, dynamic guide. It engages users in conversations, asking intuitive questions to clarify and refine legal queries. This ensures that the information provided is accurate and tailored to each user's needs. Ask Abe simplifies the legal research process and enhances understanding, making legal knowledge accessible and personalized. By democratizing legal understanding, Ask Abe empowers individuals and fosters a more informed society, revolutionizing the way we interact with the legal world
+          Traditional methods of accessing legal information are time-consuming and complex. Ask Abe revolutionizes this by using AI to provide an interactive, dynamic guide. It engages users in conversations, asking intuitive questions to clarify and refine legal queries. This ensures that the information provided is accurate and tailored to each user&apos;s needs. Ask Abe simplifies the legal research process and enhances understanding, making legal knowledge accessible and personalized. By democratizing legal understanding, Ask Abe empowers individuals and fosters a more informed society, revolutionizing the way we interact with the legal world
           </div>
         </div>
       </div>
