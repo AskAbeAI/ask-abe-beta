@@ -6,7 +6,7 @@ import PageFooter from '@/components/pageFooter';
 
 export default function MissionPage() {
   return (
-    <div className="bg-[#FEFDF9] flex flex-col items-stretch">
+    <div className="bg-extralightbg flex flex-col items-stretch">
 
       <div className="flex-col items-center overflow-hidden relative flex min-h-[300px] px-20 max-md:px-5">
         <Image
@@ -17,7 +17,7 @@ export default function MissionPage() {
           className="absolute inset-0 w-full h-full object-cover"
         />
 
-        <div className="relative top-5/6 text-[#FEFDF9] text-center text-5xl font-raleway font-bold leading-[80px] max-w-screen-md mt-28 max-md:max-w-full max-md:mt-10">
+        <div className="relative top-5/6 text-extralightbg text-center text-5xl font-raleway font-bold leading-[80px] max-w-screen-md mt-28 max-md:max-w-full max-md:mt-10">
           OUR MISSION
         </div>
 

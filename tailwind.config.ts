@@ -46,6 +46,8 @@ module.exports = {
         darkgreen: "#2F3F3D",
         olivebrown: "#4A4643",
         bonewhite: "E4E0D2",
+        seasaltwhite: "#F8F8FA",
+        lightblue: "#B2D2DA",
         "user-color": "#B2d2da",
         "response-color": "#ECECEC",
         border: "hsl(var(--border))",

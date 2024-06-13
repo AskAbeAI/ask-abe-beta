@@ -87,7 +87,7 @@ const CitationBar: React.FC<CitationProps> = ({ open, setOpen, citationItems, ac
 
                  {/* Citation sidebar content */}
                  <div className="h-auto max-h-full overflow-y-auto bg-extralightbg border-4 border-bonewhite p-1 sm:p-2  shadow-inner rounded-md">
-                   <div className="sticky top-0 inline-flex items-center justify-start py-2 pl-3 pr-3  font-montserrat font-semibold text-[#F8F8FA] bg-olivebrown">Citations</div>
+                   <div className="sticky top-0 inline-flex items-center justify-start py-2 pl-3 pr-3  font-montserrat font-semibold text-seasaltwhite bg-olivebrown">Citations</div>
                    <div className="overflow-y-auto hide-scrollbar h-full w-25 max-h-full" style={{ maxHeight: '90vh' }}>
                      {Object.keys(groupedCitations).map((jurisdiction) => (
                        <div key={jurisdiction}>
@@ -122,7 +122,7 @@ const CitationBar: React.FC<CitationProps> = ({ open, setOpen, citationItems, ac
 
                   {/* Citation sidebar content */}
                   <div className="h-auto max-h-full overflow-y-auto bg-extralightbg border-4 border-bonewhite p-1 sm:p-2  shadow-inner rounded-md">
-                    <div className="sticky top-0 inline-flex items-center justify-start py-2 pl-3 pr-3  font-montserrat font-semibold text-[#F8F8FA] bg-olivebrown">Citations</div>
+                    <div className="sticky top-0 inline-flex items-center justify-start py-2 pl-3 pr-3  font-montserrat font-semibold text-seasaltwhite bg-olivebrown">Citations</div>
                     <div className="overflow-y-auto hide-scrollbar h-full w-25 max-h-full" style={{ maxHeight: '90vh' }}>
                       {Object.keys(groupedCitations).map((jurisdiction) => (
                         <div key={jurisdiction}>

@@ -253,7 +253,7 @@ export default function EmbedPage() {
       }
     
     >
-      <div className="flex h-full w-full px-5 py-5 bg-[#FAF5E6]" style={{ minHeight: '100vh' }}>  
+      <div className="flex h-full w-full px-5 py-5 bg-mainbg" style={{ minHeight: '100vh' }}>  
         <div className="w-full" style={{ minHeight: '100vh' }}>
           <div className="overflow-y-auto w-full" style={{ minHeight: '90vh' }}>
             <ContentQueue

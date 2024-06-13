@@ -32,7 +32,7 @@ export default function HowToPage() {
 
 					</div>
 
-					<div className="bg-[#FCF9F3] self-stretch mt-4 mb-4 pl-8 pr-8 border-solid border-8 border-extralightbg shadow-inner max-md:max-w-full max-md:my-10 max-md:pl-5">
+					<div className="bg-lightbg self-stretch mt-4 mb-4 pl-8 pr-8 border-solid border-8 border-extralightbg shadow-inner max-md:max-w-full max-md:my-10 max-md:pl-5">
 						<div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
 							<div className="flex flex-col items-stretch w-[46%] max-md:w-full max-md:ml-0">
 								<div className="justify-center items-start self-stretch flex flex-col my-auto max-md:max-w-full max-md:mt-10">
@@ -57,7 +57,7 @@ export default function HowToPage() {
 						</div>
 					</div>
 
-					<div className="bg-[#FCF9F3] self-stretch mt-4 mb-4 pl-8 pr-8 border-solid border-8 border-extralightbg shadow-inner max-md:max-w-full max-md:my-10 max-md:pl-5">
+					<div className="bg-lightbg self-stretch mt-4 mb-4 pl-8 pr-8 border-solid border-8 border-extralightbg shadow-inner max-md:max-w-full max-md:my-10 max-md:pl-5">
 						<div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
 							<div className="flex flex-col items-stretch w-[52%] max-md:w-full max-md:ml-0">
 								<Image
@@ -80,7 +80,7 @@ export default function HowToPage() {
 						</div>
 					</div>
 
-					{/* <div className="bg-[#FCF9F3] self-stretch mt-4 mb-4 pl-8 pr-8 border-solid border-8 border-extralightbg shadow-inner max-md:max-w-full max-md:my-10 max-md:pl-5">
+					{/* <div className="bg-lightbg self-stretch mt-4 mb-4 pl-8 pr-8 border-solid border-8 border-extralightbg shadow-inner max-md:max-w-full max-md:my-10 max-md:pl-5">
 						<div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
 							<div className="flex flex-col items-stretch w-[46%] max-md:w-full max-md:ml-0">
 								<div className="justify-center items-start self-stretch flex flex-col my-auto max-md:max-w-full max-md:mt-10">
@@ -106,7 +106,7 @@ export default function HowToPage() {
 						</div>
 					</div> */}
 
-					<div className="bg-[#FCF9F3] self-stretch mt-4 mb-4 pl-8 pr-8 border-solid border-8 border-extralightbg shadow-inner max-md:max-w-full max-md:my-10 max-md:pl-5">
+					<div className="bg-lightbg self-stretch mt-4 mb-4 pl-8 pr-8 border-solid border-8 border-extralightbg shadow-inner max-md:max-w-full max-md:my-10 max-md:pl-5">
 						<div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
 							<div className="flex flex-col items-stretch w-[52%] max-md:w-full max-md:ml-0">
 								<Image
@@ -130,7 +130,7 @@ export default function HowToPage() {
 							</div>
 						</div>
 					</div>
-					<div className="bg-[#FCF9F3] self-stretch mt-4 mb-4 pl-8 pr-8 border-solid border-8 border-extralightbg shadow-inner max-md:max-w-full max-md:my-10 max-md:pl-5">
+					<div className="bg-lightbg self-stretch mt-4 mb-4 pl-8 pr-8 border-solid border-8 border-extralightbg shadow-inner max-md:max-w-full max-md:my-10 max-md:pl-5">
 						<div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
 							<div className="flex flex-col items-stretch w-[46%] max-md:w-full max-md:ml-0">
 								<div className="justify-center items-start self-stretch flex flex-col my-auto max-md:max-w-full max-md:mt-10">

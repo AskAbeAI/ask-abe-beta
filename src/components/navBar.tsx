@@ -32,7 +32,7 @@ const NavBar: React.FC = () => {
   return (
     <div>
       {isDesktopOrLaptop &&
-        <nav className="justify-center items-center bg-[#FAF5E6] flex flex-col px-10 border-b border-solid">
+        <nav className="justify-center items-center bg-mainbg flex flex-col px-10 border-b border-solid">
           <div className="justify-between items-stretch flex w-full max-w-full gap-5 my-3 max-md:max-w-full max-md:flex-wrap max-md:justify-center">
 		  <Link href="/">
             <div className="flex justify-left items-center font-imfell font-bold text-olivebrown text-2xl">ASK ABE</div>
@@ -90,7 +90,7 @@ const NavBar: React.FC = () => {
 
 
             </ul>
-            <Link href="/sign-in" className="relative px-5 py-3 overflow-hidden font-medium text-gray-600 bg-[#FAF5E6] border border-gray-100 rounded-lg shadow-inner group">
+            <Link href="/sign-in" className="relative px-5 py-3 overflow-hidden font-medium text-gray-600 bg-mainbg border border-gray-100 rounded-lg shadow-inner group">
               <span className="absolute top-0 left-0 w-0 h-0 transition-all duration-200 border-t-2 border-gray-600 group-hover:w-full ease"></span>
               <span className="absolute bottom-0 right-0 w-0 h-0 transition-all duration-200 border-b-2 border-gray-600 group-hover:w-full ease"></span>
               <span className="absolute top-0 left-0 w-full h-0 transition-all duration-300 delay-200 bg-gray-600 group-hover:h-full ease"></span>
@@ -111,7 +111,7 @@ const NavBar: React.FC = () => {
 
 
       {isMobile &&
-        <nav className="relative w-full flex justify-between p-3 items-center bg-[#FAF5E6] px-6 border-b border-solid">
+        <nav className="relative w-full flex justify-between p-3 items-center bg-mainbg px-6 border-b border-solid">
           <div className="flex justify-left items-center font-imfell font-bold text-olivebrown text-2xl">ASK ABE</div>
           <HiMenuAlt3 onClick={handleNav} className={`z-20 cursor-pointer ${nav ? 'text-white' : 'text-current'}`} size={25} 
           
