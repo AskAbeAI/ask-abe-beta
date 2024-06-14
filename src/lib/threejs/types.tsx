@@ -1,5 +1,6 @@
 
 import { NodeObject as BaseNodeObject } from 'react-force-graph-3d';
+import { NodeText } from '../types';
 
 
 export interface NodeProps {
@@ -22,6 +23,7 @@ export interface NodeProps {
 	// siblings?: string[];
 
 }
+
 export interface PerformanceNodeProps {
 	parent?: string,
 	node_name?: string,
@@ -29,8 +31,18 @@ export interface PerformanceNodeProps {
 	level_classifier?: string,
 	value?: number
 }
+export interface TextNodeProps {
+	parent?: string,
+	node_name?: string,
+	status?: string,
+	node_text: NodeText,
+	level_classifier?: string,
+	value?: number
+}
 export type Node = BaseNodeObject<NodeProps>;
 export type PerformanceNode = BaseNodeObject<PerformanceNodeProps>;
+
+export type TextNode = BaseNodeObject<TextNodeProps>;
 
 export interface Link {
 	source: string;

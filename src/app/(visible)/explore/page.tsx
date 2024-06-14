@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Node, Link, getColor, getRadius, PerformanceNode, getOpacity, dagIgnore } from '@/lib/threejs/types';
 
-import { fetchNodes, fetchPerformanceNodes, fetchCachedNodes } from '@/lib/utils/dynamicGraph';
+import { fetchNodes, fetchPerformanceNodes, fetchCachedNodes, createNodesFromPath } from '@/lib/utils/dynamicGraph';
 import dynamic from 'next/dynamic';
 import NodeHUD from '@/components/threejs/hud';
 import NodeTextHUD, { NodeText } from '@/components/threejs/textHud';
@@ -20,6 +20,7 @@ const NoSSRForceGraph3D = dynamic(() => import('@/components/threejs/forceGraph'
 
 const GraphPage: React.FC = () => {
 	const [performanceNodeData, setPerformanceNodeData] = useState<PerformanceNode[]>([]);
+	// Make this a Dictionary/set lmao
 	const [linkData, setLinkData] = useState<Link[]>([]);
 	const [selectedNode, setSelectedNode] = useState<Node | null>(null);
 	const hasFetched = useRef(false);
@@ -28,9 +29,13 @@ const GraphPage: React.FC = () => {
 		if (!hasFetched.current) {
 			hasFetched.current = true;
 			const root = "us/federal/ecfr";
-			//const offsetNode = "us/federal/ecfr/title=40"
+			//const offsetNode = "us/federal/ecfr/title=14"
 			//fetchCachedNodes(setPerformanceNodeData, setLinkData)
-
+			//const nodes = createNodesFromPath("us/federal/ecfr/title=38/chapter=I/part=19/subpart=B/section=19.35")
+			// setPerformanceNodeData(nodes.nodes)
+			// setLinkData(nodes.links)
+			// setSelectedNode(nodes.nodes[0])
+			// console.log(JSON.stringify(nodes, null, 3))
 			fetchPerformanceNodes(root, 2, performanceNodeData, setPerformanceNodeData, setLinkData);
 			//fetchPerformanceNodes(offsetNode, 4, performanceNodeData, setPerformanceNodeData, setLinkData);
 
