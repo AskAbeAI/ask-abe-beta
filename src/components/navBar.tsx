@@ -1,187 +1,146 @@
 "use client";
-import React, { useState } from "react";
-import Link from "next/link";
-import { useMediaQuery } from "react-responsive";
-import { HiMenuAlt3 } from "react-icons/hi";
-import Image from "next/image";
+import React from "react";
+import { Button } from "@/components/ui/button"
+import Link from "next/link"; // Import the Link component from the appropriate library
+import Image from "next/image"; // Import the Image component from the appropriate library
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuIndicator,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuViewport,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigationMenu";
+import { cn } from "@/lib/utils/cn";
 
-const NavBar: React.FC = () => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-  const showDropdown = () => setIsDropdownOpen(true);
-  const hideDropdown = () => setIsDropdownOpen(false);
-
-  const isDesktopOrLaptop = useMediaQuery({ minWidth: 1224 });
-  const isMobile = useMediaQuery({ maxWidth: 1224 });
-  const [nav, setNav] = useState(false);
-  const handleNav = () => {
-    setNav(!nav);
-    if (!nav) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "scroll";
-    }
+const NavBar = () => {
+	return (
+	  <header className={`fixed top-0 left-0 w-full flex items-center justify-between px-8 py-2 text-base bg-white border-b border-solid z-50`}>
+		<Link href="/">
+		  <Image
+			src={"/logo/blacklogo.png"}
+			alt="Logo"
+			width={50}
+			height={50}
+		  />
+		</Link>
+		<NavigationMenu className="flex-1">
+		  <NavigationMenuList className="flex justify-center pl-16 align-bottom">
+		  <NavigationMenuItem>
+			  <Link href="/demo" legacyBehavior passHref>
+				<NavigationMenuLink className={navigationMenuTriggerStyle()}>
+				  Demo
+				</NavigationMenuLink>
+			  </Link>
+			</NavigationMenuItem>
+			<NavigationMenuItem>
+			  <Link href="/explore" legacyBehavior passHref>
+				<NavigationMenuLink className={navigationMenuTriggerStyle()}>
+				  Explore 3D Legislation
+				</NavigationMenuLink>
+			  </Link>
+			</NavigationMenuItem>
+			<NavigationMenuItem>
+			  <NavigationMenuTrigger>Features</NavigationMenuTrigger>
+			  <NavigationMenuContent>
+				<ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+				  <li className="row-span-3">
+					<NavigationMenuLink asChild>
+					  <a
+						className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+						href="/chatbotFeatures"
+					  >
+						<div className="mb-2 mt-4 text-lg font-medium">
+						  Concierge Chat Features
+						</div>
+					  </a>
+					</NavigationMenuLink>
+				  </li>
+				  <ListItem href="/dashboardFeatures#intro" title="Concierge Knows"></ListItem>
+				  <ListItem href="/dashboardFeatures#analytics" title="Legal Library">
+					Powered by Ask Abe
+				  </ListItem>
+				  <ListItem href="/dashboardFeatures#appearance" title="Integrate">
+					Seamlessly integrates with your existing website.
+				  </ListItem>
+				</ul>
+			  </NavigationMenuContent>
+			</NavigationMenuItem>
+			<NavigationMenuItem>
+			  <NavigationMenuTrigger>Dashboard Features</NavigationMenuTrigger>
+			  <NavigationMenuContent>
+				<ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+				  <li className="row-span-3">
+					<NavigationMenuLink asChild>
+					  <a
+						className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+						href="/dashboardFeatures"
+					  >
+						<div className="mb-2 mt-4 text-lg font-medium">
+						  Admin Dashboard
+						</div>
+					  </a>
+					</NavigationMenuLink>
+				  </li>
+				  <ListItem href="/dashboardFeatures#intro" title="Introduction">
+					Control your knowledge hub.
+				  </ListItem>
+				  <ListItem href="/dashboardFeatures#analytics" title="Analytics">
+					Get in-depth analytics on everything you need.
+				  </ListItem>
+				  <ListItem href="/dashboardFeatures#appearance" title="Customize Appearance">
+					Customize the appearance of your concierge instance.
+				  </ListItem>
+				</ul>
+			  </NavigationMenuContent>
+			</NavigationMenuItem>
+			
+			
+			<NavigationMenuItem>
+			  <Link href="/documentation" legacyBehavior passHref>
+				<NavigationMenuLink className={navigationMenuTriggerStyle()}>
+				  Documentation
+				</NavigationMenuLink>
+			  </Link>
+			</NavigationMenuItem>
+		  </NavigationMenuList>
+		</NavigationMenu>
+		<div className="whitespace-nowrap">
+		  <Button>Login</Button>
+		</div>
+	  </header>
+	);
   };
-  const handleNav2 = () => {
-    setNav(false);
-  };
-
-  return (
-    <div>
   
-      {isDesktopOrLaptop && (
-        <nav className="fixed top-0 left-0 right-0 justify-center items-center bg-mainbg flex flex-col px-10 border-b border-solid z-50">
-          <div className="justify-between items-stretch flex w-full max-w-full gap-5 my-3 max-md:max-w-full max-md:flex-wrap max-md:justify-center">
-            <Link href="/">
-              <div className="flex justify-left items-center font-header font-bold text-olivebrown text-2xl">
-                ASK ABE
-              </div>
-            </Link>
-            <ul className="items-stretch self-center flex justify-center gap-6 my-auto">
-              <li className="justify-center items-stretch font-body flex gap-1">
-                <Link href="/playground" aria-label="Link Four">
-                  <div className="text-olivebrown text-base leading-6">
-                    Abe&apos;s Law Library
-                  </div>
-                </Link>
-              </li>
-              <li className="text-olivebrown text-base font-body leading-6">
-                <Link href="/how" aria-label="Link One">
-                  How To Use
-                </Link>
-              </li>
-              <li className="text-olivebrown text-base font-body leading-6">
-                <Link href="/mission" aria-label="Link Two">
-                  Our Mission
-                </Link>
-              </li>
-           
-              {/* <li className="relative text-olivebrown text-base font-body leading-6"
-                onMouseEnter={showDropdown}
-
-              >
-                <button
-                  id="mega-menu-full-dropdown-button"
-                  data-collapse-toggle="mega-menu-full-dropdown"
-                  className="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded md:w-auto hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
-                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                >
-                  Company
-                 
-                </button>
-
-                {isDropdownOpen && (
-                  <div className="absolute top-full px-5 py-5 mt-2 w-56 bg-extralightbg shadow-lg rounded-lg z-10"
-
-                    onMouseLeave={hideDropdown}>
-                    <ul>
-                      <li className="pt-1"><Link href="/about">About Us</Link></li>
-            
-                      <li className="pt-1"><Link href="/privacy">Privacy Policy</Link></li>
-                      <li className="pt-1"><Link href="/tos">Terms of Service</Link></li>
-     
-              
-                    </ul>
-                  </div>
-                )}
-              </li> */}
-            </ul>
-            {/* <Link href="/sign-in" className="relative px-5 py-3 overflow-hidden font-medium text-gray-600 bg-mainbg border border-gray-100 rounded-lg shadow-inner group">
-              <span className="absolute top-0 left-0 w-0 h-0 transition-all duration-200 border-t-2 border-gray-600 group-hover:w-full ease"></span>
-              <span className="absolute bottom-0 right-0 w-0 h-0 transition-all duration-200 border-b-2 border-gray-600 group-hover:w-full ease"></span>
-              <span className="absolute top-0 left-0 w-full h-0 transition-all duration-300 delay-200 bg-gray-600 group-hover:h-full ease"></span>
-              <span className="absolute bottom-0 left-0 w-full h-0 transition-all duration-300 delay-200 bg-gray-600 group-hover:h-full ease"></span>
-              <span className="absolute inset-0 w-full h-full duration-300 delay-300 bg-gray-900 opacity-0 group-hover:opacity-100"></span>
-              <span className="relative transition-colors font-monserrat duration-300 delay-200 group-hover:text-white ease">Sign In</span>
-            </Link> */}
-
-            {/* <button
-          className="text-white text-base leading-6 whitespace-nowrap justify-center items-stretch border bg-zinc-500 rounded-full px-5 py-2 border-solid border-black"
-          type="button"
-        >
-          Sign In
-        </button> */}
-          </div>
-        </nav>
-      )}
-
-      {isMobile && (
-        <nav className="relative w-full flex justify-between p-3 items-center bg-mainbg px-6 border-b border-solid">
-          <div className="flex justify-left items-center font-header font-bold text-olivebrown text-2xl">
-            ASK ABE
-          </div>
-          <HiMenuAlt3
-            onClick={handleNav}
-            className={`z-20 cursor-pointer ${
-              nav ? "text-white" : "text-current"
-            }`}
-            size={25}
-          />
-          <div
-            className={
-              nav
-                ? "ease-in duration-300 fixed text-gray-300 left-0 top-0 w-full h-screen bg-black/90 px-2 py-2 flex-col z-10"
-                : "absolute top-0 h-screen left-[-100%] ease-in duration-500 z-10"
-            }
-          >
-            <ul className="flex flex-col w-full h-full items-center justify-center">
-              <li
-                className="font-bold text-2xl pb-6 pr-6 pl-6"
-                onClick={handleNav2}
-              >
-                <Link href="/" aria-label="Link One">
-                  Home
-                </Link>
-              </li>
-              <li
-                className="justify-between items-stretch font-body flex gap-1"
-                onClick={handleNav2}
-              >
-                <Link href="/playground" aria-label="Link Four">
-                  <div className="font-bold text-2xl p-6">
-                    Abe&apos;s Law Library
-                  </div>
-                </Link>
-              </li>
-              <li className="font-bold text-2xl p-6" onClick={handleNav2}>
-                <Link href="/how" aria-label="Link One">
-                  How To Use
-                </Link>
-              </li>
-              <li className="font-bold text-2xl p-6" onClick={handleNav2}>
-                <Link href="/mission" aria-label="Link Two">
-                  Our Mission
-                </Link>
-              </li>
-              {/* <li className="relative text-base font-body leading-6">
-                <button
-                  id="mega-menu-full-dropdown-button"
-                  data-collapse-toggle="mega-menu-full-dropdown"
-                  className="font-bold text-2xl p-6"
-                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                >
-                  Company
-               
-                </button>
-
-                {isDropdownOpen && (
-                  <div className="absolute flex justify-center font-body pb-6 pr-6 pl-6 leading-6 z-10">
-                    <ul>
-                    
-                      <li className="pt-1" onClick={handleNav2}><Link href="/about">About Us</Link></li>
-                      <li className="pt-1" onClick={handleNav2}><Link href="/privacy">Privacy Policy</Link></li>
-                      <li className="pt-1" onClick={handleNav2}><Link href="/tos">Terms of Service</Link></li>
+  export default NavBar;
   
-                    </ul>
-                  </div>
-                )}
-              </li> */}
-            </ul>
-          </div>
-        </nav>
-      )}
-    </div>
+  const ListItem = React.forwardRef<React.ElementRef<"a">, React.ComponentPropsWithoutRef<"a">>(
+	({ className, title, children, ...props }, ref) => {
+	  return (
+		<li>
+		  <NavigationMenuLink asChild>
+			<a
+			  ref={ref}
+			  className={cn(
+				"block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-primary hover:text-accent-foreground focus:bg-primary focus:text-accent-foreground",
+				className
+			  )}
+			  {...props}
+			>
+			  <div className="text-sm font-medium leading-none">{title}</div>
+			  <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+				{children}
+			  </p>
+			</a>
+		  </NavigationMenuLink>
+		</li>
+	  );
+	}
   );
-};
+  ListItem.displayName = "ListItem";
+  
 
-export default NavBar;
+
