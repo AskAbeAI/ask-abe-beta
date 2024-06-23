@@ -1,6 +1,6 @@
 {
-  "name": "web",
-  "version": "0.1.0",
+  "name": "ask-abe",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -10,9 +10,6 @@
     "testSuite": "bun ./src/lib/testingSuite.ts"
   },
   "dependencies": {
-    "@clerk/backend": "^0.34.1",
-    "@clerk/nextjs": "^4.25.7",
-    "@clerk/themes": "^1.7.9",
     "@emotion/react": "^11.11.4",
     "@emotion/style": "^0.8.0",
     "@heroicons/react": "^2.1.3",

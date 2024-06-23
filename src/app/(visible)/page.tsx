@@ -64,11 +64,17 @@ export default function HomePage() {
 					<div className="flex flex-col container items-stretch w-8/12">
 						<div className="flex flex-col my-auto max-md:max-w-full max-md:mt-10">
 							<div className="items-stretch self-stretch flex flex-col mt-4 max-md:max-w-full">
-								<h2 className="text-foreground text-4xl font-body leading- max-md:max-w-full max-md:text-3xl">
-									Explore Legislation
+								<h2 className="text-foreground text-4xl font-body max-md:max-w-full max-md:text-3xl">
+									Explore Legislation in 3D
 								</h2>
 								<p className="text-foreground text-lg pt-1 font-body leading-7 mt-6 max-md:max-w-full">
 									Discover the structure and connections within legal frameworks through our interactive 3D Force Graph Simulation.
+								</p>
+								<h3 className="text-foreground text-2xl font-body  mt-6 max-md:max-w-full max-md:text-3xl">
+									Coming Soon...
+								</h3>
+								<p className="text-foreground text-lg pt-1 font-body leading-7 mt-2 max-md:max-w-full">
+									Have a conversation with Abe and visualize the knowledge base of legislation used in his response, in real time.
 								</p>
 							</div>
 							<div className="items-fit flex max-w-full justify-between mt-10">
