@@ -45,10 +45,7 @@ import {
 	DirectAnsweringResponse,
 } from "@/lib/api_types";
 
-export default function Playground() {
-	const isDesktopOrLaptop = useMediaQuery({ minWidth: 1224 });
-	const isMobile = useMediaQuery({ maxWidth: 1224 });
-
+export default function Chat() {
 	const [isFormVisible, setIsFormVisible] = useState(true);
 	const [citationsOpen, setCitationsOpen] = useState(false);
 	const [streamingQueue, setStreamingQueue] = useState<ContentBlock[]>([]);
@@ -81,27 +78,15 @@ export default function Playground() {
 	]);
 	const [citationBlocks, setCitationBlocks] = useState<ContentBlock[]>([]);
 	const [question, setQuestion] = useState("");
-	const [clarificationQueue, setClarificationQueue] = useState<
-		ContentBlockParams[]
-	>([]);
+	
 	const [specificQuestions, setSpecificQuestions] = useState<string[]>([]);
-	const [clarificationResponses, setClarificationResponses] = useState<
-		Clarification[]
-	>([]);
+	const [clarificationResponses, setClarificationResponses] = useState<Clarification[]>([]);
 	const [alreadyAnswered, setAlreadyAnswered] = useState([""]);
 	const [sessionId, setSessionId] = useState<string>("");
-	const [pipelineModel, setPipelineModel] = useState<PipelineModel>();
-	const [selectedFederalJurisdiction, setSelectedFederalJurisdiction] =
-		useState<Jurisdiction | undefined>(undefined);
-	const [selectedStateJurisdiction, setSelectedStateJurisdiction] = useState<
-		Jurisdiction | undefined
-	>(undefined);
-	const [selectedMiscJurisdiction, setSelectedMiscJurisdiction] = useState<
-		Jurisdiction | undefined
-	>(undefined);
-	const [questionJurisdictions, setQuestionJurisdictions] =
-		useState<questionJurisdictions>();
-	const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
+	const [selectedFederalJurisdiction, setSelectedFederalJurisdiction] = useState<Jurisdiction | undefined>(undefined);
+	const [selectedStateJurisdiction, setSelectedStateJurisdiction] = useState<Jurisdiction | undefined>(undefined);
+	const [selectedMiscJurisdiction, setSelectedMiscJurisdiction] = useState<Jurisdiction | undefined>(undefined);
+	const [questionJurisdictions, setQuestionJurisdictions] = useState<questionJurisdictions>();
 	const [askClarifications, setAskClarifications] = useState(false);
 	const [showJurisdictionModal, setShowJurisdictionModal] = useState(false);
 
@@ -627,19 +612,11 @@ export default function Playground() {
 	};
 
 	return (
-		<div className="flex flex-col h-screen w-full px-3 py-3 bg-mainbg">
-			<JurisdictionModal shown={showJurisdictionModal} setShown={setShown} />
+		<div>
+			
 			<DisclaimerModal />
 			<div className="flex flex-row h-full">
-				<div className="flex-shrink-0 pr-2" style={{ width: citationsOpen ? "100%" : "14%" }}>
-					<CitationBar
-						open={citationsOpen}
-						setOpen={setCitationsOpen}
-						citationItems={citationBlocks}
-						activeCitationId={activeCitationId}
-					/>
-				</div>
-				<div className="flex-grow flex flex-col" style={{ width: citationsOpen ? "hidden" : "86%" }}>
+				<div className="flex-grow flex flex-col">
 					<div className="flex-grow overflow-y-auto" style={{ minHeight: "90vh", maxHeight: "90vh" }}>
 						<ContentQueue
 							items={contentBlocks}

@@ -1,6 +1,16 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { useMediaQuery } from "react-responsive";
+// /app/explore/page.tsx
+import React, { useEffect, useState, useRef } from 'react';
+import { Node, Link, getColor, getRadius, PerformanceNode, getOpacity, dagIgnore } from '@/lib/threejs/types';
+
+import { fetchNodes, fetchPerformanceNodes, fetchCachedNodes, createNodesFromPath } from '@/lib/utils/dynamicGraph';
+import dynamic from 'next/dynamic';
+import NodeHUD from '@/components/threejs/hud';
+import NodeTextHUD, { NodeText } from '@/components/threejs/textHud';
+import NodeCountComponent from '@/components/threejs/nodeCounter';
+import SpriteText from 'three-spritetext';
+
+import { Button } from '@/components/ui/button';
 import BottomBar from "@/components/bottomBar";
 import ContentQueue from "@/components/contentQueue";
 import {
@@ -44,10 +54,53 @@ import {
 	DirectAnsweringRequest,
 	DirectAnsweringResponse,
 } from "@/lib/api_types";
+const NoSSRForceGraph3D = dynamic(() => import('@/components/threejs/forceGraph'), {
+	ssr: false,
+});
+// https://github.com/d3/d3-force
+// https://github.com/vasturiano/3d-force-graph/tree/master
 
-export default function Playground() {
-	const isDesktopOrLaptop = useMediaQuery({ minWidth: 1224 });
-	const isMobile = useMediaQuery({ maxWidth: 1224 });
+
+
+
+const GraphPage: React.FC = () => {
+	const [performanceNodeData, setPerformanceNodeData] = useState<PerformanceNode[]>([]);
+	// Make this a Dictionary/set lmao
+	const [linkData, setLinkData] = useState<Link[]>([]);
+	const [selectedNode, setSelectedNode] = useState<Node | null>(null);
+	const hasFetched = useRef(false);
+
+	useEffect(() => {
+		if (!hasFetched.current) {
+			hasFetched.current = true;
+			const root = "us/federal/ecfr";
+			//const offsetNode = "us/federal/ecfr/title=14"
+			//fetchCachedNodes(setPerformanceNodeData, setLinkData)
+			//const nodes = createNodesFromPath("us/federal/ecfr/title=38/chapter=I/part=19/subpart=B/section=19.35")
+			// setPerformanceNodeData(nodes.nodes)
+			// setLinkData(nodes.links)
+			// setSelectedNode(nodes.nodes[0])
+			// console.log(JSON.stringify(nodes, null, 3))
+			fetchPerformanceNodes(root, 2, performanceNodeData, setPerformanceNodeData, setLinkData);
+			//fetchPerformanceNodes(offsetNode, 4, performanceNodeData, setPerformanceNodeData, setLinkData);
+
+		}
+
+	}, []);
+
+	const handleNodeClick = async (node: PerformanceNode, event: MouseEvent) => {
+		if (node.status) { return; }
+		setSelectedNode(node);
+		// if (performanceNodeData.some(existingNode => existingNode.parent === node.id)) {
+		// 	console.log(`Skipping processing click on ${node}`)
+		// 	return;
+		// }
+		await fetchPerformanceNodes(node.id as string, 2, performanceNodeData, setPerformanceNodeData, setLinkData);
+
+
+	};
+
+
 
 	const [isFormVisible, setIsFormVisible] = useState(true);
 	const [citationsOpen, setCitationsOpen] = useState(false);
@@ -81,27 +134,17 @@ export default function Playground() {
 	]);
 	const [citationBlocks, setCitationBlocks] = useState<ContentBlock[]>([]);
 	const [question, setQuestion] = useState("");
-	const [clarificationQueue, setClarificationQueue] = useState<
-		ContentBlockParams[]
-	>([]);
+	const [isChatOpen, setIsChatOpen] = useState(true);
+	const [isHUDOpen, setIsHUDOpen] = useState(false);
+
 	const [specificQuestions, setSpecificQuestions] = useState<string[]>([]);
-	const [clarificationResponses, setClarificationResponses] = useState<
-		Clarification[]
-	>([]);
+	const [clarificationResponses, setClarificationResponses] = useState<Clarification[]>([]);
 	const [alreadyAnswered, setAlreadyAnswered] = useState([""]);
 	const [sessionId, setSessionId] = useState<string>("");
-	const [pipelineModel, setPipelineModel] = useState<PipelineModel>();
-	const [selectedFederalJurisdiction, setSelectedFederalJurisdiction] =
-		useState<Jurisdiction | undefined>(undefined);
-	const [selectedStateJurisdiction, setSelectedStateJurisdiction] = useState<
-		Jurisdiction | undefined
-	>(undefined);
-	const [selectedMiscJurisdiction, setSelectedMiscJurisdiction] = useState<
-		Jurisdiction | undefined
-	>(undefined);
-	const [questionJurisdictions, setQuestionJurisdictions] =
-		useState<questionJurisdictions>();
-	const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
+	const [selectedFederalJurisdiction, setSelectedFederalJurisdiction] = useState<Jurisdiction | undefined>(undefined);
+	const [selectedStateJurisdiction, setSelectedStateJurisdiction] = useState<Jurisdiction | undefined>(undefined);
+	const [selectedMiscJurisdiction, setSelectedMiscJurisdiction] = useState<Jurisdiction | undefined>(undefined);
+	const [questionJurisdictions, setQuestionJurisdictions] = useState<questionJurisdictions>();
 	const [askClarifications, setAskClarifications] = useState(false);
 	const [showJurisdictionModal, setShowJurisdictionModal] = useState(false);
 
@@ -626,58 +669,90 @@ export default function Playground() {
 		return;
 	};
 
+
 	return (
-		<div className="flex flex-col h-screen w-full px-3 py-3 bg-mainbg">
-			<JurisdictionModal shown={showJurisdictionModal} setShown={setShown} />
-			<DisclaimerModal />
-			<div className="flex flex-row h-full">
-				<div className="flex-shrink-0 pr-2" style={{ width: citationsOpen ? "100%" : "14%" }}>
-					<CitationBar
-						open={citationsOpen}
-						setOpen={setCitationsOpen}
-						citationItems={citationBlocks}
-						activeCitationId={activeCitationId}
+		<div className="h-full w-full">
+			{/* This is the full page force graph. All following components must be styled with respect to this full page. https://github.com/vasturiano/react-force-graph */}
+			<NoSSRForceGraph3D
+				graphData={{ nodes: performanceNodeData, links: linkData }}
+				nodeRelSize={4}
+				nodeLabel="node_name"
+				nodeOpacity={0.8}
+				nodeColor={getColor}
+				onNodeClick={handleNodeClick}
+				nodeResolution={10}
+				linkColor="color"
+				linkDirectionalParticles={2}
+				linkDirectionalParticleSpeed={0.001}
+				linkWidth="width"
+				linkDirectionalParticleColor={getColor}
+				showNavInfo={true}
+				controlType='orbit'
+			/>
+			{/* Chat Window Button */}
+
+
+			{/* Chat Window */}
+			<div className={`fixed right-0 top-0 h-full shadow-lg z-20 transform transition-transform duration-300 ease-in-out ${isChatOpen ? 'w-1/4' : 'w-0'}`}>
+				{isChatOpen && (
+					<ContentQueue
+						items={contentBlocks}
+						onSubmitClarificationAnswers={dummyFunction}
+						onSubmitClarificationVitaliaAnswers={dummyFunction}
+						onClarificationStreamEnd={dummyFunction}
+						onStreamEnd={onStreamEnd}
+						showCurrentLoading={showCurrentLoading}
+						onFinishAnswerVitalia={dummyFunction}
+						setActiveCitationId={setActiveCitationId}
 					/>
-				</div>
-				<div className="flex-grow flex flex-col" style={{ width: citationsOpen ? "hidden" : "86%" }}>
-					<div className="flex-grow overflow-y-auto" style={{ minHeight: "90vh", maxHeight: "90vh" }}>
-						<ContentQueue
-							items={contentBlocks}
-							onSubmitClarificationAnswers={dummyFunction}
-							onSubmitClarificationVitaliaAnswers={dummyFunction}
-							onClarificationStreamEnd={dummyFunction}
-							onStreamEnd={onStreamEnd}
-							showCurrentLoading={showCurrentLoading}
-							onFinishAnswerVitalia={dummyFunction}
-							setActiveCitationId={setActiveCitationId}
-						/>
-					</div>
-					<div className="bottom-0">
-						{isFormVisible && (
-							<BottomBar
-								inputMode={inputMode}
-								handleSubmit={handleNewQuestion}
-								handleSubmitFollowup={handleNewFollowupQuestion}
-							/>
-						)}
-					</div>
-				</div>
-				<div className="flex flex-col pl-2" style={{ width: "16%" }}>
-					<OptionsList
-						options={[]} // Add the options property here with the appropriate value
-						stateJurisdictions={StateJurisdictionOptions}
-						federalJurisdictions={FederalJurisdictionOptions}
-						miscJurisdictions={MiscJurisdictionOptions}
-						onOptionChange={handleOptionChange}
-						onStateJurisdictionChange={setSelectedStateJurisdiction}
-						onFederalJurisdictionChange={setSelectedFederalJurisdiction}
-						onMiscJurisdictionChange={setSelectedMiscJurisdiction}
-					/>
+				)}
+				<div className="fixed right-0 top-0 mb-4 mr-4 z-10 flex items-center justify-center">
+					<Button
+						className="bg-accent text-accent-foreground p-4 rounded-l-lg shadow-md focus:outline-none z-40"
+						onClick={() => setIsChatOpen(!isChatOpen)}
+					>
+						{isChatOpen ? 'Close Chat' : 'Open Chat'}
+					</Button>
 				</div>
 			</div>
+
+			{/* Node HUD Button */}
+			<div className="fixed left-0 top-0 h-full z-10 flex items-center justify-center">
+				<Button
+					className="bg-accent text-accent-foreground p-4 rounded-r-lg shadow-md focus:outline-none z-40"
+					onClick={() => setIsHUDOpen(!isHUDOpen)}
+				>
+					{isHUDOpen ? 'Close HUD' : 'Open HUD'}
+				</Button>
+			</div>
+
+			{/* Node HUD */}
+			<div className={`fixed left-0 top-0 h-full bg-background shadow-lg z-20 transform transition-transform duration-300 ease-in-out ${isHUDOpen ? 'w-1/4' : 'w-0'}`}>
+				{isHUDOpen && (
+					<NodeHUD
+						node={selectedNode}
+					/>
+				)}
+			</div>
+
+			{/* This is the 'text input' bar for a user to ask a question. This needs to be fixed to the bottom. */}
+			{isFormVisible && (
+				<div className="fixed bottom-0 left-0 w-full p-4 shadow-inner z-20">
+					<BottomBar
+						inputMode={inputMode}
+						handleSubmit={handleNewQuestion}
+						handleSubmitFollowup={handleNewFollowupQuestion}
+					/>
+				</div>
+			)}
+
+			{/* This is a small label which labels the number of nodes. Needs to be styled */}
+			<div className="fixed bottom-0 left-0 m-4 bg-background p-2 shadow-md z-30">
+				<NodeCountComponent nodes={performanceNodeData} />
+			</div>
 		</div>
-
-
-
 	);
-}
+
+};
+
+export default GraphPage;

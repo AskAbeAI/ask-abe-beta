@@ -16,43 +16,43 @@ import {
 } from "@/components/ui/navigationMenu";
 import { cn } from "@/lib/utils/cn";
 
-const components: { title: string; href: string; description: string }[] = [
+const components: { title: string; href: string; description: string; }[] = [
 	{
-	  title: "About Us",
-	  href: "/about",
-	  description:
-		"An overview of our team and why we're passionate about this project.",
+		title: "About Us",
+		href: "/about",
+		description:
+			"An overview of our team and why we're passionate about this project.",
 	},
 	{
-	  title: "Privacy Policy",
-	  href: "/privacy",
-	  description:
-		"See our privacy terms for using Ask Abe.",
+		title: "Privacy Policy",
+		href: "/privacy",
+		description:
+			"See our privacy terms for using Ask Abe.",
 	},
 	{
-	  title: "Terms of Service",
-	  href: "/tos",
-	  description:
-		"Our full terms of service.",
+		title: "Terms of Service",
+		href: "/tos",
+		description:
+			"Our full terms of service.",
 	},
 	{
-	  title: "Support Us",
-	  href: "/support",
-	  description: "Join us in our mission to democratice legal knowoledge for all!",
+		title: "Support Us",
+		href: "/support",
+		description: "Join us in our mission to democratice legal knowoledge for all!",
 	},
 	{
-	  title: "Devlog",
-	  href: "/devlog",
-	  description:
-		"A log of changes by our developers.",
+		title: "Devlog",
+		href: "/devlog",
+		description:
+			"A log of changes by our developers.",
 	},
 	{
-	  title: "Legal",
-	  href: "/legal",
-	  description:
-		"Legal information about Ask Abe.",
+		title: "Legal",
+		href: "/legal",
+		description:
+			"Legal information about Ask Abe.",
 	},
-  ]
+];
 
 const NavBar = () => {
 	return (
