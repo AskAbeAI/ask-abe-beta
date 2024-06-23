@@ -76,7 +76,8 @@ export const fetchPerformanceNodes = async (
 	depth: number,
 	performanceNodes: PerformanceNode[],
 	setPerformanceNodeData: React.Dispatch<React.SetStateAction<PerformanceNode[]>>,
-	setLinkData: React.Dispatch<React.SetStateAction<Link[]>>
+	setLinkData: React.Dispatch<React.SetStateAction<Link[]>>,
+	setSelectedNode: React.Dispatch<React.SetStateAction<PerformanceNode>>
 ): Promise<void> => {
 	if (depth === 0) return;
 
@@ -109,6 +110,9 @@ export const fetchPerformanceNodes = async (
 		}
 		//node.value = getRadius(node)
 		newNodes.push(node);
+		if(node.id == parentId) {
+			setSelectedNode(node)
+		}
 		if (node.parent == "us/federal") {
 			continue;
 		}

@@ -74,14 +74,8 @@ const GraphPage: React.FC = () => {
 		if (!hasFetched.current) {
 			hasFetched.current = true;
 			const root = "us/federal/ecfr";
-			//const offsetNode = "us/federal/ecfr/title=14"
-			//fetchCachedNodes(setPerformanceNodeData, setLinkData)
-			//const nodes = createNodesFromPath("us/federal/ecfr/title=38/chapter=I/part=19/subpart=B/section=19.35")
-			// setPerformanceNodeData(nodes.nodes)
-			// setLinkData(nodes.links)
-			// setSelectedNode(nodes.nodes[0])
-			// console.log(JSON.stringify(nodes, null, 3))
-			fetchPerformanceNodes(root, 2, performanceNodeData, setPerformanceNodeData, setLinkData);
+			fetchPerformanceNodes(root, 2, performanceNodeData, setPerformanceNodeData, setLinkData, setSelectedNode);
+			
 			//fetchPerformanceNodes(offsetNode, 4, performanceNodeData, setPerformanceNodeData, setLinkData);
 
 		}
@@ -95,7 +89,7 @@ const GraphPage: React.FC = () => {
 		// 	console.log(`Skipping processing click on ${node}`)
 		// 	return;
 		// }
-		await fetchPerformanceNodes(node.id as string, 2, performanceNodeData, setPerformanceNodeData, setLinkData);
+		await fetchPerformanceNodes(node.id as string, 2, performanceNodeData, setPerformanceNodeData, setLinkData, setSelectedNode);
 
 
 	};
@@ -135,7 +129,7 @@ const GraphPage: React.FC = () => {
 	const [citationBlocks, setCitationBlocks] = useState<ContentBlock[]>([]);
 	const [question, setQuestion] = useState("");
 	const [isChatOpen, setIsChatOpen] = useState(true);
-	const [isHUDOpen, setIsHUDOpen] = useState(false);
+	const [isHUDOpen, setIsHUDOpen] = useState(true);
 
 	const [specificQuestions, setSpecificQuestions] = useState<string[]>([]);
 	const [clarificationResponses, setClarificationResponses] = useState<Clarification[]>([]);
@@ -716,23 +710,23 @@ const GraphPage: React.FC = () => {
 				</div>
 			</div>
 
-			{/* Node HUD Button */}
-			<div className="fixed left-0 top-0 h-full z-10 flex items-center justify-center">
-				<Button
-					className="bg-accent text-accent-foreground p-4 rounded-r-lg shadow-md focus:outline-none z-40"
-					onClick={() => setIsHUDOpen(!isHUDOpen)}
-				>
-					{isHUDOpen ? 'Close HUD' : 'Open HUD'}
-				</Button>
-			</div>
+
 
 			{/* Node HUD */}
-			<div className={`fixed left-0 top-0 h-full bg-background shadow-lg z-20 transform transition-transform duration-300 ease-in-out ${isHUDOpen ? 'w-1/4' : 'w-0'}`}>
-				{isHUDOpen && (
-					<NodeHUD
-						node={selectedNode}
-					/>
+			<div className={`fixed left-0 top-0 h-full shadow-lg z-20 transform transition-transform duration-300 ease-in-out ${isHUDOpen ? 'w-1/5' : 'w-0'}`}>
+				{isHUDOpen && (<NodeHUD
+					node={selectedNode}
+				/>
 				)}
+				{/* Node HUD Button */}
+				<div className="fixed left-0 top-0 h-full z-10 flex items-center justify-center">
+					<Button
+						className="bg-accent text-accent-foreground p-4 rounded-r-lg shadow-md focus:outline-none z-40"
+						onClick={() => setIsHUDOpen(!isHUDOpen)}
+					>
+						{isHUDOpen ? 'Close HUD' : 'Open HUD'}
+					</Button>
+				</div>
 			</div>
 
 			{/* This is the 'text input' bar for a user to ask a question. This needs to be fixed to the bottom. */}
