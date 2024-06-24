@@ -20,24 +20,14 @@ export interface NodeProps {
 	core_metadata?: JSON,
 	processing?: JSON,
 	addendum?: JSON,
-	
-	
 
 }
 
 
-export interface TextNodeProps {
-	parent?: string,
-	node_name?: string,
-	status?: string,
-	node_text: NodeText,
-	level_classifier?: string,
-	value?: number
-}
 
 export type Node = BaseNodeObject<NodeProps>;
 
-export type TextNode = BaseNodeObject<TextNodeProps>;
+
 
 export interface Link {
 	source: string;

@@ -83,6 +83,8 @@ const GraphPage: React.FC = () => {
 	}, []);
 
 	const handleNodeClick = async (node: Node, event: MouseEvent) => {
+		console.log(`Handling Node click!`)
+		console.log(JSON.stringify(node, null, 2))
 		if (node.status) { return; }
 		setSelectedNode(node);
 		// if (NodeData.some(existingNode => existingNode.parent === node.id)) {
@@ -135,7 +137,7 @@ const GraphPage: React.FC = () => {
 	const [clarificationResponses, setClarificationResponses] = useState<Clarification[]>([]);
 	const [alreadyAnswered, setAlreadyAnswered] = useState([""]);
 	const [sessionId, setSessionId] = useState<string>("");
-	const [selectedFederalJurisdiction, setSelectedFederalJurisdiction] = useState<Jurisdiction | undefined>(undefined);
+	const [selectedFederalJurisdiction, setSelectedFederalJurisdiction] = useState<Jurisdiction | undefined>({ id: '1', name: 'US Federal Regulations', abbreviation: 'ecfr', corpusTitle: 'United States Code of Federal Regulations', usesSubContentNodes: false, jurisdictionLevel: 'federal' } as Jurisdiction);
 	const [selectedStateJurisdiction, setSelectedStateJurisdiction] = useState<Jurisdiction | undefined>(undefined);
 	const [selectedMiscJurisdiction, setSelectedMiscJurisdiction] = useState<Jurisdiction | undefined>(undefined);
 	const [questionJurisdictions, setQuestionJurisdictions] = useState<questionJurisdictions>();
@@ -143,16 +145,7 @@ const GraphPage: React.FC = () => {
 	const [showJurisdictionModal, setShowJurisdictionModal] = useState(false);
 
 	useEffect(() => {
-		let mode = "state";
-		if (selectedFederalJurisdiction && selectedStateJurisdiction) {
-			mode = "state_federal";
-		} else if (selectedMiscJurisdiction && selectedFederalJurisdiction) {
-			mode = "misc_federal";
-		} else if (selectedMiscJurisdiction) {
-			mode = "misc";
-		} else if (selectedFederalJurisdiction) {
-			mode = "federal";
-		}
+		let mode="federal"
 
 		setCitationBlocks([]);
 		setSpecificQuestions([]);
@@ -737,7 +730,7 @@ const GraphPage: React.FC = () => {
 
 			{/* This is the 'text input' bar for a user to ask a question. This needs to be fixed to the bottom. */}
 			{isFormVisible && (
-				<div className="fixed bottom-0 left-0 w-full p-4 shadow-inner z-20">
+				<div className="fixed bottom-0 inset-x-0 w-full justify-center items-center shadow-inner z-20">
 					<BottomBar
 						inputMode={inputMode}
 						handleSubmit={handleNewQuestion}

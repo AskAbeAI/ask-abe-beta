@@ -28,10 +28,10 @@ export async function POST(req: Request) {
 	console.log("=== similarContent API ENDPOINT ===");
 	
 
-	const supabaseUrl = process.env.SUPABASE_URL;
+	const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 	const supabaseKey = process.env.SUPABASE_KEY;
 
-	if (supabaseUrl === undefined) { throw new Error("process.env.SUPABUSE_URL is undefined!"); }
+	if (supabaseUrl === undefined) { throw new Error("process.env.NEXT_PUBLIC_SUPABASE_URL is undefined!"); }
 	if (supabaseKey === undefined) { throw new Error("process.env.SUPABASE_KEY is undefined!"); }
 
 	const request: SearchSimilarContentRequest = await req.json();

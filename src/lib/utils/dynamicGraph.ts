@@ -1,6 +1,6 @@
 // /lib/api.ts
 import { createClient } from '@supabase/supabase-js';
-import {  Node, Link, getRadius, getColor, TextNode } from '@/lib/threejs/types'; // Adjust the import as per your file structure
+import {  Node, Link, getRadius, getColor } from '@/lib/threejs/types'; // Adjust the import as per your file structure
 import { NodeText, Paragraph, ReferenceHub, Reference } from '@/lib/types';
 
 // 
@@ -25,8 +25,8 @@ export const fetchNodes = async (
 	let newLinks: Link[] = [];
 	let newNodes: Node[] = [];
 
-	const { data, error } = await supabase.rpc('fetch_tree_nodes', { parent_id: parentId, max_depth: depth });
-	console.log(JSON.stringify(data))
+	const { data, error } = await supabase.rpc('recursive_fetch', { parent_id: parentId, max_depth: depth });
+	//console.log(JSON.stringify(data))
 
 
 	if (error) {

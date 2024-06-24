@@ -39,10 +39,10 @@ export async function POST(req: Request) {
     if (api_key !== 'ak_jTMkA0rfIrMhu0WBkiHzy4YEZiVq82ym' && api_key !==  'ak_EjMsYGPJpLHcb48r4uCfP2ZYyrjwL') {
         return NextResponse.json({ errorMessage: `Invalid API key: ${api_key}`, status: 401 });
     }
-    const supabaseUrl = process.env.SUPABASE_URL;
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 	const supabaseKey = process.env.SUPABASE_KEY;
 
-	if (supabaseUrl === undefined) { throw new Error("process.env.SUPABUSE_URL is undefined!"); }
+	if (supabaseUrl === undefined) { throw new Error("process.env.NEXT_PUBLIC_SUPABASE_URL is undefined!"); }
 	if (supabaseKey === undefined) { throw new Error("process.env.SUPABASE_KEY is undefined!"); }
     
     try {
