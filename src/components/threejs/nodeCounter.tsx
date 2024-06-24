@@ -1,9 +1,9 @@
 import React from 'react';
-import { PerformanceNode } from '@/lib/threejs/types';
+import { Node } from '@/lib/threejs/types';
 
 // Props type definition, if using TypeScript
 interface NodeCountProps {
-    nodes: PerformanceNode[];
+    nodes: Node[];
 }
 
 const NodeCountComponent: React.FC<NodeCountProps> = ({ nodes }) => {

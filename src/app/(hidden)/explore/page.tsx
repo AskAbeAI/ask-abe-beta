@@ -1,12 +1,12 @@
 "use client";
 // /app/explore/page.tsx
 import React, { useEffect, useState, useRef } from 'react';
-import { Node, Link, getColor, getRadius, PerformanceNode, getOpacity, dagIgnore } from '@/lib/threejs/types';
+import { Node, Link, getColor, getRadius, getOpacity, dagIgnore } from '@/lib/threejs/types';
 
-import { fetchNodes, fetchPerformanceNodes, fetchCachedNodes, createNodesFromPath } from '@/lib/utils/dynamicGraph';
+import { fetchNodes, createNodesFromPath } from '@/lib/utils/dynamicGraph';
 import dynamic from 'next/dynamic';
 import ExploreHUD from '@/components/threejs/exploreHud';
-import NodeTextHUD, { NodeText } from '@/components/threejs/textHud';
+import NodeTextHUD from '@/components/threejs/textHud';
 import NodeCountComponent from '@/components/threejs/nodeCounter';
 import SpriteText from 'three-spritetext';
 
@@ -64,7 +64,7 @@ const NoSSRForceGraph3D = dynamic(() => import('@/components/threejs/forceGraph'
 
 
 const GraphPage: React.FC = () => {
-	const [performanceNodeData, setPerformanceNodeData] = useState<PerformanceNode[]>([]);
+	const [NodeData, setNodeData] = useState<Node[]>([]);
 	// Make this a Dictionary/set lmao
 	const [linkData, setLinkData] = useState<Link[]>([]);
 	const [selectedNode, setSelectedNode] = useState<Node | null>(null);
@@ -74,22 +74,22 @@ const GraphPage: React.FC = () => {
 		if (!hasFetched.current) {
 			hasFetched.current = true;
 			const root = "us/federal/ecfr";
-			fetchPerformanceNodes(root, 2, performanceNodeData, setPerformanceNodeData, setLinkData, setSelectedNode);
+			fetchNodes(root, 2, NodeData, setNodeData, setLinkData, setSelectedNode);
 
-			//fetchPerformanceNodes(offsetNode, 4, performanceNodeData, setPerformanceNodeData, setLinkData);
+			//fetchNodes(offsetNode, 4, NodeData, setNodeData, setLinkData);
 
 		}
 
 	}, []);
 
-	const handleNodeClick = async (node: PerformanceNode, event: MouseEvent) => {
+	const handleNodeClick = async (node: Node, event: MouseEvent) => {
 		if (node.status) { return; }
 		setSelectedNode(node);
-		// if (performanceNodeData.some(existingNode => existingNode.parent === node.id)) {
+		// if (NodeData.some(existingNode => existingNode.parent === node.id)) {
 		// 	console.log(`Skipping processing click on ${node}`)
 		// 	return;
 		// }
-		await fetchPerformanceNodes(node.id as string, 2, performanceNodeData, setPerformanceNodeData, setLinkData, setSelectedNode);
+		await fetchNodes(node.id as string, 2, NodeData, setNodeData, setLinkData, setSelectedNode);
 
 
 	};
@@ -668,7 +668,7 @@ const GraphPage: React.FC = () => {
 		<div className="h-full w-full">
 			{/* This is the full page force graph. All following components must be styled with respect to this full page. https://github.com/vasturiano/react-force-graph */}
 			<NoSSRForceGraph3D
-				graphData={{ nodes: performanceNodeData, links: linkData }}
+				graphData={{ nodes: NodeData, links: linkData }}
 				nodeRelSize={4}
 				nodeLabel="node_name"
 				nodeOpacity={0.8}
@@ -748,7 +748,7 @@ const GraphPage: React.FC = () => {
 
 			{/* This is a small label which labels the number of nodes. Needs to be styled */}
 			<div className="fixed bottom-0 left-0 m-4 bg-background p-2 shadow-md z-30">
-				<NodeCountComponent nodes={performanceNodeData} />
+				<NodeCountComponent nodes={NodeData} />
 			</div>
 		</div>
 	);

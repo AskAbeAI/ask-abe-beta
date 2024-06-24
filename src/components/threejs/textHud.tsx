@@ -7,14 +7,6 @@ import {
 } from "@/components/ui/card";
 import { Node } from '@/lib/threejs/types';
 
-interface Paragraph {
-	text: string;
-	index: number;
-}
-
-export interface NodeText {
-	paragraphs: { [key: string]: Paragraph; };
-}
 
 interface NodeTextHUDProps {
 	node: Node | null;
@@ -22,11 +14,14 @@ interface NodeTextHUDProps {
 
 const NodeTextHUD: React.FC<NodeTextHUDProps> = ({ node }) => {
 	if (!node) {
+		return <div>This node is null!</div>;
+	}
+	if (!node.node_text) {
 		return <div>This node does not have legislative text!</div>;
 	}
-	
 
-	const paragraphsArray = Object.entries(node_text.paragraphs).map(([id, paragraph]) => ({
+
+	const paragraphsArray = Object.entries(node.node_text.paragraphs).map(([id, paragraph]) => ({
 		id,
 		...paragraph
 	}));
@@ -39,7 +34,7 @@ const NodeTextHUD: React.FC<NodeTextHUDProps> = ({ node }) => {
 
 			<Card className="bg-white shadow-lg rounded-lg overflow-hidden my-2">
 				<CardHeader>
-					<CardTitle>Node name</CardTitle>
+					<CardTitle>{node.node_name}</CardTitle>
 				</CardHeader>
 				<CardContent className="text-gray-700">
 					{paragraphsArray.map(({ id, text }) => (

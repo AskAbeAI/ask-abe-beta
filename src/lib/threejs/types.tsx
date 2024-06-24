@@ -4,33 +4,28 @@ import { NodeText } from '../types';
 
 
 export interface NodeProps {
+	parent?: string,
+	node_name?: string,
+	status?: string,
+	level_classifier?: string,
+	value?: number,
 	node_id?: string,
 	citation?: string,
 	link?: string,
-	status?: string,
 	node_type?: string,
 	top_level_title?: string,
-	level_classifier?: string,
 	number?: string,
-	node_name?: string,
-	node_text?: JSON,
+	node_text?: NodeText,
 	definitions?: JSON,
 	core_metadata?: JSON,
 	processing?: JSON,
 	addendum?: JSON,
-	parent?: string,
-	// direct_children?: string[];
-	// siblings?: string[];
+	
+	
 
 }
 
-export interface PerformanceNodeProps {
-	parent?: string,
-	node_name?: string,
-	status?: string,
-	level_classifier?: string,
-	value?: number
-}
+
 export interface TextNodeProps {
 	parent?: string,
 	node_name?: string,
@@ -39,8 +34,8 @@ export interface TextNodeProps {
 	level_classifier?: string,
 	value?: number
 }
+
 export type Node = BaseNodeObject<NodeProps>;
-export type PerformanceNode = BaseNodeObject<PerformanceNodeProps>;
 
 export type TextNode = BaseNodeObject<TextNodeProps>;
 
