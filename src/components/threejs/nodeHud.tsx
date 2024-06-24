@@ -1,4 +1,3 @@
-// components/threejs/NodeHUD.tsx
 import React from 'react';
 import { Node } from '@/lib/threejs/types';  // Ensure you import your correct type definitions
 import {
@@ -9,18 +8,14 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 
 interface NodeHUDProps {
 	node: Node | null;
 }
 
 const NodeHUD: React.FC<NodeHUDProps> = ({ node }) => {
-	if (!node) return null;  // Don't render if no node is selected
-
+	if (!node) return <div>No Node selected!</div>
 	return (
-
-
 		<Card className="bg-white shadow-lg rounded-lg overflow-hidden">
 			<CardHeader>
 				<CardTitle>{node.node_name}</CardTitle>
@@ -40,9 +35,6 @@ const NodeHUD: React.FC<NodeHUDProps> = ({ node }) => {
 				<p className="text-sm text-gray-600">Click on other nodes to see more details</p>
 			</CardFooter>
 		</Card>
-
-
 	);
 };
-
 export default NodeHUD;

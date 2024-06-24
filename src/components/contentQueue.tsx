@@ -73,7 +73,7 @@ const ContentQueue: React.FC<ContentQueueProps> = ({
         );
       case ContentType.Answer:
         return (
-          <div className="flex justify-start w-5/6">
+          <div className="flex justify-start w-full">
             <AnswerBlock
               content={item.content}
               content_list={item.content_list}
@@ -86,7 +86,7 @@ const ContentQueue: React.FC<ContentQueueProps> = ({
         );
       case ContentType.AnswerVitalia:
         return (
-          <div className="flex justify-start w-5/6">
+          <div className="flex justify-start w-full">
             <AnswerVitaliaBlock
               content={item.content}
               citationLinks={item.citationLinks!}
@@ -119,7 +119,7 @@ const ContentQueue: React.FC<ContentQueueProps> = ({
         if (item.clarifyingAnswers && item.clarifyingQuestion && item.mode) {
           return (
             <div className="flex justify-end">
-              <div className="w-4/6">
+              <div className="w-full">
                 <ClarificationBlock
                   clarifyingAnswers={item.clarifyingAnswers}
                   clarifyingQuestion={item.clarifyingQuestion}
@@ -142,7 +142,7 @@ const ContentQueue: React.FC<ContentQueueProps> = ({
         if (item.clarifyingAnswers && item.clarifyingQuestion && item.mode) {
           return (
             <div className="flex justify-end">
-              <div className="w-4/6">
+              <div className="w-full">
                 <ClarificationVitaliaBlock
                   clarifyingAnswers={item.clarifyingAnswers}
                   clarifyingQuestion={item.clarifyingQuestion}
@@ -162,14 +162,14 @@ const ContentQueue: React.FC<ContentQueueProps> = ({
 
       case ContentType.Welcome: {
         return (
-          <div className="flex justify-start w-5/6">
+          <div className="flex justify-start w-full">
             <WelcomeBlock />
           </div>
         );
       }
       case ContentType.WelcomeVitalia: {
         return (
-          <div className="flex justify-start w-5/6">
+          <div className="flex justify-start w-full">
             <WelcomeVitaliaBlock />
           </div>
         );

@@ -5,7 +5,7 @@ import { Node, Link, getColor, getRadius, PerformanceNode, getOpacity, dagIgnore
 
 import { fetchNodes, fetchPerformanceNodes, fetchCachedNodes, createNodesFromPath } from '@/lib/utils/dynamicGraph';
 import dynamic from 'next/dynamic';
-import NodeHUD from '@/components/threejs/hud';
+import ExploreHUD from '@/components/threejs/exploreHud';
 import NodeTextHUD, { NodeText } from '@/components/threejs/textHud';
 import NodeCountComponent from '@/components/threejs/nodeCounter';
 import SpriteText from 'three-spritetext';
@@ -75,7 +75,7 @@ const GraphPage: React.FC = () => {
 			hasFetched.current = true;
 			const root = "us/federal/ecfr";
 			fetchPerformanceNodes(root, 2, performanceNodeData, setPerformanceNodeData, setLinkData, setSelectedNode);
-			
+
 			//fetchPerformanceNodes(offsetNode, 4, performanceNodeData, setPerformanceNodeData, setLinkData);
 
 		}
@@ -714,19 +714,25 @@ const GraphPage: React.FC = () => {
 
 			{/* Node HUD */}
 			<div className={`fixed left-0 top-0 h-full shadow-lg z-20 transform transition-transform duration-300 ease-in-out ${isHUDOpen ? 'w-1/5' : 'w-0'}`}>
-				{isHUDOpen && (<NodeHUD
+				{isHUDOpen && (<ExploreHUD
 					node={selectedNode}
+					isHUDOpen={isHUDOpen}
+					setIsHUDOpen={setIsHUDOpen}
 				/>
 				)}
-				{/* Node HUD Button */}
-				<div className="fixed left-0 top-0 h-full z-10 flex items-center justify-center">
-					<Button
-						className="bg-accent text-accent-foreground p-4 rounded-r-lg shadow-md focus:outline-none z-40"
-						onClick={() => setIsHUDOpen(!isHUDOpen)}
-					>
-						{isHUDOpen ? 'Close HUD' : 'Open HUD'}
-					</Button>
-				</div>
+				{!isHUDOpen && (
+
+					<div className="fixed left-0 top-0 h-full z-10 flex items-center justify-center">
+						<Button
+							className="bg-accent text-accent-foreground p-4 rounded-r-lg shadow-md focus:outline-none z-40"
+							onClick={() => setIsHUDOpen(!isHUDOpen)}
+						>
+							{isHUDOpen ? 'Close HUD' : 'Open HUD'}
+						</Button>
+					</div>
+
+				)}
+
 			</div>
 
 			{/* This is the 'text input' bar for a user to ask a question. This needs to be fixed to the bottom. */}
