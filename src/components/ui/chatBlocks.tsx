@@ -225,7 +225,6 @@ export const AnswerVitaliaBlock: React.FC<AnswerVitaliaBlockProps> = ({ content,
   );
 };
 
-
 export const CitationBlock: React.FC<CitationBlockProps> = ({ citation, link, section_text, open, setOpen }) => {
   // Sort the text list according to your sorting criteria.
   // Assuming the sorting function is already defined and imported.
@@ -614,7 +613,6 @@ export const ClarificationQuestionBlock: React.FC<ClarificationQuestionBlockProp
   );
 };
 
-
 export const QuestionBlock: React.FC<QuestionBlockProps> = ({ content }) => {
   return (
     <div className="flex flex-col items-end">
@@ -625,8 +623,6 @@ export const QuestionBlock: React.FC<QuestionBlockProps> = ({ content }) => {
     </div>
   );
 };
-
-
 
 export const WelcomeBlock: React.FC = () => {
   return (
@@ -668,7 +664,7 @@ export const AbeIconLabel: React.FC<AbeIconProps> = ({
   //console.log((!neverLoadAgain && showCurrentLoading));
   return (
 
-    <div className="flex flex-col items-start">
+    <div className="flex flex-col items-start rounded-lg bg-white">
       <div className="flex mb-0">
         <div className="h-8 w-8 rounded-full flex mr-2">
           {/* Placeholder for icon */}
@@ -679,7 +675,7 @@ export const AbeIconLabel: React.FC<AbeIconProps> = ({
               height={50}
             /></span>
         </div>
-        <p className="text-xl font-header ">Abe</p>
+        <p className="text-xl font-header">Abe   </p>
         {(!neverLoadAgain && showCurrentLoading) && (
           <Bouncy />
 

@@ -153,7 +153,7 @@ export async function insert_completion_cost(
 export async function insertApiUsage(
   api_usage: APIUsage
 ): Promise<void> {
-  const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_KEY!);
+  const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
   const { error } = await supabase
     .from('api_usage')
     .insert(api_usage);

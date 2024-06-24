@@ -83,14 +83,10 @@ const GraphPage: React.FC = () => {
 	}, []);
 
 	const handleNodeClick = async (node: Node, event: MouseEvent) => {
-		console.log(`Handling Node click!`)
-		console.log(JSON.stringify(node, null, 2))
+		console.log(`Handling Node click!`);
+		console.log(JSON.stringify(node, null, 2));
 		if (node.status) { return; }
 		setSelectedNode(node);
-		// if (NodeData.some(existingNode => existingNode.parent === node.id)) {
-		// 	console.log(`Skipping processing click on ${node}`)
-		// 	return;
-		// }
 		await fetchNodes(node.id as string, 2, NodeData, setNodeData, setLinkData, setSelectedNode);
 
 
@@ -145,7 +141,7 @@ const GraphPage: React.FC = () => {
 	const [showJurisdictionModal, setShowJurisdictionModal] = useState(false);
 
 	useEffect(() => {
-		let mode="federal"
+		let mode = "federal";
 
 		setCitationBlocks([]);
 		setSpecificQuestions([]);
@@ -658,7 +654,7 @@ const GraphPage: React.FC = () => {
 
 
 	return (
-		<div className="h-full w-full">
+		<div className="relative h-full w-full">
 			{/* This is the full page force graph. All following components must be styled with respect to this full page. https://github.com/vasturiano/react-force-graph */}
 			<NoSSRForceGraph3D
 				graphData={{ nodes: NodeData, links: linkData }}
@@ -676,46 +672,72 @@ const GraphPage: React.FC = () => {
 				showNavInfo={true}
 				controlType='orbit'
 			/>
-			{/* Chat Window Button */}
-
-
-			{/* Chat Window */}
-			<div className={`fixed right-0 top-0 h-full shadow-lg z-20 transform transition-transform duration-300 ease-in-out ${isChatOpen ? 'w-1/4' : 'w-0'}`}>
-				{isChatOpen && (
-					<ContentQueue
-						items={contentBlocks}
-						onSubmitClarificationAnswers={dummyFunction}
-						onSubmitClarificationVitaliaAnswers={dummyFunction}
-						onClarificationStreamEnd={dummyFunction}
-						onStreamEnd={onStreamEnd}
-						showCurrentLoading={showCurrentLoading}
-						onFinishAnswerVitalia={dummyFunction}
-						setActiveCitationId={setActiveCitationId}
-					/>
-				)}
-				<div className="fixed right-0 top-0 mb-4 mr-4 z-10 flex items-center justify-center">
-					<Button
-						className="bg-accent text-accent-foreground p-4 rounded-l-lg shadow-md focus:outline-none z-40"
-						onClick={() => setIsChatOpen(!isChatOpen)}
+			{/* Overlay EVERYTHING onto the previous div Force Graph */}
+			<div className="absolute inset-0 flex flex-row">
+				<div className="flex h-screen min-h-screen"> {/* Ensure the container fills the viewport height */}
+					<ExploreHUD
+						node={selectedNode}
+						isHUDOpen={isHUDOpen}
+						setIsHUDOpen={setIsHUDOpen}
 					>
-						{isChatOpen ? 'Close Chat' : 'Open Chat'}
-					</Button>
+						{/* This is the 'text input' bar for a user to ask a question. Middle Column */}
+						<div className="flex flex-col h-full w-3/6 items-end justify-end">
+							{isFormVisible && (
+								<div className="w-full shadow-inner z-20">
+									<BottomBar
+										inputMode={inputMode}
+										handleSubmit={handleNewQuestion}
+										handleSubmitFollowup={handleNewFollowupQuestion}
+									/>
+								</div>
+							)}
+						</div>
+
+
+						{/* Chat Window - Right Col */}
+						<div className={`flex flex-col h-full shadow-lg z-20 transform transition-transform duration-300 ease-in-out ${isChatOpen ? 'w-2/6' : 'w-0'}`}>
+							{isChatOpen && (
+								<ContentQueue
+									items={contentBlocks}
+									onSubmitClarificationAnswers={dummyFunction}
+									onSubmitClarificationVitaliaAnswers={dummyFunction}
+									onClarificationStreamEnd={dummyFunction}
+									onStreamEnd={onStreamEnd}
+									showCurrentLoading={showCurrentLoading}
+									onFinishAnswerVitalia={dummyFunction}
+									setActiveCitationId={setActiveCitationId}
+								/>
+							)}
+							<div className="fixed right-0 top-0 mb-4 mr-4 z-10 flex items-center justify-center">
+								<Button
+									className="bg-accent text-accent-foreground p-4 rounded-l-lg shadow-md focus:outline-none z-40"
+									onClick={() => setIsChatOpen(!isChatOpen)}
+								>
+									{isChatOpen ? 'Close Chat' : 'Open Chat'}
+								</Button>
+							</div>
+						</div>
+
+					</ExploreHUD>
+
+
+
 				</div>
-			</div>
-
-
-
-			{/* Node HUD */}
-			<div className={`fixed left-0 top-0 h-full shadow-lg z-20 transform transition-transform duration-300 ease-in-out ${isHUDOpen ? 'w-1/5' : 'w-0'}`}>
-				{isHUDOpen && (<ExploreHUD
-					node={selectedNode}
-					isHUDOpen={isHUDOpen}
-					setIsHUDOpen={setIsHUDOpen}
-				/>
-				)}
-				{!isHUDOpen && (
-
-					<div className="fixed left-0 top-0 h-full z-10 flex items-center justify-center">
+				{/* Left Column - Node HUD and Node Count
+				<div className={`flex flex-col justify-between h-full ${isHUDOpen ? 'w-1/6' : 'w-0'} transition-width duration-300 ease-in-out`}>
+					<div className="flex-1 bg-background shadow-lg z-20 overflow-hidden">
+						{isHUDOpen && (
+							<ExploreHUD
+								node={selectedNode}
+								isHUDOpen={isHUDOpen}
+								setIsHUDOpen={setIsHUDOpen}
+							/>
+						)}
+					</div>
+					<div className="flex bg-background shadow-md z-30">
+						<NodeCountComponent nodes={NodeData} />
+					</div>
+					<div className="fixed left-0 top-1/2 transform -translate-y-1/2 z-10 flex items-center justify-center">
 						<Button
 							className="bg-accent text-accent-foreground p-4 rounded-r-lg shadow-md focus:outline-none z-40"
 							onClick={() => setIsHUDOpen(!isHUDOpen)}
@@ -723,28 +745,118 @@ const GraphPage: React.FC = () => {
 							{isHUDOpen ? 'Close HUD' : 'Open HUD'}
 						</Button>
 					</div>
+				</div> */}
 
-				)}
+
+
+
+
+
+
+
+
 
 			</div>
 
-			{/* This is the 'text input' bar for a user to ask a question. This needs to be fixed to the bottom. */}
-			{isFormVisible && (
-				<div className="fixed bottom-0 inset-x-0 w-full justify-center items-center shadow-inner z-20">
-					<BottomBar
-						inputMode={inputMode}
-						handleSubmit={handleNewQuestion}
-						handleSubmitFollowup={handleNewFollowupQuestion}
-					/>
-				</div>
-			)}
-
-			{/* This is a small label which labels the number of nodes. Needs to be styled */}
-			<div className="fixed bottom-0 left-0 m-4 bg-background p-2 shadow-md z-30">
-				<NodeCountComponent nodes={NodeData} />
-			</div>
 		</div>
 	);
+	// return (
+	// 	<div className="relative h-full w-full">
+	// 		{/* This is the full page force graph. All following components must be styled with respect to this full page. https://github.com/vasturiano/react-force-graph */}
+	// 		<NoSSRForceGraph3D
+	// 			graphData={{ nodes: NodeData, links: linkData }}
+	// 			nodeRelSize={4}
+	// 			nodeLabel="node_name"
+	// 			nodeOpacity={0.8}
+	// 			nodeColor={getColor}
+	// 			onNodeClick={handleNodeClick}
+	// 			nodeResolution={10}
+	// 			linkColor="color"
+	// 			linkDirectionalParticles={2}
+	// 			linkDirectionalParticleSpeed={0.001}
+	// 			linkWidth="width"
+	// 			linkDirectionalParticleColor={getColor}
+	// 			showNavInfo={true}
+	// 			controlType='orbit'
+	// 		/>
+
+	// 		{/* Overlay Components Container */}
+	// 		<div className="absolute inset-0 flex flex-col justify-between pointer-events-none">
+	// 			{/* Top Components */}
+	// 			<div className="flex justify-between w-full p-4 pointer-events-auto">
+	// 				{/* Node Count Component */}
+	// 				<div className="bg-background p-2 shadow-md">
+	// 					<NodeCountComponent nodes={NodeData} />
+	// 				</div>
+
+	// 				{/* HUD Toggle Button */}
+	// 				<div className="flex items-center">
+	// 					<button
+	// 						className="bg-accent text-accent-foreground p-4 rounded-r-lg shadow-md focus:outline-none"
+	// 						onClick={() => setIsHUDOpen(!isHUDOpen)}
+	// 					>
+	// 						{isHUDOpen ? 'Close HUD' : 'Open HUD'}
+	// 					</button>
+	// 				</div>
+	// 			</div>
+
+	// 			{/* Bottom Components */}
+	// 			<div className="flex justify-between w-full p-4 pointer-events-auto">
+	// 				{/* Chat Window Toggle Button */}
+	// 				<div className="flex items-center">
+	// 					<button
+	// 						className="bg-accent text-accent-foreground p-4 rounded-l-lg shadow-md focus:outline-none"
+	// 						onClick={() => setIsChatOpen(!isChatOpen)}
+	// 					>
+	// 						{isChatOpen ? 'Close Chat' : 'Open Chat'}
+	// 					</button>
+	// 				</div>
+
+	// 				{/* Bottom Bar (Text Input) */}
+	// 				{isFormVisible && (
+	// 					<div className="w-full flex justify-center">
+	// 						<BottomBar
+	// 							inputMode={inputMode}
+	// 							handleSubmit={handleNewQuestion}
+	// 							handleSubmitFollowup={handleNewFollowupQuestion}
+	// 						/>
+	// 					</div>
+	// 				)}
+	// 			</div>
+	// 		</div>
+
+	// 		{/* Chat Window */}
+	// 		<div
+	// 			className={`fixed right-0 top-0 h-full bg-background shadow-lg z-20 transform transition-transform duration-300 ease-in-out ${isChatOpen ? 'w-1/4' : 'w-0'}`}
+	// 		>
+	// 			{isChatOpen && (
+	// 				<ContentQueue
+	// 					items={contentBlocks}
+	// 					onSubmitClarificationAnswers={dummyFunction}
+	// 					onSubmitClarificationVitaliaAnswers={dummyFunction}
+	// 					onClarificationStreamEnd={dummyFunction}
+	// 					onStreamEnd={onStreamEnd}
+	// 					showCurrentLoading={showCurrentLoading}
+	// 					onFinishAnswerVitalia={dummyFunction}
+	// 					setActiveCitationId={setActiveCitationId}
+	// 				/>
+	// 			)}
+	// 		</div>
+
+	// 		{/* Node HUD */}
+	// 		<div
+	// 			className={`fixed left-0 top-0 h-full bg-background shadow-lg z-20 transform transition-transform duration-300 ease-in-out ${isHUDOpen ? 'w-1/5' : 'w-0'}`}
+	// 		>
+	// 			{isHUDOpen && (
+	// 				<ExploreHUD
+	// 					node={selectedNode}
+	// 					isHUDOpen={isHUDOpen}
+	// 					setIsHUDOpen={setIsHUDOpen}
+	// 				/>
+	// 			)}
+	// 		</div>
+	// 	</div>
+	// );
 
 };
 

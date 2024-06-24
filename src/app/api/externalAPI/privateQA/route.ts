@@ -43,10 +43,10 @@ export async function POST(req: Request) {
     const maxRetries = 2;
     
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-	const supabaseKey = process.env.SUPABASE_KEY;
+	const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
 	if (supabaseUrl === undefined) { throw new Error("process.env.NEXT_PUBLIC_SUPABASE_URL is undefined!"); }
-	if (supabaseKey === undefined) { throw new Error("process.env.SUPABASE_KEY is undefined!"); }
+	if (supabaseKey === undefined) { throw new Error("process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY is undefined!"); }
     
     
     if (abe_api_key !== 'conciergeTestKey' && abe_api_key !== 'seanGroveTestKey') {

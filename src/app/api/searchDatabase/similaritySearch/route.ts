@@ -29,10 +29,10 @@ export async function POST(req: Request) {
 	
 
 	const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-	const supabaseKey = process.env.SUPABASE_KEY;
+	const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
 	if (supabaseUrl === undefined) { throw new Error("process.env.NEXT_PUBLIC_SUPABASE_URL is undefined!"); }
-	if (supabaseKey === undefined) { throw new Error("process.env.SUPABASE_KEY is undefined!"); }
+	if (supabaseKey === undefined) { throw new Error("process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY is undefined!"); }
 
 	const request: SimilaritySearchRequest = await req.json();
 	generateApiRequestReport(request.base, API_ROUTE)

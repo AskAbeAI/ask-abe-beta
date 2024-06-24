@@ -42,7 +42,7 @@ export async function POST(req: Request) {
 
     const endTime = Date.now();
     const executionTime = endTime - startTime;
-    await insert_api_debug_log("scoreFollowup", executionTime, JSON.stringify(requestData), JSON.stringify(scoreFollowupResponseBody), false, "", process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_KEY!, sessionId);
+    await insert_api_debug_log("scoreFollowup", executionTime, JSON.stringify(requestData), JSON.stringify(scoreFollowupResponseBody), false, "", process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!, sessionId);
     return NextResponse.json(scoreFollowupResponseBody);
   } catch (error) {
     const endTime = Date.now();
@@ -51,7 +51,7 @@ export async function POST(req: Request) {
       errorMessage += error.stack;
     }
     const executionTime = endTime - startTime;
-    await insert_api_debug_log("scoreFollowup", executionTime, JSON.stringify(requestData), "{}", true, errorMessage, process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_KEY!, sessionId);
+    await insert_api_debug_log("scoreFollowup", executionTime, JSON.stringify(requestData), "{}", true, errorMessage, process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!, sessionId);
     return NextResponse.json({ errorMessage: `An error occurred in scoreFollowup: ${error}` });
   }
 

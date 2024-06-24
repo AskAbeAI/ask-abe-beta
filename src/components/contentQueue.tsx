@@ -181,7 +181,7 @@ const ContentQueue: React.FC<ContentQueueProps> = ({
   };
 
   return (
-    <div className="p-4 bg-white rounded-lg shadow-inner overflow-auto max-h-full" style={{ minHeight: '90vh' }}>
+    <div className="p-4 rounded-lg shadow-inner overflow-auto max-h-full h-full">
       {!isCitationExpanded && (
         <div className="w-full space-y-4 pb-4">
           {items.map((item) => (
