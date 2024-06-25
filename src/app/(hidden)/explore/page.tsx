@@ -76,6 +76,7 @@ const GraphPage: React.FC = () => {
 	const [linkData, setLinkData] = useState<Link[]>([]);
 	const [selectedNode, setSelectedNode] = useState<Node | null>(null);
 	const hasFetched = useRef(false);
+	const [selectedClassifier, setSelectedClassifier] = useState<string[]>([]);
 
 	useEffect(() => {
 		if (!hasFetched.current) {
@@ -693,6 +694,9 @@ const GraphPage: React.FC = () => {
 	const dummyFunction = async () => {
 		return;
 	};
+	const getColorWrapped = (node: Node) => {
+        return getColor(node, selectedClassifier);
+    };
 
 	return (
 		<div className="relative h-full w-full">
@@ -702,14 +706,14 @@ const GraphPage: React.FC = () => {
 				nodeRelSize={4}
 				nodeLabel="node_name"
 				nodeOpacity={0.8}
-				nodeColor={getColor}
+				nodeColor={getColorWrapped}
 				onNodeClick={handleNodeClick}
 				nodeResolution={10}
 				linkColor="color"
 				linkDirectionalParticles={2}
 				linkDirectionalParticleSpeed={0.001}
 				linkWidth="width"
-				linkDirectionalParticleColor={getColor}
+				linkDirectionalParticleColor={getColorWrapped}
 				showNavInfo={true}
 				controlType="orbit"
 			/>

@@ -27,7 +27,10 @@ export interface Link {
 	target: string;
 }
 
-export function getColor(node: Node): string {
+export function getColor(node: Node, selectedClassifier: string[]): string {
+	if(selectedClassifier && !selectedClassifier.includes(node.level_classifier!)) {
+		return "gray";
+	}
 	if (node.status && node.status != "definitions") {
 		return "gray";
 	}

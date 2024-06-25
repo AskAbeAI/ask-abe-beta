@@ -25,7 +25,7 @@ const GraphOnlyPage: React.FC = () => {
 	// Make this a Dictionary/set lmao
 	const [linkData, setLinkData] = useState<Link[]>([]);
 	const [selectedNode, setSelectedNode] = useState<Node | null>(null);
-	const [selectedClassifier, setSelectedClassifier] = useState("None")
+	const [selectedClassifier, setSelectedClassifier] = useState<string[]>(["CORPUS", "title", "subtitle", "chapter","subchapter", "part", "subpart", "section", "other"])
 	const hasFetched = useRef(false);
 
 	useEffect(() => {
@@ -50,10 +50,13 @@ const GraphOnlyPage: React.FC = () => {
 		// 	console.log(`Skipping processing click on ${node}`)
 		// 	return;
 		// }
-		await fetchNodes(node.id as string, 2, nodeData, setNodeData, setLinkData, setSelectedNode);
+		await fetchNodes(node.id as string, 3, nodeData, setNodeData, setLinkData, setSelectedNode);
 
 
 	};
+	const getColorWrapped = (node: Node) => {
+        return getColor(node, selectedClassifier);
+    };
 	return (
 
 
@@ -64,14 +67,14 @@ const GraphOnlyPage: React.FC = () => {
 				nodeRelSize={4}
 				nodeLabel="node_name"
 				nodeOpacity={0.8}
-				nodeColor={getColor}
+				nodeColor={getColorWrapped}
 				onNodeClick={handleNodeClick}
 				nodeResolution={10}
-				linkColor="color"
+				linkColor={getColorWrapped}
 				linkDirectionalParticles={2}
 				linkDirectionalParticleSpeed={0.001}
 				linkWidth="width"
-				linkDirectionalParticleColor={getColor}
+				linkDirectionalParticleColor={getColorWrapped}
 				showNavInfo={true}
 				controlType="orbit"
 			/>
