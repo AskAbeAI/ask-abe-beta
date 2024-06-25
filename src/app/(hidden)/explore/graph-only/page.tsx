@@ -1,0 +1,114 @@
+"use client";
+// /app/explore/page.tsx
+import React, { useEffect, useState, useRef } from 'react';
+import { Node, Link, getColor, getRadius, getOpacity, dagIgnore } from '@/lib/threejs/types';
+
+import { fetchNodes, createNodesFromPath } from '@/lib/utils/dynamicGraph';
+import dynamic from 'next/dynamic';
+import NodeHUD from '@/components/threejs/hud-components/nodeHud';
+import NodeTextHUD from '@/components/threejs/hud-components/textHud';
+import NodeCountComponent from '@/components/threejs/hud-components/nodeCounter';
+import SpriteText from 'three-spritetext';
+import ExploreHUD from '@/components/threejs/exploreHud';
+import ClassifierHUD from '@/components/threejs/hud-components/classifierHud';
+const NoSSRForceGraph3D = dynamic(() => import('@/components/threejs/forceGraph'), {
+	ssr: false,
+});
+// https://github.com/d3/d3-force
+// https://github.com/vasturiano/3d-force-graph/tree/master
+
+
+
+
+const GraphOnlyPage: React.FC = () => {
+	const [nodeData, setNodeData] = useState<Node[]>([]);
+	// Make this a Dictionary/set lmao
+	const [linkData, setLinkData] = useState<Link[]>([]);
+	const [selectedNode, setSelectedNode] = useState<Node | null>(null);
+	const [selectedClassifier, setSelectedClassifier] = useState("None")
+	const hasFetched = useRef(false);
+
+	useEffect(() => {
+		if (!hasFetched.current) {
+			hasFetched.current = true;
+			const root = "us/federal/ecfr";
+
+			fetchNodes(root, 2, nodeData, setNodeData, setLinkData, setSelectedNode);
+
+
+		}
+
+	}, []);
+	const dummyFunction = () => {
+		console.log(`Dummy function called!`);
+	};
+
+	const handleNodeClick = async (node: Node, event: MouseEvent) => {
+		if (node.status) { return; }
+		setSelectedNode(node);
+		// if (performanceNodeData.some(existingNode => existingNode.parent === node.id)) {
+		// 	console.log(`Skipping processing click on ${node}`)
+		// 	return;
+		// }
+		await fetchNodes(node.id as string, 2, nodeData, setNodeData, setLinkData, setSelectedNode);
+
+
+	};
+	return (
+
+
+		<div className="relative h-full w-full">
+			{/* This is the full page force graph. All following components must be styled with respect to this full page. https://github.com/vasturiano/react-force-graph */}
+			<NoSSRForceGraph3D
+				graphData={{ nodes: nodeData, links: linkData }}
+				nodeRelSize={4}
+				nodeLabel="node_name"
+				nodeOpacity={0.8}
+				nodeColor={getColor}
+				onNodeClick={handleNodeClick}
+				nodeResolution={10}
+				linkColor="color"
+				linkDirectionalParticles={2}
+				linkDirectionalParticleSpeed={0.001}
+				linkWidth="width"
+				linkDirectionalParticleColor={getColor}
+				showNavInfo={true}
+				controlType="orbit"
+			/>
+			{/* Header */}
+			<div className="absolute inset-0 flex flex-row pointer-events-none">
+				<div className="flex h-screen min-h-screen w-full">
+					<header className="h-16 w-full bg-card text-foreground flex items-center justify-between px-4 top-0 right-0 border-b border-black">
+						{" "}
+						{/* Ensures header is fixed and items are evenly spaced */}
+						<div className="flex items-center space-x-4">
+							<div className="text-xl font-semibold">
+								Jurisdiction: United States{" "}
+								{/* Organization's full name */}
+							</div>
+						</div>
+						<div className="flex items-center space-x-4">
+							{" "}
+							{/* Center items */}
+							<span className="text-sm font-medium">
+								Code of Federal Regulations
+							</span>
+						</div>
+						<div className="text-xl font-semibold">
+							3D Force Graph {/* Dashboard label */}
+						</div>
+					</header>
+				</div>
+			</div>
+			<div className="absolute top-16 left-0">
+				<ClassifierHUD
+				selectedClassifier={selectedClassifier}
+				setSelectedClassifier={setSelectedClassifier}
+				
+				/>
+			</div>
+		</div>
+	);
+};
+
+export default GraphOnlyPage;

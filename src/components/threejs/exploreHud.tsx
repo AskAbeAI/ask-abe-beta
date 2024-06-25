@@ -1,8 +1,8 @@
 // components/threejs/NodeHUD.tsx
 import React from "react";
 import { Node } from "@/lib/threejs/types"; // Ensure you import your correct type definitions
-import NodeHUD from "./nodeHud";
-import NodeTextHUD from "./textHud";
+import NodeHUD from "./hud-components/nodeHud";
+import NodeTextHUD from "./hud-components/textHud";
 import Image from "next/image";
 import Link from "next/link";
 import {

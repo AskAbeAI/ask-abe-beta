@@ -13,8 +13,8 @@ import {
 import { fetchNodes, createNodesFromPath } from "@/lib/utils/dynamicGraph";
 import dynamic from "next/dynamic";
 import ExploreHUD from "@/components/threejs/exploreHud";
-import NodeTextHUD from "@/components/threejs/textHud";
-import NodeCountComponent from "@/components/threejs/nodeCounter";
+import NodeTextHUD from "@/components/threejs/hud-components/textHud";
+import NodeCountComponent from "@/components/threejs/hud-components/nodeCounter";
 import SpriteText from "three-spritetext";
 
 import { Button } from "@/components/ui/button";

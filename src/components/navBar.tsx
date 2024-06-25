@@ -73,7 +73,7 @@ const NavBar = () => {
 						</Link>
 					</NavigationMenuItem>
 					<NavigationMenuItem>
-						<Link href="/explore" legacyBehavior passHref>
+						<Link href="/explore/graph-only" legacyBehavior passHref>
 							<NavigationMenuLink
 								className={navigationMenuTriggerStyle()}
 							>
