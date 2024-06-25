@@ -1,16 +1,23 @@
 "use client";
 // /app/explore/page.tsx
-import React, { useEffect, useState, useRef } from 'react';
-import { Node, Link, getColor, getRadius, getOpacity, dagIgnore } from '@/lib/threejs/types';
+import React, { useEffect, useState, useRef } from "react";
+import {
+	Node,
+	Link,
+	getColor,
+	getRadius,
+	getOpacity,
+	dagIgnore,
+} from "@/lib/threejs/types";
 
-import { fetchNodes, createNodesFromPath } from '@/lib/utils/dynamicGraph';
-import dynamic from 'next/dynamic';
-import ExploreHUD from '@/components/threejs/exploreHud';
-import NodeTextHUD from '@/components/threejs/textHud';
-import NodeCountComponent from '@/components/threejs/nodeCounter';
-import SpriteText from 'three-spritetext';
+import { fetchNodes, createNodesFromPath } from "@/lib/utils/dynamicGraph";
+import dynamic from "next/dynamic";
+import ExploreHUD from "@/components/threejs/exploreHud";
+import NodeTextHUD from "@/components/threejs/textHud";
+import NodeCountComponent from "@/components/threejs/nodeCounter";
+import SpriteText from "three-spritetext";
 
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 import BottomBar from "@/components/bottomBar";
 import ContentQueue from "@/components/contentQueue";
 import {
@@ -54,14 +61,14 @@ import {
 	DirectAnsweringRequest,
 	DirectAnsweringResponse,
 } from "@/lib/api_types";
-const NoSSRForceGraph3D = dynamic(() => import('@/components/threejs/forceGraph'), {
-	ssr: false,
-});
+const NoSSRForceGraph3D = dynamic(
+	() => import("@/components/threejs/forceGraph"),
+	{
+		ssr: false,
+	},
+);
 // https://github.com/d3/d3-force
 // https://github.com/vasturiano/3d-force-graph/tree/master
-
-
-
 
 const GraphPage: React.FC = () => {
 	const [NodeData, setNodeData] = useState<Node[]>([]);
@@ -74,25 +81,35 @@ const GraphPage: React.FC = () => {
 		if (!hasFetched.current) {
 			hasFetched.current = true;
 			const root = "us/federal/ecfr";
-			fetchNodes(root, 2, NodeData, setNodeData, setLinkData, setSelectedNode);
+			fetchNodes(
+				root,
+				1,
+				NodeData,
+				setNodeData,
+				setLinkData,
+				setSelectedNode,
+			);
 
 			//fetchNodes(offsetNode, 4, NodeData, setNodeData, setLinkData);
-
 		}
-
 	}, []);
 
 	const handleNodeClick = async (node: Node, event: MouseEvent) => {
 		console.log(`Handling Node click!`);
 		console.log(JSON.stringify(node, null, 2));
-		if (node.status) { return; }
+		if (node.status) {
+			return;
+		}
 		setSelectedNode(node);
-		await fetchNodes(node.id as string, 2, NodeData, setNodeData, setLinkData, setSelectedNode);
-
-
+		await fetchNodes(
+			node.id as string,
+			1,
+			NodeData,
+			setNodeData,
+			setLinkData,
+			setSelectedNode,
+		);
 	};
-
-
 
 	const [isFormVisible, setIsFormVisible] = useState(true);
 	const [citationsOpen, setCitationsOpen] = useState(false);
@@ -130,13 +147,28 @@ const GraphPage: React.FC = () => {
 	const [isHUDOpen, setIsHUDOpen] = useState(true);
 
 	const [specificQuestions, setSpecificQuestions] = useState<string[]>([]);
-	const [clarificationResponses, setClarificationResponses] = useState<Clarification[]>([]);
+	const [clarificationResponses, setClarificationResponses] = useState<
+		Clarification[]
+	>([]);
 	const [alreadyAnswered, setAlreadyAnswered] = useState([""]);
 	const [sessionId, setSessionId] = useState<string>("");
-	const [selectedFederalJurisdiction, setSelectedFederalJurisdiction] = useState<Jurisdiction | undefined>({ id: '1', name: 'US Federal Regulations', abbreviation: 'ecfr', corpusTitle: 'United States Code of Federal Regulations', usesSubContentNodes: false, jurisdictionLevel: 'federal' } as Jurisdiction);
-	const [selectedStateJurisdiction, setSelectedStateJurisdiction] = useState<Jurisdiction | undefined>(undefined);
-	const [selectedMiscJurisdiction, setSelectedMiscJurisdiction] = useState<Jurisdiction | undefined>(undefined);
-	const [questionJurisdictions, setQuestionJurisdictions] = useState<questionJurisdictions>();
+	const [selectedFederalJurisdiction, setSelectedFederalJurisdiction] =
+		useState<Jurisdiction | undefined>({
+			id: "1",
+			name: "US Federal Regulations",
+			abbreviation: "ecfr",
+			corpusTitle: "United States Code of Federal Regulations",
+			usesSubContentNodes: false,
+			jurisdictionLevel: "federal",
+		} as Jurisdiction);
+	const [selectedStateJurisdiction, setSelectedStateJurisdiction] = useState<
+		Jurisdiction | undefined
+	>(undefined);
+	const [selectedMiscJurisdiction, setSelectedMiscJurisdiction] = useState<
+		Jurisdiction | undefined
+	>(undefined);
+	const [questionJurisdictions, setQuestionJurisdictions] =
+		useState<questionJurisdictions>();
 	const [askClarifications, setAskClarifications] = useState(false);
 	const [showJurisdictionModal, setShowJurisdictionModal] = useState(false);
 
@@ -180,19 +212,25 @@ const GraphPage: React.FC = () => {
 	};
 
 	const addManyContentBlock = async (
-		newBlocks: ContentBlock[]
+		newBlocks: ContentBlock[],
 	): Promise<void> => {
 		setStreamingQueue(newBlocks);
 		if (newBlocks[0].type === ContentType.Citation) {
-			setCitationBlocks((currentBlocks) => [...currentBlocks, ...newBlocks]);
+			setCitationBlocks((currentBlocks) => [
+				...currentBlocks,
+				...newBlocks,
+			]);
 		} else {
-			setContentBlocks((currentBlocks) => [...currentBlocks, ...newBlocks]);
+			setContentBlocks((currentBlocks) => [
+				...currentBlocks,
+				...newBlocks,
+			]);
 		}
 	};
 
 	const addNewLoadingBlock = async (
 		neverLoad: boolean,
-		loadingMessage?: string
+		loadingMessage?: string,
 	) => {
 		setShowCurrentLoading(true);
 		const loadingBlock: ContentBlock = {
@@ -252,7 +290,7 @@ const GraphPage: React.FC = () => {
 		const memory: AbeMemory = createNewMemory(
 			question,
 			sessionId,
-			questionJurisdictions!
+			questionJurisdictions!,
 		);
 		memory.short.specificQuestions = [];
 
@@ -279,7 +317,7 @@ const GraphPage: React.FC = () => {
 	};
 
 	const scoreQuestion = async (
-		memory: AbeMemory
+		memory: AbeMemory,
 	): Promise<[number, string]> => {
 		const currentQuestion: string = memory.short.currentQuestion!;
 		const jurisdictions: questionJurisdictions =
@@ -288,7 +326,7 @@ const GraphPage: React.FC = () => {
 		const maskedQuestion: string = constructPromptQuery(
 			currentQuestion,
 			jurisdictions.state?.corpusTitle || "The Country Of ",
-			jurisdictions.federal?.corpusTitle || "USA"
+			jurisdictions.federal?.corpusTitle || "USA",
 		);
 
 		const requestBody: QueryScoringRequest = {
@@ -427,7 +465,10 @@ const GraphPage: React.FC = () => {
 			const secondary_citation_blocks: ContentBlock[] = [];
 			for (const row of secondaryRows) {
 				let possible_citation = row.node_citation;
-				if (possible_citation === undefined || possible_citation === null) {
+				if (
+					possible_citation === undefined ||
+					possible_citation === null
+				) {
 					possible_citation = row.node_name.split(" ")[0];
 				}
 				const section_text: string[] = row.node_text;
@@ -463,7 +504,7 @@ const GraphPage: React.FC = () => {
 			pimaryRows,
 			secondaryRows,
 			clarificationResponses,
-			jurisdictions
+			jurisdictions,
 		);
 	};
 
@@ -472,26 +513,27 @@ const GraphPage: React.FC = () => {
 		pimaryRows: node_as_row[],
 		secondaryRows: node_as_row[],
 		combinedClarifications: Clarification[],
-		questionJurisdiction: questionJurisdictions
+		questionJurisdiction: questionJurisdictions,
 	) => {
 		const refinedQuestion = memory.short.currentRefinedQuestion!;
 		const specificQuestions = memory.short.specificQuestions!;
 		let user_prompt_query: string = constructPromptQuery(
 			refinedQuestion,
 			questionJurisdictions?.state?.corpusTitle || "The Country Of ",
-			questionJurisdictions!.federal?.corpusTitle || "USA"
+			questionJurisdictions!.federal?.corpusTitle || "USA",
 		);
 
 		if (questionJurisdictions?.mode === "misc") {
 			user_prompt_query = constructPromptQueryMisc(
 				refinedQuestion,
-				questionJurisdictions?.misc?.corpusTitle || "This Legal Documentation"
+				questionJurisdictions?.misc?.corpusTitle ||
+					"This Legal Documentation",
 			);
 		} else if (questionJurisdictions?.mode === "misc_federal") {
 			user_prompt_query = constructPromptQueryBoth(
 				refinedQuestion,
 				questionJurisdictions?.misc?.name!,
-				questionJurisdictions?.federal?.name!
+				questionJurisdictions?.federal?.name!,
 			);
 		}
 		const requestBody: DirectAnsweringRequest = {
@@ -552,14 +594,14 @@ const GraphPage: React.FC = () => {
 	};
 
 	const scoreNewFollowupQuestion = async (
-		question: string
+		question: string,
 	): Promise<[number, string]> => {
 		let score: number = 7;
 		if (questionJurisdictions!.mode !== "misc") {
 			const user_prompt_query: string = constructPromptQuery(
 				question,
 				selectedStateJurisdiction?.corpusTitle || "",
-				selectedFederalJurisdiction?.corpusTitle || "USA"
+				selectedFederalJurisdiction?.corpusTitle || "USA",
 			);
 
 			const requestBody = {
@@ -629,7 +671,7 @@ const GraphPage: React.FC = () => {
 
 	const followUpQuestionAnswer = async (
 		clarifications: Clarification[],
-		newQuestion?: string
+		newQuestion?: string,
 	) => {
 		addNewLoadingBlock(false);
 		const input = newQuestion || question;
@@ -640,7 +682,7 @@ const GraphPage: React.FC = () => {
 			primaryRows,
 			secondaryRows,
 			clarifications,
-			questionJurisdictions!
+			questionJurisdictions!,
 		);
 	};
 
@@ -651,7 +693,6 @@ const GraphPage: React.FC = () => {
 	const dummyFunction = async () => {
 		return;
 	};
-
 
 	return (
 		<div className="relative h-full w-full">
@@ -670,94 +711,84 @@ const GraphPage: React.FC = () => {
 				linkWidth="width"
 				linkDirectionalParticleColor={getColor}
 				showNavInfo={true}
-				controlType='orbit'
+				controlType="orbit"
 			/>
 			{/* Overlay EVERYTHING onto the previous div Force Graph */}
 			<div className="absolute inset-0 flex flex-row">
-				<div className="flex h-screen min-h-screen"> {/* Ensure the container fills the viewport height */}
+				<div className="flex h-screen min-h-screen">
+					{" "}
+					{/* Ensure the container fills the viewport height */}
 					<ExploreHUD
 						node={selectedNode}
 						isHUDOpen={isHUDOpen}
 						setIsHUDOpen={setIsHUDOpen}
 					>
-						{/* This is the 'text input' bar for a user to ask a question. Middle Column */}
-						<div className="flex flex-col h-full w-3/6 items-end justify-end">
-							{isFormVisible && (
-								<div className="w-full shadow-inner z-20">
-									<BottomBar
-										inputMode={inputMode}
-										handleSubmit={handleNewQuestion}
-										handleSubmitFollowup={handleNewFollowupQuestion}
-									/>
-								</div>
-							)}
-						</div>
-
-
-						{/* Chat Window - Right Col */}
-						<div className={`flex flex-col h-full shadow-lg z-20 transform transition-transform duration-300 ease-in-out ${isChatOpen ? 'w-2/6' : 'w-0'}`}>
-							{isChatOpen && (
-								<ContentQueue
-									items={contentBlocks}
-									onSubmitClarificationAnswers={dummyFunction}
-									onSubmitClarificationVitaliaAnswers={dummyFunction}
-									onClarificationStreamEnd={dummyFunction}
-									onStreamEnd={onStreamEnd}
-									showCurrentLoading={showCurrentLoading}
-									onFinishAnswerVitalia={dummyFunction}
-									setActiveCitationId={setActiveCitationId}
-								/>
-							)}
-							<div className="fixed right-0 top-0 mb-4 mr-4 z-10 flex items-center justify-center">
-								<Button
-									className="bg-accent text-accent-foreground p-4 rounded-l-lg shadow-md focus:outline-none z-40"
-									onClick={() => setIsChatOpen(!isChatOpen)}
+						<div className="flex flex-col h-full justify-right">
+							{/* Chat Window - Top Row */}
+							<div className="flex h-5/6">
+								<div className="flex flex-grow"></div>
+								<div
+									className={`flex shadow-lg z-20 transform transition-transform duration-300 ease-in-out ${
+										isChatOpen ? "w-1/3" : "w-0"
+									}`}
 								>
-									{isChatOpen ? 'Close Chat' : 'Open Chat'}
-								</Button>
+									{isChatOpen && (
+										<ContentQueue
+											items={contentBlocks}
+											onSubmitClarificationAnswers={
+												dummyFunction
+											}
+											onSubmitClarificationVitaliaAnswers={
+												dummyFunction
+											}
+											onClarificationStreamEnd={
+												dummyFunction
+											}
+											onStreamEnd={onStreamEnd}
+											showCurrentLoading={
+												showCurrentLoading
+											}
+											onFinishAnswerVitalia={
+												dummyFunction
+											}
+											setActiveCitationId={
+												setActiveCitationId
+											}
+										/>
+									)}
+								</div>
+								<div className="flex items-end mb-4 mr-4 z-10">
+									<Button
+										className="bg-accent text-accent-foreground p-4 rounded-l-lg shadow-md focus:outline-none z-40"
+										onClick={() =>
+											setIsChatOpen(!isChatOpen)
+										}
+									>
+										{isChatOpen
+											? "Close Chat"
+											: "Open Chat"}
+									</Button>
+								</div>
+							</div>
+
+							{/* Input Bar - Bottom Row */}
+							<div className="h-1/6 w-full flex items-end">
+								{isFormVisible && (
+									<div className="w-full shadow-inner z-20">
+										<BottomBar
+											inputMode={inputMode}
+											handleSubmit={handleNewQuestion}
+											handleSubmitFollowup={
+												handleNewFollowupQuestion
+											}
+										/>
+									</div>
+								)}
 							</div>
 						</div>
-
 					</ExploreHUD>
-
-
-
 				</div>
-				{/* Left Column - Node HUD and Node Count
-				<div className={`flex flex-col justify-between h-full ${isHUDOpen ? 'w-1/6' : 'w-0'} transition-width duration-300 ease-in-out`}>
-					<div className="flex-1 bg-background shadow-lg z-20 overflow-hidden">
-						{isHUDOpen && (
-							<ExploreHUD
-								node={selectedNode}
-								isHUDOpen={isHUDOpen}
-								setIsHUDOpen={setIsHUDOpen}
-							/>
-						)}
-					</div>
-					<div className="flex bg-background shadow-md z-30">
-						<NodeCountComponent nodes={NodeData} />
-					</div>
-					<div className="fixed left-0 top-1/2 transform -translate-y-1/2 z-10 flex items-center justify-center">
-						<Button
-							className="bg-accent text-accent-foreground p-4 rounded-r-lg shadow-md focus:outline-none z-40"
-							onClick={() => setIsHUDOpen(!isHUDOpen)}
-						>
-							{isHUDOpen ? 'Close HUD' : 'Open HUD'}
-						</Button>
-					</div>
-				</div> */}
-
-
-
-
-
-
-
-
-
-
 			</div>
-
 		</div>
 	);
 	// return (
@@ -857,7 +888,6 @@ const GraphPage: React.FC = () => {
 	// 		</div>
 	// 	</div>
 	// );
-
 };
 
 export default GraphPage;

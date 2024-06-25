@@ -33,7 +33,8 @@ export default function HomePage() {
 									/>
 								</div>
 								<p className="text-foregrou d text-lg pt-1 font-body leading-7 mt-6 max-md:max-w-full">
-									A Conversational AI Legal Education Assistant
+									A Conversational AI Legal Education
+									Assistant
 								</p>
 							</div>
 							<div className="items-fit flex  max-w-full justify-between mt-10">
@@ -48,7 +49,7 @@ export default function HomePage() {
 					</div>
 				</div>
 			</section>
-			
+
 			{/* Explore Page Intro Section */}
 			<section className="items-center bg-background shadow-inner flex w-full flex-col pb-12 pt-8">
 				<div className="gap-2 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
@@ -68,13 +69,17 @@ export default function HomePage() {
 									Explore Legislation in 3D
 								</h2>
 								<p className="text-foreground text-lg pt-1 font-body leading-7 mt-6 max-md:max-w-full">
-									Discover the structure and connections within legal frameworks through our interactive 3D Force Graph Simulation.
+									Discover the structure and connections
+									within legal frameworks through our
+									interactive 3D Force Graph Simulation.
 								</p>
 								<h3 className="text-foreground text-2xl font-body  mt-6 max-md:max-w-full max-md:text-3xl">
 									Coming Soon...
 								</h3>
 								<p className="text-foreground text-lg pt-1 font-body leading-7 mt-2 max-md:max-w-full">
-									Have a conversation with Abe and visualize the knowledge base of legislation used in his response, in real time.
+									Have a conversation with Abe and visualize
+									the knowledge base of legislation used in
+									his response, in real time.
 								</p>
 							</div>
 							<div className="items-fit flex max-w-full justify-between mt-10">
@@ -90,7 +95,6 @@ export default function HomePage() {
 				</div>
 			</section>
 
-
 			{/* Intro Section */}
 			<div className="items-center bg-muted shadow-inner flex flex-col px-5">
 				<div className="w-full max-w-[1312px] mt-16 mb-16 max-md:max-w-full max-md:my-10">
@@ -101,13 +105,13 @@ export default function HomePage() {
 									What is Ask Abe?
 								</h1>
 								<p className="text-foreground text-xl font-body font-light leading-12 mt-6 max-md:max-w-full">
-									Ask Abe is an educational tool designed to help users navigate
-									complex legal frameworks and access detailed legal
-									information. This conversational AI allows users to ask legal
-									questions and receive answers with direct citations to primary
-									source legislation.
+									Ask Abe is an educational tool designed to
+									help users navigate complex legal frameworks
+									and access detailed legal information. This
+									conversational AI allows users to ask legal
+									questions and receive answers with direct
+									citations to primary source legislation.
 								</p>
-
 							</div>
 						</div>
 						<div className="flex flex-col items-stretch w-6/12 ml-5 max-md:w-full max-md:ml-0">
@@ -143,19 +147,24 @@ export default function HomePage() {
               </h2> */}
 								<div className="items-stretch self-stretch flex flex-col mt-4 max-md:max-w-full">
 									<h1 className="text-muted-foreground text-5xl font-header font-semibold leading-[57.6px] max-md:max-w-full max-md:text-4xl">
-										Democratizing Legal Knowledge For All, One Question At a
-										Time
+										Democratizing Legal Knowledge For All,
+										One Question At a Time
 									</h1>
 									<p className="text-foreground text-xl font-body font-light leading-7 mt-6 max-md:max-w-full">
-										Our vision is to revolutionize the legal landscape by making
-										legal literacy accessible to everyone. We are committed to
-										empowering individuals with comprehensible legal knowledge
-										through Ask Abe. Our mission includes keeping this
-										invaluable tool free forever and expanding its benefits
-										globally. We envision a future where every citizen,
-										regardless of background or location, is equipped with the
-										tools to navigate the legal world confidently, contributing
-										to a more just, informed, and equitable society.
+										Our vision is to revolutionize the legal
+										landscape by making legal literacy
+										accessible to everyone. We are committed
+										to empowering individuals with
+										comprehensible legal knowledge through
+										Ask Abe. Our mission includes keeping
+										this invaluable tool free forever and
+										expanding its benefits globally. We
+										envision a future where every citizen,
+										regardless of background or location, is
+										equipped with the tools to navigate the
+										legal world confidently, contributing to
+										a more just, informed, and equitable
+										society.
 									</p>
 								</div>
 								<div className="items-stretch flex max-w-full gap-4 mt-10 self-start">
@@ -166,7 +175,6 @@ export default function HomePage() {
 										Our Mission
 									</a>
 								</div>
-
 							</div>
 						</div>
 					</div>
@@ -199,8 +207,8 @@ export default function HomePage() {
 										Expandable Citations
 									</div>
 									<div className="self-stretch text-foreground font-body text-base leading-6 mt-6 max-md:max-w-full">
-										View citations collapsed or expanded. Whichever suits your
-										preference.
+										View citations collapsed or expanded.
+										Whichever suits your preference.
 									</div>
 								</div>
 							</div>
@@ -223,8 +231,9 @@ export default function HomePage() {
 										Chat Options & Jurisdictions
 									</div>
 									<div className="self-stretch text-foreground font-body text-base leading-6 mt-6 max-md:max-w-full">
-										Select the jurisdiction for Abe to focus on in his answer.
-										(More jurisdictions coming soon)
+										Select the jurisdiction for Abe to focus
+										on in his answer. (More jurisdictions
+										coming soon)
 									</div>
 								</div>
 							</div>
@@ -257,8 +266,9 @@ export default function HomePage() {
 										Ask a follow-up question
 									</div>
 									<div className="self-stretch text-foreground font-body text-base leading-6 mt-6 max-md:max-w-full">
-										If Abe&apos;s answer to your query raises more questions,
-										feel free to ask a follow-up question.
+										If Abe&apos;s answer to your query
+										raises more questions, feel free to ask
+										a follow-up question.
 									</div>
 								</div>
 							</div>

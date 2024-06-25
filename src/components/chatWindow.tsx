@@ -78,15 +78,23 @@ export default function Chat() {
 	]);
 	const [citationBlocks, setCitationBlocks] = useState<ContentBlock[]>([]);
 	const [question, setQuestion] = useState("");
-	
+
 	const [specificQuestions, setSpecificQuestions] = useState<string[]>([]);
-	const [clarificationResponses, setClarificationResponses] = useState<Clarification[]>([]);
+	const [clarificationResponses, setClarificationResponses] = useState<
+		Clarification[]
+	>([]);
 	const [alreadyAnswered, setAlreadyAnswered] = useState([""]);
 	const [sessionId, setSessionId] = useState<string>("");
-	const [selectedFederalJurisdiction, setSelectedFederalJurisdiction] = useState<Jurisdiction | undefined>(undefined);
-	const [selectedStateJurisdiction, setSelectedStateJurisdiction] = useState<Jurisdiction | undefined>(undefined);
-	const [selectedMiscJurisdiction, setSelectedMiscJurisdiction] = useState<Jurisdiction | undefined>(undefined);
-	const [questionJurisdictions, setQuestionJurisdictions] = useState<questionJurisdictions>();
+	const [selectedFederalJurisdiction, setSelectedFederalJurisdiction] =
+		useState<Jurisdiction | undefined>(undefined);
+	const [selectedStateJurisdiction, setSelectedStateJurisdiction] = useState<
+		Jurisdiction | undefined
+	>(undefined);
+	const [selectedMiscJurisdiction, setSelectedMiscJurisdiction] = useState<
+		Jurisdiction | undefined
+	>(undefined);
+	const [questionJurisdictions, setQuestionJurisdictions] =
+		useState<questionJurisdictions>();
 	const [askClarifications, setAskClarifications] = useState(false);
 	const [showJurisdictionModal, setShowJurisdictionModal] = useState(false);
 
@@ -139,19 +147,25 @@ export default function Chat() {
 	};
 
 	const addManyContentBlock = async (
-		newBlocks: ContentBlock[]
+		newBlocks: ContentBlock[],
 	): Promise<void> => {
 		setStreamingQueue(newBlocks);
 		if (newBlocks[0].type === ContentType.Citation) {
-			setCitationBlocks((currentBlocks) => [...currentBlocks, ...newBlocks]);
+			setCitationBlocks((currentBlocks) => [
+				...currentBlocks,
+				...newBlocks,
+			]);
 		} else {
-			setContentBlocks((currentBlocks) => [...currentBlocks, ...newBlocks]);
+			setContentBlocks((currentBlocks) => [
+				...currentBlocks,
+				...newBlocks,
+			]);
 		}
 	};
 
 	const addNewLoadingBlock = async (
 		neverLoad: boolean,
-		loadingMessage?: string
+		loadingMessage?: string,
 	) => {
 		setShowCurrentLoading(true);
 		const loadingBlock: ContentBlock = {
@@ -211,7 +225,7 @@ export default function Chat() {
 		const memory: AbeMemory = createNewMemory(
 			question,
 			sessionId,
-			questionJurisdictions!
+			questionJurisdictions!,
 		);
 		memory.short.specificQuestions = [];
 
@@ -238,7 +252,7 @@ export default function Chat() {
 	};
 
 	const scoreQuestion = async (
-		memory: AbeMemory
+		memory: AbeMemory,
 	): Promise<[number, string]> => {
 		const currentQuestion: string = memory.short.currentQuestion!;
 		const jurisdictions: questionJurisdictions =
@@ -247,7 +261,7 @@ export default function Chat() {
 		const maskedQuestion: string = constructPromptQuery(
 			currentQuestion,
 			jurisdictions.state?.corpusTitle || "The Country Of ",
-			jurisdictions.federal?.corpusTitle || "USA"
+			jurisdictions.federal?.corpusTitle || "USA",
 		);
 
 		const requestBody: QueryScoringRequest = {
@@ -386,7 +400,10 @@ export default function Chat() {
 			const secondary_citation_blocks: ContentBlock[] = [];
 			for (const row of secondaryRows) {
 				let possible_citation = row.node_citation;
-				if (possible_citation === undefined || possible_citation === null) {
+				if (
+					possible_citation === undefined ||
+					possible_citation === null
+				) {
 					possible_citation = row.node_name.split(" ")[0];
 				}
 				const section_text: string[] = row.node_text;
@@ -422,7 +439,7 @@ export default function Chat() {
 			pimaryRows,
 			secondaryRows,
 			clarificationResponses,
-			jurisdictions
+			jurisdictions,
 		);
 	};
 
@@ -431,26 +448,27 @@ export default function Chat() {
 		pimaryRows: node_as_row[],
 		secondaryRows: node_as_row[],
 		combinedClarifications: Clarification[],
-		questionJurisdiction: questionJurisdictions
+		questionJurisdiction: questionJurisdictions,
 	) => {
 		const refinedQuestion = memory.short.currentRefinedQuestion!;
 		const specificQuestions = memory.short.specificQuestions!;
 		let user_prompt_query: string = constructPromptQuery(
 			refinedQuestion,
 			questionJurisdictions?.state?.corpusTitle || "The Country Of ",
-			questionJurisdictions!.federal?.corpusTitle || "USA"
+			questionJurisdictions!.federal?.corpusTitle || "USA",
 		);
 
 		if (questionJurisdictions?.mode === "misc") {
 			user_prompt_query = constructPromptQueryMisc(
 				refinedQuestion,
-				questionJurisdictions?.misc?.corpusTitle || "This Legal Documentation"
+				questionJurisdictions?.misc?.corpusTitle ||
+					"This Legal Documentation",
 			);
 		} else if (questionJurisdictions?.mode === "misc_federal") {
 			user_prompt_query = constructPromptQueryBoth(
 				refinedQuestion,
 				questionJurisdictions?.misc?.name!,
-				questionJurisdictions?.federal?.name!
+				questionJurisdictions?.federal?.name!,
 			);
 		}
 		const requestBody: DirectAnsweringRequest = {
@@ -511,14 +529,14 @@ export default function Chat() {
 	};
 
 	const scoreNewFollowupQuestion = async (
-		question: string
+		question: string,
 	): Promise<[number, string]> => {
 		let score: number = 7;
 		if (questionJurisdictions!.mode !== "misc") {
 			const user_prompt_query: string = constructPromptQuery(
 				question,
 				selectedStateJurisdiction?.corpusTitle || "",
-				selectedFederalJurisdiction?.corpusTitle || "USA"
+				selectedFederalJurisdiction?.corpusTitle || "USA",
 			);
 
 			const requestBody = {
@@ -588,7 +606,7 @@ export default function Chat() {
 
 	const followUpQuestionAnswer = async (
 		clarifications: Clarification[],
-		newQuestion?: string
+		newQuestion?: string,
 	) => {
 		addNewLoadingBlock(false);
 		const input = newQuestion || question;
@@ -599,7 +617,7 @@ export default function Chat() {
 			primaryRows,
 			secondaryRows,
 			clarifications,
-			questionJurisdictions!
+			questionJurisdictions!,
 		);
 	};
 
@@ -613,11 +631,13 @@ export default function Chat() {
 
 	return (
 		<div>
-			
 			<DisclaimerModal />
 			<div className="flex flex-row h-full">
 				<div className="flex-grow flex flex-col">
-					<div className="flex-grow overflow-y-auto" style={{ minHeight: "90vh", maxHeight: "90vh" }}>
+					<div
+						className="flex-grow overflow-y-auto"
+						style={{ minHeight: "90vh", maxHeight: "90vh" }}
+					>
 						<ContentQueue
 							items={contentBlocks}
 							onSubmitClarificationAnswers={dummyFunction}
@@ -647,14 +667,13 @@ export default function Chat() {
 						miscJurisdictions={MiscJurisdictionOptions}
 						onOptionChange={handleOptionChange}
 						onStateJurisdictionChange={setSelectedStateJurisdiction}
-						onFederalJurisdictionChange={setSelectedFederalJurisdiction}
+						onFederalJurisdictionChange={
+							setSelectedFederalJurisdiction
+						}
 						onMiscJurisdictionChange={setSelectedMiscJurisdiction}
 					/>
 				</div>
 			</div>
 		</div>
-
-
-
 	);
 }

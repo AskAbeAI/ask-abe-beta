@@ -154,19 +154,25 @@ export default function Playground() {
 	};
 
 	const addManyContentBlock = async (
-		newBlocks: ContentBlock[]
+		newBlocks: ContentBlock[],
 	): Promise<void> => {
 		setStreamingQueue(newBlocks);
 		if (newBlocks[0].type === ContentType.Citation) {
-			setCitationBlocks((currentBlocks) => [...currentBlocks, ...newBlocks]);
+			setCitationBlocks((currentBlocks) => [
+				...currentBlocks,
+				...newBlocks,
+			]);
 		} else {
-			setContentBlocks((currentBlocks) => [...currentBlocks, ...newBlocks]);
+			setContentBlocks((currentBlocks) => [
+				...currentBlocks,
+				...newBlocks,
+			]);
 		}
 	};
 
 	const addNewLoadingBlock = async (
 		neverLoad: boolean,
-		loadingMessage?: string
+		loadingMessage?: string,
 	) => {
 		setShowCurrentLoading(true);
 		const loadingBlock: ContentBlock = {
@@ -226,7 +232,7 @@ export default function Playground() {
 		const memory: AbeMemory = createNewMemory(
 			question,
 			sessionId,
-			questionJurisdictions!
+			questionJurisdictions!,
 		);
 		memory.short.specificQuestions = [];
 
@@ -253,7 +259,7 @@ export default function Playground() {
 	};
 
 	const scoreQuestion = async (
-		memory: AbeMemory
+		memory: AbeMemory,
 	): Promise<[number, string]> => {
 		const currentQuestion: string = memory.short.currentQuestion!;
 		const jurisdictions: questionJurisdictions =
@@ -262,7 +268,7 @@ export default function Playground() {
 		const maskedQuestion: string = constructPromptQuery(
 			currentQuestion,
 			jurisdictions.state?.corpusTitle || "The Country Of ",
-			jurisdictions.federal?.corpusTitle || "USA"
+			jurisdictions.federal?.corpusTitle || "USA",
 		);
 
 		const requestBody: QueryScoringRequest = {
@@ -401,7 +407,10 @@ export default function Playground() {
 			const secondary_citation_blocks: ContentBlock[] = [];
 			for (const row of secondaryRows) {
 				let possible_citation = row.node_citation;
-				if (possible_citation === undefined || possible_citation === null) {
+				if (
+					possible_citation === undefined ||
+					possible_citation === null
+				) {
 					possible_citation = row.node_name.split(" ")[0];
 				}
 				const section_text: string[] = row.node_text;
@@ -437,7 +446,7 @@ export default function Playground() {
 			pimaryRows,
 			secondaryRows,
 			clarificationResponses,
-			jurisdictions
+			jurisdictions,
 		);
 	};
 
@@ -446,26 +455,27 @@ export default function Playground() {
 		pimaryRows: node_as_row[],
 		secondaryRows: node_as_row[],
 		combinedClarifications: Clarification[],
-		questionJurisdiction: questionJurisdictions
+		questionJurisdiction: questionJurisdictions,
 	) => {
 		const refinedQuestion = memory.short.currentRefinedQuestion!;
 		const specificQuestions = memory.short.specificQuestions!;
 		let user_prompt_query: string = constructPromptQuery(
 			refinedQuestion,
 			questionJurisdictions?.state?.corpusTitle || "The Country Of ",
-			questionJurisdictions!.federal?.corpusTitle || "USA"
+			questionJurisdictions!.federal?.corpusTitle || "USA",
 		);
 
 		if (questionJurisdictions?.mode === "misc") {
 			user_prompt_query = constructPromptQueryMisc(
 				refinedQuestion,
-				questionJurisdictions?.misc?.corpusTitle || "This Legal Documentation"
+				questionJurisdictions?.misc?.corpusTitle ||
+					"This Legal Documentation",
 			);
 		} else if (questionJurisdictions?.mode === "misc_federal") {
 			user_prompt_query = constructPromptQueryBoth(
 				refinedQuestion,
 				questionJurisdictions?.misc?.name!,
-				questionJurisdictions?.federal?.name!
+				questionJurisdictions?.federal?.name!,
 			);
 		}
 		const requestBody: DirectAnsweringRequest = {
@@ -526,14 +536,14 @@ export default function Playground() {
 	};
 
 	const scoreNewFollowupQuestion = async (
-		question: string
+		question: string,
 	): Promise<[number, string]> => {
 		let score: number = 7;
 		if (questionJurisdictions!.mode !== "misc") {
 			const user_prompt_query: string = constructPromptQuery(
 				question,
 				selectedStateJurisdiction?.corpusTitle || "",
-				selectedFederalJurisdiction?.corpusTitle || "USA"
+				selectedFederalJurisdiction?.corpusTitle || "USA",
 			);
 
 			const requestBody = {
@@ -603,7 +613,7 @@ export default function Playground() {
 
 	const followUpQuestionAnswer = async (
 		clarifications: Clarification[],
-		newQuestion?: string
+		newQuestion?: string,
 	) => {
 		addNewLoadingBlock(false);
 		const input = newQuestion || question;
@@ -614,7 +624,7 @@ export default function Playground() {
 			primaryRows,
 			secondaryRows,
 			clarifications,
-			questionJurisdictions!
+			questionJurisdictions!,
 		);
 	};
 
@@ -627,11 +637,17 @@ export default function Playground() {
 	};
 
 	return (
-		<div className="flex flex-col h-screen w-full px-3 py-3 bg-mainbg">
-			<JurisdictionModal shown={showJurisdictionModal} setShown={setShown} />
+		<div className="flex flex-col h-screen w-full px-3 py-3 bg-background">
+			<JurisdictionModal
+				shown={showJurisdictionModal}
+				setShown={setShown}
+			/>
 			<DisclaimerModal />
 			<div className="flex flex-row h-full">
-				<div className="flex-shrink-0 pr-2" style={{ width: citationsOpen ? "100%" : "14%" }}>
+				<div
+					className="flex-shrink-0 pr-2"
+					style={{ width: citationsOpen ? "100%" : "14%" }}
+				>
 					<CitationBar
 						open={citationsOpen}
 						setOpen={setCitationsOpen}
@@ -639,8 +655,14 @@ export default function Playground() {
 						activeCitationId={activeCitationId}
 					/>
 				</div>
-				<div className="flex-grow flex flex-col" style={{ width: citationsOpen ? "hidden" : "86%" }}>
-					<div className="flex-grow overflow-y-auto" style={{ minHeight: "90vh", maxHeight: "90vh" }}>
+				<div
+					className="flex-grow flex flex-col"
+					style={{ width: citationsOpen ? "hidden" : "86%" }}
+				>
+					<div
+						className="flex-grow overflow-y-auto"
+						style={{ minHeight: "90vh", maxHeight: "90vh" }}
+					>
 						<ContentQueue
 							items={contentBlocks}
 							onSubmitClarificationAnswers={dummyFunction}
@@ -670,14 +692,13 @@ export default function Playground() {
 						miscJurisdictions={MiscJurisdictionOptions}
 						onOptionChange={handleOptionChange}
 						onStateJurisdictionChange={setSelectedStateJurisdiction}
-						onFederalJurisdictionChange={setSelectedFederalJurisdiction}
+						onFederalJurisdictionChange={
+							setSelectedFederalJurisdiction
+						}
 						onMiscJurisdictionChange={setSelectedMiscJurisdiction}
 					/>
 				</div>
 			</div>
 		</div>
-
-
-
 	);
 }

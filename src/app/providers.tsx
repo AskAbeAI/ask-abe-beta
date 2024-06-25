@@ -1,9 +1,9 @@
 // provider file for next-theme enabled theme switchers
-'use client';
+"use client";
 
-import { ThemeProvider } from 'next-themes';
-import { ReactNode } from 'react';
+import { ThemeProvider } from "next-themes";
+import { ReactNode } from "react";
 
 export function ThemeProviders({ children }: { children: ReactNode }) {
-  return <ThemeProvider>{children}</ThemeProvider>;
+	return <ThemeProvider>{children}</ThemeProvider>;
 }

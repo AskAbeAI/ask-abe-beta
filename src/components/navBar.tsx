@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/navigationMenu";
 import { cn } from "@/lib/utils/cn";
 
-const components: { title: string; href: string; description: string; }[] = [
+const components: { title: string; href: string; description: string }[] = [
 	{
 		title: "About Us",
 		href: "/about",
@@ -26,52 +26,57 @@ const components: { title: string; href: string; description: string; }[] = [
 	{
 		title: "Privacy Policy",
 		href: "/privacy",
-		description:
-			"See our privacy terms for using Ask Abe.",
+		description: "See our privacy terms for using Ask Abe.",
 	},
 	{
 		title: "Terms of Service",
 		href: "/tos",
-		description:
-			"Our full terms of service.",
+		description: "Our full terms of service.",
 	},
 	{
 		title: "Support Us",
 		href: "/support",
-		description: "Join us in our mission to democratice legal knowoledge for all!",
+		description:
+			"Join us in our mission to democratice legal knowoledge for all!",
 	},
 	{
 		title: "Devlog",
 		href: "/devlog",
-		description:
-			"A log of changes by our developers.",
+		description: "A log of changes by our developers.",
 	},
 	{
 		title: "Legal",
 		href: "/legal",
-		description:
-			"Legal information about Ask Abe.",
+		description: "Legal information about Ask Abe.",
 	},
 ];
 
 const NavBar = () => {
 	return (
-		<header className={`fixed top-0 left-0 w-full flex items-center justify-between px-8 py-2 text-base bg-background border-b border-solid z-50`}>
+		<header
+			className={`w-full flex items-center justify-between px-8 py-2 text-base bg-background border-b border-solid `}
+		>
 			<Link href="/">
-				<div className="flex justify-left items-center font-header font-bold text-olivebrown text-2xl">ASK ABE</div>
+				<div className="flex justify-left items-center font-header font-bold text-olivebrown text-2xl">
+					ASK ABE
+				</div>
 			</Link>
 			<NavigationMenu className="flex-1">
 				<NavigationMenuList className="flex justify-center pl-16 align-bottom">
 					<NavigationMenuItem>
 						<Link href="/chat" legacyBehavior passHref>
-							<NavigationMenuLink className={navigationMenuTriggerStyle()}>
+							<NavigationMenuLink
+								className={navigationMenuTriggerStyle()}
+							>
 								Chat
 							</NavigationMenuLink>
 						</Link>
 					</NavigationMenuItem>
 					<NavigationMenuItem>
 						<Link href="/explore" legacyBehavior passHref>
-							<NavigationMenuLink className={navigationMenuTriggerStyle()}>
+							<NavigationMenuLink
+								className={navigationMenuTriggerStyle()}
+							>
 								Explore in 3D
 							</NavigationMenuLink>
 						</Link>
@@ -92,14 +97,25 @@ const NavBar = () => {
 										</a>
 									</NavigationMenuLink>
 								</li>
-								<ListItem href="/features#1" title="Placeholder 1"></ListItem>
-								<ListItem href="/features#2" title="Placeholder 2"></ListItem>
-								<ListItem href="/features#3" title="Placeholder 3"></ListItem>
+								<ListItem
+									href="/features#1"
+									title="Placeholder 1"
+								></ListItem>
+								<ListItem
+									href="/features#2"
+									title="Placeholder 2"
+								></ListItem>
+								<ListItem
+									href="/features#3"
+									title="Placeholder 3"
+								></ListItem>
 							</ul>
 						</NavigationMenuContent>
 					</NavigationMenuItem>
 					<NavigationMenuItem>
-						<NavigationMenuTrigger>Our Mission</NavigationMenuTrigger>
+						<NavigationMenuTrigger>
+							Our Mission
+						</NavigationMenuTrigger>
 						<NavigationMenuContent>
 							<ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
 								<li className="row-span-3">
@@ -109,7 +125,8 @@ const NavBar = () => {
 											href="/dashboardFeatures"
 										>
 											<div className="mb-2 mt-4 text-lg font-medium">
-												Democratize Legal Knowledge for All
+												Democratize Legal Knowledge for
+												All
 											</div>
 										</a>
 									</NavigationMenuLink>
@@ -127,7 +144,9 @@ const NavBar = () => {
 						</NavigationMenuContent>
 					</NavigationMenuItem>
 					<NavigationMenuItem>
-						<NavigationMenuTrigger>Organization</NavigationMenuTrigger>
+						<NavigationMenuTrigger>
+							Organization
+						</NavigationMenuTrigger>
 						<NavigationMenuContent>
 							<ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
 								{components.map((component) => (
@@ -143,10 +162,11 @@ const NavBar = () => {
 						</NavigationMenuContent>
 					</NavigationMenuItem>
 
-
 					<NavigationMenuItem>
 						<Link href="/company" legacyBehavior passHref>
-							<NavigationMenuLink className={navigationMenuTriggerStyle()}>
+							<NavigationMenuLink
+								className={navigationMenuTriggerStyle()}
+							>
 								Company
 							</NavigationMenuLink>
 						</Link>
@@ -162,30 +182,30 @@ const NavBar = () => {
 
 export default NavBar;
 
-const ListItem = React.forwardRef<React.ElementRef<"a">, React.ComponentPropsWithoutRef<"a">>(
-	({ className, title, children, ...props }, ref) => {
-		return (
-			<li>
-				<NavigationMenuLink asChild>
-					<a
-						ref={ref}
-						className={cn(
-							"block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-							className
-						)}
-						{...props}
-					>
-						<div className="text-sm font-medium leading-none">{title}</div>
-						<p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-							{children}
-						</p>
-					</a>
-				</NavigationMenuLink>
-			</li>
-		);
-	}
-);
+const ListItem = React.forwardRef<
+	React.ElementRef<"a">,
+	React.ComponentPropsWithoutRef<"a">
+>(({ className, title, children, ...props }, ref) => {
+	return (
+		<li>
+			<NavigationMenuLink asChild>
+				<a
+					ref={ref}
+					className={cn(
+						"block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+						className,
+					)}
+					{...props}
+				>
+					<div className="text-sm font-medium leading-none">
+						{title}
+					</div>
+					<p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+						{children}
+					</p>
+				</a>
+			</NavigationMenuLink>
+		</li>
+	);
+});
 ListItem.displayName = "ListItem";
-
-
-

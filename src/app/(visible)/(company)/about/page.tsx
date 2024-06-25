@@ -3,9 +3,9 @@ import Image from "next/image";
 import PageFooter from "@/components/pageFooter";
 
 export default function aboutPage() {
-  return (
-    <div>
-      {/* <div className="items-center bg-mainbg shadow-inner w-screen flex flex-col">
+	return (
+		<div>
+			{/* <div className="items-center bg-mainbg shadow-inner w-screen flex flex-col">
         <div className="text-darkgreen text-center text-6xl font-header font-medium leading-[67px] px-20 mt-28 max-md:max-w-full max-md:text-4xl max-md:leading-[54px] max-md:mt-10">
           Dedicated to making the complexities of law accessible and
           comprehensible for everyone, at no cost, by utilizing cutting-edge
@@ -190,6 +190,6 @@ export default function aboutPage() {
       </div>
 
       <PageFooter /> */}
-    </div>
-  );
+		</div>
+	);
 }
