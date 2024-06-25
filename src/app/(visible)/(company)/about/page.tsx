@@ -5,7 +5,7 @@ import PageFooter from "@/components/pageFooter";
 export default function aboutPage() {
 	return (
 		<div>
-			{/* <div className="items-center bg-mainbg shadow-inner w-screen flex flex-col">
+			{/* <div className="items-center bg-background shadow-inner w-screen flex flex-col">
         <div className="text-darkgreen text-center text-6xl font-header font-medium leading-[67px] px-20 mt-28 max-md:max-w-full max-md:text-4xl max-md:leading-[54px] max-md:mt-10">
           Dedicated to making the complexities of law accessible and
           comprehensible for everyone, at no cost, by utilizing cutting-edge
@@ -15,7 +15,7 @@ export default function aboutPage() {
           {" "}
         </div>
       </div>
-      <div className="items-stretch bg-mainbg flex flex-col px-16 max-md:px-5">
+      <div className="items-stretch bg-background flex flex-col px-16 max-md:px-5">
         <Image
           width={2000}
           height={1500}
@@ -24,7 +24,7 @@ export default function aboutPage() {
           className="aspect-[1.78] object-contain object-center w-full overflow-hidden mt-28 mb-28 max-md:max-w-full max-md:my-10"
         />
       </div>
-      <div className="items-center bg-mainbg flex flex-col px-5">
+      <div className="items-center bg-background flex flex-col px-5">
         <div className="w-full max-w-[1312px] mt-16 mb-24 max-md:max-w-full max-md:my-10">
           <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
             <div className="flex flex-col items-stretch w-6/12 max-md:w-full max-md:ml-0">
@@ -55,7 +55,7 @@ export default function aboutPage() {
         </div>
       </div>
 
-      <div className="items-center bg-lightbg flex flex-col px-5 shadow-inner">
+      <div className="items-center bg-muted flex flex-col px-5 shadow-inner">
         <div className="items-stretch flex w-full max-w-[1312px] justify-between gap-5 mt-28 mb-24 max-md:max-w-full max-md:flex-wrap max-md:my-10">
           <div className="flex justify-center text-center text-darkgreen text-4xl font-header leading-10 grow shrink basis-auto max-md:max-w-full">
             How can AI help?
@@ -76,7 +76,7 @@ export default function aboutPage() {
         </div>
       </div>
 
-      <div className="items-center bg-mainbg flex flex-col px-5">
+      <div className="items-center bg-background flex flex-col px-5">
         <div className="w-full max-w-[1312px] mt-16 mb-16 max-md:max-w-full max-md:my-10">
           <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
             <div className="flex flex-col items-stretch w-6/12 mr-5 max-md:w-full max-md:ml-0">
@@ -122,7 +122,7 @@ export default function aboutPage() {
         </div>
       </div>
 
-      <div className="items-stretch bg-lightbg shadow-inner flex flex-col px-16 max-md:px-5">
+      <div className="items-stretch bg-muted shadow-inner flex flex-col px-16 max-md:px-5">
         <div className="mt-16 max-md:max-w-full max-md:mt-10">
           <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
             <div className="flex flex-col items-stretch w-6/12 max-md:w-full max-md:ml-0">

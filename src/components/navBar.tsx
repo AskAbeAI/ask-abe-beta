@@ -68,7 +68,7 @@ const NavBar = () => {
 							<NavigationMenuLink
 								className={navigationMenuTriggerStyle()}
 							>
-								Chat
+								Chat with Abe
 							</NavigationMenuLink>
 						</Link>
 					</NavigationMenuItem>
@@ -77,11 +77,20 @@ const NavBar = () => {
 							<NavigationMenuLink
 								className={navigationMenuTriggerStyle()}
 							>
-								Explore in 3D
+								Explore Legislation in 3D
 							</NavigationMenuLink>
 						</Link>
 					</NavigationMenuItem>
 					<NavigationMenuItem>
+						<Link href="/sources" legacyBehavior passHref>
+							<NavigationMenuLink
+								className={navigationMenuTriggerStyle()}
+							>
+								Legislation Sources
+							</NavigationMenuLink>
+						</Link>
+					</NavigationMenuItem>
+					{/* <NavigationMenuItem>
 						<NavigationMenuTrigger>Features</NavigationMenuTrigger>
 						<NavigationMenuContent>
 							<ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
@@ -98,20 +107,20 @@ const NavBar = () => {
 									</NavigationMenuLink>
 								</li>
 								<ListItem
-									href="/features#1"
-									title="Placeholder 1"
+									href="/chat"
+									title="Chat with Abe for accurate legal education and information in plain language."
 								></ListItem>
 								<ListItem
-									href="/features#2"
-									title="Placeholder 2"
+									href="/sources"
+									title="Trust Abe's responses by verifying citations provided directly in the response."
 								></ListItem>
 								<ListItem
-									href="/features#3"
-									title="Placeholder 3"
+									href="/explore"
+									title="Explore 3D Force Graph Visualization of legislation while chatting with Abe "
 								></ListItem>
 							</ul>
 						</NavigationMenuContent>
-					</NavigationMenuItem>
+					</NavigationMenuItem> */}
 					<NavigationMenuItem>
 						<NavigationMenuTrigger>
 							Our Mission
@@ -122,23 +131,25 @@ const NavBar = () => {
 									<NavigationMenuLink asChild>
 										<a
 											className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-											href="/dashboardFeatures"
+											href="/mission#dream"
 										>
 											<div className="mb-2 mt-4 text-lg font-medium">
-												Democratize Legal Knowledge for
-												All
+												Our Dream
+											</div>
+											<div className="mb-2 mt-4 text-sm font-medium">
+												To Democratize Legal Knowledge for All Using AI
 											</div>
 										</a>
 									</NavigationMenuLink>
 								</li>
-								<ListItem href="/mission#1" title="Mission 1">
-									Mission 1
+								<ListItem href="/mission#accesibility" title="The Challenge of Accesibility">
+									Access to legal education remains a widespread challenge.
 								</ListItem>
-								<ListItem href="/mission#2" title="Mission 2">
-									Mission 2
+								<ListItem href="/mission#ai-help" title="How Can AI Help?">
+									AI technology will help us achieve our mission.
 								</ListItem>
-								<ListItem href="/mission#3" title="Mission 3">
-									Mission 3
+								<ListItem href="/mission#longterm-goals" title="Our Longterm Goals">
+									Expand AI capability, jurisdictions, and impact globally.
 								</ListItem>
 							</ul>
 						</NavigationMenuContent>
