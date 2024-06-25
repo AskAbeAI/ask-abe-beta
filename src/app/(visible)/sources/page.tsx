@@ -68,7 +68,7 @@ export default function SourcesPage() {
                                         Explore Legislation:
                                     </div>
                                     <div className="self-stretch text-black font-body text-base leading-6 mt-6 max-md:max-w-full">
-                                        Dive deeper into the legislation with our 3D graph view on the "/explore" page, offering a visually engaging way to understand how different laws are interconnected.
+                                        Dive deeper into the legislation with our 3D graph view on the &apos;/explore&apos; page, offering a visually engaging way to understand how different laws are interconnected.
                                     </div>
                                 </div>
                             </div>
