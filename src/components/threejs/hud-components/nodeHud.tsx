@@ -16,19 +16,16 @@ interface NodeHUDProps {
 const NodeHUD: React.FC<NodeHUDProps> = ({ node }) => {
 	if (!node) return <div>No Node selected!</div>;
 	return (
-		<Card className="bg-white shadow-lg rounded-lg overflow-hidden">
+		<Card className="bg-white shadow-lg rounded-lg overflow-hidden max-w-sm">
 			<CardHeader>
 				<CardTitle>{node.node_name}</CardTitle>
 				<CardDescription>
-					{node.citation || "No citation available"}
+					Citation: {node.citation || "Not available"}
 				</CardDescription>
 			</CardHeader>
 			<CardContent className="text-gray-700">
 				<div>
-					<strong>ID:</strong> {node.id}
-				</div>
-				<div>
-					<strong>Link:</strong>{" "}
+				<strong>Link to Primary Source:</strong>{" "}
 					<a
 						href={node.link}
 						className="text-blue-500 hover:text-blue-700"
@@ -37,6 +34,11 @@ const NodeHUD: React.FC<NodeHUDProps> = ({ node }) => {
 					>
 						View
 					</a>
+					
+				</div>
+				<div>
+				<strong>ID:</strong> {node.id}
+					
 				</div>
 				<div>
 					<strong>Status:</strong> {node.status || "Normal"}

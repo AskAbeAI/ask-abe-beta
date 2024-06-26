@@ -52,7 +52,7 @@ export const fetchNodes = async (
 			source: node.parent,
 			target: node.id as string,
 			key: `${parentId}-${node.id}`,
-			color: getColor(node),
+			color: getColor(node, [node.level_classifier!]),
 			width: getRadius(node),
 		} as Link);
 	}
@@ -119,4 +119,24 @@ export function createNodesFromPath(leafNodeID: string): {
 	}
 
 	return { nodes, links };
+}
+export interface BreadcrumbItemData {
+	level: string;
+	number: string;
+}
+export function parseNodeIdToBreadcrumbs(node_id: string): BreadcrumbItemData[] {
+	// Split the node_id into segments
+	const segments = node_id.split('/');
+
+	// Filter out the first three segments which are 'us', 'federal', and 'ecfr'
+	const relevantSegments = segments.slice(3);
+
+	// Map each segment into a BreadcrumbItemData object
+	const breadcrumbItems = relevantSegments.map(segment => {
+		// Each segment is expected to be in the format "level=number"
+		const [level, number] = segment.split('=');
+		return { level, number };
+	});
+
+	return breadcrumbItems;
 }
