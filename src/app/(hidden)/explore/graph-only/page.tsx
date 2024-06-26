@@ -120,9 +120,7 @@ const GraphOnlyPage: React.FC = () => {
 							<NodeBreadcrumbs
 								nodeId={selectedNode?.id as string || ''}
 								onBreadcrumbClick={handleBreadcrumbClick}
-							>
-
-							</NodeBreadcrumbs>
+							/>
 						</div>
 						<div className="flex items-center space-x-4">
 							<div className="text-xl font-semibold">
