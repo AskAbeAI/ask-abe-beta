@@ -17,7 +17,7 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import SideBar from "./sideBar";
+import SideBar from "./graphSideBar";
 import { Separator } from "../ui/separator";
 
 interface ExploreHUDProps {
@@ -54,7 +54,7 @@ const ExploreHUD: React.FC<ExploreHUDProps> = ({
 						<span className="font-bold text-lg">Ask Abe</span>
 					</Link>
 					<Separator />
-					<SideBar />
+					{/* <SideBar /> */}
 				</div>
 				<div className="flex flex-col justify-center space-x-2 p-2 space-y-4">
 					<Separator />

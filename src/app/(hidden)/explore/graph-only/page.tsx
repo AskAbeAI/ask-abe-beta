@@ -21,6 +21,9 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import NodeBreadcrumbs from '@/components/threejs/hud-components/nodeBreadcrumbs';
+import Image from "next/image";
+import GraphSideBar from '@/components/threejs/graphSideBar';
+
 const NoSSRForceGraph3D = dynamic(() => import('@/components/threejs/forceGraph'), {
 	ssr: false,
 });
@@ -112,41 +115,53 @@ const GraphOnlyPage: React.FC = () => {
 			/>
 			{/* Header */}
 			<div className="absolute inset-0 flex flex-row pointer-events-none">
+
 				<div className="flex h-screen min-h-screen w-full ">
-					<header className="h-16 w-full bg-card text-foreground flex items-center justify-between px-4 top-0 right-0 border-b border-black">
-
-						{/* Ensures header is fixed and items are evenly spaced */}
-						<div className="flex items-center space-x-4 pointer-events-auto">
-							<NodeBreadcrumbs
-								nodeId={selectedNode?.id as string || ''}
-								onBreadcrumbClick={handleBreadcrumbClick}
+					<div className="flex flex-col h-full pt-16 w-64 bg-card text-card-foreground p-4 justify-between border-r border-black">
+						
+							<GraphSideBar 
+								selectedClassifier={selectedClassifier}
+								setSelectedClassifier={setSelectedClassifier}
+								selectedNode={selectedNode}
 							/>
-						</div>
-						<div className="flex items-center space-x-4">
-							<div className="text-xl font-semibold">
-								United States Code of Federal Regulations
-								{/* Organization's full name */}
+						
+					</div>
+					<div className="flex flex-col flex-1">
+						<header className="h-16 min-w-screen bg-card text-foreground flex items-center justify-between px-4 top-0 right-0 border-b border-black">
+
+							{/* Ensures header is fixed and items are evenly spaced */}
+							<div className="flex items-center space-x-4 pointer-events-auto">
+								<NodeBreadcrumbs
+									nodeId={selectedNode?.id as string || ''}
+									onBreadcrumbClick={handleBreadcrumbClick}
+								/>
 							</div>
+							<div className="flex items-center space-x-4">
+								<div className="text-xl font-semibold">
+									United States Code of Federal Regulations
+									{/* Organization's full name */}
+								</div>
 
-							{/* Center items */}
+								{/* Center items */}
 
-						</div>
-						<div className="text-xl font-semibold">
-							3D Force Graph {/* Dashboard label */}
-						</div>
-					</header>
+							</div>
+							<div className="text-xl font-semibold">
+								3D Force Graph {/* Dashboard label */}
+							</div>
+						</header>
+
+					</div>
+
 				</div>
 			</div>
-			<div className="absolute top-16 left-0 pointer-events-auto">
+			{/* <div className="absolute top-16 left-0 pointer-events-auto">
 				<ClassifierHUD
 					selectedClassifier={selectedClassifier}
 					setSelectedClassifier={setSelectedClassifier}
 
 				/>
-			</div>
-			<div className="absolute top-16 right-0 pointer-events-auto">
-				<NodeHUD node={selectedNode}></NodeHUD>
-			</div>
+			</div> */}
+			
 			<div className="absolute bottom-0 right-0">
 				<NodeCountComponent nodes={nodeData}></NodeCountComponent>
 			</div>
