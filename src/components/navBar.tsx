@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/navigationMenu";
 import { cn } from "@/lib/utils/cn";
 
-const components: { title: string; href: string; description: string }[] = [
+const components: { title: string; href: string; description: string; }[] = [
 	{
 		title: "About Us",
 		href: "/about",
@@ -54,15 +54,17 @@ const components: { title: string; href: string; description: string }[] = [
 const NavBar = () => {
 	return (
 		<header
-			className={`w-full flex items-center justify-between px-8 py-2 text-base bg-background border-b border-solid `}
-		>
-			<Link href="/">
-				<div className="flex justify-left items-center font-header font-bold text-olivebrown text-2xl">
-					ASK ABE
-				</div>
-			</Link>
-			<NavigationMenu className="flex-1">
-				<NavigationMenuList className="flex justify-center pl-16 align-bottom">
+            className="w-full px-4 py-2 text-base bg-background border-b border-solid"
+        >
+			<NavigationMenu className="w-full min-w-full">
+				<NavigationMenuList className="w-full min-w-full flex flex-col md:flex-row justify-between items-center">
+					<NavigationMenuItem>
+						<Link href="/">
+							<div className="flex justify-left items-center font-header font-bold text-olivebrown text-2xl">
+								ASK ABE
+							</div>
+						</Link>
+					</NavigationMenuItem>
 					<NavigationMenuItem>
 						<Link href="/chat" legacyBehavior passHref>
 							<NavigationMenuLink
@@ -173,20 +175,8 @@ const NavBar = () => {
 						</NavigationMenuContent>
 					</NavigationMenuItem>
 
-					<NavigationMenuItem>
-						<Link href="/company" legacyBehavior passHref>
-							<NavigationMenuLink
-								className={navigationMenuTriggerStyle()}
-							>
-								Company
-							</NavigationMenuLink>
-						</Link>
-					</NavigationMenuItem>
 				</NavigationMenuList>
 			</NavigationMenu>
-			<div className="whitespace-nowrap">
-				<Button>Login</Button>
-			</div>
 		</header>
 	);
 };

@@ -1,7 +1,7 @@
 "use client";
 // /app/explore/page.tsx
 import React, { useEffect, useState, useRef } from 'react';
-import { Node, Link, getColor, getRadius, getOpacity, dagIgnore } from '@/lib/threejs/types';
+import { Node, Link, getColor, getRadius, getOpacity, dagIgnore, getNodeLabel } from '@/lib/threejs/types';
 
 import { fetchNodes, createNodesFromPath, BreadcrumbItemData, parseNodeIdToBreadcrumbs } from '@/lib/utils/dynamicGraph';
 import dynamic from 'next/dynamic';
@@ -23,7 +23,8 @@ import { Button } from "@/components/ui/button";
 import NodeBreadcrumbs from '@/components/threejs/hud-components/nodeBreadcrumbs';
 import Image from "next/image";
 import GraphSideBar from '@/components/threejs/graphSideBar';
-
+import SimpleLabel from '@/components/threejs/hud-components/simpleLabel';
+import BottomBar from '@/components/bottomBar';
 const NoSSRForceGraph3D = dynamic(() => import('@/components/threejs/forceGraph'), {
 	ssr: false,
 });
@@ -41,6 +42,7 @@ const GraphOnlyPage: React.FC = () => {
 	const [selectedClassifier, setSelectedClassifier] = useState<string[]>(["CORPUS", "title", "subtitle", "chapter", "subchapter", "part", "subpart", "section", "other"]);
 	const hasFetched = useRef(false);
 	const [breadcrumbData, setBreadcrumbData] = useState<BreadcrumbItemData[]>([]);
+	const [isFormVisible, setIsFormVisible] = useState(true);
 
 	useEffect(() => {
 		if (!hasFetched.current) {
@@ -91,6 +93,10 @@ const GraphOnlyPage: React.FC = () => {
 		}
 	};
 
+	const handleEmbeddingVisualization = () => {
+
+	}
+
 
 
 	return (
@@ -100,7 +106,7 @@ const GraphOnlyPage: React.FC = () => {
 			<NoSSRForceGraph3D
 				graphData={{ nodes: nodeData, links: linkData }}
 				nodeRelSize={4}
-				nodeLabel="node_name"
+				nodeLabel={getNodeLabel}
 				nodeOpacity={0.8}
 				nodeColor={getColorWrapped}
 				onNodeClick={handleNodeClick}
@@ -118,13 +124,13 @@ const GraphOnlyPage: React.FC = () => {
 
 				<div className="flex h-screen min-h-screen w-full ">
 					<div className="flex flex-col h-full pt-16 w-64 bg-card text-card-foreground p-4 justify-between border-r border-black">
-						
-							<GraphSideBar 
-								selectedClassifier={selectedClassifier}
-								setSelectedClassifier={setSelectedClassifier}
-								selectedNode={selectedNode}
-							/>
-						
+
+						<GraphSideBar
+							selectedClassifier={selectedClassifier}
+							setSelectedClassifier={setSelectedClassifier}
+							selectedNode={selectedNode}
+						/>
+
 					</div>
 					<div className="flex flex-col flex-1">
 						<header className="h-16 min-w-screen bg-card text-foreground flex items-center justify-between px-4 top-0 right-0 border-b border-black">
@@ -161,9 +167,25 @@ const GraphOnlyPage: React.FC = () => {
 
 				/>
 			</div> */}
-			
+
 			<div className="absolute bottom-0 right-0">
 				<NodeCountComponent nodes={nodeData}></NodeCountComponent>
+			</div>
+			<div className="absolute right-0 top-16">
+				<SimpleLabel node={selectedNode} ></SimpleLabel>
+			</div>
+
+			{/* Input Bar - Bottom Row */}
+			<div className="absolute bottom-0 h-1/6 w-full flex items-end">
+				{isFormVisible && (
+					<div className="w-full shadow-inner z-20">
+						<BottomBar
+							inputMode={"Embedding visualization"}
+							handleSubmit={handleEmbeddingVisualization}
+							handleSubmitFollowup={dummyFunction}
+						/>
+					</div>
+				)}
 			</div>
 		</div>
 	);

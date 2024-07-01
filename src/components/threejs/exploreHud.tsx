@@ -52,7 +52,7 @@ const ExploreHUD: React.FC<ExploreHUDProps> = ({
 							className="rounded-full"
 						/>
 						<span className="font-bold text-lg">Ask Abe</span>
-					</Link>
+					</Link>S
 					<Separator />
 					{/* <SideBar /> */}
 				</div>

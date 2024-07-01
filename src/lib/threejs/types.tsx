@@ -26,6 +26,14 @@ export interface Link {
 	source: string;
 	target: string;
 }
+export function getNodeLabel(node: Node) {
+    return `
+        <div class="node-label" style="background-color: white; border: 1px solid #ccc; padding: 8px; border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); color: black;">
+            <strong>Name:</strong> ${node.node_name}<br>
+            <strong>Citation:</strong> ${node.citation}<br>
+        </div>
+    `;
+}
 
 export function getColor(node: Node, selectedClassifier: string[]): string {
 	if(selectedClassifier && !selectedClassifier.includes(node.level_classifier!)) {
