@@ -84,7 +84,7 @@ export default function HomePage() {
 							</div>
 							<div className="items-fit flex max-w-full justify-between mt-10">
 								<Link
-									href="/explore"
+									href="/explore/graph-only"
 									className="text-lg font-body rounded-sm font-bold px-6 py-3 leading-none text-accent-foreground border focus:outline-none focus:shadow-outline bg-accent hover:text-accent-foreground"
 								>
 									Explore Now
