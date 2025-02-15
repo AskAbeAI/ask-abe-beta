@@ -1,7 +1,8 @@
 // BottomBar.tsx
 
-import React, { use, useState, useEffect } from "react";
-import ChatOptionToggle from "./ui/chatOptionToggle";
+import { cn } from "@/lib/utils/cn";
+import { AlertTriangle, X } from "lucide-react";
+import React, { useEffect, useState } from "react";
 
 interface BottomBarProps {
 	inputMode: string;
@@ -62,89 +63,73 @@ const BottomBar: React.FC<BottomBarProps> = ({
 	}, [inputMode]);
 
 	return (
-		<div className="inset-x-0 bottom-0">
-			<div className="container resize-y mx-auto p-4 flex justify-center items-center">
-				{/* Form and input group with transparent background */}
+		<div className="w-full">
+			<div className="container mx-auto p-4 max-w-4xl">
 				<form
-					className="flex flex-grow justify-center items-center relative w-full max-w-5xl"
+					className="relative flex items-center gap-2"
 					onSubmit={handleFormSubmit}
 				>
-					<textarea
-						value={question}
-						onChange={handleChange}
-						onKeyDown={handleKeyDown}
-						placeholder={inputMessage}
-						maxLength={maxLimit}
-						className="w-full h-auto pl-4 pr-24 py-2 whitespace-normal font-montserrat rounded border-2 border-olivebrown focus:outline-none bg-white"
-						rows={1}
-						style={{ overflowY: "hidden" }}
-					></textarea>
+					{/* Improved textarea with consistent spacing */}
+					<div className="relative flex-1">
+						<textarea
+							value={question}
+							onChange={handleChange}
+							onKeyDown={handleKeyDown}
+							placeholder={inputMessage}
+							maxLength={maxLimit}
+							className={cn(
+								"w-full min-h-[44px] max-h-[200px] resize-none",
+								"px-4 py-3 pr-[100px]",
+								"rounded-md border border-input",
+								"bg-background text-foreground",
+								"focus:outline-none focus:ring-2 focus:ring-primary",
+								"placeholder:text-muted-foreground",
+								"transition-all duration-200"
+							)}
+							rows={1}
+							style={{ overflowY: "hidden" }}
+						/>
 
+						{/* Character count indicator */}
+						<div className="absolute right-24 top-1/2 -translate-y-1/2 text-sm text-muted-foreground">
+							{inputLength}/{maxLimit}
+						</div>
+					</div>
+
+					{/* Improved submit button */}
 					<button
 						type="submit"
-						className="absolute right-0 bg-olivebrown text-white rounded px-6 py-2 font-montserrat text-xl"
+						className={cn(
+							"absolute right-2 top-1/2 -translate-y-1/2",
+							"px-4 py-2 h-[34px]",
+							"bg-primary text-primary-foreground",
+							"rounded-md font-medium",
+							"hover:bg-primary/90",
+							"focus:outline-none focus:ring-2 focus:ring-primary",
+							"transition-colors duration-200",
+							"disabled:opacity-50 disabled:cursor-not-allowed"
+						)}
+						disabled={inputLength === 0}
 					>
 						Ask
 					</button>
 				</form>
 
-				{/* Toast notification for character limit */}
-				{inputLength > maxLimit * 0.9 && showWarning ? (
-					<div
-						id="toast-warning"
-						className="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
-						role="alert"
-					>
-						{/* Toast content */}
-						<div className="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-yellow-500 bg-yellow-100 rounded-lg dark:bg-yellow-800 dark:text-yellow-200">
-							<svg
-								className="w-4 h-4"
-								aria-hidden="true"
-								xmlns="http://www.w3.org/2000/svg"
-								fill="none"
-								viewBox="0 0 24 24"
+				{/* Improved character limit warning */}
+				{inputLength > maxLimit * 0.9 && showWarning && (
+					<div className="absolute bottom-full left-0 mb-2 p-2 bg-warning text-warning-foreground rounded-md text-sm">
+						<div className="flex items-center gap-2">
+							<AlertTriangle className="w-4 h-4" />
+							<span>Approaching character limit</span>
+							<button
+								onClick={() => setShowWarning(false)}
+								className="ml-2 hover:text-warning-foreground/80"
 							>
-								<path
-									stroke="currentColor"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									strokeWidth="2"
-									d="M12 8v4m0 4h.01M12 2a10 10 0 100 20 10 10 0 000-20z"
-								/>
-							</svg>
-							<span className="sr-only">Warning icon</span>
+								<X className="w-4 h-4" />
+							</button>
 						</div>
-						<div className="ml-3 text-sm font-montserrat">
-							You are close to reaching the maximum character
-							limit.
-						</div>
-						<button
-							type="button"
-							className="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 items-center justify-center dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
-							data-dismiss-target="#toast-warning"
-							aria-label="Close"
-							onClick={() => setShowWarning(false)}
-						>
-							<span className="sr-only">Close</span>
-							<svg
-								className="w-3 h-3"
-								aria-hidden="true"
-								xmlns="http://www.w3.org/2000/svg"
-								fill="none"
-								viewBox="0 0 14 14"
-							>
-								<path
-									stroke="currentColor"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									strokeWidth="2"
-									d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-								/>
-							</svg>
-						</button>
-						{/* ... */}
 					</div>
-				) : null}
+				)}
 			</div>
 		</div>
 	);

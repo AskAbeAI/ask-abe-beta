@@ -1,16 +1,15 @@
-import { ContentBlock, ContentType, Clarification } from "../lib/types";
 import {
-	QuestionBlock,
+	AnswerBlock,
 	AnswerVitaliaBlock,
 	ClarificationQuestionBlock,
-	ClarificationVitaliaBlock,
+	QuestionBlock,
 	WelcomeBlock,
-	WelcomeVitaliaBlock,
-	AnswerBlock,
-	ClarificationBlock,
-	AbeIconLabel,
+	WelcomeVitaliaBlock
 } from "@/components/ui/chatBlocks";
-import React, { useEffect, useState, useRef } from "react";
+import { cn } from "@/lib/utils/cn";
+import React, { useEffect, useRef, useState } from "react";
+import { Clarification, ContentBlock, ContentType } from "../lib/types";
+import { LoadingState } from "./ui/loading-state";
 
 // Assuming ContentType and ContentBlock are properly defined in "@/lib/types"
 
@@ -58,39 +57,45 @@ const ContentQueue: React.FC<ContentQueueProps> = ({
 
 	const endOfMessagesRef = useRef<HTMLDivElement>(null);
 
-	// Scroll to the last message whenever contentBlocks updates
+	// Improved scroll behavior
 	useEffect(() => {
-		// Wait for 5 seconds before scrolling to the bottom
 		if (items.length > 1 && items[1].type !== ContentType.WelcomeVitalia) {
-			setTimeout(() => {
+			const timer = setTimeout(() => {
 				endOfMessagesRef.current?.scrollIntoView({
 					behavior: "smooth",
+					block: "end"
 				});
-			}, 3000);
+			}, 100);
+			return () => clearTimeout(timer);
 		}
 	}, [items]);
 
 	const renderContentBlock = (item: ContentBlock) => {
+		const commonClasses = "w-full max-w-3xl mx-auto";
+
 		switch (item.type) {
 			case ContentType.Loading:
 				return (
-					<div className="flex justify-start">
-						<AbeIconLabel
-							neverLoad={item.neverLoad!}
-							showCurrentLoading={showCurrentLoading}
+					<div className={cn("flex justify-start", commonClasses)}>
+						<LoadingState
+							message={item.content}
+							className={cn(
+								"w-full",
+								item.neverLoad && "animate-none"
+							)}
 						/>
 					</div>
 				);
 
 			case ContentType.Question:
 				return (
-					<div className="flex justify-end">
+					<div className={cn("flex justify-end", commonClasses)}>
 						<QuestionBlock content={item.content} />
 					</div>
 				);
 			case ContentType.Answer:
 				return (
-					<div className="flex justify-start w-full">
+					<div className={cn("flex justify-start w-full", commonClasses)}>
 						<AnswerBlock
 							content={item.content}
 							content_list={item.content_list}
@@ -105,7 +110,7 @@ const ContentQueue: React.FC<ContentQueueProps> = ({
 				);
 			case ContentType.AnswerVitalia:
 				return (
-					<div className="flex justify-start w-full">
+					<div className={cn("flex justify-start w-full", commonClasses)}>
 						<AnswerVitaliaBlock
 							content={item.content}
 							citationLinks={item.citationLinks!}
@@ -115,116 +120,38 @@ const ContentQueue: React.FC<ContentQueueProps> = ({
 					</div>
 				);
 			case ContentType.ClarificationQuestion:
-				// Ensure that onConfirm and onDismiss are defined before trying to use them
-
-				if (
-					item.clarifyingAnswers &&
-					item.clarifyingQuestion &&
-					item.mode
-				) {
-					return (
-						<div className="flex justify-start w-11/12">
-							<ClarificationQuestionBlock
-								clarifyingAnswers={item.clarifyingAnswers}
-								clarifyingQuestion={item.clarifyingQuestion}
-								content={item.content}
-								mode={item.mode}
-								onClarificationStreamEnd={() =>
-									onClarificationStreamEnd(
-										item.clarifyingQuestion!,
-										item.clarifyingAnswers!,
-										item.mode!,
-									)
-								}
-							/>
-						</div>
-					);
-				} else {
-					throw new Error(
-						"Clarification block must have clarifyingAnswers and clarifyingQuestions defined",
-					);
+				if (!item.clarifyingAnswers || !item.clarifyingQuestion || !item.mode) {
+					throw new Error("Missing required clarification properties");
 				}
+				return (
+					<div className={cn("flex justify-start w-11/12", commonClasses)}>
+						<ClarificationQuestionBlock
+							clarifyingAnswers={item.clarifyingAnswers}
+							clarifyingQuestion={item.clarifyingQuestion}
+							content={item.content}
+							mode={item.mode}
+							onClarificationStreamEnd={() =>
+								onClarificationStreamEnd(
+									item.clarifyingQuestion!,
+									item.clarifyingAnswers!,
+									item.mode!,
+								)
+							}
+						/>
+					</div>
+				);
 			case ContentType.Clarification:
-				// Ensure that onConfirm and onDismiss are defined before trying to use them
-
-				if (
-					item.clarifyingAnswers &&
-					item.clarifyingQuestion &&
-					item.mode
-				) {
-					return (
-						<div className="flex justify-end">
-							<div className="w-full">
-								<ClarificationBlock
-									clarifyingAnswers={item.clarifyingAnswers}
-									clarifyingQuestion={item.clarifyingQuestion}
-									content={item.content}
-									mode={item.mode}
-									fakeStream={item.fakeStream}
-									concurrentStreaming={
-										item.concurrentStreaming
-									}
-									onSubmitClarificationAnswers={
-										onSubmitClarificationAnswers
-									}
-									onStreamEnd={() =>
-										onStreamEnd(item.concurrentStreaming)
-									}
-								/>
-							</div>
-						</div>
-					);
-				} else {
-					throw new Error(
-						"Clarification block must have clarifyingAnswers and clarifyingQuestions defined",
-					);
-				}
-			case ContentType.ClarificationVitalia:
-				// Ensure that onConfirm and onDismiss are defined before trying to use them
-
-				if (
-					item.clarifyingAnswers &&
-					item.clarifyingQuestion &&
-					item.mode
-				) {
-					return (
-						<div className="flex justify-end">
-							<div className="w-full">
-								<ClarificationVitaliaBlock
-									clarifyingAnswers={item.clarifyingAnswers}
-									clarifyingQuestion={item.clarifyingQuestion}
-									content={item.content}
-									mode={item.mode}
-									fakeStream={item.fakeStream}
-									concurrentStreaming={
-										item.concurrentStreaming
-									}
-									onSubmitClarificationVitaliaAnswers={
-										onSubmitClarificationVitaliaAnswers
-									}
-									onStreamEnd={() =>
-										onStreamEnd(item.concurrentStreaming)
-									}
-								/>
-							</div>
-						</div>
-					);
-				} else {
-					throw new Error(
-						"Clarification block must have clarifyingAnswers and clarifyingQuestions defined",
-					);
-				}
 
 			case ContentType.Welcome: {
 				return (
-					<div className="flex justify-start w-full">
+					<div className={cn("flex justify-start w-full", commonClasses)}>
 						<WelcomeBlock />
 					</div>
 				);
 			}
 			case ContentType.WelcomeVitalia: {
 				return (
-					<div className="flex justify-start w-full">
+					<div className={cn("flex justify-start w-full", commonClasses)}>
 						<WelcomeVitaliaBlock />
 					</div>
 				);
@@ -236,16 +163,19 @@ const ContentQueue: React.FC<ContentQueueProps> = ({
 	};
 
 	return (
-		<div className="p-4 rounded-lg shadow-inner overflow-auto max-h-full h-full">
-			{!isCitationExpanded && (
-				<div className="w-full space-y-4 pb-4">
-					{items.map((item) => (
-						// The key should be here, on the first element inside the map
-						<div key={item.blockId}>{renderContentBlock(item)}</div>
-					))}
-					<div ref={endOfMessagesRef} />
+		<div className="flex flex-col space-y-6 p-4 rounded-lg">
+			{items.map((item) => (
+				<div
+					key={item.blockId}
+					className={cn(
+						"transition-all duration-200 ease-in-out",
+						"hover:translate-x-0"
+					)}
+				>
+					{renderContentBlock(item)}
 				</div>
-			)}
+			))}
+			<div ref={endOfMessagesRef} />
 		</div>
 	);
 };

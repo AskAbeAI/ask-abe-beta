@@ -1,19 +1,21 @@
-import react, { useState, useRef, useEffect } from "react";
+"use client";
 
-import { ContentBlock } from "@/lib/types";
+import { useEffect, useState } from "react";
+
 import { CitationBlock } from "@/components/ui/chatBlocks";
-import { useMediaQuery } from "react-responsive";
+import { ContentBlock } from "@/lib/types";
 import { GoArchive } from "react-icons/go";
 import { HiX } from "react-icons/hi";
+import { useMediaQuery } from "react-responsive";
 
-interface CitationProps {
+interface CitationBarProps {
 	open: boolean;
+	setOpen: (open: boolean) => void;
 	citationItems: ContentBlock[];
-	setOpen: (setOpen: boolean) => void;
 	activeCitationId: string;
 }
 
-const CitationBar: React.FC<CitationProps> = ({
+const CitationBar: React.FC<CitationBarProps> = ({
 	open,
 	setOpen,
 	citationItems,
@@ -60,7 +62,7 @@ const CitationBar: React.FC<CitationProps> = ({
 		}
 	}, [activeCitationId]);
 
-	type GroupedCitations = { [jurisdiction: string]: ContentBlock[] };
+	type GroupedCitations = { [jurisdiction: string]: ContentBlock[]; };
 
 	const groupByJurisdiction = (items: ContentBlock[]): GroupedCitations => {
 		return items.reduce((groups, item) => {
@@ -75,6 +77,10 @@ const CitationBar: React.FC<CitationProps> = ({
 
 	// Grouping citation items
 	const groupedCitations = groupByJurisdiction(citationItems);
+
+	if (!citationItems || citationItems.length === 0) {
+		return null; // Return null instead of empty div for better hydration
+	}
 
 	return (
 		<div>

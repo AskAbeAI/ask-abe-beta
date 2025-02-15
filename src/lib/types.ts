@@ -239,72 +239,68 @@ export interface Jurisdiction {
 	name: string;
 	abbreviation: string;
 	corpusTitle: string;
-	usesSubContentNodes: boolean;
 	jurisdictionLevel: string;
 }
 export const StateJurisdictionOptions: Jurisdiction[] = [
-	// { id: '1', name: ' Alabama', abbreviation: 'AL', corpusTitle: 'Alabama Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
-	// { id: '2', name: ' Alaska', abbreviation: 'AK', corpusTitle: 'Alaska Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
-	// { id: '3', name: ' Arizona', abbreviation: 'AZ', corpusTitle: 'Arizona Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
-	// { id: '4', name: ' Arkansas', abbreviation: 'AR', corpusTitle: 'Arkansas Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
+	// { id: '1', name: ' Alabama', abbreviation: 'AL', corpusTitle: 'Alabama Statutes', jurisdictionLevel: 'state' },
+	// { id: '2', name: ' Alaska', abbreviation: 'AK', corpusTitle: 'Alaska Statutes', jurisdictionLevel: 'state' },
+	// { id: '3', name: ' Arizona', abbreviation: 'AZ', corpusTitle: 'Arizona Statutes', jurisdictionLevel: 'state' },
+	// { id: '4', name: ' Arkansas', abbreviation: 'AR', corpusTitle: 'Arkansas Statutes', jurisdictionLevel: 'state' },
 	{
 		id: "5",
 		name: " California",
 		abbreviation: "CA",
 		corpusTitle: "California Statutes",
-		usesSubContentNodes: true,
 		jurisdictionLevel: "state",
 	},
-	// { id: '6', name: ' Colorado', abbreviation: 'CO', corpusTitle: 'Colorado Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
-	// { id: '7', name: ' Connecticut', abbreviation: 'CT', corpusTitle: 'Connecticut Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
-	// { id: '8', name: ' Delaware', abbreviation: 'DE', corpusTitle: 'Delaware Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
+	// { id: '6', name: ' Colorado', abbreviation: 'CO', corpusTitle: 'Colorado Statutes', jurisdictionLevel: 'state' },
+	// { id: '7', name: ' Connecticut', abbreviation: 'CT', corpusTitle: 'Connecticut Statutes', jurisdictionLevel: 'state' },
+	// { id: '8', name: ' Delaware', abbreviation: 'DE', corpusTitle: 'Delaware Statutes', jurisdictionLevel: 'state' },
 	{
 		id: "9",
 		name: " Florida",
 		abbreviation: "FL",
 		corpusTitle: "Florida Statutes",
-		usesSubContentNodes: false,
 		jurisdictionLevel: "state",
 	},
-	// { id: '10', name: ' Georgia', abbreviation: 'GA', corpusTitle: 'Georgia Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
-	// { id: '11', name: ' Hawaii', abbreviation: 'HI', corpusTitle: 'Hawaii Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
+	// { id: '10', name: ' Georgia', abbreviation: 'GA', corpusTitle: 'Georgia Statutes', jurisdictionLevel: 'state' },
+	// { id: '11', name: ' Hawaii', abbreviation: 'HI', corpusTitle: 'Hawaii Statutes', jurisdictionLevel: 'state' },
 	{
 		id: "12",
 		name: " Idaho",
 		abbreviation: "ID",
 		corpusTitle: "Idaho Statutes",
-		usesSubContentNodes: false,
+
 		jurisdictionLevel: "state",
 	},
-	// { id: '13', name: ' Illinois', abbreviation: 'IL', corpusTitle: 'Illinois Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
-	// { id: '14', name: ' Indiana', abbreviation: 'IN', corpusTitle: 'Indiana Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
-	// { id: '15', name: ' Iowa', abbreviation: 'IA', corpusTitle: 'Iowa Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
+	// { id: '13', name: ' Illinois', abbreviation: 'IL', corpusTitle: 'Illinois Statutes', jurisdictionLevel: 'state' },
+	// { id: '14', name: ' Indiana', abbreviation: 'IN', corpusTitle: 'Indiana Statutes', jurisdictionLevel: 'state' },
+	// { id: '15', name: ' Iowa', abbreviation: 'IA', corpusTitle: 'Iowa Statutes', jurisdictionLevel: 'state' },
 	{
 		id: "16",
 		name: "Kansas",
 		abbreviation: "KS",
 		corpusTitle: "Kansas Statutes",
-		usesSubContentNodes: false,
+
 		jurisdictionLevel: "state",
 	},
-	// { id: '17', name: 'Kentucky', abbreviation: 'KY', corpusTitle: 'Kentucky Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
+	// { id: '17', name: 'Kentucky', abbreviation: 'KY', corpusTitle: 'Kentucky Statutes', jurisdictionLevel: 'state' },
 	{
 		id: "18",
 		name: "Louisiana",
 		abbreviation: "LA",
 		corpusTitle: "Louisiana Statutes",
-		usesSubContentNodes: false,
 		jurisdictionLevel: "state",
 	},
-	// { id: '19', name: 'Maine', abbreviation: 'ME', corpusTitle: 'Maine Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
-	// { id: '20', name: 'Maryland', abbreviation: 'MD', corpusTitle: 'Maryland Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
-	// { id: '21', name: 'Massachusetts', abbreviation: 'MA', corpusTitle: 'Massachusetts Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
+	// { id: '19', name: 'Maine', abbreviation: 'ME', corpusTitle: 'Maine Statutes', jurisdictionLevel: 'state' },
+	// { id: '20', name: 'Maryland', abbreviation: 'MD', corpusTitle: 'Maryland Statutes', jurisdictionLevel: 'state' },
+	// { id: '21', name: 'Massachusetts', abbreviation: 'MA', corpusTitle: 'Massachusetts Statutes', jurisdictionLevel: 'state' },
 	{
 		id: "22",
 		name: "Michigan",
 		abbreviation: "MI",
 		corpusTitle: "Michigan Statutes",
-		usesSubContentNodes: false,
+
 		jurisdictionLevel: "state",
 	},
 	{
@@ -312,16 +308,16 @@ export const StateJurisdictionOptions: Jurisdiction[] = [
 		name: "Minnesota",
 		abbreviation: "MN",
 		corpusTitle: "Minnesota Statutes",
-		usesSubContentNodes: false,
+
 		jurisdictionLevel: "state",
 	},
-	// { id: '24', name: 'Mississippi', abbreviation: 'MS', corpusTitle: 'Mississippi Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
+	// { id: '24', name: 'Mississippi', abbreviation: 'MS', corpusTitle: 'Mississippi Statutes', jurisdictionLevel: 'state' },
 	{
 		id: "25",
 		name: "Missouri",
 		abbreviation: "MO",
 		corpusTitle: "Missouri Statutes",
-		usesSubContentNodes: false,
+
 		jurisdictionLevel: "state",
 	},
 	{
@@ -329,7 +325,7 @@ export const StateJurisdictionOptions: Jurisdiction[] = [
 		name: "Montana",
 		abbreviation: "MT",
 		corpusTitle: "Montana Statutes",
-		usesSubContentNodes: false,
+
 		jurisdictionLevel: "state",
 	},
 	{
@@ -337,19 +333,19 @@ export const StateJurisdictionOptions: Jurisdiction[] = [
 		name: "Nebraska",
 		abbreviation: "NE",
 		corpusTitle: "Nebraska Statutes",
-		usesSubContentNodes: false,
+
 		jurisdictionLevel: "state",
 	},
-	// { id: '28', name: 'Nevada', abbreviation: 'NV', corpusTitle: 'Nevada Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
-	// { id: '29', name: 'New Hampshire', abbreviation: 'NH', corpusTitle: 'New Hampshire Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
-	// { id: '30', name: 'New Jersey', abbreviation: 'NJ', corpusTitle: 'New Jersey Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
-	// { id: '31', name: 'New Mexico', abbreviation: 'NM', corpusTitle: 'New Mexico Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
+	// { id: '28', name: 'Nevada', abbreviation: 'NV', corpusTitle: 'Nevada Statutes', jurisdictionLevel: 'state' },
+	// { id: '29', name: 'New Hampshire', abbreviation: 'NH', corpusTitle: 'New Hampshire Statutes', jurisdictionLevel: 'state' },
+	// { id: '30', name: 'New Jersey', abbreviation: 'NJ', corpusTitle: 'New Jersey Statutes', jurisdictionLevel: 'state' },
+	// { id: '31', name: 'New Mexico', abbreviation: 'NM', corpusTitle: 'New Mexico Statutes', jurisdictionLevel: 'state' },
 	{
 		id: "32",
 		name: "New York",
 		abbreviation: "NY",
 		corpusTitle: "New York Statutes",
-		usesSubContentNodes: false,
+
 		jurisdictionLevel: "state",
 	},
 	{
@@ -357,40 +353,39 @@ export const StateJurisdictionOptions: Jurisdiction[] = [
 		name: "North Carolina",
 		abbreviation: "NC",
 		corpusTitle: "North Carolina Statutes",
-		usesSubContentNodes: false,
+
 		jurisdictionLevel: "state",
 	},
-	// { id: '34', name: 'North Dakota', abbreviation: 'ND', corpusTitle: 'North Dakota Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
+	// { id: '34', name: 'North Dakota', abbreviation: 'ND', corpusTitle: 'North Dakota Statutes', jurisdictionLevel: 'state' },
 	{
 		id: "35",
 		name: "Ohio",
 		abbreviation: "OH",
 		corpusTitle: "Ohio Statutes",
-		usesSubContentNodes: false,
+
 		jurisdictionLevel: "state",
 	},
-	// { id: '36', name: 'Oklahoma', abbreviation: 'OK', corpusTitle: 'Oklahoma Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
-	// { id: '37', name: 'Oregon', abbreviation: 'OR', corpusTitle: 'Oregon Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
-	// { id: '38', name: 'Pennsylvania', abbreviation: 'PA', corpusTitle: 'Pennsylvania Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
+	// { id: '36', name: 'Oklahoma', abbreviation: 'OK', corpusTitle: 'Oklahoma Statutes', jurisdictionLevel: 'state' },
+	// { id: '37', name: 'Oregon', abbreviation: 'OR', corpusTitle: 'Oregon Statutes', jurisdictionLevel: 'state' },
+	// { id: '38', name: 'Pennsylvania', abbreviation: 'PA', corpusTitle: 'Pennsylvania Statutes', jurisdictionLevel: 'state' },
 	{
 		id: "39",
 		name: "Rhode Island",
 		abbreviation: "RI",
 		corpusTitle: "Rhode Island Statutes",
-		usesSubContentNodes: false,
 		jurisdictionLevel: "state",
 	},
-	// { id: '40', name: 'South Carolina', abbreviation: 'SC', corpusTitle: 'South Carolina Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
-	// { id: '41', name: 'South Dakota', abbreviation: 'SD', corpusTitle: 'South Dakota Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
-	// { id: '42', name: 'Tennessee', abbreviation: 'TN', corpusTitle: 'Tennessee Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
-	// { id: '43', name: 'Texas', abbreviation: 'TX', corpusTitle: 'Texas Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
-	// { id: '44', name: 'Utah', abbreviation: 'UT', corpusTitle: 'Utah Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
-	// { id: '45', name: 'Vermont', abbreviation: 'VT', corpusTitle: 'Vermont Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
-	// { id: '46', name: 'Virginia', abbreviation: 'VA', corpusTitle: 'Virginia Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
-	// { id: '47', name: 'Washington', abbreviation: 'WA', corpusTitle: 'Washington Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
-	// { id: '48', name: 'West Virginia', abbreviation: 'WV', corpusTitle: 'West Virginia Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
-	// { id: '49', name: 'Wisconsin', abbreviation: 'WI', corpusTitle: 'Wisconsin Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
-	// { id: '50', name: 'Wyoming', abbreviation: 'WY', corpusTitle: 'Wyoming Statutes', usesSubContentNodes: false, jurisdictionLevel: 'state' },
+	// { id: '40', name: 'South Carolina', abbreviation: 'SC', corpusTitle: 'South Carolina Statutes', jurisdictionLevel: 'state' },
+	// { id: '41', name: 'South Dakota', abbreviation: 'SD', corpusTitle: 'South Dakota Statutes', jurisdictionLevel: 'state' },
+	// { id: '42', name: 'Tennessee', abbreviation: 'TN', corpusTitle: 'Tennessee Statutes', jurisdictionLevel: 'state' },
+	// { id: '43', name: 'Texas', abbreviation: 'TX', corpusTitle: 'Texas Statutes', jurisdictionLevel: 'state' },
+	// { id: '44', name: 'Utah', abbreviation: 'UT', corpusTitle: 'Utah Statutes', jurisdictionLevel: 'state' },
+	// { id: '45', name: 'Vermont', abbreviation: 'VT', corpusTitle: 'Vermont Statutes', jurisdictionLevel: 'state' },
+	// { id: '46', name: 'Virginia', abbreviation: 'VA', corpusTitle: 'Virginia Statutes', jurisdictionLevel: 'state' },
+	// { id: '47', name: 'Washington', abbreviation: 'WA', corpusTitle: 'Washington Statutes', jurisdictionLevel: 'state' },
+	// { id: '48', name: 'West Virginia', abbreviation: 'WV', corpusTitle: 'West Virginia Statutes', jurisdictionLevel: 'state' },
+	// { id: '49', name: 'Wisconsin', abbreviation: 'WI', corpusTitle: 'Wisconsin Statutes', jurisdictionLevel: 'state' },
+	// { id: '50', name: 'Wyoming', abbreviation: 'WY', corpusTitle: 'Wyoming Statutes', jurisdictionLevel: 'state' },
 ];
 
 export const FederalJurisdictionOptions: Jurisdiction[] = [
@@ -399,7 +394,7 @@ export const FederalJurisdictionOptions: Jurisdiction[] = [
 		name: "US Federal Regulations",
 		abbreviation: "ecfr",
 		corpusTitle: "United States Code of Federal Regulations",
-		usesSubContentNodes: false,
+
 		jurisdictionLevel: "federal",
 	},
 	{
@@ -407,7 +402,7 @@ export const FederalJurisdictionOptions: Jurisdiction[] = [
 		name: "US Code",
 		abbreviation: "musc",
 		corpusTitle: "United States Code",
-		usesSubContentNodes: false,
+
 		jurisdictionLevel: "federal",
 	},
 	{
@@ -415,7 +410,7 @@ export const FederalJurisdictionOptions: Jurisdiction[] = [
 		name: "Marshall Islands",
 		abbreviation: "mhl",
 		corpusTitle: "Republic of the Marshall Islands",
-		usesSubContentNodes: false,
+
 		jurisdictionLevel: "federal",
 	},
 ];
@@ -427,7 +422,7 @@ export const MiscJurisdictionOptions: Jurisdiction[] = [
 		abbreviation: "aim",
 		corpusTitle:
 			"FAAs official guide to basic flight information and Air traffic control (ATC) procedures.",
-		usesSubContentNodes: false,
+
 		jurisdictionLevel: "misc",
 	},
 ];
@@ -520,10 +515,10 @@ export type text_citation_pair = {
 };
 
 export type questionJurisdictions = {
+	state?: Jurisdiction;
+	federal?: Jurisdiction;
+	misc?: Jurisdiction;
 	mode: string;
-	state: Jurisdiction | undefined;
-	federal: Jurisdiction | undefined;
-	misc: Jurisdiction | undefined;
 };
 
 // ### Completion Stuff ###
@@ -538,7 +533,7 @@ export interface APIParametersParams {
 	rag_tokens: number;
 	max_tokens?: number; // Optional
 	stream?: boolean; // Optional with default value
-	response_format?: { [key: string]: any }; // Optional
+	response_format?: { [key: string]: any; }; // Optional
 	presence_penalty?: number; // Optional with default value
 	response_model?: any; // Optional, dynamic type
 	max_retries?: number; // Optional with default value
@@ -556,7 +551,7 @@ export class APIParameters {
 	rag_tokens: number;
 	max_tokens?: number;
 	stream: boolean = false;
-	response_format?: { [key: string]: any };
+	response_format?: { [key: string]: any; };
 	presence_penalty: number = 0;
 	response_model?: any;
 	max_retries: number = 1;
@@ -905,13 +900,13 @@ class IncorporatedTerms {
 }
 
 class DefinitionHub {
-	local_definitions: { [key: string]: Definition };
+	local_definitions: { [key: string]: Definition; };
 	incorporated_definitions?: IncorporatedTerms[];
 	scope?: string;
 	scopeIds?: string[];
 
 	constructor(
-		local_definitions: { [key: string]: Definition },
+		local_definitions: { [key: string]: Definition; },
 		incorporated_definitions?: IncorporatedTerms[],
 		scope?: string,
 		scopeIds?: string[],
@@ -960,9 +955,9 @@ export class Reference {
 }
 
 export class ReferenceHub {
-	references: { [key: string]: Reference };
+	references: { [key: string]: Reference; };
 
-	constructor(references: { [key: string]: Reference } = {}) {
+	constructor(references: { [key: string]: Reference; } = {}) {
 		this.references = references;
 	}
 
@@ -1010,12 +1005,12 @@ export class Paragraph {
 }
 
 export class NodeText {
-	paragraphs: { [key: string]: Paragraph };
+	paragraphs: { [key: string]: Paragraph; };
 	root_paragraphId: string;
 	length: number;
 
 	constructor(
-		paragraphs: { [key: string]: Paragraph } = {},
+		paragraphs: { [key: string]: Paragraph; } = {},
 		root_paragraphId: string = "ROOT", // Default value if not provided
 		length: number = 0, // Default value if not provided
 	) {
@@ -1101,13 +1096,13 @@ class Addendum {
 	source?: AddendumType;
 	authority?: AddendumType;
 	history?: AddendumType;
-	metadata?: { [key: string]: any };
+	metadata?: { [key: string]: any; };
 
 	constructor(
 		source?: AddendumType,
 		authority?: AddendumType,
 		history?: AddendumType,
-		metadata?: { [key: string]: any },
+		metadata?: { [key: string]: any; },
 	) {
 		this.source = source;
 		this.authority = authority;
@@ -1211,10 +1206,10 @@ interface NodeConstructorParams {
 	alias?: string;
 	nodeText?: NodeText;
 	definitions?: DefinitionHub;
-	coreMetadata?: { [key: string]: any };
-	processing?: { [key: string]: any };
+	coreMetadata?: { [key: string]: any; };
+	processing?: { [key: string]: any; };
 	addendum?: Addendum;
-	dates?: { [key: string]: any };
+	dates?: { [key: string]: any; };
 	summary?: string;
 	hyde?: string[];
 	agency?: string;
@@ -1246,12 +1241,12 @@ export class Node {
 	alias?: string;
 	nodeText?: NodeText;
 	definitions?: DefinitionHub;
-	coreMetadata?: { [key: string]: any };
-	processing?: { [key: string]: any };
+	coreMetadata?: { [key: string]: any; };
+	processing?: { [key: string]: any; };
 
 	// Addendum Fields
 	addendum?: Addendum;
-	dates?: { [key: string]: any };
+	dates?: { [key: string]: any; };
 
 	// Additional Fields
 	summary?: string;

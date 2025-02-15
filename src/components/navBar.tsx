@@ -1,20 +1,16 @@
 "use client";
-import React from "react";
-import { Button } from "@/components/ui/button";
-import Link from "next/link"; // Import the Link component from the appropriate library
-import Image from "next/image"; // Import the Image component from the appropriate library
 import {
 	NavigationMenu,
 	NavigationMenuContent,
-	NavigationMenuIndicator,
 	NavigationMenuItem,
 	NavigationMenuLink,
 	NavigationMenuList,
 	NavigationMenuTrigger,
-	NavigationMenuViewport,
-	navigationMenuTriggerStyle,
+	navigationMenuTriggerStyle
 } from "@/components/ui/navigationMenu";
 import { cn } from "@/lib/utils/cn";
+import Link from "next/link"; // Import the Link component from the appropriate library
+import React from "react";
 
 const components: { title: string; href: string; description: string; }[] = [
 	{
@@ -53,9 +49,7 @@ const components: { title: string; href: string; description: string; }[] = [
 
 const NavBar = () => {
 	return (
-		<header
-            className="w-full px-4 py-2 text-base bg-background border-b border-solid"
-        >
+		<header className="w-full px-4 py-2 bg-background border-b border-solid flex-none">
 			<NavigationMenu className="w-full min-w-full">
 				<NavigationMenuList className="w-full min-w-full flex flex-col md:flex-row justify-between items-center">
 					<NavigationMenuItem>

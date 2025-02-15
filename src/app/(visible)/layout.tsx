@@ -1,8 +1,9 @@
-import "../globals.css";
+import NavBar from "@/components/navBar";
+import { cn } from "@/lib/utils/cn";
+import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { Analytics } from "@vercel/analytics/react";
-import NavBar from "@/components/navBar";
+import "../globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,14 +21,15 @@ export default function RootLayout({
 	return (
 		// <ClerkProvider>
 
-		<html lang="en">
-			<body className={inter.className}>
+		<html lang="en" className="h-full">
+			<body className={cn(inter.className, "h-full flex flex-col")}>
 				<NavBar />
-
-				{children}
+				<main className="flex-1 overflow-hidden">
+					{children}
+				</main>
 				{/* <PageFooter /> */}
+				<Analytics />
 			</body>
-			<Analytics />
 		</html>
 		// </ClerkProvider>
 	);
