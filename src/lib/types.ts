@@ -240,6 +240,7 @@ export interface Jurisdiction {
 	abbreviation: string;
 	corpusTitle: string;
 	jurisdictionLevel: string;
+	usesSubContentNodes?: boolean;
 }
 export const StateJurisdictionOptions: Jurisdiction[] = [
 	// { id: '1', name: ' Alabama', abbreviation: 'AL', corpusTitle: 'Alabama Statutes', jurisdictionLevel: 'state' },
